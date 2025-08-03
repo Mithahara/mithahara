@@ -1,32 +1,95 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coming Soon</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #f4f4f4;
-        }
-        h1 {
-            color: #333;
-        }
-        p {
-            color: #666;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mithahara – Coming Soon</title>
+  <meta name="description" content="Mithahara – Healthy, Hygienic, Sustainable food. Launching soon." />
+  <meta name="robots" content="index, follow" />
+  <meta http-equiv="Cache-Control" content="no-store" />
+  <link rel="icon" href="favicon.ico" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    html {
+      height: 100%;
+      margin: 0;
+    }
+    body {
+      height: 100%;
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #337958, #e89b75);
+      background-size: 400% 400%;
+      animation: gradientBG 15s ease infinite;
+      color: #ffffff;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+
+    h1 {
+      font-size: 3rem;
+      margin-bottom: 0.5rem;
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin: 0.5rem 0 1rem;
+    }
+
+    p {
+      font-size: 1.25rem;
+      margin: 0;
+    }
+
+    .values {
+      margin: 0 0 1rem;
+      font-size: 1rem;
+      letter-spacing: 0.05em;
+      color: rgba(255, 255, 255, 0.8);
+    }
+    body { position: relative; }
+    .brand {
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+      text-align: left;
+    }
+    .container {
+      text-align: center;
+      background-color: rgba(255, 255, 255, 0.1);
+      padding: 2rem 3rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+      backdrop-filter: blur(5px);
+      max-width: 90%;
+    }
+
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 2.2rem;
+      }
+      h2 {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div>
-        <h1>Coming Soon</h1>
-        <p>Our website is under construction. Stay tuned!</p>
-    </div>
+  <div class="brand">
+    <h1>Mithahara</h1>
+    <p class="values">Healthy &bull; Hygienic &bull; Sustainable</p>
+  </div>
+  <div class="container">
+    <h2>Coming Soon</h2>
+    <p>Our website is under construction. Stay tuned!</p>
+  </div>
 </body>
 </html>
