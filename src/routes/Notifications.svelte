@@ -11,9 +11,6 @@
     color: var(--text);
     text-align: center;
   }
-  .notifications h2 {
-    margin-bottom: 1rem;
-  }
   .item-list {
     list-style: none;
     padding: 0;

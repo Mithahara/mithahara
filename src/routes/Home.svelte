@@ -87,36 +87,13 @@ details summary {
 details p {
   margin: 0.5rem 0 0;
 }
-  .info {
-    margin: 2rem 0;
-  }
-  .info-list {
-    list-style: disc inside;
-    padding: 0;
-    margin: 1rem 0;
-  }
-  .info-list li {
-    margin: 0.5rem 0;
-  }
-  .info h2 {
-    color: var(--primary);
-    margin-bottom: 1rem;
-    text-align: center;
-    column-span: all;
-  }
-  .info-line {
-    margin: 0.5rem 0;
-    break-inside: avoid;
-  }
-  .info-line span:first-child {
-    font-weight: bold;
-  }
-  .divider {
-    border: 0;
-    height: 1px;
-    background: var(--primary);
-    margin: 2rem 0;
-  }
+
+.divider {
+  border: 0;
+  height: 1px;
+  background: var(--primary);
+  margin: 2rem 0;
+}
 </style>
 
 <main>
