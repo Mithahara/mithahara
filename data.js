@@ -41,3 +41,22 @@ export const contacts = {
 export const notifications = [
   "We are currently on monsoon break. We will be back once the weather settles.",
 ];
+
+export const faqs = [
+  {
+    question: "What is Mithahara?",
+    answer: "Mithahara serves healthy, hygienic, sustainable vegetarian food with eco-friendly plating. Our menu features fresh plates like Appam, Idli, Uttapam, Paranthas, and more, prepared daily."
+  },
+  {
+    question: "Since when are you serving?",
+    answer: "We started on 11th January 2025!"
+  },
+  {
+    question: "Where are you located?",
+    answer: "We currently serve in Sector 14, Panchkula — opposite Saanwara Sweets."
+  },
+  {
+    question: "Do you take bulk orders?",
+    answer: "Yes. We accept bulk orders for offices, events, and gatherings. Reach us on WhatsApp to plan your order."
+  }
+];

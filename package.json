@@ -1,18 +1,15 @@
 {
   "name": "mithahara",
+  "private": true,
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --host",
     "build": "vite build --outDir docs",
-    "preview": "vite preview"
-  },
-  "dependencies": {
-    "three": "^0.158.0"
+    "preview": "vite preview --host",
+    "serve": "python3 -m http.server 3000"
   },
   "devDependencies": {
-    "svelte": "^4.0.0",
-    "@sveltejs/vite-plugin-svelte": "^2.0.0",
-    "vite": "^4.4.0"
+    "vite": "^5.0.0"
   }
 }

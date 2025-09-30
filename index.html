@@ -3,8 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mithahara</title>
-  <link rel="stylesheet" href="/src/app.css" />
+  <title>Mithahara - Healthy, Hygienic & Sustainable</title>
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  
   <!-- Font Awesome icons -->
   <link
     rel="stylesheet"
@@ -13,7 +14,129 @@
   />
 </head>
 <body>
-  <div id="app"></div>
-  <script type="module" src="/src/main.js"></script>
+  <div id="app">
+    <!-- Navigation -->
+    <nav class="navbar">
+      <div class="nav-container">
+        <h1 class="nav-title">Mithahara</h1>
+        <div class="nav-actions">
+          <button class="theme-toggle" aria-label="Toggle theme">
+            <i class="fas fa-moon"></i>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Hero Section -->
+      <section class="hero-section">
+        <div class="hero-container">
+          <h1 class="hero-title">Mithahara</h1>
+          <p class="hero-subtitle">HEALTHY, HYGIENIC & SUSTAINABLE</p>
+          <p class="hero-description">Serving fresh vegetarian food with eco-friendly plating</p>
+          <div class="hero-actions">
+            <button class="cta-button primary">
+              View Menu <i class="fas fa-utensils"></i>
+            </button>
+            <button class="cta-button secondary">
+              Contact Us <i class="fas fa-phone"></i>
+            </button>
+          </div>
+        </div>
+        
+        <!-- Floating elements for visual appeal -->
+        <div class="floating-elements">
+          <div class="floating-element" style="--delay: 0s"></div>
+          <div class="floating-element" style="--delay: 1s"></div>
+          <div class="floating-element" style="--delay: 2s"></div>
+          <div class="floating-element" style="--delay: 3s"></div>
+        </div>
+      </section>
+
+      <!-- Menu Section -->
+      <section class="menu-section">
+        <div class="container">
+          <h2 class="section-title">OUR MENU</h2>
+          <p class="menu-tagline">SERVING FRESH FROM 7 AM TO 2:30 PM</p>
+          <div class="menu-grid" id="menu-grid">
+            <!-- Menu items will be populated by JavaScript -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Contact Section -->
+      <section class="contact-section">
+        <div class="container">
+          <h2 class="section-title">Contact Details</h2>
+          <div class="contact-grid" id="contact-grid">
+            <!-- Contact details will be populated by JavaScript -->
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ Section -->
+      <section class="faq-section">
+        <div class="container">
+          <h2 class="section-title">Frequently Asked Questions</h2>
+          <div class="faq-list" id="faq-list">
+            <!-- FAQ items will be populated by JavaScript -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Call to Action Section -->
+      <section class="cta-section">
+        <div class="container">
+          <div class="cta-content">
+            <h2 class="cta-title">Order Fresh & Healthy Food Today!</h2>
+            <p class="cta-description">Experience the taste of healthy, hygienic, and sustainable vegetarian cuisine</p>
+            <button class="cta-button large" onclick="window.open('https://whatsapp.com/channel/0029Vb6KjsJ1SWt2pEDw5f1z', '_blank')">
+              Order on WhatsApp <i class="fab fa-whatsapp"></i>
+            </button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <h3 class="footer-title">Mithahara</h3>
+            <p class="footer-description">Empowering wellness through technology and community.</p>
+          </div>
+          
+          <div class="footer-section">
+            <h4 class="footer-subtitle">Quick Links</h4>
+            <ul class="footer-links">
+              <li><a href="#about">About</a></li>
+              <li><a href="#features">Features</a></li>
+              <li><a href="#contact">Contact</a></li>
+              <li><a href="#privacy">Privacy</a></li>
+            </ul>
+          </div>
+          
+          <div class="footer-section">
+            <h4 class="footer-subtitle">Follow Us</h4>
+            <div class="social-links">
+              <a href="#" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+              <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+              <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+              <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="footer-bottom">
+          <p>&copy; 2025 Mithahara. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <link rel="stylesheet" href="./style.css">
+  <script type="module" src="./main.js"></script>
 </body>
 </html>
