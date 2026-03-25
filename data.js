@@ -52,11 +52,7 @@ export const faqs = [
     answer: "We started on 11th January 2025!"
   },
   {
-    question: "Where are you located?",
-    answer: "We currently serve in Sector 14, Panchkula — opposite Saanwara Sweets."
-  },
-  {
     question: "Do you take bulk orders?",
-    answer: "Yes. We accept bulk orders for offices, events, and gatherings. Reach us on WhatsApp to plan your order."
+    answer: "Yes. We accept bulk orders for offices, events, and gatherings. Reach us at founder@mithahara.com to plan your order."
   }
 ];

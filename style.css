@@ -61,6 +61,9 @@ section {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 var(--space-sm);
 }
 
 .nav-title {
@@ -72,6 +75,61 @@ section {
 
 .main-content {
   margin-top: 80px;
+}
+
+/* --- Hero Section --- */
+.hero-section {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 var(--space-sm);
+  text-align: center;
+}
+
+.hero-title {
+  font-size: 5rem;
+  color: var(--primary-color);
+  margin-bottom: 0.5rem;
+}
+
+.hero-subtitle {
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  color: var(--text-muted);
+  margin-bottom: 1rem;
+}
+
+.hero-description {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  margin-bottom: 2rem;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* --- Section Title --- */
+.section-title {
+  font-size: 3rem;
+  text-align: center;
+}
+
+.menu-tagline {
+  text-align: center;
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  color: var(--text-muted);
+  margin-top: -1rem;
+  margin-bottom: 2rem;
 }
 
 /* --- Grid & List Styles --- */

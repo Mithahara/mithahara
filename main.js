@@ -1,5 +1,5 @@
 import './style.css';
-import { menuCategories, contacts, faqs } from './data.js';
+import { menu, contacts, faqs } from './data.js';
 
 class MithaharaApp {
   constructor() {
@@ -18,9 +18,9 @@ class MithaharaApp {
     const menuGrid = document.querySelector('.menu-grid');
     if (!menuGrid) return;
     
-    menuGrid.innerHTML = menuCategories.map(category => `
+    menuGrid.innerHTML = menu.map(category => `
       <div class="menu-category">
-        <h3 class="menu-category-title">${category.name}</h3>
+        <h3 class="menu-category-title">${category.title}</h3>
         <div class="menu-items">
           ${category.items.map(item => `
             <div class="menu-item">
@@ -37,13 +37,17 @@ class MithaharaApp {
     const contactGrid = document.querySelector('.contact-grid');
     if (!contactGrid) return;
 
-    contactGrid.innerHTML = contacts.map(contact => `
+    const contactEntries = [
+      { type: 'email', label: 'Email', value: contacts.email },
+    ];
+
+    contactGrid.innerHTML = contactEntries.map(contact => `
       <div class="contact-item">
         <div class="contact-icon">${this.getIconForType(contact.type)}</div>
         <h3 class="contact-label">${contact.label}</h3>
         <div class="contact-details">
-          ${Array.isArray(contact.value) 
-            ? contact.value.map(v => `<p>${v}</p>`).join('') 
+          ${Array.isArray(contact.value)
+            ? contact.value.map(v => `<p>${v}</p>`).join('')
             : `<p>${contact.value}</p>`}
         </div>
       </div>
@@ -96,9 +100,6 @@ class MithaharaApp {
 
   getIconForType(type) {
     const icons = {
-      whatsapp: '💬',
-      phone: '📞',
-      address: '📍',
       email: '✉️'
     };
     return icons[type] || '•';
