@@ -37,21 +37,13 @@ class MithaharaApp {
     const contactGrid = document.querySelector('.contact-grid');
     if (!contactGrid) return;
 
-    const contactEntries = [
-      { type: 'email', label: 'Email', value: contacts.email },
-    ];
-
-    contactGrid.innerHTML = contactEntries.map(contact => `
-      <div class="contact-item">
-        <div class="contact-icon">${this.getIconForType(contact.type)}</div>
-        <h3 class="contact-label">${contact.label}</h3>
-        <div class="contact-details">
-          ${Array.isArray(contact.value)
-            ? contact.value.map(v => `<p>${v}</p>`).join('')
-            : `<p>${contact.value}</p>`}
-        </div>
+    contactGrid.innerHTML = `
+      <div class="contact-card">
+        <span class="contact-email">${contacts.email}</span>
+        <div class="contact-address">${contacts.address}</div>
+        <a class="contact-whatsapp" href="${contacts.whatsapp}" target="_blank" rel="noopener noreferrer">→ join our WhatsApp channel</a>
       </div>
-    `).join('');
+    `;
   }
 
   renderFAQ() {
@@ -61,7 +53,8 @@ class MithaharaApp {
     faqList.innerHTML = faqs.map((faq, index) => `
       <div class="faq-item">
         <button class="faq-question" data-index="${index}">
-          <span>${faq.question}</span>
+          <span class="q-tag">Q</span>
+          <span class="faq-question-text">${faq.question}</span>
           <span class="faq-icon">+</span>
         </button>
         <div class="faq-answer" id="faq-answer-${index}">
@@ -96,13 +89,6 @@ class MithaharaApp {
         }
       });
     });
-  }
-
-  getIconForType(type) {
-    const icons = {
-      email: '✉️'
-    };
-    return icons[type] || '•';
   }
 }
 
