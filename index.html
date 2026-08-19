@@ -3,8 +3,75 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mithahara - Healthy, Hygienic & Sustainable</title>
+  <title>Mithahara — Ahar Food, Man'sahara & Odoo/Chrome Apps</title>
+  <meta name="description" content="Mithahara: Ahar's fresh vegetarian food in Panchkula, the upcoming Man'sahara venture, and Odoo apps & Chrome extensions we've built — BYOK Gateway, Community Cash Reconciler, Multi-Currency Rounding, and ClipMark.">
+  <link rel="canonical" href="https://mithahara.com/">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Mithahara">
+  <meta property="og:title" content="Mithahara — Ahar Food, Man'sahara & Odoo/Chrome Apps">
+  <meta property="og:description" content="Ahar's fresh vegetarian food, the upcoming Man'sahara venture, and Mithahara's Odoo apps & Chrome extensions — BYOK Gateway, Community Cash Reconciler, Multi-Currency Rounding, and ClipMark.">
+  <meta property="og:url" content="https://mithahara.com/">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="Mithahara — Ahar Food, Man'sahara & Odoo/Chrome Apps">
+  <meta name="twitter:description" content="Ahar's fresh vegetarian food, the upcoming Man'sahara venture, and Mithahara's Odoo apps & Chrome extensions.">
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://mithahara.com/#organization",
+        "name": "Mithahara",
+        "url": "https://mithahara.com/",
+        "email": "founder@mithahara.com"
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "BYOK Gateway",
+        "url": "https://mithahara.com/#apps",
+        "downloadUrl": "https://apps.odoo.com/apps/modules/19.0/mh_llm_gateway",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Odoo 19",
+        "description": "Redirects Odoo's AI writing tools to your own OpenAI, Anthropic, or OpenRouter API key instead of Odoo's metered service.",
+        "creator": { "@id": "https://mithahara.com/#organization" }
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "Community Cash Reconciler",
+        "url": "https://mithahara.com/#apps",
+        "downloadUrl": "https://apps.odoo.com/apps/modules/19.0/mh_cash_application_matcher",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Odoo 19",
+        "description": "Adds a Community Edition screen for matching bank deposits to open invoices, including lump-sum deposits and short payments.",
+        "creator": { "@id": "https://mithahara.com/#organization" }
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "Multi-Currency Rounding",
+        "url": "https://mithahara.com/#apps",
+        "downloadUrl": "https://apps.odoo.com/apps/modules/19.0/mh_currency_rounding_tool",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Odoo 19",
+        "description": "Lets you set a rounding threshold and dedicated account for small multi-currency reconciliation residuals.",
+        "creator": { "@id": "https://mithahara.com/#organization" }
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "ClipMark",
+        "url": "https://mithahara.com/#apps",
+        "downloadUrl": "https://chromewebstore.google.com/detail/clipmark-youtube-notes-fl/iboippnihpcnnglgboaiedaiimbiolgg",
+        "applicationCategory": "BrowserApplication",
+        "operatingSystem": "Chrome",
+        "description": "Turns YouTube moments into spaced-repetition flashcards with on-device AI notes and Anki export.",
+        "creator": { "@id": "https://mithahara.com/#organization" }
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
   <div id="app">
@@ -95,12 +162,10 @@
           <p class="venture-tagline">Chrome Extensions & Odoo Apps, Built at Mithahara</p>
           <p class="venture-description">
             Alongside our food ventures, we build and ship Chrome extensions and Odoo apps at a fast pace.
-            New products land regularly — this section will list them as they go live.
+            Here's what's live so far.
           </p>
-          <div class="apps-slots">
-            <div class="app-slot"><span>chrome-ext</span><span class="slot-label">next release</span></div>
-            <div class="app-slot"><span>odoo-app</span><span class="slot-label">next release</span></div>
-            <div class="app-slot"><span>chrome-ext</span><span class="slot-label">next release</span></div>
+          <div class="apps-grid" id="apps-grid">
+            <!-- App cards will be populated by JavaScript -->
           </div>
           <div class="hero-actions" style="justify-content: center;">
             <a class="cta-button primary" href="https://www.odoo.com/r/aff-mithahara" target="_blank" rel="noopener noreferrer">

@@ -1,5 +1,5 @@
 import './style.css';
-import { menu, contacts, faqs } from './data.js';
+import { menu, contacts, faqs, apps } from './data.js';
 
 class MithaharaApp {
   constructor() {
@@ -7,6 +7,7 @@ class MithaharaApp {
     this.renderMenu();
     this.renderContacts();
     this.renderFAQ();
+    this.renderApps();
     this.setupEventListeners();
   }
 
@@ -61,6 +62,21 @@ class MithaharaApp {
           <p>${faq.answer}</p>
         </div>
       </div>
+    `).join('');
+  }
+
+  renderApps() {
+    const appsGrid = document.querySelector('.apps-grid');
+    if (!appsGrid) return;
+
+    appsGrid.innerHTML = apps.map(app => `
+      <a class="app-card" href="${app.url}" target="_blank" rel="noopener noreferrer">
+        <div class="app-card-head">
+          <span class="app-card-name">${app.name}</span>
+          <span class="log-tag">${app.platform}</span>
+        </div>
+        <p class="app-card-tagline">${app.tagline}</p>
+      </a>
     `).join('');
   }
 
