@@ -1,5 +1,5 @@
 import './style.css';
-import { menu, contacts, faqs } from './data.js';
+import { menu, contacts, faqs, apps } from './data.js';
 
 class MithaharaApp {
   constructor() {
@@ -7,6 +7,7 @@ class MithaharaApp {
     this.renderMenu();
     this.renderContacts();
     this.renderFAQ();
+    this.renderApps();
     this.setupEventListeners();
   }
 
@@ -37,21 +38,13 @@ class MithaharaApp {
     const contactGrid = document.querySelector('.contact-grid');
     if (!contactGrid) return;
 
-    const contactEntries = [
-      { type: 'email', label: 'Email', value: contacts.email },
-    ];
-
-    contactGrid.innerHTML = contactEntries.map(contact => `
-      <div class="contact-item">
-        <div class="contact-icon">${this.getIconForType(contact.type)}</div>
-        <h3 class="contact-label">${contact.label}</h3>
-        <div class="contact-details">
-          ${Array.isArray(contact.value)
-            ? contact.value.map(v => `<p>${v}</p>`).join('')
-            : `<p>${contact.value}</p>`}
-        </div>
+    contactGrid.innerHTML = `
+      <div class="contact-card">
+        <span class="contact-email">${contacts.email}</span>
+        <div class="contact-address">${contacts.address}</div>
+        <a class="contact-whatsapp" href="${contacts.whatsapp}" target="_blank" rel="noopener noreferrer">→ join our WhatsApp channel</a>
       </div>
-    `).join('');
+    `;
   }
 
   renderFAQ() {
@@ -61,13 +54,29 @@ class MithaharaApp {
     faqList.innerHTML = faqs.map((faq, index) => `
       <div class="faq-item">
         <button class="faq-question" data-index="${index}">
-          <span>${faq.question}</span>
+          <span class="q-tag">Q</span>
+          <span class="faq-question-text">${faq.question}</span>
           <span class="faq-icon">+</span>
         </button>
         <div class="faq-answer" id="faq-answer-${index}">
           <p>${faq.answer}</p>
         </div>
       </div>
+    `).join('');
+  }
+
+  renderApps() {
+    const appsGrid = document.querySelector('.apps-grid');
+    if (!appsGrid) return;
+
+    appsGrid.innerHTML = apps.map(app => `
+      <a class="app-card" href="${app.url}" target="_blank" rel="noopener noreferrer">
+        <div class="app-card-head">
+          <span class="app-card-name">${app.name}</span>
+          <span class="log-tag">${app.platform}</span>
+        </div>
+        <p class="app-card-tagline">${app.tagline}</p>
+      </a>
     `).join('');
   }
 
@@ -96,13 +105,6 @@ class MithaharaApp {
         }
       });
     });
-  }
-
-  getIconForType(type) {
-    const icons = {
-      email: '✉️'
-    };
-    return icons[type] || '•';
   }
 }
 
