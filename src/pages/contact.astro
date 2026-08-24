@@ -1,0 +1,54 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { contacts } from '../data/site.js';
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Restaurant",
+  "name": "Ahar",
+  "brand": { "@id": "https://mithahara.com/#organization" },
+  "description": "Ahar is Mithahara's vegetarian food venture — healthy, hygienic, and sustainable vegetarian food with eco-friendly plating in Panchkula.",
+  "servesCuisine": "Vegetarian",
+  "priceRange": "₹₹",
+  "url": "https://mithahara.com/#ahar",
+  "email": contacts.email,
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Opposite Saanwara Sweets, Sector 14",
+    "addressLocality": "Panchkula",
+    "addressRegion": "Haryana",
+    "postalCode": "134103",
+    "addressCountry": "IN",
+  },
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+    "opens": "07:00",
+    "closes": "14:30",
+  },
+  "sameAs": [contacts.whatsapp],
+};
+---
+<Layout
+  path="/contact"
+  title="Contact"
+  description="Get in touch with Mithahara — Ahar food orders, bulk enquiries, or the Odoo/Chrome apps team."
+>
+  <section class="page-section">
+    <div class="container">
+      <h2 class="section-title">Contact</h2>
+      <div class="contact-card">
+        <span class="contact-email"><a href={`mailto:${contacts.email}`}>{contacts.email}</a></span>
+        <div class="contact-address">{contacts.address}</div>
+        <a class="contact-whatsapp" href={contacts.whatsapp} target="_blank" rel="noopener noreferrer">→ join our WhatsApp channel</a>
+      </div>
+      <p class="venture-description" style="margin-top: 2rem;">
+        Ahar is open daily, 7 AM – 2:30 PM. Bulk orders for offices, events, and gatherings are
+        welcome — email or WhatsApp us to plan one. For the Odoo apps or ClipMark, the same email
+        reaches the team.
+      </p>
+    </div>
+  </section>
+
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+</Layout>

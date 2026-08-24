@@ -1,0 +1,18 @@
+---
+const links = [
+  { href: '/#ahar', label: "Ahar" },
+  { href: '/#mansahara', label: "Man'sahara" },
+  { href: '/#apps', label: 'Apps' },
+  { href: '/contact', label: 'Contact' },
+];
+---
+<nav class="navbar">
+  <div class="nav-container">
+    <a class="nav-title" href="/">Mithahara</a>
+    <ul class="nav-links">
+      {links.map((link) => (
+        <li><a href={link.href}>{link.label}</a></li>
+      ))}
+    </ul>
+  </div>
+</nav>

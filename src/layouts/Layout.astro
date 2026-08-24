@@ -1,0 +1,55 @@
+---
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+
+const { title, description, path = '/' } = Astro.props;
+const canonicalURL = new URL(path, Astro.site);
+const pageTitle = title
+  ? `${title} | Mithahara`
+  : "Mithahara — Ahar Food, Man'sahara & Odoo/Chrome Apps";
+const pageDescription = description
+  ?? "Mithahara: Ahar's fresh vegetarian food in Panchkula, the upcoming Man'sahara venture, and Odoo apps & Chrome extensions we've built — BYOK Gateway, Community Cash Reconciler, Multi-Currency Rounding, and ClipMark.";
+
+const organizationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": "https://mithahara.com/#organization",
+  "name": "Mithahara",
+  "url": "https://mithahara.com/",
+  "email": "founder@mithahara.com",
+};
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={pageDescription} />
+    <link rel="canonical" href={canonicalURL} />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Mithahara" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={pageDescription} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={pageDescription} />
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <script type="application/ld+json" set:html={JSON.stringify(organizationJsonLd)} />
+  </head>
+  <body>
+    <div id="app">
+      <Nav />
+      <main class="main-content">
+        <slot />
+      </main>
+      <Footer />
+    </div>
+  </body>
+</html>

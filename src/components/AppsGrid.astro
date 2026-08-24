@@ -1,0 +1,30 @@
+---
+import { apps } from '../data/site.js';
+
+const jsonLd = apps.map((app) => ({
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": app.name,
+  "url": "https://mithahara.com/#apps",
+  "downloadUrl": app.url,
+  "applicationCategory": app.platform === 'Chrome' ? 'BrowserApplication' : 'BusinessApplication',
+  "operatingSystem": app.platform === 'Chrome' ? 'Chrome' : 'Odoo 19',
+  "description": app.description,
+  "creator": { "@id": "https://mithahara.com/#organization" },
+}));
+---
+<div class="apps-grid">
+  {apps.map((app) => (
+    <a class="app-card" href={app.url} target="_blank" rel="noopener noreferrer">
+      <div class="app-card-head">
+        <span class="app-card-name">{app.name}</span>
+        <span class="log-tag">{app.platform}</span>
+      </div>
+      <p class="app-card-tagline">{app.tagline}</p>
+    </a>
+  ))}
+</div>
+
+{jsonLd.map((entry) => (
+  <script type="application/ld+json" set:html={JSON.stringify(entry)} />
+))}

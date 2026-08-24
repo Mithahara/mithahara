@@ -1,4 +1,3 @@
-// Shared data for menu, contacts, and notifications
 export const menu = [
   {
     title: "Fresh Plates",

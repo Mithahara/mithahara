@@ -1,15 +1,19 @@
 {
   "name": "mithahara",
   "private": true,
-  "version": "1.0.0",
   "type": "module",
-  "scripts": {
-    "dev": "vite --host",
-    "build": "vite build --outDir docs",
-    "preview": "vite preview --host",
-    "serve": "python3 -m http.server 3000"
+  "version": "1.0.0",
+  "engines": {
+    "node": ">=22.12.0"
   },
-  "devDependencies": {
-    "vite": "^5.0.0"
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/sitemap": "^3.7.3",
+    "astro": "^7.2.4"
   }
 }

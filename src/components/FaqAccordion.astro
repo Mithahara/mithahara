@@ -1,0 +1,50 @@
+---
+import { faqs } from '../data/site.js';
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map((faq) => ({
+    "@type": "Question",
+    "name": faq.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.answer,
+    },
+  })),
+};
+---
+<div class="faq-list">
+  {faqs.map((faq, index) => (
+    <div class="faq-item">
+      <button class="faq-question" data-index={index} aria-expanded="false">
+        <span class="q-tag">Q</span>
+        <span class="faq-question-text">{faq.question}</span>
+        <span class="faq-icon">+</span>
+      </button>
+      <div class="faq-answer" id={`faq-answer-${index}`}>
+        <p>{faq.answer}</p>
+      </div>
+    </div>
+  ))}
+</div>
+
+<script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+
+<script>
+  document.addEventListener('click', (e) => {
+    const target = e.target;
+    if (!(target instanceof Element)) return;
+    const questionBtn = target.closest('.faq-question');
+    if (!questionBtn) return;
+
+    const index = questionBtn.getAttribute('data-index');
+    const answer = document.getElementById(`faq-answer-${index}`);
+    const icon = questionBtn.querySelector('.faq-icon');
+    if (!answer) return;
+
+    const isActive = answer.classList.toggle('active');
+    questionBtn.setAttribute('aria-expanded', String(isActive));
+    if (icon) icon.textContent = isActive ? '−' : '+';
+  });
+</script>

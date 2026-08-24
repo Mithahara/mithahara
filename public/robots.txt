@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://mithahara.com/sitemap.xml
+Sitemap: https://mithahara.com/sitemap-index.xml
