@@ -1,0 +1,78 @@
+---
+import Layout from '../layouts/Layout.astro';
+import FaqAccordion from '../components/FaqAccordion.astro';
+import { menu, contacts } from '../data/site.js';
+
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Restaurant",
+  "name": "Ahar",
+  "brand": { "@id": "https://mithahara.com/#organization" },
+  "description": "Ahar is Mithahara's vegetarian food venture — healthy, hygienic, and sustainable vegetarian food with eco-friendly plating in Panchkula.",
+  "servesCuisine": "Vegetarian",
+  "priceRange": "₹₹",
+  "url": "https://mithahara.com/ahar",
+  "email": contacts.email,
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Opposite Saanwara Sweets, Sector 14",
+    "addressLocality": "Panchkula",
+    "addressRegion": "Haryana",
+    "postalCode": "134103",
+    "addressCountry": "IN",
+  },
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+    "opens": "07:00",
+    "closes": "14:30",
+  },
+  "sameAs": [contacts.whatsapp],
+};
+---
+<Layout
+  path="/ahar"
+  title="Ahar"
+  description="Ahar is Mithahara's vegetarian food venture in Panchkula — fresh idlis, appams, uttapams, and paranthas, served daily 7:00–14:30."
+>
+  <section class="venture-section" id="ahar">
+    <div class="container">
+      <div class="log-row"><span class="log-tag">log/001 — Active</span></div>
+      <h2 class="section-title">Ahar</h2>
+      <p class="venture-tagline">Mithahara's Vegetarian Venture · Serving 7:00–14:30 Daily</p>
+
+      <div class="menu-grid">
+        {menu.map((category) => (
+          <div class="menu-category">
+            <h3 class="menu-category-title">{category.title}</h3>
+            <div class="menu-items">
+              {category.items.map((item) => (
+                <div class="menu-item">
+                  <span class="menu-item-name">{item.name}</span>
+                  <span class="menu-item-price">{item.price}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div class="ahar-details">
+        <div>
+          <h3 class="subsection-title">Frequently Asked</h3>
+          <FaqAccordion />
+        </div>
+        <div>
+          <h3 class="subsection-title" id="contact">Contact</h3>
+          <div class="contact-card">
+            <span class="contact-email">{contacts.email}</span>
+            <div class="contact-address">{contacts.address}</div>
+            <a class="contact-whatsapp" href={contacts.whatsapp} target="_blank" rel="noopener noreferrer">→ join our WhatsApp channel</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+</Layout>

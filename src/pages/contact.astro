@@ -1,33 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { contacts } from '../data/site.js';
-
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Restaurant",
-  "name": "Ahar",
-  "brand": { "@id": "https://mithahara.com/#organization" },
-  "description": "Ahar is Mithahara's vegetarian food venture — healthy, hygienic, and sustainable vegetarian food with eco-friendly plating in Panchkula.",
-  "servesCuisine": "Vegetarian",
-  "priceRange": "₹₹",
-  "url": "https://mithahara.com/#ahar",
-  "email": contacts.email,
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "Opposite Saanwara Sweets, Sector 14",
-    "addressLocality": "Panchkula",
-    "addressRegion": "Haryana",
-    "postalCode": "134103",
-    "addressCountry": "IN",
-  },
-  "openingHoursSpecification": {
-    "@type": "OpeningHoursSpecification",
-    "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-    "opens": "07:00",
-    "closes": "14:30",
-  },
-  "sameAs": [contacts.whatsapp],
-};
 ---
 <Layout
   path="/contact"
@@ -49,6 +22,4 @@ const jsonLd = {
       </p>
     </div>
   </section>
-
-  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
 </Layout>

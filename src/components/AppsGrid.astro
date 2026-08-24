@@ -1,14 +1,44 @@
 ---
 import { apps } from '../data/site.js';
+
+const chromeApps = apps.filter((app) => app.platform === 'Chrome');
+const odooApps = apps.filter((app) => app.platform !== 'Chrome');
+
+const platforms = [
+  { name: 'Chrome Extensions', apps: chromeApps, storeLabel: 'View on Chrome Web Store', countLabel: `${chromeApps.length} live on the Chrome Web Store` },
+  { name: 'Odoo Apps', apps: odooApps, storeLabel: 'View on Odoo Apps Store', countLabel: `${odooApps.length} live on the Odoo Apps Store, targeting Odoo 19` },
+];
 ---
-<div class="apps-grid">
-  {apps.map((app) => (
-    <a class="app-card" href={`/apps/${app.slug}`}>
-      <div class="app-card-head">
-        <span class="app-card-name">{app.name}</span>
-        <span class="log-tag">{app.platform}</span>
-      </div>
-      <p class="app-card-tagline">{app.tagline}</p>
-    </a>
-  ))}
+<div class="stats-row">
+  <div class="stat"><span class="stat-num">{apps.length}</span><span class="stat-label">Apps Shipped</span></div>
+  <div class="stat"><span class="stat-num">{chromeApps.length}</span><span class="stat-label">Chrome Extensions</span></div>
+  <div class="stat"><span class="stat-num">{odooApps.length}</span><span class="stat-label">Odoo Apps</span></div>
 </div>
+
+{platforms.map((platform) => (
+  <section class="platform-section">
+    <div class="platform-head">
+      <h3>{platform.name}</h3>
+      <span class="platform-count">{platform.countLabel}</span>
+    </div>
+    <div class="app-grid">
+      {platform.apps.map((app) => (
+        <a class="app-card-hub" href={`/apps/${app.slug}`}>
+          {app.screenshots?.[0] && (
+            <div class="app-shot">
+              <img src={app.screenshots[0].src} alt={app.screenshots[0].alt} loading="lazy" />
+            </div>
+          )}
+          <div class="app-card-body">
+            <div class="app-card-head">
+              <span class="app-card-name">{app.name}</span>
+              {app.price && <span class="app-price">{app.price}</span>}
+            </div>
+            <p class="app-card-tagline">{app.tagline}</p>
+            <span class="app-store-link">{platform.storeLabel} →</span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+))}

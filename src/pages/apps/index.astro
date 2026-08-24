@@ -1,0 +1,28 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import AppsGrid from '../../components/AppsGrid.astro';
+---
+<Layout
+  path="/apps"
+  title="Apps"
+  description="Chrome extensions and Odoo apps built at Mithahara — BYOK Gateway, Community Cash Reconciler, Multi-Currency Rounding, Meta Odoo Connector, ClipMark, and Duckout."
+>
+  <section class="venture-section apps-section" id="apps">
+    <div class="container">
+      <div class="log-row"><span class="log-tag">log/003 — Shipping</span></div>
+      <h2 class="section-title">Apps</h2>
+      <p class="venture-tagline">Chrome Extensions &amp; Odoo Apps, Built at Mithahara</p>
+      <p class="venture-description">
+        Alongside our food ventures, we build and ship Chrome extensions and Odoo apps at a fast pace.
+        Here's what's live so far.
+      </p>
+      <AppsGrid />
+      <div class="hero-actions" style="justify-content: center;">
+        <a class="cta-button primary" href="https://www.odoo.com/r/aff-mithahara" target="_blank" rel="noopener noreferrer">
+          › Explore Odoo Apps
+        </a>
+      </div>
+      <p class="affiliate-disclosure">The Odoo link above is an affiliate link.</p>
+    </div>
+  </section>
+</Layout>

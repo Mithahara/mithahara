@@ -1,99 +1,51 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import FaqAccordion from '../components/FaqAccordion.astro';
-import AppsGrid from '../components/AppsGrid.astro';
-import { menu, contacts } from '../data/site.js';
 ---
 <Layout path="/">
   <section class="hero-section">
-    <div class="hero-container">
-      <div class="hero-copy">
-        <span class="log-tag">log/000 — Panchkula</span>
-        <h1 class="hero-title">Mithahara</h1>
-        <p class="hero-subtitle">Healthy, Hygienic & Sustainable, Every Day</p>
-        <p class="hero-description">Building sustainable ways to hit your daily dietary goals — through food ventures and the software that supports them.</p>
-        <div class="hero-actions">
-          <a class="cta-button primary" href="#ahar">Ahar</a>
-          <a class="cta-button secondary" href="#mansahara">Man'sahara</a>
-          <a class="cta-button secondary" href="#apps">Apps</a>
-        </div>
-      </div>
-      <div class="hero-cards">
-        <a class="venture-card" href="#ahar"><span>Ahar</span><span class="log-tag">Active</span></a>
-        <a class="venture-card upcoming" href="#mansahara"><span>Man'sahara</span><span class="log-tag gold">Coming Soon</span></a>
-        <a class="venture-card" href="#apps"><span>Apps</span><span class="log-tag">Shipping</span></a>
-      </div>
-    </div>
-  </section>
-
-  <section class="venture-section" id="ahar">
-    <div class="container">
-      <div class="log-row"><span class="log-tag">log/001 — Active</span></div>
-      <h2 class="section-title">Ahar</h2>
-      <p class="venture-tagline">Mithahara's Vegetarian Venture · Serving 7:00–14:30 Daily</p>
-
-      <div class="menu-grid">
-        {menu.map((category) => (
-          <div class="menu-category">
-            <h3 class="menu-category-title">{category.title}</h3>
-            <div class="menu-items">
-              {category.items.map((item) => (
-                <div class="menu-item">
-                  <span class="menu-item-name">{item.name}</span>
-                  <span class="menu-item-price">{item.price}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        ))}
-      </div>
-
-      <div class="ahar-details">
-        <div>
-          <h3 class="subsection-title">Frequently Asked</h3>
-          <FaqAccordion />
-        </div>
-        <div>
-          <h3 class="subsection-title" id="contact">Contact</h3>
-          <div class="contact-card">
-            <span class="contact-email">{contacts.email}</span>
-            <div class="contact-address">{contacts.address}</div>
-            <a class="contact-whatsapp" href={contacts.whatsapp} target="_blank" rel="noopener noreferrer">→ join our WhatsApp channel</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="venture-section teaser-section" id="mansahara">
-    <span class="teaser-watermark">log/002</span>
-    <div class="container">
-      <div class="log-row"><span class="log-tag gold">log/002 — Coming Soon</span></div>
-      <h2 class="section-title">Man'sahara</h2>
-      <p class="venture-tagline">Mithahara's Non-Vegetarian Venture</p>
-      <p class="venture-description">
-        Same mission as Ahar — hitting your daily dietary goals sustainably, healthily, and hygienically —
-        now for non-vegetarian food. We're getting it ready. Check back soon.
-      </p>
-    </div>
-  </section>
-
-  <section class="venture-section apps-section" id="apps">
-    <div class="container">
-      <div class="log-row"><span class="log-tag">log/003 — Shipping</span></div>
-      <h2 class="section-title">Apps</h2>
-      <p class="venture-tagline">Chrome Extensions & Odoo Apps, Built at Mithahara</p>
-      <p class="venture-description">
-        Alongside our food ventures, we build and ship Chrome extensions and Odoo apps at a fast pace.
-        Here's what's live so far.
-      </p>
-      <AppsGrid />
+    <div class="hero-container" style="display: block; text-align: center;">
+      <span class="log-tag">log/000 — Panchkula</span>
+      <h1 class="hero-title">Mithahara</h1>
+      <p class="hero-subtitle">Healthy, Hygienic &amp; Sustainable, Every Day</p>
+      <p class="hero-description" style="max-width: 560px; margin: 0 auto 2rem;">Building sustainable ways to hit your daily dietary goals — through food ventures and the software that supports them.</p>
       <div class="hero-actions" style="justify-content: center;">
-        <a class="cta-button primary" href="https://www.odoo.com/r/aff-mithahara" target="_blank" rel="noopener noreferrer">
-          › Explore Odoo Apps
+        <a class="cta-button primary" href="/ahar">Ahar</a>
+        <a class="cta-button secondary" href="/mansahara">Man'sahara</a>
+        <a class="cta-button secondary" href="/apps">Apps</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="ventures-section">
+    <div class="container">
+      <h2 class="section-title">Three Ways In</h2>
+      <p class="venture-tagline">One Parent Brand, A Few Ways to Live It</p>
+      <div class="ventures-grid">
+        <a class="venture-card-lg" href="/ahar">
+          <div class="venture-card-head">
+            <h3>Ahar</h3>
+            <span class="log-tag">Active</span>
+          </div>
+          <p>Healthy, hygienic, sustainable vegetarian food — served fresh every day in Panchkula, 7:00–14:30.</p>
+          <span class="learn-more">Explore Ahar →</span>
+        </a>
+        <a class="venture-card-lg upcoming" href="/mansahara">
+          <div class="venture-card-head">
+            <h3>Man'sahara</h3>
+            <span class="log-tag gold">Coming Soon</span>
+          </div>
+          <p>Same mission as Ahar, extended to non-vegetarian food. We're getting it ready — check back soon.</p>
+          <span class="learn-more">See what's coming →</span>
+        </a>
+        <a class="venture-card-lg" href="/apps">
+          <div class="venture-card-head">
+            <h3>Apps</h3>
+            <span class="log-tag">Shipping</span>
+          </div>
+          <p>Chrome extensions and Odoo apps we build and ship at a fast pace.</p>
+          <span class="learn-more">Browse the apps →</span>
         </a>
       </div>
-      <p class="affiliate-disclosure">The Odoo link above is an affiliate link.</p>
     </div>
   </section>
 

@@ -1,5 +1,9 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import { apps } from '../data/site.js';
+
+const chromeCount = apps.filter((app) => app.platform === 'Chrome').length;
+const odooCount = apps.length - chromeCount;
 ---
 <Layout
   path="/about"
@@ -29,9 +33,8 @@ import Layout from '../layouts/Layout.astro';
       </p>
       <h3>Apps</h3>
       <p>
-        Alongside the food ventures, Mithahara ships Chrome extensions and Odoo apps: BYOK
-        Gateway, Community Cash Reconciler, and Multi-Currency Rounding for Odoo, and ClipMark for
-        Chrome. See the <a href="/#apps">Apps section</a> for what's live.
+        Alongside the food ventures, Mithahara ships {odooCount} Odoo apps and {chromeCount} Chrome
+        extensions. See the <a href="/apps">Apps page</a> for what's live.
       </p>
     </div>
   </section>

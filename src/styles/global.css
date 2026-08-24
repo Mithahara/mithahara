@@ -148,8 +148,71 @@ section {
   color: var(--gold-text);
 }
 
+.nav-toggle {
+  display: none;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+}
+
+.hamburger {
+  width: 22px;
+  height: 16px;
+  position: relative;
+  display: inline-block;
+}
+
+.hamburger span {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--ink);
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
+.hamburger span:nth-child(1) { top: 0; }
+.hamburger span:nth-child(2) { top: 7px; }
+.hamburger span:nth-child(3) { top: 14px; }
+
+.nav-toggle[aria-expanded="true"] .hamburger span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-toggle[aria-expanded="true"] .hamburger span:nth-child(2) { opacity: 0; }
+.nav-toggle[aria-expanded="true"] .hamburger span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
 @media (max-width: 768px) {
-  .nav-links { display: none; }
+  .nav-toggle { display: flex; }
+
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    gap: 0;
+    margin: 0;
+    background: var(--sand-card);
+    border-bottom: 1px solid var(--border-sand);
+    box-shadow: 0 8px 16px rgba(32, 29, 21, 0.08);
+  }
+
+  .nav-links.open { display: flex; }
+
+  .nav-links li { width: 100%; }
+
+  .nav-links a {
+    display: block;
+    padding: 0.9rem 1.25rem;
+    font-size: 1rem;
+    border-bottom: 1px solid var(--border-sand);
+  }
+
+  .nav-links li:last-child a { border-bottom: none; }
 }
 
 .main-content {
@@ -169,24 +232,6 @@ section {
   display: flex;
   align-items: center;
   gap: 4rem;
-}
-
-.hero-copy {
-  flex: 1.15;
-  text-align: left;
-}
-
-.hero-cards {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-
-@media (max-width: 768px) {
-  .hero-container { flex-direction: column; }
-  .hero-copy, .hero-cards { text-align: center; width: 100%; }
-  .hero-cards { align-items: stretch; }
 }
 
 .hero-title {
@@ -223,22 +268,75 @@ section {
   .hero-actions { justify-content: center; }
 }
 
-.venture-card {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1rem 1.25rem;
+/* --- Ventures grid (homepage) --- */
+.ventures-section {
   background: var(--sand-card);
-  border-left: 3px solid var(--moss);
-  text-decoration: none;
-  color: var(--ink);
-  font-family: var(--font-serif);
-  font-weight: 600;
-  font-size: 1.05rem;
 }
 
-.venture-card.upcoming {
+.ventures-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+}
+
+.venture-card-lg {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 2rem 1.75rem;
+  background: var(--sand);
+  border-left: 3px solid var(--moss);
+  text-align: left;
+  text-decoration: none;
+  color: var(--ink);
+}
+
+.venture-card-lg.upcoming {
   border-left-color: var(--gold);
+}
+
+.venture-card-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.venture-card-lg h3 {
+  font-size: 1.4rem;
+  margin: 0;
+}
+
+.venture-card-lg p {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin: 0;
+  flex-grow: 1;
+}
+
+.venture-card-lg .learn-more {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--moss);
+}
+
+@media (max-width: 768px) {
+  .ventures-grid { grid-template-columns: 1fr; }
+}
+
+.cta-content {
+  text-align: center;
+}
+
+.cta-title {
+  font-size: 2.25rem;
+}
+
+.cta-description {
+  color: var(--text-muted);
+  margin-bottom: 2rem;
 }
 
 /* --- Section Title --- */
@@ -306,44 +404,130 @@ section {
   margin-top: 1rem;
 }
 
-/* --- Apps grid --- */
-.apps-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 1rem;
-  max-width: 900px;
-  margin: 0 auto 2.5rem;
-  text-align: left;
+/* --- Apps hub (grouped by platform) --- */
+.stats-row {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  padding: 2.5rem 0;
+  border-top: 1px solid var(--border-sand);
+  border-bottom: 1px solid var(--border-sand);
+  margin-top: 2.5rem;
 }
 
-.app-card {
+.stat {
+  text-align: center;
+}
+
+.stat-num {
+  font-family: var(--font-mono);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--moss);
+  display: block;
+}
+
+.stat-label {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+}
+
+.platform-section {
+  padding: 3rem 0;
+}
+
+.platform-head {
+  display: flex;
+  align-items: baseline;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+}
+
+.platform-head h3 {
+  font-size: 1.6rem;
+  margin: 0;
+}
+
+.platform-count {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.app-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+.app-card-hub {
   background: var(--sand-card);
   border-left: 3px solid var(--moss);
-  padding: 1.1rem 1.25rem;
-  text-decoration: none;
-  color: var(--ink);
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  text-decoration: none;
+  color: var(--ink);
+}
+
+.app-shot {
+  height: 140px;
+  margin: 1rem;
+  background: var(--sand);
+  border: 1px solid var(--border-sand);
+  overflow: hidden;
+}
+
+.app-shot img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.app-card-body {
+  padding: 0 1.25rem 1.25rem;
 }
 
 .app-card-head {
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: baseline;
   gap: 0.75rem;
+  margin-bottom: 0.4rem;
 }
 
 .app-card-name {
   font-family: var(--font-serif);
   font-weight: 600;
-  font-size: 1.05rem;
+  font-size: 1.15rem;
+}
+
+.app-price {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--gold-text);
 }
 
 .app-card-tagline {
-  font-size: 0.85rem;
+  font-size: 0.88rem;
   color: var(--text-muted);
-  margin: 0;
+  margin: 0 0 0.9rem;
+}
+
+.app-store-link {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--moss);
+}
+
+@media (max-width: 768px) {
+  .app-grid { grid-template-columns: 1fr; }
+  .stats-row { gap: 1.5rem; }
 }
 
 /* --- Ahar details: FAQ + Contact side by side --- */
