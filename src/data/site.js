@@ -43,7 +43,23 @@ export const apps = [
     platform: "Odoo",
     tagline: "Your own AI account, powering Odoo's AI writing assistant",
     description: "Redirects Odoo's AI writing tools to your own OpenAI, Anthropic, or OpenRouter API key instead of Odoo's metered service, with explicit user consent and graceful fallback.",
-    url: "https://apps.odoo.com/apps/modules/19.0/mh_llm_gateway"
+    body: [
+      "Odoo's native \"Generate with AI\" and \"Translate with AI\" editor tools route every request through Odoo's own metered AI service. BYOK Gateway points those same editor buttons at your own OpenAI, Anthropic, or OpenRouter account instead — same UI, your own key, your own usage and billing.",
+      "Turn it on under Settings → General Settings → Bring Your Own LLM Key, pick a provider and model, paste your key, and every AI-assisted text generation in the editor runs on your account from then on — with explicit consent and a graceful fallback to Odoo's own service if anything's misconfigured.",
+      "This covers AI text generation only. Document/invoice OCR digitization is a separate, Enterprise-only feature and isn't part of this app."
+    ],
+    features: [
+      "Works with OpenAI, Anthropic, or OpenRouter — bring any of the three",
+      "Same \"Generate with AI\" / \"Translate with AI\" buttons you already use",
+      "Your API key, your usage, your billing — nothing routes through Odoo's metered service",
+      "Graceful fallback to Odoo's own AI service if no key is configured",
+      "One settings screen: Settings → General Settings → Bring Your Own LLM Key"
+    ],
+    price: "$40",
+    url: "https://apps.odoo.com/apps/modules/19.0/mh_llm_gateway",
+    screenshots: [
+      { src: "/apps/byok-gateway/settings.png", alt: "BYOK Gateway's settings screen: pick a provider, model, and paste your key" }
+    ]
   },
   {
     slug: "community-cash-reconciler",
@@ -51,7 +67,25 @@ export const apps = [
     platform: "Odoo",
     tagline: "From an unreconciled bank line to matched invoices, in one click",
     description: "Adds a missing Community Edition screen for matching bank deposits to open invoices, including lump-sum deposits spanning multiple customers and short payments.",
-    url: "https://apps.odoo.com/apps/modules/19.0/mh_cash_application_matcher"
+    body: [
+      "Odoo 19 Community doesn't ship a way to apply an unreconciled bank statement line's cash straight to open invoices — you have to go through the invoice-side payment wizard first. Community Cash Reconciler adds that missing screen: pick an unreconciled bank line and apply its cash directly.",
+      "It searches for the combination of open invoices a lump sum covers — across a single customer, or, as an explicit opt-in, across several customers at once — and suggests the match for review. Reference numbers in the bank memo are matched first; anything left over from a short payment gets coded to a reusable, named deduction reason instead of a one-off write-off.",
+      "Configure deduction reasons under Accounting Settings, then apply cash from any unreconciled bank statement line's Apply Cash action."
+    ],
+    features: [
+      "Apply an unreconciled bank line's cash directly to open invoices",
+      "Matches a lump sum across multiple invoices for one customer automatically",
+      "Opt-in cross-customer matching for combined deposits",
+      "Reference numbers in the bank memo matched first",
+      "Short payments coded to reusable, named deduction reasons — not one-off write-offs"
+    ],
+    price: "$200",
+    url: "https://apps.odoo.com/apps/modules/19.0/mh_cash_application_matcher",
+    screenshots: [
+      { src: "/apps/community-cash-reconciler/bank-lines.png", alt: "Unreconciled bank lines waiting to have cash applied" },
+      { src: "/apps/community-cash-reconciler/lumpsum-wizard.png", alt: "A lump-sum deposit matched across three open invoices" },
+      { src: "/apps/community-cash-reconciler/shortpay-wizard.png", alt: "A short payment coded to a named deduction reason" }
+    ]
   },
   {
     slug: "multi-currency-rounding",
@@ -59,7 +93,24 @@ export const apps = [
     platform: "Odoo",
     tagline: "Stop sub-cent rounding noise from hiding inside your FX gain/loss",
     description: "Lets you set a rounding threshold and dedicated account for small multi-currency reconciliation residuals, keeping real exchange gain/loss clean.",
-    url: "https://apps.odoo.com/apps/modules/19.0/mh_currency_rounding_tool"
+    body: [
+      "Odoo's native exchange-difference mechanism posts every reconciliation residual — a genuine FX rate movement or a fraction-of-a-cent rounding artifact — through the same Gain/Loss accounts, with no way to tell them apart afterward.",
+      "Multi-Currency Rounding adds a configurable threshold: residuals at or below it are redirected to a dedicated Rounding Difference account instead, so your real exchange gain/loss accounts stay clean. A one-click report shows exactly what accumulated in the rounding account.",
+      "Configure it under Accounting Settings, right next to Odoo's own native exchange-difference settings — no separate module to learn."
+    ],
+    features: [
+      "Set a rounding threshold below which residuals skip Gain/Loss entirely",
+      "Dedicated Rounding Difference account keeps real FX gain/loss clean",
+      "One-click report of everything that landed in the rounding account",
+      "Lives right next to Odoo's own exchange-difference settings"
+    ],
+    price: "$150",
+    url: "https://apps.odoo.com/apps/modules/19.0/mh_currency_rounding_tool",
+    screenshots: [
+      { src: "/apps/multi-currency-rounding/threshold.png", alt: "Setting the rounding threshold and dedicated rounding account" },
+      { src: "/apps/multi-currency-rounding/settings.png", alt: "The full Accounting Settings screen, next to Odoo's own exchange-difference settings" },
+      { src: "/apps/multi-currency-rounding/entries.png", alt: "A report of the small residuals redirected to the rounding account" }
+    ]
   },
   {
     slug: "clipmark",
@@ -67,7 +118,26 @@ export const apps = [
     platform: "Chrome",
     tagline: "YouTube notes and flashcards that quiz you back",
     description: "Bookmark moments in YouTube videos, turn them into spaced-repetition flashcards with on-device AI notes, and export to Anki.",
-    url: "https://chromewebstore.google.com/detail/clipmark-youtube-notes-fl/iboippnihpcnnglgboaiedaiimbiolgg"
+    body: [
+      "ClipMark turns long YouTube videos into searchable, revisable knowledge. Bookmark a moment with one click, and it shows up as a diamond marker right on the video's seek bar — hover for the timestamp, description, and tags.",
+      "Revisit Mode plays only your bookmarked segments back to back, so a 2-hour lecture becomes a 6-minute review. Active Recall turns those same bookmarks into spaced-repetition flashcards: it prompts you to recall what happens next before revealing the clip, and schedules re-tests on a 1/3/7-day cadence.",
+      "Everything lives in a dashboard with search, tag-based auto-groups, and an activity heatmap, plus a persistent side panel for quick access while you watch. Pro adds AI auto-descriptions and summaries from the live transcript, and one-click social captions for sharing a clip."
+    ],
+    features: [
+      "One-click bookmarking with always-visible markers on the seek bar",
+      "Revisit Mode: play only your saved clips back to back",
+      "Active Recall: spaced-repetition flashcards from your own bookmarks",
+      "Reminders on any cadence — daily, weekly, monthly",
+      "Dashboard with search, tag-based groups, and an activity heatmap",
+      "Share a video's bookmarks as a public link or embeddable widget"
+    ],
+    url: "https://chromewebstore.google.com/detail/clipmark-youtube-notes-fl/iboippnihpcnnglgboaiedaiimbiolgg",
+    webUrl: "https://clipmark.mithahara.com",
+    screenshots: [
+      { src: "/apps/clipmark/dashboard.png", alt: "ClipMark's dashboard, showing bookmarks and due Active Recall reviews" },
+      { src: "/apps/clipmark/active-recall.png", alt: "An Active Recall prompt over a YouTube video, before revealing the clip" },
+      { src: "/apps/clipmark/side-panel.png", alt: "ClipMark's persistent side panel with recent bookmarks" }
+    ]
   },
   {
     slug: "duckout",

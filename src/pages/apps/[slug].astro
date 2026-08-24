@@ -23,6 +23,9 @@ const ctaLabel = app.platform === 'Chrome' ? 'View on Chrome Web Store' : 'View 
 
       <div class="hero-actions" style="justify-content: center;">
         <a class="cta-button primary" href={app.url} target="_blank" rel="noopener noreferrer">{ctaLabel}</a>
+        {app.webUrl && (
+          <a class="cta-button secondary" href={app.webUrl} target="_blank" rel="noopener noreferrer">Open Web App</a>
+        )}
         {app.privacyUrl && (
           <a class="cta-button secondary" href={app.privacyUrl} target="_blank" rel="noopener noreferrer">Privacy Policy</a>
         )}
