@@ -115,10 +115,17 @@ section {
 }
 
 .nav-title {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
   font-size: 1.6rem;
   color: var(--moss);
   text-decoration: none;
   margin: 0;
+}
+
+.nav-title img {
+  display: block;
 }
 
 .nav-links {
