@@ -513,6 +513,61 @@ section {
   text-align: center;
 }
 
+.app-detail .log-row {
+  margin-bottom: 1.5rem;
+}
+
+.feature-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 2rem;
+}
+
+.feature-list li {
+  padding: 0.5rem 0 0.5rem 1.5rem;
+  border-bottom: 1px solid var(--border-sand);
+  position: relative;
+}
+
+.feature-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 1.1rem;
+  width: 6px;
+  height: 6px;
+  background: var(--moss);
+}
+
+.feature-list li:last-child {
+  border-bottom: none;
+}
+
+.screenshot-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+
+.screenshot-card {
+  margin: 0;
+  background: var(--sand-card);
+  border: 1px solid var(--border-sand);
+  padding: 0.5rem;
+}
+
+.screenshot-card img {
+  width: 100%;
+  display: block;
+}
+
+.screenshot-card figcaption {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  padding: 0.6rem 0.4rem 0.2rem;
+}
+
 /* --- Footer --- */
 .footer {
   background: var(--footer-bg);

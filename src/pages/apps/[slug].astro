@@ -1,0 +1,62 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { apps, appSoftwareApplicationJsonLd } from '../../data/site.js';
+
+export function getStaticPaths() {
+  return apps.map((app) => ({ params: { slug: app.slug }, props: { app } }));
+}
+
+const { app } = Astro.props;
+const jsonLd = appSoftwareApplicationJsonLd(app);
+const ctaLabel = app.platform === 'Chrome' ? 'View on Chrome Web Store' : 'View on Odoo Apps';
+---
+<Layout
+  path={`/apps/${app.slug}`}
+  title={app.name}
+  description={app.description}
+>
+  <section class="page-section app-detail">
+    <div class="container">
+      <div class="log-row"><span class="log-tag">{app.platform}</span>{app.price && <span class="log-tag gold">{app.price}</span>}</div>
+      <h2 class="section-title">{app.name}</h2>
+      <p class="venture-tagline">{app.tagline}</p>
+
+      <div class="hero-actions" style="justify-content: center;">
+        <a class="cta-button primary" href={app.url} target="_blank" rel="noopener noreferrer">{ctaLabel}</a>
+        {app.privacyUrl && (
+          <a class="cta-button secondary" href={app.privacyUrl} target="_blank" rel="noopener noreferrer">Privacy Policy</a>
+        )}
+      </div>
+
+      {(app.body ?? [app.description]).map((paragraph) => (
+        <p>{paragraph}</p>
+      ))}
+
+      {app.features && (
+        <>
+          <h3>What you get</h3>
+          <ul class="feature-list">
+            {app.features.map((feature) => <li>{feature}</li>)}
+          </ul>
+        </>
+      )}
+
+      {app.screenshots && (
+        <div class="screenshot-grid">
+          {app.screenshots.map((shot) => (
+            <figure class="screenshot-card">
+              <img src={shot.src} alt={shot.alt} loading="lazy" />
+              <figcaption>{shot.alt}</figcaption>
+            </figure>
+          ))}
+        </div>
+      )}
+
+      <p style="text-align: center; margin-top: 2rem;">
+        <a href="/#apps">← Back to Apps</a>
+      </p>
+    </div>
+  </section>
+
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+</Layout>
