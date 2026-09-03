@@ -1,0 +1,234 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { odooApps, odooAppPages, odooAppHref, formatPrice, odooAppJsonLd } from '../../data/odooApps.js';
+
+export function getStaticPaths() {
+  return odooAppPages.map((app) => ({ params: { slug: app.slug }, props: { app } }));
+}
+
+const { app } = Astro.props;
+
+// Siblings in the same Odoo category, paid first. Related links are built from
+// real category data rather than a hand-kept list, so they cannot drift out of
+// date as the portfolio grows.
+const topCategory = (app.category || '').split('/')[0].trim();
+const related = odooApps
+  .filter((other) =>
+    other.tech !== app.tech &&
+    (other.category || '').split('/')[0].trim() === topCategory)
+  .sort((a, b) => b.price - a.price || a.name.localeCompare(b.name))
+  .slice(0, 3);
+
+// The meta description has to stand alone in a search result, so it leads with
+// the tagline (written for a human) and falls back to the manifest summary
+// (written for the store's substring matcher) only when there is no tagline.
+const metaDescription = (app.tagline || app.summary || '').slice(0, 158);
+
+const jsonLd = odooAppJsonLd(app);
+const graph = app.youtubeId
+  ? [jsonLd, {
+      '@context': 'https://schema.org',
+      '@type': 'VideoObject',
+      name: `${app.name} — demo`,
+      description: app.tagline || app.summary,
+      embedUrl: `https://www.youtube.com/embed/${app.youtubeId}`,
+      thumbnailUrl: `https://i.ytimg.com/vi/${app.youtubeId}/maxresdefault.jpg`,
+    }]
+  : [jsonLd];
+---
+<Layout path={`/odoo-apps/${app.slug}`} title={app.name} description={metaDescription}>
+  <section class="page-section app-detail">
+    <div class="container">
+      <div class="log-row">
+        <span class="log-tag">Odoo 19</span>
+        {app.category && <span class="log-tag">{app.category.split('/')[0]}</span>}
+        <span class={app.price ? 'log-tag gold' : 'log-tag'}>{formatPrice(app)}</span>
+      </div>
+
+      <h1 class="section-title">{app.name}</h1>
+      {app.tagline && <p class="venture-tagline">{app.tagline}</p>}
+
+      <div class="hero-actions" style="justify-content: center;">
+        <a class="cta-button primary" href={app.storeUrl} target="_blank" rel="noopener noreferrer">
+          View on the Odoo App Store
+        </a>
+      </div>
+
+      {app.youtubeId && (
+        <div class="video-frame">
+          <iframe
+            src={`https://www.youtube-nocookie.com/embed/${app.youtubeId}`}
+            title={`${app.name} demo video`}
+            loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+          ></iframe>
+        </div>
+      )}
+
+      {app.intro.map((paragraph) => <p>{paragraph}</p>)}
+
+      {app.features.length > 0 && (
+        <>
+          <h2 class="sec-head">What it does</h2>
+          <div class="feature-blocks">
+            {app.features.map((feature) => (
+              <div class="feature-block">
+                {feature.heading && <h3>{feature.heading}</h3>}
+                {feature.body.map((line) => <p>{line}</p>)}
+              </div>
+            ))}
+          </div>
+        </>
+      )}
+
+      {app.scope.length > 0 && (
+        <>
+          <h2 class="sec-head">What it does not do</h2>
+          <div class="scope-box">
+            {app.scope.map((line) => <p>{line}</p>)}
+          </div>
+        </>
+      )}
+
+      {app.screenshots.length > 0 && (
+        <>
+          <h2 class="sec-head">Screenshots</h2>
+          <div class="screenshot-grid">
+            {app.screenshots.map((shot) => (
+              <figure class="screenshot-card">
+                <img
+                  src={`/odoo-apps/${app.slug}/${shot}`}
+                  alt={`${app.name} in Odoo — ${shot.replace(/\.\w+$/, '').replace(/[_-]+/g, ' ')}`}
+                  loading="lazy"
+                />
+              </figure>
+            ))}
+          </div>
+        </>
+      )}
+
+      <h2 class="sec-head">Requirements</h2>
+      <ul class="feature-list requirements">
+        <li>Odoo 19.0, Community or Enterprise.</li>
+        <li>
+          <strong>Odoo.sh or On-Premise only.</strong> Third-party apps cannot be installed on
+          Odoo Online (SaaS) databases — check your hosting before buying.
+        </li>
+        {app.requires.map((line) => <li>{line}</li>)}
+        <li>Module <code>{app.tech}</code>, version {app.version}, licensed {app.license}.</li>
+      </ul>
+
+      {app.price > 0 && app.manifestPrice > 0 && app.manifestPrice < app.price && (
+        <p class="price-note">
+          The Odoo App Store lists this app at {formatPrice(app)} because it requires a paid
+          dependency; the module's own price is {formatPrice({ ...app, price: app.manifestPrice })}.
+          {' '}{formatPrice(app)} is the total you pay to install it.
+        </p>
+      )}
+
+      {related.length > 0 && (
+        <>
+          <h2 class="sec-head">Related apps</h2>
+          <div class="app-grid">
+            {related.map((other) => (
+              <a class="app-card-hub" href={odooAppHref(other)}>
+                <div class="app-card-body">
+                  <div class="app-card-head">
+                    <span class="app-card-name">{other.name}</span>
+                    <span class="app-price">{formatPrice(other)}</span>
+                  </div>
+                  <p class="app-card-tagline">{other.tagline || other.summary}</p>
+                </div>
+              </a>
+            ))}
+          </div>
+        </>
+      )}
+
+      <p style="text-align: center; margin-top: 2rem;">
+        <a href="/odoo-apps">← All Odoo apps</a>
+      </p>
+    </div>
+  </section>
+
+  {graph.map((entry) => (
+    <script type="application/ld+json" set:html={JSON.stringify(entry)} />
+  ))}
+</Layout>
+
+<style>
+  .sec-head {
+    max-width: 46rem;
+    margin: 2.75rem auto 1rem;
+    text-align: left;
+    font-size: 1.4rem;
+  }
+
+  .requirements {
+    max-width: 46rem;
+    margin-inline: auto;
+    text-align: left;
+  }
+
+  .video-frame {
+    position: relative;
+    aspect-ratio: 16 / 9;
+    margin: 2rem auto 0;
+    max-width: 44rem;
+    border-radius: 8px;
+    overflow: hidden;
+    background: var(--ink);
+  }
+
+  .video-frame iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+
+  .feature-blocks {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    max-width: 46rem;
+    margin: 0 auto;
+    text-align: left;
+  }
+
+  .feature-block h3 {
+    margin: 0 0 0.35rem;
+    font-size: 1.05rem;
+  }
+
+  .feature-block p {
+    margin: 0 0 0.5rem;
+  }
+
+  .scope-box {
+    max-width: 46rem;
+    margin: 0 auto;
+    padding: 1rem 1.25rem;
+    border-left: 3px solid var(--moss);
+    background: var(--sand-card);
+    border-radius: 0 6px 6px 0;
+    text-align: left;
+  }
+
+  .scope-box p:last-child {
+    margin-bottom: 0;
+  }
+
+  .price-note {
+    max-width: 46rem;
+    margin: 1rem auto 0;
+    font-size: 0.9rem;
+    opacity: 0.85;
+  }
+
+  .app-detail code {
+    font-size: 0.9em;
+  }
+</style>

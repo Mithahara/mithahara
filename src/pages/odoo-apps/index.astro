@@ -1,0 +1,149 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { odooApps, odooAppHref, formatPrice } from '../../data/odooApps.js';
+
+const paid = odooApps.filter((app) => app.price > 0);
+const free = odooApps.filter((app) => !app.price);
+
+// Odoo's own category on each manifest, reduced to its top level -- the store
+// shows "Accounting/Accounting" and "Accounting/Localizations" as one nav entry,
+// so splitting them here would invent a distinction buyers never see.
+const groups = new Map();
+for (const app of odooApps) {
+  const top = (app.category || 'Other').split('/')[0].trim();
+  if (!groups.has(top)) groups.set(top, []);
+  groups.get(top).push(app);
+}
+const sections = [...groups.entries()]
+  .map(([name, apps]) => ({
+    name,
+    apps: apps.sort((a, b) => b.price - a.price || a.name.localeCompare(b.name)),
+  }))
+  .sort((a, b) => b.apps.length - a.apps.length || a.name.localeCompare(b.name));
+
+const description =
+  `All ${odooApps.length} Odoo apps built by Mithahara for Odoo 19 — ${paid.length} paid and ` +
+  `${free.length} free modules covering compliance, accounting, access control, advertising and warehouse.`;
+---
+<Layout path="/odoo-apps" title="Odoo Apps" description={description}>
+  <section class="page-section">
+    <div class="container">
+      <div class="log-row"><span class="log-tag">Odoo 19</span></div>
+      <h1 class="section-title">Odoo Apps</h1>
+      <p class="venture-tagline">{odooApps.length} modules on the Odoo App Store</p>
+      <p class="venture-description">
+        Every app below is live on the Odoo App Store for Odoo 19, Community and Enterprise.
+        {' '}{free.length} are free and {paid.length} are paid, and most paid apps have a free
+        counterpart that does one part of the job so you can try the approach before buying.
+      </p>
+
+      <div class="stats-row">
+        <div class="stat"><span class="stat-num">{odooApps.length}</span><span class="stat-label">Apps Live</span></div>
+        <div class="stat"><span class="stat-num">{free.length}</span><span class="stat-label">Free</span></div>
+        <div class="stat"><span class="stat-num">{paid.length}</span><span class="stat-label">Paid</span></div>
+        <div class="stat"><span class="stat-num">{sections.length}</span><span class="stat-label">Categories</span></div>
+      </div>
+
+      <p class="hosting-note">
+        <strong>Before you install:</strong> third-party Odoo apps run on Odoo.sh and On-Premise
+        databases only. They cannot be installed on Odoo Online (SaaS).
+      </p>
+
+      <nav class="cat-jump" aria-label="Jump to category">
+        {sections.map((section) => (
+          <a href={`#${section.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`}>
+            {section.name} <span>{section.apps.length}</span>
+          </a>
+        ))}
+      </nav>
+
+      {sections.map((section) => (
+        <section
+          class="platform-section"
+          id={section.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}
+        >
+          <div class="platform-head">
+            <h2>{section.name}</h2>
+            <span class="platform-count">
+              {section.apps.length} {section.apps.length === 1 ? 'app' : 'apps'}
+            </span>
+          </div>
+          <div class="app-grid">
+            {section.apps.map((app) => (
+              <a class="app-card-hub" href={odooAppHref(app)}>
+                <div class="app-card-body">
+                  <div class="app-card-head">
+                    <span class="app-card-name">{app.name}</span>
+                    <span class={app.price ? 'app-price' : 'app-price free'}>{formatPrice(app)}</span>
+                  </div>
+                  <p class="app-card-tagline">{app.tagline || app.summary}</p>
+                  <span class="app-store-link">
+                    Details →{app.hasVideo && <span class="has-video" title="Has a demo video">▶</span>}
+                  </span>
+                </div>
+              </a>
+            ))}
+          </div>
+        </section>
+      ))}
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .hosting-note {
+    max-width: 46rem;
+    margin: 1.5rem auto 0;
+    padding: 0.85rem 1.1rem;
+    border-left: 3px solid var(--moss);
+    background: var(--sand-card);
+    border-radius: 0 6px 6px 0;
+    font-size: 0.95rem;
+    text-align: left;
+  }
+
+  .cat-jump {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    justify-content: center;
+    margin: 2rem auto 0;
+    max-width: 52rem;
+  }
+
+  .cat-jump a {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.3rem 0.7rem;
+    border: 1px solid var(--border-sand);
+    border-radius: 999px;
+    font-size: 0.85rem;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .cat-jump a:hover,
+  .cat-jump a:focus-visible {
+    border-color: var(--moss);
+  }
+
+  .cat-jump a span {
+    opacity: 0.6;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .app-price.free {
+    opacity: 0.75;
+  }
+
+  .has-video {
+    margin-left: 0.4rem;
+    font-size: 0.75em;
+    opacity: 0.75;
+  }
+
+  .platform-section {
+    scroll-margin-top: 5rem;
+  }
+</style>
