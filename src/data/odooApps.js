@@ -2975,13 +2975,6 @@ export const odooApps = [
         "body": [
           "Because the figure is indexed to inflation from 2027, a year the app has not been given a threshold for produces an error, not a silent fallback to last year's number. A confident wrong answer about a filing obligation is worse than no answer."
         ]
-      },
-      {
-        "heading": "Need the rest of the job done?",
-        "body": [
-          "Knowing who crossed the line is the first step. Working out which of those payments are actually reportable - corporations are generally excluded, anything paid by card or through a payment network belongs on the processor's 1099‑K instead, attorneys and medical payments follow their own rules - then collecting W‑9s, holding taxpayer numbers, splitting amounts across the NEC and MISC boxes and producing the filing export, is the paid app.",
-          "Get US 1099 Reporting"
-        ]
       }
     ],
     "scope": [
@@ -3002,7 +2995,7 @@ export const odooApps = [
     "screenshots": [
       "screenshot_check.png"
     ],
-    "copyWords": 300,
+    "copyWords": 219,
     "hasVideo": false,
     "youtubeId": null,
     "externalPage": null
@@ -3031,12 +3024,6 @@ export const odooApps = [
         ]
       },
       {
-        "heading": "Need the rest of the job done?",
-        "body": [
-          "Carrying groups with their access rights and record rules to another database — with a plan of what would be created and what would change shown before anything is written, and nothing ever deleted — is Access Config Migration ."
-        ]
-      },
-      {
         "heading": "Requirements",
         "body": [
           "Odoo 19, Community or Enterprise. No dependencies beyond the base system. Administrator access, since it reads the access configuration. Nothing is written to it."
@@ -3061,7 +3048,7 @@ export const odooApps = [
     "screenshots": [
       "screenshot_check.png"
     ],
-    "copyWords": 280,
+    "copyWords": 233,
     "hasVideo": false,
     "youtubeId": null,
     "externalPage": null
@@ -3093,15 +3080,6 @@ export const odooApps = [
         "body": [
           "The superuser bypasses every access rule and record rule by design, so a report on it would say \"allowed\" for everything no matter how your database is configured. That is a confident wrong answer about security, so the app declines instead of producing it."
         ]
-      },
-      {
-        "heading": "Need the rest of the job done?",
-        "body": [
-          "One user against one model answers a question you already knew to ask. The harder problem is the question you did not know to ask: which grants reach every user in the database because a rule has no group on it, who can delete records on the models that matter, and where access is not narrowed by any record rule at all. Sweeping every user across every model and ranking what comes back is the paid app.",
-          "Get Access Explorer",
-          "Record Rule Preview — Before you write the record rule that narrows what somebody sees, seeing how many records it actually leaves them - counted for real, before it is saved - is a different app.",
-          "Warehouse Access Rules — Restricting people to the warehouses they work in, and counting what each of them will stop seeing before you switch it on, is Warehouse Access Rules."
-        ]
       }
     ],
     "scope": [
@@ -3122,7 +3100,7 @@ export const odooApps = [
     "screenshots": [
       "screenshot_snapshot.png"
     ],
-    "copyWords": 402,
+    "copyWords": 249,
     "hasVideo": false,
     "youtubeId": null,
     "externalPage": null
@@ -3156,13 +3134,6 @@ export const odooApps = [
         "body": [
           "If the picture this gives you is thinner than expected, adding real tiers is a change to how the system behaves and belongs with the app that also has to enforce it."
         ]
-      },
-      {
-        "heading": "Need the rest of the job done?",
-        "body": [
-          "This shows what your purchase orders actually had to clear. Routing them through amount-based approval tiers, with a spending limit per approver, is the paid app.",
-          "Get Purchase Approvals"
-        ]
       }
     ],
     "scope": [
@@ -3183,7 +3154,7 @@ export const odooApps = [
     "screenshots": [
       "screenshot_exposure.png"
     ],
-    "copyWords": 251,
+    "copyWords": 215,
     "hasVideo": false,
     "youtubeId": null,
     "externalPage": null
@@ -3266,14 +3237,6 @@ export const odooApps = [
         ]
       },
       {
-        "heading": "Need the rest of the job done?",
-        "body": [
-          "If the answer this gives you is \"no, we could not find out\", the fix is to record the fields that matter. That is Field Change Log : changes to fields of your own choosing, with the old value and the new one, who changed it and when, and a retention period so the log does not grow forever.",
-          "AI Agent Guardrails — If the changes you need recorded are an AI agent's over MCP, that is a different problem: a write limit per hour, models it may never touch, and a log of every change with the old value.",
-          "AI Agent Approvals — And holding an agent's writes to the models you choose until a person approves them, old and new values side by side, is AI Agent Approvals."
-        ]
-      },
-      {
         "heading": "Requirements",
         "body": [
           "Odoo 19, Community or Enterprise. Needs Discuss. Administrator access, since it reads the model and field definitions. Nothing is written to any of them."
@@ -3298,7 +3261,7 @@ export const odooApps = [
     "screenshots": [
       "screenshot_check.png"
     ],
-    "copyWords": 455,
+    "copyWords": 318,
     "hasVideo": false,
     "youtubeId": null,
     "externalPage": null
@@ -3379,13 +3342,6 @@ export const odooApps = [
         "body": [
           "This app performs date arithmetic on figures you supply, and ships behind its own access group rather than being visible to every employee. It is not legal advice and it does not determine your obligations - confirm those with counsel."
         ]
-      },
-      {
-        "heading": "Need the rest of the job done?",
-        "body": [
-          "This runs the clock on one state at a time. Logging an incident once, tagging every affected state and seeing which statutory clock expires first is the paid app.",
-          "Get US Breach Deadline Calculator"
-        ]
       }
     ],
     "scope": [
@@ -3406,7 +3362,7 @@ export const odooApps = [
     "screenshots": [
       "screenshot_deadlines.png"
     ],
-    "copyWords": 299,
+    "copyWords": 258,
     "hasVideo": false,
     "youtubeId": null,
     "externalPage": null
@@ -3486,13 +3442,6 @@ export const odooApps = [
         ]
       },
       {
-        "heading": "Need the rest of the job done?",
-        "body": [
-          "One model at a time answers a question you already knew to ask. Sweeping every model in the database, finding records with no company at all, and reviewing which users can switch between companies is the paid app.",
-          "Get Company Audit"
-        ]
-      },
-      {
         "heading": "Requirements",
         "body": [
           "Odoo 19 Community or Enterprise. Depends only on base and nothing leaves your server."
@@ -3517,7 +3466,7 @@ export const odooApps = [
     "screenshots": [
       "screenshot_check.png"
     ],
-    "copyWords": 315,
+    "copyWords": 267,
     "hasVideo": false,
     "youtubeId": null,
     "externalPage": null
@@ -3579,13 +3528,6 @@ export const odooApps = [
         "body": [
           "The capability bands used to read the result are the conventional ones rather than any single standard, and a capability index is only ever as good as the measurements behind it."
         ]
-      },
-      {
-        "heading": "Need the rest of the job done?",
-        "body": [
-          "This works out capability from measurements you already keep. Individuals and moving-range control charts on Odoo Quality, with the full capability study, are the paid app.",
-          "Get SPC Cpk Analytics"
-        ]
       }
     ],
     "scope": [
@@ -3607,7 +3549,7 @@ export const odooApps = [
     "screenshots": [
       "screenshot_capability.png"
     ],
-    "copyWords": 285,
+    "copyWords": 248,
     "hasVideo": false,
     "youtubeId": null,
     "externalPage": null
@@ -3641,13 +3583,6 @@ export const odooApps = [
         "body": [
           "The report reads with your own rights, and refuses to run for a company you cannot see rather than quietly returning zero. The threshold is yours to choose; this app applies the one you enter and does not advise on materiality."
         ]
-      },
-      {
-        "heading": "Need the rest of the job done?",
-        "body": [
-          "This measures how much of your exchange gain and loss is really rounding. Absorbing those sub-cent differences when a foreign currency invoice is paid is the paid app.",
-          "Get Multi-Currency Rounding"
-        ]
       }
     ],
     "scope": [
@@ -3668,7 +3603,7 @@ export const odooApps = [
     "screenshots": [
       "screenshot_report.png"
     ],
-    "copyWords": 310,
+    "copyWords": 272,
     "hasVideo": false,
     "youtubeId": null,
     "externalPage": null
@@ -3702,13 +3637,6 @@ export const odooApps = [
         "body": [
           "This app counts what is in your accounting and applies the published de-minimis thresholds. Whether the DAC7 obligation applies to your business, and how it should be discharged, remains yours to determine with your adviser."
         ]
-      },
-      {
-        "heading": "Need the rest of the job done?",
-        "body": [
-          "This tells you whether DAC7 applies and to which sellers. Keeping the due diligence records, computing quarterly consideration from posted documents and producing the report itself is the paid app.",
-          "Get DAC7 Seller Reporting"
-        ]
       }
     ],
     "scope": [
@@ -3729,7 +3657,7 @@ export const odooApps = [
     "screenshots": [
       "screenshot_check.png"
     ],
-    "copyWords": 286,
+    "copyWords": 245,
     "hasVideo": false,
     "youtubeId": null,
     "externalPage": null
@@ -3842,14 +3770,7 @@ export const odooApps = [
       "Requirements, and where it stops",
       "Odoo 19 Community or Enterprise with Inventory. Free, and deliberately one figure per company - it does not name the products or break the total down."
     ],
-    "features": [
-      {
-        "heading": "Need the rest of the job done?",
-        "body": [
-          "The Stock Aging Report ages every product into buckets - 0-30, 31-90, 91-180, 181-365 days, over a year, never moved - with the capital held in each, filtered by warehouse and category, and names the five largest offenders."
-        ]
-      }
-    ],
+    "features": [],
     "scope": [],
     "requires": [],
     "price": 0.0,
@@ -3866,7 +3787,7 @@ export const odooApps = [
     "screenshots": [
       "screenshot_check.png"
     ],
-    "copyWords": 275,
+    "copyWords": 230,
     "hasVideo": false,
     "youtubeId": null,
     "externalPage": null
@@ -4004,15 +3925,6 @@ export const odooApps = [
         ]
       },
       {
-        "heading": "Need the rest of the job done?",
-        "body": [
-          "This is a list, not a decision. Before archiving one of these accounts it is worth knowing what it is still attached to: archiving in Odoo blocks the login and reassigns nothing, so scheduled actions set to run as that user, activities assigned to them and records naming them all stay exactly where they were.",
-          "Working out what those are for a given person — and what quietly breaks if you archive without reassigning first — is User Offboarding Check .",
-          "Session Control — Accounts nobody has used are one half of the picture. The sessions open on this server right now are the other, and an idle logout per group closes them on their own.",
-          "API Key Inventory — An account that stopped being used rarely takes its API keys with it. Every key in the database, with who owns it and when it was last actually used, is how the forgotten ones get found."
-        ]
-      },
-      {
         "heading": "Requirements",
         "body": [
           "Odoo 19, Community or Enterprise. No dependencies beyond the base system. Administrator access, since it reads the user list. Nothing is written to any user record."
@@ -4037,7 +3949,7 @@ export const odooApps = [
     "screenshots": [
       "screenshot_check.png"
     ],
-    "copyWords": 449,
+    "copyWords": 286,
     "hasVideo": false,
     "youtubeId": null,
     "externalPage": null
@@ -4118,13 +4030,6 @@ export const odooApps = [
         ]
       },
       {
-        "heading": "Need the rest of the job done?",
-        "body": [
-          "Changing the rights on many groups at once, with the exact list of changes shown before anything is saved, is Access Rights Bulk Edit . Moving the people off a group before you retire it — with who gains and loses which access shown first — is Group Membership Bulk .",
-          "Access Change Log — Once you start retiring duplicate groups, the question becomes who changed whose access and what it was before. That is a record somebody has to be keeping at the time; it cannot be reconstructed afterwards."
-        ]
-      },
-      {
         "heading": "Requirements",
         "body": [
           "Odoo 19, Community or Enterprise. No dependencies beyond the base system. Administrator access, since it reads every group and access right. Nothing is written to any of them."
@@ -4149,7 +4054,7 @@ export const odooApps = [
     "screenshots": [
       "screenshot_check.png"
     ],
-    "copyWords": 349,
+    "copyWords": 252,
     "hasVideo": false,
     "youtubeId": null,
     "externalPage": null
@@ -4184,12 +4089,6 @@ export const odooApps = [
         ]
       },
       {
-        "heading": "Need the rest of the job done?",
-        "body": [
-          "Recording the plots themselves — supplier, country, commodity, area, coordinates or boundary, production period — attaching them to lots, and assembling per delivery what a due diligence statement needs, with a check before the goods leave, is the paid app: EUDR Due Diligence ."
-        ]
-      },
-      {
         "heading": "Requirements",
         "body": [
           "Odoo 19, Community or Enterprise. Needs Inventory. Nothing is written to your products — the check reads them and stores its own result."
@@ -4214,7 +4113,7 @@ export const odooApps = [
     "screenshots": [
       "screenshot_check.png"
     ],
-    "copyWords": 372,
+    "copyWords": 321,
     "hasVideo": false,
     "youtubeId": null,
     "externalPage": null
@@ -4248,13 +4147,6 @@ export const odooApps = [
         "body": [
           "The payments this app cannot match are the ones that actually need judgement - part payments, deductions, and remittances covering several invoices at once. Those are a different job, and they are what the paid app does."
         ]
-      },
-      {
-        "heading": "Need the rest of the job done?",
-        "body": [
-          "This finds the payments that unambiguously pay one invoice. Matching the partial, combined and ambiguous ones, and actually reconciling them, is the paid app.",
-          "Get Community Cash Reconciler"
-        ]
       }
     ],
     "scope": [
@@ -4275,7 +4167,7 @@ export const odooApps = [
     "screenshots": [
       "screenshot_matches.png"
     ],
-    "copyWords": 259,
+    "copyWords": 224,
     "hasVideo": false,
     "youtubeId": null,
     "externalPage": null
@@ -4345,12 +4237,6 @@ export const odooApps = [
         "body": [
           "The condition uses Odoo's own domain builder - the same one behind every filter and automation rule. Combine any fields on the model, not just a single status field."
         ]
-      },
-      {
-        "heading": "Need the rest of the job done?",
-        "body": [
-          "Field Access Rules — Locking a field once a record is approved is one rule. Hiding or locking any field for the groups you choose, on any model, enforced by the server rather than hidden in the form view, is Field Access Rules."
-        ]
       }
     ],
     "scope": [],
@@ -4369,7 +4255,7 @@ export const odooApps = [
     "screenshots": [
       "screenshot_rule.png"
     ],
-    "copyWords": 309,
+    "copyWords": 259,
     "hasVideo": false,
     "youtubeId": null,
     "externalPage": null
@@ -4403,13 +4289,6 @@ export const odooApps = [
         "body": [
           "This app counts hours from a time you enter, and ships behind its own access group rather than being visible to every employee. It is not legal advice, and whether a breach is notifiable at all is a judgement for you and your adviser."
         ]
-      },
-      {
-        "heading": "Need the rest of the job done?",
-        "body": [
-          "This runs the Article 33 clock and holds none of the breach. The incident record, the reminders and the notification trail are the paid app.",
-          "Get GDPR Breach Clock"
-        ]
       }
     ],
     "scope": [
@@ -4430,7 +4309,7 @@ export const odooApps = [
     "screenshots": [
       "screenshot_clock.png"
     ],
-    "copyWords": 310,
+    "copyWords": 274,
     "hasVideo": false,
     "youtubeId": null,
     "externalPage": null
@@ -4464,13 +4343,6 @@ export const odooApps = [
         "body": [
           "A Google Ads account you control, a developer token from your own Google Ads Manager account, and an OAuth client plus refresh token from your own Google Cloud project. The Python packages google-ads and cryptography must be available to your Odoo instance."
         ]
-      },
-      {
-        "heading": "Need the rest of the job done?",
-        "body": [
-          "This reads your Google Ads numbers. Creating and managing search campaigns, ad groups, keywords and responsive search ads from inside Odoo is the paid app.",
-          "Get Google Ads Odoo Connector"
-        ]
       }
     ],
     "scope": [
@@ -4491,7 +4363,7 @@ export const odooApps = [
     "screenshots": [
       "screenshot_spend.png"
     ],
-    "copyWords": 293,
+    "copyWords": 256,
     "hasVideo": false,
     "youtubeId": null,
     "externalPage": null
@@ -4557,13 +4429,6 @@ export const odooApps = [
         "body": [
           "Native Odoo tracks expiry for exactly two things: work permits and contract end dates. Everything else - licences, certifications, background checks, training records - has nowhere to live, which is usually why it lives in a spreadsheet. If you need to track those, and to log complaints and penalties against an employee's file, that is what the paid app does."
         ]
-      },
-      {
-        "heading": "Need the rest of the job done?",
-        "body": [
-          "This counts what the two native date fields already hold. Tracking any document type you define, with reminders, plus grievances and disciplinary penalties, is the paid app.",
-          "Get HR Employee Compliance"
-        ]
       }
     ],
     "scope": [
@@ -4584,7 +4449,7 @@ export const odooApps = [
     "screenshots": [
       "screenshot_exposure.png"
     ],
-    "copyWords": 326,
+    "copyWords": 288,
     "hasVideo": false,
     "youtubeId": null,
     "externalPage": null
@@ -4618,13 +4483,6 @@ export const odooApps = [
         "body": [
           "If the answer this gives you is uncomfortable, narrowing it is a change to how the system behaves and belongs with the app that also has to enforce it."
         ]
-      },
-      {
-        "heading": "Need the rest of the job done?",
-        "body": [
-          "This shows who can post to each journal. Adding bank charges to payments and moving money between journals as a matched pair is the paid app.",
-          "Get Journal Control"
-        ]
       }
     ],
     "scope": [
@@ -4645,7 +4503,7 @@ export const odooApps = [
     "screenshots": [
       "screenshot_access.png"
     ],
-    "copyWords": 274,
+    "copyWords": 238,
     "hasVideo": false,
     "youtubeId": null,
     "externalPage": null
@@ -4703,14 +4561,7 @@ export const odooApps = [
     "intro": [
       "Native Favorites (ir.filters) already save/share/switch a named domain + group-by + sort. The one thing they don't cover: which optional columns were visible - that lives only in browser localStorage, unnamed and unshared. This adds a small JS patch that folds the visible columns into the context a Favorite already saves, so saving or switching one carries column visibility with it. No new model and no new screen - the Favorite you already use simply remembers one more thing."
     ],
-    "features": [
-      {
-        "heading": "Need the rest of the job done?",
-        "body": [
-          "List View Layouts — Managing the columns for yourself is one thing. Saving a layout and giving it to a whole group, so everyone opens the list already set up the way the team works, is List View Layouts."
-        ]
-      }
-    ],
+    "features": [],
     "scope": [],
     "requires": [],
     "price": 0.0,
@@ -4728,7 +4579,7 @@ export const odooApps = [
     "screenshots": [
       "screenshot_columns.png"
     ],
-    "copyWords": 137,
+    "copyWords": 91,
     "hasVideo": true,
     "youtubeId": null,
     "externalPage": null
@@ -4794,13 +4645,6 @@ export const odooApps = [
         "body": [
           "A Meta Business Manager account you control, and a System User access token with read access to the ad account. The Python packages requests and cryptography must be available to your Odoo instance - both are standard on Odoo Online and Odoo.sh."
         ]
-      },
-      {
-        "heading": "Need the rest of the job done?",
-        "body": [
-          "This reads your Meta spend. Creating, editing, pausing and cloning campaigns, ad sets, creatives, ads and Lead Ads from inside Odoo is the paid app.",
-          "Get Meta Odoo Connector"
-        ]
       }
     ],
     "scope": [
@@ -4821,7 +4665,7 @@ export const odooApps = [
     "screenshots": [
       "screenshot_spend.png"
     ],
-    "copyWords": 276,
+    "copyWords": 240,
     "hasVideo": false,
     "youtubeId": null,
     "externalPage": null
@@ -4855,13 +4699,6 @@ export const odooApps = [
         "body": [
           "A Microsoft Advertising account you control, a developer token from the Microsoft Advertising Developer Portal, and an OAuth client plus refresh token from your own Azure AD (Entra ID) app registration. The Python packages bingads and cryptography must be available to your Odoo instance."
         ]
-      },
-      {
-        "heading": "Need the rest of the job done?",
-        "body": [
-          "This shows your Microsoft Advertising campaigns. Creating and managing Bing campaigns, ad groups, keywords with match types and expanded text ads is the paid app.",
-          "Get Microsoft Ads Connector"
-        ]
       }
     ],
     "scope": [
@@ -4882,7 +4719,7 @@ export const odooApps = [
     "screenshots": [
       "screenshot_campaigns.png"
     ],
-    "copyWords": 293,
+    "copyWords": 257,
     "hasVideo": false,
     "youtubeId": null,
     "externalPage": null
@@ -5017,13 +4854,6 @@ export const odooApps = [
         "body": [
           "Automated checks catch a real but limited slice of WCAG. Passing all four here does not make a page accessible - it means these four failures are absent."
         ]
-      },
-      {
-        "heading": "Need the rest of the job done?",
-        "body": [
-          "This checks one page for four failures. Auditing the whole site against WCAG 2.1 AA, with alt text, form labels and heading order across every page, is the paid app.",
-          "Get Accessibility Auditor"
-        ]
       }
     ],
     "scope": [
@@ -5044,7 +4874,7 @@ export const odooApps = [
     "screenshots": [
       "screenshot_check.png"
     ],
-    "copyWords": 266,
+    "copyWords": 226,
     "hasVideo": false,
     "youtubeId": null,
     "externalPage": null
@@ -5078,13 +4908,6 @@ export const odooApps = [
         "body": [
           "This app applies the Directive's stated headcount bands to your employee records. National implementations vary and may be stricter - confirm your own obligations with your adviser."
         ]
-      },
-      {
-        "heading": "Need the rest of the job done?",
-        "body": [
-          "This tells you when the duty reaches you and whether your data can answer it. Requiring a salary range before a vacancy publishes, and reporting the gap itself, is the paid app.",
-          "Get EU Pay Transparency Toolkit"
-        ]
       }
     ],
     "scope": [
@@ -5105,7 +4928,7 @@ export const odooApps = [
     "screenshots": [
       "screenshot_readiness.png"
     ],
-    "copyWords": 305,
+    "copyWords": 261,
     "hasVideo": false,
     "youtubeId": null,
     "externalPage": null
@@ -5254,15 +5077,7 @@ export const odooApps = [
       "Requirements, and where it stops",
       "Odoo 19 Community or Enterprise with Project and Purchase. Free, and deliberately one figure per company - it does not name the projects or break the total down. Reads only; nothing is written back."
     ],
-    "features": [
-      {
-        "heading": "Need the rest of the job done?",
-        "body": [
-          "The Project Cost Exposure app breaks the figure down per project, next to what has been billed and what has been spent, and answers the question this one cannot: which projects are in profit today and will not be once those bills land.",
-          "Unbilled Work Report — Committed purchase orders are one kind of money the project reports do not show. Time that has been worked and never invoiced is the other, and it ages the same way."
-        ]
-      }
-    ],
+    "features": [],
     "scope": [],
     "requires": [],
     "price": 0.0,
@@ -5280,7 +5095,7 @@ export const odooApps = [
     "screenshots": [
       "screenshot_check.png"
     ],
-    "copyWords": 322,
+    "copyWords": 237,
     "hasVideo": false,
     "youtubeId": null,
     "externalPage": null
@@ -5314,13 +5129,6 @@ export const odooApps = [
         "body": [
           "If the pile this shows you needs working through rather than just looking at, that is a different job - and it is what the paid app does."
         ]
-      },
-      {
-        "heading": "Need the rest of the job done?",
-        "body": [
-          "This shows how old your open quotations are. Splitting an order into several deliveries, confirming many quotations at once and duplicating lines in place is the paid app.",
-          "Get Sale Order Power Tools"
-        ]
       }
     ],
     "scope": [
@@ -5341,7 +5149,7 @@ export const odooApps = [
     "screenshots": [
       "screenshot_aging.png"
     ],
-    "copyWords": 264,
+    "copyWords": 224,
     "hasVideo": false,
     "youtubeId": null,
     "externalPage": null
@@ -5375,13 +5183,6 @@ export const odooApps = [
         "body": [
           "The counts are company-wide and taken with elevated rights, so the figure is not narrowed by the running user's own record rules. This app measures against the period you enter; it does not determine what your retention period should be."
         ]
-      },
-      {
-        "heading": "Need the rest of the job done?",
-        "body": [
-          "This measures how much data you hold past your own policy. Actually blanking those fields on a schedule, keeping the record and its history intact, is the paid app.",
-          "Get GDPR Retention Scheduler"
-        ]
       }
     ],
     "scope": [
@@ -5402,7 +5203,7 @@ export const odooApps = [
     "screenshots": [
       "screenshot_exposure.png"
     ],
-    "copyWords": 294,
+    "copyWords": 254,
     "hasVideo": false,
     "youtubeId": null,
     "externalPage": null
@@ -5436,13 +5237,6 @@ export const odooApps = [
         "body": [
           "This app checks for data your records are missing. It does not guarantee acceptance by ANAF - always validate the final declaration with ANAF's own DUKIntegrator before submitting, and take filing decisions with your adviser."
         ]
-      },
-      {
-        "heading": "Need the rest of the job done?",
-        "body": [
-          "This finds the master data that would get a D406 rejected. Building the ANAF D406 XML from your accounts, partners, tax table and journal entries is the paid app.",
-          "Get Romania SAF-T Exporter"
-        ]
       }
     ],
     "scope": [
@@ -5463,7 +5257,7 @@ export const odooApps = [
     "screenshots": [
       "screenshot_check.png"
     ],
-    "copyWords": 279,
+    "copyWords": 239,
     "hasVideo": false,
     "youtubeId": null,
     "externalPage": null
@@ -5546,13 +5340,6 @@ export const odooApps = [
         "body": [
           "A Snapchat Ads account you control, and an OAuth client plus refresh token from your own Snapchat developer app. The Python packages requests and cryptography must be available to your Odoo instance - both are standard on Odoo Online and Odoo.sh."
         ]
-      },
-      {
-        "heading": "Need the rest of the job done?",
-        "body": [
-          "This shows your Snapchat campaigns. Publishing, pausing and cloning ad squads and ads from inside Odoo is the paid app.",
-          "Get Snapchat Ads Connector"
-        ]
       }
     ],
     "scope": [
@@ -5573,7 +5360,7 @@ export const odooApps = [
     "screenshots": [
       "screenshot_campaigns.png"
     ],
-    "copyWords": 280,
+    "copyWords": 249,
     "hasVideo": false,
     "youtubeId": null,
     "externalPage": null
@@ -5692,14 +5479,7 @@ export const odooApps = [
       "Requirements, and where it stops",
       "Odoo 19 Community or Enterprise with Inventory. Free, and deliberately one figure per company - it does not name locations or products. Reads only; nothing is created or changed."
     ],
-    "features": [
-      {
-        "heading": "Need the rest of the job done?",
-        "body": [
-          "This figure tells you there is a problem. The Stock Count Accuracy app tells you where it is: broken down by location and product, naming the places carrying most of the error so counts go there rather than everywhere, and separating stock that is genuinely going missing from stock that is only being put away in the wrong place."
-        ]
-      }
-    ],
+    "features": [],
     "scope": [],
     "requires": [],
     "price": 0.0,
@@ -5716,7 +5496,7 @@ export const odooApps = [
     "screenshots": [
       "screenshot_check.png"
     ],
-    "copyWords": 293,
+    "copyWords": 227,
     "hasVideo": false,
     "youtubeId": null,
     "externalPage": null
@@ -5810,13 +5590,6 @@ export const odooApps = [
         "body": [
           "This app computes deadlines from the Directive's stated periods, and ships behind its own access group rather than being visible to every employee. It is not legal advice, and national implementations vary - confirm your own obligations with your adviser."
         ]
-      },
-      {
-        "heading": "Need the rest of the job done?",
-        "body": [
-          "This tracks the Directive deadlines and holds no report content. The anonymous intake form and the case file behind each report are the paid app.",
-          "Get Whistleblower Case Management"
-        ]
       }
     ],
     "scope": [
@@ -5837,7 +5610,7 @@ export const odooApps = [
     "screenshots": [
       "screenshot_deadlines.png"
     ],
-    "copyWords": 310,
+    "copyWords": 274,
     "hasVideo": false,
     "youtubeId": null,
     "externalPage": null
