@@ -3891,7 +3891,7 @@ export const odooApps = [
       "screenshot_snippets.png"
     ],
     "copyWords": 112,
-    "hasVideo": false,
+    "hasVideo": true,
     "youtubeId": null,
     "externalPage": null
   },
@@ -4396,7 +4396,7 @@ export const odooApps = [
       "screenshot_settings.png"
     ],
     "copyWords": 83,
-    "hasVideo": false,
+    "hasVideo": true,
     "youtubeId": null,
     "externalPage": null
   },
@@ -4821,7 +4821,7 @@ export const odooApps = [
       "screenshot_settings.png"
     ],
     "copyWords": 147,
-    "hasVideo": false,
+    "hasVideo": true,
     "youtubeId": null,
     "externalPage": null
   },
