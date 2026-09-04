@@ -4612,7 +4612,7 @@ export const odooApps = [
       "screenshot_lost_messages.png"
     ],
     "copyWords": 118,
-    "hasVideo": false,
+    "hasVideo": true,
     "youtubeId": null,
     "externalPage": null
   },
