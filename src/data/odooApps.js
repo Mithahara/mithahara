@@ -60,6 +60,13 @@ export const odooApps = [
     "depends": [
       "mh_meta_odoo_connector"
     ],
+    "paidDepends": [
+      {
+        "tech": "mh_meta_odoo_connector",
+        "name": "Meta Odoo Connector",
+        "price": 349.0
+      }
+    ],
     "downloads": 0,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_meta_auto_scale_engine",
     "screenshots": [
@@ -127,6 +134,7 @@ export const odooApps = [
       "stock",
       "purchase"
     ],
+    "paidDepends": [],
     "downloads": 0,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_eudr_diligence",
     "screenshots": [
@@ -196,6 +204,7 @@ export const odooApps = [
     "depends": [
       "base"
     ],
+    "paidDepends": [],
     "downloads": 0,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_google_ads_launcher",
     "screenshots": [
@@ -267,6 +276,7 @@ export const odooApps = [
       "base",
       "crm"
     ],
+    "paidDepends": [],
     "downloads": 0,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_meta_odoo_connector",
     "screenshots": [
@@ -340,6 +350,7 @@ export const odooApps = [
     "depends": [
       "base"
     ],
+    "paidDepends": [],
     "downloads": 0,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_access_explorer",
     "screenshots": [
@@ -382,6 +393,7 @@ export const odooApps = [
       "account",
       "mail"
     ],
+    "paidDepends": [],
     "downloads": 0,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_dac7_reporting",
     "screenshots": [
@@ -450,6 +462,7 @@ export const odooApps = [
     "depends": [
       "base"
     ],
+    "paidDepends": [],
     "downloads": 0,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_microsoft_ads_launcher",
     "screenshots": [
@@ -492,6 +505,7 @@ export const odooApps = [
     "depends": [
       "l10n_ro"
     ],
+    "paidDepends": [],
     "downloads": 0,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_ro_saft_exporter",
     "screenshots": [
@@ -560,6 +574,7 @@ export const odooApps = [
     "depends": [
       "base"
     ],
+    "paidDepends": [],
     "downloads": 0,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_snapchat_ads_launcher",
     "screenshots": [
@@ -638,6 +653,7 @@ export const odooApps = [
       "account",
       "mh_1099_threshold_check"
     ],
+    "paidDepends": [],
     "downloads": 0,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_1099_reporting",
     "screenshots": [
@@ -683,6 +699,7 @@ export const odooApps = [
     "depends": [
       "mail"
     ],
+    "paidDepends": [],
     "downloads": 0,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_breach_deadline_calc",
     "screenshots": [
@@ -729,6 +746,7 @@ export const odooApps = [
     "depends": [
       "mail"
     ],
+    "paidDepends": [],
     "downloads": 0,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_whistleblower_case",
     "screenshots": [
@@ -799,6 +817,13 @@ export const odooApps = [
     "depends": [
       "mh_ai_agent_guardrails"
     ],
+    "paidDepends": [
+      {
+        "tech": "mh_ai_agent_guardrails",
+        "name": "AI Agent Guardrails",
+        "price": 149.0
+      }
+    ],
     "downloads": 0,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_ai_agent_approvals",
     "screenshots": [
@@ -845,6 +870,7 @@ export const odooApps = [
     "depends": [
       "website_hr_recruitment"
     ],
+    "paidDepends": [],
     "downloads": 0,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_pay_transparency",
     "screenshots": [
@@ -889,6 +915,7 @@ export const odooApps = [
     "depends": [
       "website"
     ],
+    "paidDepends": [],
     "downloads": 0,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_a11y_auditor",
     "screenshots": [
@@ -935,6 +962,7 @@ export const odooApps = [
     "depends": [
       "mail"
     ],
+    "paidDepends": [],
     "downloads": 0,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_gdpr_retention",
     "screenshots": [
@@ -1003,6 +1031,7 @@ export const odooApps = [
     "depends": [
       "account"
     ],
+    "paidDepends": [],
     "downloads": 0,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_cash_application_matcher",
     "screenshots": [
@@ -1073,6 +1102,7 @@ export const odooApps = [
     "depends": [
       "base"
     ],
+    "paidDepends": [],
     "downloads": 0,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_access_migration",
     "screenshots": [
@@ -1143,6 +1173,7 @@ export const odooApps = [
     "depends": [
       "base"
     ],
+    "paidDepends": [],
     "downloads": 0,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_access_rights_bulk",
     "screenshots": [
@@ -1213,6 +1244,7 @@ export const odooApps = [
     "depends": [
       "base"
     ],
+    "paidDepends": [],
     "downloads": 0,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_company_audit",
     "screenshots": [
@@ -1269,6 +1301,7 @@ export const odooApps = [
     "depends": [
       "mail"
     ],
+    "paidDepends": [],
     "downloads": 0,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_gdpr_breach_clock",
     "screenshots": [
@@ -1339,6 +1372,7 @@ export const odooApps = [
     "depends": [
       "base"
     ],
+    "paidDepends": [],
     "downloads": 0,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_access_change_log",
     "screenshots": [
@@ -1409,6 +1443,7 @@ export const odooApps = [
     "depends": [
       "base"
     ],
+    "paidDepends": [],
     "downloads": 0,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_record_rule_preview",
     "screenshots": [
@@ -1465,6 +1500,7 @@ export const odooApps = [
     "depends": [
       "mail"
     ],
+    "paidDepends": [],
     "downloads": 0,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_user_offboarding",
     "screenshots": [
@@ -1530,6 +1566,7 @@ export const odooApps = [
     "depends": [
       "base_setup"
     ],
+    "paidDepends": [],
     "downloads": 0,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_field_change_log",
     "screenshots": [
@@ -1599,6 +1636,7 @@ export const odooApps = [
     "depends": [
       "account"
     ],
+    "paidDepends": [],
     "downloads": 0,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_currency_rounding_tool",
     "screenshots": [
@@ -1662,6 +1700,7 @@ export const odooApps = [
     "depends": [
       "quality"
     ],
+    "paidDepends": [],
     "downloads": 0,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_spc_cpk_analytics",
     "screenshots": [],
@@ -1730,6 +1769,7 @@ export const odooApps = [
     "depends": [
       "base"
     ],
+    "paidDepends": [],
     "downloads": 0,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_ai_agent_guardrails",
     "screenshots": [
@@ -1802,6 +1842,7 @@ export const odooApps = [
     "depends": [
       "base"
     ],
+    "paidDepends": [],
     "downloads": 0,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_field_access_rules",
     "screenshots": [
@@ -1870,6 +1911,7 @@ export const odooApps = [
       "base",
       "web"
     ],
+    "paidDepends": [],
     "downloads": 0,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_list_view_layouts",
     "screenshots": [],
@@ -1939,6 +1981,7 @@ export const odooApps = [
       "project",
       "purchase"
     ],
+    "paidDepends": [],
     "downloads": 0,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_project_cost_exposure",
     "screenshots": [
@@ -2009,6 +2052,7 @@ export const odooApps = [
     "depends": [
       "stock"
     ],
+    "paidDepends": [],
     "downloads": 0,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_reorder_rule_audit",
     "screenshots": [
@@ -2079,6 +2123,7 @@ export const odooApps = [
     "depends": [
       "stock"
     ],
+    "paidDepends": [],
     "downloads": 0,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_count_accuracy",
     "screenshots": [
@@ -2149,6 +2194,7 @@ export const odooApps = [
     "depends": [
       "sale_timesheet"
     ],
+    "paidDepends": [],
     "downloads": 0,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_unbilled_work",
     "screenshots": [
@@ -2218,6 +2264,7 @@ export const odooApps = [
     "depends": [
       "base"
     ],
+    "paidDepends": [],
     "downloads": 0,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_group_membership_bulk",
     "screenshots": [
@@ -2284,6 +2331,7 @@ export const odooApps = [
     "depends": [
       "stock"
     ],
+    "paidDepends": [],
     "downloads": 0,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_warehouse_access",
     "screenshots": [
@@ -2346,6 +2394,7 @@ export const odooApps = [
     "depends": [
       "base"
     ],
+    "paidDepends": [],
     "downloads": 0,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_api_key_inventory",
     "screenshots": [
@@ -2417,6 +2466,7 @@ export const odooApps = [
       "website",
       "mh_cookie_consent_banner"
     ],
+    "paidDepends": [],
     "downloads": 0,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_cookie_consent_enforcer",
     "screenshots": [
@@ -2483,6 +2533,7 @@ export const odooApps = [
     "depends": [
       "base"
     ],
+    "paidDepends": [],
     "downloads": 0,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_session_control",
     "screenshots": [
@@ -2554,6 +2605,7 @@ export const odooApps = [
     "depends": [
       "stock"
     ],
+    "paidDepends": [],
     "downloads": 0,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_stock_aging_report",
     "screenshots": [
@@ -2616,6 +2668,7 @@ export const odooApps = [
     "depends": [
       "account"
     ],
+    "paidDepends": [],
     "downloads": 0,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_accounting_journal_control",
     "screenshots": [
@@ -2681,6 +2734,7 @@ export const odooApps = [
       "base_setup",
       "html_editor"
     ],
+    "paidDepends": [],
     "downloads": 0,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_llm_gateway",
     "screenshots": [
@@ -2752,6 +2806,7 @@ export const odooApps = [
       "mail",
       "mh_lost_messages_routing"
     ],
+    "paidDepends": [],
     "downloads": 0,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_lost_message_recovery",
     "screenshots": [
@@ -2814,6 +2869,7 @@ export const odooApps = [
     "depends": [
       "purchase"
     ],
+    "paidDepends": [],
     "downloads": 0,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_purchase_multi_level_approval",
     "screenshots": [
@@ -2876,6 +2932,7 @@ export const odooApps = [
     "depends": [
       "sale_management"
     ],
+    "paidDepends": [],
     "downloads": 0,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_sale_order_power_tools",
     "screenshots": [
@@ -2938,6 +2995,7 @@ export const odooApps = [
     "depends": [
       "hr"
     ],
+    "paidDepends": [],
     "downloads": 0,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_hr_employee_compliance",
     "screenshots": [
@@ -2990,6 +3048,7 @@ export const odooApps = [
     "depends": [
       "account"
     ],
+    "paidDepends": [],
     "downloads": 3,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_1099_threshold_check",
     "screenshots": [
@@ -3043,6 +3102,7 @@ export const odooApps = [
     "depends": [
       "base"
     ],
+    "paidDepends": [],
     "downloads": 5,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_access_config_check",
     "screenshots": [
@@ -3095,6 +3155,7 @@ export const odooApps = [
     "depends": [
       "base"
     ],
+    "paidDepends": [],
     "downloads": 6,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_access_snapshot",
     "screenshots": [
@@ -3149,6 +3210,7 @@ export const odooApps = [
     "depends": [
       "purchase"
     ],
+    "paidDepends": [],
     "downloads": 3,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_purchase_approval_exposure",
     "screenshots": [
@@ -3195,6 +3257,7 @@ export const odooApps = [
     "depends": [
       "web"
     ],
+    "paidDepends": [],
     "downloads": 2,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_archived_match_hint",
     "screenshots": [
@@ -3256,6 +3319,7 @@ export const odooApps = [
     "depends": [
       "mail"
     ],
+    "paidDepends": [],
     "downloads": 5,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_audit_trail_check",
     "screenshots": [
@@ -3303,6 +3367,7 @@ export const odooApps = [
       "sale",
       "crm"
     ],
+    "paidDepends": [],
     "downloads": 2,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_awaiting_reply_badge",
     "screenshots": [
@@ -3357,6 +3422,7 @@ export const odooApps = [
     "depends": [
       "base"
     ],
+    "paidDepends": [],
     "downloads": 2,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_breach_deadline_clock",
     "screenshots": [
@@ -3401,6 +3467,7 @@ export const odooApps = [
     "depends": [
       "mail"
     ],
+    "paidDepends": [],
     "downloads": 4,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_chatter_search",
     "screenshots": [
@@ -3461,6 +3528,7 @@ export const odooApps = [
     "depends": [
       "base"
     ],
+    "paidDepends": [],
     "downloads": 3,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_company_mismatch_check",
     "screenshots": [
@@ -3495,6 +3563,7 @@ export const odooApps = [
     "depends": [
       "website"
     ],
+    "paidDepends": [],
     "downloads": 6,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_cookie_consent_banner",
     "screenshots": [
@@ -3544,6 +3613,7 @@ export const odooApps = [
     "depends": [
       "base"
     ],
+    "paidDepends": [],
     "downloads": 3,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_cpk_calculator",
     "screenshots": [
@@ -3598,6 +3668,7 @@ export const odooApps = [
     "depends": [
       "account"
     ],
+    "paidDepends": [],
     "downloads": 3,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_currency_rounding_report",
     "screenshots": [
@@ -3652,6 +3723,7 @@ export const odooApps = [
     "depends": [
       "account"
     ],
+    "paidDepends": [],
     "downloads": 4,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_dac7_threshold_check",
     "screenshots": [
@@ -3740,6 +3812,7 @@ export const odooApps = [
       "mh_portal_stale_grant",
       "mh_cron_health_badge"
     ],
+    "paidDepends": [],
     "downloads": 4,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_housekeeping",
     "screenshots": [
@@ -3782,6 +3855,7 @@ export const odooApps = [
     "depends": [
       "stock"
     ],
+    "paidDepends": [],
     "downloads": 3,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_dead_stock_check",
     "screenshots": [
@@ -3852,6 +3926,7 @@ export const odooApps = [
       "web",
       "mail"
     ],
+    "paidDepends": [],
     "downloads": 6,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_direct_download_base",
     "screenshots": [
@@ -3885,6 +3960,7 @@ export const odooApps = [
       "base",
       "web"
     ],
+    "paidDepends": [],
     "downloads": 4,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_advanced_web_domain_widget",
     "screenshots": [
@@ -3944,6 +4020,7 @@ export const odooApps = [
     "depends": [
       "base"
     ],
+    "paidDepends": [],
     "downloads": 4,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_dormant_user_check",
     "screenshots": [
@@ -3990,6 +4067,7 @@ export const odooApps = [
     "depends": [
       "mail"
     ],
+    "paidDepends": [],
     "downloads": 3,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_duplicate_attachment_guard",
     "screenshots": [
@@ -4049,6 +4127,7 @@ export const odooApps = [
     "depends": [
       "base"
     ],
+    "paidDepends": [],
     "downloads": 4,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_duplicate_group_check",
     "screenshots": [
@@ -4108,6 +4187,7 @@ export const odooApps = [
     "depends": [
       "stock"
     ],
+    "paidDepends": [],
     "downloads": 2,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_eudr_scope_check",
     "screenshots": [
@@ -4162,6 +4242,7 @@ export const odooApps = [
     "depends": [
       "account"
     ],
+    "paidDepends": [],
     "downloads": 3,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_cash_exact_match",
     "screenshots": [
@@ -4206,6 +4287,7 @@ export const odooApps = [
     "depends": [
       "base"
     ],
+    "paidDepends": [],
     "downloads": 7,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_field_help_editor",
     "screenshots": [
@@ -4250,6 +4332,7 @@ export const odooApps = [
     "depends": [
       "base"
     ],
+    "paidDepends": [],
     "downloads": 7,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_field_lock",
     "screenshots": [
@@ -4304,6 +4387,7 @@ export const odooApps = [
     "depends": [
       "base"
     ],
+    "paidDepends": [],
     "downloads": 5,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_gdpr_72h_clock",
     "screenshots": [
@@ -4358,6 +4442,7 @@ export const odooApps = [
     "depends": [
       "base"
     ],
+    "paidDepends": [],
     "downloads": 2,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_google_ads_spend",
     "screenshots": [
@@ -4390,6 +4475,7 @@ export const odooApps = [
       "base",
       "website"
     ],
+    "paidDepends": [],
     "downloads": 4,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_google_reviews_snippet",
     "screenshots": [
@@ -4444,6 +4530,7 @@ export const odooApps = [
     "depends": [
       "hr"
     ],
+    "paidDepends": [],
     "downloads": 3,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_hr_expiry_exposure",
     "screenshots": [
@@ -4498,6 +4585,7 @@ export const odooApps = [
     "depends": [
       "account"
     ],
+    "paidDepends": [],
     "downloads": 3,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_journal_access_report",
     "screenshots": [
@@ -4542,6 +4630,7 @@ export const odooApps = [
     "depends": [
       "project"
     ],
+    "paidDepends": [],
     "downloads": 4,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_kanban_wip_limits",
     "screenshots": [
@@ -4574,6 +4663,7 @@ export const odooApps = [
       "base",
       "web"
     ],
+    "paidDepends": [],
     "downloads": 9,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_list_view_manager",
     "screenshots": [
@@ -4606,6 +4696,7 @@ export const odooApps = [
       "base",
       "mail"
     ],
+    "paidDepends": [],
     "downloads": 5,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_lost_messages_routing",
     "screenshots": [
@@ -4660,6 +4751,7 @@ export const odooApps = [
     "depends": [
       "base"
     ],
+    "paidDepends": [],
     "downloads": 2,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_meta_ads_spend",
     "screenshots": [
@@ -4714,6 +4806,7 @@ export const odooApps = [
     "depends": [
       "base"
     ],
+    "paidDepends": [],
     "downloads": 2,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_microsoft_ads_viewer",
     "screenshots": [
@@ -4762,6 +4855,7 @@ export const odooApps = [
     "depends": [
       "base"
     ],
+    "paidDepends": [],
     "downloads": 3,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_orphan_attachment_scan",
     "screenshots": [
@@ -4815,6 +4909,7 @@ export const odooApps = [
       "point_of_sale",
       "analytic"
     ],
+    "paidDepends": [],
     "downloads": 5,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_pos_analytic_account",
     "screenshots": [
@@ -4869,6 +4964,7 @@ export const odooApps = [
     "depends": [
       "website"
     ],
+    "paidDepends": [],
     "downloads": 3,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_a11y_page_check",
     "screenshots": [
@@ -4923,6 +5019,7 @@ export const odooApps = [
     "depends": [
       "hr"
     ],
+    "paidDepends": [],
     "downloads": 2,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_pay_transparency_readiness",
     "screenshots": [
@@ -4956,6 +5053,7 @@ export const odooApps = [
       "base",
       "web"
     ],
+    "paidDepends": [],
     "downloads": 5,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_popup_message",
     "screenshots": [
@@ -5015,6 +5113,7 @@ export const odooApps = [
       "portal",
       "base_setup"
     ],
+    "paidDepends": [],
     "downloads": 1,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_portal_stale_grant",
     "screenshots": [
@@ -5048,6 +5147,7 @@ export const odooApps = [
     "depends": [
       "product"
     ],
+    "paidDepends": [],
     "downloads": 2,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_product_multi_barcode",
     "screenshots": [
@@ -5090,6 +5190,7 @@ export const odooApps = [
       "project",
       "purchase"
     ],
+    "paidDepends": [],
     "downloads": 2,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_project_commitment_check",
     "screenshots": [
@@ -5144,6 +5245,7 @@ export const odooApps = [
     "depends": [
       "sale"
     ],
+    "paidDepends": [],
     "downloads": 3,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_quotation_aging",
     "screenshots": [
@@ -5198,6 +5300,7 @@ export const odooApps = [
     "depends": [
       "base"
     ],
+    "paidDepends": [],
     "downloads": 3,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_gdpr_retention_exposure",
     "screenshots": [
@@ -5252,6 +5355,7 @@ export const odooApps = [
     "depends": [
       "l10n_ro"
     ],
+    "paidDepends": [],
     "downloads": 2,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_ro_saft_readiness",
     "screenshots": [
@@ -5300,6 +5404,7 @@ export const odooApps = [
     "depends": [
       "base"
     ],
+    "paidDepends": [],
     "downloads": 3,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_cron_health_badge",
     "screenshots": [
@@ -5355,6 +5460,7 @@ export const odooApps = [
     "depends": [
       "base"
     ],
+    "paidDepends": [],
     "downloads": 2,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_snapchat_ads_viewer",
     "screenshots": [
@@ -5419,6 +5525,7 @@ export const odooApps = [
     "depends": [
       "base"
     ],
+    "paidDepends": [],
     "downloads": 3,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_stale_user_assignment",
     "screenshots": [
@@ -5451,6 +5558,7 @@ export const odooApps = [
     "depends": [
       "stock_account"
     ],
+    "paidDepends": [],
     "downloads": 7,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_stock_card_ledger",
     "screenshots": [
@@ -5491,6 +5599,7 @@ export const odooApps = [
     "depends": [
       "stock"
     ],
+    "paidDepends": [],
     "downloads": 3,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_count_error_check",
     "screenshots": [
@@ -5551,6 +5660,7 @@ export const odooApps = [
       "project",
       "hr_timesheet"
     ],
+    "paidDepends": [],
     "downloads": 6,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_task_timer",
     "screenshots": [
@@ -5605,6 +5715,7 @@ export const odooApps = [
     "depends": [
       "base"
     ],
+    "paidDepends": [],
     "downloads": 2,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_whistleblower_deadlines",
     "screenshots": [

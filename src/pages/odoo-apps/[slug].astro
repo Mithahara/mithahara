@@ -115,6 +115,13 @@ const graph = app.youtubeId
           <strong>Odoo.sh or On-Premise only.</strong> Third-party apps cannot be installed on
           Odoo Online (SaaS) databases — check your hosting before buying.
         </li>
+        {(app.paidDepends ?? []).map((dep) => (
+          <li>
+            <strong>Also requires {dep.name}</strong>
+            {dep.price ? ` ($${dep.price.toFixed(0)})` : ''} — a separate paid app. The
+            App Store price shown above covers both; this app will not install without it.
+          </li>
+        ))}
         {app.requires.map((line) => <li>{line}</li>)}
         <li>Module <code>{app.tech}</code>, version {app.version}, licensed {app.license}.</li>
       </ul>
