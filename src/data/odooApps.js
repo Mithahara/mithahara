@@ -5,7 +5,7 @@
 // generator; editing here forks the copy away from what the store actually
 // serves.
 //
-// Store snapshot: 2026-09-03T19:43:49+00:00
+// Store snapshot: 2026-09-04T04:01:36+00:00
 
 export const odooApps = [
   {
@@ -2997,7 +2997,7 @@ export const odooApps = [
     "depends": [
       "account"
     ],
-    "downloads": 2,
+    "downloads": 3,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_1099_threshold_check",
     "screenshots": [
       "screenshot_check.png"
@@ -3056,7 +3056,7 @@ export const odooApps = [
     "depends": [
       "base"
     ],
-    "downloads": 2,
+    "downloads": 5,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_access_config_check",
     "screenshots": [
       "screenshot_check.png"
@@ -3117,7 +3117,7 @@ export const odooApps = [
     "depends": [
       "base"
     ],
-    "downloads": 5,
+    "downloads": 6,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_access_snapshot",
     "screenshots": [
       "screenshot_snapshot.png"
@@ -3178,7 +3178,7 @@ export const odooApps = [
     "depends": [
       "purchase"
     ],
-    "downloads": 2,
+    "downloads": 3,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_purchase_approval_exposure",
     "screenshots": [
       "screenshot_exposure.png"
@@ -3224,7 +3224,7 @@ export const odooApps = [
     "depends": [
       "web"
     ],
-    "downloads": 1,
+    "downloads": 2,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_archived_match_hint",
     "screenshots": [
       "screenshot_hint.png"
@@ -3293,7 +3293,7 @@ export const odooApps = [
     "depends": [
       "mail"
     ],
-    "downloads": 4,
+    "downloads": 5,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_audit_trail_check",
     "screenshots": [
       "screenshot_check.png"
@@ -3340,7 +3340,7 @@ export const odooApps = [
       "sale",
       "crm"
     ],
-    "downloads": 1,
+    "downloads": 2,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_awaiting_reply_badge",
     "screenshots": [
       "screenshot_badge.png"
@@ -3401,7 +3401,7 @@ export const odooApps = [
     "depends": [
       "base"
     ],
-    "downloads": 1,
+    "downloads": 2,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_breach_deadline_clock",
     "screenshots": [
       "screenshot_deadlines.png"
@@ -3445,7 +3445,7 @@ export const odooApps = [
     "depends": [
       "mail"
     ],
-    "downloads": 3,
+    "downloads": 4,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_chatter_search",
     "screenshots": [
       "screenshot_search.png"
@@ -3512,7 +3512,7 @@ export const odooApps = [
     "depends": [
       "base"
     ],
-    "downloads": 2,
+    "downloads": 3,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_company_mismatch_check",
     "screenshots": [
       "screenshot_check.png"
@@ -3553,7 +3553,7 @@ export const odooApps = [
     ],
     "copyWords": 141,
     "hasVideo": true,
-    "youtubeId": null,
+    "youtubeId": "oZB66fEcACE",
     "externalPage": null
   },
   {
@@ -3602,7 +3602,7 @@ export const odooApps = [
     "depends": [
       "base"
     ],
-    "downloads": 2,
+    "downloads": 3,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_cpk_calculator",
     "screenshots": [
       "screenshot_capability.png"
@@ -3663,7 +3663,7 @@ export const odooApps = [
     "depends": [
       "account"
     ],
-    "downloads": 2,
+    "downloads": 3,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_currency_rounding_report",
     "screenshots": [
       "screenshot_report.png"
@@ -3724,7 +3724,7 @@ export const odooApps = [
     "depends": [
       "account"
     ],
-    "downloads": 3,
+    "downloads": 4,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_dac7_threshold_check",
     "screenshots": [
       "screenshot_check.png"
@@ -3812,7 +3812,7 @@ export const odooApps = [
       "mh_portal_stale_grant",
       "mh_cron_health_badge"
     ],
-    "downloads": 3,
+    "downloads": 4,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_housekeeping",
     "screenshots": [
       "screenshot_menu.png",
@@ -3861,7 +3861,7 @@ export const odooApps = [
     "depends": [
       "stock"
     ],
-    "downloads": 2,
+    "downloads": 3,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_dead_stock_check",
     "screenshots": [
       "screenshot_check.png"
@@ -4032,7 +4032,7 @@ export const odooApps = [
     "depends": [
       "base"
     ],
-    "downloads": 3,
+    "downloads": 4,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_dormant_user_check",
     "screenshots": [
       "screenshot_check.png"
@@ -4078,7 +4078,7 @@ export const odooApps = [
     "depends": [
       "mail"
     ],
-    "downloads": 2,
+    "downloads": 3,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_duplicate_attachment_guard",
     "screenshots": [
       "screenshot_guard.png"
@@ -4144,7 +4144,7 @@ export const odooApps = [
     "depends": [
       "base"
     ],
-    "downloads": 2,
+    "downloads": 4,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_duplicate_group_check",
     "screenshots": [
       "screenshot_check.png"
@@ -4209,7 +4209,7 @@ export const odooApps = [
     "depends": [
       "stock"
     ],
-    "downloads": 1,
+    "downloads": 2,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_eudr_scope_check",
     "screenshots": [
       "screenshot_check.png"
@@ -4270,7 +4270,7 @@ export const odooApps = [
     "depends": [
       "account"
     ],
-    "downloads": 2,
+    "downloads": 3,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_cash_exact_match",
     "screenshots": [
       "screenshot_matches.png"
@@ -4314,7 +4314,7 @@ export const odooApps = [
     "depends": [
       "base"
     ],
-    "downloads": 6,
+    "downloads": 7,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_field_help_editor",
     "screenshots": [
       "screenshot_dialog.png"
@@ -4364,7 +4364,7 @@ export const odooApps = [
     "depends": [
       "base"
     ],
-    "downloads": 6,
+    "downloads": 7,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_field_lock",
     "screenshots": [
       "screenshot_rule.png"
@@ -4425,7 +4425,7 @@ export const odooApps = [
     "depends": [
       "base"
     ],
-    "downloads": 4,
+    "downloads": 5,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_gdpr_72h_clock",
     "screenshots": [
       "screenshot_clock.png"
@@ -4486,7 +4486,7 @@ export const odooApps = [
     "depends": [
       "base"
     ],
-    "downloads": 1,
+    "downloads": 2,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_google_ads_spend",
     "screenshots": [
       "screenshot_spend.png"
@@ -4579,7 +4579,7 @@ export const odooApps = [
     "depends": [
       "hr"
     ],
-    "downloads": 2,
+    "downloads": 3,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_hr_expiry_exposure",
     "screenshots": [
       "screenshot_exposure.png"
@@ -4640,7 +4640,7 @@ export const odooApps = [
     "depends": [
       "account"
     ],
-    "downloads": 2,
+    "downloads": 3,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_journal_access_report",
     "screenshots": [
       "screenshot_access.png"
@@ -4684,7 +4684,7 @@ export const odooApps = [
     "depends": [
       "project"
     ],
-    "downloads": 3,
+    "downloads": 4,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_kanban_wip_limits",
     "screenshots": [
       "screenshot_wip.png"
@@ -4816,7 +4816,7 @@ export const odooApps = [
     "depends": [
       "base"
     ],
-    "downloads": 1,
+    "downloads": 2,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_meta_ads_spend",
     "screenshots": [
       "screenshot_spend.png"
@@ -4877,7 +4877,7 @@ export const odooApps = [
     "depends": [
       "base"
     ],
-    "downloads": 1,
+    "downloads": 2,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_microsoft_ads_viewer",
     "screenshots": [
       "screenshot_campaigns.png"
@@ -4925,7 +4925,7 @@ export const odooApps = [
     "depends": [
       "base"
     ],
-    "downloads": 2,
+    "downloads": 3,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_orphan_attachment_scan",
     "screenshots": [
       "screenshot_scan.png",
@@ -4945,7 +4945,26 @@ export const odooApps = [
     "intro": [
       "Community's Point of Sale has zero analytic-account concept anywhere - no overlap found before building. Set a default analytic distribution per Point of Sale (store/register); every sales line in that POS's session closing journal entry is tagged with it automatically, ready for the standard Analytic Items reports."
     ],
-    "features": [],
+    "features": [
+      {
+        "heading": "Post each session's revenue to an analytic account",
+        "body": [
+          "Session closing entries include analytic account allocation so revenue is recorded to analytic accounts during posting instead of requiring manual journal entries."
+        ]
+      },
+      {
+        "heading": "Apply the same distribution to every sales line",
+        "body": [
+          "The configured distribution is applied to every sales line posted at session close, giving line-level revenue attribution for reporting."
+        ]
+      },
+      {
+        "heading": "Configure distribution per Point of Sale",
+        "body": [
+          "Set the analytic distribution for each store from the Point of Sale configuration form so each store/session uses its own allocation on close."
+        ]
+      }
+    ],
     "scope": [],
     "requires": [],
     "price": 0.0,
@@ -4964,7 +4983,7 @@ export const odooApps = [
     "screenshots": [
       "screenshot_settings.png"
     ],
-    "copyWords": 61,
+    "copyWords": 147,
     "hasVideo": false,
     "youtubeId": null,
     "externalPage": null
@@ -5020,7 +5039,7 @@ export const odooApps = [
     "depends": [
       "website"
     ],
-    "downloads": 2,
+    "downloads": 3,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_a11y_page_check",
     "screenshots": [
       "screenshot_check.png"
@@ -5081,7 +5100,7 @@ export const odooApps = [
     "depends": [
       "hr"
     ],
-    "downloads": 1,
+    "downloads": 2,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_pay_transparency_readiness",
     "screenshots": [
       "screenshot_readiness.png"
@@ -5256,7 +5275,7 @@ export const odooApps = [
       "project",
       "purchase"
     ],
-    "downloads": 1,
+    "downloads": 2,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_project_commitment_check",
     "screenshots": [
       "screenshot_check.png"
@@ -5317,7 +5336,7 @@ export const odooApps = [
     "depends": [
       "sale"
     ],
-    "downloads": 2,
+    "downloads": 3,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_quotation_aging",
     "screenshots": [
       "screenshot_aging.png"
@@ -5378,7 +5397,7 @@ export const odooApps = [
     "depends": [
       "base"
     ],
-    "downloads": 2,
+    "downloads": 3,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_gdpr_retention_exposure",
     "screenshots": [
       "screenshot_exposure.png"
@@ -5439,7 +5458,7 @@ export const odooApps = [
     "depends": [
       "l10n_ro"
     ],
-    "downloads": 1,
+    "downloads": 2,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_ro_saft_readiness",
     "screenshots": [
       "screenshot_check.png"
@@ -5487,7 +5506,7 @@ export const odooApps = [
     "depends": [
       "base"
     ],
-    "downloads": 2,
+    "downloads": 3,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_cron_health_badge",
     "screenshots": [
       "screenshot_list.png",
@@ -5549,7 +5568,7 @@ export const odooApps = [
     "depends": [
       "base"
     ],
-    "downloads": 1,
+    "downloads": 2,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_snapchat_ads_viewer",
     "screenshots": [
       "screenshot_campaigns.png"
@@ -5613,7 +5632,7 @@ export const odooApps = [
     "depends": [
       "base"
     ],
-    "downloads": 2,
+    "downloads": 3,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_stale_user_assignment",
     "screenshots": [
       "screenshot_sweep.png",
@@ -5692,7 +5711,7 @@ export const odooApps = [
     "depends": [
       "stock"
     ],
-    "downloads": 2,
+    "downloads": 3,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_count_error_check",
     "screenshots": [
       "screenshot_check.png"
@@ -5752,7 +5771,7 @@ export const odooApps = [
       "project",
       "hr_timesheet"
     ],
-    "downloads": 5,
+    "downloads": 6,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_task_timer",
     "screenshots": [
       "screenshot_timer.png"
@@ -5813,7 +5832,7 @@ export const odooApps = [
     "depends": [
       "base"
     ],
-    "downloads": 1,
+    "downloads": 2,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_whistleblower_deadlines",
     "screenshots": [
       "screenshot_deadlines.png"
