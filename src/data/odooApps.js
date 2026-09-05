@@ -5,7 +5,7 @@
 // generator; editing here forks the copy away from what the store actually
 // serves.
 //
-// Store snapshot: 2026-09-04T04:01:36+00:00
+// Store snapshot: 2026-09-05T04:01:38+00:00
 
 export const odooApps = [
   {
@@ -287,7 +287,7 @@ export const odooApps = [
     ],
     "copyWords": 394,
     "hasVideo": true,
-    "youtubeId": null,
+    "youtubeId": "ZsTgOVQVe5I",
     "externalPage": "/apps/meta-odoo-connector"
   },
   {
@@ -3103,7 +3103,7 @@ export const odooApps = [
       "base"
     ],
     "paidDepends": [],
-    "downloads": 5,
+    "downloads": 6,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_access_config_check",
     "screenshots": [
       "screenshot_check.png"
@@ -3564,7 +3564,7 @@ export const odooApps = [
       "website"
     ],
     "paidDepends": [],
-    "downloads": 6,
+    "downloads": 8,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_cookie_consent_banner",
     "screenshots": [
       "screenshot_banner.png"
@@ -3856,7 +3856,7 @@ export const odooApps = [
       "stock"
     ],
     "paidDepends": [],
-    "downloads": 3,
+    "downloads": 4,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_dead_stock_check",
     "screenshots": [
       "screenshot_check.png"
@@ -3927,7 +3927,7 @@ export const odooApps = [
       "mail"
     ],
     "paidDepends": [],
-    "downloads": 6,
+    "downloads": 7,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_direct_download_base",
     "screenshots": [
       "main_screenshot.png",
@@ -3954,14 +3954,14 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Extra Tools",
-    "version": "19.0.1.0.3",
+    "version": "19.0.1.0.4",
     "license": "OPL-1",
     "depends": [
       "base",
       "web"
     ],
     "paidDepends": [],
-    "downloads": 4,
+    "downloads": 5,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_advanced_web_domain_widget",
     "screenshots": [
       "screenshot_snippets.png"
@@ -4128,7 +4128,7 @@ export const odooApps = [
       "base"
     ],
     "paidDepends": [],
-    "downloads": 4,
+    "downloads": 6,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_duplicate_group_check",
     "screenshots": [
       "screenshot_check.png"
@@ -4469,14 +4469,14 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Website/Website",
-    "version": "19.0.1.0.2",
+    "version": "19.0.1.0.3",
     "license": "OPL-1",
     "depends": [
       "base",
       "website"
     ],
     "paidDepends": [],
-    "downloads": 4,
+    "downloads": 5,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_google_reviews_snippet",
     "screenshots": [
       "screenshot_settings.png"
@@ -4664,7 +4664,7 @@ export const odooApps = [
       "web"
     ],
     "paidDepends": [],
-    "downloads": 9,
+    "downloads": 11,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_list_view_manager",
     "screenshots": [
       "screenshot_columns.png"
@@ -4690,14 +4690,14 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Discuss",
-    "version": "19.0.1.0.3",
+    "version": "19.0.1.0.5",
     "license": "OPL-1",
     "depends": [
       "base",
       "mail"
     ],
     "paidDepends": [],
-    "downloads": 5,
+    "downloads": 6,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_lost_messages_routing",
     "screenshots": [
       "screenshot_lost_messages.png"
@@ -4902,7 +4902,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Point of Sale",
-    "version": "19.0.1.0.2",
+    "version": "19.0.1.0.5",
     "license": "OPL-1",
     "depends": [
       "base",
@@ -4910,7 +4910,7 @@ export const odooApps = [
       "analytic"
     ],
     "paidDepends": [],
-    "downloads": 5,
+    "downloads": 6,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_pos_analytic_account",
     "screenshots": [
       "screenshot_settings.png"
@@ -5054,7 +5054,7 @@ export const odooApps = [
       "web"
     ],
     "paidDepends": [],
-    "downloads": 5,
+    "downloads": 7,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_popup_message",
     "screenshots": [
       "screenshot_message.png"
@@ -5148,7 +5148,7 @@ export const odooApps = [
       "product"
     ],
     "paidDepends": [],
-    "downloads": 2,
+    "downloads": 3,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_product_multi_barcode",
     "screenshots": [
       "screenshot_barcodes.png"
@@ -5559,7 +5559,7 @@ export const odooApps = [
       "stock_account"
     ],
     "paidDepends": [],
-    "downloads": 7,
+    "downloads": 9,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_stock_card_ledger",
     "screenshots": [
       "screenshot_ledger.png"
@@ -5600,7 +5600,7 @@ export const odooApps = [
       "stock"
     ],
     "paidDepends": [],
-    "downloads": 3,
+    "downloads": 5,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_count_error_check",
     "screenshots": [
       "screenshot_check.png"
