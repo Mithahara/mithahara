@@ -2462,7 +2462,7 @@ export const odooApps = [
     "tech": "mh_cookie_consent_enforcer",
     "slug": "cookie-consent-enforcer",
     "name": "Cookie Consent Enforcer",
-    "summary": "Hold analytics and marketing scripts back until the visitor consents to that category, and export the consent record as evidence",
+    "summary": "Hold analytics and marketing scripts back until the visitor consents to that category, script by script on any Odoo website",
     "tagline": "Hold analytics and marketing scripts back until the visitor consents to that category, and inject them the moment they do",
     "intro": [
       "A consent banner that records the answer but lets the tag fire anyway is not compliance. It is a written record that the tag fired first.",
