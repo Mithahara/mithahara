@@ -5,7 +5,7 @@
 // generator; editing here forks the copy away from what the store actually
 // serves.
 //
-// Store snapshot: 2026-09-05T04:01:38+00:00
+// Store snapshot: 2026-09-07T20:59:36+00:00
 
 export const odooApps = [
   {
@@ -55,7 +55,7 @@ export const odooApps = [
     "manifestPrice": 499.0,
     "currency": "USD",
     "category": "Marketing/Marketing",
-    "version": "19.0.1.0.3",
+    "version": "19.0.1.0.4",
     "license": "OPL-1",
     "depends": [
       "mh_meta_odoo_connector"
@@ -87,48 +87,101 @@ export const odooApps = [
     "summary": "Record the plots of land behind every lot of coffee, cocoa, soya, rubber, palm, cattle or wood, and check a shipment has the geolocation data an EU deforestation due diligence statement needs before it leaves",
     "tagline": "",
     "intro": [
-      "Record the plots of land behind every lot of coffee, cocoa, soya, rubber, palm, cattle or wood, and check a shipment has the geolocation data an EU deforestation due diligence statement needs before it leaves"
+      "REGULATION (EU) 2023/1115 • APPLIES TO LARGE OPERATORS SINCE 30 DEC 2025"
     ],
     "features": [
       {
+        "heading": "EUDR compliance in Odoo, without the spreadsheet",
+        "body": [
+          "Record the plots of land behind every lot of coffee, cocoa, soya, rubber, palm, cattle or wood. Check the coordinates, the hectare threshold and the boundary before a container is cleared to leave.",
+          "the Article 2(28) point-or-boundary threshold",
+          "commodities: coffee, cocoa, soya, palm, rubber, cattle, wood",
+          "a latitude past this is lat/long entered backwards",
+          "refuse the despatch, record the gap, or do not check"
+        ]
+      },
+      {
         "heading": "The coordinates are always the missing part",
         "body": [
-          "Regulation (EU) 2023/1115 has applied to large operators since 30 December 2025 and to small ones since 30 June 2026. Every consignment of a covered commodity needs a due diligence statement, and that statement needs the geolocation of every plot of land the material was produced on.",
-          "Odoo knows the commodity and the quantity already. It has nowhere to put the plot — so the plot lives in a supplier's spreadsheet, and the day it is needed is the day the container is loaded.",
-          "Plots of land, entered once and pointed at by every lot that came off them. The ones missing something say what is missing, rather than only that they are incomplete.",
-          "A delivery checked line by line: which lots trace to a complete plot, and for the ones that do not, whether the problem is a missing plot, an incomplete one, or a product with no lot tracking at all."
+          "Odoo knows the commodity and the quantity already. It has nowhere to put the plot — so the plot lives in a supplier's spreadsheet, and the day it is needed is the day the container is loaded. The rows below are the app's own screen.",
+          "Every gap is named, not counted. An oversized plot carrying only a point says so. A latitude past 90 — the signature of lat and long entered the wrong way round — is caught on save, not at customs."
         ]
       },
       {
-        "heading": "The rule about plot size, applied",
+        "heading": "Kept outside Odoo",
         "body": [
-          "Article 2(28) allows a single point for a plot of four hectares or less and asks for the boundary above that — except for cattle, where the geolocation is of the establishment the animals were kept on rather than of a field. That distinction is built in: an oversized plot carrying only a point is reported incomplete, and a cattle establishment of any size is not.",
-          "Coordinates are also checked for being coordinates. A latitude past 90 is the signature of latitude and longitude entered the wrong way round, which is the commonest way this data arrives broken."
+          "Disconnected — agronomist coordinates sit in emails, shared folders and CSVs outside Odoo.",
+          "Found on loading day — the despatch team goes looking for a plot reference while the lorry waits.",
+          "Silently swapped axes — a latitude written as a longitude is invisible until a declarant rejects it.",
+          "All or nothing — a hard block on incomplete data stops goods that had nothing wrong with them.",
+          "Result: the data is assembled by hand, on the day it is least available."
         ]
       },
       {
-        "heading": "A check before the goods go, at a strength you choose",
+        "heading": "Held in the module",
         "body": [
-          "A despatch of goods in scope with no plot data behind it can be refused outright, or let through with the gap recorded on the transfer, or not checked at all. The default records it. A rule that halts the warehouse on day one gets switched off on day two.",
-          "Receipts are never blocked — the receipt is what tells you which lot arrived, and refusing it would be refusing the answer."
+          "Entered once — a plot carries supplier, country, commodity, area, coordinates and period.",
+          "Lots point at plots — a farm is entered once and every lot off it refers back.",
+          "Checked on save — the four-hectare rule and the coordinate range, before anything ships.",
+          "A gate you set — refuse the despatch, record the gap, or do not check. Receipts never block.",
+          "Result: a due diligence statement assembled from data Odoo already holds."
         ]
       },
       {
-        "heading": "Requirements",
+        "heading": "The four-hectare rule, built in",
         "body": [
-          "Odoo 19, Community or Enterprise. Needs Inventory and Purchase. Products in scope have to be tracked by lot or serial number — without that there is nothing to attach a plot to, and the app says so rather than reporting a gap it cannot explain."
+          "Article 2(28) allows a single point for a plot of four hectares or less and asks for the boundary above that — except cattle, where the geolocation is of the establishment, not a field. An oversized plot with only a point is reported incomplete; a cattle establishment of any size is not."
+        ]
+      },
+      {
+        "heading": "Inverted coordinate detection",
+        "body": [
+          "A latitude past 90 is the signature of latitude and longitude entered the wrong way round, which is the commonest way this data arrives broken. It is caught when the plot is saved."
+        ]
+      },
+      {
+        "heading": "A despatch gate at a strength you choose",
+        "body": [
+          "Refuse the despatch outright, let it through with the gap recorded on the transfer, or do not check at all. The default records it — a rule that halts the warehouse on day one gets switched off on day two."
+        ]
+      },
+      {
+        "heading": "What this app does",
+        "body": [
+          "✓ Hold plots: supplier, country, commodity, area, coordinates or boundary, production period",
+          "✓ Link lots and serial numbers to the plots they came off",
+          "✓ Mark products as one of the seven Annex I commodities",
+          "✓ Check a plot against the four-hectare rule and its coordinates for range",
+          "✓ Assemble, per delivery, the content a statement needs, and name every gap",
+          "✓ Record or refuse a despatch that cannot be traced to a plot"
+        ]
+      },
+      {
+        "heading": "One container held at the port, against $449 once",
+        "body": [
+          "Demurrage at the large EU container ports runs into the hundreds per container per day, and an inspection hold adds administrative cost on top. The figures vary by port and contract, so check your own — this module is a one-off licence with no per-transaction fee.",
+          "The plot register, and a delivery checked line by line — which lots trace to a complete plot, and for the ones that do not, whether the problem is a missing plot, an incomplete one, or a product with no lot tracking at all.",
+          "Whether your products could carry plot data at all.",
+          "Records whose company conflicts with their links.",
+          "Four audits for what your database accumulates.",
+          "Who can actually read, write and delete what."
         ]
       }
     ],
     "scope": [
-      "Stated up front so nothing about the scope is a surprise after you install it."
+      "— File anything. Statements go to the Commission's own system; this produces the content",
+      "— Tell you whether the land was deforested — that is a satellite question, and answering it from an ERP would be a guess dressed as a finding",
+      "— Classify countries by risk. The benchmarking is amended, and a frozen copy would be worse than none",
+      "— Ship an Annex I code list, for the same reason. Your HS code is quoted as you entered it",
+      "— Verify that a boundary is where its coordinates say it is",
+      "Before you buy: needs Odoo 19 Community or Enterprise with Inventory and Purchase. Products in scope have to be tracked by lot or serial number — without that there is nothing to attach a plot to, and the app says so rather than reporting a gap it cannot explain."
     ],
     "requires": [],
     "price": 449.0,
     "manifestPrice": 449.0,
     "currency": "USD",
     "category": "Warehouse",
-    "version": "19.0.1.0.3",
+    "version": "19.0.1.0.10",
     "license": "OPL-1",
     "depends": [
       "stock",
@@ -141,8 +194,8 @@ export const odooApps = [
       "screenshot_plots.png",
       "screenshot_statement.png"
     ],
-    "copyWords": 443,
-    "hasVideo": false,
+    "copyWords": 824,
+    "hasVideo": true,
     "youtubeId": null,
     "externalPage": null
   },
@@ -195,11 +248,11 @@ export const odooApps = [
     ],
     "scope": [],
     "requires": [],
-    "price": 399.0,
+    "price": 398.99,
     "manifestPrice": 399.0,
     "currency": "USD",
     "category": "Marketing/Marketing",
-    "version": "19.0.1.0.2",
+    "version": "19.0.1.0.3",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -270,7 +323,7 @@ export const odooApps = [
     "manifestPrice": 349.0,
     "currency": "USD",
     "category": "Marketing/Marketing",
-    "version": "19.0.1.0.3",
+    "version": "19.0.1.0.4",
     "license": "OPL-1",
     "depends": [
       "base",
@@ -289,6 +342,83 @@ export const odooApps = [
     "hasVideo": true,
     "youtubeId": "ZsTgOVQVe5I",
     "externalPage": "/apps/meta-odoo-connector"
+  },
+  {
+    "tech": "mh_ai_agent_approvals",
+    "slug": "ai-agent-approvals",
+    "name": "AI Agent Approvals",
+    "summary": "Hold an AI agent's writes to the models you choose until a person approves them, with the old and new values side by side",
+    "tagline": "Hold an AI agent's writes to the models you choose until a person approves them, with the old and new values side by side",
+    "intro": [
+      "An agent that can write to your database will eventually write something you would not have agreed to. Rate limits and logs help afterwards. For the handful of models where a wrong write is expensive to undo - prices, customers, posted documents - what you want is a person in front of it.",
+      "Name those models on the agent. Its changes to them stop being applied and start being requests.",
+      "What is there now, what the agent wants to put there, and two buttons."
+    ],
+    "features": [
+      {
+        "heading": "Approve applies exactly what was asked",
+        "body": [
+          "The values are kept verbatim as the agent sent them, so what is applied is what was reviewed - not something rebuilt afterwards from a description of it."
+        ]
+      },
+      {
+        "heading": "It survives its own refusal",
+        "body": [
+          "Holding a change means refusing it, and Odoo rolls a request back when an error reaches it - which would discard the record remembering what the agent asked. The request is written on its own database cursor, so the agent is told no and the queue still has the change."
+        ]
+      },
+      {
+        "heading": "Records that moved on are refused",
+        "body": [
+          "If somebody changed the records after the agent asked, the old values on screen are no longer what is there. Approving is refused rather than overwriting whoever got there first on a decision taken about different data."
+        ]
+      },
+      {
+        "heading": "A batch is one decision",
+        "body": [
+          "The agent asked once. Splitting a batch would let half be approved and half refused - a state nobody asked for and no agent knows how to recover from."
+        ]
+      },
+      {
+        "heading": "Only where you asked for it",
+        "body": [
+          "Everything outside the named models carries on at machine speed. The point is not to slow the agent down everywhere - an approval queue nobody can keep up with gets approved without reading, which is worse than none."
+        ]
+      },
+      {
+        "heading": "Requirements, and what this is not",
+        "body": [
+          "Odoo 19 Community or Enterprise. Requires AI Agent Guardrails , which registers which logins are agents. It does not decide for you and does not restrict what the agent may read. The approval records themselves are never held - holding a change to them would need approving, and nobody could approve the first one."
+        ]
+      }
+    ],
+    "scope": [],
+    "requires": [],
+    "price": 299.01,
+    "manifestPrice": 150.0,
+    "currency": "USD",
+    "category": "Tools",
+    "version": "19.0.1.0.5",
+    "license": "OPL-1",
+    "depends": [
+      "mh_ai_agent_guardrails"
+    ],
+    "paidDepends": [
+      {
+        "tech": "mh_ai_agent_guardrails",
+        "name": "AI Agent Guardrails",
+        "price": 149.0
+      }
+    ],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_ai_agent_approvals",
+    "screenshots": [
+      "screenshot_requests.png"
+    ],
+    "copyWords": 378,
+    "hasVideo": true,
+    "youtubeId": null,
+    "externalPage": null
   },
   {
     "tech": "mh_access_explorer",
@@ -345,7 +475,7 @@ export const odooApps = [
     "manifestPrice": 299.0,
     "currency": "USD",
     "category": "Productivity",
-    "version": "19.0.1.0.2",
+    "version": "19.0.1.0.4",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -357,7 +487,7 @@ export const odooApps = [
       "screenshot_review.png"
     ],
     "copyWords": 366,
-    "hasVideo": false,
+    "hasVideo": true,
     "youtubeId": null,
     "externalPage": null
   },
@@ -387,7 +517,7 @@ export const odooApps = [
     "manifestPrice": 299.0,
     "currency": "USD",
     "category": "Extra Tools",
-    "version": "19.0.1.0.2",
+    "version": "19.0.1.0.3",
     "license": "OPL-1",
     "depends": [
       "account",
@@ -457,7 +587,7 @@ export const odooApps = [
     "manifestPrice": 299.0,
     "currency": "USD",
     "category": "Marketing/Marketing",
-    "version": "19.0.1.0.4",
+    "version": "19.0.1.0.5",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -500,7 +630,7 @@ export const odooApps = [
     "manifestPrice": 299.0,
     "currency": "USD",
     "category": "Accounting/Localizations",
-    "version": "19.0.1.0.2",
+    "version": "19.0.1.0.3",
     "license": "OPL-1",
     "depends": [
       "l10n_ro"
@@ -569,7 +699,7 @@ export const odooApps = [
     "manifestPrice": 299.0,
     "currency": "USD",
     "category": "Marketing/Marketing",
-    "version": "19.0.1.0.2",
+    "version": "19.0.1.0.3",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -647,7 +777,7 @@ export const odooApps = [
     "manifestPrice": 299.0,
     "currency": "USD",
     "category": "Accounting/Accounting",
-    "version": "19.0.1.0.1",
+    "version": "19.0.1.0.3",
     "license": "OPL-1",
     "depends": [
       "account",
@@ -660,7 +790,7 @@ export const odooApps = [
       "screenshot_run.png"
     ],
     "copyWords": 473,
-    "hasVideo": false,
+    "hasVideo": true,
     "youtubeId": null,
     "externalPage": null
   },
@@ -694,7 +824,7 @@ export const odooApps = [
     "manifestPrice": 299.0,
     "currency": "USD",
     "category": "Extra Tools",
-    "version": "19.0.1.0.2",
+    "version": "19.0.1.0.3",
     "license": "OPL-1",
     "depends": [
       "mail"
@@ -741,7 +871,7 @@ export const odooApps = [
     "manifestPrice": 299.0,
     "currency": "USD",
     "category": "Human Resources",
-    "version": "19.0.1.0.3",
+    "version": "19.0.1.0.4",
     "license": "OPL-1",
     "depends": [
       "mail"
@@ -754,83 +884,6 @@ export const odooApps = [
     ],
     "copyWords": 224,
     "hasVideo": true,
-    "youtubeId": null,
-    "externalPage": null
-  },
-  {
-    "tech": "mh_ai_agent_approvals",
-    "slug": "ai-agent-approvals",
-    "name": "AI Agent Approvals",
-    "summary": "Hold an AI agent's writes to the models you choose until a person approves them, with the old and new values side by side",
-    "tagline": "Hold an AI agent's writes to the models you choose until a person approves them, with the old and new values side by side",
-    "intro": [
-      "An agent that can write to your database will eventually write something you would not have agreed to. Rate limits and logs help afterwards. For the handful of models where a wrong write is expensive to undo - prices, customers, posted documents - what you want is a person in front of it.",
-      "Name those models on the agent. Its changes to them stop being applied and start being requests.",
-      "What is there now, what the agent wants to put there, and two buttons."
-    ],
-    "features": [
-      {
-        "heading": "Approve applies exactly what was asked",
-        "body": [
-          "The values are kept verbatim as the agent sent them, so what is applied is what was reviewed - not something rebuilt afterwards from a description of it."
-        ]
-      },
-      {
-        "heading": "It survives its own refusal",
-        "body": [
-          "Holding a change means refusing it, and Odoo rolls a request back when an error reaches it - which would discard the record remembering what the agent asked. The request is written on its own database cursor, so the agent is told no and the queue still has the change."
-        ]
-      },
-      {
-        "heading": "Records that moved on are refused",
-        "body": [
-          "If somebody changed the records after the agent asked, the old values on screen are no longer what is there. Approving is refused rather than overwriting whoever got there first on a decision taken about different data."
-        ]
-      },
-      {
-        "heading": "A batch is one decision",
-        "body": [
-          "The agent asked once. Splitting a batch would let half be approved and half refused - a state nobody asked for and no agent knows how to recover from."
-        ]
-      },
-      {
-        "heading": "Only where you asked for it",
-        "body": [
-          "Everything outside the named models carries on at machine speed. The point is not to slow the agent down everywhere - an approval queue nobody can keep up with gets approved without reading, which is worse than none."
-        ]
-      },
-      {
-        "heading": "Requirements, and what this is not",
-        "body": [
-          "Odoo 19 Community or Enterprise. Requires AI Agent Guardrails , which registers which logins are agents. It does not decide for you and does not restrict what the agent may read. The approval records themselves are never held - holding a change to them would need approving, and nobody could approve the first one."
-        ]
-      }
-    ],
-    "scope": [],
-    "requires": [],
-    "price": 298.99,
-    "manifestPrice": 150.0,
-    "currency": "USD",
-    "category": "Tools",
-    "version": "19.0.1.0.3",
-    "license": "OPL-1",
-    "depends": [
-      "mh_ai_agent_guardrails"
-    ],
-    "paidDepends": [
-      {
-        "tech": "mh_ai_agent_guardrails",
-        "name": "AI Agent Guardrails",
-        "price": 149.0
-      }
-    ],
-    "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_ai_agent_approvals",
-    "screenshots": [
-      "screenshot_requests.png"
-    ],
-    "copyWords": 378,
-    "hasVideo": false,
     "youtubeId": null,
     "externalPage": null
   },
@@ -865,7 +918,7 @@ export const odooApps = [
     "manifestPrice": 279.0,
     "currency": "USD",
     "category": "Human Resources",
-    "version": "19.0.1.0.2",
+    "version": "19.0.1.0.3",
     "license": "OPL-1",
     "depends": [
       "website_hr_recruitment"
@@ -910,7 +963,7 @@ export const odooApps = [
     "manifestPrice": 249.0,
     "currency": "USD",
     "category": "Extra Tools",
-    "version": "19.0.1.0.2",
+    "version": "19.0.1.0.3",
     "license": "OPL-1",
     "depends": [
       "website"
@@ -957,7 +1010,7 @@ export const odooApps = [
     "manifestPrice": 229.0,
     "currency": "USD",
     "category": "Extra Tools",
-    "version": "19.0.1.0.3",
+    "version": "19.0.1.0.4",
     "license": "OPL-1",
     "depends": [
       "mail"
@@ -1026,7 +1079,7 @@ export const odooApps = [
     "manifestPrice": 200.0,
     "currency": "USD",
     "category": "Accounting/Accounting",
-    "version": "19.0.1.0.2",
+    "version": "19.0.1.0.3",
     "license": "OPL-1",
     "depends": [
       "account"
@@ -1097,7 +1150,7 @@ export const odooApps = [
     "manifestPrice": 199.0,
     "currency": "USD",
     "category": "Tools",
-    "version": "19.0.1.0.2",
+    "version": "19.0.1.0.4",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -1109,7 +1162,7 @@ export const odooApps = [
       "screenshot_plan.png"
     ],
     "copyWords": 341,
-    "hasVideo": false,
+    "hasVideo": true,
     "youtubeId": null,
     "externalPage": null
   },
@@ -1168,7 +1221,7 @@ export const odooApps = [
     "manifestPrice": 199.0,
     "currency": "USD",
     "category": "Tools",
-    "version": "19.0.1.0.4",
+    "version": "19.0.1.0.6",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -1180,7 +1233,7 @@ export const odooApps = [
       "screenshot_plan.png"
     ],
     "copyWords": 366,
-    "hasVideo": false,
+    "hasVideo": true,
     "youtubeId": null,
     "externalPage": null
   },
@@ -1239,7 +1292,7 @@ export const odooApps = [
     "manifestPrice": 199.0,
     "currency": "USD",
     "category": "Accounting/Accounting",
-    "version": "19.0.1.0.3",
+    "version": "19.0.1.0.5",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -1251,7 +1304,7 @@ export const odooApps = [
       "screenshot_audit.png"
     ],
     "copyWords": 310,
-    "hasVideo": false,
+    "hasVideo": true,
     "youtubeId": null,
     "externalPage": null
   },
@@ -1296,7 +1349,7 @@ export const odooApps = [
     "manifestPrice": 199.0,
     "currency": "USD",
     "category": "Extra Tools",
-    "version": "19.0.1.0.2",
+    "version": "19.0.1.0.3",
     "license": "OPL-1",
     "depends": [
       "mail"
@@ -1367,7 +1420,7 @@ export const odooApps = [
     "manifestPrice": 179.0,
     "currency": "USD",
     "category": "Tools",
-    "version": "19.0.1.0.4",
+    "version": "19.0.1.0.6",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -1379,7 +1432,7 @@ export const odooApps = [
       "screenshot_changes.png"
     ],
     "copyWords": 385,
-    "hasVideo": false,
+    "hasVideo": true,
     "youtubeId": null,
     "externalPage": null
   },
@@ -1438,7 +1491,7 @@ export const odooApps = [
     "manifestPrice": 179.0,
     "currency": "USD",
     "category": "Tools",
-    "version": "19.0.1.0.3",
+    "version": "19.0.1.0.5",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -1450,7 +1503,7 @@ export const odooApps = [
       "screenshot_preview.png"
     ],
     "copyWords": 379,
-    "hasVideo": false,
+    "hasVideo": true,
     "youtubeId": null,
     "externalPage": null
   },
@@ -1495,7 +1548,7 @@ export const odooApps = [
     "manifestPrice": 169.0,
     "currency": "USD",
     "category": "Tools",
-    "version": "19.0.1.0.7",
+    "version": "19.0.1.0.9",
     "license": "OPL-1",
     "depends": [
       "mail"
@@ -1507,7 +1560,7 @@ export const odooApps = [
       "screenshot_check.png"
     ],
     "copyWords": 349,
-    "hasVideo": false,
+    "hasVideo": true,
     "youtubeId": null,
     "externalPage": null
   },
@@ -1561,7 +1614,7 @@ export const odooApps = [
     "manifestPrice": 159.0,
     "currency": "USD",
     "category": "Tools",
-    "version": "19.0.1.0.2",
+    "version": "19.0.1.0.4",
     "license": "OPL-1",
     "depends": [
       "base_setup"
@@ -1574,7 +1627,7 @@ export const odooApps = [
       "screenshot_watch.png"
     ],
     "copyWords": 354,
-    "hasVideo": false,
+    "hasVideo": true,
     "youtubeId": null,
     "externalPage": null
   },
@@ -1627,11 +1680,11 @@ export const odooApps = [
     ],
     "scope": [],
     "requires": [],
-    "price": 149.99,
+    "price": 150.01,
     "manifestPrice": 150.0,
     "currency": "USD",
     "category": "Accounting/Accounting",
-    "version": "19.0.1.0.2",
+    "version": "19.0.1.0.3",
     "license": "OPL-1",
     "depends": [
       "account"
@@ -1691,11 +1744,11 @@ export const odooApps = [
     ],
     "scope": [],
     "requires": [],
-    "price": 149.99,
+    "price": 150.01,
     "manifestPrice": 150.0,
     "currency": "USD",
     "category": "Manufacturing",
-    "version": "19.0.1.0.4",
+    "version": "19.0.1.0.5",
     "license": "OPL-1",
     "depends": [
       "quality"
@@ -1760,11 +1813,11 @@ export const odooApps = [
     ],
     "scope": [],
     "requires": [],
-    "price": 149.0,
+    "price": 149.01,
     "manifestPrice": 149.0,
     "currency": "USD",
     "category": "Tools",
-    "version": "19.0.1.0.4",
+    "version": "19.0.1.0.6",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -1777,7 +1830,7 @@ export const odooApps = [
       "screenshot_log.png"
     ],
     "copyWords": 430,
-    "hasVideo": false,
+    "hasVideo": true,
     "youtubeId": null,
     "externalPage": null
   },
@@ -1833,11 +1886,11 @@ export const odooApps = [
     ],
     "scope": [],
     "requires": [],
-    "price": 149.0,
+    "price": 149.01,
     "manifestPrice": 149.0,
     "currency": "USD",
     "category": "Tools",
-    "version": "19.0.1.0.5",
+    "version": "19.0.1.0.7",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -1850,7 +1903,7 @@ export const odooApps = [
       "screenshot_rule.png"
     ],
     "copyWords": 414,
-    "hasVideo": false,
+    "hasVideo": true,
     "youtubeId": null,
     "externalPage": null
   },
@@ -1901,11 +1954,11 @@ export const odooApps = [
       "No column order or width - Odoo does not expose either per user, and claiming it would mean fighting the renderer on every draw. It does not touch the columns a view always shows, and it does not change what anyone is allowed to see."
     ],
     "requires": [],
-    "price": 149.0,
+    "price": 149.01,
     "manifestPrice": 149.0,
     "currency": "USD",
     "category": "Productivity",
-    "version": "19.0.1.0.2",
+    "version": "19.0.1.0.4",
     "license": "OPL-1",
     "depends": [
       "base",
@@ -1916,7 +1969,7 @@ export const odooApps = [
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_list_view_layouts",
     "screenshots": [],
     "copyWords": 386,
-    "hasVideo": false,
+    "hasVideo": true,
     "youtubeId": null,
     "externalPage": null
   },
@@ -1971,11 +2024,11 @@ export const odooApps = [
     ],
     "scope": [],
     "requires": [],
-    "price": 149.0,
+    "price": 149.01,
     "manifestPrice": 149.0,
     "currency": "USD",
     "category": "Project",
-    "version": "19.0.1.0.5",
+    "version": "19.0.1.0.7",
     "license": "OPL-1",
     "depends": [
       "project",
@@ -1988,7 +2041,7 @@ export const odooApps = [
       "screenshot_exposure.png"
     ],
     "copyWords": 375,
-    "hasVideo": false,
+    "hasVideo": true,
     "youtubeId": null,
     "externalPage": null
   },
@@ -2043,11 +2096,11 @@ export const odooApps = [
     ],
     "scope": [],
     "requires": [],
-    "price": 149.0,
+    "price": 149.01,
     "manifestPrice": 149.0,
     "currency": "USD",
     "category": "Warehouse",
-    "version": "19.0.1.0.5",
+    "version": "19.0.1.0.7",
     "license": "OPL-1",
     "depends": [
       "stock"
@@ -2059,7 +2112,7 @@ export const odooApps = [
       "screenshot_audit.png"
     ],
     "copyWords": 396,
-    "hasVideo": false,
+    "hasVideo": true,
     "youtubeId": null,
     "externalPage": null
   },
@@ -2114,11 +2167,11 @@ export const odooApps = [
     ],
     "scope": [],
     "requires": [],
-    "price": 149.0,
+    "price": 149.01,
     "manifestPrice": 149.0,
     "currency": "USD",
     "category": "Warehouse",
-    "version": "19.0.1.0.4",
+    "version": "19.0.1.0.6",
     "license": "OPL-1",
     "depends": [
       "stock"
@@ -2130,7 +2183,7 @@ export const odooApps = [
       "screenshot_accuracy.png"
     ],
     "copyWords": 390,
-    "hasVideo": false,
+    "hasVideo": true,
     "youtubeId": null,
     "externalPage": null
   },
@@ -2189,7 +2242,7 @@ export const odooApps = [
     "manifestPrice": 139.0,
     "currency": "USD",
     "category": "Project",
-    "version": "19.0.1.0.4",
+    "version": "19.0.1.0.6",
     "license": "OPL-1",
     "depends": [
       "sale_timesheet"
@@ -2201,7 +2254,7 @@ export const odooApps = [
       "screenshot_unbilled.png"
     ],
     "copyWords": 385,
-    "hasVideo": false,
+    "hasVideo": true,
     "youtubeId": null,
     "externalPage": null
   },
@@ -2255,11 +2308,11 @@ export const odooApps = [
     ],
     "scope": [],
     "requires": [],
-    "price": 129.01,
+    "price": 129.0,
     "manifestPrice": 129.0,
     "currency": "USD",
     "category": "Tools",
-    "version": "19.0.1.0.4",
+    "version": "19.0.1.0.6",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -2271,7 +2324,7 @@ export const odooApps = [
       "screenshot_plan.png"
     ],
     "copyWords": 351,
-    "hasVideo": false,
+    "hasVideo": true,
     "youtubeId": null,
     "externalPage": null
   },
@@ -2322,11 +2375,11 @@ export const odooApps = [
       "It counts across the whole database rather than as that user, so the figure is what exists and would be hidden. Counting as the user would report zero the moment the rule was on, which is exactly the wrong reassurance."
     ],
     "requires": [],
-    "price": 129.01,
+    "price": 129.0,
     "manifestPrice": 129.0,
     "currency": "USD",
     "category": "Warehouse",
-    "version": "19.0.1.0.4",
+    "version": "19.0.1.0.6",
     "license": "OPL-1",
     "depends": [
       "stock"
@@ -2339,7 +2392,7 @@ export const odooApps = [
       "screenshot_count.png"
     ],
     "copyWords": 369,
-    "hasVideo": false,
+    "hasVideo": true,
     "youtubeId": null,
     "externalPage": null
   },
@@ -2389,7 +2442,7 @@ export const odooApps = [
     "manifestPrice": 119.0,
     "currency": "USD",
     "category": "Tools",
-    "version": "19.0.1.0.3",
+    "version": "19.0.1.0.5",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -2401,7 +2454,7 @@ export const odooApps = [
       "screenshot_keys.png"
     ],
     "copyWords": 428,
-    "hasVideo": false,
+    "hasVideo": true,
     "youtubeId": null,
     "externalPage": null
   },
@@ -2460,7 +2513,7 @@ export const odooApps = [
     "manifestPrice": 99.0,
     "currency": "USD",
     "category": "Website",
-    "version": "19.0.1.0.3",
+    "version": "19.0.1.0.5",
     "license": "OPL-1",
     "depends": [
       "website",
@@ -2473,7 +2526,7 @@ export const odooApps = [
       "screenshot_trackers.png"
     ],
     "copyWords": 350,
-    "hasVideo": false,
+    "hasVideo": true,
     "youtubeId": null,
     "externalPage": null
   },
@@ -2528,7 +2581,7 @@ export const odooApps = [
     "manifestPrice": 99.0,
     "currency": "USD",
     "category": "Tools",
-    "version": "19.0.1.0.4",
+    "version": "19.0.1.0.6",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -2541,7 +2594,7 @@ export const odooApps = [
       "screenshot_sessions.png"
     ],
     "copyWords": 411,
-    "hasVideo": false,
+    "hasVideo": true,
     "youtubeId": null,
     "externalPage": null
   },
@@ -2600,7 +2653,7 @@ export const odooApps = [
     "manifestPrice": 89.0,
     "currency": "USD",
     "category": "Warehouse",
-    "version": "19.0.1.0.4",
+    "version": "19.0.1.0.6",
     "license": "OPL-1",
     "depends": [
       "stock"
@@ -2612,7 +2665,7 @@ export const odooApps = [
       "screenshot_report.png"
     ],
     "copyWords": 384,
-    "hasVideo": false,
+    "hasVideo": true,
     "youtubeId": null,
     "externalPage": null
   },
@@ -2663,7 +2716,7 @@ export const odooApps = [
     "manifestPrice": 45.0,
     "currency": "USD",
     "category": "Accounting/Accounting",
-    "version": "19.0.1.0.3",
+    "version": "19.0.1.0.4",
     "license": "OPL-1",
     "depends": [
       "account"
@@ -2724,11 +2777,11 @@ export const odooApps = [
       "This app covers Odoo's AI text-generation assistant only - the editor's \"Generate with AI\" / \"Translate with AI\" tools. It does not touch invoice or document OCR, which is a separate, Enterprise-only Odoo feature this app does not modify or replace."
     ],
     "requires": [],
-    "price": 39.99,
+    "price": 40.0,
     "manifestPrice": 40.0,
     "currency": "USD",
     "category": "Productivity",
-    "version": "19.0.1.0.2",
+    "version": "19.0.1.0.3",
     "license": "OPL-1",
     "depends": [
       "base_setup",
@@ -2800,7 +2853,7 @@ export const odooApps = [
     "manifestPrice": 39.0,
     "currency": "USD",
     "category": "Productivity/Discuss",
-    "version": "19.0.1.0.3",
+    "version": "19.0.1.0.5",
     "license": "OPL-1",
     "depends": [
       "mail",
@@ -2813,7 +2866,7 @@ export const odooApps = [
       "screenshot_message.png"
     ],
     "copyWords": 373,
-    "hasVideo": false,
+    "hasVideo": true,
     "youtubeId": null,
     "externalPage": null
   },
@@ -2864,7 +2917,7 @@ export const odooApps = [
     "manifestPrice": 39.0,
     "currency": "USD",
     "category": "Purchases",
-    "version": "19.0.1.0.3",
+    "version": "19.0.1.0.4",
     "license": "OPL-1",
     "depends": [
       "purchase"
@@ -2927,7 +2980,7 @@ export const odooApps = [
     "manifestPrice": 39.0,
     "currency": "USD",
     "category": "Sales/Sales",
-    "version": "19.0.1.0.2",
+    "version": "19.0.1.0.3",
     "license": "OPL-1",
     "depends": [
       "sale_management"
@@ -2990,7 +3043,7 @@ export const odooApps = [
     "manifestPrice": 29.0,
     "currency": "USD",
     "category": "Human Resources",
-    "version": "19.0.1.0.2",
+    "version": "19.0.1.0.3",
     "license": "OPL-1",
     "depends": [
       "hr"
@@ -3043,7 +3096,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Accounting/Accounting",
-    "version": "19.0.1.0.2",
+    "version": "19.0.1.0.3",
     "license": "OPL-1",
     "depends": [
       "account"
@@ -3097,7 +3150,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Tools",
-    "version": "19.0.1.0.3",
+    "version": "19.0.1.0.4",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -3150,7 +3203,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Productivity",
-    "version": "19.0.1.0.4",
+    "version": "19.0.1.0.5",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -3205,7 +3258,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Purchases",
-    "version": "19.0.1.0.4",
+    "version": "19.0.1.0.5",
     "license": "OPL-1",
     "depends": [
       "purchase"
@@ -3252,7 +3305,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Extra Tools",
-    "version": "19.0.1.0.2",
+    "version": "19.0.1.0.3",
     "license": "OPL-1",
     "depends": [
       "web"
@@ -3314,7 +3367,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Tools",
-    "version": "19.0.1.0.4",
+    "version": "19.0.1.0.5",
     "license": "OPL-1",
     "depends": [
       "mail"
@@ -3361,7 +3414,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Sales",
-    "version": "19.0.1.0.4",
+    "version": "19.0.1.0.5",
     "license": "OPL-1",
     "depends": [
       "sale",
@@ -3417,7 +3470,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Productivity",
-    "version": "19.0.1.0.4",
+    "version": "19.0.1.0.5",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -3462,7 +3515,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Extra Tools",
-    "version": "19.0.1.0.3",
+    "version": "19.0.1.0.4",
     "license": "OPL-1",
     "depends": [
       "mail"
@@ -3523,7 +3576,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Accounting/Accounting",
-    "version": "19.0.1.0.4",
+    "version": "19.0.1.0.5",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -3558,13 +3611,13 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Website/Website",
-    "version": "19.0.1.0.4",
+    "version": "19.0.1.0.6",
     "license": "OPL-1",
     "depends": [
       "website"
     ],
     "paidDepends": [],
-    "downloads": 8,
+    "downloads": 10,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_cookie_consent_banner",
     "screenshots": [
       "screenshot_banner.png"
@@ -3608,7 +3661,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Manufacturing",
-    "version": "19.0.1.0.4",
+    "version": "19.0.1.0.5",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -3663,7 +3716,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Accounting/Accounting",
-    "version": "19.0.1.0.3",
+    "version": "19.0.1.0.4",
     "license": "OPL-1",
     "depends": [
       "account"
@@ -3718,7 +3771,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Accounting/Accounting",
-    "version": "19.0.1.0.3",
+    "version": "19.0.1.0.4",
     "license": "OPL-1",
     "depends": [
       "account"
@@ -3804,7 +3857,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Extra Tools",
-    "version": "19.0.1.0.2",
+    "version": "19.0.1.0.3",
     "license": "OPL-1",
     "depends": [
       "mh_stale_user_assignment",
@@ -3850,13 +3903,13 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Warehouse",
-    "version": "19.0.1.0.7",
+    "version": "19.0.1.0.13",
     "license": "OPL-1",
     "depends": [
       "stock"
     ],
     "paidDepends": [],
-    "downloads": 4,
+    "downloads": 5,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_dead_stock_check",
     "screenshots": [
       "screenshot_check.png"
@@ -3919,7 +3972,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Extra Tools",
-    "version": "19.0.1.0.3",
+    "version": "19.0.1.0.5",
     "license": "OPL-1",
     "depends": [
       "base",
@@ -3927,7 +3980,7 @@ export const odooApps = [
       "mail"
     ],
     "paidDepends": [],
-    "downloads": 7,
+    "downloads": 9,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_direct_download_base",
     "screenshots": [
       "main_screenshot.png",
@@ -3954,7 +4007,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Extra Tools",
-    "version": "19.0.1.0.4",
+    "version": "19.0.1.0.6",
     "license": "OPL-1",
     "depends": [
       "base",
@@ -4015,13 +4068,13 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Tools",
-    "version": "19.0.1.0.4",
+    "version": "19.0.1.0.5",
     "license": "OPL-1",
     "depends": [
       "base"
     ],
     "paidDepends": [],
-    "downloads": 4,
+    "downloads": 5,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_dormant_user_check",
     "screenshots": [
       "screenshot_check.png"
@@ -4062,7 +4115,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Extra Tools",
-    "version": "19.0.1.0.3",
+    "version": "19.0.1.0.4",
     "license": "OPL-1",
     "depends": [
       "mail"
@@ -4122,7 +4175,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Tools",
-    "version": "19.0.1.0.4",
+    "version": "19.0.1.0.5",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -4182,7 +4235,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Warehouse",
-    "version": "19.0.1.0.4",
+    "version": "19.0.1.0.6",
     "license": "OPL-1",
     "depends": [
       "stock"
@@ -4237,7 +4290,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Accounting/Accounting",
-    "version": "19.0.1.0.3",
+    "version": "19.0.1.0.4",
     "license": "OPL-1",
     "depends": [
       "account"
@@ -4282,7 +4335,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Extra Tools",
-    "version": "19.0.1.0.4",
+    "version": "19.0.1.0.5",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -4327,13 +4380,13 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Extra Tools",
-    "version": "19.0.1.0.6",
+    "version": "19.0.1.0.7",
     "license": "OPL-1",
     "depends": [
       "base"
     ],
     "paidDepends": [],
-    "downloads": 7,
+    "downloads": 8,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_field_lock",
     "screenshots": [
       "screenshot_rule.png"
@@ -4382,7 +4435,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Productivity",
-    "version": "19.0.1.0.4",
+    "version": "19.0.1.0.5",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -4437,7 +4490,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Marketing/Marketing",
-    "version": "19.0.1.0.4",
+    "version": "19.0.1.0.5",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -4469,14 +4522,14 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Website/Website",
-    "version": "19.0.1.0.3",
+    "version": "19.0.1.0.5",
     "license": "OPL-1",
     "depends": [
       "base",
       "website"
     ],
     "paidDepends": [],
-    "downloads": 5,
+    "downloads": 8,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_google_reviews_snippet",
     "screenshots": [
       "screenshot_settings.png"
@@ -4525,7 +4578,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Human Resources",
-    "version": "19.0.1.0.3",
+    "version": "19.0.1.0.4",
     "license": "OPL-1",
     "depends": [
       "hr"
@@ -4580,7 +4633,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Accounting/Accounting",
-    "version": "19.0.1.0.3",
+    "version": "19.0.1.0.4",
     "license": "OPL-1",
     "depends": [
       "account"
@@ -4625,7 +4678,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Project",
-    "version": "19.0.1.0.2",
+    "version": "19.0.1.0.3",
     "license": "OPL-1",
     "depends": [
       "project"
@@ -4657,14 +4710,14 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Extra Tools",
-    "version": "19.0.1.0.5",
+    "version": "19.0.1.0.7",
     "license": "OPL-1",
     "depends": [
       "base",
       "web"
     ],
     "paidDepends": [],
-    "downloads": 11,
+    "downloads": 13,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_list_view_manager",
     "screenshots": [
       "screenshot_columns.png"
@@ -4690,7 +4743,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Discuss",
-    "version": "19.0.1.0.5",
+    "version": "19.0.1.0.7",
     "license": "OPL-1",
     "depends": [
       "base",
@@ -4746,7 +4799,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Marketing/Marketing",
-    "version": "19.0.1.0.3",
+    "version": "19.0.1.0.4",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -4801,7 +4854,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Marketing/Marketing",
-    "version": "19.0.1.0.3",
+    "version": "19.0.1.0.4",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -4850,7 +4903,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Extra Tools",
-    "version": "19.0.1.0.3",
+    "version": "19.0.1.0.4",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -4902,7 +4955,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Point of Sale",
-    "version": "19.0.1.0.5",
+    "version": "19.0.1.0.7",
     "license": "OPL-1",
     "depends": [
       "base",
@@ -4910,7 +4963,7 @@ export const odooApps = [
       "analytic"
     ],
     "paidDepends": [],
-    "downloads": 6,
+    "downloads": 7,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_pos_analytic_account",
     "screenshots": [
       "screenshot_settings.png"
@@ -4959,7 +5012,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Website",
-    "version": "19.0.1.0.4",
+    "version": "19.0.1.0.5",
     "license": "OPL-1",
     "depends": [
       "website"
@@ -5014,7 +5067,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Human Resources",
-    "version": "19.0.1.0.3",
+    "version": "19.0.1.0.4",
     "license": "OPL-1",
     "depends": [
       "hr"
@@ -5047,7 +5100,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Extra Tools",
-    "version": "19.0.1.0.3",
+    "version": "19.0.1.0.5",
     "license": "OPL-1",
     "depends": [
       "base",
@@ -5107,7 +5160,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Extra Tools",
-    "version": "19.0.1.0.2",
+    "version": "19.0.1.0.3",
     "license": "OPL-1",
     "depends": [
       "portal",
@@ -5142,7 +5195,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Warehouse",
-    "version": "19.0.1.0.4",
+    "version": "19.0.1.0.6",
     "license": "OPL-1",
     "depends": [
       "product"
@@ -5184,7 +5237,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Project",
-    "version": "19.0.1.0.8",
+    "version": "19.0.1.0.10",
     "license": "OPL-1",
     "depends": [
       "project",
@@ -5240,7 +5293,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Sales/Sales",
-    "version": "19.0.1.0.3",
+    "version": "19.0.1.0.4",
     "license": "OPL-1",
     "depends": [
       "sale"
@@ -5295,7 +5348,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Productivity",
-    "version": "19.0.1.0.4",
+    "version": "19.0.1.0.5",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -5350,7 +5403,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Accounting/Accounting",
-    "version": "19.0.1.0.3",
+    "version": "19.0.1.0.4",
     "license": "OPL-1",
     "depends": [
       "l10n_ro"
@@ -5399,7 +5452,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Extra Tools",
-    "version": "19.0.1.0.3",
+    "version": "19.0.1.0.4",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -5455,7 +5508,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Marketing/Marketing",
-    "version": "19.0.1.0.3",
+    "version": "19.0.1.0.4",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -5520,7 +5573,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Extra Tools",
-    "version": "19.0.1.0.3",
+    "version": "19.0.1.0.4",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -5553,13 +5606,13 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Warehouse",
-    "version": "19.0.1.0.3",
+    "version": "19.0.1.0.5",
     "license": "OPL-1",
     "depends": [
       "stock_account"
     ],
     "paidDepends": [],
-    "downloads": 9,
+    "downloads": 10,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_stock_card_ledger",
     "screenshots": [
       "screenshot_ledger.png"
@@ -5594,7 +5647,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Warehouse",
-    "version": "19.0.1.0.7",
+    "version": "19.0.1.0.9",
     "license": "OPL-1",
     "depends": [
       "stock"
@@ -5654,14 +5707,14 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Services/Project",
-    "version": "19.0.1.0.2",
+    "version": "19.0.1.0.4",
     "license": "OPL-1",
     "depends": [
       "project",
       "hr_timesheet"
     ],
     "paidDepends": [],
-    "downloads": 6,
+    "downloads": 7,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_task_timer",
     "screenshots": [
       "screenshot_timer.png"
@@ -5710,7 +5763,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Human Resources",
-    "version": "19.0.1.0.4",
+    "version": "19.0.1.0.5",
     "license": "OPL-1",
     "depends": [
       "base"
