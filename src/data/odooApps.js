@@ -5,7 +5,7 @@
 // generator; editing here forks the copy away from what the store actually
 // serves.
 //
-// Store snapshot: 2026-09-07T20:59:36+00:00
+// Store snapshot: 2026-09-08T04:05:08+00:00
 
 export const odooApps = [
   {
@@ -2513,7 +2513,7 @@ export const odooApps = [
     "manifestPrice": 99.0,
     "currency": "USD",
     "category": "Website",
-    "version": "19.0.1.0.5",
+    "version": "19.0.1.0.6",
     "license": "OPL-1",
     "depends": [
       "website",
@@ -4529,7 +4529,7 @@ export const odooApps = [
       "website"
     ],
     "paidDepends": [],
-    "downloads": 8,
+    "downloads": 9,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_google_reviews_snippet",
     "screenshots": [
       "screenshot_settings.png"
