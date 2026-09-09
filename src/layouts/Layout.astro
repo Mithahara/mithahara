@@ -20,6 +20,15 @@ const organizationJsonLd = {
   "url": "https://mithahara.com/",
   "email": "founder@mithahara.com",
 };
+
+// Cloudflare Web Analytics, manual beacon. Automatic setup cannot work on this domain:
+// the apex resolves straight to GitHub Pages (185.199.108-111.153) and is not proxied
+// through Cloudflare, so nothing sits in the response path to inject anything - which is
+// why the site recorded zero page views for the eight months it was configured that way.
+// Cookieless by design, so it needs no consent banner; we sell the consent app and should
+// not need our own product to ship a tracker.
+// Paste the token from Web Analytics -> Manage site -> Manual setup. Empty = no script.
+const CF_ANALYTICS_TOKEN = '';
 ---
 
 <!doctype html>
@@ -50,6 +59,13 @@ const organizationJsonLd = {
     <meta name="theme-color" content="#337958" />
     <meta name="generator" content={Astro.generator} />
     <script type="application/ld+json" set:html={JSON.stringify(organizationJsonLd)} />
+    {CF_ANALYTICS_TOKEN && (
+      <script
+        defer
+        src="https://static.cloudflareinsights.com/beacon.min.js"
+        data-cf-beacon={JSON.stringify({ token: CF_ANALYTICS_TOKEN })}
+      ></script>
+    )}
   </head>
   <body>
     <div id="app">
