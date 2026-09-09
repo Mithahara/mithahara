@@ -3108,7 +3108,7 @@ export const odooApps = [
       "screenshot_check.png"
     ],
     "copyWords": 219,
-    "hasVideo": false,
+    "hasVideo": true,
     "youtubeId": null,
     "externalPage": null
   },
@@ -3162,7 +3162,7 @@ export const odooApps = [
       "screenshot_check.png"
     ],
     "copyWords": 233,
-    "hasVideo": false,
+    "hasVideo": true,
     "youtubeId": null,
     "externalPage": null
   },
@@ -3215,7 +3215,7 @@ export const odooApps = [
       "screenshot_snapshot.png"
     ],
     "copyWords": 249,
-    "hasVideo": false,
+    "hasVideo": true,
     "youtubeId": null,
     "externalPage": null
   },
@@ -3379,7 +3379,7 @@ export const odooApps = [
       "screenshot_check.png"
     ],
     "copyWords": 318,
-    "hasVideo": false,
+    "hasVideo": true,
     "youtubeId": null,
     "externalPage": null
   },
@@ -3482,7 +3482,7 @@ export const odooApps = [
       "screenshot_deadlines.png"
     ],
     "copyWords": 258,
-    "hasVideo": false,
+    "hasVideo": true,
     "youtubeId": null,
     "externalPage": null
   },
@@ -3783,7 +3783,7 @@ export const odooApps = [
       "screenshot_check.png"
     ],
     "copyWords": 245,
-    "hasVideo": false,
+    "hasVideo": true,
     "youtubeId": null,
     "externalPage": null
   },
@@ -3915,7 +3915,7 @@ export const odooApps = [
       "screenshot_check.png"
     ],
     "copyWords": 230,
-    "hasVideo": false,
+    "hasVideo": true,
     "youtubeId": null,
     "externalPage": null
   },
@@ -4080,7 +4080,7 @@ export const odooApps = [
       "screenshot_check.png"
     ],
     "copyWords": 286,
-    "hasVideo": false,
+    "hasVideo": true,
     "youtubeId": null,
     "externalPage": null
   },
@@ -4187,7 +4187,7 @@ export const odooApps = [
       "screenshot_check.png"
     ],
     "copyWords": 252,
-    "hasVideo": false,
+    "hasVideo": true,
     "youtubeId": null,
     "externalPage": null
   },
@@ -4247,7 +4247,7 @@ export const odooApps = [
       "screenshot_check.png"
     ],
     "copyWords": 321,
-    "hasVideo": false,
+    "hasVideo": true,
     "youtubeId": null,
     "externalPage": null
   },
@@ -4392,7 +4392,7 @@ export const odooApps = [
       "screenshot_rule.png"
     ],
     "copyWords": 259,
-    "hasVideo": false,
+    "hasVideo": true,
     "youtubeId": null,
     "externalPage": null
   },
@@ -4447,7 +4447,7 @@ export const odooApps = [
       "screenshot_clock.png"
     ],
     "copyWords": 274,
-    "hasVideo": false,
+    "hasVideo": true,
     "youtubeId": null,
     "externalPage": null
   },
@@ -4502,7 +4502,7 @@ export const odooApps = [
       "screenshot_spend.png"
     ],
     "copyWords": 256,
-    "hasVideo": false,
+    "hasVideo": true,
     "youtubeId": null,
     "externalPage": null
   },
@@ -4811,7 +4811,7 @@ export const odooApps = [
       "screenshot_spend.png"
     ],
     "copyWords": 240,
-    "hasVideo": false,
+    "hasVideo": true,
     "youtubeId": null,
     "externalPage": null
   },
@@ -4866,7 +4866,7 @@ export const odooApps = [
       "screenshot_campaigns.png"
     ],
     "copyWords": 257,
-    "hasVideo": false,
+    "hasVideo": true,
     "youtubeId": null,
     "externalPage": null
   },
@@ -5024,7 +5024,7 @@ export const odooApps = [
       "screenshot_check.png"
     ],
     "copyWords": 226,
-    "hasVideo": false,
+    "hasVideo": true,
     "youtubeId": null,
     "externalPage": null
   },
@@ -5079,7 +5079,7 @@ export const odooApps = [
       "screenshot_readiness.png"
     ],
     "copyWords": 261,
-    "hasVideo": false,
+    "hasVideo": true,
     "youtubeId": null,
     "externalPage": null
   },
@@ -5250,7 +5250,7 @@ export const odooApps = [
       "screenshot_check.png"
     ],
     "copyWords": 237,
-    "hasVideo": false,
+    "hasVideo": true,
     "youtubeId": null,
     "externalPage": null
   },
@@ -5415,7 +5415,7 @@ export const odooApps = [
       "screenshot_check.png"
     ],
     "copyWords": 239,
-    "hasVideo": false,
+    "hasVideo": true,
     "youtubeId": null,
     "externalPage": null
   },
@@ -5520,7 +5520,7 @@ export const odooApps = [
       "screenshot_campaigns.png"
     ],
     "copyWords": 249,
-    "hasVideo": false,
+    "hasVideo": true,
     "youtubeId": null,
     "externalPage": null
   },
@@ -5659,7 +5659,7 @@ export const odooApps = [
       "screenshot_check.png"
     ],
     "copyWords": 227,
-    "hasVideo": false,
+    "hasVideo": true,
     "youtubeId": null,
     "externalPage": null
   },
@@ -5775,7 +5775,7 @@ export const odooApps = [
       "screenshot_deadlines.png"
     ],
     "copyWords": 274,
-    "hasVideo": false,
+    "hasVideo": true,
     "youtubeId": null,
     "externalPage": null
   }
