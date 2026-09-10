@@ -5,7 +5,7 @@
 // generator; editing here forks the copy away from what the store actually
 // serves.
 //
-// Store snapshot: 2026-09-09T04:06:41+00:00
+// Store snapshot: 2026-09-10T04:06:26+00:00
 
 export const odooApps = [
   {
@@ -712,7 +712,7 @@ export const odooApps = [
     ],
     "copyWords": 354,
     "hasVideo": true,
-    "youtubeId": null,
+    "youtubeId": "pI-rzAO3BEI",
     "externalPage": null
   },
   {
