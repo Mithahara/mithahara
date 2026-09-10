@@ -5080,7 +5080,7 @@ export const odooApps = [
     ],
     "copyWords": 261,
     "hasVideo": true,
-    "youtubeId": null,
+    "youtubeId": "amv1ksvUc1w",
     "externalPage": null
   },
   {
