@@ -1095,7 +1095,7 @@ export const odooApps = [
     ],
     "copyWords": 366,
     "hasVideo": true,
-    "youtubeId": null,
+    "youtubeId": "AIkicIJK0ZM",
     "externalPage": "/apps/community-cash-reconciler"
   },
   {
