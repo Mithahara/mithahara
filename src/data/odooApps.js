@@ -1698,7 +1698,7 @@ export const odooApps = [
     ],
     "copyWords": 288,
     "hasVideo": true,
-    "youtubeId": null,
+    "youtubeId": "GCuPAEGlPf0",
     "externalPage": "/apps/multi-currency-rounding"
   },
   {
@@ -1759,7 +1759,7 @@ export const odooApps = [
     "screenshots": [],
     "copyWords": 249,
     "hasVideo": true,
-    "youtubeId": null,
+    "youtubeId": "l0T-RJGKNWs",
     "externalPage": null
   },
   {
