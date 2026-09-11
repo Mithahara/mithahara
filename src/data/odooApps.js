@@ -5,7 +5,7 @@
 // generator; editing here forks the copy away from what the store actually
 // serves.
 //
-// Store snapshot: 2026-09-10T04:06:26+00:00
+// Store snapshot: 2026-09-11T04:06:20+00:00
 
 export const odooApps = [
   {
@@ -1234,7 +1234,7 @@ export const odooApps = [
     ],
     "copyWords": 366,
     "hasVideo": true,
-    "youtubeId": null,
+    "youtubeId": "WpsWa8j1PGI",
     "externalPage": null
   },
   {
@@ -3617,7 +3617,7 @@ export const odooApps = [
       "website"
     ],
     "paidDepends": [],
-    "downloads": 10,
+    "downloads": 11,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_cookie_consent_banner",
     "screenshots": [
       "screenshot_banner.png"
@@ -4496,7 +4496,7 @@ export const odooApps = [
       "base"
     ],
     "paidDepends": [],
-    "downloads": 2,
+    "downloads": 3,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_google_ads_spend",
     "screenshots": [
       "screenshot_spend.png"
@@ -4963,7 +4963,7 @@ export const odooApps = [
       "analytic"
     ],
     "paidDepends": [],
-    "downloads": 7,
+    "downloads": 8,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_pos_analytic_account",
     "screenshots": [
       "screenshot_settings.png"
