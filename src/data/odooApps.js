@@ -2930,7 +2930,7 @@ export const odooApps = [
     ],
     "copyWords": 231,
     "hasVideo": true,
-    "youtubeId": null,
+    "youtubeId": "4ci8k_dBuX0",
     "externalPage": null
   },
   {
