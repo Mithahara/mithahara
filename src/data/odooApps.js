@@ -2255,7 +2255,7 @@ export const odooApps = [
     ],
     "copyWords": 385,
     "hasVideo": true,
-    "youtubeId": null,
+    "youtubeId": "WdJ8bg27kqw",
     "externalPage": null
   },
   {
