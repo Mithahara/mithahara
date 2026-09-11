@@ -1970,7 +1970,7 @@ export const odooApps = [
     "screenshots": [],
     "copyWords": 386,
     "hasVideo": true,
-    "youtubeId": null,
+    "youtubeId": "_jn7KswDh-k",
     "externalPage": null
   },
   {
