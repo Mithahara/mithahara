@@ -2795,7 +2795,7 @@ export const odooApps = [
     ],
     "copyWords": 288,
     "hasVideo": true,
-    "youtubeId": null,
+    "youtubeId": "tNQBcdPYmWk",
     "externalPage": "/apps/byok-gateway"
   },
   {
