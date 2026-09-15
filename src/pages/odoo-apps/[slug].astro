@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import { odooApps, odooAppPages, odooAppHref, formatPrice, odooAppJsonLd } from '../../data/odooApps.js';
+import { contacts } from '../../data/site.js';
 
 export function getStaticPaths() {
   return odooAppPages.map((app) => ({ params: { slug: app.slug }, props: { app } }));
@@ -23,6 +24,18 @@ const related = odooApps
 // the tagline (written for a human) and falls back to the manifest summary
 // (written for the store's substring matcher) only when there is no tagline.
 const metaDescription = (app.tagline || app.summary || '').slice(0, 158);
+
+// The Odoo App Store renders a "Live Preview" button from the manifest's
+// live_test_url and points it here, so this page has to actually offer one.
+// mailto, because the site is static and has no form backend - the same
+// mechanism /contact already uses, rather than new infrastructure.
+const demoSubject = `Live demo request: ${app.name} (${app.tech})`;
+const demoBody = `I would like a live demo of ${app.name}.\n\n`
+  + `Odoo version: 19.0 (Community / Enterprise?)\n`
+  + `Hosting: Odoo.sh / on-premise\n`
+  + `What I want to see:\n`;
+const demoMailto = `mailto:${contacts.email}?subject=${encodeURIComponent(demoSubject)}`
+  + `&body=${encodeURIComponent(demoBody)}`;
 
 const jsonLd = odooAppJsonLd(app);
 const graph = app.youtubeId
@@ -52,7 +65,15 @@ const graph = app.youtubeId
         <a class="cta-button primary" href={app.storeUrl} target="_blank" rel="noopener noreferrer">
           View on the Odoo App Store
         </a>
+        <a class="cta-button secondary" href={demoMailto}>
+          Request a live demo
+        </a>
       </div>
+      <p class="demo-note">
+        {app.youtubeId
+          ? `The video below shows ${app.name} running on a real Odoo 19 database. Want it driven against your own data, or a question answered first? Ask and we will set up a session.`
+          : `Want to see ${app.name} running against your own data before you buy? Ask and we will set up a session.`}
+      </p>
 
       {app.youtubeId && (
         <div class="video-frame">
@@ -226,6 +247,14 @@ const graph = app.youtubeId
 
   .scope-box p:last-child {
     margin-bottom: 0;
+  }
+
+  .demo-note {
+    max-width: 62ch;
+    margin: 0.9rem auto 0;
+    text-align: center;
+    font-size: 0.92rem;
+    opacity: 0.75;
   }
 
   .price-note {
