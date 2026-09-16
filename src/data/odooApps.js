@@ -4061,7 +4061,8 @@ export const odooApps = [
     "downloads": 12,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_cookie_consent_banner",
     "screenshots": [
-      "screenshot_banner.png"
+      "screenshot_banner.png",
+      "screenshot_log.png"
     ],
     "copyWords": 141,
     "hasVideo": true,
