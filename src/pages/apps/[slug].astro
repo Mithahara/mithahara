@@ -1,6 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import { apps, appSoftwareApplicationJsonLd } from '../../data/site.js';
+import { apps, appSoftwareApplicationJsonLd, contacts } from '../../data/site.js';
 import { odooApps } from '../../data/odooApps.js';
 
 export function getStaticPaths() {
@@ -24,6 +24,19 @@ const videoJsonLd = youtubeId && {
   thumbnailUrl: `https://i.ytimg.com/vi/${youtubeId}/maxresdefault.jpg`,
 };
 const ctaLabel = app.platform === 'Chrome' ? 'View on Chrome Web Store' : 'View on Odoo Apps';
+
+// These four Odoo apps keep their pre-/odoo-apps URL, and the store's Live
+// Preview button (live_test_url) redirects here - so the demo offer has to
+// exist on this page too, or the button is a hollow claim on four paid apps.
+// Gated on `generated`, which is only set for the Odoo ones: a Chrome
+// extension must not offer an Odoo demo.
+const demoSubject = generated ? `Live demo request: ${app.name} (${generated.tech})` : '';
+const demoBody = generated
+  ? `I would like a live demo of ${app.name}.\n\nOdoo version: 19.0 (Community / Enterprise?)\nHosting: Odoo.sh / on-premise\nWhat I want to see:\n`
+  : '';
+const demoMailto = generated
+  ? `mailto:${contacts.email}?subject=${encodeURIComponent(demoSubject)}&body=${encodeURIComponent(demoBody)}`
+  : '';
 ---
 <Layout
   path={`/apps/${app.slug}`}
@@ -44,7 +57,17 @@ const ctaLabel = app.platform === 'Chrome' ? 'View on Chrome Web Store' : 'View 
         {app.privacyUrl && (
           <a class="cta-button secondary" href={app.privacyUrl} target="_blank" rel="noopener noreferrer">Privacy Policy</a>
         )}
+        {generated && (
+          <a class="cta-button secondary" href={demoMailto}>Request a live demo</a>
+        )}
       </div>
+      {generated && (
+        <p class="demo-note">
+          {generated.youtubeId
+            ? `The video below shows ${app.name} running on a real Odoo 19 database. Want it driven against your own data, or a question answered first? Ask and we will set up a session.`
+            : `Want to see ${app.name} running against your own data before you buy? Ask and we will set up a session.`}
+        </p>
+      )}
 
       {youtubeId && (
         <div class="video-frame">
@@ -95,6 +118,8 @@ const ctaLabel = app.platform === 'Chrome' ? 'View on Chrome Web Store' : 'View 
 </Layout>
 
 <style>
+  .demo-note { max-width: 62ch; margin: 0.9rem auto 0; text-align: center; font-size: 0.92rem; opacity: 0.75; }
+
   .video-frame {
     position: relative;
     aspect-ratio: 16 / 9;
