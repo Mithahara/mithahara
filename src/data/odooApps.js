@@ -71,7 +71,10 @@ export const odooApps = [
     "paidDepends": [],
     "downloads": 0,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_access_management",
-    "screenshots": [],
+    "screenshots": [
+      "screenshot_explorer.png",
+      "screenshot_plan.png"
+    ],
     "copyWords": 509,
     "hasVideo": false,
     "youtubeId": null,
@@ -116,18 +119,14 @@ export const odooApps = [
         "body": [
           "It bypasses every rule by design, so including it would report full access to everything and bury the findings that matter. It is excluded even if you select it."
         ]
-      },
-      {
-        "heading": "Requirements",
-        "body": [
-          "Odoo 19 Community or Enterprise. No dependency beyond base, and nothing leaves your server. Restricted to Settings administrators, since the report itself describes who can reach what."
-        ]
       }
     ],
     "scope": [
       "Stated up front so nothing about the scope is a surprise after you buy it."
     ],
-    "requires": [],
+    "requires": [
+      "Odoo 19 Community or Enterprise. No dependency beyond base, and nothing leaves your server. Restricted to Settings administrators, since the report itself describes who can reach what."
+    ],
     "price": 149.0,
     "manifestPrice": 149.0,
     "currency": "USD",
@@ -143,7 +142,7 @@ export const odooApps = [
     "screenshots": [
       "screenshot_review.png"
     ],
-    "copyWords": 366,
+    "copyWords": 338,
     "hasVideo": true,
     "youtubeId": "oDm7UjsrWzk",
     "externalPage": null
@@ -331,16 +330,12 @@ export const odooApps = [
         "body": [
           "One button lists the internal users who fall outside the named groups. That number is what tells you whether the rule does what you thought it did, before anybody discovers it the hard way."
         ]
-      },
-      {
-        "heading": "Requirements, and what this is not",
-        "body": [
-          "Odoo 19 Community or Enterprise, no other module needed. It restricts fields, not records - which rows a user sees is record rules, a different question. The superuser is never restricted, so crons and upgrades keep working."
-        ]
       }
     ],
     "scope": [],
-    "requires": [],
+    "requires": [
+      "Odoo 19 Community or Enterprise, no other module needed. It restricts fields, not records - which rows a user sees is record rules, a different question. The superuser is never restricted, so crons and upgrades keep working."
+    ],
     "price": 99.0,
     "manifestPrice": 99.0,
     "currency": "USD",
@@ -357,7 +352,7 @@ export const odooApps = [
       "screenshot_rules.png",
       "screenshot_rule.png"
     ],
-    "copyWords": 414,
+    "copyWords": 371,
     "hasVideo": true,
     "youtubeId": "4EpcRtlghUU",
     "externalPage": null
@@ -403,16 +398,12 @@ export const odooApps = [
         "body": [
           "Applying writes a normal ir.rule. Nothing is wrapped or intercepted, and Odoo enforces it exactly as it enforces any other. Uninstall the app and the rules you made stay where they are."
         ]
-      },
-      {
-        "heading": "Requirements, and what this is not",
-        "body": [
-          "Odoo 19 Community or Enterprise, no other module needed. It restricts records, not fields - which columns a user may read is Field Access Rules ."
-        ]
       }
     ],
     "scope": [],
-    "requires": [],
+    "requires": [
+      "Odoo 19 Community or Enterprise, no other module needed. It restricts records, not fields - which columns a user may read is Field Access Rules ."
+    ],
     "price": 99.0,
     "manifestPrice": 99.0,
     "currency": "USD",
@@ -428,7 +419,7 @@ export const odooApps = [
     "screenshots": [
       "screenshot_preview.png"
     ],
-    "copyWords": 379,
+    "copyWords": 347,
     "hasVideo": true,
     "youtubeId": "V5A-tt9Yk0o",
     "externalPage": null
@@ -468,18 +459,14 @@ export const odooApps = [
         "body": [
           "Below that, people are logged out in the middle of filling in a form and lose what they typed - and the software gets blamed rather than whoever chose the number. Shorter values are refused."
         ]
-      },
-      {
-        "heading": "Requirements, and what this is not",
-        "body": [
-          "Odoo 19 Community or Enterprise, no other module needed. The superuser is never logged out, so crons and upgrades keep working. It does not restrict where people log in from and it is not a login history."
-        ]
       }
     ],
     "scope": [
       "The last-seen stamp is written at most once a minute per session, not on every request - a write per request across a whole database to store a timestamp would cost more than the feature is worth. So a timeout can overrun by up to a minute. The check also runs inside a guard that swallows its own errors, because code on every request that can raise is code that can take a database offline."
     ],
-    "requires": [],
+    "requires": [
+      "Odoo 19 Community or Enterprise, no other module needed. The superuser is never logged out, so crons and upgrades keep working. It does not restrict where people log in from and it is not a login history."
+    ],
     "price": 99.0,
     "manifestPrice": 99.0,
     "currency": "USD",
@@ -496,7 +483,7 @@ export const odooApps = [
       "screenshot_rules.png",
       "screenshot_sessions.png"
     ],
-    "copyWords": 411,
+    "copyWords": 368,
     "hasVideo": true,
     "youtubeId": "bjnw1R8BgUE",
     "externalPage": null
@@ -542,16 +529,12 @@ export const odooApps = [
         "body": [
           "Everything outside the named models carries on at machine speed. The point is not to slow the agent down everywhere - an approval queue nobody can keep up with gets approved without reading, which is worse than none."
         ]
-      },
-      {
-        "heading": "Requirements, and what this is not",
-        "body": [
-          "Odoo 19 Community or Enterprise. Requires AI Agent Guardrails , which registers which logins are agents. It does not decide for you and does not restrict what the agent may read. The approval records themselves are never held - holding a change to them would need approving, and nobody could approve the first one."
-        ]
       }
     ],
     "scope": [],
-    "requires": [],
+    "requires": [
+      "Odoo 19 Community or Enterprise. Requires AI Agent Guardrails , which registers which logins are agents. It does not decide for you and does not restrict what the agent may read. The approval records themselves are never held - holding a change to them would need approving, and nobody could approve the first one."
+    ],
     "price": 98.0,
     "manifestPrice": 49.0,
     "currency": "USD",
@@ -573,7 +556,7 @@ export const odooApps = [
     "screenshots": [
       "screenshot_requests.png"
     ],
-    "copyWords": 378,
+    "copyWords": 318,
     "hasVideo": true,
     "youtubeId": "yAYZrAMsg58",
     "externalPage": null
@@ -615,12 +598,6 @@ export const odooApps = [
         "body": [
           "Open the affected users directly from the plan to inspect or edit them before applying."
         ]
-      },
-      {
-        "heading": "Requirements",
-        "body": [
-          "Odoo 19 Community or Enterprise, no other module needed. Third-party apps install on Odoo.sh or On-Premise only — they cannot be installed on Odoo Online (SaaS)."
-        ]
       }
     ],
     "scope": [
@@ -628,7 +605,9 @@ export const odooApps = [
       "It changes visibility, not history. Revoking a company does not touch the records somebody already created there. It changes what they can reach from now on.",
       "It leaves companies it was not asked about alone. Only the companies named in the change move. A bulk tool that rewrote the whole list would drop access nobody mentioned, and the person who lost it would have no way to find out why."
     ],
-    "requires": [],
+    "requires": [
+      "Odoo 19 Community or Enterprise, no other module needed. Third-party apps install on Odoo.sh or On-Premise only — they cannot be installed on Odoo Online (SaaS)."
+    ],
     "price": 89.0,
     "manifestPrice": 89.0,
     "currency": "USD",
@@ -644,7 +623,7 @@ export const odooApps = [
     "screenshots": [
       "screenshot_plan.png"
     ],
-    "copyWords": 323,
+    "copyWords": 296,
     "hasVideo": true,
     "youtubeId": null,
     "externalPage": null
@@ -816,19 +795,15 @@ export const odooApps = [
         "body": [
           "The stamp is written inside a guard that swallows its own errors. Locking out the integration this app exists to look after would be far worse than a missing timestamp, so a failure there is logged and ignored."
         ]
-      },
-      {
-        "heading": "Requirements, and what this is not",
-        "body": [
-          "Odoo 19 Community or Enterprise, no other module needed. It does not create keys or change their scope - that is Odoo's own screen and this does not get between you and it. It does not record what each call did; for an agent connected over MCP that is AI Agent Guardrails ."
-        ]
       }
     ],
     "scope": [
       "Recorded at the point Odoo verifies the key, so the timestamp reflects real traffic rather than an intention. It is the one fact that separates a key you must not touch from a key you should have removed a year ago.",
       "A key is checked on every call the integration makes. The stamp is written at most once a minute, because a write per call would cost more than the fact is worth - so the count measures how many minutes a key was active in, not how many calls it made."
     ],
-    "requires": [],
+    "requires": [
+      "Odoo 19 Community or Enterprise, no other module needed. It does not create keys or change their scope - that is Odoo's own screen and this does not get between you and it. It does not record what each call did; for an agent connected over MCP that is AI Agent Guardrails ."
+    ],
     "price": 69.01,
     "manifestPrice": 69.0,
     "currency": "USD",
@@ -844,7 +819,7 @@ export const odooApps = [
     "screenshots": [
       "screenshot_keys.png"
     ],
-    "copyWords": 428,
+    "copyWords": 369,
     "hasVideo": true,
     "youtubeId": "eVOB0xn39Lg",
     "externalPage": null
@@ -962,16 +937,12 @@ export const odooApps = [
         "body": [
           "A tracker is never essential. Offering the option would only invite marketing scripts to be filed under it, which is the exact failure this app exists to prevent."
         ]
-      },
-      {
-        "heading": "Requirements, and what this is not",
-        "body": [
-          "Odoo 19 Community or Enterprise with Website. Installs the free Cookie Consent Banner , which shows the banner and keeps the record. This is a technical control, not legal advice - which scripts belong in which category, and what your policy says, remain yours."
-        ]
       }
     ],
     "scope": [],
-    "requires": [],
+    "requires": [
+      "Odoo 19 Community or Enterprise with Website. Installs the free Cookie Consent Banner , which shows the banner and keeps the record. This is a technical control, not legal advice - which scripts belong in which category, and what your policy says, remain yours."
+    ],
     "price": 69.01,
     "manifestPrice": 69.0,
     "currency": "USD",
@@ -988,7 +959,7 @@ export const odooApps = [
     "screenshots": [
       "screenshot_trackers.png"
     ],
-    "copyWords": 350,
+    "copyWords": 300,
     "hasVideo": true,
     "youtubeId": "XXyIypFwTvY",
     "externalPage": null
@@ -1293,19 +1264,15 @@ export const odooApps = [
         "body": [
           "For payments made on or after 1 January 2026 the threshold is $2,000, up from the $600 that had stood since 1954, and the IRS indexes it to inflation every year from 2027. That figure lives in an editable per-year table rather than in the code, so a new year is a line you add - not a release you wait for. Ask about a year it has not been given and it says so instead of quietly using the last one it knows."
         ]
-      },
-      {
-        "heading": "Requirements",
-        "body": [
-          "Odoo 19 Community or Enterprise, with Accounting installed. This app also installs the free 1099 Threshold Check , which holds the per-year threshold table.",
-          "Not affiliated with or endorsed by the IRS. This is a reporting aid, not tax advice - check the result with whoever files for you."
-        ]
       }
     ],
     "scope": [
       "Stated up front so nothing about the scope is a surprise after you buy it."
     ],
-    "requires": [],
+    "requires": [
+      "Odoo 19 Community or Enterprise, with Accounting installed. This app also installs the free 1099 Threshold Check , which holds the per-year threshold table.",
+      "Not affiliated with or endorsed by the IRS. This is a reporting aid, not tax advice - check the result with whoever files for you."
+    ],
     "price": 69.01,
     "manifestPrice": 69.0,
     "currency": "USD",
@@ -1322,7 +1289,7 @@ export const odooApps = [
     "screenshots": [
       "screenshot_run.png"
     ],
-    "copyWords": 473,
+    "copyWords": 423,
     "hasVideo": true,
     "youtubeId": "pJlrKBZGX-4",
     "externalPage": null
@@ -1527,16 +1494,12 @@ export const odooApps = [
         "body": [
           "Only the logins you register as agents. Recording everybody would bury the agent's changes in everyone else's, which is the opposite of the point - and the check costs a cached lookup, so the rest of the database pays almost nothing for it."
         ]
-      },
-      {
-        "heading": "Requirements, and what this is not",
-        "body": [
-          "Odoo 19 Community or Enterprise, no other module needed. It does not undo changes for you - it tells you exactly what to undo. It does not restrict what the agent may read; that is Record Rule Preview and Field Access Rules . The superuser cannot be an agent - it bypasses access rules by design."
-        ]
       }
     ],
     "scope": [],
-    "requires": [],
+    "requires": [
+      "Odoo 19 Community or Enterprise, no other module needed. It does not undo changes for you - it tells you exactly what to undo. It does not restrict what the agent may read; that is Record Rule Preview and Field Access Rules . The superuser cannot be an agent - it bypasses access rules by design."
+    ],
     "price": 49.0,
     "manifestPrice": 49.0,
     "currency": "USD",
@@ -1553,7 +1516,7 @@ export const odooApps = [
       "screenshot_agent.png",
       "screenshot_log.png"
     ],
-    "copyWords": 430,
+    "copyWords": 368,
     "hasVideo": true,
     "youtubeId": "bipnHBtRO_U",
     "externalPage": null
@@ -1599,16 +1562,12 @@ export const odooApps = [
         "body": [
           "Recording sits inside a guard that swallows its own errors. An audit trail that can refuse a legitimate access change is worse than a gap in the trail, so a failure is logged to the server rather than raised at whoever was doing their job. The log is read-only in the interface, administrators included."
         ]
-      },
-      {
-        "heading": "Requirements, and what this is not",
-        "body": [
-          "Odoo 19 Community or Enterprise, no other module needed. It records from the moment it is installed and cannot reconstruct what happened before - it does not pretend to. It logs access configuration, not what people did with the access."
-        ]
       }
     ],
     "scope": [],
-    "requires": [],
+    "requires": [
+      "Odoo 19 Community or Enterprise, no other module needed. It records from the moment it is installed and cannot reconstruct what happened before - it does not pretend to. It logs access configuration, not what people did with the access."
+    ],
     "price": 49.0,
     "manifestPrice": 49.0,
     "currency": "USD",
@@ -1624,7 +1583,7 @@ export const odooApps = [
     "screenshots": [
       "screenshot_changes.png"
     ],
-    "copyWords": 385,
+    "copyWords": 339,
     "hasVideo": true,
     "youtubeId": "1TeQUJ4XMuU",
     "externalPage": null
@@ -1670,16 +1629,12 @@ export const odooApps = [
         "body": [
           "Plain ir.model.access rows, nothing wrapped or intercepted. Uninstall the app and every right you granted stays exactly where it is. Each change keeps a note of who asked and when."
         ]
-      },
-      {
-        "heading": "Requirements, and what this is not",
-        "body": [
-          "Odoo 19 Community or Enterprise, no other module needed. It grants access to a model, not to particular records or fields - which rows a user sees is Record Rule Preview , which columns they may read is Field Access Rules ."
-        ]
       }
     ],
     "scope": [],
-    "requires": [],
+    "requires": [
+      "Odoo 19 Community or Enterprise, no other module needed. It grants access to a model, not to particular records or fields - which rows a user sees is Record Rule Preview , which columns they may read is Field Access Rules ."
+    ],
     "price": 49.0,
     "manifestPrice": 49.0,
     "currency": "USD",
@@ -1695,7 +1650,7 @@ export const odooApps = [
     "screenshots": [
       "screenshot_plan.png"
     ],
-    "copyWords": 366,
+    "copyWords": 318,
     "hasVideo": true,
     "youtubeId": "WpsWa8j1PGI",
     "externalPage": null
@@ -2209,18 +2164,14 @@ export const odooApps = [
         "body": [
           "Anything present on the target and absent from the file is left exactly as it is. A migration that removes access is how a production database locks its own administrators out, and the day you want that, you want to be doing it deliberately and by hand."
         ]
-      },
-      {
-        "heading": "Requirements",
-        "body": [
-          "Odoo 19, Community or Enterprise. No dependencies beyond the base system. Administrator access on both databases."
-        ]
       }
     ],
     "scope": [
       "Stated up front so nothing about the scope is a surprise after you install it."
     ],
-    "requires": [],
+    "requires": [
+      "Odoo 19, Community or Enterprise. No dependencies beyond the base system. Administrator access on both databases."
+    ],
     "price": 39.0,
     "manifestPrice": 39.0,
     "currency": "USD",
@@ -2236,7 +2187,7 @@ export const odooApps = [
     "screenshots": [
       "screenshot_plan.png"
     ],
-    "copyWords": 341,
+    "copyWords": 324,
     "hasVideo": true,
     "youtubeId": "jIFMc1kTjuU",
     "externalPage": null
@@ -2388,19 +2339,15 @@ export const odooApps = [
           "Anything written while a module is installing or updating — thousands of rows in one go, and not one of them a decision anybody made.",
           "Its own tables, and Odoo's internal plumbing."
         ]
-      },
-      {
-        "heading": "Requirements",
-        "body": [
-          "Odoo 19, Community or Enterprise. No dependencies beyond the base system. Administrator access to choose what is watched and to read the log."
-        ]
       }
     ],
     "scope": [
       "A retention period, set in Settings and applied by a nightly job. Two years by default. Zero keeps everything, which is a decision worth making on purpose rather than by leaving a box empty.",
       "Stated up front so nothing about the scope is a surprise after you install it."
     ],
-    "requires": [],
+    "requires": [
+      "Odoo 19, Community or Enterprise. No dependencies beyond the base system. Administrator access to choose what is watched and to read the log."
+    ],
     "price": 39.0,
     "manifestPrice": 39.0,
     "currency": "USD",
@@ -2417,7 +2364,7 @@ export const odooApps = [
       "screenshot_log.png",
       "screenshot_watch.png"
     ],
-    "copyWords": 354,
+    "copyWords": 330,
     "hasVideo": true,
     "youtubeId": "K03FvPDZSiE",
     "externalPage": null
@@ -2577,18 +2524,14 @@ export const odooApps = [
         "body": [
           "Hiding a column hides a column. Nobody sees a field they could not already read, and nobody is prevented from reading one by a layout - that is what access rights and record rules are for, and this app deliberately does not pretend otherwise."
         ]
-      },
-      {
-        "heading": "Requirements",
-        "body": [
-          "Odoo 19 Community or Enterprise. Depends only on base and web, and nothing leaves your server. Layouts are managed by Settings administrators; everyone else simply gets the result."
-        ]
       }
     ],
     "scope": [
       "No column order or width - Odoo does not expose either per user, and claiming it would mean fighting the renderer on every draw. It does not touch the columns a view always shows, and it does not change what anyone is allowed to see."
     ],
-    "requires": [],
+    "requires": [
+      "Odoo 19 Community or Enterprise. Depends only on base and web, and nothing leaves your server. Layouts are managed by Settings administrators; everyone else simply gets the result."
+    ],
     "price": 39.0,
     "manifestPrice": 39.0,
     "currency": "USD",
@@ -2603,7 +2546,7 @@ export const odooApps = [
     "downloads": 0,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_list_view_layouts",
     "screenshots": [],
-    "copyWords": 386,
+    "copyWords": 357,
     "hasVideo": true,
     "youtubeId": "_jn7KswDh-k",
     "externalPage": null
@@ -2649,16 +2592,12 @@ export const odooApps = [
         "body": [
           "Summed separately, because netting them reports a project with heavy spending and heavy billing as quiet - and a project already losing money is not listed as a surprise, since it would only bury the ones about to turn."
         ]
-      },
-      {
-        "heading": "Requirements, and what this is not",
-        "body": [
-          "Odoo 19 Community or Enterprise with Project and Purchase. It changes nothing - no journal entries, no analytic lines, no orders. It has no opinion about what the budget should have been: it reports what has been committed, not whether committing it was wise. Projects with no analytic account are skipped."
-        ]
       }
     ],
     "scope": [],
-    "requires": [],
+    "requires": [
+      "Odoo 19 Community or Enterprise with Project and Purchase. It changes nothing - no journal entries, no analytic lines, no orders. It has no opinion about what the budget should have been: it reports what has been committed, not whether committing it was wise. Projects with no analytic account are skipped."
+    ],
     "price": 39.0,
     "manifestPrice": 39.0,
     "currency": "USD",
@@ -2675,7 +2614,7 @@ export const odooApps = [
     "screenshots": [
       "screenshot_exposure.png"
     ],
-    "copyWords": 375,
+    "copyWords": 318,
     "hasVideo": true,
     "youtubeId": "mZFuv-o5q6w",
     "externalPage": null
@@ -2784,16 +2723,12 @@ export const odooApps = [
         "body": [
           "Measured from moves that actually left an internal location. Counting internal transfers would report a pallet shuffled between bays as consumed, and every minimum would then look too low. A product with no demand at all is reported as such rather than judged."
         ]
-      },
-      {
-        "heading": "Requirements, and what this is not",
-        "body": [
-          "Odoo 19 Community or Enterprise with Inventory. It changes no rule and orders nothing - it reports what the rules would do against the demand you have had, and leaves the decision where it belongs."
-        ]
       }
     ],
     "scope": [],
-    "requires": [],
+    "requires": [
+      "Odoo 19 Community or Enterprise with Inventory. It changes no rule and orders nothing - it reports what the rules would do against the demand you have had, and leaves the decision where it belongs."
+    ],
     "price": 39.0,
     "manifestPrice": 39.0,
     "currency": "USD",
@@ -2809,7 +2744,7 @@ export const odooApps = [
     "screenshots": [
       "screenshot_audit.png"
     ],
-    "copyWords": 396,
+    "copyWords": 355,
     "hasVideo": true,
     "youtubeId": "03nAYmHkGQ4",
     "externalPage": null
@@ -2918,16 +2853,12 @@ export const odooApps = [
         "body": [
           "Findings say how many products have not shipped in six months, what they hold, and which five are the largest by value - with one button to open just those lines. A report you have to read twice to act on is a report nobody reads."
         ]
-      },
-      {
-        "heading": "Requirements, and what this is not",
-        "body": [
-          "Odoo 19 Community or Enterprise with Inventory. Installs the free Dead Stock Check , which gives the headline figure. It reads existing moves and quants and writes nothing back to your inventory, and it does not tell you what to do with the stock - discount, return or write off remains a judgement call."
-        ]
       }
     ],
     "scope": [],
-    "requires": [],
+    "requires": [
+      "Odoo 19 Community or Enterprise with Inventory. Installs the free Dead Stock Check , which gives the headline figure. It reads existing moves and quants and writes nothing back to your inventory, and it does not tell you what to do with the stock - discount, return or write off remains a judgement call."
+    ],
     "price": 39.0,
     "manifestPrice": 39.0,
     "currency": "USD",
@@ -2943,7 +2874,7 @@ export const odooApps = [
     "screenshots": [
       "screenshot_report.png"
     ],
-    "copyWords": 384,
+    "copyWords": 324,
     "hasVideo": true,
     "youtubeId": "SDHwcVtzEe0",
     "externalPage": null
@@ -3035,16 +2966,12 @@ export const odooApps = [
         "body": [
           "No reassignment, no cleanup, no scheduled monitoring. Moving a record between companies is a decision about your business, not something a report should make on your behalf."
         ]
-      },
-      {
-        "heading": "Requirements",
-        "body": [
-          "Odoo 19 Community or Enterprise. Depends only on base, nothing leaves your server, and it is restricted to Settings administrators."
-        ]
       }
     ],
     "scope": [],
-    "requires": [],
+    "requires": [
+      "Odoo 19 Community or Enterprise. Depends only on base, nothing leaves your server, and it is restricted to Settings administrators."
+    ],
     "price": 29.0,
     "manifestPrice": 29.0,
     "currency": "USD",
@@ -3060,7 +2987,7 @@ export const odooApps = [
     "screenshots": [
       "screenshot_audit.png"
     ],
-    "copyWords": 310,
+    "copyWords": 289,
     "hasVideo": true,
     "youtubeId": "4B3sdWoHqoM",
     "externalPage": null
@@ -3105,16 +3032,12 @@ export const odooApps = [
         "body": [
           "Each change keeps who asked, when, and exactly which memberships moved - the thing nobody has after doing it fifteen times by hand."
         ]
-      },
-      {
-        "heading": "Requirements, and what this is not",
-        "body": [
-          "Odoo 19 Community or Enterprise, no other module needed. It changes who is in a group, not what the group can do - that is access rights , record rules and field access ."
-        ]
       }
     ],
     "scope": [],
-    "requires": [],
+    "requires": [
+      "Odoo 19 Community or Enterprise, no other module needed. It changes who is in a group, not what the group can do - that is access rights , record rules and field access ."
+    ],
     "price": 29.0,
     "manifestPrice": 29.0,
     "currency": "USD",
@@ -3130,7 +3053,7 @@ export const odooApps = [
     "screenshots": [
       "screenshot_plan.png"
     ],
-    "copyWords": 351,
+    "copyWords": 311,
     "hasVideo": true,
     "youtubeId": "ftktjPUI06w",
     "externalPage": null
@@ -3239,16 +3162,12 @@ export const odooApps = [
         "body": [
           "Recovered, or failed with the reason kept. A recovered message links straight to the record it produced, so you can check it landed where you meant rather than trusting a success message."
         ]
-      },
-      {
-        "heading": "Requirements",
-        "body": [
-          "Odoo 19 Community or Enterprise, with Discuss. Installs the free Lost Messages Routing , which does the capturing. Only models that accept incoming mail can be targeted."
-        ]
       }
     ],
     "scope": [],
-    "requires": [],
+    "requires": [
+      "Odoo 19 Community or Enterprise, with Discuss. Installs the free Lost Messages Routing , which does the capturing. Only models that accept incoming mail can be targeted."
+    ],
     "price": 29.0,
     "manifestPrice": 29.0,
     "currency": "USD",
@@ -3265,7 +3184,7 @@ export const odooApps = [
     "screenshots": [
       "screenshot_message.png"
     ],
-    "copyWords": 373,
+    "copyWords": 345,
     "hasVideo": true,
     "youtubeId": "PQMjAuo0kFE",
     "externalPage": null
@@ -3381,16 +3300,12 @@ export const odooApps = [
         "body": [
           "To the internal location that was counted, never to the virtual loss account where Odoo posts the other half and where nobody has ever counted anything. A period with no adjustments says so plainly rather than reporting zero error - nothing counted and every count agreeing look identical from here."
         ]
-      },
-      {
-        "heading": "Requirements, and what this is not",
-        "body": [
-          "Odoo 19 Community or Enterprise with Inventory. It does not run counts or create adjustments - it reads the ones you already posted. Values are at cost."
-        ]
       }
     ],
     "scope": [],
-    "requires": [],
+    "requires": [
+      "Odoo 19 Community or Enterprise with Inventory. It does not run counts or create adjustments - it reads the ones you already posted. Values are at cost."
+    ],
     "price": 29.0,
     "manifestPrice": 29.0,
     "currency": "USD",
@@ -3406,7 +3321,7 @@ export const odooApps = [
     "screenshots": [
       "screenshot_accuracy.png"
     ],
-    "copyWords": 390,
+    "copyWords": 357,
     "hasVideo": true,
     "youtubeId": "m0A3u_4iMDc",
     "externalPage": null
@@ -3452,16 +3367,12 @@ export const odooApps = [
         "body": [
           "What the hours cost you and what they were sold for, from the sales order line's own price rather than a list price that may have been discounted away."
         ]
-      },
-      {
-        "heading": "Requirements, and what this is not",
-        "body": [
-          "Odoo 19 Community or Enterprise with Sales - Timesheets. It reads only: nothing is invoiced, changed or written back, and it has no opinion about whether the work should have been billed - only that it has not been."
-        ]
       }
     ],
     "scope": [],
-    "requires": [],
+    "requires": [
+      "Odoo 19 Community or Enterprise with Sales - Timesheets. It reads only: nothing is invoiced, changed or written back, and it has no opinion about whether the work should have been billed - only that it has not been."
+    ],
     "price": 29.0,
     "manifestPrice": 29.0,
     "currency": "USD",
@@ -3477,7 +3388,7 @@ export const odooApps = [
     "screenshots": [
       "screenshot_unbilled.png"
     ],
-    "copyWords": 385,
+    "copyWords": 340,
     "hasVideo": true,
     "youtubeId": "WdJ8bg27kqw",
     "externalPage": null
@@ -3505,12 +3416,6 @@ export const odooApps = [
           "The check sweeps the registry for every stored field that points at a user and counts what each one holds for this person. A list maintained inside the app would miss exactly the custom fields somebody is most likely to be named on.",
           "Bookkeeping is deliberately left out. Created-by and written-by point at whoever typed something once; counting them would put every record the person ever touched into the report and bury the handful anybody has to act on."
         ]
-      },
-      {
-        "heading": "Requirements",
-        "body": [
-          "Odoo 19, Community or Enterprise. Needs Discuss (for activities). Administrator access, since the check reads across every model in the database. Nothing is written to any record it finds."
-        ]
       }
     ],
     "scope": [
@@ -3518,7 +3423,9 @@ export const odooApps = [
       "One person, everything still attached to them, and the two categories that stop something happening called out separately. Each line opens the records it counted.",
       "Stated up front so nothing about the scope is a surprise after you install it."
     ],
-    "requires": [],
+    "requires": [
+      "Odoo 19, Community or Enterprise. Needs Discuss (for activities). Administrator access, since the check reads across every model in the database. Nothing is written to any record it finds."
+    ],
     "price": 29.0,
     "manifestPrice": 29.0,
     "currency": "USD",
@@ -3534,7 +3441,7 @@ export const odooApps = [
     "screenshots": [
       "screenshot_check.png"
     ],
-    "copyWords": 349,
+    "copyWords": 319,
     "hasVideo": true,
     "youtubeId": "2pmq2pRXXZU",
     "externalPage": null
@@ -3574,18 +3481,14 @@ export const odooApps = [
         "body": [
           "A restriction with no warehouses, which would hide every transfer and stock line from that person - archiving is how you turn one off. And a restriction on the superuser, which bypasses record rules by design and would do nothing while looking as though it did something."
         ]
-      },
-      {
-        "heading": "Requirements, and what this is not",
-        "body": [
-          "Odoo 19 Community or Enterprise with Inventory. It restricts what people see, not what they may do - which operations they can perform is access rights . It does not restrict by location within a warehouse, and it writes nothing to your stock."
-        ]
       }
     ],
     "scope": [
       "It counts across the whole database rather than as that user, so the figure is what exists and would be hidden. Counting as the user would report zero the moment the rule was on, which is exactly the wrong reassurance."
     ],
-    "requires": [],
+    "requires": [
+      "Odoo 19 Community or Enterprise with Inventory. It restricts what people see, not what they may do - which operations they can perform is access rights . It does not restrict by location within a warehouse, and it writes nothing to your stock."
+    ],
     "price": 29.0,
     "manifestPrice": 29.0,
     "currency": "USD",
@@ -3602,7 +3505,7 @@ export const odooApps = [
       "screenshot_access.png",
       "screenshot_count.png"
     ],
-    "copyWords": 369,
+    "copyWords": 320,
     "hasVideo": true,
     "youtubeId": "j1kBnmIzSno",
     "externalPage": null
@@ -3682,18 +3585,14 @@ export const odooApps = [
           "A hand-made access row, group or record rule cannot be carried to another database by anything, because nothing outside this database identifies it. It is in nobody's version control, so it is in no review and in no backup short of a full database dump. And it is invisible to a module upgrade, which knows only about its own rows.",
           "The number is usually larger than people expect, which is the point of counting it."
         ]
-      },
-      {
-        "heading": "Requirements",
-        "body": [
-          "Odoo 19, Community or Enterprise. No dependencies beyond the base system. Administrator access, since it reads the access configuration. Nothing is written to it."
-        ]
       }
     ],
     "scope": [
       "Stated up front so nothing about the scope is a surprise after you install it."
     ],
-    "requires": [],
+    "requires": [
+      "Odoo 19, Community or Enterprise. No dependencies beyond the base system. Administrator access, since it reads the access configuration. Nothing is written to it."
+    ],
     "price": 0.0,
     "manifestPrice": 0.0,
     "currency": "USD",
@@ -3709,7 +3608,7 @@ export const odooApps = [
     "screenshots": [
       "screenshot_check.png"
     ],
-    "copyWords": 233,
+    "copyWords": 208,
     "hasVideo": true,
     "youtubeId": "sK-pzY569iI",
     "externalPage": null
@@ -3899,18 +3798,14 @@ export const odooApps = [
         "body": [
           "A field marked as tracked on a model with no chatter records nothing at all. A stock database has none of these; they turn up where somebody has added tracking to a custom model, or to one never built for it. The setting is there, it reads correctly, and nothing is being written down — so the check reports them separately and sorts them to the top."
         ]
-      },
-      {
-        "heading": "Requirements",
-        "body": [
-          "Odoo 19, Community or Enterprise. Needs Discuss. Administrator access, since it reads the model and field definitions. Nothing is written to any of them."
-        ]
       }
     ],
     "scope": [
       "Stated up front so nothing about the scope is a surprise after you install it."
     ],
-    "requires": [],
+    "requires": [
+      "Odoo 19, Community or Enterprise. Needs Discuss. Administrator access, since it reads the model and field definitions. Nothing is written to any of them."
+    ],
     "price": 0.0,
     "manifestPrice": 0.0,
     "currency": "USD",
@@ -3926,7 +3821,7 @@ export const odooApps = [
     "screenshots": [
       "screenshot_check.png"
     ],
-    "copyWords": 318,
+    "copyWords": 293,
     "hasVideo": true,
     "youtubeId": "v5K8FevVRrE",
     "externalPage": null
@@ -4108,18 +4003,14 @@ export const odooApps = [
         "body": [
           "Everything it finds is something for you to decide about. Moving a record between companies has consequences a report has no business guessing at."
         ]
-      },
-      {
-        "heading": "Requirements",
-        "body": [
-          "Odoo 19 Community or Enterprise. Depends only on base and nothing leaves your server."
-        ]
       }
     ],
     "scope": [
       "When a model holds more rows than one pass reads, it says so on the result. A clean result from a partial read is not a clean result, and presenting it as one would be worse than not checking at all."
     ],
-    "requires": [],
+    "requires": [
+      "Odoo 19 Community or Enterprise. Depends only on base and nothing leaves your server."
+    ],
     "price": 0.0,
     "manifestPrice": 0.0,
     "currency": "USD",
@@ -4135,7 +4026,7 @@ export const odooApps = [
     "screenshots": [
       "screenshot_check.png"
     ],
-    "copyWords": 267,
+    "copyWords": 252,
     "hasVideo": true,
     "youtubeId": null,
     "externalPage": null
@@ -4666,18 +4557,14 @@ export const odooApps = [
         "body": [
           "Portal and public users, because there can be thousands of them and nobody offboards a customer. Already-archived accounts, because they are the outcome rather than the question. And OdooBot, which never logs in and never will — listing it would put a permanent false positive at the top of every report."
         ]
-      },
-      {
-        "heading": "Requirements",
-        "body": [
-          "Odoo 19, Community or Enterprise. No dependencies beyond the base system. Administrator access, since it reads the user list. Nothing is written to any user record."
-        ]
       }
     ],
     "scope": [
       "Stated up front so nothing about the scope is a surprise after you install it."
     ],
-    "requires": [],
+    "requires": [
+      "Odoo 19, Community or Enterprise. No dependencies beyond the base system. Administrator access, since it reads the user list. Nothing is written to any user record."
+    ],
     "price": 0.0,
     "manifestPrice": 0.0,
     "currency": "USD",
@@ -4693,7 +4580,7 @@ export const odooApps = [
     "screenshots": [
       "screenshot_check.png"
     ],
-    "copyWords": 286,
+    "copyWords": 259,
     "hasVideo": true,
     "youtubeId": "nHVpJk13WbY",
     "externalPage": null
@@ -4773,18 +4660,14 @@ export const odooApps = [
           "Each group's own access rights. Two groups reported as identical here may still differ through the groups they imply, which this does not resolve.",
           "That is a real limitation and it is stated rather than glossed over, because a duplicate-finder you cannot trust is worse than none: it is the report that gets somebody's access removed."
         ]
-      },
-      {
-        "heading": "Requirements",
-        "body": [
-          "Odoo 19, Community or Enterprise. No dependencies beyond the base system. Administrator access, since it reads every group and access right. Nothing is written to any of them."
-        ]
       }
     ],
     "scope": [
       "Stated up front so nothing about the scope is a surprise after you install it."
     ],
-    "requires": [],
+    "requires": [
+      "Odoo 19, Community or Enterprise. No dependencies beyond the base system. Administrator access, since it reads every group and access right. Nothing is written to any of them."
+    ],
     "price": 0.0,
     "manifestPrice": 0.0,
     "currency": "USD",
@@ -4800,7 +4683,7 @@ export const odooApps = [
     "screenshots": [
       "screenshot_check.png"
     ],
-    "copyWords": 252,
+    "copyWords": 223,
     "hasVideo": true,
     "youtubeId": "-STwrstIUPQ",
     "externalPage": null
@@ -4833,18 +4716,14 @@ export const odooApps = [
           "It also counts the deliveries in a period you choose that moved one of the products that cannot carry plot data. Turning tracking on today does not reach backwards: goods that have already shipped keep no lot they never had, so no statement can be assembled for those consignments after the fact.",
           "A count of them is the difference between a to-do and a problem."
         ]
-      },
-      {
-        "heading": "Requirements",
-        "body": [
-          "Odoo 19, Community or Enterprise. Needs Inventory. Nothing is written to your products — the check reads them and stores its own result."
-        ]
       }
     ],
     "scope": [
       "Stated up front so nothing about the scope is a surprise after you install it."
     ],
-    "requires": [],
+    "requires": [
+      "Odoo 19, Community or Enterprise. Needs Inventory. Nothing is written to your products — the check reads them and stores its own result."
+    ],
     "price": 0.0,
     "manifestPrice": 0.0,
     "currency": "USD",
@@ -4860,7 +4739,7 @@ export const odooApps = [
     "screenshots": [
       "screenshot_check.png"
     ],
-    "copyWords": 321,
+    "copyWords": 297,
     "hasVideo": true,
     "youtubeId": "j9my54mDJoI",
     "externalPage": null
@@ -5088,18 +4967,14 @@ export const odooApps = [
         "body": [
           "The developer token, OAuth client secret and refresh token are all generated by you and revocable by you at any time. Each is encrypted at rest and never stored in plain text. There is no activation key, and nothing phones home."
         ]
-      },
-      {
-        "heading": "Requirements",
-        "body": [
-          "A Google Ads account you control, a developer token from your own Google Ads Manager account, and an OAuth client plus refresh token from your own Google Cloud project. The Python packages google-ads and cryptography must be available to your Odoo instance."
-        ]
       }
     ],
     "scope": [
       "Stated up front so nothing about the scope is a surprise after you install it."
     ],
-    "requires": [],
+    "requires": [
+      "A Google Ads account you control, a developer token from your own Google Ads Manager account, and an OAuth client plus refresh token from your own Google Cloud project. The Python packages google-ads and cryptography must be available to your Odoo instance."
+    ],
     "price": 0.0,
     "manifestPrice": 0.0,
     "currency": "USD",
@@ -5115,7 +4990,7 @@ export const odooApps = [
     "screenshots": [
       "screenshot_spend.png"
     ],
-    "copyWords": 256,
+    "copyWords": 213,
     "hasVideo": true,
     "youtubeId": "ejyrD-S8cGg",
     "externalPage": null
@@ -5397,18 +5272,14 @@ export const odooApps = [
         "body": [
           "The token is one you generate in your own Business Manager and can revoke at any time. It is encrypted at rest and never stored in plain text. There is no activation key, and nothing phones home."
         ]
-      },
-      {
-        "heading": "Requirements",
-        "body": [
-          "A Meta Business Manager account you control, and a System User access token with read access to the ad account. The Python packages requests and cryptography must be available to your Odoo instance - both are standard on Odoo Online and Odoo.sh."
-        ]
       }
     ],
     "scope": [
       "Stated up front so nothing about the scope is a surprise after you install it."
     ],
-    "requires": [],
+    "requires": [
+      "A Meta Business Manager account you control, and a System User access token with read access to the ad account. The Python packages requests and cryptography must be available to your Odoo instance - both are standard on Odoo Online and Odoo.sh."
+    ],
     "price": 0.0,
     "manifestPrice": 0.0,
     "currency": "USD",
@@ -5424,7 +5295,7 @@ export const odooApps = [
     "screenshots": [
       "screenshot_spend.png"
     ],
-    "copyWords": 240,
+    "copyWords": 197,
     "hasVideo": true,
     "youtubeId": "bAwqMV1YWJY",
     "externalPage": null
@@ -5452,18 +5323,14 @@ export const odooApps = [
         "body": [
           "The developer token, OAuth client secret and refresh token are all generated by you and revocable by you at any time. Each is encrypted at rest and never stored in plain text. There is no activation key, and nothing phones home."
         ]
-      },
-      {
-        "heading": "Requirements",
-        "body": [
-          "A Microsoft Advertising account you control, a developer token from the Microsoft Advertising Developer Portal, and an OAuth client plus refresh token from your own Azure AD (Entra ID) app registration. The Python packages bingads and cryptography must be available to your Odoo instance."
-        ]
       }
     ],
     "scope": [
       "Stated up front so nothing about the scope is a surprise after you install it."
     ],
-    "requires": [],
+    "requires": [
+      "A Microsoft Advertising account you control, a developer token from the Microsoft Advertising Developer Portal, and an OAuth client plus refresh token from your own Azure AD (Entra ID) app registration. The Python packages bingads and cryptography must be available to your Odoo instance."
+    ],
     "price": 0.0,
     "manifestPrice": 0.0,
     "currency": "USD",
@@ -5479,7 +5346,7 @@ export const odooApps = [
     "screenshots": [
       "screenshot_campaigns.png"
     ],
-    "copyWords": 257,
+    "copyWords": 212,
     "hasVideo": true,
     "youtubeId": "D7o7J-3pWpU",
     "externalPage": null
@@ -6106,18 +5973,14 @@ export const odooApps = [
         "body": [
           "The OAuth client secret and refresh token are generated by you and revocable by you at any time. Each is encrypted at rest and never stored in plain text. There is no activation key, and nothing phones home."
         ]
-      },
-      {
-        "heading": "Requirements",
-        "body": [
-          "A Snapchat Ads account you control, and an OAuth client plus refresh token from your own Snapchat developer app. The Python packages requests and cryptography must be available to your Odoo instance - both are standard on Odoo Online and Odoo.sh."
-        ]
       }
     ],
     "scope": [
       "Stated up front so nothing about the scope is a surprise after you install it."
     ],
-    "requires": [],
+    "requires": [
+      "A Snapchat Ads account you control, and an OAuth client plus refresh token from your own Snapchat developer app. The Python packages requests and cryptography must be available to your Odoo instance - both are standard on Odoo Online and Odoo.sh."
+    ],
     "price": 0.0,
     "manifestPrice": 0.0,
     "currency": "USD",
@@ -6133,7 +5996,7 @@ export const odooApps = [
     "screenshots": [
       "screenshot_campaigns.png"
     ],
-    "copyWords": 249,
+    "copyWords": 207,
     "hasVideo": true,
     "youtubeId": "LRNepUzFemo",
     "externalPage": null
