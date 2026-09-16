@@ -5,7 +5,7 @@
 // generator; editing here forks the copy away from what the store actually
 // serves.
 //
-// Store snapshot: 2026-09-16T09:12:57+00:00
+// Store snapshot: 2026-09-16T18:29:44+00:00
 
 export const odooApps = [
   {
@@ -62,7 +62,7 @@ export const odooApps = [
     "manifestPrice": 399.0,
     "currency": "USD",
     "category": "Productivity",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.0.2",
     "license": "OPL-1",
     "depends": [
       "base",
@@ -131,7 +131,7 @@ export const odooApps = [
     "manifestPrice": 149.0,
     "currency": "USD",
     "category": "Productivity",
-    "version": "19.0.1.0.9",
+    "version": "19.0.1.0.10",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -340,7 +340,7 @@ export const odooApps = [
     "manifestPrice": 99.0,
     "currency": "USD",
     "category": "Tools",
-    "version": "19.0.1.0.12",
+    "version": "19.0.1.0.13",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -408,7 +408,7 @@ export const odooApps = [
     "manifestPrice": 99.0,
     "currency": "USD",
     "category": "Tools",
-    "version": "19.0.1.0.10",
+    "version": "19.0.1.0.11",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -471,7 +471,7 @@ export const odooApps = [
     "manifestPrice": 99.0,
     "currency": "USD",
     "category": "Tools",
-    "version": "19.0.1.0.12",
+    "version": "19.0.1.0.13",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -539,7 +539,7 @@ export const odooApps = [
     "manifestPrice": 49.0,
     "currency": "USD",
     "category": "Tools",
-    "version": "19.0.1.0.9",
+    "version": "19.0.1.0.10",
     "license": "OPL-1",
     "depends": [
       "mh_ai_agent_guardrails"
@@ -612,7 +612,7 @@ export const odooApps = [
     "manifestPrice": 89.0,
     "currency": "USD",
     "category": "Tools",
-    "version": "19.0.1.0.4",
+    "version": "19.0.1.0.5",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -808,7 +808,7 @@ export const odooApps = [
     "manifestPrice": 69.0,
     "currency": "USD",
     "category": "Tools",
-    "version": "19.0.1.0.11",
+    "version": "19.0.1.0.12",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -947,7 +947,7 @@ export const odooApps = [
     "manifestPrice": 69.0,
     "currency": "USD",
     "category": "Website",
-    "version": "19.0.1.0.11",
+    "version": "19.0.1.0.12",
     "license": "OPL-1",
     "depends": [
       "website",
@@ -1277,7 +1277,7 @@ export const odooApps = [
     "manifestPrice": 69.0,
     "currency": "USD",
     "category": "Accounting/Accounting",
-    "version": "19.0.1.0.7",
+    "version": "19.0.1.0.8",
     "license": "OPL-1",
     "depends": [
       "account",
@@ -1504,7 +1504,7 @@ export const odooApps = [
     "manifestPrice": 49.0,
     "currency": "USD",
     "category": "Tools",
-    "version": "19.0.1.0.10",
+    "version": "19.0.1.0.11",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -1572,7 +1572,7 @@ export const odooApps = [
     "manifestPrice": 49.0,
     "currency": "USD",
     "category": "Tools",
-    "version": "19.0.1.0.10",
+    "version": "19.0.1.0.11",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -1639,7 +1639,7 @@ export const odooApps = [
     "manifestPrice": 49.0,
     "currency": "USD",
     "category": "Tools",
-    "version": "19.0.1.0.11",
+    "version": "19.0.1.0.12",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -2176,7 +2176,7 @@ export const odooApps = [
     "manifestPrice": 39.0,
     "currency": "USD",
     "category": "Tools",
-    "version": "19.0.1.0.8",
+    "version": "19.0.1.0.9",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -2352,7 +2352,7 @@ export const odooApps = [
     "manifestPrice": 39.0,
     "currency": "USD",
     "category": "Tools",
-    "version": "19.0.1.0.8",
+    "version": "19.0.1.0.9",
     "license": "OPL-1",
     "depends": [
       "base_setup"
@@ -2536,7 +2536,7 @@ export const odooApps = [
     "manifestPrice": 39.0,
     "currency": "USD",
     "category": "Productivity",
-    "version": "19.0.1.0.8",
+    "version": "19.0.1.0.9",
     "license": "OPL-1",
     "depends": [
       "base",
@@ -2545,7 +2545,9 @@ export const odooApps = [
     "paidDepends": [],
     "downloads": 0,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_list_view_layouts",
-    "screenshots": [],
+    "screenshots": [
+      "screenshot_layout.png"
+    ],
     "copyWords": 357,
     "hasVideo": true,
     "youtubeId": "_jn7KswDh-k",
@@ -2602,7 +2604,7 @@ export const odooApps = [
     "manifestPrice": 39.0,
     "currency": "USD",
     "category": "Project",
-    "version": "19.0.1.0.11",
+    "version": "19.0.1.0.12",
     "license": "OPL-1",
     "depends": [
       "project",
@@ -2733,7 +2735,7 @@ export const odooApps = [
     "manifestPrice": 39.0,
     "currency": "USD",
     "category": "Warehouse",
-    "version": "19.0.1.0.11",
+    "version": "19.0.1.0.12",
     "license": "OPL-1",
     "depends": [
       "stock"
@@ -2863,7 +2865,7 @@ export const odooApps = [
     "manifestPrice": 39.0,
     "currency": "USD",
     "category": "Warehouse",
-    "version": "19.0.1.0.10",
+    "version": "19.0.1.0.11",
     "license": "OPL-1",
     "depends": [
       "stock"
@@ -2976,7 +2978,7 @@ export const odooApps = [
     "manifestPrice": 29.0,
     "currency": "USD",
     "category": "Accounting/Accounting",
-    "version": "19.0.1.0.9",
+    "version": "19.0.1.0.10",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -3042,7 +3044,7 @@ export const odooApps = [
     "manifestPrice": 29.0,
     "currency": "USD",
     "category": "Tools",
-    "version": "19.0.1.0.12",
+    "version": "19.0.1.0.13",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -3172,7 +3174,7 @@ export const odooApps = [
     "manifestPrice": 29.0,
     "currency": "USD",
     "category": "Productivity/Discuss",
-    "version": "19.0.1.0.9",
+    "version": "19.0.1.0.10",
     "license": "OPL-1",
     "depends": [
       "mail",
@@ -3310,7 +3312,7 @@ export const odooApps = [
     "manifestPrice": 29.0,
     "currency": "USD",
     "category": "Warehouse",
-    "version": "19.0.1.0.10",
+    "version": "19.0.1.0.11",
     "license": "OPL-1",
     "depends": [
       "stock"
@@ -3377,7 +3379,7 @@ export const odooApps = [
     "manifestPrice": 29.0,
     "currency": "USD",
     "category": "Project",
-    "version": "19.0.1.0.11",
+    "version": "19.0.1.0.12",
     "license": "OPL-1",
     "depends": [
       "sale_timesheet"
@@ -3430,7 +3432,7 @@ export const odooApps = [
     "manifestPrice": 29.0,
     "currency": "USD",
     "category": "Tools",
-    "version": "19.0.1.0.13",
+    "version": "19.0.1.0.14",
     "license": "OPL-1",
     "depends": [
       "mail"
@@ -3493,7 +3495,7 @@ export const odooApps = [
     "manifestPrice": 29.0,
     "currency": "USD",
     "category": "Warehouse",
-    "version": "19.0.1.0.10",
+    "version": "19.0.1.0.11",
     "license": "OPL-1",
     "depends": [
       "stock"
@@ -3597,7 +3599,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Tools",
-    "version": "19.0.1.0.6",
+    "version": "19.0.1.0.8",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -3650,7 +3652,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Productivity",
-    "version": "19.0.1.0.8",
+    "version": "19.0.1.0.9",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -3752,7 +3754,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Extra Tools",
-    "version": "19.0.1.0.5",
+    "version": "19.0.1.0.6",
     "license": "OPL-1",
     "depends": [
       "web"
@@ -3810,7 +3812,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Tools",
-    "version": "19.0.1.0.8",
+    "version": "19.0.1.0.9",
     "license": "OPL-1",
     "depends": [
       "mail"
@@ -4015,7 +4017,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Accounting/Accounting",
-    "version": "19.0.1.0.7",
+    "version": "19.0.1.0.9",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -4056,7 +4058,7 @@ export const odooApps = [
       "website"
     ],
     "paidDepends": [],
-    "downloads": 11,
+    "downloads": 12,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_cookie_consent_banner",
     "screenshots": [
       "screenshot_banner.png"
@@ -4512,7 +4514,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Extra Tools",
-    "version": "19.0.1.0.7",
+    "version": "19.0.1.0.8",
     "license": "OPL-1",
     "depends": [
       "base",
@@ -4569,7 +4571,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Tools",
-    "version": "19.0.1.0.7",
+    "version": "19.0.1.0.9",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -4672,7 +4674,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Tools",
-    "version": "19.0.1.0.8",
+    "version": "19.0.1.0.10",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -4728,7 +4730,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Warehouse",
-    "version": "19.0.1.0.8",
+    "version": "19.0.1.0.9",
     "license": "OPL-1",
     "depends": [
       "stock"
@@ -4873,7 +4875,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Extra Tools",
-    "version": "19.0.1.0.9",
+    "version": "19.0.1.0.10",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -4979,7 +4981,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Marketing/Marketing",
-    "version": "19.0.1.0.7",
+    "version": "19.0.1.0.8",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -5284,7 +5286,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Marketing/Marketing",
-    "version": "19.0.1.0.6",
+    "version": "19.0.1.0.7",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -5335,7 +5337,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Marketing/Marketing",
-    "version": "19.0.1.0.6",
+    "version": "19.0.1.0.7",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -5581,7 +5583,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Extra Tools",
-    "version": "19.0.1.0.6",
+    "version": "19.0.1.0.7",
     "license": "OPL-1",
     "depends": [
       "base",
@@ -5641,7 +5643,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Extra Tools",
-    "version": "19.0.1.0.5",
+    "version": "19.0.1.0.6",
     "license": "OPL-1",
     "depends": [
       "portal",
@@ -5933,7 +5935,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Extra Tools",
-    "version": "19.0.1.0.6",
+    "version": "19.0.1.0.7",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -5985,7 +5987,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Marketing/Marketing",
-    "version": "19.0.1.0.6",
+    "version": "19.0.1.0.7",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -6050,7 +6052,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Extra Tools",
-    "version": "19.0.1.0.6",
+    "version": "19.0.1.0.7",
     "license": "OPL-1",
     "depends": [
       "base"
