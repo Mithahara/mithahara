@@ -5,9 +5,78 @@
 // generator; editing here forks the copy away from what the store actually
 // serves.
 //
-// Store snapshot: 2026-09-15T19:11:19+00:00
+// Store snapshot: 2026-09-16T09:12:57+00:00
 
 export const odooApps = [
+  {
+    "tech": "mh_access_management",
+    "slug": "access-management",
+    "name": "Access Management",
+    "summary": "Eleven access tools in one app: who can do what on every model, field and menu rules, bulk group and company changes, a change log, API keys, session control and safe offboarding",
+    "tagline": "Eleven access tools in one app, from who-can-do-what across every model to safe offboarding",
+    "intro": [],
+    "features": [
+      {
+        "heading": "What it does",
+        "body": [
+          "Eleven separate access-control apps, merged into one module. You install it once, it adds one Access Management menu, and every tool below is under it.",
+          "Nothing here changes a permission on its own. The reports report; every bulk action shows you the exact list of what it will change before it changes anything."
+        ]
+      },
+      {
+        "heading": "Seeing what access actually is",
+        "body": [
+          "Access Explorer sweeps every internal user against every model and resolves what each one can really read, write, create and delete — implied groups and record rules already combined, because it asks Odoo the same way Odoo asks itself. It flags the two over-grants nobody spots by inspection: a rule left without a group, which applies to everybody, and a grant with no record rule narrowing it, where access to the model is access to every row.",
+          "Record Rule Preview answers the question you have before you save a rule: how many records does this actually leave a chosen user? Counted for real against the database, not estimated.",
+          "Access Change Log keeps the history — every change to a group, an access right or a record rule, and who made it."
+        ]
+      },
+      {
+        "heading": "Changing it without a hundred clicks",
+        "body": [
+          "Access Rights Bulk Edit and Group Membership Bulk apply model access and group membership across many rows at once. Multi-Company Access grants or revokes company access for many users at once, and shows the default-company moves and group changes Odoo makes on its own before you commit them.",
+          "Field Access Rules hides or locks any field for the groups you choose, enforced server side rather than in the view, so it holds for imports and the API too.",
+          "Access Config Migration exports groups, access rights and record rules from one database and imports them into another, which is how a staging database stops disagreeing with production."
+        ]
+      },
+      {
+        "heading": "The accounts themselves",
+        "body": [
+          "API Key Inventory lists every key in the database with its owner, its expiry and when it was last used. Session Control sets an idle timeout per group and shows the sessions open right now, with the ability to end one.",
+          "User Offboarding Check lists everything still pointing at a user before you archive them — scheduled actions, open activities, assigned records, API keys — and what breaks if you archive without reassigning first."
+        ]
+      },
+      {
+        "heading": "Why one app and not eleven",
+        "body": [
+          "Bought separately these are eleven installs and a considerably larger bill. They also overlap in practice: whoever needs a record-rule preview needs the change log, and every one of them eventually needs offboarding."
+        ]
+      }
+    ],
+    "scope": [
+      "It does not replace a security review by somebody who knows your business. Access Explorer excludes the superuser deliberately — it bypasses every rule by design, so including it would report full access to everything and bury the findings that matter.",
+      "Warehouse-specific access rules are deliberately not in here. They need the Inventory app, and an access product should not force Inventory onto a database that does not use it. That stays a separate module."
+    ],
+    "requires": [],
+    "price": 398.99,
+    "manifestPrice": 399.0,
+    "currency": "USD",
+    "category": "Productivity",
+    "version": "19.0.1.0.0",
+    "license": "OPL-1",
+    "depends": [
+      "base",
+      "mail"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_access_management",
+    "screenshots": [],
+    "copyWords": 509,
+    "hasVideo": false,
+    "youtubeId": null,
+    "externalPage": null
+  },
   {
     "tech": "mh_access_explorer",
     "slug": "access-explorer",
@@ -63,7 +132,7 @@ export const odooApps = [
     "manifestPrice": 149.0,
     "currency": "USD",
     "category": "Productivity",
-    "version": "19.0.1.0.8",
+    "version": "19.0.1.0.9",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -131,7 +200,7 @@ export const odooApps = [
     "manifestPrice": 149.0,
     "currency": "USD",
     "category": "Tools",
-    "version": "19.0.1.0.5",
+    "version": "19.0.1.0.6",
     "license": "OPL-1",
     "depends": [
       "cloud_storage",
@@ -195,7 +264,7 @@ export const odooApps = [
     "manifestPrice": 69.0,
     "currency": "USD",
     "category": "Marketing/Marketing",
-    "version": "19.0.1.0.7",
+    "version": "19.0.1.0.8",
     "license": "OPL-1",
     "depends": [
       "mh_meta_odoo_connector"
@@ -276,7 +345,7 @@ export const odooApps = [
     "manifestPrice": 99.0,
     "currency": "USD",
     "category": "Tools",
-    "version": "19.0.1.0.11",
+    "version": "19.0.1.0.12",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -348,7 +417,7 @@ export const odooApps = [
     "manifestPrice": 99.0,
     "currency": "USD",
     "category": "Tools",
-    "version": "19.0.1.0.9",
+    "version": "19.0.1.0.10",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -415,7 +484,7 @@ export const odooApps = [
     "manifestPrice": 99.0,
     "currency": "USD",
     "category": "Tools",
-    "version": "19.0.1.0.11",
+    "version": "19.0.1.0.12",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -487,7 +556,7 @@ export const odooApps = [
     "manifestPrice": 49.0,
     "currency": "USD",
     "category": "Tools",
-    "version": "19.0.1.0.8",
+    "version": "19.0.1.0.9",
     "license": "OPL-1",
     "depends": [
       "mh_ai_agent_guardrails"
@@ -564,7 +633,7 @@ export const odooApps = [
     "manifestPrice": 89.0,
     "currency": "USD",
     "category": "Tools",
-    "version": "19.0.1.0.3",
+    "version": "19.0.1.0.4",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -629,7 +698,7 @@ export const odooApps = [
     "manifestPrice": 79.0,
     "currency": "USD",
     "category": "Human Resources",
-    "version": "19.0.1.0.3",
+    "version": "19.0.1.0.4",
     "license": "OPL-1",
     "depends": [
       "mail"
@@ -698,7 +767,7 @@ export const odooApps = [
     "manifestPrice": 79.0,
     "currency": "USD",
     "category": "Marketing/Marketing",
-    "version": "19.0.1.0.7",
+    "version": "19.0.1.0.8",
     "license": "OPL-1",
     "depends": [
       "base",
@@ -764,7 +833,7 @@ export const odooApps = [
     "manifestPrice": 69.0,
     "currency": "USD",
     "category": "Tools",
-    "version": "19.0.1.0.10",
+    "version": "19.0.1.0.11",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -833,7 +902,7 @@ export const odooApps = [
     "manifestPrice": 69.0,
     "currency": "USD",
     "category": "Accounting/Accounting",
-    "version": "19.0.1.0.5",
+    "version": "19.0.1.0.6",
     "license": "OPL-1",
     "depends": [
       "account"
@@ -907,7 +976,7 @@ export const odooApps = [
     "manifestPrice": 69.0,
     "currency": "USD",
     "category": "Website",
-    "version": "19.0.1.0.10",
+    "version": "19.0.1.0.11",
     "license": "OPL-1",
     "depends": [
       "website",
@@ -1025,7 +1094,7 @@ export const odooApps = [
     "manifestPrice": 69.0,
     "currency": "USD",
     "category": "Warehouse",
-    "version": "19.0.1.0.13",
+    "version": "19.0.1.0.14",
     "license": "OPL-1",
     "depends": [
       "stock",
@@ -1096,7 +1165,7 @@ export const odooApps = [
     "manifestPrice": 69.0,
     "currency": "USD",
     "category": "Marketing/Marketing",
-    "version": "19.0.1.0.6",
+    "version": "19.0.1.0.7",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -1163,7 +1232,7 @@ export const odooApps = [
     "manifestPrice": 69.0,
     "currency": "USD",
     "category": "Tools",
-    "version": "19.0.1.0.2",
+    "version": "19.0.1.0.3",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -1241,7 +1310,7 @@ export const odooApps = [
     "manifestPrice": 69.0,
     "currency": "USD",
     "category": "Accounting/Accounting",
-    "version": "19.0.1.0.6",
+    "version": "19.0.1.0.7",
     "license": "OPL-1",
     "depends": [
       "account",
@@ -1311,7 +1380,7 @@ export const odooApps = [
     "manifestPrice": 59.0,
     "currency": "USD",
     "category": "Marketing/Marketing",
-    "version": "19.0.1.0.7",
+    "version": "19.0.1.0.8",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -1350,11 +1419,11 @@ export const odooApps = [
       "Monthly/quarterly declaration only - the universally-mandatory, recurring one. Annual fixed-asset and on-demand inventory declarations are a fast-follow."
     ],
     "requires": [],
-    "price": 58.64,
+    "price": 59.0,
     "manifestPrice": 59.0,
     "currency": "USD",
     "category": "Accounting/Localizations",
-    "version": "19.0.1.0.5",
+    "version": "19.0.1.0.6",
     "license": "OPL-1",
     "depends": [
       "l10n_ro"
@@ -1397,11 +1466,11 @@ export const odooApps = [
     ],
     "scope": [],
     "requires": [],
-    "price": 58.64,
+    "price": 59.0,
     "manifestPrice": 59.0,
     "currency": "USD",
     "category": "Human Resources",
-    "version": "19.0.1.0.6",
+    "version": "19.0.1.0.7",
     "license": "OPL-1",
     "depends": [
       "mail"
@@ -1472,7 +1541,7 @@ export const odooApps = [
     "manifestPrice": 49.0,
     "currency": "USD",
     "category": "Tools",
-    "version": "19.0.1.0.9",
+    "version": "19.0.1.0.10",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -1544,7 +1613,7 @@ export const odooApps = [
     "manifestPrice": 49.0,
     "currency": "USD",
     "category": "Tools",
-    "version": "19.0.1.0.9",
+    "version": "19.0.1.0.10",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -1615,7 +1684,7 @@ export const odooApps = [
     "manifestPrice": 49.0,
     "currency": "USD",
     "category": "Tools",
-    "version": "19.0.1.0.10",
+    "version": "19.0.1.0.11",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -1660,7 +1729,7 @@ export const odooApps = [
     "manifestPrice": 49.0,
     "currency": "USD",
     "category": "Extra Tools",
-    "version": "19.0.1.0.6",
+    "version": "19.0.1.0.7",
     "license": "OPL-1",
     "depends": [
       "website"
@@ -1702,7 +1771,7 @@ export const odooApps = [
     "manifestPrice": 49.0,
     "currency": "USD",
     "category": "Extra Tools",
-    "version": "19.0.1.0.6",
+    "version": "19.0.1.0.7",
     "license": "OPL-1",
     "depends": [
       "account",
@@ -1769,7 +1838,7 @@ export const odooApps = [
     "manifestPrice": 49.0,
     "currency": "USD",
     "category": "Tools",
-    "version": "19.0.1.0.2",
+    "version": "19.0.1.0.3",
     "license": "OPL-1",
     "depends": [
       "base",
@@ -1817,7 +1886,7 @@ export const odooApps = [
     "manifestPrice": 49.0,
     "currency": "USD",
     "category": "Extra Tools",
-    "version": "19.0.1.0.6",
+    "version": "19.0.1.0.7",
     "license": "OPL-1",
     "depends": [
       "mail"
@@ -1955,7 +2024,7 @@ export const odooApps = [
     "manifestPrice": 49.0,
     "currency": "USD",
     "category": "Manufacturing",
-    "version": "19.0.1.0.8",
+    "version": "19.0.1.0.9",
     "license": "OPL-1",
     "depends": [
       "quality"
@@ -2022,7 +2091,7 @@ export const odooApps = [
     "manifestPrice": 49.0,
     "currency": "USD",
     "category": "Marketing/Marketing",
-    "version": "19.0.1.0.6",
+    "version": "19.0.1.0.7",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -2083,11 +2152,11 @@ export const odooApps = [
       "This app covers Odoo's AI text-generation assistant only - the editor's \"Generate with AI\" / \"Translate with AI\" tools. It does not touch invoice or document OCR, which is a separate, Enterprise-only Odoo feature this app does not modify or replace."
     ],
     "requires": [],
-    "price": 39.76,
+    "price": 40.0,
     "manifestPrice": 40.0,
     "currency": "USD",
     "category": "Productivity",
-    "version": "19.0.1.0.4",
+    "version": "19.0.1.0.5",
     "license": "OPL-1",
     "depends": [
       "base_setup",
@@ -2156,7 +2225,7 @@ export const odooApps = [
     "manifestPrice": 39.0,
     "currency": "USD",
     "category": "Tools",
-    "version": "19.0.1.0.7",
+    "version": "19.0.1.0.8",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -2170,6 +2239,53 @@ export const odooApps = [
     "copyWords": 341,
     "hasVideo": true,
     "youtubeId": "jIFMc1kTjuU",
+    "externalPage": null
+  },
+  {
+    "tech": "mh_pay_transparency",
+    "slug": "eu-pay-transparency",
+    "name": "EU Pay Transparency",
+    "summary": "Directive 2023/970 readiness: require a salary range before a vacancy can publish, and report the gender pay gap by quartile pay band, mean and median.",
+    "tagline": "A real publish-blocking gate, and a quartile gender pay-gap report - Directive 2023/970",
+    "intro": [
+      "EU Directive 2023/970 (transposition deadline 7 June 2026) requires disclosing a pay range to every job candidate before or during recruitment, and phased gender pay-gap reporting by quartile pay band for larger employers. Odoo has no compliance logic for either.",
+      "This app adds a pay range to each job position and blocks publishing it to your careers page until that range is filled in - no more posting a vacancy with no range and hoping nobody notices. It also runs a quartile pay-gap report: employees sorted into four equal pay bands, mean/median gender pay gap computed the standard EU/Eurostat way, and a flag when the unjustified-gap threshold (5%) is crossed.",
+      "Stated plainly: this reports on base wage only, not total compensation - full Payroll (bonuses, allowances) is Enterprise-only in Community."
+    ],
+    "features": [
+      {
+        "heading": "Real teeth, not just a report",
+        "body": [
+          "The pay range gate is a hard constraint on the actual field that controls whether a job posting is live on your careers page - it can't be bypassed by publishing anyway."
+        ]
+      },
+      {
+        "heading": "The correct quartile methodology",
+        "body": [
+          "Mean and median gap computed independently and correctly, employees split into four equal pay bands the way Article 9(1)(e) actually asks for - not a naive single aggregate number."
+        ]
+      }
+    ],
+    "scope": [],
+    "requires": [],
+    "price": 39.0,
+    "manifestPrice": 39.0,
+    "currency": "USD",
+    "category": "Human Resources",
+    "version": "19.0.1.0.6",
+    "license": "OPL-1",
+    "depends": [
+      "website_hr_recruitment"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_pay_transparency",
+    "screenshots": [
+      "screenshot_report.png"
+    ],
+    "copyWords": 214,
+    "hasVideo": true,
+    "youtubeId": "FDh2Vr9p9e0",
     "externalPage": null
   },
   {
@@ -2223,7 +2339,7 @@ export const odooApps = [
     "manifestPrice": 39.0,
     "currency": "USD",
     "category": "Productivity/Discuss",
-    "version": "19.0.1.0.2",
+    "version": "19.0.1.0.3",
     "license": "OPL-1",
     "depends": [
       "mail"
@@ -2289,7 +2405,7 @@ export const odooApps = [
     "manifestPrice": 39.0,
     "currency": "USD",
     "category": "Tools",
-    "version": "19.0.1.0.7",
+    "version": "19.0.1.0.8",
     "license": "OPL-1",
     "depends": [
       "base_setup"
@@ -2304,6 +2420,63 @@ export const odooApps = [
     "copyWords": 354,
     "hasVideo": true,
     "youtubeId": "K03FvPDZSiE",
+    "externalPage": null
+  },
+  {
+    "tech": "mh_gdpr_breach_clock",
+    "slug": "gdpr-breach-clock",
+    "name": "GDPR Breach Clock",
+    "summary": "Article 33 timer for a personal data incident: 72 hours to tell the supervisory authority, reminders before it lapses, and a record of what was reported when.",
+    "tagline": "The Article 33 72-hour clock starts the moment you log the incident",
+    "intro": [
+      "GDPR Article 33 gives you 72 hours from becoming aware of a personal data breach to notify your supervisory authority - not 72 hours from when the breach happened. Missing that window, or not being able to prove you tracked it, is one of the most common triggers for an SME GDPR fine. Odoo has no native tool for this at all; Odoo's own official guidance tells you to write your own incident-response process. This app gives you one: log an incident and the clock starts automatically, an activity reminder fires once the deadline gets close so it can't be quietly missed, and a one-click report gives you the Article 33(3) notification document ready to send to your authority."
+    ],
+    "features": [
+      {
+        "heading": "The clock starts on \"aware,\" not \"happened\"",
+        "body": [
+          "The single most common mistake in breach response is starting the countdown from when the incident occurred instead of when someone actually found out. This app gets that distinction right by design."
+        ]
+      },
+      {
+        "heading": "A reminder that can't be missed",
+        "body": [
+          "Once the 72-hour deadline is within 24 hours (or already passed), the responsible person gets an activity reminder automatically - no need to remember to check back."
+        ]
+      },
+      {
+        "heading": "Article 33(3) notification, one click",
+        "body": [
+          "The printable report covers exactly what your authority needs: the nature of the breach, categories and number of people affected, your contact point, likely consequences, and the measures you've taken."
+        ]
+      },
+      {
+        "heading": "Kept confidential by design",
+        "body": [
+          "Breach records are sensitive by nature - a dedicated \"Data Protection Officer\" access group keeps them visible only to whoever you assign, not every internal user."
+        ]
+      }
+    ],
+    "scope": [],
+    "requires": [],
+    "price": 39.0,
+    "manifestPrice": 39.0,
+    "currency": "USD",
+    "category": "Extra Tools",
+    "version": "19.0.1.0.6",
+    "license": "OPL-1",
+    "depends": [
+      "mail"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_gdpr_breach_clock",
+    "screenshots": [
+      "screenshot_form.png"
+    ],
+    "copyWords": 268,
+    "hasVideo": true,
+    "youtubeId": "3hRUlkg_vwo",
     "externalPage": null
   },
   {
@@ -2353,7 +2526,7 @@ export const odooApps = [
     "manifestPrice": 39.0,
     "currency": "USD",
     "category": "Accounting/Accounting",
-    "version": "19.0.1.0.7",
+    "version": "19.0.1.0.8",
     "license": "OPL-1",
     "depends": [
       "account"
@@ -2420,7 +2593,7 @@ export const odooApps = [
     "manifestPrice": 39.0,
     "currency": "USD",
     "category": "Productivity",
-    "version": "19.0.1.0.7",
+    "version": "19.0.1.0.8",
     "license": "OPL-1",
     "depends": [
       "base",
@@ -2490,7 +2663,7 @@ export const odooApps = [
     "manifestPrice": 39.0,
     "currency": "USD",
     "category": "Project",
-    "version": "19.0.1.0.10",
+    "version": "19.0.1.0.11",
     "license": "OPL-1",
     "depends": [
       "project",
@@ -2554,7 +2727,7 @@ export const odooApps = [
     "manifestPrice": 39.0,
     "currency": "USD",
     "category": "Purchases",
-    "version": "19.0.1.0.6",
+    "version": "19.0.1.0.7",
     "license": "OPL-1",
     "depends": [
       "purchase"
@@ -2625,7 +2798,7 @@ export const odooApps = [
     "manifestPrice": 39.0,
     "currency": "USD",
     "category": "Warehouse",
-    "version": "19.0.1.0.10",
+    "version": "19.0.1.0.11",
     "license": "OPL-1",
     "depends": [
       "stock"
@@ -2688,7 +2861,7 @@ export const odooApps = [
     "manifestPrice": 39.0,
     "currency": "USD",
     "category": "Sales/Sales",
-    "version": "19.0.1.0.5",
+    "version": "19.0.1.0.6",
     "license": "OPL-1",
     "depends": [
       "sale_management"
@@ -2759,7 +2932,7 @@ export const odooApps = [
     "manifestPrice": 39.0,
     "currency": "USD",
     "category": "Warehouse",
-    "version": "19.0.1.0.9",
+    "version": "19.0.1.0.10",
     "license": "OPL-1",
     "depends": [
       "stock"
@@ -2773,110 +2946,6 @@ export const odooApps = [
     "copyWords": 384,
     "hasVideo": true,
     "youtubeId": "SDHwcVtzEe0",
-    "externalPage": null
-  },
-  {
-    "tech": "mh_pay_transparency",
-    "slug": "eu-pay-transparency",
-    "name": "EU Pay Transparency",
-    "summary": "Directive 2023/970 readiness: require a salary range before a vacancy can publish, and report the gender pay gap by quartile pay band, mean and median.",
-    "tagline": "A real publish-blocking gate, and a quartile gender pay-gap report - Directive 2023/970",
-    "intro": [
-      "EU Directive 2023/970 (transposition deadline 7 June 2026) requires disclosing a pay range to every job candidate before or during recruitment, and phased gender pay-gap reporting by quartile pay band for larger employers. Odoo has no compliance logic for either.",
-      "This app adds a pay range to each job position and blocks publishing it to your careers page until that range is filled in - no more posting a vacancy with no range and hoping nobody notices. It also runs a quartile pay-gap report: employees sorted into four equal pay bands, mean/median gender pay gap computed the standard EU/Eurostat way, and a flag when the unjustified-gap threshold (5%) is crossed.",
-      "Stated plainly: this reports on base wage only, not total compensation - full Payroll (bonuses, allowances) is Enterprise-only in Community."
-    ],
-    "features": [
-      {
-        "heading": "Real teeth, not just a report",
-        "body": [
-          "The pay range gate is a hard constraint on the actual field that controls whether a job posting is live on your careers page - it can't be bypassed by publishing anyway."
-        ]
-      },
-      {
-        "heading": "The correct quartile methodology",
-        "body": [
-          "Mean and median gap computed independently and correctly, employees split into four equal pay bands the way Article 9(1)(e) actually asks for - not a naive single aggregate number."
-        ]
-      }
-    ],
-    "scope": [],
-    "requires": [],
-    "price": 38.77,
-    "manifestPrice": 39.0,
-    "currency": "USD",
-    "category": "Human Resources",
-    "version": "19.0.1.0.5",
-    "license": "OPL-1",
-    "depends": [
-      "website_hr_recruitment"
-    ],
-    "paidDepends": [],
-    "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_pay_transparency",
-    "screenshots": [
-      "screenshot_report.png"
-    ],
-    "copyWords": 214,
-    "hasVideo": true,
-    "youtubeId": "FDh2Vr9p9e0",
-    "externalPage": null
-  },
-  {
-    "tech": "mh_gdpr_breach_clock",
-    "slug": "gdpr-breach-clock",
-    "name": "GDPR Breach Clock",
-    "summary": "Article 33 timer for a personal data incident: 72 hours to tell the supervisory authority, reminders before it lapses, and a record of what was reported when.",
-    "tagline": "The Article 33 72-hour clock starts the moment you log the incident",
-    "intro": [
-      "GDPR Article 33 gives you 72 hours from becoming aware of a personal data breach to notify your supervisory authority - not 72 hours from when the breach happened. Missing that window, or not being able to prove you tracked it, is one of the most common triggers for an SME GDPR fine. Odoo has no native tool for this at all; Odoo's own official guidance tells you to write your own incident-response process. This app gives you one: log an incident and the clock starts automatically, an activity reminder fires once the deadline gets close so it can't be quietly missed, and a one-click report gives you the Article 33(3) notification document ready to send to your authority."
-    ],
-    "features": [
-      {
-        "heading": "The clock starts on \"aware,\" not \"happened\"",
-        "body": [
-          "The single most common mistake in breach response is starting the countdown from when the incident occurred instead of when someone actually found out. This app gets that distinction right by design."
-        ]
-      },
-      {
-        "heading": "A reminder that can't be missed",
-        "body": [
-          "Once the 72-hour deadline is within 24 hours (or already passed), the responsible person gets an activity reminder automatically - no need to remember to check back."
-        ]
-      },
-      {
-        "heading": "Article 33(3) notification, one click",
-        "body": [
-          "The printable report covers exactly what your authority needs: the nature of the breach, categories and number of people affected, your contact point, likely consequences, and the measures you've taken."
-        ]
-      },
-      {
-        "heading": "Kept confidential by design",
-        "body": [
-          "Breach records are sensitive by nature - a dedicated \"Data Protection Officer\" access group keeps them visible only to whoever you assign, not every internal user."
-        ]
-      }
-    ],
-    "scope": [],
-    "requires": [],
-    "price": 38.77,
-    "manifestPrice": 39.0,
-    "currency": "USD",
-    "category": "Extra Tools",
-    "version": "19.0.1.0.5",
-    "license": "OPL-1",
-    "depends": [
-      "mail"
-    ],
-    "paidDepends": [],
-    "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_gdpr_breach_clock",
-    "screenshots": [
-      "screenshot_form.png"
-    ],
-    "copyWords": 268,
-    "hasVideo": true,
-    "youtubeId": "3hRUlkg_vwo",
     "externalPage": null
   },
   {
@@ -2905,11 +2974,11 @@ export const odooApps = [
     ],
     "scope": [],
     "requires": [],
-    "price": 38.77,
+    "price": 39.0,
     "manifestPrice": 39.0,
     "currency": "USD",
     "category": "Extra Tools",
-    "version": "19.0.1.0.5",
+    "version": "19.0.1.0.6",
     "license": "OPL-1",
     "depends": [
       "mail"
@@ -2980,7 +3049,7 @@ export const odooApps = [
     "manifestPrice": 29.0,
     "currency": "USD",
     "category": "Accounting/Accounting",
-    "version": "19.0.1.0.8",
+    "version": "19.0.1.0.9",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -3050,7 +3119,7 @@ export const odooApps = [
     "manifestPrice": 29.0,
     "currency": "USD",
     "category": "Tools",
-    "version": "19.0.1.0.10",
+    "version": "19.0.1.0.12",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -3113,7 +3182,7 @@ export const odooApps = [
     "manifestPrice": 29.0,
     "currency": "USD",
     "category": "Human Resources",
-    "version": "19.0.1.0.6",
+    "version": "19.0.1.0.7",
     "license": "OPL-1",
     "depends": [
       "hr"
@@ -3184,7 +3253,7 @@ export const odooApps = [
     "manifestPrice": 29.0,
     "currency": "USD",
     "category": "Productivity/Discuss",
-    "version": "19.0.1.0.8",
+    "version": "19.0.1.0.9",
     "license": "OPL-1",
     "depends": [
       "mail",
@@ -3254,7 +3323,7 @@ export const odooApps = [
     "manifestPrice": 29.0,
     "currency": "USD",
     "category": "Accounting/Accounting",
-    "version": "19.0.1.0.5",
+    "version": "19.0.1.0.6",
     "license": "OPL-1",
     "depends": [
       "account"
@@ -3326,7 +3395,7 @@ export const odooApps = [
     "manifestPrice": 29.0,
     "currency": "USD",
     "category": "Warehouse",
-    "version": "19.0.1.0.9",
+    "version": "19.0.1.0.10",
     "license": "OPL-1",
     "depends": [
       "stock"
@@ -3397,7 +3466,7 @@ export const odooApps = [
     "manifestPrice": 29.0,
     "currency": "USD",
     "category": "Project",
-    "version": "19.0.1.0.10",
+    "version": "19.0.1.0.11",
     "license": "OPL-1",
     "depends": [
       "sale_timesheet"
@@ -3454,7 +3523,7 @@ export const odooApps = [
     "manifestPrice": 29.0,
     "currency": "USD",
     "category": "Tools",
-    "version": "19.0.1.0.12",
+    "version": "19.0.1.0.13",
     "license": "OPL-1",
     "depends": [
       "mail"
@@ -3521,7 +3590,7 @@ export const odooApps = [
     "manifestPrice": 29.0,
     "currency": "USD",
     "category": "Warehouse",
-    "version": "19.0.1.0.9",
+    "version": "19.0.1.0.10",
     "license": "OPL-1",
     "depends": [
       "stock"
@@ -4162,7 +4231,7 @@ export const odooApps = [
       "stock_account"
     ],
     "paidDepends": [],
-    "downloads": 4,
+    "downloads": 5,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_cost_price_history",
     "screenshots": [
       "screenshot_history.png"
@@ -5262,7 +5331,7 @@ export const odooApps = [
       "web"
     ],
     "paidDepends": [],
-    "downloads": 14,
+    "downloads": 15,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_list_view_manager",
     "screenshots": [
       "screenshot_columns.png"
@@ -6157,7 +6226,7 @@ export const odooApps = [
       "stock_account"
     ],
     "paidDepends": [],
-    "downloads": 15,
+    "downloads": 16,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_stock_card_ledger",
     "screenshots": [
       "screenshot_ledger.png"
