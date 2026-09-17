@@ -5,7 +5,7 @@
 // generator; editing here forks the copy away from what the store actually
 // serves.
 //
-// Store snapshot: 2026-09-16T18:29:44+00:00
+// Store snapshot: 2026-09-17T04:06:24+00:00
 
 export const odooApps = [
   {
@@ -947,7 +947,7 @@ export const odooApps = [
     "manifestPrice": 69.0,
     "currency": "USD",
     "category": "Website",
-    "version": "19.0.1.0.12",
+    "version": "19.0.1.0.13",
     "license": "OPL-1",
     "depends": [
       "website",
@@ -1987,7 +1987,9 @@ export const odooApps = [
     "paidDepends": [],
     "downloads": 0,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_spc_cpk_analytics",
-    "screenshots": [],
+    "screenshots": [
+      "screenshot_spc.png"
+    ],
     "copyWords": 249,
     "hasVideo": true,
     "youtubeId": "l0T-RJGKNWs",
@@ -2536,7 +2538,7 @@ export const odooApps = [
     "manifestPrice": 39.0,
     "currency": "USD",
     "category": "Productivity",
-    "version": "19.0.1.0.9",
+    "version": "19.0.1.0.10",
     "license": "OPL-1",
     "depends": [
       "base",
@@ -4052,7 +4054,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Website/Website",
-    "version": "19.0.1.0.7",
+    "version": "19.0.1.0.9",
     "license": "OPL-1",
     "depends": [
       "website"
@@ -5021,7 +5023,7 @@ export const odooApps = [
       "website"
     ],
     "paidDepends": [],
-    "downloads": 10,
+    "downloads": 11,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_google_reviews_snippet",
     "screenshots": [
       "screenshot_settings.png"
@@ -5496,7 +5498,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Website",
-    "version": "19.0.1.0.7",
+    "version": "19.0.1.0.8",
     "license": "OPL-1",
     "depends": [
       "website"
