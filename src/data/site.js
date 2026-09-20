@@ -1,3 +1,17 @@
+import { odooApps } from "./odooApps.js";
+
+// Price for an Odoo app, read from the generated odooApps.js rather than typed
+// here. These four apps keep bespoke /apps/<slug> pages, so gen_site_data.py
+// never rewrites them - which is how $349 stayed on a $99 app, $150 on a $29
+// one and $200 on a $69 one. Throws at build time instead of rendering a wrong
+// or missing price: a build that fails is cheaper than a listing that lies.
+function odooPrice(slug) {
+  const app = odooApps.find((a) => a.slug === slug);
+  if (!app) throw new Error(`site.js: no odooApps entry for slug "${slug}"`);
+  const p = app.price;
+  return `$${Number.isInteger(p) ? p : p.toFixed(2)}`;
+}
+
 export const menu = [
   {
     title: "Fresh Plates",
@@ -55,7 +69,7 @@ export const apps = [
       "Graceful fallback to Odoo's own AI service if no key is configured",
       "One settings screen: Settings → General Settings → Bring Your Own LLM Key"
     ],
-    price: "$40",
+    price: odooPrice("byok-gateway"),
     url: "https://apps.odoo.com/apps/modules/19.0/mh_llm_gateway",
     screenshots: [
       { src: "/apps/byok-gateway/settings.png", alt: "BYOK Gateway's settings screen: pick a provider, model, and paste your key" }
@@ -79,7 +93,7 @@ export const apps = [
       "Reference numbers in the bank memo matched first",
       "Short payments coded to reusable, named deduction reasons — not one-off write-offs"
     ],
-    price: "$69",
+    price: odooPrice("community-cash-reconciler"),
     url: "https://apps.odoo.com/apps/modules/19.0/mh_cash_application_matcher",
     screenshots: [
       { src: "/apps/community-cash-reconciler/bank-lines.png", alt: "Unreconciled bank lines waiting to have cash applied" },
@@ -104,7 +118,7 @@ export const apps = [
       "One-click report of everything that landed in the rounding account",
       "Lives right next to Odoo's own exchange-difference settings"
     ],
-    price: "$29",
+    price: odooPrice("multi-currency-rounding"),
     url: "https://apps.odoo.com/apps/modules/19.0/mh_currency_rounding_tool",
     screenshots: [
       { src: "/apps/multi-currency-rounding/threshold.png", alt: "Setting the rounding threshold and dedicated rounding account" },
@@ -186,7 +200,7 @@ export const apps = [
       "Spend, impressions, clicks, reach, CTR, CPC, and CPM insights",
       "Targets Odoo 17.0, 18.0, and 19.0, Community and Enterprise"
     ],
-    price: "$99",
+    price: odooPrice("meta-odoo-connector"),
     url: "https://apps.odoo.com/apps/modules/19.0/mh_meta_odoo_connector",
     screenshots: [
       { src: "/apps/meta-odoo-connector/connections.png", alt: "Connecting a Meta ad account with an access token" },
