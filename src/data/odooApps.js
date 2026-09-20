@@ -5,7 +5,7 @@
 // generator; editing here forks the copy away from what the store actually
 // serves.
 //
-// Store snapshot: 2026-09-17T04:06:24+00:00
+// Store snapshot: 2026-09-19T23:28:18+00:00
 
 export const odooApps = [
   {
@@ -62,7 +62,7 @@ export const odooApps = [
     "manifestPrice": 399.0,
     "currency": "USD",
     "category": "Productivity",
-    "version": "19.0.1.0.2",
+    "version": "19.0.1.0.3",
     "license": "OPL-1",
     "depends": [
       "base",
@@ -76,7 +76,7 @@ export const odooApps = [
       "screenshot_plan.png"
     ],
     "copyWords": 509,
-    "hasVideo": false,
+    "hasVideo": true,
     "youtubeId": null,
     "externalPage": null
   },
@@ -145,6 +145,53 @@ export const odooApps = [
     "copyWords": 338,
     "hasVideo": true,
     "youtubeId": "oDm7UjsrWzk",
+    "externalPage": null
+  },
+  {
+    "tech": "mh_gdpr_retention",
+    "slug": "gdpr-retention-purge",
+    "name": "GDPR Retention Purge",
+    "summary": "Blank selected personal data fields on a schedule while keeping the record and its history. Legal hold exemption, storage limitation, append only audit log. Not a Data Recycle clone.",
+    "tagline": "Per-field anonymization, a legal hold override, and an append-only purge log - not a Data Recycle clone",
+    "intro": [
+      "GDPR Article 5(1)(e) storage limitation - keep personal data no longer than necessary - is one of the most commonly cited failure points in EU DPA enforcement actions.",
+      "Odoo Community already ships Data Recycle for free, which finds stale records and archives/deletes the whole record on a schedule. This app deliberately does not duplicate that. What it adds: per-field anonymization that blanks just the PII fields (name, email, phone, notes) while leaving the record and its non-personal business data intact; a Legal Hold override that exempts a specific record from anonymization for litigation or a statutory requirement, checked before every run, no exceptions; and a regulator-exportable, append-only audit log - proof of what was anonymized, when, and under which rule. No one can edit or delete a log entry through the UI once it's written.",
+      "Meant to sit beside Data Recycle and OCA's data-protection registry, not replace either."
+    ],
+    "features": [
+      {
+        "heading": "Can't break a record by accident",
+        "body": [
+          "The field picker refuses required fields and multi-value relations - both at the UI level and as a real server-side constraint, not just a hint you can bypass."
+        ]
+      },
+      {
+        "heading": "A log that's actually evidence",
+        "body": [
+          "No perm_write, no perm_unlink, no manual perm_create for any group, including admins - only the scheduled run itself can write a log entry."
+        ]
+      }
+    ],
+    "scope": [],
+    "requires": [],
+    "price": 149.0,
+    "manifestPrice": 149.0,
+    "currency": "USD",
+    "category": "Extra Tools",
+    "version": "19.0.1.0.9",
+    "license": "OPL-1",
+    "depends": [
+      "mail"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_gdpr_retention",
+    "screenshots": [
+      "screenshot_rule.png"
+    ],
+    "copyWords": 227,
+    "hasVideo": true,
+    "youtubeId": "94Z_6sknEi4",
     "externalPage": null
   },
   {
@@ -355,6 +402,139 @@ export const odooApps = [
     "copyWords": 371,
     "hasVideo": true,
     "youtubeId": "4EpcRtlghUU",
+    "externalPage": null
+  },
+  {
+    "tech": "mh_list_view_layouts",
+    "slug": "list-view-layouts",
+    "name": "List View Layouts",
+    "summary": "Set the default list view columns for a model and assign them per group, so a team opens the same layout instead of rebuilding it",
+    "tagline": "Set the default list view columns for a model and assign them per group, so a team opens the same layout instead of rebuilding it",
+    "intro": [
+      "Odoo keeps optional-column visibility in each browser's localStorage. That makes it per person, per browser, and gone when the cache is cleared - so there is no way to say \"everyone in Sales opens quotations with these columns\", and every new starter begins from the default and rebuilds the view by hand.",
+      "This puts that decision in one place: pick a model, pick the columns, pick who it applies to.",
+      "A layout for contacts, applied to one group, kept applied so it does not drift."
+    ],
+    "features": [
+      {
+        "heading": "One layout, assigned to the people who need it",
+        "body": [
+          "Define the visible columns for a model and attach the layout to groups, or leave it open to everyone. Where a person matches more than one layout, the lowest sequence wins, so a specific team layout beats a general default without either having to know about the other."
+        ]
+      },
+      {
+        "heading": "A starting point, or kept applied",
+        "body": [
+          "Off, the layout is what people get the first time and their own adjustments are remembered afterwards. On, it is reapplied every time the list opens, so a shared screen or a reporting view stays as configured instead of drifting one person at a time."
+        ]
+      },
+      {
+        "heading": "It uses Odoo's own hook",
+        "body": [
+          "The layout is applied through the same method Odoo itself calls to decide which optional columns start visible, rather than rewriting the list after it has drawn. Nothing flickers, and a model with no layout behaves exactly as it does today."
+        ]
+      },
+      {
+        "heading": "Visibility is not security",
+        "body": [
+          "Hiding a column hides a column. Nobody sees a field they could not already read, and nobody is prevented from reading one by a layout - that is what access rights and record rules are for, and this app deliberately does not pretend otherwise."
+        ]
+      }
+    ],
+    "scope": [
+      "No column order or width - Odoo does not expose either per user, and claiming it would mean fighting the renderer on every draw. It does not touch the columns a view always shows, and it does not change what anyone is allowed to see."
+    ],
+    "requires": [
+      "Odoo 19 Community or Enterprise. Depends only on base and web, and nothing leaves your server. Layouts are managed by Settings administrators; everyone else simply gets the result."
+    ],
+    "price": 99.0,
+    "manifestPrice": 99.0,
+    "currency": "USD",
+    "category": "Productivity",
+    "version": "19.0.1.0.11",
+    "license": "OPL-1",
+    "depends": [
+      "base",
+      "web"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_list_view_layouts",
+    "screenshots": [
+      "screenshot_layout.png"
+    ],
+    "copyWords": 357,
+    "hasVideo": true,
+    "youtubeId": "_jn7KswDh-k",
+    "externalPage": null
+  },
+  {
+    "tech": "mh_microsoft_ads_launcher",
+    "slug": "microsoft-ads-connector",
+    "name": "Microsoft Ads Connector",
+    "summary": "Bing Ads inside Odoo: create and manage search campaigns, ad groups, keywords with match types and responsive search ads, using your own developer token and Azure AD client.",
+    "tagline": "",
+    "intro": [
+      "Microsoft Ads Connector connects to your own Microsoft Advertising account with a developer token, Azure AD (Entra ID) OAuth client, and refresh token you generate yourself - nothing to submit to us, no app review dependency on our end. Once connected, you get real campaign management inside Odoo: browse and sync existing Search campaigns, ad groups, keywords, and ads, publish new ones, control daily budget and CPC bids, manage keywords and match types, pause, resume, clone, or delete anything - all through the real Microsoft Advertising API."
+    ],
+    "features": [
+      {
+        "heading": "Bring your own credentials",
+        "body": [
+          "Uses a developer token, Azure AD client ID/secret, and refresh token from your own Microsoft Advertising and Azure accounts - you're managing your own account with your own credentials. A single-account developer token is issued instantly from Microsoft's Developer Portal - there's nothing to submit to us and nothing to wait on from our side."
+        ]
+      },
+      {
+        "heading": "Real campaign management, not just reports",
+        "body": [
+          "Builds, publishes, updates, clones, and deletes campaigns, ad groups, keywords, and ads directly - the same actions you'd otherwise do in the Microsoft Advertising UI."
+        ]
+      },
+      {
+        "heading": "Budget and keyword targeting",
+        "body": [
+          "Set a daily budget per campaign, then manage keywords and match types (broad, phrase, exact) with per-ad-group CPC bids, all from standard Odoo form and list views."
+        ]
+      },
+      {
+        "heading": "Reach Bing's search audience from Odoo",
+        "body": [
+          "Microsoft Advertising reaches the Bing/Microsoft Search Network - a real, if secondary, search-ads channel most Google-first advertisers still don't manage - now on the same screens as the rest of your Odoo data."
+        ]
+      },
+      {
+        "heading": "Every write action stays reviewable before it touches Microsoft",
+        "body": [
+          "Publish, pause, resume, clone, and delete are explicit buttons you click after reviewing the record - nothing is pushed to Microsoft automatically in the background. Every field maps directly to a real Microsoft Advertising API parameter, so what you set in Odoo is exactly what reaches your account."
+        ]
+      },
+      {
+        "heading": "Who this is for",
+        "body": [
+          "Odoo teams running Microsoft Advertising (Bing Ads) search campaigns - often alongside Google Ads - who want campaign management next to their CRM, sales, and reporting data instead of switching to a separate platform, and who manage their own Microsoft Advertising and Azure access without waiting on our review queue."
+        ]
+      }
+    ],
+    "scope": [],
+    "requires": [],
+    "price": 99.0,
+    "manifestPrice": 99.0,
+    "currency": "USD",
+    "category": "Marketing/Marketing",
+    "version": "19.0.1.0.10",
+    "license": "OPL-1",
+    "depends": [
+      "base"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_microsoft_ads_launcher",
+    "screenshots": [
+      "screenshot_campaign.png"
+    ],
+    "copyWords": 358,
+    "hasVideo": true,
+    "youtubeId": "U4CcE_tnDQc",
     "externalPage": null
   },
   {
@@ -1295,72 +1475,123 @@ export const odooApps = [
     "externalPage": null
   },
   {
-    "tech": "mh_microsoft_ads_launcher",
-    "slug": "microsoft-ads-connector",
-    "name": "Microsoft Ads Connector",
-    "summary": "Bing Ads inside Odoo: create and manage search campaigns, ad groups, keywords with match types and responsive search ads, using your own developer token and Azure AD client.",
-    "tagline": "",
+    "tech": "mh_unbilled_work",
+    "slug": "unbilled-work-report",
+    "name": "Unbilled Work Report",
+    "summary": "Unbilled timesheets aged by how long they have been sitting: project time worked and never invoiced, with the cost and the sale value of each bucket",
+    "tagline": "Project timesheets that have been worked and never invoiced, aged by how long they have been sitting, with the cost and the sale value of each bucket",
     "intro": [
-      "Microsoft Ads Connector connects to your own Microsoft Advertising account with a developer token, Azure AD (Entra ID) OAuth client, and refresh token you generate yourself - nothing to submit to us, no app review dependency on our end. Once connected, you get real campaign management inside Odoo: browse and sync existing Search campaigns, ad groups, keywords, and ads, publish new ones, control daily budget and CPC bids, manage keywords and match types, pause, resume, clone, or delete anything - all through the real Microsoft Advertising API."
+      "Odoo knows which timesheets are billable and which have been invoiced. What it does not put anywhere is how long the rest have been sitting - and the age is the whole story.",
+      "Work billed a fortnight late is a nuisance. Work billed six months late is a conversation about whether it really took that long, with nobody left who remembers the detail. Often it simply never gets billed at all.",
+      "By project and by age, with the hours, the cost, and what it is worth."
     ],
     "features": [
       {
-        "heading": "Bring your own credentials",
+        "heading": "Aged, because age is the story",
         "body": [
-          "Uses a developer token, Azure AD client ID/secret, and refresh token from your own Microsoft Advertising and Azure accounts - you're managing your own account with your own credentials. A single-account developer token is issued instantly from Microsoft's Developer Portal - there's nothing to submit to us and nothing to wait on from our side."
+          "0-30 days, 31-90, 91-180 and over six months, with the date of the oldest entry in each row. Rolling a project into one figure would hide exactly how long the oldest money has been waiting."
         ]
       },
       {
-        "heading": "Real campaign management, not just reports",
+        "heading": "Only work somebody meant to charge for",
         "body": [
-          "Builds, publishes, updates, clones, and deletes campaigns, ad groups, keywords, and ads directly - the same actions you'd otherwise do in the Microsoft Advertising UI."
+          "Non-billable hours are not late invoices - they are hours nobody was ever going to bill, and mixing them in makes the total meaningless. Invoiced timesheets drop out too, or the figure becomes a measure of how much work was done."
         ]
       },
       {
-        "heading": "Budget and keyword targeting",
+        "heading": "It admits what it cannot price",
         "body": [
-          "Set a daily budget per campaign, then manage keywords and match types (broad, phrase, exact) with per-ad-group CPC bids, all from standard Odoo form and list views."
+          "Entries with no sales order line - which come from projects billed manually, exactly where work gets forgotten - are counted in the hours and the cost, left out of the sale value, and reported as a count. Pricing them would mean inventing a rate, and a made-up number in a money report is worse than an admitted gap."
         ]
       },
       {
-        "heading": "Reach Bing's search audience from Odoo",
+        "heading": "Straight to the old ones",
         "body": [
-          "Microsoft Advertising reaches the Bing/Microsoft Search Network - a real, if secondary, search-ads channel most Google-first advertisers still don't manage - now on the same screens as the rest of your Odoo data."
+          "One button opens only what has been waiting more than ninety days, and the findings name the projects carrying most of it. That is the list somebody can actually work through this afternoon."
         ]
       },
       {
-        "heading": "Every write action stays reviewable before it touches Microsoft",
+        "heading": "Cost and value, side by side",
         "body": [
-          "Publish, pause, resume, clone, and delete are explicit buttons you click after reviewing the record - nothing is pushed to Microsoft automatically in the background. Every field maps directly to a real Microsoft Advertising API parameter, so what you set in Odoo is exactly what reaches your account."
-        ]
-      },
-      {
-        "heading": "Who this is for",
-        "body": [
-          "Odoo teams running Microsoft Advertising (Bing Ads) search campaigns - often alongside Google Ads - who want campaign management next to their CRM, sales, and reporting data instead of switching to a separate platform, and who manage their own Microsoft Advertising and Azure access without waiting on our review queue."
+          "What the hours cost you and what they were sold for, from the sales order line's own price rather than a list price that may have been discounted away."
         ]
       }
     ],
     "scope": [],
-    "requires": [],
-    "price": 59.0,
-    "manifestPrice": 59.0,
+    "requires": [
+      "Odoo 19 Community or Enterprise with Sales - Timesheets. It reads only: nothing is invoiced, changed or written back, and it has no opinion about whether the work should have been billed - only that it has not been."
+    ],
+    "price": 69.01,
+    "manifestPrice": 69.0,
     "currency": "USD",
-    "category": "Marketing/Marketing",
-    "version": "19.0.1.0.8",
+    "category": "Project",
+    "version": "19.0.1.0.13",
     "license": "OPL-1",
     "depends": [
-      "base"
+      "sale_timesheet"
     ],
     "paidDepends": [],
     "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_microsoft_ads_launcher",
+    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_unbilled_work",
     "screenshots": [
-      "screenshot_campaign.png"
+      "screenshot_unbilled.png"
     ],
-    "copyWords": 358,
+    "copyWords": 340,
     "hasVideo": true,
-    "youtubeId": "U4CcE_tnDQc",
+    "youtubeId": "WdJ8bg27kqw",
+    "externalPage": null
+  },
+  {
+    "tech": "mh_user_offboarding",
+    "slug": "user-offboarding-check",
+    "name": "User Offboarding Check",
+    "summary": "Everything in the database that still points at a user before you archive them: scheduled actions, open activities, assigned records, API keys - and what silently breaks if you archive without reassigning",
+    "tagline": "",
+    "intro": [
+      "Everything in the database that still points at a user before you archive them: scheduled actions, open activities, assigned records, API keys — and what silently breaks if you archive without reassigning"
+    ],
+    "features": [
+      {
+        "heading": "The one that costs the most, and it is not what you would guess",
+        "body": [
+          "A scheduled action owned by somebody who has left keeps running, with their access rights, for as long as nobody notices. Archiving blocks the login and nothing else - the account keeps every group it had, so the job goes on creating and writing as them.",
+          "Verified rather than reasoned about: an archived user still returns True from has_group and keeps every implied group, and a real scheduled action owned by one was run through Odoo's own callback and created a record without raising. A login nobody can use, still writing to the database on a schedule."
+        ]
+      },
+      {
+        "heading": "Found by asking the database, not by keeping a list",
+        "body": [
+          "The check sweeps the registry for every stored field that points at a user and counts what each one holds for this person. A list maintained inside the app would miss exactly the custom fields somebody is most likely to be named on.",
+          "Bookkeeping is deliberately left out. Created-by and written-by point at whoever typed something once; counting them would put every record the person ever touched into the report and bury the handful anybody has to act on."
+        ]
+      }
+    ],
+    "scope": [
+      "Every record that named them still names them. Every activity assigned to them is still assigned to them. Every scheduled action set to run as them is still set to run as them. None of it is reassigned, and nothing tells you any of it was there.",
+      "One person, everything still attached to them, and the two categories that stop something happening called out separately. Each line opens the records it counted.",
+      "Stated up front so nothing about the scope is a surprise after you install it."
+    ],
+    "requires": [
+      "Odoo 19, Community or Enterprise. Needs Discuss (for activities). Administrator access, since the check reads across every model in the database. Nothing is written to any record it finds."
+    ],
+    "price": 69.01,
+    "manifestPrice": 69.0,
+    "currency": "USD",
+    "category": "Tools",
+    "version": "19.0.1.0.15",
+    "license": "OPL-1",
+    "depends": [
+      "mail"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_user_offboarding",
+    "screenshots": [
+      "screenshot_check.png"
+    ],
+    "copyWords": 319,
+    "hasVideo": true,
+    "youtubeId": "2pmq2pRXXZU",
     "externalPage": null
   },
   {
@@ -1390,7 +1621,7 @@ export const odooApps = [
     "manifestPrice": 59.0,
     "currency": "USD",
     "category": "Accounting/Localizations",
-    "version": "19.0.1.0.6",
+    "version": "19.0.1.0.7",
     "license": "OPL-1",
     "depends": [
       "l10n_ro"
@@ -1437,7 +1668,7 @@ export const odooApps = [
     "manifestPrice": 59.0,
     "currency": "USD",
     "category": "Human Resources",
-    "version": "19.0.1.0.7",
+    "version": "19.0.1.0.8",
     "license": "OPL-1",
     "depends": [
       "mail"
@@ -1811,53 +2042,6 @@ export const odooApps = [
     "externalPage": null
   },
   {
-    "tech": "mh_gdpr_retention",
-    "slug": "gdpr-retention-purge",
-    "name": "GDPR Retention Purge",
-    "summary": "Blank selected personal data fields on a schedule while keeping the record and its history. Legal hold exemption, storage limitation, append only audit log. Not a Data Recycle clone.",
-    "tagline": "Per-field anonymization, a legal hold override, and an append-only purge log - not a Data Recycle clone",
-    "intro": [
-      "GDPR Article 5(1)(e) storage limitation - keep personal data no longer than necessary - is one of the most commonly cited failure points in EU DPA enforcement actions.",
-      "Odoo Community already ships Data Recycle for free, which finds stale records and archives/deletes the whole record on a schedule. This app deliberately does not duplicate that. What it adds: per-field anonymization that blanks just the PII fields (name, email, phone, notes) while leaving the record and its non-personal business data intact; a Legal Hold override that exempts a specific record from anonymization for litigation or a statutory requirement, checked before every run, no exceptions; and a regulator-exportable, append-only audit log - proof of what was anonymized, when, and under which rule. No one can edit or delete a log entry through the UI once it's written.",
-      "Meant to sit beside Data Recycle and OCA's data-protection registry, not replace either."
-    ],
-    "features": [
-      {
-        "heading": "Can't break a record by accident",
-        "body": [
-          "The field picker refuses required fields and multi-value relations - both at the UI level and as a real server-side constraint, not just a hint you can bypass."
-        ]
-      },
-      {
-        "heading": "A log that's actually evidence",
-        "body": [
-          "No perm_write, no perm_unlink, no manual perm_create for any group, including admins - only the scheduled run itself can write a log entry."
-        ]
-      }
-    ],
-    "scope": [],
-    "requires": [],
-    "price": 49.0,
-    "manifestPrice": 49.0,
-    "currency": "USD",
-    "category": "Extra Tools",
-    "version": "19.0.1.0.7",
-    "license": "OPL-1",
-    "depends": [
-      "mail"
-    ],
-    "paidDepends": [],
-    "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_gdpr_retention",
-    "screenshots": [
-      "screenshot_rule.png"
-    ],
-    "copyWords": 227,
-    "hasVideo": true,
-    "youtubeId": "94Z_6sknEi4",
-    "externalPage": null
-  },
-  {
     "tech": "mh_mcp_server",
     "slug": "mcp-server-for-odoo",
     "name": "MCP Server for Odoo",
@@ -1979,7 +2163,7 @@ export const odooApps = [
     "manifestPrice": 49.0,
     "currency": "USD",
     "category": "Manufacturing",
-    "version": "19.0.1.0.9",
+    "version": "19.0.1.0.11",
     "license": "OPL-1",
     "depends": [
       "quality"
@@ -2048,7 +2232,7 @@ export const odooApps = [
     "manifestPrice": 49.0,
     "currency": "USD",
     "category": "Marketing/Marketing",
-    "version": "19.0.1.0.7",
+    "version": "19.0.1.0.8",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -2225,7 +2409,7 @@ export const odooApps = [
     "manifestPrice": 39.0,
     "currency": "USD",
     "category": "Human Resources",
-    "version": "19.0.1.0.6",
+    "version": "19.0.1.0.7",
     "license": "OPL-1",
     "depends": [
       "website_hr_recruitment"
@@ -2412,7 +2596,7 @@ export const odooApps = [
     "manifestPrice": 39.0,
     "currency": "USD",
     "category": "Extra Tools",
-    "version": "19.0.1.0.6",
+    "version": "19.0.1.0.7",
     "license": "OPL-1",
     "depends": [
       "mail"
@@ -2489,70 +2673,6 @@ export const odooApps = [
     "copyWords": 287,
     "hasVideo": true,
     "youtubeId": "NI-1QUI0XoI",
-    "externalPage": null
-  },
-  {
-    "tech": "mh_list_view_layouts",
-    "slug": "list-view-layouts",
-    "name": "List View Layouts",
-    "summary": "Set the default list view columns for a model and assign them per group, so a team opens the same layout instead of rebuilding it",
-    "tagline": "Set the default list view columns for a model and assign them per group, so a team opens the same layout instead of rebuilding it",
-    "intro": [
-      "Odoo keeps optional-column visibility in each browser's localStorage. That makes it per person, per browser, and gone when the cache is cleared - so there is no way to say \"everyone in Sales opens quotations with these columns\", and every new starter begins from the default and rebuilds the view by hand.",
-      "This puts that decision in one place: pick a model, pick the columns, pick who it applies to.",
-      "A layout for contacts, applied to one group, kept applied so it does not drift."
-    ],
-    "features": [
-      {
-        "heading": "One layout, assigned to the people who need it",
-        "body": [
-          "Define the visible columns for a model and attach the layout to groups, or leave it open to everyone. Where a person matches more than one layout, the lowest sequence wins, so a specific team layout beats a general default without either having to know about the other."
-        ]
-      },
-      {
-        "heading": "A starting point, or kept applied",
-        "body": [
-          "Off, the layout is what people get the first time and their own adjustments are remembered afterwards. On, it is reapplied every time the list opens, so a shared screen or a reporting view stays as configured instead of drifting one person at a time."
-        ]
-      },
-      {
-        "heading": "It uses Odoo's own hook",
-        "body": [
-          "The layout is applied through the same method Odoo itself calls to decide which optional columns start visible, rather than rewriting the list after it has drawn. Nothing flickers, and a model with no layout behaves exactly as it does today."
-        ]
-      },
-      {
-        "heading": "Visibility is not security",
-        "body": [
-          "Hiding a column hides a column. Nobody sees a field they could not already read, and nobody is prevented from reading one by a layout - that is what access rights and record rules are for, and this app deliberately does not pretend otherwise."
-        ]
-      }
-    ],
-    "scope": [
-      "No column order or width - Odoo does not expose either per user, and claiming it would mean fighting the renderer on every draw. It does not touch the columns a view always shows, and it does not change what anyone is allowed to see."
-    ],
-    "requires": [
-      "Odoo 19 Community or Enterprise. Depends only on base and web, and nothing leaves your server. Layouts are managed by Settings administrators; everyone else simply gets the result."
-    ],
-    "price": 39.0,
-    "manifestPrice": 39.0,
-    "currency": "USD",
-    "category": "Productivity",
-    "version": "19.0.1.0.10",
-    "license": "OPL-1",
-    "depends": [
-      "base",
-      "web"
-    ],
-    "paidDepends": [],
-    "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_list_view_layouts",
-    "screenshots": [
-      "screenshot_layout.png"
-    ],
-    "copyWords": 357,
-    "hasVideo": true,
-    "youtubeId": "_jn7KswDh-k",
     "externalPage": null
   },
   {
@@ -2913,7 +3033,7 @@ export const odooApps = [
     "manifestPrice": 39.0,
     "currency": "USD",
     "category": "Extra Tools",
-    "version": "19.0.1.0.6",
+    "version": "19.0.1.0.7",
     "license": "OPL-1",
     "depends": [
       "mail"
@@ -3328,126 +3448,6 @@ export const odooApps = [
     "copyWords": 357,
     "hasVideo": true,
     "youtubeId": "m0A3u_4iMDc",
-    "externalPage": null
-  },
-  {
-    "tech": "mh_unbilled_work",
-    "slug": "unbilled-work-report",
-    "name": "Unbilled Work Report",
-    "summary": "Unbilled timesheets aged by how long they have been sitting: project time worked and never invoiced, with the cost and the sale value of each bucket",
-    "tagline": "Project timesheets that have been worked and never invoiced, aged by how long they have been sitting, with the cost and the sale value of each bucket",
-    "intro": [
-      "Odoo knows which timesheets are billable and which have been invoiced. What it does not put anywhere is how long the rest have been sitting - and the age is the whole story.",
-      "Work billed a fortnight late is a nuisance. Work billed six months late is a conversation about whether it really took that long, with nobody left who remembers the detail. Often it simply never gets billed at all.",
-      "By project and by age, with the hours, the cost, and what it is worth."
-    ],
-    "features": [
-      {
-        "heading": "Aged, because age is the story",
-        "body": [
-          "0-30 days, 31-90, 91-180 and over six months, with the date of the oldest entry in each row. Rolling a project into one figure would hide exactly how long the oldest money has been waiting."
-        ]
-      },
-      {
-        "heading": "Only work somebody meant to charge for",
-        "body": [
-          "Non-billable hours are not late invoices - they are hours nobody was ever going to bill, and mixing them in makes the total meaningless. Invoiced timesheets drop out too, or the figure becomes a measure of how much work was done."
-        ]
-      },
-      {
-        "heading": "It admits what it cannot price",
-        "body": [
-          "Entries with no sales order line - which come from projects billed manually, exactly where work gets forgotten - are counted in the hours and the cost, left out of the sale value, and reported as a count. Pricing them would mean inventing a rate, and a made-up number in a money report is worse than an admitted gap."
-        ]
-      },
-      {
-        "heading": "Straight to the old ones",
-        "body": [
-          "One button opens only what has been waiting more than ninety days, and the findings name the projects carrying most of it. That is the list somebody can actually work through this afternoon."
-        ]
-      },
-      {
-        "heading": "Cost and value, side by side",
-        "body": [
-          "What the hours cost you and what they were sold for, from the sales order line's own price rather than a list price that may have been discounted away."
-        ]
-      }
-    ],
-    "scope": [],
-    "requires": [
-      "Odoo 19 Community or Enterprise with Sales - Timesheets. It reads only: nothing is invoiced, changed or written back, and it has no opinion about whether the work should have been billed - only that it has not been."
-    ],
-    "price": 29.0,
-    "manifestPrice": 29.0,
-    "currency": "USD",
-    "category": "Project",
-    "version": "19.0.1.0.12",
-    "license": "OPL-1",
-    "depends": [
-      "sale_timesheet"
-    ],
-    "paidDepends": [],
-    "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_unbilled_work",
-    "screenshots": [
-      "screenshot_unbilled.png"
-    ],
-    "copyWords": 340,
-    "hasVideo": true,
-    "youtubeId": "WdJ8bg27kqw",
-    "externalPage": null
-  },
-  {
-    "tech": "mh_user_offboarding",
-    "slug": "user-offboarding-check",
-    "name": "User Offboarding Check",
-    "summary": "Everything in the database that still points at a user before you archive them: scheduled actions, open activities, assigned records, API keys - and what silently breaks if you archive without reassigning",
-    "tagline": "",
-    "intro": [
-      "Everything in the database that still points at a user before you archive them: scheduled actions, open activities, assigned records, API keys — and what silently breaks if you archive without reassigning"
-    ],
-    "features": [
-      {
-        "heading": "The one that costs the most, and it is not what you would guess",
-        "body": [
-          "A scheduled action owned by somebody who has left keeps running, with their access rights, for as long as nobody notices. Archiving blocks the login and nothing else - the account keeps every group it had, so the job goes on creating and writing as them.",
-          "Verified rather than reasoned about: an archived user still returns True from has_group and keeps every implied group, and a real scheduled action owned by one was run through Odoo's own callback and created a record without raising. A login nobody can use, still writing to the database on a schedule."
-        ]
-      },
-      {
-        "heading": "Found by asking the database, not by keeping a list",
-        "body": [
-          "The check sweeps the registry for every stored field that points at a user and counts what each one holds for this person. A list maintained inside the app would miss exactly the custom fields somebody is most likely to be named on.",
-          "Bookkeeping is deliberately left out. Created-by and written-by point at whoever typed something once; counting them would put every record the person ever touched into the report and bury the handful anybody has to act on."
-        ]
-      }
-    ],
-    "scope": [
-      "Every record that named them still names them. Every activity assigned to them is still assigned to them. Every scheduled action set to run as them is still set to run as them. None of it is reassigned, and nothing tells you any of it was there.",
-      "One person, everything still attached to them, and the two categories that stop something happening called out separately. Each line opens the records it counted.",
-      "Stated up front so nothing about the scope is a surprise after you install it."
-    ],
-    "requires": [
-      "Odoo 19, Community or Enterprise. Needs Discuss (for activities). Administrator access, since the check reads across every model in the database. Nothing is written to any record it finds."
-    ],
-    "price": 29.0,
-    "manifestPrice": 29.0,
-    "currency": "USD",
-    "category": "Tools",
-    "version": "19.0.1.0.14",
-    "license": "OPL-1",
-    "depends": [
-      "mail"
-    ],
-    "paidDepends": [],
-    "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_user_offboarding",
-    "screenshots": [
-      "screenshot_check.png"
-    ],
-    "copyWords": 319,
-    "hasVideo": true,
-    "youtubeId": "2pmq2pRXXZU",
     "externalPage": null
   },
   {
@@ -4127,7 +4127,7 @@ export const odooApps = [
       "stock_account"
     ],
     "paidDepends": [],
-    "downloads": 5,
+    "downloads": 8,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_cost_price_history",
     "screenshots": [
       "screenshot_history.png"
@@ -4419,7 +4419,7 @@ export const odooApps = [
       "stock"
     ],
     "paidDepends": [],
-    "downloads": 6,
+    "downloads": 7,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_dead_stock_check",
     "screenshots": [
       "screenshot_check.png"
@@ -4739,7 +4739,7 @@ export const odooApps = [
       "stock"
     ],
     "paidDepends": [],
-    "downloads": 2,
+    "downloads": 3,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_eudr_scope_check",
     "screenshots": [
       "screenshot_check.png"
@@ -5449,7 +5449,7 @@ export const odooApps = [
       "analytic"
     ],
     "paidDepends": [],
-    "downloads": 8,
+    "downloads": 9,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_pos_analytic_account",
     "screenshots": [
       "screenshot_settings.png"
@@ -6094,7 +6094,7 @@ export const odooApps = [
       "stock_account"
     ],
     "paidDepends": [],
-    "downloads": 16,
+    "downloads": 17,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_stock_card_ledger",
     "screenshots": [
       "screenshot_ledger.png"
