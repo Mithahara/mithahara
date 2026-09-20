@@ -79,7 +79,7 @@ export const apps = [
       "Reference numbers in the bank memo matched first",
       "Short payments coded to reusable, named deduction reasons — not one-off write-offs"
     ],
-    price: "$200",
+    price: "$69",
     url: "https://apps.odoo.com/apps/modules/19.0/mh_cash_application_matcher",
     screenshots: [
       { src: "/apps/community-cash-reconciler/bank-lines.png", alt: "Unreconciled bank lines waiting to have cash applied" },
@@ -104,7 +104,7 @@ export const apps = [
       "One-click report of everything that landed in the rounding account",
       "Lives right next to Odoo's own exchange-difference settings"
     ],
-    price: "$150",
+    price: "$29",
     url: "https://apps.odoo.com/apps/modules/19.0/mh_currency_rounding_tool",
     screenshots: [
       { src: "/apps/multi-currency-rounding/threshold.png", alt: "Setting the rounding threshold and dedicated rounding account" },
@@ -186,7 +186,7 @@ export const apps = [
       "Spend, impressions, clicks, reach, CTR, CPC, and CPM insights",
       "Targets Odoo 17.0, 18.0, and 19.0, Community and Enterprise"
     ],
-    price: "$349",
+    price: "$99",
     url: "https://apps.odoo.com/apps/modules/19.0/mh_meta_odoo_connector",
     screenshots: [
       { src: "/apps/meta-odoo-connector/connections.png", alt: "Connecting a Meta ad account with an access token" },
