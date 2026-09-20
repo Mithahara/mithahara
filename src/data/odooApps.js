@@ -5,7 +5,7 @@
 // generator; editing here forks the copy away from what the store actually
 // serves.
 //
-// Store snapshot: 2026-09-19T23:28:18+00:00
+// Store snapshot: 2026-09-20T17:08:49+00:00
 
 export const odooApps = [
   {
@@ -78,6 +78,78 @@ export const odooApps = [
     "copyWords": 509,
     "hasVideo": true,
     "youtubeId": null,
+    "externalPage": null
+  },
+  {
+    "tech": "mh_meta_auto_scale_engine",
+    "slug": "auto-scale-engine",
+    "name": "Auto Scale Engine",
+    "summary": "Clone campaigns that are winning into other Meta ad accounts on a ROAS or spend threshold: Facebook and Instagram, with budget multipliers and an idempotent run ledger.",
+    "tagline": "Auto-clone winning Meta ad campaigns into other ad accounts under a budget rule",
+    "intro": [
+      "Watches a source Meta ad account for campaigns that clear a performance bar you define - ROAS, spend, purchases, campaign age, cost per purchase - then clones the winning campaign, full ad-set/ad/creative tree included, into one or more destination accounts under a budget rule and a naming template. Every clone is published atomically: built entirely paused, then verified against the plan before it's ever activated - if anything fails partway, everything created for that destination is torn down and the run moves on. An idempotency ledger makes sure the same campaign is never cloned into the same account twice, and every run keeps a full step-by-step log."
+    ],
+    "features": [
+      {
+        "heading": "Rule-based qualification",
+        "body": [
+          "Set ROAS, spend, purchase, campaign-age, and cost-per-purchase thresholds - a campaign only gets cloned once it clears every rule you set, evaluated fresh on every run."
+        ]
+      },
+      {
+        "heading": "A real budget rule, not a flat copy",
+        "body": [
+          "Copy the original budget, set a fixed amount, apply a percentage multiplier, or write a sandboxed custom formula (min/max/round/floor/ceil over the original budget) - with a platform-minimum clamp so a clone is never published under Meta's own floor."
+        ]
+      },
+      {
+        "heading": "Atomic, never half-published",
+        "body": [
+          "Every clone is built entirely paused, then the whole reconstructed tree is verified against the plan before it's activated. Any failure partway through tears down everything created for that destination - you never end up with a broken half-campaign live in an ad account."
+        ]
+      },
+      {
+        "heading": "Never cloned twice",
+        "body": [
+          "Every clone attempt is recorded against the source campaign and destination account it was cloned into - the same winner is never re-cloned into the same account on a later run."
+        ]
+      },
+      {
+        "heading": "Who this is for",
+        "body": [
+          "Media buyers and agencies already running Meta Odoo Connector who manage more than one ad account and want winner-scaling automation instead of manually rebuilding a good campaign in every destination account by hand."
+        ]
+      }
+    ],
+    "scope": [],
+    "requires": [],
+    "price": 168.01,
+    "manifestPrice": 69.0,
+    "currency": "USD",
+    "category": "Marketing/Marketing",
+    "version": "19.0.1.0.8",
+    "license": "OPL-1",
+    "depends": [
+      "mh_meta_odoo_connector"
+    ],
+    "paidDepends": [
+      {
+        "tech": "mh_meta_odoo_connector",
+        "name": "Meta Odoo Connector",
+        "price": 99.0
+      }
+    ],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_meta_auto_scale_engine",
+    "screenshots": [
+      "screenshot_account_group.png",
+      "screenshot_scaling_profile.png",
+      "screenshot_run_log.png",
+      "screenshot_clone_ledger.png"
+    ],
+    "copyWords": 312,
+    "hasVideo": true,
+    "youtubeId": "C4yo2wPGTDM",
     "externalPage": null
   },
   {
@@ -264,78 +336,6 @@ export const odooApps = [
     "externalPage": null
   },
   {
-    "tech": "mh_meta_auto_scale_engine",
-    "slug": "auto-scale-engine",
-    "name": "Auto Scale Engine",
-    "summary": "Clone campaigns that are winning into other Meta ad accounts on a ROAS or spend threshold: Facebook and Instagram, with budget multipliers and an idempotent run ledger.",
-    "tagline": "Auto-clone winning Meta ad campaigns into other ad accounts under a budget rule",
-    "intro": [
-      "Watches a source Meta ad account for campaigns that clear a performance bar you define - ROAS, spend, purchases, campaign age, cost per purchase - then clones the winning campaign, full ad-set/ad/creative tree included, into one or more destination accounts under a budget rule and a naming template. Every clone is published atomically: built entirely paused, then verified against the plan before it's ever activated - if anything fails partway, everything created for that destination is torn down and the run moves on. An idempotency ledger makes sure the same campaign is never cloned into the same account twice, and every run keeps a full step-by-step log."
-    ],
-    "features": [
-      {
-        "heading": "Rule-based qualification",
-        "body": [
-          "Set ROAS, spend, purchase, campaign-age, and cost-per-purchase thresholds - a campaign only gets cloned once it clears every rule you set, evaluated fresh on every run."
-        ]
-      },
-      {
-        "heading": "A real budget rule, not a flat copy",
-        "body": [
-          "Copy the original budget, set a fixed amount, apply a percentage multiplier, or write a sandboxed custom formula (min/max/round/floor/ceil over the original budget) - with a platform-minimum clamp so a clone is never published under Meta's own floor."
-        ]
-      },
-      {
-        "heading": "Atomic, never half-published",
-        "body": [
-          "Every clone is built entirely paused, then the whole reconstructed tree is verified against the plan before it's activated. Any failure partway through tears down everything created for that destination - you never end up with a broken half-campaign live in an ad account."
-        ]
-      },
-      {
-        "heading": "Never cloned twice",
-        "body": [
-          "Every clone attempt is recorded against the source campaign and destination account it was cloned into - the same winner is never re-cloned into the same account on a later run."
-        ]
-      },
-      {
-        "heading": "Who this is for",
-        "body": [
-          "Media buyers and agencies already running Meta Odoo Connector who manage more than one ad account and want winner-scaling automation instead of manually rebuilding a good campaign in every destination account by hand."
-        ]
-      }
-    ],
-    "scope": [],
-    "requires": [],
-    "price": 148.0,
-    "manifestPrice": 69.0,
-    "currency": "USD",
-    "category": "Marketing/Marketing",
-    "version": "19.0.1.0.8",
-    "license": "OPL-1",
-    "depends": [
-      "mh_meta_odoo_connector"
-    ],
-    "paidDepends": [
-      {
-        "tech": "mh_meta_odoo_connector",
-        "name": "Meta Odoo Connector",
-        "price": 79.0
-      }
-    ],
-    "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_meta_auto_scale_engine",
-    "screenshots": [
-      "screenshot_account_group.png",
-      "screenshot_scaling_profile.png",
-      "screenshot_run_log.png",
-      "screenshot_clone_ledger.png"
-    ],
-    "copyWords": 312,
-    "hasVideo": true,
-    "youtubeId": "C4yo2wPGTDM",
-    "externalPage": null
-  },
-  {
     "tech": "mh_field_access_rules",
     "slug": "field-access-rules",
     "name": "Field Access Rules",
@@ -405,6 +405,77 @@ export const odooApps = [
     "externalPage": null
   },
   {
+    "tech": "mh_google_ads_launcher",
+    "slug": "google-ads-odoo-connector",
+    "name": "Google Ads Odoo Connector",
+    "summary": "Create and manage search campaigns, ad groups, keywords and responsive search ads with your own developer token. PPC cost and conversions beside your CRM.",
+    "tagline": "",
+    "intro": [
+      "Google Ads Odoo Connector connects to your own Google Ads account with a developer token, OAuth client, and refresh token you generate yourself - nothing to submit to us, no app review dependency on our end. Once connected, you get real campaign management inside Odoo: browse and sync existing Search campaigns, ad groups, keywords, and responsive search ads, publish new ones, control daily budget and bidding strategy, manage keywords and match types, pause or delete anything, clone a winning campaign, and pull clicks/impressions/cost/conversions for any date range - all through the real Google Ads API."
+    ],
+    "features": [
+      {
+        "heading": "Bring your own credentials",
+        "body": [
+          "Uses a developer token, OAuth client, and refresh token from your own Google Ads Manager account and Google Cloud project - you're managing your own account with your own credentials. Basic Access is a self-service application you submit directly to Google (typically about 5 business days) - there's nothing to submit to us and nothing to wait on from our side."
+        ]
+      },
+      {
+        "heading": "Real campaign management, not just reports",
+        "body": [
+          "Most Google Ads connectors on the Marketplace only sync performance reports. This one builds, publishes, updates, clones, and deletes campaigns, ad groups, keywords, and ads directly - the same actions you'd otherwise do in Google Ads."
+        ]
+      },
+      {
+        "heading": "Budget, bidding, and keyword targeting",
+        "body": [
+          "Set a daily budget and choose a bidding strategy - Manual CPC, Maximize Clicks, or Target CPA - then manage keywords and match types (broad, phrase, exact) at the ad group level, all from standard Odoo form and list views."
+        ]
+      },
+      {
+        "heading": "Performance insights alongside your data",
+        "body": [
+          "Sync clicks, impressions, cost, conversions, CTR, CPC, and CPA for any campaign or ad group - pick a preset range or a custom date window - without opening Google Ads or exporting a report."
+        ]
+      },
+      {
+        "heading": "Every write action stays reviewable before it touches Google",
+        "body": [
+          "Publish, update, clone, and delete are explicit buttons you click after reviewing the record - nothing is pushed to Google automatically in the background. Every field maps directly to a real Google Ads API parameter, so what you set in Odoo is exactly what reaches your account."
+        ]
+      },
+      {
+        "heading": "Who this is for",
+        "body": [
+          "Built for Odoo teams running Google Ads Search campaigns who want campaign management alongside their CRM, sales, and reporting data instead of switching to Google Ads - marketers who manage their own Google Ads and Google Cloud access and don't want to wait on our review queue to get started."
+        ]
+      }
+    ],
+    "scope": [],
+    "requires": [],
+    "price": 99.0,
+    "manifestPrice": 99.0,
+    "currency": "USD",
+    "category": "Marketing/Marketing",
+    "version": "19.0.1.0.8",
+    "license": "OPL-1",
+    "depends": [
+      "base"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_google_ads_launcher",
+    "screenshots": [
+      "screenshot_campaign.png",
+      "screenshot_keywords.png",
+      "screenshot_ads.png"
+    ],
+    "copyWords": 396,
+    "hasVideo": true,
+    "youtubeId": "7-tujViJGtA",
+    "externalPage": null
+  },
+  {
     "tech": "mh_list_view_layouts",
     "slug": "list-view-layouts",
     "name": "List View Layouts",
@@ -467,6 +538,79 @@ export const odooApps = [
     "hasVideo": true,
     "youtubeId": "_jn7KswDh-k",
     "externalPage": null
+  },
+  {
+    "tech": "mh_meta_odoo_connector",
+    "slug": "meta-odoo-connector",
+    "name": "Meta Odoo Connector",
+    "summary": "Meta Ads in Odoo: manage Facebook and Instagram campaigns, ad sets, creatives and Lead Ads beside your CRM. Uses your own system user token, so no App Review is needed.",
+    "tagline": "",
+    "intro": [
+      "Meta Odoo Connector connects to your own Meta Business Manager with a System User access token you generate yourself - no Meta App Review, no OAuth app submission, no waiting on an approval queue. Once connected, you get the full campaign lifecycle inside Odoo: sync your existing campaigns, build ad sets, creatives and ads, publish them, control budget and bid strategy, target an audience, pause or delete anything, clone a winning setup, and pull spend/performance insights for any date range - all through the real Meta Marketing API."
+    ],
+    "features": [
+      {
+        "heading": "Bring your own token, skip App Review",
+        "body": [
+          "Most Meta integrations need Meta to review and approve an app before it can touch live ad accounts. This one uses a System User access token from your own Business Manager instead - you're managing your own accounts with your own credentials, so there's nothing to submit and nothing to wait on."
+        ]
+      },
+      {
+        "heading": "The full campaign lifecycle, not just tracking",
+        "body": [
+          "Most Meta apps on the Odoo Marketplace add pixel tracking or Conversions API events. This one builds, publishes, updates, clones, and deletes campaigns, ad sets, creatives, and ads directly - the same actions you'd otherwise do in Meta Ads Manager."
+        ]
+      },
+      {
+        "heading": "Budget, bidding, and audience targeting",
+        "body": [
+          "Set daily or lifetime budgets, choose a bid strategy and bid amount, and target an audience by country, age range, and gender - all from standard Odoo form and list views, with the same fields Meta's own API exposes."
+        ]
+      },
+      {
+        "heading": "Spend and performance insights alongside your data",
+        "body": [
+          "Sync spend, impressions, clicks, reach, CTR, CPC, and CPM for any campaign, ad set, or ad - pick a preset range or a custom date window - without opening Meta Ads Manager or exporting a report."
+        ]
+      },
+      {
+        "heading": "Every write action stays reviewable before it touches Meta",
+        "body": [
+          "Publish, update, clone, and delete are explicit buttons you click after reviewing the record - nothing is pushed to Meta automatically in the background. Every field maps directly to a real Meta Marketing API parameter, so what you set in Odoo is exactly what reaches your ad account."
+        ]
+      },
+      {
+        "heading": "Who this is for",
+        "body": [
+          "Built for Odoo teams running Facebook and Instagram ad campaigns who want campaign management alongside their CRM, sales, and reporting data instead of switching to Meta Ads Manager - marketers who manage their own Business Manager access and don't want to wait on a Meta App Review process to get started."
+        ]
+      }
+    ],
+    "scope": [],
+    "requires": [],
+    "price": 99.0,
+    "manifestPrice": 99.0,
+    "currency": "USD",
+    "category": "Marketing/Marketing",
+    "version": "19.0.1.0.9",
+    "license": "OPL-1",
+    "depends": [
+      "base",
+      "crm"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_meta_odoo_connector",
+    "screenshots": [
+      "screenshot_connection.png",
+      "screenshot_campaigns.png",
+      "screenshot_adset_targeting.png",
+      "screenshot_ad_creative.png"
+    ],
+    "copyWords": 393,
+    "hasVideo": true,
+    "youtubeId": "ZsTgOVQVe5I",
+    "externalPage": "/apps/meta-odoo-connector"
   },
   {
     "tech": "mh_microsoft_ads_launcher",
@@ -666,6 +810,75 @@ export const odooApps = [
     "copyWords": 368,
     "hasVideo": true,
     "youtubeId": "bjnw1R8BgUE",
+    "externalPage": null
+  },
+  {
+    "tech": "mh_snapchat_ads_launcher",
+    "slug": "snapchat-ads-connector",
+    "name": "Snapchat Ads Connector",
+    "summary": "Publish, pause and clone Snap ad squads and ads with your own OAuth credentials. Campaign objectives, daily budgets and delivery status without leaving your ERP.",
+    "tagline": "",
+    "intro": [
+      "Snapchat Ads Connector connects to your own Snapchat Ads account with an OAuth client ID/secret and refresh token you generate yourself - nothing to submit to us, no app review dependency on our end. Once connected, you get real campaign management inside Odoo: browse and sync existing campaigns, ad squads, and ads, publish new ones, control daily budget, audience targeting, and optimization goal, pause, resume, clone, or delete anything, and publish a real ad with its own media upload and creative - all through the real Snapchat Marketing API."
+    ],
+    "features": [
+      {
+        "heading": "Bring your own credentials",
+        "body": [
+          "Uses an OAuth client ID/secret and refresh token from your own Snapchat Business Manager account - the lightest credential model of any connector in this lineup, since Snapchat has no separate developer-token concept. You're managing your own account with your own credentials, self-service, with nothing to submit to us."
+        ]
+      },
+      {
+        "heading": "Real campaign management, not just reports",
+        "body": [
+          "Builds, publishes, updates, clones, and deletes campaigns, ad squads, and ads directly - including a real media upload and creative for the ad itself, not just a placeholder."
+        ]
+      },
+      {
+        "heading": "Budget and audience targeting at the ad squad level",
+        "body": [
+          "Set a daily budget, country targeting, and optimization goal (impressions, swipes, app installs) on each ad squad - matching how Snapchat's own real budget model works, rather than forcing it onto the campaign level."
+        ]
+      },
+      {
+        "heading": "Reach Snapchat's audience from Odoo",
+        "body": [
+          "A genuinely underserved gap on the Odoo App Store - manage a real Snapchat ad presence next to your other ad platforms, without a separate login or dashboard."
+        ]
+      },
+      {
+        "heading": "Every write action stays reviewable before it touches Snapchat",
+        "body": [
+          "Publish, pause, resume, clone, and delete are explicit buttons you click after reviewing the record - nothing is pushed to Snapchat automatically in the background. Every field maps directly to a real Snapchat Marketing API parameter, so what you set in Odoo is exactly what reaches your account."
+        ]
+      },
+      {
+        "heading": "Who this is for",
+        "body": [
+          "Odoo teams running or starting Snapchat Ads campaigns - especially those already managing Meta, Google, or Microsoft ads from Odoo and want the same for Snapchat - who manage their own Snapchat Business Manager access without waiting on our review queue."
+        ]
+      }
+    ],
+    "scope": [],
+    "requires": [],
+    "price": 99.0,
+    "manifestPrice": 99.0,
+    "currency": "USD",
+    "category": "Marketing/Marketing",
+    "version": "19.0.1.0.9",
+    "license": "OPL-1",
+    "depends": [
+      "base"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_snapchat_ads_launcher",
+    "screenshots": [
+      "screenshot_campaign.png"
+    ],
+    "copyWords": 354,
+    "hasVideo": true,
+    "youtubeId": "pI-rzAO3BEI",
     "externalPage": null
   },
   {
@@ -872,79 +1085,6 @@ export const odooApps = [
     "hasVideo": true,
     "youtubeId": null,
     "externalPage": null
-  },
-  {
-    "tech": "mh_meta_odoo_connector",
-    "slug": "meta-odoo-connector",
-    "name": "Meta Odoo Connector",
-    "summary": "Meta Ads in Odoo: manage Facebook and Instagram campaigns, ad sets, creatives and Lead Ads beside your CRM. Uses your own system user token, so no App Review is needed.",
-    "tagline": "",
-    "intro": [
-      "Meta Odoo Connector connects to your own Meta Business Manager with a System User access token you generate yourself - no Meta App Review, no OAuth app submission, no waiting on an approval queue. Once connected, you get the full campaign lifecycle inside Odoo: sync your existing campaigns, build ad sets, creatives and ads, publish them, control budget and bid strategy, target an audience, pause or delete anything, clone a winning setup, and pull spend/performance insights for any date range - all through the real Meta Marketing API."
-    ],
-    "features": [
-      {
-        "heading": "Bring your own token, skip App Review",
-        "body": [
-          "Most Meta integrations need Meta to review and approve an app before it can touch live ad accounts. This one uses a System User access token from your own Business Manager instead - you're managing your own accounts with your own credentials, so there's nothing to submit and nothing to wait on."
-        ]
-      },
-      {
-        "heading": "The full campaign lifecycle, not just tracking",
-        "body": [
-          "Most Meta apps on the Odoo Marketplace add pixel tracking or Conversions API events. This one builds, publishes, updates, clones, and deletes campaigns, ad sets, creatives, and ads directly - the same actions you'd otherwise do in Meta Ads Manager."
-        ]
-      },
-      {
-        "heading": "Budget, bidding, and audience targeting",
-        "body": [
-          "Set daily or lifetime budgets, choose a bid strategy and bid amount, and target an audience by country, age range, and gender - all from standard Odoo form and list views, with the same fields Meta's own API exposes."
-        ]
-      },
-      {
-        "heading": "Spend and performance insights alongside your data",
-        "body": [
-          "Sync spend, impressions, clicks, reach, CTR, CPC, and CPM for any campaign, ad set, or ad - pick a preset range or a custom date window - without opening Meta Ads Manager or exporting a report."
-        ]
-      },
-      {
-        "heading": "Every write action stays reviewable before it touches Meta",
-        "body": [
-          "Publish, update, clone, and delete are explicit buttons you click after reviewing the record - nothing is pushed to Meta automatically in the background. Every field maps directly to a real Meta Marketing API parameter, so what you set in Odoo is exactly what reaches your ad account."
-        ]
-      },
-      {
-        "heading": "Who this is for",
-        "body": [
-          "Built for Odoo teams running Facebook and Instagram ad campaigns who want campaign management alongside their CRM, sales, and reporting data instead of switching to Meta Ads Manager - marketers who manage their own Business Manager access and don't want to wait on a Meta App Review process to get started."
-        ]
-      }
-    ],
-    "scope": [],
-    "requires": [],
-    "price": 79.0,
-    "manifestPrice": 79.0,
-    "currency": "USD",
-    "category": "Marketing/Marketing",
-    "version": "19.0.1.0.8",
-    "license": "OPL-1",
-    "depends": [
-      "base",
-      "crm"
-    ],
-    "paidDepends": [],
-    "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_meta_odoo_connector",
-    "screenshots": [
-      "screenshot_connection.png",
-      "screenshot_campaigns.png",
-      "screenshot_adset_targeting.png",
-      "screenshot_ad_creative.png"
-    ],
-    "copyWords": 393,
-    "hasVideo": true,
-    "youtubeId": "ZsTgOVQVe5I",
-    "externalPage": "/apps/meta-odoo-connector"
   },
   {
     "tech": "mh_api_key_inventory",
@@ -1261,77 +1401,6 @@ export const odooApps = [
     "copyWords": 824,
     "hasVideo": true,
     "youtubeId": "g4aPiYXQXeg",
-    "externalPage": null
-  },
-  {
-    "tech": "mh_google_ads_launcher",
-    "slug": "google-ads-odoo-connector",
-    "name": "Google Ads Odoo Connector",
-    "summary": "Create and manage search campaigns, ad groups, keywords and responsive search ads with your own developer token. PPC cost and conversions beside your CRM.",
-    "tagline": "",
-    "intro": [
-      "Google Ads Odoo Connector connects to your own Google Ads account with a developer token, OAuth client, and refresh token you generate yourself - nothing to submit to us, no app review dependency on our end. Once connected, you get real campaign management inside Odoo: browse and sync existing Search campaigns, ad groups, keywords, and responsive search ads, publish new ones, control daily budget and bidding strategy, manage keywords and match types, pause or delete anything, clone a winning campaign, and pull clicks/impressions/cost/conversions for any date range - all through the real Google Ads API."
-    ],
-    "features": [
-      {
-        "heading": "Bring your own credentials",
-        "body": [
-          "Uses a developer token, OAuth client, and refresh token from your own Google Ads Manager account and Google Cloud project - you're managing your own account with your own credentials. Basic Access is a self-service application you submit directly to Google (typically about 5 business days) - there's nothing to submit to us and nothing to wait on from our side."
-        ]
-      },
-      {
-        "heading": "Real campaign management, not just reports",
-        "body": [
-          "Most Google Ads connectors on the Marketplace only sync performance reports. This one builds, publishes, updates, clones, and deletes campaigns, ad groups, keywords, and ads directly - the same actions you'd otherwise do in Google Ads."
-        ]
-      },
-      {
-        "heading": "Budget, bidding, and keyword targeting",
-        "body": [
-          "Set a daily budget and choose a bidding strategy - Manual CPC, Maximize Clicks, or Target CPA - then manage keywords and match types (broad, phrase, exact) at the ad group level, all from standard Odoo form and list views."
-        ]
-      },
-      {
-        "heading": "Performance insights alongside your data",
-        "body": [
-          "Sync clicks, impressions, cost, conversions, CTR, CPC, and CPA for any campaign or ad group - pick a preset range or a custom date window - without opening Google Ads or exporting a report."
-        ]
-      },
-      {
-        "heading": "Every write action stays reviewable before it touches Google",
-        "body": [
-          "Publish, update, clone, and delete are explicit buttons you click after reviewing the record - nothing is pushed to Google automatically in the background. Every field maps directly to a real Google Ads API parameter, so what you set in Odoo is exactly what reaches your account."
-        ]
-      },
-      {
-        "heading": "Who this is for",
-        "body": [
-          "Built for Odoo teams running Google Ads Search campaigns who want campaign management alongside their CRM, sales, and reporting data instead of switching to Google Ads - marketers who manage their own Google Ads and Google Cloud access and don't want to wait on our review queue to get started."
-        ]
-      }
-    ],
-    "scope": [],
-    "requires": [],
-    "price": 69.01,
-    "manifestPrice": 69.0,
-    "currency": "USD",
-    "category": "Marketing/Marketing",
-    "version": "19.0.1.0.7",
-    "license": "OPL-1",
-    "depends": [
-      "base"
-    ],
-    "paidDepends": [],
-    "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_google_ads_launcher",
-    "screenshots": [
-      "screenshot_campaign.png",
-      "screenshot_keywords.png",
-      "screenshot_ads.png"
-    ],
-    "copyWords": 396,
-    "hasVideo": true,
-    "youtubeId": "7-tujViJGtA",
     "externalPage": null
   },
   {
@@ -2177,75 +2246,6 @@ export const odooApps = [
     "copyWords": 249,
     "hasVideo": true,
     "youtubeId": "l0T-RJGKNWs",
-    "externalPage": null
-  },
-  {
-    "tech": "mh_snapchat_ads_launcher",
-    "slug": "snapchat-ads-connector",
-    "name": "Snapchat Ads Connector",
-    "summary": "Publish, pause and clone Snap ad squads and ads with your own OAuth credentials. Campaign objectives, daily budgets and delivery status without leaving your ERP.",
-    "tagline": "",
-    "intro": [
-      "Snapchat Ads Connector connects to your own Snapchat Ads account with an OAuth client ID/secret and refresh token you generate yourself - nothing to submit to us, no app review dependency on our end. Once connected, you get real campaign management inside Odoo: browse and sync existing campaigns, ad squads, and ads, publish new ones, control daily budget, audience targeting, and optimization goal, pause, resume, clone, or delete anything, and publish a real ad with its own media upload and creative - all through the real Snapchat Marketing API."
-    ],
-    "features": [
-      {
-        "heading": "Bring your own credentials",
-        "body": [
-          "Uses an OAuth client ID/secret and refresh token from your own Snapchat Business Manager account - the lightest credential model of any connector in this lineup, since Snapchat has no separate developer-token concept. You're managing your own account with your own credentials, self-service, with nothing to submit to us."
-        ]
-      },
-      {
-        "heading": "Real campaign management, not just reports",
-        "body": [
-          "Builds, publishes, updates, clones, and deletes campaigns, ad squads, and ads directly - including a real media upload and creative for the ad itself, not just a placeholder."
-        ]
-      },
-      {
-        "heading": "Budget and audience targeting at the ad squad level",
-        "body": [
-          "Set a daily budget, country targeting, and optimization goal (impressions, swipes, app installs) on each ad squad - matching how Snapchat's own real budget model works, rather than forcing it onto the campaign level."
-        ]
-      },
-      {
-        "heading": "Reach Snapchat's audience from Odoo",
-        "body": [
-          "A genuinely underserved gap on the Odoo App Store - manage a real Snapchat ad presence next to your other ad platforms, without a separate login or dashboard."
-        ]
-      },
-      {
-        "heading": "Every write action stays reviewable before it touches Snapchat",
-        "body": [
-          "Publish, pause, resume, clone, and delete are explicit buttons you click after reviewing the record - nothing is pushed to Snapchat automatically in the background. Every field maps directly to a real Snapchat Marketing API parameter, so what you set in Odoo is exactly what reaches your account."
-        ]
-      },
-      {
-        "heading": "Who this is for",
-        "body": [
-          "Odoo teams running or starting Snapchat Ads campaigns - especially those already managing Meta, Google, or Microsoft ads from Odoo and want the same for Snapchat - who manage their own Snapchat Business Manager access without waiting on our review queue."
-        ]
-      }
-    ],
-    "scope": [],
-    "requires": [],
-    "price": 49.0,
-    "manifestPrice": 49.0,
-    "currency": "USD",
-    "category": "Marketing/Marketing",
-    "version": "19.0.1.0.8",
-    "license": "OPL-1",
-    "depends": [
-      "base"
-    ],
-    "paidDepends": [],
-    "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_snapchat_ads_launcher",
-    "screenshots": [
-      "screenshot_campaign.png"
-    ],
-    "copyWords": 354,
-    "hasVideo": true,
-    "youtubeId": "pI-rzAO3BEI",
     "externalPage": null
   },
   {
