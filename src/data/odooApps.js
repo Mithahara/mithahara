@@ -5,7 +5,7 @@
 // generator; editing here forks the copy away from what the store actually
 // serves.
 //
-// Store snapshot: 2026-09-20T17:08:49+00:00
+// Store snapshot: 2026-09-21T17:44:12+00:00
 
 export const odooApps = [
   {
@@ -58,7 +58,7 @@ export const odooApps = [
       "Warehouse-specific access rules are deliberately not in here. They need the Inventory app, and an access product should not force Inventory onto a database that does not use it. That stays a separate module."
     ],
     "requires": [],
-    "price": 398.99,
+    "price": 396.89,
     "manifestPrice": 399.0,
     "currency": "USD",
     "category": "Productivity",
@@ -123,7 +123,7 @@ export const odooApps = [
     ],
     "scope": [],
     "requires": [],
-    "price": 168.01,
+    "price": 167.12,
     "manifestPrice": 69.0,
     "currency": "USD",
     "category": "Marketing/Marketing",
@@ -199,7 +199,7 @@ export const odooApps = [
     "requires": [
       "Odoo 19 Community or Enterprise. No dependency beyond base, and nothing leaves your server. Restricted to Settings administrators, since the report itself describes who can reach what."
     ],
-    "price": 149.0,
+    "price": 148.21,
     "manifestPrice": 149.0,
     "currency": "USD",
     "category": "Productivity",
@@ -246,11 +246,11 @@ export const odooApps = [
     ],
     "scope": [],
     "requires": [],
-    "price": 149.0,
+    "price": 148.21,
     "manifestPrice": 149.0,
     "currency": "USD",
     "category": "Extra Tools",
-    "version": "19.0.1.0.9",
+    "version": "19.0.1.0.10",
     "license": "OPL-1",
     "depends": [
       "mail"
@@ -314,7 +314,7 @@ export const odooApps = [
       "It covers chatter attachments, not the whole filestore. Odoo 19’s cloud_storage is scoped to files attached through the chatter, above a minimum that defaults to 20 MB. Binary fields such as product images and company logos are never in scope, and Odoo excludes every model whose own code reads the bytes — which in Community means account.move , account.payment , hr.employee , hr.expense , hr.leave and hr.applicant . So invoices, bills, payments, employee files, expense receipts and CVs stay on local disk. If moving the entire filestore is what you need, this is not that app."
     ],
     "requires": [],
-    "price": 149.0,
+    "price": 148.21,
     "manifestPrice": 149.0,
     "currency": "USD",
     "category": "Tools",
@@ -383,7 +383,7 @@ export const odooApps = [
     "requires": [
       "Odoo 19 Community or Enterprise, no other module needed. It restricts fields, not records - which rows a user sees is record rules, a different question. The superuser is never restricted, so crons and upgrades keep working."
     ],
-    "price": 99.0,
+    "price": 98.48,
     "manifestPrice": 99.0,
     "currency": "USD",
     "category": "Tools",
@@ -453,7 +453,7 @@ export const odooApps = [
     ],
     "scope": [],
     "requires": [],
-    "price": 99.0,
+    "price": 98.48,
     "manifestPrice": 99.0,
     "currency": "USD",
     "category": "Marketing/Marketing",
@@ -518,7 +518,7 @@ export const odooApps = [
     "requires": [
       "Odoo 19 Community or Enterprise. Depends only on base and web, and nothing leaves your server. Layouts are managed by Settings administrators; everyone else simply gets the result."
     ],
-    "price": 99.0,
+    "price": 98.48,
     "manifestPrice": 99.0,
     "currency": "USD",
     "category": "Productivity",
@@ -588,7 +588,7 @@ export const odooApps = [
     ],
     "scope": [],
     "requires": [],
-    "price": 99.0,
+    "price": 98.48,
     "manifestPrice": 99.0,
     "currency": "USD",
     "category": "Marketing/Marketing",
@@ -661,7 +661,7 @@ export const odooApps = [
     ],
     "scope": [],
     "requires": [],
-    "price": 99.0,
+    "price": 98.48,
     "manifestPrice": 99.0,
     "currency": "USD",
     "category": "Marketing/Marketing",
@@ -728,7 +728,7 @@ export const odooApps = [
     "requires": [
       "Odoo 19 Community or Enterprise, no other module needed. It restricts records, not fields - which columns a user may read is Field Access Rules ."
     ],
-    "price": 99.0,
+    "price": 98.48,
     "manifestPrice": 99.0,
     "currency": "USD",
     "category": "Tools",
@@ -791,7 +791,7 @@ export const odooApps = [
     "requires": [
       "Odoo 19 Community or Enterprise, no other module needed. The superuser is never logged out, so crons and upgrades keep working. It does not restrict where people log in from and it is not a login history."
     ],
-    "price": 99.0,
+    "price": 98.48,
     "manifestPrice": 99.0,
     "currency": "USD",
     "category": "Tools",
@@ -861,7 +861,7 @@ export const odooApps = [
     ],
     "scope": [],
     "requires": [],
-    "price": 99.0,
+    "price": 98.48,
     "manifestPrice": 99.0,
     "currency": "USD",
     "category": "Marketing/Marketing",
@@ -928,7 +928,7 @@ export const odooApps = [
     "requires": [
       "Odoo 19 Community or Enterprise. Requires AI Agent Guardrails , which registers which logins are agents. It does not decide for you and does not restrict what the agent may read. The approval records themselves are never held - holding a change to them would need approving, and nobody could approve the first one."
     ],
-    "price": 98.0,
+    "price": 97.48,
     "manifestPrice": 49.0,
     "currency": "USD",
     "category": "Tools",
@@ -1001,7 +1001,7 @@ export const odooApps = [
     "requires": [
       "Odoo 19 Community or Enterprise, no other module needed. Third-party apps install on Odoo.sh or On-Premise only — they cannot be installed on Odoo Online (SaaS)."
     ],
-    "price": 89.0,
+    "price": 88.53,
     "manifestPrice": 89.0,
     "currency": "USD",
     "category": "Tools",
@@ -1066,7 +1066,7 @@ export const odooApps = [
       "The approvers are copied onto the request when it is submitted. Not read from the type when somebody clicks approve. Otherwise editing the type's approver list next year would quietly rewrite who was entitled to approve a decision already made, and the record would stop being the truth."
     ],
     "requires": [],
-    "price": 79.0,
+    "price": 78.58,
     "manifestPrice": 79.0,
     "currency": "USD",
     "category": "Human Resources",
@@ -1124,7 +1124,7 @@ export const odooApps = [
     "requires": [
       "Odoo 19 Community or Enterprise, no other module needed. It does not create keys or change their scope - that is Odoo's own screen and this does not get between you and it. It does not record what each call did; for an agent connected over MCP that is AI Agent Guardrails ."
     ],
-    "price": 69.01,
+    "price": 68.64,
     "manifestPrice": 69.0,
     "currency": "USD",
     "category": "Tools",
@@ -1193,7 +1193,7 @@ export const odooApps = [
     ],
     "scope": [],
     "requires": [],
-    "price": 69.01,
+    "price": 68.64,
     "manifestPrice": 69.0,
     "currency": "USD",
     "category": "Accounting/Accounting",
@@ -1263,7 +1263,7 @@ export const odooApps = [
     "requires": [
       "Odoo 19 Community or Enterprise with Website. Installs the free Cookie Consent Banner , which shows the banner and keeps the record. This is a technical control, not legal advice - which scripts belong in which category, and what your policy says, remain yours."
     ],
-    "price": 69.01,
+    "price": 68.64,
     "manifestPrice": 69.0,
     "currency": "USD",
     "category": "Website",
@@ -1381,7 +1381,7 @@ export const odooApps = [
       "Before you buy: needs Odoo 19 Community or Enterprise with Inventory and Purchase. Products in scope have to be tracked by lot or serial number — without that there is nothing to attach a plot to, and the app says so rather than reporting a gap it cannot explain."
     ],
     "requires": [],
-    "price": 69.01,
+    "price": 68.64,
     "manifestPrice": 69.0,
     "currency": "USD",
     "category": "Warehouse",
@@ -1448,7 +1448,7 @@ export const odooApps = [
       "It does not hide buttons, tabs or fields. Fields are their own job and Field Access Rules does that one server-side. Buttons and tabs are not covered here at all."
     ],
     "requires": [],
-    "price": 69.01,
+    "price": 68.64,
     "manifestPrice": 69.0,
     "currency": "USD",
     "category": "Tools",
@@ -1522,11 +1522,11 @@ export const odooApps = [
       "Odoo 19 Community or Enterprise, with Accounting installed. This app also installs the free 1099 Threshold Check , which holds the per-year threshold table.",
       "Not affiliated with or endorsed by the IRS. This is a reporting aid, not tax advice - check the result with whoever files for you."
     ],
-    "price": 69.01,
+    "price": 68.64,
     "manifestPrice": 69.0,
     "currency": "USD",
     "category": "Accounting/Accounting",
-    "version": "19.0.1.0.8",
+    "version": "19.0.1.0.9",
     "license": "OPL-1",
     "depends": [
       "account",
@@ -1590,7 +1590,7 @@ export const odooApps = [
     "requires": [
       "Odoo 19 Community or Enterprise with Sales - Timesheets. It reads only: nothing is invoiced, changed or written back, and it has no opinion about whether the work should have been billed - only that it has not been."
     ],
-    "price": 69.01,
+    "price": 68.64,
     "manifestPrice": 69.0,
     "currency": "USD",
     "category": "Project",
@@ -1643,7 +1643,7 @@ export const odooApps = [
     "requires": [
       "Odoo 19, Community or Enterprise. Needs Discuss (for activities). Administrator access, since the check reads across every model in the database. Nothing is written to any record it finds."
     ],
-    "price": 69.01,
+    "price": 68.64,
     "manifestPrice": 69.0,
     "currency": "USD",
     "category": "Tools",
@@ -1686,7 +1686,7 @@ export const odooApps = [
       "Monthly/quarterly declaration only - the universally-mandatory, recurring one. Annual fixed-asset and on-demand inventory declarations are a fast-follow."
     ],
     "requires": [],
-    "price": 59.0,
+    "price": 58.69,
     "manifestPrice": 59.0,
     "currency": "USD",
     "category": "Accounting/Localizations",
@@ -1704,53 +1704,6 @@ export const odooApps = [
     "copyWords": 205,
     "hasVideo": true,
     "youtubeId": "KTmlx96P0IA",
-    "externalPage": null
-  },
-  {
-    "tech": "mh_whistleblower_case",
-    "slug": "whistleblower-cases",
-    "name": "Whistleblower Cases",
-    "summary": "Directive 2019/1937 internal reporting channel: an unauthenticated intake form, anonymous by default, with the statutory 7 day and 3 month clocks per case.",
-    "tagline": "Anonymous by default, with the Directive's statutory clocks built in - not a general HR complaint log",
-    "intro": [
-      "EU Directive 2019/1937 forces any company with 50+ employees (and public-sector or financial-services entities regardless of size) to run an internal reporting channel that acknowledges a report within 7 days and gives substantive feedback within 3 months. There is no native Odoo feature, no OCA module, and no directive-specific App Store listing that does any of this.",
-      "This app gives you a public, unauthenticated reporting form - anonymous by default, no login required - that starts both statutory clocks the moment a report comes in, reminds the assigned officer as each deadline approaches or passes, and keeps every case restricted to a small, dedicated access group.",
-      "Not the same product as a general HR complaints log: this is anonymous-by-default and built around the Directive's specific statutory deadlines, not a named internal grievance record."
-    ],
-    "features": [
-      {
-        "heading": "Confidentiality by design",
-        "body": [
-          "The default path is silent: no login, no identity captured, nothing that could trace a report back to its source. A reporter may optionally leave a name and email if they want a reply."
-        ]
-      },
-      {
-        "heading": "Both statutory clocks, computed correctly",
-        "body": [
-          "7-day acknowledgment deadline from receipt; 3-month feedback deadline from acknowledgment, or from the expiry of the 7-day window if none was ever sent - not a naive \"3 months from receipt\" shortcut."
-        ]
-      }
-    ],
-    "scope": [],
-    "requires": [],
-    "price": 59.0,
-    "manifestPrice": 59.0,
-    "currency": "USD",
-    "category": "Human Resources",
-    "version": "19.0.1.0.8",
-    "license": "OPL-1",
-    "depends": [
-      "mail"
-    ],
-    "paidDepends": [],
-    "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_whistleblower_case",
-    "screenshots": [
-      "screenshot_case.png"
-    ],
-    "copyWords": 224,
-    "hasVideo": true,
-    "youtubeId": "uH9igHk0SKo",
     "externalPage": null
   },
   {
@@ -1800,7 +1753,7 @@ export const odooApps = [
     "requires": [
       "Odoo 19 Community or Enterprise, no other module needed. It does not undo changes for you - it tells you exactly what to undo. It does not restrict what the agent may read; that is Record Rule Preview and Field Access Rules . The superuser cannot be an agent - it bypasses access rules by design."
     ],
-    "price": 49.0,
+    "price": 48.74,
     "manifestPrice": 49.0,
     "currency": "USD",
     "category": "Tools",
@@ -1868,7 +1821,7 @@ export const odooApps = [
     "requires": [
       "Odoo 19 Community or Enterprise, no other module needed. It records from the moment it is installed and cannot reconstruct what happened before - it does not pretend to. It logs access configuration, not what people did with the access."
     ],
-    "price": 49.0,
+    "price": 48.74,
     "manifestPrice": 49.0,
     "currency": "USD",
     "category": "Tools",
@@ -1935,7 +1888,7 @@ export const odooApps = [
     "requires": [
       "Odoo 19 Community or Enterprise, no other module needed. It grants access to a model, not to particular records or fields - which rows a user sees is Record Rule Preview , which columns they may read is Field Access Rules ."
     ],
-    "price": 49.0,
+    "price": 48.74,
     "manifestPrice": 49.0,
     "currency": "USD",
     "category": "Tools",
@@ -1980,7 +1933,7 @@ export const odooApps = [
     ],
     "scope": [],
     "requires": [],
-    "price": 49.0,
+    "price": 48.74,
     "manifestPrice": 49.0,
     "currency": "USD",
     "category": "Extra Tools",
@@ -1998,49 +1951,6 @@ export const odooApps = [
     "copyWords": 226,
     "hasVideo": true,
     "youtubeId": "Oq8yKSnLZIc",
-    "externalPage": null
-  },
-  {
-    "tech": "mh_dac7_reporting",
-    "slug": "dac7-seller-reporting",
-    "name": "DAC7 Seller Reporting",
-    "summary": "For digital platform operators: due diligence records, quarterly consideration computed from posted vendor bills, the de minimis exemption, and a CSV export.",
-    "tagline": "Seller due diligence and your annual DAC7 report, straight from Odoo",
-    "intro": [
-      "EU Directive 2021/514 (DAC7) requires digital platform operators to run due diligence on their sellers - identity, TIN, jurisdiction, financial account - and report consideration paid, transaction counts, and fees withheld to a tax authority every year by 31 January. This applies to any Odoo-based platform that pays a network of third-party sellers through standard vendor bills: marketplaces, property-rental platforms, gig and service platforms. Odoo has no native tooling for this at all.",
-      "This app: mark a partner as a DAC7 seller and capture their due-diligence fields, compute per-quarter consideration and transaction counts straight from that seller's posted vendor bills, generate an annual report that applies the de-minimis exemption (fewer than 30 transactions and no more than EUR 2,000), and export a CSV with every field a filing needs. A reminder fires every January if due diligence is incomplete or last year's report hasn't been generated yet."
-    ],
-    "features": [
-      {
-        "heading": "Computed from what you already have",
-        "body": [
-          "Consideration and transaction counts come straight from posted vendor bills and credit notes to each seller - no separate ledger to maintain, no manual re-entry of numbers you've already booked."
-        ]
-      }
-    ],
-    "scope": [
-      "This app produces the source data for your filing - it doesn't generate the OECD DPI XML schema file itself; most tax authorities provide their own free upload tool for that. Fees withheld are entered per seller per quarter, since there's no standard Odoo field for a platform's own commission model."
-    ],
-    "requires": [],
-    "price": 49.0,
-    "manifestPrice": 49.0,
-    "currency": "USD",
-    "category": "Extra Tools",
-    "version": "19.0.1.0.7",
-    "license": "OPL-1",
-    "depends": [
-      "account",
-      "mail"
-    ],
-    "paidDepends": [],
-    "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_dac7_reporting",
-    "screenshots": [
-      "screenshot_report.png"
-    ],
-    "copyWords": 245,
-    "hasVideo": true,
-    "youtubeId": "11tVndypTKA",
     "externalPage": null
   },
   {
@@ -2089,7 +1999,7 @@ export const odooApps = [
       "On a translated field it writes one language. The language you are working in. The others keep what they have, and the plan says so before you apply it."
     ],
     "requires": [],
-    "price": 49.0,
+    "price": 48.74,
     "manifestPrice": 49.0,
     "currency": "USD",
     "category": "Tools",
@@ -2158,7 +2068,7 @@ export const odooApps = [
       "On a multi-database Odoo you must name the database. A stateless request carries no session to read it from, so the database name has to be sent with the connection."
     ],
     "requires": [],
-    "price": 49.0,
+    "price": 48.74,
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Productivity",
@@ -2228,7 +2138,7 @@ export const odooApps = [
     ],
     "scope": [],
     "requires": [],
-    "price": 49.0,
+    "price": 48.74,
     "manifestPrice": 49.0,
     "currency": "USD",
     "category": "Manufacturing",
@@ -2293,7 +2203,7 @@ export const odooApps = [
       "This app covers Odoo's AI text-generation assistant only - the editor's \"Generate with AI\" / \"Translate with AI\" tools. It does not touch invoice or document OCR, which is a separate, Enterprise-only Odoo feature this app does not modify or replace."
     ],
     "requires": [],
-    "price": 40.0,
+    "price": 39.79,
     "manifestPrice": 40.0,
     "currency": "USD",
     "category": "Productivity",
@@ -2358,7 +2268,7 @@ export const odooApps = [
     "requires": [
       "Odoo 19, Community or Enterprise. No dependencies beyond the base system. Administrator access on both databases."
     ],
-    "price": 39.0,
+    "price": 38.79,
     "manifestPrice": 39.0,
     "currency": "USD",
     "category": "Tools",
@@ -2376,53 +2286,6 @@ export const odooApps = [
     "copyWords": 324,
     "hasVideo": true,
     "youtubeId": "jIFMc1kTjuU",
-    "externalPage": null
-  },
-  {
-    "tech": "mh_pay_transparency",
-    "slug": "eu-pay-transparency",
-    "name": "EU Pay Transparency",
-    "summary": "Directive 2023/970 readiness: require a salary range before a vacancy can publish, and report the gender pay gap by quartile pay band, mean and median.",
-    "tagline": "A real publish-blocking gate, and a quartile gender pay-gap report - Directive 2023/970",
-    "intro": [
-      "EU Directive 2023/970 (transposition deadline 7 June 2026) requires disclosing a pay range to every job candidate before or during recruitment, and phased gender pay-gap reporting by quartile pay band for larger employers. Odoo has no compliance logic for either.",
-      "This app adds a pay range to each job position and blocks publishing it to your careers page until that range is filled in - no more posting a vacancy with no range and hoping nobody notices. It also runs a quartile pay-gap report: employees sorted into four equal pay bands, mean/median gender pay gap computed the standard EU/Eurostat way, and a flag when the unjustified-gap threshold (5%) is crossed.",
-      "Stated plainly: this reports on base wage only, not total compensation - full Payroll (bonuses, allowances) is Enterprise-only in Community."
-    ],
-    "features": [
-      {
-        "heading": "Real teeth, not just a report",
-        "body": [
-          "The pay range gate is a hard constraint on the actual field that controls whether a job posting is live on your careers page - it can't be bypassed by publishing anyway."
-        ]
-      },
-      {
-        "heading": "The correct quartile methodology",
-        "body": [
-          "Mean and median gap computed independently and correctly, employees split into four equal pay bands the way Article 9(1)(e) actually asks for - not a naive single aggregate number."
-        ]
-      }
-    ],
-    "scope": [],
-    "requires": [],
-    "price": 39.0,
-    "manifestPrice": 39.0,
-    "currency": "USD",
-    "category": "Human Resources",
-    "version": "19.0.1.0.7",
-    "license": "OPL-1",
-    "depends": [
-      "website_hr_recruitment"
-    ],
-    "paidDepends": [],
-    "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_pay_transparency",
-    "screenshots": [
-      "screenshot_report.png"
-    ],
-    "copyWords": 214,
-    "hasVideo": true,
-    "youtubeId": "FDh2Vr9p9e0",
     "externalPage": null
   },
   {
@@ -2472,7 +2335,7 @@ export const odooApps = [
       "Rules match one record type each. A rule covers one model - contacts, or invoices, or tasks - not a mixture. Cover several by adding a rule for each, which also keeps the filter on each one readable."
     ],
     "requires": [],
-    "price": 39.0,
+    "price": 38.79,
     "manifestPrice": 39.0,
     "currency": "USD",
     "category": "Productivity/Discuss",
@@ -2534,7 +2397,7 @@ export const odooApps = [
     "requires": [
       "Odoo 19, Community or Enterprise. No dependencies beyond the base system. Administrator access to choose what is watched and to read the log."
     ],
-    "price": 39.0,
+    "price": 38.79,
     "manifestPrice": 39.0,
     "currency": "USD",
     "category": "Tools",
@@ -2592,7 +2455,7 @@ export const odooApps = [
     ],
     "scope": [],
     "requires": [],
-    "price": 39.0,
+    "price": 38.79,
     "manifestPrice": 39.0,
     "currency": "USD",
     "category": "Extra Tools",
@@ -2655,7 +2518,7 @@ export const odooApps = [
     ],
     "scope": [],
     "requires": [],
-    "price": 39.0,
+    "price": 38.79,
     "manifestPrice": 39.0,
     "currency": "USD",
     "category": "Accounting/Accounting",
@@ -2722,7 +2585,7 @@ export const odooApps = [
     "requires": [
       "Odoo 19 Community or Enterprise with Project and Purchase. It changes nothing - no journal entries, no analytic lines, no orders. It has no opinion about what the budget should have been: it reports what has been committed, not whether committing it was wise. Projects with no analytic account are skipped."
     ],
-    "price": 39.0,
+    "price": 38.79,
     "manifestPrice": 39.0,
     "currency": "USD",
     "category": "Project",
@@ -2786,7 +2649,7 @@ export const odooApps = [
     ],
     "scope": [],
     "requires": [],
-    "price": 39.0,
+    "price": 38.79,
     "manifestPrice": 39.0,
     "currency": "USD",
     "category": "Purchases",
@@ -2853,7 +2716,7 @@ export const odooApps = [
     "requires": [
       "Odoo 19 Community or Enterprise with Inventory. It changes no rule and orders nothing - it reports what the rules would do against the demand you have had, and leaves the decision where it belongs."
     ],
-    "price": 39.0,
+    "price": 38.79,
     "manifestPrice": 39.0,
     "currency": "USD",
     "category": "Warehouse",
@@ -2916,7 +2779,7 @@ export const odooApps = [
     ],
     "scope": [],
     "requires": [],
-    "price": 39.0,
+    "price": 38.79,
     "manifestPrice": 39.0,
     "currency": "USD",
     "category": "Sales/Sales",
@@ -2983,7 +2846,7 @@ export const odooApps = [
     "requires": [
       "Odoo 19 Community or Enterprise with Inventory. Installs the free Dead Stock Check , which gives the headline figure. It reads existing moves and quants and writes nothing back to your inventory, and it does not tell you what to do with the stock - discount, return or write off remains a judgement call."
     ],
-    "price": 39.0,
+    "price": 38.79,
     "manifestPrice": 39.0,
     "currency": "USD",
     "category": "Warehouse",
@@ -3029,11 +2892,11 @@ export const odooApps = [
     ],
     "scope": [],
     "requires": [],
-    "price": 39.0,
+    "price": 38.79,
     "manifestPrice": 39.0,
     "currency": "USD",
     "category": "Extra Tools",
-    "version": "19.0.1.0.7",
+    "version": "19.0.1.0.8",
     "license": "OPL-1",
     "depends": [
       "mail"
@@ -3096,7 +2959,7 @@ export const odooApps = [
     "requires": [
       "Odoo 19 Community or Enterprise. Depends only on base, nothing leaves your server, and it is restricted to Settings administrators."
     ],
-    "price": 29.0,
+    "price": 28.85,
     "manifestPrice": 29.0,
     "currency": "USD",
     "category": "Accounting/Accounting",
@@ -3162,7 +3025,7 @@ export const odooApps = [
     "requires": [
       "Odoo 19 Community or Enterprise, no other module needed. It changes who is in a group, not what the group can do - that is access rights , record rules and field access ."
     ],
-    "price": 29.0,
+    "price": 28.85,
     "manifestPrice": 29.0,
     "currency": "USD",
     "category": "Tools",
@@ -3225,7 +3088,7 @@ export const odooApps = [
     ],
     "scope": [],
     "requires": [],
-    "price": 29.0,
+    "price": 28.85,
     "manifestPrice": 29.0,
     "currency": "USD",
     "category": "Human Resources",
@@ -3292,7 +3155,7 @@ export const odooApps = [
     "requires": [
       "Odoo 19 Community or Enterprise, with Discuss. Installs the free Lost Messages Routing , which does the capturing. Only models that accept incoming mail can be targeted."
     ],
-    "price": 29.0,
+    "price": 28.85,
     "manifestPrice": 29.0,
     "currency": "USD",
     "category": "Productivity/Discuss",
@@ -3362,7 +3225,7 @@ export const odooApps = [
     ],
     "scope": [],
     "requires": [],
-    "price": 29.0,
+    "price": 28.85,
     "manifestPrice": 29.0,
     "currency": "USD",
     "category": "Accounting/Accounting",
@@ -3430,7 +3293,7 @@ export const odooApps = [
     "requires": [
       "Odoo 19 Community or Enterprise with Inventory. It does not run counts or create adjustments - it reads the ones you already posted. Values are at cost."
     ],
-    "price": 29.0,
+    "price": 28.85,
     "manifestPrice": 29.0,
     "currency": "USD",
     "category": "Warehouse",
@@ -3493,7 +3356,7 @@ export const odooApps = [
     "requires": [
       "Odoo 19 Community or Enterprise with Inventory. It restricts what people see, not what they may do - which operations they can perform is access rights . It does not restrict by location within a warehouse, and it writes nothing to your stock."
     ],
-    "price": 29.0,
+    "price": 28.85,
     "manifestPrice": 29.0,
     "currency": "USD",
     "category": "Warehouse",
@@ -3551,7 +3414,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Accounting/Accounting",
-    "version": "19.0.1.0.5",
+    "version": "19.0.1.0.6",
     "license": "OPL-1",
     "depends": [
       "account"
@@ -3709,7 +3572,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Purchases",
-    "version": "19.0.1.0.7",
+    "version": "19.0.1.0.8",
     "license": "OPL-1",
     "depends": [
       "purchase"
@@ -3917,7 +3780,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Productivity",
-    "version": "19.0.1.0.7",
+    "version": "19.0.1.0.8",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -4171,7 +4034,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Manufacturing",
-    "version": "19.0.1.0.6",
+    "version": "19.0.1.0.7",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -4226,7 +4089,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Accounting/Accounting",
-    "version": "19.0.1.0.5",
+    "version": "19.0.1.0.6",
     "license": "OPL-1",
     "depends": [
       "account"
@@ -4281,7 +4144,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Accounting/Accounting",
-    "version": "19.0.1.0.6",
+    "version": "19.0.1.0.9",
     "license": "OPL-1",
     "depends": [
       "account"
@@ -4788,7 +4651,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Accounting/Accounting",
-    "version": "19.0.1.0.5",
+    "version": "19.0.1.0.6",
     "license": "OPL-1",
     "depends": [
       "account"
@@ -4933,7 +4796,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Productivity",
-    "version": "19.0.1.0.7",
+    "version": "19.0.1.0.8",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -5023,7 +4886,7 @@ export const odooApps = [
       "website"
     ],
     "paidDepends": [],
-    "downloads": 11,
+    "downloads": 12,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_google_reviews_snippet",
     "screenshots": [
       "screenshot_settings.png"
@@ -5127,7 +4990,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Accounting/Accounting",
-    "version": "19.0.1.0.5",
+    "version": "19.0.1.0.6",
     "license": "OPL-1",
     "depends": [
       "account"
@@ -5295,7 +5158,7 @@ export const odooApps = [
       "base"
     ],
     "paidDepends": [],
-    "downloads": 3,
+    "downloads": 4,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_meta_ads_spend",
     "screenshots": [
       "screenshot_spend.png"
@@ -5498,7 +5361,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Website",
-    "version": "19.0.1.0.8",
+    "version": "19.0.1.0.9",
     "license": "OPL-1",
     "depends": [
       "website"
@@ -5553,7 +5416,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Human Resources",
-    "version": "19.0.1.0.6",
+    "version": "19.0.1.0.8",
     "license": "OPL-1",
     "depends": [
       "hr"
@@ -5593,7 +5456,7 @@ export const odooApps = [
       "web"
     ],
     "paidDepends": [],
-    "downloads": 7,
+    "downloads": 8,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_popup_message",
     "screenshots": [
       "screenshot_message.png"
@@ -5779,7 +5642,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Sales/Sales",
-    "version": "19.0.1.0.5",
+    "version": "19.0.1.0.6",
     "license": "OPL-1",
     "depends": [
       "sale"
@@ -5834,7 +5697,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Productivity",
-    "version": "19.0.1.0.6",
+    "version": "19.0.1.0.7",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -5889,7 +5752,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Accounting/Accounting",
-    "version": "19.0.1.0.6",
+    "version": "19.0.1.0.7",
     "license": "OPL-1",
     "depends": [
       "l10n_ro"
@@ -6094,7 +5957,7 @@ export const odooApps = [
       "stock_account"
     ],
     "paidDepends": [],
-    "downloads": 17,
+    "downloads": 18,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_stock_card_ledger",
     "screenshots": [
       "screenshot_ledger.png"
@@ -6245,7 +6108,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Human Resources",
-    "version": "19.0.1.0.7",
+    "version": "19.0.1.0.10",
     "license": "OPL-1",
     "depends": [
       "base"
