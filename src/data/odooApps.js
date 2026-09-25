@@ -5,7 +5,7 @@
 // generator; editing here forks the copy away from what the store actually
 // serves.
 //
-// Store snapshot: 2026-09-23T19:31:56+00:00
+// Store snapshot: 2026-09-25T17:04:27+00:00
 
 export const odooApps = [
   {
@@ -62,7 +62,7 @@ export const odooApps = [
     "manifestPrice": 399.0,
     "currency": "USD",
     "category": "Productivity",
-    "version": "19.0.1.0.4",
+    "version": "19.0.1.0.6",
     "license": "OPL-1",
     "depends": [
       "base",
@@ -123,11 +123,11 @@ export const odooApps = [
     ],
     "scope": [],
     "requires": [],
-    "price": 167.12,
+    "price": 168.0,
     "manifestPrice": 69.0,
     "currency": "USD",
     "category": "Marketing/Marketing",
-    "version": "19.0.1.0.8",
+    "version": "19.0.1.0.9",
     "license": "OPL-1",
     "depends": [
       "mh_meta_odoo_connector"
@@ -203,7 +203,7 @@ export const odooApps = [
     "manifestPrice": 149.0,
     "currency": "USD",
     "category": "Productivity",
-    "version": "19.0.1.0.10",
+    "version": "19.0.1.0.11",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -250,7 +250,7 @@ export const odooApps = [
     "manifestPrice": 149.0,
     "currency": "USD",
     "category": "Extra Tools",
-    "version": "19.0.1.0.10",
+    "version": "19.0.1.0.11",
     "license": "OPL-1",
     "depends": [
       "mail"
@@ -318,7 +318,7 @@ export const odooApps = [
     "manifestPrice": 149.0,
     "currency": "USD",
     "category": "Tools",
-    "version": "19.0.1.0.7",
+    "version": "19.0.1.0.9",
     "license": "OPL-1",
     "depends": [
       "cloud_storage",
@@ -387,7 +387,7 @@ export const odooApps = [
     "manifestPrice": 99.0,
     "currency": "USD",
     "category": "Tools",
-    "version": "19.0.1.0.13",
+    "version": "19.0.1.0.14",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -451,7 +451,7 @@ export const odooApps = [
     "manifestPrice": 99.0,
     "currency": "USD",
     "category": "Productivity",
-    "version": "19.0.1.0.11",
+    "version": "19.0.1.0.12",
     "license": "OPL-1",
     "depends": [
       "base",
@@ -466,6 +466,148 @@ export const odooApps = [
     "copyWords": 357,
     "hasVideo": true,
     "youtubeId": "_jn7KswDh-k",
+    "externalPage": null
+  },
+  {
+    "tech": "mh_meta_odoo_connector",
+    "slug": "meta-odoo-connector",
+    "name": "Meta Odoo Connector",
+    "summary": "Meta Ads in Odoo: manage Facebook and Instagram campaigns, ad sets, creatives and Lead Ads beside your CRM. Uses your own system user token, so no App Review is needed.",
+    "tagline": "",
+    "intro": [
+      "Meta Odoo Connector connects to your own Meta Business Manager with a System User access token you generate yourself - no Meta App Review, no OAuth app submission, no waiting on an approval queue. Once connected, you get the full campaign lifecycle inside Odoo: sync your existing campaigns, build ad sets, creatives and ads, publish them, control budget and bid strategy, target an audience, pause or delete anything, clone a winning setup, and pull spend/performance insights for any date range - all through the real Meta Marketing API."
+    ],
+    "features": [
+      {
+        "heading": "Bring your own token, skip App Review",
+        "body": [
+          "Most Meta integrations need Meta to review and approve an app before it can touch live ad accounts. This one uses a System User access token from your own Business Manager instead - you're managing your own accounts with your own credentials, so there's nothing to submit and nothing to wait on."
+        ]
+      },
+      {
+        "heading": "The full campaign lifecycle, not just tracking",
+        "body": [
+          "Most Meta apps on the Odoo Marketplace add pixel tracking or Conversions API events. This one builds, publishes, updates, clones, and deletes campaigns, ad sets, creatives, and ads directly - the same actions you'd otherwise do in Meta Ads Manager."
+        ]
+      },
+      {
+        "heading": "Budget, bidding, and audience targeting",
+        "body": [
+          "Set daily or lifetime budgets, choose a bid strategy and bid amount, and target an audience by country, age range, and gender - all from standard Odoo form and list views, with the same fields Meta's own API exposes."
+        ]
+      },
+      {
+        "heading": "Spend and performance insights alongside your data",
+        "body": [
+          "Sync spend, impressions, clicks, reach, CTR, CPC, and CPM for any campaign, ad set, or ad - pick a preset range or a custom date window - without opening Meta Ads Manager or exporting a report."
+        ]
+      },
+      {
+        "heading": "Every write action stays reviewable before it touches Meta",
+        "body": [
+          "Publish, update, clone, and delete are explicit buttons you click after reviewing the record - nothing is pushed to Meta automatically in the background. Every field maps directly to a real Meta Marketing API parameter, so what you set in Odoo is exactly what reaches your ad account."
+        ]
+      },
+      {
+        "heading": "Who this is for",
+        "body": [
+          "Built for Odoo teams running Facebook and Instagram ad campaigns who want campaign management alongside their CRM, sales, and reporting data instead of switching to Meta Ads Manager - marketers who manage their own Business Manager access and don't want to wait on a Meta App Review process to get started."
+        ]
+      }
+    ],
+    "scope": [],
+    "requires": [],
+    "price": 99.0,
+    "manifestPrice": 99.0,
+    "currency": "USD",
+    "category": "Marketing/Marketing",
+    "version": "19.0.1.0.10",
+    "license": "OPL-1",
+    "depends": [
+      "base",
+      "crm"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_meta_odoo_connector",
+    "screenshots": [
+      "screenshot_connection.png",
+      "screenshot_campaigns.png",
+      "screenshot_adset_targeting.png",
+      "screenshot_ad_creative.png"
+    ],
+    "copyWords": 393,
+    "hasVideo": true,
+    "youtubeId": "ZsTgOVQVe5I",
+    "externalPage": "/apps/meta-odoo-connector"
+  },
+  {
+    "tech": "mh_microsoft_ads_launcher",
+    "slug": "microsoft-ads-connector",
+    "name": "Microsoft Ads Connector",
+    "summary": "Bing Ads inside Odoo: create and manage search campaigns, ad groups, keywords with match types and responsive search ads, using your own developer token and Azure AD client.",
+    "tagline": "",
+    "intro": [
+      "Microsoft Ads Connector connects to your own Microsoft Advertising account with a developer token, Azure AD (Entra ID) OAuth client, and refresh token you generate yourself - nothing to submit to us, no app review dependency on our end. Once connected, you get real campaign management inside Odoo: browse and sync existing Search campaigns, ad groups, keywords, and ads, publish new ones, control daily budget and CPC bids, manage keywords and match types, pause, resume, clone, or delete anything - all through the real Microsoft Advertising API."
+    ],
+    "features": [
+      {
+        "heading": "Bring your own credentials",
+        "body": [
+          "Uses a developer token, Azure AD client ID/secret, and refresh token from your own Microsoft Advertising and Azure accounts - you're managing your own account with your own credentials. A single-account developer token is issued instantly from Microsoft's Developer Portal - there's nothing to submit to us and nothing to wait on from our side."
+        ]
+      },
+      {
+        "heading": "Real campaign management, not just reports",
+        "body": [
+          "Builds, publishes, updates, clones, and deletes campaigns, ad groups, keywords, and ads directly - the same actions you'd otherwise do in the Microsoft Advertising UI."
+        ]
+      },
+      {
+        "heading": "Budget and keyword targeting",
+        "body": [
+          "Set a daily budget per campaign, then manage keywords and match types (broad, phrase, exact) with per-ad-group CPC bids, all from standard Odoo form and list views."
+        ]
+      },
+      {
+        "heading": "Reach Bing's search audience from Odoo",
+        "body": [
+          "Microsoft Advertising reaches the Bing/Microsoft Search Network - a real, if secondary, search-ads channel most Google-first advertisers still don't manage - now on the same screens as the rest of your Odoo data."
+        ]
+      },
+      {
+        "heading": "Every write action stays reviewable before it touches Microsoft",
+        "body": [
+          "Publish, pause, resume, clone, and delete are explicit buttons you click after reviewing the record - nothing is pushed to Microsoft automatically in the background. Every field maps directly to a real Microsoft Advertising API parameter, so what you set in Odoo is exactly what reaches your account."
+        ]
+      },
+      {
+        "heading": "Who this is for",
+        "body": [
+          "Odoo teams running Microsoft Advertising (Bing Ads) search campaigns - often alongside Google Ads - who want campaign management next to their CRM, sales, and reporting data instead of switching to a separate platform, and who manage their own Microsoft Advertising and Azure access without waiting on our review queue."
+        ]
+      }
+    ],
+    "scope": [],
+    "requires": [],
+    "price": 99.0,
+    "manifestPrice": 99.0,
+    "currency": "USD",
+    "category": "Marketing/Marketing",
+    "version": "19.0.1.0.11",
+    "license": "OPL-1",
+    "depends": [
+      "base"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_microsoft_ads_launcher",
+    "screenshots": [
+      "screenshot_campaign.png"
+    ],
+    "copyWords": 358,
+    "hasVideo": true,
+    "youtubeId": "U4CcE_tnDQc",
     "externalPage": null
   },
   {
@@ -519,7 +661,7 @@ export const odooApps = [
     "manifestPrice": 99.0,
     "currency": "USD",
     "category": "Tools",
-    "version": "19.0.1.0.11",
+    "version": "19.0.1.0.12",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -582,7 +724,7 @@ export const odooApps = [
     "manifestPrice": 99.0,
     "currency": "USD",
     "category": "Tools",
-    "version": "19.0.1.0.13",
+    "version": "19.0.1.0.14",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -597,6 +739,75 @@ export const odooApps = [
     "copyWords": 368,
     "hasVideo": true,
     "youtubeId": "bjnw1R8BgUE",
+    "externalPage": null
+  },
+  {
+    "tech": "mh_snapchat_ads_launcher",
+    "slug": "snapchat-ads-connector",
+    "name": "Snapchat Ads Connector",
+    "summary": "Publish, pause and clone Snap ad squads and ads with your own OAuth credentials. Campaign objectives, daily budgets and delivery status without leaving your ERP.",
+    "tagline": "",
+    "intro": [
+      "Snapchat Ads Connector connects to your own Snapchat Ads account with an OAuth client ID/secret and refresh token you generate yourself - nothing to submit to us, no app review dependency on our end. Once connected, you get real campaign management inside Odoo: browse and sync existing campaigns, ad squads, and ads, publish new ones, control daily budget, audience targeting, and optimization goal, pause, resume, clone, or delete anything, and publish a real ad with its own media upload and creative - all through the real Snapchat Marketing API."
+    ],
+    "features": [
+      {
+        "heading": "Bring your own credentials",
+        "body": [
+          "Uses an OAuth client ID/secret and refresh token from your own Snapchat Business Manager account - the lightest credential model of any connector in this lineup, since Snapchat has no separate developer-token concept. You're managing your own account with your own credentials, self-service, with nothing to submit to us."
+        ]
+      },
+      {
+        "heading": "Real campaign management, not just reports",
+        "body": [
+          "Builds, publishes, updates, clones, and deletes campaigns, ad squads, and ads directly - including a real media upload and creative for the ad itself, not just a placeholder."
+        ]
+      },
+      {
+        "heading": "Budget and audience targeting at the ad squad level",
+        "body": [
+          "Set a daily budget, country targeting, and optimization goal (impressions, swipes, app installs) on each ad squad - matching how Snapchat's own real budget model works, rather than forcing it onto the campaign level."
+        ]
+      },
+      {
+        "heading": "Reach Snapchat's audience from Odoo",
+        "body": [
+          "A genuinely underserved gap on the Odoo App Store - manage a real Snapchat ad presence next to your other ad platforms, without a separate login or dashboard."
+        ]
+      },
+      {
+        "heading": "Every write action stays reviewable before it touches Snapchat",
+        "body": [
+          "Publish, pause, resume, clone, and delete are explicit buttons you click after reviewing the record - nothing is pushed to Snapchat automatically in the background. Every field maps directly to a real Snapchat Marketing API parameter, so what you set in Odoo is exactly what reaches your account."
+        ]
+      },
+      {
+        "heading": "Who this is for",
+        "body": [
+          "Odoo teams running or starting Snapchat Ads campaigns - especially those already managing Meta, Google, or Microsoft ads from Odoo and want the same for Snapchat - who manage their own Snapchat Business Manager access without waiting on our review queue."
+        ]
+      }
+    ],
+    "scope": [],
+    "requires": [],
+    "price": 99.0,
+    "manifestPrice": 99.0,
+    "currency": "USD",
+    "category": "Marketing/Marketing",
+    "version": "19.0.1.0.10",
+    "license": "OPL-1",
+    "depends": [
+      "base"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_snapchat_ads_launcher",
+    "screenshots": [
+      "screenshot_campaign.png"
+    ],
+    "copyWords": 354,
+    "hasVideo": true,
+    "youtubeId": "pI-rzAO3BEI",
     "externalPage": null
   },
   {
@@ -671,217 +882,6 @@ export const odooApps = [
     "externalPage": null
   },
   {
-    "tech": "mh_meta_odoo_connector",
-    "slug": "meta-odoo-connector",
-    "name": "Meta Odoo Connector",
-    "summary": "Meta Ads in Odoo: manage Facebook and Instagram campaigns, ad sets, creatives and Lead Ads beside your CRM. Uses your own system user token, so no App Review is needed.",
-    "tagline": "",
-    "intro": [
-      "Meta Odoo Connector connects to your own Meta Business Manager with a System User access token you generate yourself - no Meta App Review, no OAuth app submission, no waiting on an approval queue. Once connected, you get the full campaign lifecycle inside Odoo: sync your existing campaigns, build ad sets, creatives and ads, publish them, control budget and bid strategy, target an audience, pause or delete anything, clone a winning setup, and pull spend/performance insights for any date range - all through the real Meta Marketing API."
-    ],
-    "features": [
-      {
-        "heading": "Bring your own token, skip App Review",
-        "body": [
-          "Most Meta integrations need Meta to review and approve an app before it can touch live ad accounts. This one uses a System User access token from your own Business Manager instead - you're managing your own accounts with your own credentials, so there's nothing to submit and nothing to wait on."
-        ]
-      },
-      {
-        "heading": "The full campaign lifecycle, not just tracking",
-        "body": [
-          "Most Meta apps on the Odoo Marketplace add pixel tracking or Conversions API events. This one builds, publishes, updates, clones, and deletes campaigns, ad sets, creatives, and ads directly - the same actions you'd otherwise do in Meta Ads Manager."
-        ]
-      },
-      {
-        "heading": "Budget, bidding, and audience targeting",
-        "body": [
-          "Set daily or lifetime budgets, choose a bid strategy and bid amount, and target an audience by country, age range, and gender - all from standard Odoo form and list views, with the same fields Meta's own API exposes."
-        ]
-      },
-      {
-        "heading": "Spend and performance insights alongside your data",
-        "body": [
-          "Sync spend, impressions, clicks, reach, CTR, CPC, and CPM for any campaign, ad set, or ad - pick a preset range or a custom date window - without opening Meta Ads Manager or exporting a report."
-        ]
-      },
-      {
-        "heading": "Every write action stays reviewable before it touches Meta",
-        "body": [
-          "Publish, update, clone, and delete are explicit buttons you click after reviewing the record - nothing is pushed to Meta automatically in the background. Every field maps directly to a real Meta Marketing API parameter, so what you set in Odoo is exactly what reaches your ad account."
-        ]
-      },
-      {
-        "heading": "Who this is for",
-        "body": [
-          "Built for Odoo teams running Facebook and Instagram ad campaigns who want campaign management alongside their CRM, sales, and reporting data instead of switching to Meta Ads Manager - marketers who manage their own Business Manager access and don't want to wait on a Meta App Review process to get started."
-        ]
-      }
-    ],
-    "scope": [],
-    "requires": [],
-    "price": 98.48,
-    "manifestPrice": 99.0,
-    "currency": "USD",
-    "category": "Marketing/Marketing",
-    "version": "19.0.1.0.9",
-    "license": "OPL-1",
-    "depends": [
-      "base",
-      "crm"
-    ],
-    "paidDepends": [],
-    "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_meta_odoo_connector",
-    "screenshots": [
-      "screenshot_connection.png",
-      "screenshot_campaigns.png",
-      "screenshot_adset_targeting.png",
-      "screenshot_ad_creative.png"
-    ],
-    "copyWords": 393,
-    "hasVideo": true,
-    "youtubeId": "ZsTgOVQVe5I",
-    "externalPage": "/apps/meta-odoo-connector"
-  },
-  {
-    "tech": "mh_microsoft_ads_launcher",
-    "slug": "microsoft-ads-connector",
-    "name": "Microsoft Ads Connector",
-    "summary": "Bing Ads inside Odoo: create and manage search campaigns, ad groups, keywords with match types and responsive search ads, using your own developer token and Azure AD client.",
-    "tagline": "",
-    "intro": [
-      "Microsoft Ads Connector connects to your own Microsoft Advertising account with a developer token, Azure AD (Entra ID) OAuth client, and refresh token you generate yourself - nothing to submit to us, no app review dependency on our end. Once connected, you get real campaign management inside Odoo: browse and sync existing Search campaigns, ad groups, keywords, and ads, publish new ones, control daily budget and CPC bids, manage keywords and match types, pause, resume, clone, or delete anything - all through the real Microsoft Advertising API."
-    ],
-    "features": [
-      {
-        "heading": "Bring your own credentials",
-        "body": [
-          "Uses a developer token, Azure AD client ID/secret, and refresh token from your own Microsoft Advertising and Azure accounts - you're managing your own account with your own credentials. A single-account developer token is issued instantly from Microsoft's Developer Portal - there's nothing to submit to us and nothing to wait on from our side."
-        ]
-      },
-      {
-        "heading": "Real campaign management, not just reports",
-        "body": [
-          "Builds, publishes, updates, clones, and deletes campaigns, ad groups, keywords, and ads directly - the same actions you'd otherwise do in the Microsoft Advertising UI."
-        ]
-      },
-      {
-        "heading": "Budget and keyword targeting",
-        "body": [
-          "Set a daily budget per campaign, then manage keywords and match types (broad, phrase, exact) with per-ad-group CPC bids, all from standard Odoo form and list views."
-        ]
-      },
-      {
-        "heading": "Reach Bing's search audience from Odoo",
-        "body": [
-          "Microsoft Advertising reaches the Bing/Microsoft Search Network - a real, if secondary, search-ads channel most Google-first advertisers still don't manage - now on the same screens as the rest of your Odoo data."
-        ]
-      },
-      {
-        "heading": "Every write action stays reviewable before it touches Microsoft",
-        "body": [
-          "Publish, pause, resume, clone, and delete are explicit buttons you click after reviewing the record - nothing is pushed to Microsoft automatically in the background. Every field maps directly to a real Microsoft Advertising API parameter, so what you set in Odoo is exactly what reaches your account."
-        ]
-      },
-      {
-        "heading": "Who this is for",
-        "body": [
-          "Odoo teams running Microsoft Advertising (Bing Ads) search campaigns - often alongside Google Ads - who want campaign management next to their CRM, sales, and reporting data instead of switching to a separate platform, and who manage their own Microsoft Advertising and Azure access without waiting on our review queue."
-        ]
-      }
-    ],
-    "scope": [],
-    "requires": [],
-    "price": 98.48,
-    "manifestPrice": 99.0,
-    "currency": "USD",
-    "category": "Marketing/Marketing",
-    "version": "19.0.1.0.10",
-    "license": "OPL-1",
-    "depends": [
-      "base"
-    ],
-    "paidDepends": [],
-    "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_microsoft_ads_launcher",
-    "screenshots": [
-      "screenshot_campaign.png"
-    ],
-    "copyWords": 358,
-    "hasVideo": true,
-    "youtubeId": "U4CcE_tnDQc",
-    "externalPage": null
-  },
-  {
-    "tech": "mh_snapchat_ads_launcher",
-    "slug": "snapchat-ads-connector",
-    "name": "Snapchat Ads Connector",
-    "summary": "Publish, pause and clone Snap ad squads and ads with your own OAuth credentials. Campaign objectives, daily budgets and delivery status without leaving your ERP.",
-    "tagline": "",
-    "intro": [
-      "Snapchat Ads Connector connects to your own Snapchat Ads account with an OAuth client ID/secret and refresh token you generate yourself - nothing to submit to us, no app review dependency on our end. Once connected, you get real campaign management inside Odoo: browse and sync existing campaigns, ad squads, and ads, publish new ones, control daily budget, audience targeting, and optimization goal, pause, resume, clone, or delete anything, and publish a real ad with its own media upload and creative - all through the real Snapchat Marketing API."
-    ],
-    "features": [
-      {
-        "heading": "Bring your own credentials",
-        "body": [
-          "Uses an OAuth client ID/secret and refresh token from your own Snapchat Business Manager account - the lightest credential model of any connector in this lineup, since Snapchat has no separate developer-token concept. You're managing your own account with your own credentials, self-service, with nothing to submit to us."
-        ]
-      },
-      {
-        "heading": "Real campaign management, not just reports",
-        "body": [
-          "Builds, publishes, updates, clones, and deletes campaigns, ad squads, and ads directly - including a real media upload and creative for the ad itself, not just a placeholder."
-        ]
-      },
-      {
-        "heading": "Budget and audience targeting at the ad squad level",
-        "body": [
-          "Set a daily budget, country targeting, and optimization goal (impressions, swipes, app installs) on each ad squad - matching how Snapchat's own real budget model works, rather than forcing it onto the campaign level."
-        ]
-      },
-      {
-        "heading": "Reach Snapchat's audience from Odoo",
-        "body": [
-          "A genuinely underserved gap on the Odoo App Store - manage a real Snapchat ad presence next to your other ad platforms, without a separate login or dashboard."
-        ]
-      },
-      {
-        "heading": "Every write action stays reviewable before it touches Snapchat",
-        "body": [
-          "Publish, pause, resume, clone, and delete are explicit buttons you click after reviewing the record - nothing is pushed to Snapchat automatically in the background. Every field maps directly to a real Snapchat Marketing API parameter, so what you set in Odoo is exactly what reaches your account."
-        ]
-      },
-      {
-        "heading": "Who this is for",
-        "body": [
-          "Odoo teams running or starting Snapchat Ads campaigns - especially those already managing Meta, Google, or Microsoft ads from Odoo and want the same for Snapchat - who manage their own Snapchat Business Manager access without waiting on our review queue."
-        ]
-      }
-    ],
-    "scope": [],
-    "requires": [],
-    "price": 98.48,
-    "manifestPrice": 99.0,
-    "currency": "USD",
-    "category": "Marketing/Marketing",
-    "version": "19.0.1.0.9",
-    "license": "OPL-1",
-    "depends": [
-      "base"
-    ],
-    "paidDepends": [],
-    "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_snapchat_ads_launcher",
-    "screenshots": [
-      "screenshot_campaign.png"
-    ],
-    "copyWords": 354,
-    "hasVideo": true,
-    "youtubeId": "pI-rzAO3BEI",
-    "externalPage": null
-  },
-  {
     "tech": "mh_ai_agent_approvals",
     "slug": "ai-agent-approvals",
     "name": "AI Agent Approvals",
@@ -932,7 +932,7 @@ export const odooApps = [
     "manifestPrice": 49.0,
     "currency": "USD",
     "category": "Tools",
-    "version": "19.0.1.0.10",
+    "version": "19.0.1.0.11",
     "license": "OPL-1",
     "depends": [
       "mh_ai_agent_guardrails"
@@ -1005,7 +1005,7 @@ export const odooApps = [
     "manifestPrice": 89.0,
     "currency": "USD",
     "category": "Tools",
-    "version": "19.0.1.0.6",
+    "version": "19.0.1.0.8",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -1070,7 +1070,7 @@ export const odooApps = [
     "manifestPrice": 79.0,
     "currency": "USD",
     "category": "Human Resources",
-    "version": "19.0.1.0.5",
+    "version": "19.0.1.0.7",
     "license": "OPL-1",
     "depends": [
       "mail"
@@ -1084,6 +1084,79 @@ export const odooApps = [
     "copyWords": 323,
     "hasVideo": true,
     "youtubeId": "Ghhsqzbm3Lo",
+    "externalPage": null
+  },
+  {
+    "tech": "mh_sale_commission",
+    "slug": "sales-commission",
+    "name": "Sales Commission",
+    "summary": "Sales commission on invoice or payment for salespeople and external agents: rules by product, category and sales team, monthly settlement to vendor bills, commission report",
+    "tagline": "Commission for salespeople and external agents, earned on the invoice or on the payment, and paid out on one vendor bill per person per period.",
+    "intro": [
+      "Commission worked out on a confirmed sales order is commission on money that has not been invoiced, let alone collected, and a spreadsheet of who earned what is out of date the day a credit note arrives.",
+      "This app computes commission from the invoice itself — per invoice line, per salesperson and agent, on the untaxed amount — follows that invoice through payment, credit notes, reset to draft and cancellation, and turns each period into one draft vendor bill per person."
+    ],
+    "features": [
+      {
+        "heading": "Rules by product, category and sales team",
+        "body": [
+          "Each plan has a default rate and rules by product, product category (sub-categories included) and sales team. The most specific rule wins: a product beats a category, a sub-category beats its parent, a sales team narrows either one, and equally specific rules are decided by their order in the list."
+        ]
+      },
+      {
+        "heading": "Due on the invoice, or on the payment",
+        "body": [
+          "Each plan picks its trigger. On an “Invoice posted” plan, commission is due on the invoice date. On an “Invoice paid” plan it waits until the invoice is In Payment or Paid, and is dated on the payment. An invoice that a credit note cleared counts as settled, so both sides net to zero."
+        ]
+      },
+      {
+        "heading": "Salespeople and external agents",
+        "body": [
+          "Salespeople earn on invoices where they are the Salesperson. Agents are contacts: set them on the customer, change them on a sales order, and the invoice carries them. Each salesperson and each agent sits on one active plan per company, so their rate never depends on which plan was found first."
+        ]
+      },
+      {
+        "heading": "Credit notes and resets are counted once",
+        "body": [
+          "A credit note against an invoice claws back from the same people at the rate that invoice paid them, even if the plan has changed since. Reset, re-post or recompute an invoice and its unsettled commission is rebuilt, never duplicated. Commission already on a vendor bill is never rewritten: if its invoice is reset or cancelled, a clawback line is deducted from the next settlement."
+        ]
+      },
+      {
+        "heading": "One vendor bill per person per period",
+        "body": [
+          "Settle Commissions takes a period and, if you like, some recipients, and creates one draft vendor bill per person with your commission product and its expense account. Where clawbacks outweigh new commission it creates a vendor refund instead. Cancel or delete the bill and its lines are due again."
+        ]
+      },
+      {
+        "heading": "Statement, report, and who sees what",
+        "body": [
+          "Each settlement prints as a PDF statement of every invoice line behind it and exports to Excel. The Commission Report shows every line by recipient and month as a list, pivot or graph. Salespeople see only their own commission; Sales Administrators set the plans and Invoicing users settle them. Plans, lines and settlements each belong to one company."
+        ]
+      }
+    ],
+    "scope": [],
+    "requires": [
+      "Odoo 19 Community or Enterprise; installs Odoo’s own Sales app (sale). Third-party apps install on Odoo.sh or On-Premise only — they cannot be installed on Odoo Online (SaaS).",
+      "It does not pay commission on margin or on sales orders, and has no targets, volume tiers or manager overrides. It does not run payroll: a salesperson is paid through a vendor bill to their own contact, in your company currency. Invoices posted before you install it earn nothing until you select them and run Recompute Commission. An invoice that groups several sales orders takes its salesperson and agents from the first order, as Odoo does for the salesperson. A vendor credit note against a commission bill does not release its lines — cancel the bill instead."
+    ],
+    "price": 79.01,
+    "manifestPrice": 79.0,
+    "currency": "USD",
+    "category": "Sales/Sales",
+    "version": "19.0.1.0.0",
+    "license": "OPL-1",
+    "depends": [
+      "sale"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_sale_commission",
+    "screenshots": [
+      "screenshot_statement.png"
+    ],
+    "copyWords": 472,
+    "hasVideo": true,
+    "youtubeId": "V6duS_HLgWE",
     "externalPage": null
   },
   {
@@ -1128,7 +1201,7 @@ export const odooApps = [
     "manifestPrice": 69.0,
     "currency": "USD",
     "category": "Tools",
-    "version": "19.0.1.0.12",
+    "version": "19.0.1.0.13",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -1267,7 +1340,7 @@ export const odooApps = [
     "manifestPrice": 69.0,
     "currency": "USD",
     "category": "Website",
-    "version": "19.0.1.0.13",
+    "version": "19.0.1.0.14",
     "license": "OPL-1",
     "depends": [
       "website",
@@ -1282,197 +1355,6 @@ export const odooApps = [
     "copyWords": 300,
     "hasVideo": true,
     "youtubeId": "XXyIypFwTvY",
-    "externalPage": null
-  },
-  {
-    "tech": "mh_menu_visibility",
-    "slug": "menu-visibility",
-    "name": "Menu Visibility",
-    "summary": "Hide menus from the roles that do not need them, many menus and many groups at once, with a preview of what one person would be left seeing and a one-click way to put it all back",
-    "tagline": "Hide menus from the roles that do not need them, many menus and many groups at once, with a preview of what one person would be left seeing and a one-click way to put it all back",
-    "intro": [],
-    "features": [
-      {
-        "heading": "Change many menus and groups at once",
-        "body": [
-          "Choose many menus and many user roles in a single operation and include each menu's subtree when needed so you can hide whole branches together."
-        ]
-      },
-      {
-        "heading": "Preview impact on a real user",
-        "body": [
-          "See how many menus a specific user can see now and how many they would see after the change, so you can judge the impact before you apply it."
-        ]
-      },
-      {
-        "heading": "Plan shows what will actually change",
-        "body": [
-          "Produce a plan that lists the exact menu entries the operation would touch and gives counts of items it would change versus items already correct."
-        ]
-      },
-      {
-        "heading": "Apply, open or revert with one click",
-        "body": [
-          "Apply the planned restrictions, open the affected menus after applying, or revert the change to restore previous access with a single action."
-        ]
-      },
-      {
-        "heading": "Keep a record of what changed and why",
-        "body": [
-          "Each change keeps the plan it was applied from, a note saying who asked and when, and whether it is still in force, so the decision can be read back a year later."
-        ]
-      }
-    ],
-    "scope": [
-      "It hides menus, it does not secure them. A hidden menu's action can still be reached by anyone who knows the URL, and the records behind it stay readable unless model access rights and record rules say otherwise. Those are the real controls, and there are separate apps here for both. Use this to take clutter away from a role, not to keep a determined user out.",
-      "A folder goes when its last visible entry does. Odoo only counts a menu visible if it, or something under it, carries an action the person may open. Restrict the last such entry and the folders above it disappear too. The plan measures that for a named user rather than guessing at it.",
-      "It does not hide buttons, tabs or fields. Fields are their own job and Field Access Rules does that one server-side. Buttons and tabs are not covered here at all."
-    ],
-    "requires": [],
-    "price": 69.0,
-    "manifestPrice": 69.0,
-    "currency": "USD",
-    "category": "Tools",
-    "version": "19.0.1.0.4",
-    "license": "OPL-1",
-    "depends": [
-      "base"
-    ],
-    "paidDepends": [],
-    "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_menu_visibility",
-    "screenshots": [
-      "screenshot_plan.png"
-    ],
-    "copyWords": 355,
-    "hasVideo": true,
-    "youtubeId": "lrrmIBO3GF4",
-    "externalPage": null
-  },
-  {
-    "tech": "mh_stock_valuation_report",
-    "slug": "stock-valuation-report",
-    "name": "Stock Valuation Report",
-    "summary": "Inventory valuation report for any period: opening stock, receipts, issues and closing value per product, by warehouse and category, in PDF and Excel",
-    "tagline": "Inventory valuation for any period: opening stock, received, issued and closing value, per product.",
-    "intro": [
-      "Odoo 19 removed the stock valuation layer and, with it, the Valuation view under Inventory > Reporting. In Community, what is left is a single-date reconciliation by accounting account that no menu opens.",
-      "This report puts back the question every month end asks: what was the stock worth on the first, what came in, what went out, and what is it worth now — per product."
-    ],
-    "features": [
-      {
-        "heading": "Opening and closing are Odoo’s own figures",
-        "body": [
-          "The report reads Odoo’s own valuation at the first and the last second of the period — the same computation Odoo itself uses — so standard, average and FIFO costing and lot valuation come out exactly as Odoo books them. Nothing is recalculated."
-        ]
-      },
-      {
-        "heading": "Every row reconciles",
-        "body": [
-          "Received and issued carry the value Odoo recorded on each stock move. Whatever changed the value without a move — a cost update, a landed cost — sits in its own Other column, so opening + received − issued + other = closing on every line."
-        ]
-      },
-      {
-        "heading": "By warehouse, location and category",
-        "body": [
-          "Filter to one or more warehouses or internal locations, sub-locations included, and to product categories, sub-categories included. A filtered value is pro-rated by quantity, which is how Odoo itself values a warehouse. Archived products that still hold stock are included — they are still on your balance sheet."
-        ]
-      },
-      {
-        "heading": "PDF and Excel, grouped by category",
-        "body": [
-          "Print a PDF with category subtotals and a grand total, or export the same rows to Excel for the month-end file."
-        ]
-      },
-      {
-        "heading": "Your month ends at your midnight",
-        "body": [
-          "Period boundaries follow your time zone. Odoo’s own valuation treats a bare date as the end of that day in UTC, which moves a month end by hours anywhere east or west of Greenwich."
-        ]
-      },
-      {
-        "heading": "It says what it found",
-        "body": [
-          "A short summary states the change over the period, the largest value changes with no stock move behind them, and any product whose quantity does not reconcile — rather than leaving you to spot it in the rows."
-        ]
-      }
-    ],
-    "scope": [],
-    "requires": [
-      "Odoo 19 Community or Enterprise with Inventory; installs Odoo’s own Inventory valuation module (stock_account). Third-party apps install on Odoo.sh or On-Premise only — they cannot be installed on Odoo Online (SaaS).",
-      "It only reads: it posts no journal entries and changes no valuation. Stock moved between your own warehouses is not valued by Odoo, so in a report filtered to one warehouse that transfer shows as quantity with no value, and its value effect lands under Other. Stock you hold on consignment for someone else is left out, as Odoo leaves it out of your valuation. Only Inventory Administrators can run it, matching Odoo’s own rule for who sees stock value."
-    ],
-    "price": 69.0,
-    "manifestPrice": 69.0,
-    "currency": "USD",
-    "category": "Warehouse",
-    "version": "19.0.1.0.0",
-    "license": "OPL-1",
-    "depends": [
-      "stock_account"
-    ],
-    "paidDepends": [],
-    "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_stock_valuation_report",
-    "screenshots": [
-      "screenshot_valuation.png"
-    ],
-    "copyWords": 342,
-    "hasVideo": true,
-    "youtubeId": null,
-    "externalPage": null
-  },
-  {
-    "tech": "mh_user_offboarding",
-    "slug": "user-offboarding-check",
-    "name": "User Offboarding Check",
-    "summary": "Everything in the database that still points at a user before you archive them: scheduled actions, open activities, assigned records, API keys - and what silently breaks if you archive without reassigning",
-    "tagline": "",
-    "intro": [
-      "Everything in the database that still points at a user before you archive them: scheduled actions, open activities, assigned records, API keys — and what silently breaks if you archive without reassigning"
-    ],
-    "features": [
-      {
-        "heading": "The one that costs the most, and it is not what you would guess",
-        "body": [
-          "A scheduled action owned by somebody who has left keeps running, with their access rights, for as long as nobody notices. Archiving blocks the login and nothing else - the account keeps every group it had, so the job goes on creating and writing as them.",
-          "Verified rather than reasoned about: an archived user still returns True from has_group and keeps every implied group, and a real scheduled action owned by one was run through Odoo's own callback and created a record without raising. A login nobody can use, still writing to the database on a schedule."
-        ]
-      },
-      {
-        "heading": "Found by asking the database, not by keeping a list",
-        "body": [
-          "The check sweeps the registry for every stored field that points at a user and counts what each one holds for this person. A list maintained inside the app would miss exactly the custom fields somebody is most likely to be named on.",
-          "Bookkeeping is deliberately left out. Created-by and written-by point at whoever typed something once; counting them would put every record the person ever touched into the report and bury the handful anybody has to act on."
-        ]
-      }
-    ],
-    "scope": [
-      "Every record that named them still names them. Every activity assigned to them is still assigned to them. Every scheduled action set to run as them is still set to run as them. None of it is reassigned, and nothing tells you any of it was there.",
-      "One person, everything still attached to them, and the two categories that stop something happening called out separately. Each line opens the records it counted.",
-      "Stated up front so nothing about the scope is a surprise after you install it."
-    ],
-    "requires": [
-      "Odoo 19, Community or Enterprise. Needs Discuss (for activities). Administrator access, since the check reads across every model in the database. Nothing is written to any record it finds."
-    ],
-    "price": 69.0,
-    "manifestPrice": 69.0,
-    "currency": "USD",
-    "category": "Tools",
-    "version": "19.0.1.0.16",
-    "license": "OPL-1",
-    "depends": [
-      "mail"
-    ],
-    "paidDepends": [],
-    "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_user_offboarding",
-    "screenshots": [
-      "screenshot_check.png"
-    ],
-    "copyWords": 319,
-    "hasVideo": true,
-    "youtubeId": "2pmq2pRXXZU",
     "externalPage": null
   },
   {
@@ -1572,11 +1454,11 @@ export const odooApps = [
       "Before you buy: needs Odoo 19 Community or Enterprise with Inventory and Purchase. Products in scope have to be tracked by lot or serial number — without that there is nothing to attach a plot to, and the app says so rather than reporting a gap it cannot explain."
     ],
     "requires": [],
-    "price": 68.64,
+    "price": 69.0,
     "manifestPrice": 69.0,
     "currency": "USD",
     "category": "Warehouse",
-    "version": "19.0.1.0.14",
+    "version": "19.0.1.0.15",
     "license": "OPL-1",
     "depends": [
       "stock",
@@ -1592,6 +1474,144 @@ export const odooApps = [
     "copyWords": 824,
     "hasVideo": true,
     "youtubeId": "g4aPiYXQXeg",
+    "externalPage": null
+  },
+  {
+    "tech": "mh_menu_visibility",
+    "slug": "menu-visibility",
+    "name": "Menu Visibility",
+    "summary": "Hide menus from the roles that do not need them, many menus and many groups at once, with a preview of what one person would be left seeing and a one-click way to put it all back",
+    "tagline": "Hide menus from the roles that do not need them, many menus and many groups at once, with a preview of what one person would be left seeing and a one-click way to put it all back",
+    "intro": [],
+    "features": [
+      {
+        "heading": "Change many menus and groups at once",
+        "body": [
+          "Choose many menus and many user roles in a single operation and include each menu's subtree when needed so you can hide whole branches together."
+        ]
+      },
+      {
+        "heading": "Preview impact on a real user",
+        "body": [
+          "See how many menus a specific user can see now and how many they would see after the change, so you can judge the impact before you apply it."
+        ]
+      },
+      {
+        "heading": "Plan shows what will actually change",
+        "body": [
+          "Produce a plan that lists the exact menu entries the operation would touch and gives counts of items it would change versus items already correct."
+        ]
+      },
+      {
+        "heading": "Apply, open or revert with one click",
+        "body": [
+          "Apply the planned restrictions, open the affected menus after applying, or revert the change to restore previous access with a single action."
+        ]
+      },
+      {
+        "heading": "Keep a record of what changed and why",
+        "body": [
+          "Each change keeps the plan it was applied from, a note saying who asked and when, and whether it is still in force, so the decision can be read back a year later."
+        ]
+      }
+    ],
+    "scope": [
+      "It hides menus, it does not secure them. A hidden menu's action can still be reached by anyone who knows the URL, and the records behind it stay readable unless model access rights and record rules say otherwise. Those are the real controls, and there are separate apps here for both. Use this to take clutter away from a role, not to keep a determined user out.",
+      "A folder goes when its last visible entry does. Odoo only counts a menu visible if it, or something under it, carries an action the person may open. Restrict the last such entry and the folders above it disappear too. The plan measures that for a named user rather than guessing at it.",
+      "It does not hide buttons, tabs or fields. Fields are their own job and Field Access Rules does that one server-side. Buttons and tabs are not covered here at all."
+    ],
+    "requires": [],
+    "price": 69.0,
+    "manifestPrice": 69.0,
+    "currency": "USD",
+    "category": "Tools",
+    "version": "19.0.1.0.6",
+    "license": "OPL-1",
+    "depends": [
+      "base"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_menu_visibility",
+    "screenshots": [
+      "screenshot_plan.png"
+    ],
+    "copyWords": 355,
+    "hasVideo": true,
+    "youtubeId": "lrrmIBO3GF4",
+    "externalPage": null
+  },
+  {
+    "tech": "mh_stock_valuation_report",
+    "slug": "stock-valuation-report",
+    "name": "Stock Valuation Report",
+    "summary": "Inventory valuation report for any period: opening stock, receipts, issues and closing value per product, by warehouse and category, in PDF and Excel",
+    "tagline": "Inventory valuation for any period: opening stock, received, issued and closing value, per product.",
+    "intro": [
+      "Odoo 19 removed the stock valuation layer and, with it, the Valuation view under Inventory > Reporting. In Community, what is left is a single-date reconciliation by accounting account that no menu opens.",
+      "This report puts back the question every month end asks: what was the stock worth on the first, what came in, what went out, and what is it worth now — per product."
+    ],
+    "features": [
+      {
+        "heading": "Opening and closing are Odoo’s own figures",
+        "body": [
+          "The report reads Odoo’s own valuation at the first and the last second of the period — the same computation Odoo itself uses — so standard, average and FIFO costing and lot valuation come out exactly as Odoo books them. Nothing is recalculated."
+        ]
+      },
+      {
+        "heading": "Every row reconciles",
+        "body": [
+          "Received and issued carry the value Odoo recorded on each stock move. Whatever changed the value without a move — a cost update, a landed cost — sits in its own Other column, so opening + received − issued + other = closing on every line."
+        ]
+      },
+      {
+        "heading": "By warehouse, location and category",
+        "body": [
+          "Filter to one or more warehouses or internal locations, sub-locations included, and to product categories, sub-categories included. A filtered value is pro-rated by quantity, which is how Odoo itself values a warehouse. Archived products that still hold stock are included — they are still on your balance sheet."
+        ]
+      },
+      {
+        "heading": "PDF and Excel, grouped by category",
+        "body": [
+          "Print a PDF with category subtotals and a grand total, or export the same rows to Excel for the month-end file."
+        ]
+      },
+      {
+        "heading": "Your month ends at your midnight",
+        "body": [
+          "Period boundaries follow your time zone. Odoo’s own valuation treats a bare date as the end of that day in UTC, which moves a month end by hours anywhere east or west of Greenwich."
+        ]
+      },
+      {
+        "heading": "It says what it found",
+        "body": [
+          "A short summary states the change over the period, the largest value changes with no stock move behind them, and any product whose quantity does not reconcile — rather than leaving you to spot it in the rows."
+        ]
+      }
+    ],
+    "scope": [],
+    "requires": [
+      "Odoo 19 Community or Enterprise with Inventory; installs Odoo’s own Inventory valuation module (stock_account). Third-party apps install on Odoo.sh or On-Premise only — they cannot be installed on Odoo Online (SaaS).",
+      "It only reads: it posts no journal entries and changes no valuation. Stock moved between your own warehouses is not valued by Odoo, so in a report filtered to one warehouse that transfer shows as quantity with no value, and its value effect lands under Other. Stock you hold on consignment for someone else is left out, as Odoo leaves it out of your valuation. Only Inventory Administrators can run it, matching Odoo’s own rule for who sees stock value."
+    ],
+    "price": 69.0,
+    "manifestPrice": 69.0,
+    "currency": "USD",
+    "category": "Warehouse",
+    "version": "19.0.1.0.2",
+    "license": "OPL-1",
+    "depends": [
+      "stock_account"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_stock_valuation_report",
+    "screenshots": [
+      "screenshot_valuation.png"
+    ],
+    "copyWords": 342,
+    "hasVideo": true,
+    "youtubeId": "LLB1_ZdBRyg",
     "externalPage": null
   },
   {
@@ -1648,11 +1668,11 @@ export const odooApps = [
       "Odoo 19 Community or Enterprise, with Accounting installed. This app also installs the free 1099 Threshold Check , which holds the per-year threshold table.",
       "Not affiliated with or endorsed by the IRS. This is a reporting aid, not tax advice - check the result with whoever files for you."
     ],
-    "price": 68.64,
+    "price": 69.0,
     "manifestPrice": 69.0,
     "currency": "USD",
     "category": "Accounting/Accounting",
-    "version": "19.0.1.0.9",
+    "version": "19.0.1.0.10",
     "license": "OPL-1",
     "depends": [
       "account",
@@ -1716,11 +1736,11 @@ export const odooApps = [
     "requires": [
       "Odoo 19 Community or Enterprise with Sales - Timesheets. It reads only: nothing is invoiced, changed or written back, and it has no opinion about whether the work should have been billed - only that it has not been."
     ],
-    "price": 68.64,
+    "price": 69.0,
     "manifestPrice": 69.0,
     "currency": "USD",
     "category": "Project",
-    "version": "19.0.1.0.13",
+    "version": "19.0.1.0.14",
     "license": "OPL-1",
     "depends": [
       "sale_timesheet"
@@ -1734,6 +1754,59 @@ export const odooApps = [
     "copyWords": 340,
     "hasVideo": true,
     "youtubeId": "WdJ8bg27kqw",
+    "externalPage": null
+  },
+  {
+    "tech": "mh_user_offboarding",
+    "slug": "user-offboarding-check",
+    "name": "User Offboarding Check",
+    "summary": "Everything in the database that still points at a user before you archive them: scheduled actions, open activities, assigned records, API keys - and what silently breaks if you archive without reassigning",
+    "tagline": "",
+    "intro": [
+      "Everything in the database that still points at a user before you archive them: scheduled actions, open activities, assigned records, API keys — and what silently breaks if you archive without reassigning"
+    ],
+    "features": [
+      {
+        "heading": "The one that costs the most, and it is not what you would guess",
+        "body": [
+          "A scheduled action owned by somebody who has left keeps running, with their access rights, for as long as nobody notices. Archiving blocks the login and nothing else - the account keeps every group it had, so the job goes on creating and writing as them.",
+          "Verified rather than reasoned about: an archived user still returns True from has_group and keeps every implied group, and a real scheduled action owned by one was run through Odoo's own callback and created a record without raising. A login nobody can use, still writing to the database on a schedule."
+        ]
+      },
+      {
+        "heading": "Found by asking the database, not by keeping a list",
+        "body": [
+          "The check sweeps the registry for every stored field that points at a user and counts what each one holds for this person. A list maintained inside the app would miss exactly the custom fields somebody is most likely to be named on.",
+          "Bookkeeping is deliberately left out. Created-by and written-by point at whoever typed something once; counting them would put every record the person ever touched into the report and bury the handful anybody has to act on."
+        ]
+      }
+    ],
+    "scope": [
+      "Every record that named them still names them. Every activity assigned to them is still assigned to them. Every scheduled action set to run as them is still set to run as them. None of it is reassigned, and nothing tells you any of it was there.",
+      "One person, everything still attached to them, and the two categories that stop something happening called out separately. Each line opens the records it counted.",
+      "Stated up front so nothing about the scope is a surprise after you install it."
+    ],
+    "requires": [
+      "Odoo 19, Community or Enterprise. Needs Discuss (for activities). Administrator access, since the check reads across every model in the database. Nothing is written to any record it finds."
+    ],
+    "price": 69.0,
+    "manifestPrice": 69.0,
+    "currency": "USD",
+    "category": "Tools",
+    "version": "19.0.1.0.17",
+    "license": "OPL-1",
+    "depends": [
+      "mail"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_user_offboarding",
+    "screenshots": [
+      "screenshot_check.png"
+    ],
+    "copyWords": 319,
+    "hasVideo": true,
+    "youtubeId": "2pmq2pRXXZU",
     "externalPage": null
   },
   {
@@ -1830,7 +1903,7 @@ export const odooApps = [
     "manifestPrice": 49.0,
     "currency": "USD",
     "category": "Tools",
-    "version": "19.0.1.0.11",
+    "version": "19.0.1.0.12",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -1898,7 +1971,7 @@ export const odooApps = [
     "manifestPrice": 49.0,
     "currency": "USD",
     "category": "Tools",
-    "version": "19.0.1.0.11",
+    "version": "19.0.1.0.12",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -1965,7 +2038,7 @@ export const odooApps = [
     "manifestPrice": 49.0,
     "currency": "USD",
     "category": "Tools",
-    "version": "19.0.1.0.12",
+    "version": "19.0.1.0.13",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -2010,7 +2083,7 @@ export const odooApps = [
     "manifestPrice": 49.0,
     "currency": "USD",
     "category": "Extra Tools",
-    "version": "19.0.1.0.8",
+    "version": "19.0.1.0.9",
     "license": "OPL-1",
     "depends": [
       "website"
@@ -2076,7 +2149,7 @@ export const odooApps = [
     "manifestPrice": 49.0,
     "currency": "USD",
     "category": "Tools",
-    "version": "19.0.1.0.4",
+    "version": "19.0.1.0.6",
     "license": "OPL-1",
     "depends": [
       "base",
@@ -2145,7 +2218,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Productivity",
-    "version": "19.0.1.0.4",
+    "version": "19.0.1.0.6",
     "license": "OPL-1",
     "depends": [
       "mh_ai_agent_guardrails"
@@ -2215,7 +2288,7 @@ export const odooApps = [
     "manifestPrice": 49.0,
     "currency": "USD",
     "category": "Manufacturing",
-    "version": "19.0.1.0.12",
+    "version": "19.0.1.0.13",
     "license": "OPL-1",
     "depends": [
       "quality"
@@ -2345,7 +2418,7 @@ export const odooApps = [
     "manifestPrice": 39.0,
     "currency": "USD",
     "category": "Tools",
-    "version": "19.0.1.0.10",
+    "version": "19.0.1.0.11",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -2412,7 +2485,7 @@ export const odooApps = [
     "manifestPrice": 39.0,
     "currency": "USD",
     "category": "Productivity/Discuss",
-    "version": "19.0.1.0.4",
+    "version": "19.0.1.0.6",
     "license": "OPL-1",
     "depends": [
       "mail"
@@ -2474,7 +2547,7 @@ export const odooApps = [
     "manifestPrice": 39.0,
     "currency": "USD",
     "category": "Tools",
-    "version": "19.0.1.0.10",
+    "version": "19.0.1.0.11",
     "license": "OPL-1",
     "depends": [
       "base_setup"
@@ -2532,7 +2605,7 @@ export const odooApps = [
     "manifestPrice": 39.0,
     "currency": "USD",
     "category": "Extra Tools",
-    "version": "19.0.1.0.8",
+    "version": "19.0.1.0.9",
     "license": "OPL-1",
     "depends": [
       "mail"
@@ -2595,7 +2668,7 @@ export const odooApps = [
     "manifestPrice": 39.0,
     "currency": "USD",
     "category": "Accounting/Accounting",
-    "version": "19.0.1.0.8",
+    "version": "19.0.1.0.9",
     "license": "OPL-1",
     "depends": [
       "account"
@@ -2609,6 +2682,159 @@ export const odooApps = [
     "copyWords": 287,
     "hasVideo": true,
     "youtubeId": "NI-1QUI0XoI",
+    "externalPage": null
+  },
+  {
+    "tech": "mh_pos_sales_reports",
+    "slug": "pos-sales-reports",
+    "name": "POS Sales Reports",
+    "summary": "POS sales report by cashier, payment method and session, profit and loss by product and category, top selling products, in PDF and Excel",
+    "tagline": "Point of Sale sales by cashier, by session and by product, with a profit and loss that never counts a missing cost as margin.",
+    "intro": [
+      "Odoo 19 already prints a Sales Details report and ships an Orders Analysis pivot. Sales Details has no Excel export and no margin. Orders Analysis files an order paid partly in cash and partly by card under its first payment method only, and counts a line with no recorded cost as all margin.",
+      "This app reads the same records Odoo keeps and lays them out for the questions a shop manager asks at the end of the day, the week and the month: who sold what, what came in by each payment method, which sessions came up short, and what the shop actually made."
+    ],
+    "features": [
+      {
+        "heading": "Every cashier, side by side",
+        "body": [
+          "Orders, refunds, gross sales, discounts, refunded and net sales for each cashier, across any date range and any number of Points of Sale, next to what each one took by payment method. An order paid half in cash and half by card is split exactly as it was paid."
+        ]
+      },
+      {
+        "heading": "The person who rang it up",
+        "body": [
+          "With Point of Sale employee login, the cashier is the employee Odoo records as Cashier on the order, so employees sharing one Odoo user each get a row of their own. Without employee login, it is the logged-in user."
+        ]
+      },
+      {
+        "heading": "A session report in one click",
+        "body": [
+          "A Sales Report button on the session form prints that session’s report; select several sessions in the list to print one report per session. Each session shows who opened it, its orders and net sales and, once it is closed, the expected cash, the counted cash and the difference Odoo recorded at closing."
+        ]
+      },
+      {
+        "heading": "Profit and loss by product and category",
+        "body": [
+          "Revenue excluding tax, the cost Odoo stored on each order line, margin and margin percentage, per product and per product category. Products are ranked by revenue, so the best sellers come first. A refund takes back both its revenue and its cost."
+        ]
+      },
+      {
+        "heading": "No margin on a cost that was never recorded",
+        "body": [
+          "A line with no cost — a product that has none, or a FIFO or average-cost product whose cost Odoo computes only when its session closes — has its revenue shown in a column of its own and left out of the margin. The report counts those lines and says why they have no cost."
+        ]
+      },
+      {
+        "heading": "Odoo’s own figures",
+        "body": [
+          "Order totals, payment amounts, the discount measure Odoo’s Sales Details uses, the cost stored on each line and the session’s own cash count — nothing is recalculated, so a session’s net sales and payments by method agree with Odoo’s Sales Details for the same session."
+        ]
+      },
+      {
+        "heading": "Your day, your currency",
+        "body": [
+          "Periods run from midnight to midnight in your time zone. A Point of Sale that sells in another currency is converted to the company’s at the rate Odoo stored on each order."
+        ]
+      },
+      {
+        "heading": "PDF and Excel for every report",
+        "body": [
+          "Print a landscape PDF that opens with a short summary of what stood out, then cashiers, sessions, categories and products; or export the same figures to an Excel workbook with a sheet for each."
+        ]
+      }
+    ],
+    "scope": [],
+    "requires": [
+      "Odoo 19 Community or Enterprise with Point of Sale; nothing else to install. Third-party apps install on Odoo.sh or On-Premise only — they cannot be installed on Odoo Online (SaaS).",
+      "It only reads: it posts nothing and changes no order, session or cost. Cash is counted per session, not per cashier, so cash differences are reported per session. Discounts are line discounts; a global discount is a product line of its own and is reported as one. Sales figures include tax; profit and loss figures exclude it. Only Point of Sale Administrators can run it, because it shows cost and margin. It adds nothing to the Point of Sale screen itself."
+    ],
+    "price": 39.0,
+    "manifestPrice": 39.0,
+    "currency": "USD",
+    "category": "Sales/Point of Sale",
+    "version": "19.0.1.0.0",
+    "license": "OPL-1",
+    "depends": [
+      "point_of_sale"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_pos_sales_reports",
+    "screenshots": [
+      "screenshot_report.png"
+    ],
+    "copyWords": 523,
+    "hasVideo": true,
+    "youtubeId": "fr1m0C2n6yE",
+    "externalPage": null
+  },
+  {
+    "tech": "mh_project_cost_exposure",
+    "slug": "project-cost-exposure",
+    "name": "Project Cost Exposure",
+    "summary": "What each project has already cost plus your purchase commitment on open purchase orders, and which projects only look profitable because the bills have not landed yet",
+    "tagline": "See what each project has already cost plus what you have committed on open purchase orders, and which projects only look profitable because the bills have not landed yet",
+    "intro": [
+      "Analytic accounting answers what a project has cost. It cannot answer what a project is going to cost, because a purchase order confirmed last week is a real obligation that appears in no report until the supplier gets round to invoicing.",
+      "That is how a project stays green for a month and then goes red all at once - and why the people who could still have done something find out when it is too late to.",
+      "Billed, spent, and still owed on confirmed orders - and the margin once those orders are invoiced."
+    ],
+    "features": [
+      {
+        "heading": "The list that is the point",
+        "body": [
+          "Projects in profit today that would not be once the open purchase orders are billed. One button opens only those, and the findings name the five worst."
+        ]
+      },
+      {
+        "heading": "Nothing is counted twice",
+        "body": [
+          "The billed part of an order stops counting as committed, because it has already become an actual cost. Counting both would make every project look far worse than it is, which is a different kind of useless."
+        ]
+      },
+      {
+        "heading": "A draft order is not a commitment",
+        "body": [
+          "Only confirmed and done orders count - nobody has told the supplier to go ahead on a draft, and a report that treated quotes as obligations would cry wolf until people stopped reading it."
+        ]
+      },
+      {
+        "heading": "Shared order lines are split",
+        "body": [
+          "One line spread across projects is divided by its analytic percentages rather than charged in full to each, so the company's total commitment adds up to what was actually ordered."
+        ]
+      },
+      {
+        "heading": "Costs and revenue are not netted",
+        "body": [
+          "Summed separately, because netting them reports a project with heavy spending and heavy billing as quiet - and a project already losing money is not listed as a surprise, since it would only bury the ones about to turn."
+        ]
+      }
+    ],
+    "scope": [],
+    "requires": [
+      "Odoo 19 Community or Enterprise with Project and Purchase. It changes nothing - no journal entries, no analytic lines, no orders. It has no opinion about what the budget should have been: it reports what has been committed, not whether committing it was wise. Projects with no analytic account are skipped."
+    ],
+    "price": 39.0,
+    "manifestPrice": 39.0,
+    "currency": "USD",
+    "category": "Project",
+    "version": "19.0.1.0.13",
+    "license": "OPL-1",
+    "depends": [
+      "project",
+      "purchase"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_project_cost_exposure",
+    "screenshots": [
+      "screenshot_exposure.png"
+    ],
+    "copyWords": 318,
+    "hasVideo": true,
+    "youtubeId": "mZFuv-o5q6w",
     "externalPage": null
   },
   {
@@ -2725,7 +2951,7 @@ export const odooApps = [
     "manifestPrice": 39.0,
     "currency": "USD",
     "category": "Warehouse",
-    "version": "19.0.1.0.12",
+    "version": "19.0.1.0.13",
     "license": "OPL-1",
     "depends": [
       "stock"
@@ -2788,7 +3014,7 @@ export const odooApps = [
     "manifestPrice": 39.0,
     "currency": "USD",
     "category": "Sales/Sales",
-    "version": "19.0.1.0.6",
+    "version": "19.0.1.0.7",
     "license": "OPL-1",
     "depends": [
       "sale_management"
@@ -2855,7 +3081,7 @@ export const odooApps = [
     "manifestPrice": 39.0,
     "currency": "USD",
     "category": "Warehouse",
-    "version": "19.0.1.0.11",
+    "version": "19.0.1.0.12",
     "license": "OPL-1",
     "depends": [
       "stock"
@@ -2869,74 +3095,6 @@ export const odooApps = [
     "copyWords": 324,
     "hasVideo": true,
     "youtubeId": "SDHwcVtzEe0",
-    "externalPage": null
-  },
-  {
-    "tech": "mh_project_cost_exposure",
-    "slug": "project-cost-exposure",
-    "name": "Project Cost Exposure",
-    "summary": "What each project has already cost plus your purchase commitment on open purchase orders, and which projects only look profitable because the bills have not landed yet",
-    "tagline": "See what each project has already cost plus what you have committed on open purchase orders, and which projects only look profitable because the bills have not landed yet",
-    "intro": [
-      "Analytic accounting answers what a project has cost. It cannot answer what a project is going to cost, because a purchase order confirmed last week is a real obligation that appears in no report until the supplier gets round to invoicing.",
-      "That is how a project stays green for a month and then goes red all at once - and why the people who could still have done something find out when it is too late to.",
-      "Billed, spent, and still owed on confirmed orders - and the margin once those orders are invoiced."
-    ],
-    "features": [
-      {
-        "heading": "The list that is the point",
-        "body": [
-          "Projects in profit today that would not be once the open purchase orders are billed. One button opens only those, and the findings name the five worst."
-        ]
-      },
-      {
-        "heading": "Nothing is counted twice",
-        "body": [
-          "The billed part of an order stops counting as committed, because it has already become an actual cost. Counting both would make every project look far worse than it is, which is a different kind of useless."
-        ]
-      },
-      {
-        "heading": "A draft order is not a commitment",
-        "body": [
-          "Only confirmed and done orders count - nobody has told the supplier to go ahead on a draft, and a report that treated quotes as obligations would cry wolf until people stopped reading it."
-        ]
-      },
-      {
-        "heading": "Shared order lines are split",
-        "body": [
-          "One line spread across projects is divided by its analytic percentages rather than charged in full to each, so the company's total commitment adds up to what was actually ordered."
-        ]
-      },
-      {
-        "heading": "Costs and revenue are not netted",
-        "body": [
-          "Summed separately, because netting them reports a project with heavy spending and heavy billing as quiet - and a project already losing money is not listed as a surprise, since it would only bury the ones about to turn."
-        ]
-      }
-    ],
-    "scope": [],
-    "requires": [
-      "Odoo 19 Community or Enterprise with Project and Purchase. It changes nothing - no journal entries, no analytic lines, no orders. It has no opinion about what the budget should have been: it reports what has been committed, not whether committing it was wise. Projects with no analytic account are skipped."
-    ],
-    "price": 38.79,
-    "manifestPrice": 39.0,
-    "currency": "USD",
-    "category": "Project",
-    "version": "19.0.1.0.12",
-    "license": "OPL-1",
-    "depends": [
-      "project",
-      "purchase"
-    ],
-    "paidDepends": [],
-    "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_project_cost_exposure",
-    "screenshots": [
-      "screenshot_exposure.png"
-    ],
-    "copyWords": 318,
-    "hasVideo": true,
-    "youtubeId": "mZFuv-o5q6w",
     "externalPage": null
   },
   {
@@ -2965,11 +3123,11 @@ export const odooApps = [
     ],
     "scope": [],
     "requires": [],
-    "price": 38.79,
+    "price": 39.0,
     "manifestPrice": 39.0,
     "currency": "USD",
     "category": "Extra Tools",
-    "version": "19.0.1.0.8",
+    "version": "19.0.1.0.9",
     "license": "OPL-1",
     "depends": [
       "mail"
@@ -3036,7 +3194,7 @@ export const odooApps = [
     "manifestPrice": 29.0,
     "currency": "USD",
     "category": "Accounting/Accounting",
-    "version": "19.0.1.0.10",
+    "version": "19.0.1.0.11",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -3102,7 +3260,7 @@ export const odooApps = [
     "manifestPrice": 29.0,
     "currency": "USD",
     "category": "Tools",
-    "version": "19.0.1.0.13",
+    "version": "19.0.1.0.14",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -3165,7 +3323,7 @@ export const odooApps = [
     "manifestPrice": 29.0,
     "currency": "USD",
     "category": "Human Resources",
-    "version": "19.0.1.0.7",
+    "version": "19.0.1.0.8",
     "license": "OPL-1",
     "depends": [
       "hr"
@@ -3232,7 +3390,7 @@ export const odooApps = [
     "manifestPrice": 29.0,
     "currency": "USD",
     "category": "Productivity/Discuss",
-    "version": "19.0.1.0.10",
+    "version": "19.0.1.0.11",
     "license": "OPL-1",
     "depends": [
       "mail",
@@ -3370,7 +3528,7 @@ export const odooApps = [
     "manifestPrice": 29.0,
     "currency": "USD",
     "category": "Warehouse",
-    "version": "19.0.1.0.11",
+    "version": "19.0.1.0.12",
     "license": "OPL-1",
     "depends": [
       "stock"
@@ -3429,11 +3587,11 @@ export const odooApps = [
     "requires": [
       "Odoo 19 Community or Enterprise with Inventory. It restricts what people see, not what they may do - which operations they can perform is access rights . It does not restrict by location within a warehouse, and it writes nothing to your stock."
     ],
-    "price": 28.85,
+    "price": 29.0,
     "manifestPrice": 29.0,
     "currency": "USD",
     "category": "Warehouse",
-    "version": "19.0.1.0.11",
+    "version": "19.0.1.0.12",
     "license": "OPL-1",
     "depends": [
       "stock"
@@ -3487,7 +3645,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Accounting/Accounting",
-    "version": "19.0.1.0.6",
+    "version": "19.0.1.0.7",
     "license": "OPL-1",
     "depends": [
       "account"
@@ -3537,7 +3695,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Tools",
-    "version": "19.0.1.0.8",
+    "version": "19.0.1.0.10",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -3590,7 +3748,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Productivity",
-    "version": "19.0.1.0.9",
+    "version": "19.0.1.0.10",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -3645,7 +3803,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Purchases",
-    "version": "19.0.1.0.9",
+    "version": "19.0.1.0.10",
     "license": "OPL-1",
     "depends": [
       "purchase"
@@ -3692,7 +3850,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Extra Tools",
-    "version": "19.0.1.0.7",
+    "version": "19.0.1.0.8",
     "license": "OPL-1",
     "depends": [
       "web"
@@ -3750,7 +3908,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Tools",
-    "version": "19.0.1.0.10",
+    "version": "19.0.1.0.11",
     "license": "OPL-1",
     "depends": [
       "mail"
@@ -3797,7 +3955,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Sales",
-    "version": "19.0.1.0.8",
+    "version": "19.0.1.0.9",
     "license": "OPL-1",
     "depends": [
       "sale",
@@ -3853,7 +4011,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Productivity",
-    "version": "19.0.1.0.8",
+    "version": "19.0.1.0.9",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -3898,7 +4056,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Extra Tools",
-    "version": "19.0.1.0.7",
+    "version": "19.0.1.0.8",
     "license": "OPL-1",
     "depends": [
       "mail"
@@ -3955,7 +4113,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Accounting/Accounting",
-    "version": "19.0.1.0.10",
+    "version": "19.0.1.0.11",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -3990,7 +4148,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Website/Website",
-    "version": "19.0.1.0.10",
+    "version": "19.0.1.0.11",
     "license": "OPL-1",
     "depends": [
       "website"
@@ -4057,13 +4215,13 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Warehouse",
-    "version": "19.0.1.0.4",
+    "version": "19.0.1.0.6",
     "license": "OPL-1",
     "depends": [
       "stock_account"
     ],
     "paidDepends": [],
-    "downloads": 9,
+    "downloads": 10,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_cost_price_history",
     "screenshots": [
       "screenshot_history.png"
@@ -4107,7 +4265,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Manufacturing",
-    "version": "19.0.1.0.8",
+    "version": "19.0.1.0.9",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -4162,7 +4320,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Accounting/Accounting",
-    "version": "19.0.1.0.7",
+    "version": "19.0.1.0.8",
     "license": "OPL-1",
     "depends": [
       "account"
@@ -4217,7 +4375,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Accounting/Accounting",
-    "version": "19.0.1.0.9",
+    "version": "19.0.1.0.10",
     "license": "OPL-1",
     "depends": [
       "account"
@@ -4303,7 +4461,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Extra Tools",
-    "version": "19.0.1.0.6",
+    "version": "19.0.1.0.7",
     "license": "OPL-1",
     "depends": [
       "mh_stale_user_assignment",
@@ -4312,7 +4470,7 @@ export const odooApps = [
       "mh_cron_health_badge"
     ],
     "paidDepends": [],
-    "downloads": 4,
+    "downloads": 5,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_housekeeping",
     "screenshots": [
       "screenshot_menu.png",
@@ -4349,7 +4507,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Warehouse",
-    "version": "19.0.1.0.15",
+    "version": "19.0.1.0.16",
     "license": "OPL-1",
     "depends": [
       "stock"
@@ -4418,7 +4576,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Extra Tools",
-    "version": "19.0.1.0.7",
+    "version": "19.0.1.0.8",
     "license": "OPL-1",
     "depends": [
       "base",
@@ -4426,7 +4584,7 @@ export const odooApps = [
       "mail"
     ],
     "paidDepends": [],
-    "downloads": 9,
+    "downloads": 10,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_direct_download_base",
     "screenshots": [
       "main_screenshot.png",
@@ -4453,7 +4611,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Extra Tools",
-    "version": "19.0.1.0.9",
+    "version": "19.0.1.0.10",
     "license": "OPL-1",
     "depends": [
       "base",
@@ -4510,7 +4668,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Tools",
-    "version": "19.0.1.0.9",
+    "version": "19.0.1.0.11",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -4557,13 +4715,13 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Extra Tools",
-    "version": "19.0.1.0.7",
+    "version": "19.0.1.0.8",
     "license": "OPL-1",
     "depends": [
       "mail"
     ],
     "paidDepends": [],
-    "downloads": 3,
+    "downloads": 4,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_duplicate_attachment_guard",
     "screenshots": [
       "screenshot_guard.png"
@@ -4613,7 +4771,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Tools",
-    "version": "19.0.1.0.10",
+    "version": "19.0.1.0.11",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -4669,7 +4827,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Warehouse",
-    "version": "19.0.1.0.9",
+    "version": "19.0.1.0.10",
     "license": "OPL-1",
     "depends": [
       "stock"
@@ -4724,7 +4882,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Accounting/Accounting",
-    "version": "19.0.1.0.7",
+    "version": "19.0.1.0.8",
     "license": "OPL-1",
     "depends": [
       "account"
@@ -4769,7 +4927,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Extra Tools",
-    "version": "19.0.1.0.8",
+    "version": "19.0.1.0.9",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -4814,7 +4972,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Extra Tools",
-    "version": "19.0.1.0.11",
+    "version": "19.0.1.0.12",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -4869,7 +5027,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Productivity",
-    "version": "19.0.1.0.8",
+    "version": "19.0.1.0.9",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -4920,13 +5078,13 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Marketing/Marketing",
-    "version": "19.0.1.0.8",
+    "version": "19.0.1.0.9",
     "license": "OPL-1",
     "depends": [
       "base"
     ],
     "paidDepends": [],
-    "downloads": 3,
+    "downloads": 4,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_google_ads_spend",
     "screenshots": [
       "screenshot_spend.png"
@@ -4952,7 +5110,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Website/Website",
-    "version": "19.0.1.0.7",
+    "version": "19.0.1.0.8",
     "license": "OPL-1",
     "depends": [
       "base",
@@ -5008,7 +5166,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Human Resources",
-    "version": "19.0.1.0.6",
+    "version": "19.0.1.0.7",
     "license": "OPL-1",
     "depends": [
       "hr"
@@ -5063,7 +5221,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Accounting/Accounting",
-    "version": "19.0.1.0.7",
+    "version": "19.0.1.0.8",
     "license": "OPL-1",
     "depends": [
       "account"
@@ -5108,7 +5266,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Project",
-    "version": "19.0.1.0.6",
+    "version": "19.0.1.0.7",
     "license": "OPL-1",
     "depends": [
       "project"
@@ -5140,7 +5298,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Extra Tools",
-    "version": "19.0.1.0.9",
+    "version": "19.0.1.0.10",
     "license": "OPL-1",
     "depends": [
       "base",
@@ -5225,7 +5383,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Marketing/Marketing",
-    "version": "19.0.1.0.7",
+    "version": "19.0.1.0.8",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -5276,7 +5434,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Marketing/Marketing",
-    "version": "19.0.1.0.7",
+    "version": "19.0.1.0.8",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -5325,13 +5483,13 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Extra Tools",
-    "version": "19.0.1.0.7",
+    "version": "19.0.1.0.8",
     "license": "OPL-1",
     "depends": [
       "base"
     ],
     "paidDepends": [],
-    "downloads": 3,
+    "downloads": 4,
     "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_orphan_attachment_scan",
     "screenshots": [
       "screenshot_scan.png",
@@ -5377,7 +5535,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Point of Sale",
-    "version": "19.0.1.0.9",
+    "version": "19.0.1.0.10",
     "license": "OPL-1",
     "depends": [
       "base",
@@ -5434,7 +5592,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Website",
-    "version": "19.0.1.0.9",
+    "version": "19.0.1.0.10",
     "license": "OPL-1",
     "depends": [
       "website"
@@ -5489,7 +5647,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Human Resources",
-    "version": "19.0.1.0.8",
+    "version": "19.0.1.0.9",
     "license": "OPL-1",
     "depends": [
       "hr"
@@ -5522,7 +5680,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Extra Tools",
-    "version": "19.0.1.0.7",
+    "version": "19.0.1.0.8",
     "license": "OPL-1",
     "depends": [
       "base",
@@ -5582,7 +5740,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Extra Tools",
-    "version": "19.0.1.0.7",
+    "version": "19.0.1.0.8",
     "license": "OPL-1",
     "depends": [
       "portal",
@@ -5617,7 +5775,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Warehouse",
-    "version": "19.0.1.0.7",
+    "version": "19.0.1.0.8",
     "license": "OPL-1",
     "depends": [
       "product"
@@ -5659,7 +5817,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Project",
-    "version": "19.0.1.0.12",
+    "version": "19.0.1.0.13",
     "license": "OPL-1",
     "depends": [
       "project",
@@ -5715,7 +5873,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Sales/Sales",
-    "version": "19.0.1.0.7",
+    "version": "19.0.1.0.8",
     "license": "OPL-1",
     "depends": [
       "sale"
@@ -5770,7 +5928,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Productivity",
-    "version": "19.0.1.0.8",
+    "version": "19.0.1.0.9",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -5825,7 +5983,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Accounting/Accounting",
-    "version": "19.0.1.0.7",
+    "version": "19.0.1.0.8",
     "license": "OPL-1",
     "depends": [
       "l10n_ro"
@@ -5874,7 +6032,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Extra Tools",
-    "version": "19.0.1.0.8",
+    "version": "19.0.1.0.9",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -5926,7 +6084,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Marketing/Marketing",
-    "version": "19.0.1.0.7",
+    "version": "19.0.1.0.8",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -5991,7 +6149,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Extra Tools",
-    "version": "19.0.1.0.8",
+    "version": "19.0.1.0.9",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -6024,7 +6182,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Warehouse",
-    "version": "19.0.1.0.8",
+    "version": "19.0.1.0.9",
     "license": "OPL-1",
     "depends": [
       "stock_account"
@@ -6065,7 +6223,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Warehouse",
-    "version": "19.0.1.0.11",
+    "version": "19.0.1.0.12",
     "license": "OPL-1",
     "depends": [
       "stock"
@@ -6125,7 +6283,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Services/Project",
-    "version": "19.0.1.0.6",
+    "version": "19.0.1.0.7",
     "license": "OPL-1",
     "depends": [
       "project",
@@ -6181,7 +6339,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Human Resources",
-    "version": "19.0.1.0.10",
+    "version": "19.0.1.0.11",
     "license": "OPL-1",
     "depends": [
       "base"
