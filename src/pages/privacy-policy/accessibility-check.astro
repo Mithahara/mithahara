@@ -1,0 +1,121 @@
+---
+import Layout from '../../layouts/Layout.astro';
+const lastUpdated = 'September 2026';
+---
+<Layout
+  path="/privacy-policy/accessibility-check"
+  title="Privacy Policy: Mithahara Accessibility Check"
+  description="What the Mithahara Accessibility Check Shopify app reads from your store, what it keeps, and how it is deleted."
+>
+  <section class="page-section">
+    <div class="container">
+      <h2 class="section-title">Privacy Policy: Mithahara Accessibility Check</h2>
+      <p class="page-meta">Last updated: {lastUpdated}</p>
+
+      <p>
+        This page covers the Mithahara Accessibility Check app for Shopify. It scans your online
+        store for accessibility problems and, on the paid plan, lets you write missing alt text
+        for product images. Our <a href="/privacy-policy">general privacy policy</a> covers the
+        rest of Mithahara. "We" means Mithahara.
+      </p>
+
+      <h3>What the app reads from your store</h3>
+      <ul>
+        <li>Your shop's domain, and the access token Shopify gives us when you install the app.</li>
+        <li>
+          The list of your pages, products and collections (titles and addresses), so the scan
+          knows what to check.
+        </li>
+        <li>
+          The public HTML of those pages, fetched the same way any visitor's browser would fetch
+          them. It is checked for missing alt text, unlabeled form fields, skipped heading levels,
+          a missing page language, and empty or vague links.
+        </li>
+        <li>
+          Paid plan only: your product images, with their current alt text, so you can fill in
+          the missing ones.
+        </li>
+        <li>Which plan you are on, from Shopify's billing system.</li>
+      </ul>
+
+      <h3>What we keep</h3>
+      <ul>
+        <li>Your shop domain, your plan, and the access token (stored encrypted).</li>
+        <li>
+          The results of each scan: the page address, the kind of problem, the fragment of page
+          HTML the problem was found in, and whether it is still open. Those fragments come from
+          your public pages, so they contain whatever text is published there.
+        </li>
+        <li>The alt text you type into the editor, and the time you saved it.</li>
+      </ul>
+
+      <h3>What we do not collect</h3>
+      <ul>
+        <li>
+          Your customers' names, emails, addresses or orders, and any payment details. The app
+          does not ask Shopify for customer, order or payment data.
+        </li>
+        <li>
+          Anything from your store's visitors. The app adds no script, cookie or tracker to your
+          storefront, and it changes nothing on your theme.
+        </li>
+      </ul>
+
+      <h3>What the app changes in your store</h3>
+      <p>
+        Nothing, unless you are on the paid plan and press Save on an alt-text entry. That writes
+        the text you typed to that one image through Shopify's API.
+      </p>
+
+      <h3>How we use it</h3>
+      <p>
+        Only to run your scans, show you the results, apply the alt text you approve, produce your
+        report, and answer your support questions. We don't sell your data, use it for advertising,
+        or use it to train AI models. The app does not send your pages to any AI service.
+      </p>
+
+      <h3>Who else handles it</h3>
+      <p>
+        Shopify (the platform you installed us from), and the cloud host that runs the app and its
+        database. We share data with nobody else, except where the law requires it.
+      </p>
+
+      <h3>Uninstalling and deletion</h3>
+      <p>
+        When you uninstall, the access token stops working at once. Shopify then sends us a
+        shop-erasure request, and we delete your shop's stored data, including scan results and
+        alt-text history, when we receive it. If you want it gone sooner, or want to know what we
+        hold about your shop, email us.
+      </p>
+      <p>
+        Shopify's customer data requests (data request and erasure) reach us too. Because we hold
+        no customer data, there is nothing to return or delete, and we confirm that to Shopify.
+      </p>
+
+      <h3>Your rights</h3>
+      <p>
+        If you are in the EU, UK or another region with data protection law, you can ask us for a
+        copy of the data we hold about your shop, ask us to correct or delete it, and complain to
+        your local data protection authority. The information we hold is limited to the list above.
+      </p>
+
+      <h3>Security</h3>
+      <p>
+        Data travels over HTTPS, and access tokens are encrypted at rest. No system is perfectly
+        secure; if we learn of a breach affecting your shop we will tell you without undue delay.
+      </p>
+
+      <h3>Changes</h3>
+      <p>
+        If we change what the app collects, we will update this page and its date before the
+        change goes live.
+      </p>
+
+      <h3>Contact</h3>
+      <p>
+        Questions or requests about this policy:{' '}
+        <a href="mailto:support@mithahara.com">support@mithahara.com</a>.
+      </p>
+    </div>
+  </section>
+</Layout>
