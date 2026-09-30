@@ -2170,8 +2170,8 @@ export const odooApps = [
     "tech": "mh_mcp_server",
     "slug": "mcp-server-for-odoo",
     "name": "MCP Server for Odoo",
-    "summary": "MCP server exposing Odoo to Claude, ChatGPT and other AI assistants - on the current 2026-07-28 revision, with an explicit list of what each connection may reach",
-    "tagline": "MCP server exposing Odoo to Claude, ChatGPT and other AI assistants - on the current 2026-07-28 revision, with an explicit list of what each connection may reach",
+    "summary": "MCP server exposing Odoo to Codex and other MCP clients - on the current 2026-07-28 revision, with an explicit list of what each connection may reach",
+    "tagline": "MCP server exposing Odoo to Codex and other MCP clients - on the current 2026-07-28 revision, with an explicit list of what each connection may reach",
     "intro": [],
     "features": [
       {
@@ -2189,7 +2189,7 @@ export const odooApps = [
       {
         "heading": "On the current revision of the protocol",
         "body": [
-          "Implements revision 2026-07-28, which removed the initialize handshake, protocol-level sessions and the event stream, and made three request headers required and checked against the body. A server written against the older examples that most guides still show is not merely dated - a current client rejects it."
+          "Implements revision 2026-07-28, which removed the initialize handshake, protocol-level sessions and the event stream, and made three request headers required and checked against the body. Clients that still open with the older initialize handshake, such as Codex CLI today, are served too, so the endpoint works with both. A ready-made Codex plugin with read-only Odoo skills is at github.com/Mithahara/odoo-codex-plugin."
         ]
       },
       {

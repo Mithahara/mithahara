@@ -1,0 +1,59 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+---
+<Layout
+  path="/odoo-apps/mcp-server-for-odoo/codex"
+  title="Use Odoo from Codex"
+  description="Connect Codex to your Odoo through MCP Server for Odoo, and add three read-only skills: overdue invoices, who can see a model, and record history."
+>
+  <section class="page-section">
+    <div class="container">
+      <h1 class="section-title">Use Odoo from Codex</h1>
+      <p>
+        <a href="/odoo-apps/mcp-server-for-odoo">MCP Server for Odoo</a> lets an AI client read
+        your Odoo through an explicit list of models you choose. Codex CLI connects to it today.
+        The Codex plugin below adds three ready-made read-only skills. The add-on is required;
+        the plugin is free.
+      </p>
+
+      <h2 class="sec-head">Set up</h2>
+      <ol>
+        <li>Install the add-on on your Odoo (19.0 or 20.0), create a profile listing the models Codex may reach, and create an API key with the <code>odoo.mcp</code> scope.</li>
+        <li>Add the plugin marketplace in Codex:
+          <pre><code>codex plugin marketplace add Mithahara/odoo-codex-plugin</code></pre>
+        </li>
+        <li>Point Codex at your Odoo in <code>~/.codex/config.toml</code>. The plugin cannot carry your URL, so this step is yours:
+          <pre><code>[mcp_servers.odoo]
+url = "https://YOUR-ODOO-HOST/mcp"
+bearer_token_env_var = "ODOO_MCP_KEY"</code></pre>
+        </li>
+        <li>Export the key before starting Codex:
+          <pre><code>export ODOO_MCP_KEY=your-odoo-mcp-api-key</code></pre>
+        </li>
+      </ol>
+
+      <h2 class="sec-head">The skills</h2>
+      <ul>
+        <li><strong>find-overdue-invoices</strong>: posted customer invoices past their due date, with customer, amount due and days overdue.</li>
+        <li><strong>who-can-see-model</strong>: which groups can read, write, create or delete a model, and which record rules narrow that.</li>
+        <li><strong>record-history</strong>: what changed on a record, from its chatter and tracked fields.</li>
+      </ul>
+      <p>
+        All three only read. Each works only on the models your profile allows, and says so when a
+        model is not offered. They do not audit your security; they report what the rules say.
+      </p>
+
+      <h2 class="sec-head">What has and has not been tested</h2>
+      <p>
+        Codex CLI 0.155 connected to the add-on and read real records. The Codex desktop app has
+        not been tested. The add-on authenticates with an Odoo API key, not OAuth, so clients that
+        require an OAuth sign-in cannot use it.
+      </p>
+
+      <p>
+        Source: <a href="https://github.com/Mithahara/odoo-codex-plugin" target="_blank" rel="noopener noreferrer">github.com/Mithahara/odoo-codex-plugin</a>.
+        Questions: <a href="mailto:support@mithahara.com">support@mithahara.com</a>.
+      </p>
+    </div>
+  </section>
+</Layout>

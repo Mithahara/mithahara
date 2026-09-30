@@ -96,6 +96,10 @@ const graph = app.youtubeId
         </div>
       )}
 
+      {app.tech === 'mh_mcp_server' && (
+        <p>Using Codex? <a href="/odoo-apps/mcp-server-for-odoo/codex">Set it up with the Codex plugin</a>.</p>
+      )}
+
       {app.intro.map((paragraph) => <p>{paragraph}</p>)}
 
       {app.features.length > 0 && (
