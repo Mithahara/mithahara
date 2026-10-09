@@ -3033,8 +3033,8 @@ export const odooApps = [
   {
     "tech": "mh_stock_aging_report",
     "slug": "stock-aging-report",
-    "name": "Stock Aging Report",
-    "summary": "Age your inventory into buckets by how long it has sat unsold, with the capital tied up in each, per warehouse and category",
+    "name": "Inventory Aging Report",
+    "summary": "Stock aging report (stock ageing, inventory ageing): how long stock has sat unsold and the capital tied up in each age bucket, per warehouse and category",
     "tagline": "Age your inventory into buckets by how long it has sat unsold, with the capital tied up in each, per warehouse and category",
     "intro": [
       "Quantity on hand tells you nothing about whether stock is a problem. The same 500 units are healthy in a fast-moving line and dead capital in a slow one. What separates them is the date something last actually left the building - and that is not on the quant.",
@@ -3081,7 +3081,7 @@ export const odooApps = [
     "manifestPrice": 39.0,
     "currency": "USD",
     "category": "Warehouse",
-    "version": "19.0.1.0.12",
+    "version": "19.0.1.0.16",
     "license": "OPL-1",
     "depends": [
       "stock"
@@ -3094,7 +3094,7 @@ export const odooApps = [
     ],
     "copyWords": 324,
     "hasVideo": true,
-    "youtubeId": "SDHwcVtzEe0",
+    "youtubeId": "5gZIX1k6XNo",
     "externalPage": null
   },
   {
