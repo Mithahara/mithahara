@@ -5,7 +5,7 @@
 // generator; editing here forks the copy away from what the store actually
 // serves.
 //
-// Store snapshot: 2026-09-25T17:04:27+00:00
+// Store snapshot: 2026-10-09T04:31:24+00:00
 
 export const odooApps = [
   {
@@ -58,11 +58,11 @@ export const odooApps = [
       "Warehouse-specific access rules are deliberately not in here. They need the Inventory app, and an access product should not force Inventory onto a database that does not use it. That stays a separate module."
     ],
     "requires": [],
-    "price": 399.0,
+    "price": 392.9,
     "manifestPrice": 399.0,
     "currency": "USD",
     "category": "Productivity",
-    "version": "19.0.1.0.6",
+    "version": "19.0.1.0.7",
     "license": "OPL-1",
     "depends": [
       "base",
@@ -70,7 +70,7 @@ export const odooApps = [
     ],
     "paidDepends": [],
     "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_access_management",
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_access_management",
     "screenshots": [
       "screenshot_explorer.png",
       "screenshot_plan.png"
@@ -123,7 +123,7 @@ export const odooApps = [
     ],
     "scope": [],
     "requires": [],
-    "price": 168.0,
+    "price": 163.81,
     "manifestPrice": 69.0,
     "currency": "USD",
     "category": "Marketing/Marketing",
@@ -140,7 +140,7 @@ export const odooApps = [
       }
     ],
     "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_meta_auto_scale_engine",
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_meta_auto_scale_engine",
     "screenshots": [
       "screenshot_account_group.png",
       "screenshot_scaling_profile.png",
@@ -150,120 +150,6 @@ export const odooApps = [
     "copyWords": 312,
     "hasVideo": true,
     "youtubeId": "C4yo2wPGTDM",
-    "externalPage": null
-  },
-  {
-    "tech": "mh_access_explorer",
-    "slug": "access-explorer",
-    "name": "Access Explorer",
-    "summary": "An access rights report for every user against every model: what each one can read, write, create and delete, resolved through group inheritance and record rules",
-    "tagline": "See exactly what every user can read, write, create and delete across every model, resolved through group inheritance and record rules",
-    "intro": [],
-    "features": [
-      {
-        "heading": "The dangerous permission is the one nobody thought to check",
-        "body": [
-          "Checking access user by user only finds what you already suspected. It cannot find the access rule someone left without a group on it, which quietly grants every user in the database. It cannot tell you which of your models nothing narrows, so that access to the model is access to every row. And it will not tell you who can delete accounting entries until you think to ask about that particular person and that particular model.",
-          "This sweeps every user against every model that matters and tells you what stood out.",
-          "A review across users and sensitive models: what each can do, which grants reach everyone, and which are narrowed by no record rule at all."
-        ]
-      },
-      {
-        "heading": "Grants that reach everyone",
-        "body": [
-          "An access rule with no group on it applies to every user in the database. It is the most common accidental over-grant in Odoo and the hardest to notice, because checking any single user shows nothing unusual - they are supposed to have it. The review flags every one of them by name."
-        ]
-      },
-      {
-        "heading": "Access with no row filter",
-        "body": [
-          "A grant that no record rule narrows means access to the model is access to every record in it. That is often correct and occasionally alarming, and you cannot tell which without being shown where it happens."
-        ]
-      },
-      {
-        "heading": "Resolved, not listed",
-        "body": [
-          "Permissions are computed as each user, through the same calls Odoo uses to enforce them - so implied groups, global rules and group rules are already combined. You are reading a conclusion, not three tables to cross-reference."
-        ]
-      },
-      {
-        "heading": "The superuser is left out on purpose",
-        "body": [
-          "It bypasses every rule by design, so including it would report full access to everything and bury the findings that matter. It is excluded even if you select it."
-        ]
-      }
-    ],
-    "scope": [
-      "Stated up front so nothing about the scope is a surprise after you buy it."
-    ],
-    "requires": [
-      "Odoo 19 Community or Enterprise. No dependency beyond base, and nothing leaves your server. Restricted to Settings administrators, since the report itself describes who can reach what."
-    ],
-    "price": 149.0,
-    "manifestPrice": 149.0,
-    "currency": "USD",
-    "category": "Productivity",
-    "version": "19.0.1.0.11",
-    "license": "OPL-1",
-    "depends": [
-      "base"
-    ],
-    "paidDepends": [],
-    "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_access_explorer",
-    "screenshots": [
-      "screenshot_review.png"
-    ],
-    "copyWords": 338,
-    "hasVideo": true,
-    "youtubeId": "oDm7UjsrWzk",
-    "externalPage": null
-  },
-  {
-    "tech": "mh_gdpr_retention",
-    "slug": "gdpr-retention-purge",
-    "name": "GDPR Retention Purge",
-    "summary": "Blank selected personal data fields on a schedule while keeping the record and its history. Legal hold exemption, storage limitation, append only audit log. Not a Data Recycle clone.",
-    "tagline": "Per-field anonymization, a legal hold override, and an append-only purge log - not a Data Recycle clone",
-    "intro": [
-      "GDPR Article 5(1)(e) storage limitation - keep personal data no longer than necessary - is one of the most commonly cited failure points in EU DPA enforcement actions.",
-      "Odoo Community already ships Data Recycle for free, which finds stale records and archives/deletes the whole record on a schedule. This app deliberately does not duplicate that. What it adds: per-field anonymization that blanks just the PII fields (name, email, phone, notes) while leaving the record and its non-personal business data intact; a Legal Hold override that exempts a specific record from anonymization for litigation or a statutory requirement, checked before every run, no exceptions; and a regulator-exportable, append-only audit log - proof of what was anonymized, when, and under which rule. No one can edit or delete a log entry through the UI once it's written.",
-      "Meant to sit beside Data Recycle and OCA's data-protection registry, not replace either."
-    ],
-    "features": [
-      {
-        "heading": "Can't break a record by accident",
-        "body": [
-          "The field picker refuses required fields and multi-value relations - both at the UI level and as a real server-side constraint, not just a hint you can bypass."
-        ]
-      },
-      {
-        "heading": "A log that's actually evidence",
-        "body": [
-          "No perm_write, no perm_unlink, no manual perm_create for any group, including admins - only the scheduled run itself can write a log entry."
-        ]
-      }
-    ],
-    "scope": [],
-    "requires": [],
-    "price": 149.0,
-    "manifestPrice": 149.0,
-    "currency": "USD",
-    "category": "Extra Tools",
-    "version": "19.0.1.0.11",
-    "license": "OPL-1",
-    "depends": [
-      "mail"
-    ],
-    "paidDepends": [],
-    "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_gdpr_retention",
-    "screenshots": [
-      "screenshot_rule.png"
-    ],
-    "copyWords": 227,
-    "hasVideo": true,
-    "youtubeId": "94Z_6sknEi4",
     "externalPage": null
   },
   {
@@ -326,13 +212,127 @@ export const odooApps = [
     ],
     "paidDepends": [],
     "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_drive_attachments",
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_drive_attachments",
     "screenshots": [
       "screenshot_settings.png"
     ],
     "copyWords": 616,
     "hasVideo": true,
     "youtubeId": "n0_3AehpwSA",
+    "externalPage": null
+  },
+  {
+    "tech": "mh_gdpr_retention",
+    "slug": "gdpr-retention-purge",
+    "name": "GDPR Retention Purge",
+    "summary": "Blank selected personal data fields on a schedule while keeping the record and its history. Legal hold exemption, storage limitation, append only audit log. Not a Data Recycle clone.",
+    "tagline": "Per-field anonymization, a legal hold override, and an append-only purge log - not a Data Recycle clone",
+    "intro": [
+      "GDPR Article 5(1)(e) storage limitation - keep personal data no longer than necessary - is one of the most commonly cited failure points in EU DPA enforcement actions.",
+      "Odoo Community already ships Data Recycle for free, which finds stale records and archives/deletes the whole record on a schedule. This app deliberately does not duplicate that. What it adds: per-field anonymization that blanks just the PII fields (name, email, phone, notes) while leaving the record and its non-personal business data intact; a Legal Hold override that exempts a specific record from anonymization for litigation or a statutory requirement, checked before every run, no exceptions; and a regulator-exportable, append-only audit log - proof of what was anonymized, when, and under which rule. No one can edit or delete a log entry through the UI once it's written.",
+      "Meant to sit beside Data Recycle and OCA's data-protection registry, not replace either."
+    ],
+    "features": [
+      {
+        "heading": "Can't break a record by accident",
+        "body": [
+          "The field picker refuses required fields and multi-value relations - both at the UI level and as a real server-side constraint, not just a hint you can bypass."
+        ]
+      },
+      {
+        "heading": "A log that's actually evidence",
+        "body": [
+          "No perm_write, no perm_unlink, no manual perm_create for any group, including admins - only the scheduled run itself can write a log entry."
+        ]
+      }
+    ],
+    "scope": [],
+    "requires": [],
+    "price": 146.72,
+    "manifestPrice": 149.0,
+    "currency": "USD",
+    "category": "Extra Tools",
+    "version": "19.0.1.0.11",
+    "license": "OPL-1",
+    "depends": [
+      "mail"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_gdpr_retention",
+    "screenshots": [
+      "screenshot_rule.png"
+    ],
+    "copyWords": 227,
+    "hasVideo": true,
+    "youtubeId": "94Z_6sknEi4",
+    "externalPage": null
+  },
+  {
+    "tech": "mh_access_explorer",
+    "slug": "access-explorer",
+    "name": "Access Explorer",
+    "summary": "An access rights report for every user against every model: what each one can read, write, create and delete, resolved through group inheritance and record rules",
+    "tagline": "See exactly what every user can read, write, create and delete across every model, resolved through group inheritance and record rules",
+    "intro": [],
+    "features": [
+      {
+        "heading": "The dangerous permission is the one nobody thought to check",
+        "body": [
+          "Checking access user by user only finds what you already suspected. It cannot find the access rule someone left without a group on it, which quietly grants every user in the database. It cannot tell you which of your models nothing narrows, so that access to the model is access to every row. And it will not tell you who can delete accounting entries until you think to ask about that particular person and that particular model.",
+          "This sweeps every user against every model that matters and tells you what stood out.",
+          "A review across users and sensitive models: what each can do, which grants reach everyone, and which are narrowed by no record rule at all."
+        ]
+      },
+      {
+        "heading": "Grants that reach everyone",
+        "body": [
+          "An access rule with no group on it applies to every user in the database. It is the most common accidental over-grant in Odoo and the hardest to notice, because checking any single user shows nothing unusual - they are supposed to have it. The review flags every one of them by name."
+        ]
+      },
+      {
+        "heading": "Access with no row filter",
+        "body": [
+          "A grant that no record rule narrows means access to the model is access to every record in it. That is often correct and occasionally alarming, and you cannot tell which without being shown where it happens."
+        ]
+      },
+      {
+        "heading": "Resolved, not listed",
+        "body": [
+          "Permissions are computed as each user, through the same calls Odoo uses to enforce them - so implied groups, global rules and group rules are already combined. You are reading a conclusion, not three tables to cross-reference."
+        ]
+      },
+      {
+        "heading": "The superuser is left out on purpose",
+        "body": [
+          "It bypasses every rule by design, so including it would report full access to everything and bury the findings that matter. It is excluded even if you select it."
+        ]
+      }
+    ],
+    "scope": [
+      "Stated up front so nothing about the scope is a surprise after you buy it."
+    ],
+    "requires": [
+      "Odoo 19 Community or Enterprise. No dependency beyond base, and nothing leaves your server. Restricted to Settings administrators, since the report itself describes who can reach what."
+    ],
+    "price": 145.29,
+    "manifestPrice": 149.0,
+    "currency": "USD",
+    "category": "Productivity",
+    "version": "19.0.1.0.11",
+    "license": "OPL-1",
+    "depends": [
+      "base"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_access_explorer",
+    "screenshots": [
+      "screenshot_review.png"
+    ],
+    "copyWords": 338,
+    "hasVideo": true,
+    "youtubeId": "oDm7UjsrWzk",
     "externalPage": null
   },
   {
@@ -387,14 +387,14 @@ export const odooApps = [
     "manifestPrice": 99.0,
     "currency": "USD",
     "category": "Tools",
-    "version": "19.0.1.0.14",
+    "version": "19.0.1.0.15",
     "license": "OPL-1",
     "depends": [
       "base"
     ],
     "paidDepends": [],
     "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_field_access_rules",
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_field_access_rules",
     "screenshots": [
       "screenshot_rules.png",
       "screenshot_rule.png"
@@ -459,13 +459,284 @@ export const odooApps = [
     ],
     "paidDepends": [],
     "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_list_view_layouts",
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_list_view_layouts",
     "screenshots": [
       "screenshot_layout.png"
     ],
     "copyWords": 357,
     "hasVideo": true,
     "youtubeId": "_jn7KswDh-k",
+    "externalPage": null
+  },
+  {
+    "tech": "mh_record_rule_preview",
+    "slug": "record-rule-preview",
+    "name": "Record Rule Preview",
+    "summary": "Write a record rule and see how many records it actually leaves a chosen user, counted for real before you save it",
+    "tagline": "Write a record rule and see how many records it actually leaves a chosen user, counted for real before you save it",
+    "intro": [
+      "Record rules fail quietly. A domain that is wrong by one operator raises nothing - the affected users simply stop seeing records, and nobody reports that as a bug, because an empty list looks like an empty list. You find out weeks later, from a salesperson who assumed their pipeline had gone cold.",
+      "So write the rule here first, and get the number before anybody else does.",
+      "The rule was created, the records that user could reach were counted, and the rule was rolled back."
+    ],
+    "features": [
+      {
+        "heading": "The number is measured, not predicted",
+        "body": [
+          "The rule is created for real inside a database savepoint, the records are counted through the ORM as that user, and the whole thing is rolled back. Reproducing what Odoo would have done is exactly the guess this removes."
+        ]
+      },
+      {
+        "heading": "It already includes the other rules",
+        "body": [
+          "Global record rules are ANDed together, so a rule that is correct alone can still take everything away once another global rule exists on the model. The count was taken with all of them in force, so the intersection is in the number rather than in your head."
+        ]
+      },
+      {
+        "heading": "A stale preview cannot be applied",
+        "body": [
+          "Edit the domain, the groups, the permissions or the sample user after previewing, and Apply is blocked until it is measured again. A count that describes a rule which no longer exists is worse than no count at all."
+        ]
+      },
+      {
+        "heading": "It refuses the usual mistakes",
+        "body": [
+          "A rule leaving the sample user zero records has to be acknowledged in writing. The superuser cannot be the sample user - it bypasses every record rule and would report them all harmless. A domain that does not parse, or is not a list, is refused at the form rather than at 2am."
+        ]
+      },
+      {
+        "heading": "It creates an ordinary record rule",
+        "body": [
+          "Applying writes a normal ir.rule. Nothing is wrapped or intercepted, and Odoo enforces it exactly as it enforces any other. Uninstall the app and the rules you made stay where they are."
+        ]
+      }
+    ],
+    "scope": [],
+    "requires": [
+      "Odoo 19 Community or Enterprise, no other module needed. It restricts records, not fields - which columns a user may read is Field Access Rules ."
+    ],
+    "price": 97.49,
+    "manifestPrice": 99.0,
+    "currency": "USD",
+    "category": "Tools",
+    "version": "19.0.1.0.12",
+    "license": "OPL-1",
+    "depends": [
+      "base"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_record_rule_preview",
+    "screenshots": [
+      "screenshot_preview.png"
+    ],
+    "copyWords": 347,
+    "hasVideo": true,
+    "youtubeId": "V5A-tt9Yk0o",
+    "externalPage": null
+  },
+  {
+    "tech": "mh_session_control",
+    "slug": "session-control",
+    "name": "Session Control",
+    "summary": "Log users out after an idle time you set per group, and see and end the sessions that are open right now",
+    "tagline": "Log users out after an idle time you set per group, and see and end the sessions that are open right now",
+    "intro": [
+      "Odoo has one inactivity limit for the whole database - the sessions.max_inactivity_seconds system parameter, a week unless somebody sets it. The admin, the accountant and the warehouse terminal all get the same number, which is the wrong answer to give an auditor asking why the terminal is still logged in at midnight.",
+      "Minutes per group. A shared terminal gets ten; somebody at their own desk with a screen lock gets an hour.",
+      "What is actually open, read from where Odoo keeps it. Your own session is marked and has no End button."
+    ],
+    "features": [
+      {
+        "heading": "Idle, not lifetime",
+        "body": [
+          "The clock runs from the last request, not from login, and any request counts - so a dashboard left open on a screen that polls does not pass for somebody sitting at it."
+        ]
+      },
+      {
+        "heading": "The shortest rule wins",
+        "body": [
+          "A user in several groups gets the tightest of their timeouts. Belonging to a lenient group does not buy a way out of a short one, which is the reading anybody auditing this will expect."
+        ]
+      },
+      {
+        "heading": "The open list is the truth",
+        "body": [
+          "There is no table of logged-in users in Odoo - it writes one file per session - so this reads them where they are. It is what is open now, not a log of logins that may or may not still be live. Sessions belonging to other databases on the same server are left out of it."
+        ]
+      },
+      {
+        "heading": "A floor of five minutes",
+        "body": [
+          "Below that, people are logged out in the middle of filling in a form and lose what they typed - and the software gets blamed rather than whoever chose the number. Shorter values are refused."
+        ]
+      }
+    ],
+    "scope": [
+      "The last-seen stamp is written at most once a minute per session, not on every request - a write per request across a whole database to store a timestamp would cost more than the feature is worth. So a timeout can overrun by up to a minute. The check also runs inside a guard that swallows its own errors, because code on every request that can raise is code that can take a database offline."
+    ],
+    "requires": [
+      "Odoo 19 Community or Enterprise, no other module needed. The superuser is never logged out, so crons and upgrades keep working. It does not restrict where people log in from and it is not a login history."
+    ],
+    "price": 97.49,
+    "manifestPrice": 99.0,
+    "currency": "USD",
+    "category": "Tools",
+    "version": "19.0.1.0.15",
+    "license": "OPL-1",
+    "depends": [
+      "base"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_session_control",
+    "screenshots": [
+      "screenshot_rules.png",
+      "screenshot_sessions.png"
+    ],
+    "copyWords": 367,
+    "hasVideo": true,
+    "youtubeId": "bjnw1R8BgUE",
+    "externalPage": null
+  },
+  {
+    "tech": "mh_snapchat_ads_launcher",
+    "slug": "snapchat-ads-connector",
+    "name": "Snapchat Ads Connector",
+    "summary": "Publish, pause and clone Snap ad squads and ads with your own OAuth credentials. Campaign objectives, daily budgets and delivery status without leaving your ERP.",
+    "tagline": "",
+    "intro": [
+      "Snapchat Ads Connector connects to your own Snapchat Ads account with an OAuth client ID/secret and refresh token you generate yourself - nothing to submit to us, no app review dependency on our end. Once connected, you get real campaign management inside Odoo: browse and sync existing campaigns, ad squads, and ads, publish new ones, control daily budget, audience targeting, and optimization goal, pause, resume, clone, or delete anything, and publish a real ad with its own media upload and creative - all through the real Snapchat Marketing API."
+    ],
+    "features": [
+      {
+        "heading": "Bring your own credentials",
+        "body": [
+          "Uses an OAuth client ID/secret and refresh token from your own Snapchat Business Manager account - the lightest credential model of any connector in this lineup, since Snapchat has no separate developer-token concept. You're managing your own account with your own credentials, self-service, with nothing to submit to us."
+        ]
+      },
+      {
+        "heading": "Real campaign management, not just reports",
+        "body": [
+          "Builds, publishes, updates, clones, and deletes campaigns, ad squads, and ads directly - including a real media upload and creative for the ad itself, not just a placeholder."
+        ]
+      },
+      {
+        "heading": "Budget and audience targeting at the ad squad level",
+        "body": [
+          "Set a daily budget, country targeting, and optimization goal (impressions, swipes, app installs) on each ad squad - matching how Snapchat's own real budget model works, rather than forcing it onto the campaign level."
+        ]
+      },
+      {
+        "heading": "Reach Snapchat's audience from Odoo",
+        "body": [
+          "A genuinely underserved gap on the Odoo App Store - manage a real Snapchat ad presence next to your other ad platforms, without a separate login or dashboard."
+        ]
+      },
+      {
+        "heading": "Every write action stays reviewable before it touches Snapchat",
+        "body": [
+          "Publish, pause, resume, clone, and delete are explicit buttons you click after reviewing the record - nothing is pushed to Snapchat automatically in the background. Every field maps directly to a real Snapchat Marketing API parameter, so what you set in Odoo is exactly what reaches your account."
+        ]
+      },
+      {
+        "heading": "Who this is for",
+        "body": [
+          "Odoo teams running or starting Snapchat Ads campaigns - especially those already managing Meta, Google, or Microsoft ads from Odoo and want the same for Snapchat - who manage their own Snapchat Business Manager access without waiting on our review queue."
+        ]
+      }
+    ],
+    "scope": [],
+    "requires": [],
+    "price": 97.49,
+    "manifestPrice": 99.0,
+    "currency": "USD",
+    "category": "Marketing/Marketing",
+    "version": "19.0.1.0.10",
+    "license": "OPL-1",
+    "depends": [
+      "base"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_snapchat_ads_launcher",
+    "screenshots": [
+      "screenshot_campaign.png"
+    ],
+    "copyWords": 354,
+    "hasVideo": true,
+    "youtubeId": "pI-rzAO3BEI",
+    "externalPage": null
+  },
+  {
+    "tech": "mh_google_ads_launcher",
+    "slug": "google-ads-odoo-connector",
+    "name": "Google Ads Odoo Connector",
+    "summary": "Create and manage search campaigns, ad groups, keywords and responsive search ads with your own developer token. PPC cost and conversions beside your CRM.",
+    "tagline": "",
+    "intro": [
+      "Google Ads Odoo Connector connects to your own Google Ads account with a developer token, OAuth client, and refresh token you generate yourself - nothing to submit to us, no app review dependency on our end. Once connected, you get real campaign management inside Odoo: browse and sync existing Search campaigns, ad groups, keywords, and responsive search ads, publish new ones, control daily budget and bidding strategy, manage keywords and match types, pause or delete anything, clone a winning campaign, and pull clicks/impressions/cost/conversions for any date range - all through the real Google Ads API."
+    ],
+    "features": [
+      {
+        "heading": "Bring your own credentials",
+        "body": [
+          "Uses a developer token, OAuth client, and refresh token from your own Google Ads Manager account and Google Cloud project - you're managing your own account with your own credentials. Basic Access is a self-service application you submit directly to Google (typically about 5 business days) - there's nothing to submit to us and nothing to wait on from our side."
+        ]
+      },
+      {
+        "heading": "Real campaign management, not just reports",
+        "body": [
+          "Most Google Ads connectors on the Marketplace only sync performance reports. This one builds, publishes, updates, clones, and deletes campaigns, ad groups, keywords, and ads directly - the same actions you'd otherwise do in Google Ads."
+        ]
+      },
+      {
+        "heading": "Budget, bidding, and keyword targeting",
+        "body": [
+          "Set a daily budget and choose a bidding strategy - Manual CPC, Maximize Clicks, or Target CPA - then manage keywords and match types (broad, phrase, exact) at the ad group level, all from standard Odoo form and list views."
+        ]
+      },
+      {
+        "heading": "Performance insights alongside your data",
+        "body": [
+          "Sync clicks, impressions, cost, conversions, CTR, CPC, and CPA for any campaign or ad group - pick a preset range or a custom date window - without opening Google Ads or exporting a report."
+        ]
+      },
+      {
+        "heading": "Every write action stays reviewable before it touches Google",
+        "body": [
+          "Publish, update, clone, and delete are explicit buttons you click after reviewing the record - nothing is pushed to Google automatically in the background. Every field maps directly to a real Google Ads API parameter, so what you set in Odoo is exactly what reaches your account."
+        ]
+      },
+      {
+        "heading": "Who this is for",
+        "body": [
+          "Built for Odoo teams running Google Ads Search campaigns who want campaign management alongside their CRM, sales, and reporting data instead of switching to Google Ads - marketers who manage their own Google Ads and Google Cloud access and don't want to wait on our review queue to get started."
+        ]
+      }
+    ],
+    "scope": [],
+    "requires": [],
+    "price": 96.53,
+    "manifestPrice": 99.0,
+    "currency": "USD",
+    "category": "Marketing/Marketing",
+    "version": "19.0.1.0.8",
+    "license": "OPL-1",
+    "depends": [
+      "base"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_google_ads_launcher",
+    "screenshots": [
+      "screenshot_campaign.png",
+      "screenshot_keywords.png",
+      "screenshot_ads.png"
+    ],
+    "copyWords": 396,
+    "hasVideo": true,
+    "youtubeId": "7-tujViJGtA",
     "externalPage": null
   },
   {
@@ -517,7 +788,7 @@ export const odooApps = [
     ],
     "scope": [],
     "requires": [],
-    "price": 99.0,
+    "price": 96.53,
     "manifestPrice": 99.0,
     "currency": "USD",
     "category": "Marketing/Marketing",
@@ -529,7 +800,7 @@ export const odooApps = [
     ],
     "paidDepends": [],
     "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_meta_odoo_connector",
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_meta_odoo_connector",
     "screenshots": [
       "screenshot_connection.png",
       "screenshot_campaigns.png",
@@ -590,7 +861,7 @@ export const odooApps = [
     ],
     "scope": [],
     "requires": [],
-    "price": 99.0,
+    "price": 96.53,
     "manifestPrice": 99.0,
     "currency": "USD",
     "category": "Marketing/Marketing",
@@ -601,284 +872,13 @@ export const odooApps = [
     ],
     "paidDepends": [],
     "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_microsoft_ads_launcher",
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_microsoft_ads_launcher",
     "screenshots": [
       "screenshot_campaign.png"
     ],
     "copyWords": 358,
     "hasVideo": true,
     "youtubeId": "U4CcE_tnDQc",
-    "externalPage": null
-  },
-  {
-    "tech": "mh_record_rule_preview",
-    "slug": "record-rule-preview",
-    "name": "Record Rule Preview",
-    "summary": "Write a record rule and see how many records it actually leaves a chosen user, counted for real before you save it",
-    "tagline": "Write a record rule and see how many records it actually leaves a chosen user, counted for real before you save it",
-    "intro": [
-      "Record rules fail quietly. A domain that is wrong by one operator raises nothing - the affected users simply stop seeing records, and nobody reports that as a bug, because an empty list looks like an empty list. You find out weeks later, from a salesperson who assumed their pipeline had gone cold.",
-      "So write the rule here first, and get the number before anybody else does.",
-      "The rule was created, the records that user could reach were counted, and the rule was rolled back."
-    ],
-    "features": [
-      {
-        "heading": "The number is measured, not predicted",
-        "body": [
-          "The rule is created for real inside a database savepoint, the records are counted through the ORM as that user, and the whole thing is rolled back. Reproducing what Odoo would have done is exactly the guess this removes."
-        ]
-      },
-      {
-        "heading": "It already includes the other rules",
-        "body": [
-          "Global record rules are ANDed together, so a rule that is correct alone can still take everything away once another global rule exists on the model. The count was taken with all of them in force, so the intersection is in the number rather than in your head."
-        ]
-      },
-      {
-        "heading": "A stale preview cannot be applied",
-        "body": [
-          "Edit the domain, the groups, the permissions or the sample user after previewing, and Apply is blocked until it is measured again. A count that describes a rule which no longer exists is worse than no count at all."
-        ]
-      },
-      {
-        "heading": "It refuses the usual mistakes",
-        "body": [
-          "A rule leaving the sample user zero records has to be acknowledged in writing. The superuser cannot be the sample user - it bypasses every record rule and would report them all harmless. A domain that does not parse, or is not a list, is refused at the form rather than at 2am."
-        ]
-      },
-      {
-        "heading": "It creates an ordinary record rule",
-        "body": [
-          "Applying writes a normal ir.rule. Nothing is wrapped or intercepted, and Odoo enforces it exactly as it enforces any other. Uninstall the app and the rules you made stay where they are."
-        ]
-      }
-    ],
-    "scope": [],
-    "requires": [
-      "Odoo 19 Community or Enterprise, no other module needed. It restricts records, not fields - which columns a user may read is Field Access Rules ."
-    ],
-    "price": 99.0,
-    "manifestPrice": 99.0,
-    "currency": "USD",
-    "category": "Tools",
-    "version": "19.0.1.0.12",
-    "license": "OPL-1",
-    "depends": [
-      "base"
-    ],
-    "paidDepends": [],
-    "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_record_rule_preview",
-    "screenshots": [
-      "screenshot_preview.png"
-    ],
-    "copyWords": 347,
-    "hasVideo": true,
-    "youtubeId": "V5A-tt9Yk0o",
-    "externalPage": null
-  },
-  {
-    "tech": "mh_session_control",
-    "slug": "session-control",
-    "name": "Session Control",
-    "summary": "Log users out after an idle time you set per group, and see and end the sessions that are open right now",
-    "tagline": "Log users out after an idle time you set per group, and see and end the sessions that are open right now",
-    "intro": [
-      "Odoo has one session lifetime for the whole database, and it counts from when the session was created rather than from when it was last used. That is not an idle timeout, and it is the wrong answer to give an auditor asking why the warehouse terminal is still logged in at midnight.",
-      "Minutes per group. A shared terminal gets ten; somebody at their own desk with a screen lock gets an hour.",
-      "What is actually open, read from where Odoo keeps it. Your own session is marked and has no End button."
-    ],
-    "features": [
-      {
-        "heading": "Idle, not lifetime",
-        "body": [
-          "The clock runs from the last request, not from login, and any request counts - so a dashboard left open on a screen that polls does not pass for somebody sitting at it."
-        ]
-      },
-      {
-        "heading": "The shortest rule wins",
-        "body": [
-          "A user in several groups gets the tightest of their timeouts. Belonging to a lenient group does not buy a way out of a short one, which is the reading anybody auditing this will expect."
-        ]
-      },
-      {
-        "heading": "The open list is the truth",
-        "body": [
-          "There is no table of logged-in users in Odoo - it writes one file per session - so this reads them where they are. It is what is open now, not a log of logins that may or may not still be live. Sessions belonging to other databases on the same server are left out of it."
-        ]
-      },
-      {
-        "heading": "A floor of five minutes",
-        "body": [
-          "Below that, people are logged out in the middle of filling in a form and lose what they typed - and the software gets blamed rather than whoever chose the number. Shorter values are refused."
-        ]
-      }
-    ],
-    "scope": [
-      "The last-seen stamp is written at most once a minute per session, not on every request - a write per request across a whole database to store a timestamp would cost more than the feature is worth. So a timeout can overrun by up to a minute. The check also runs inside a guard that swallows its own errors, because code on every request that can raise is code that can take a database offline."
-    ],
-    "requires": [
-      "Odoo 19 Community or Enterprise, no other module needed. The superuser is never logged out, so crons and upgrades keep working. It does not restrict where people log in from and it is not a login history."
-    ],
-    "price": 99.0,
-    "manifestPrice": 99.0,
-    "currency": "USD",
-    "category": "Tools",
-    "version": "19.0.1.0.14",
-    "license": "OPL-1",
-    "depends": [
-      "base"
-    ],
-    "paidDepends": [],
-    "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_session_control",
-    "screenshots": [
-      "screenshot_rules.png",
-      "screenshot_sessions.png"
-    ],
-    "copyWords": 368,
-    "hasVideo": true,
-    "youtubeId": "bjnw1R8BgUE",
-    "externalPage": null
-  },
-  {
-    "tech": "mh_snapchat_ads_launcher",
-    "slug": "snapchat-ads-connector",
-    "name": "Snapchat Ads Connector",
-    "summary": "Publish, pause and clone Snap ad squads and ads with your own OAuth credentials. Campaign objectives, daily budgets and delivery status without leaving your ERP.",
-    "tagline": "",
-    "intro": [
-      "Snapchat Ads Connector connects to your own Snapchat Ads account with an OAuth client ID/secret and refresh token you generate yourself - nothing to submit to us, no app review dependency on our end. Once connected, you get real campaign management inside Odoo: browse and sync existing campaigns, ad squads, and ads, publish new ones, control daily budget, audience targeting, and optimization goal, pause, resume, clone, or delete anything, and publish a real ad with its own media upload and creative - all through the real Snapchat Marketing API."
-    ],
-    "features": [
-      {
-        "heading": "Bring your own credentials",
-        "body": [
-          "Uses an OAuth client ID/secret and refresh token from your own Snapchat Business Manager account - the lightest credential model of any connector in this lineup, since Snapchat has no separate developer-token concept. You're managing your own account with your own credentials, self-service, with nothing to submit to us."
-        ]
-      },
-      {
-        "heading": "Real campaign management, not just reports",
-        "body": [
-          "Builds, publishes, updates, clones, and deletes campaigns, ad squads, and ads directly - including a real media upload and creative for the ad itself, not just a placeholder."
-        ]
-      },
-      {
-        "heading": "Budget and audience targeting at the ad squad level",
-        "body": [
-          "Set a daily budget, country targeting, and optimization goal (impressions, swipes, app installs) on each ad squad - matching how Snapchat's own real budget model works, rather than forcing it onto the campaign level."
-        ]
-      },
-      {
-        "heading": "Reach Snapchat's audience from Odoo",
-        "body": [
-          "A genuinely underserved gap on the Odoo App Store - manage a real Snapchat ad presence next to your other ad platforms, without a separate login or dashboard."
-        ]
-      },
-      {
-        "heading": "Every write action stays reviewable before it touches Snapchat",
-        "body": [
-          "Publish, pause, resume, clone, and delete are explicit buttons you click after reviewing the record - nothing is pushed to Snapchat automatically in the background. Every field maps directly to a real Snapchat Marketing API parameter, so what you set in Odoo is exactly what reaches your account."
-        ]
-      },
-      {
-        "heading": "Who this is for",
-        "body": [
-          "Odoo teams running or starting Snapchat Ads campaigns - especially those already managing Meta, Google, or Microsoft ads from Odoo and want the same for Snapchat - who manage their own Snapchat Business Manager access without waiting on our review queue."
-        ]
-      }
-    ],
-    "scope": [],
-    "requires": [],
-    "price": 99.0,
-    "manifestPrice": 99.0,
-    "currency": "USD",
-    "category": "Marketing/Marketing",
-    "version": "19.0.1.0.10",
-    "license": "OPL-1",
-    "depends": [
-      "base"
-    ],
-    "paidDepends": [],
-    "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_snapchat_ads_launcher",
-    "screenshots": [
-      "screenshot_campaign.png"
-    ],
-    "copyWords": 354,
-    "hasVideo": true,
-    "youtubeId": "pI-rzAO3BEI",
-    "externalPage": null
-  },
-  {
-    "tech": "mh_google_ads_launcher",
-    "slug": "google-ads-odoo-connector",
-    "name": "Google Ads Odoo Connector",
-    "summary": "Create and manage search campaigns, ad groups, keywords and responsive search ads with your own developer token. PPC cost and conversions beside your CRM.",
-    "tagline": "",
-    "intro": [
-      "Google Ads Odoo Connector connects to your own Google Ads account with a developer token, OAuth client, and refresh token you generate yourself - nothing to submit to us, no app review dependency on our end. Once connected, you get real campaign management inside Odoo: browse and sync existing Search campaigns, ad groups, keywords, and responsive search ads, publish new ones, control daily budget and bidding strategy, manage keywords and match types, pause or delete anything, clone a winning campaign, and pull clicks/impressions/cost/conversions for any date range - all through the real Google Ads API."
-    ],
-    "features": [
-      {
-        "heading": "Bring your own credentials",
-        "body": [
-          "Uses a developer token, OAuth client, and refresh token from your own Google Ads Manager account and Google Cloud project - you're managing your own account with your own credentials. Basic Access is a self-service application you submit directly to Google (typically about 5 business days) - there's nothing to submit to us and nothing to wait on from our side."
-        ]
-      },
-      {
-        "heading": "Real campaign management, not just reports",
-        "body": [
-          "Most Google Ads connectors on the Marketplace only sync performance reports. This one builds, publishes, updates, clones, and deletes campaigns, ad groups, keywords, and ads directly - the same actions you'd otherwise do in Google Ads."
-        ]
-      },
-      {
-        "heading": "Budget, bidding, and keyword targeting",
-        "body": [
-          "Set a daily budget and choose a bidding strategy - Manual CPC, Maximize Clicks, or Target CPA - then manage keywords and match types (broad, phrase, exact) at the ad group level, all from standard Odoo form and list views."
-        ]
-      },
-      {
-        "heading": "Performance insights alongside your data",
-        "body": [
-          "Sync clicks, impressions, cost, conversions, CTR, CPC, and CPA for any campaign or ad group - pick a preset range or a custom date window - without opening Google Ads or exporting a report."
-        ]
-      },
-      {
-        "heading": "Every write action stays reviewable before it touches Google",
-        "body": [
-          "Publish, update, clone, and delete are explicit buttons you click after reviewing the record - nothing is pushed to Google automatically in the background. Every field maps directly to a real Google Ads API parameter, so what you set in Odoo is exactly what reaches your account."
-        ]
-      },
-      {
-        "heading": "Who this is for",
-        "body": [
-          "Built for Odoo teams running Google Ads Search campaigns who want campaign management alongside their CRM, sales, and reporting data instead of switching to Google Ads - marketers who manage their own Google Ads and Google Cloud access and don't want to wait on our review queue to get started."
-        ]
-      }
-    ],
-    "scope": [],
-    "requires": [],
-    "price": 98.48,
-    "manifestPrice": 99.0,
-    "currency": "USD",
-    "category": "Marketing/Marketing",
-    "version": "19.0.1.0.8",
-    "license": "OPL-1",
-    "depends": [
-      "base"
-    ],
-    "paidDepends": [],
-    "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_google_ads_launcher",
-    "screenshots": [
-      "screenshot_campaign.png",
-      "screenshot_keywords.png",
-      "screenshot_ads.png"
-    ],
-    "copyWords": 396,
-    "hasVideo": true,
-    "youtubeId": "7-tujViJGtA",
     "externalPage": null
   },
   {
@@ -928,7 +928,7 @@ export const odooApps = [
     "requires": [
       "Odoo 19 Community or Enterprise. Requires AI Agent Guardrails , which registers which logins are agents. It does not decide for you and does not restrict what the agent may read. The approval records themselves are never held - holding a change to them would need approving, and nobody could approve the first one."
     ],
-    "price": 98.01,
+    "price": 96.51,
     "manifestPrice": 49.0,
     "currency": "USD",
     "category": "Tools",
@@ -945,7 +945,7 @@ export const odooApps = [
       }
     ],
     "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_ai_agent_approvals",
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_ai_agent_approvals",
     "screenshots": [
       "screenshot_requests.png"
     ],
@@ -1001,7 +1001,7 @@ export const odooApps = [
     "requires": [
       "Odoo 19 Community or Enterprise, no other module needed. Third-party apps install on Odoo.sh or On-Premise only — they cannot be installed on Odoo Online (SaaS)."
     ],
-    "price": 89.0,
+    "price": 86.79,
     "manifestPrice": 89.0,
     "currency": "USD",
     "category": "Tools",
@@ -1012,78 +1012,13 @@ export const odooApps = [
     ],
     "paidDepends": [],
     "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_multi_company_access",
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_multi_company_access",
     "screenshots": [
       "screenshot_plan.png"
     ],
     "copyWords": 296,
     "hasVideo": true,
     "youtubeId": "_2yqsolYhZg",
-    "externalPage": null
-  },
-  {
-    "tech": "mh_approvals",
-    "slug": "approval-requests",
-    "name": "Approval Requests",
-    "summary": "Ask for something and keep the record of who agreed: approval types with named approvers, a minimum number of them, and every decision stored against the person who made it",
-    "tagline": "Ask for something and keep the record of who agreed: approval types with named approvers, a minimum number of them, and every decision stored against the person who made it",
-    "intro": [],
-    "features": [
-      {
-        "heading": "Define approval types and approvers",
-        "body": [
-          "Create named approval types, add the people who may approve, and set how many of them must agree before a request is approved"
-        ]
-      },
-      {
-        "heading": "Record who decided and when",
-        "body": [
-          "Every decision on a request is stored against the person who made it, records the decision taken, and captures the date and time it was made"
-        ]
-      },
-      {
-        "heading": "Submit requests and track approvals",
-        "body": [
-          "Submit requests for approval and see how many approvals are required and how many have been given, with the request state available for review"
-        ]
-      },
-      {
-        "heading": "Approve, refuse, cancel or reset requests",
-        "body": [
-          "Approve or refuse a request you were asked about. A request can be cancelled while it is still open, and reopened if it was cancelled - but never once it has been decided."
-        ]
-      },
-      {
-        "heading": "Nobody approves their own request",
-        "body": [
-          "An approval somebody gave themselves is not an approval, so this refuses it rather than recording it. One refusal ends the request outright, instead of leaving it in everyone else’s list waiting for approvals that cannot change the outcome."
-        ]
-      }
-    ],
-    "scope": [
-      "It does not gate other records. This is a standalone request. It does not stop a purchase order being confirmed or an invoice being posted. Gating an existing document is a different job, and Purchase Approvals does that one for purchase orders.",
-      "Approvers are the people you named. There is no approval by manager, by department or by amount, and no delegation when somebody is away. Say so when you set the types up.",
-      "The approvers are copied onto the request when it is submitted. Not read from the type when somebody clicks approve. Otherwise editing the type's approver list next year would quietly rewrite who was entitled to approve a decision already made, and the record would stop being the truth."
-    ],
-    "requires": [],
-    "price": 79.01,
-    "manifestPrice": 79.0,
-    "currency": "USD",
-    "category": "Human Resources",
-    "version": "19.0.1.0.7",
-    "license": "OPL-1",
-    "depends": [
-      "mail"
-    ],
-    "paidDepends": [],
-    "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_approvals",
-    "screenshots": [
-      "screenshot_request.png"
-    ],
-    "copyWords": 323,
-    "hasVideo": true,
-    "youtubeId": "Ghhsqzbm3Lo",
     "externalPage": null
   },
   {
@@ -1139,24 +1074,297 @@ export const odooApps = [
       "Odoo 19 Community or Enterprise; installs Odoo’s own Sales app (sale). Third-party apps install on Odoo.sh or On-Premise only — they cannot be installed on Odoo Online (SaaS).",
       "It does not pay commission on margin or on sales orders, and has no targets, volume tiers or manager overrides. It does not run payroll: a salesperson is paid through a vendor bill to their own contact, in your company currency. Invoices posted before you install it earn nothing until you select them and run Recompute Commission. An invoice that groups several sales orders takes its salesperson and agents from the first order, as Odoo does for the salesperson. A vendor credit note against a commission bill does not release its lines — cancel the bill instead."
     ],
-    "price": 79.01,
+    "price": 77.79,
     "manifestPrice": 79.0,
     "currency": "USD",
     "category": "Sales/Sales",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.0.1",
     "license": "OPL-1",
     "depends": [
       "sale"
     ],
     "paidDepends": [],
     "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_sale_commission",
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_sale_commission",
     "screenshots": [
       "screenshot_statement.png"
     ],
     "copyWords": 472,
     "hasVideo": true,
     "youtubeId": "V6duS_HLgWE",
+    "externalPage": null
+  },
+  {
+    "tech": "mh_approvals",
+    "slug": "approval-requests",
+    "name": "Approval Requests",
+    "summary": "Ask for something and keep the record of who agreed: approval types with named approvers, a minimum number of them, and every decision stored against the person who made it",
+    "tagline": "Ask for something and keep the record of who agreed: approval types with named approvers, a minimum number of them, and every decision stored against the person who made it",
+    "intro": [],
+    "features": [
+      {
+        "heading": "Define approval types and approvers",
+        "body": [
+          "Create named approval types, add the people who may approve, and set how many of them must agree before a request is approved"
+        ]
+      },
+      {
+        "heading": "Record who decided and when",
+        "body": [
+          "Every decision on a request is stored against the person who made it, records the decision taken, and captures the date and time it was made"
+        ]
+      },
+      {
+        "heading": "Submit requests and track approvals",
+        "body": [
+          "Submit requests for approval and see how many approvals are required and how many have been given, with the request state available for review"
+        ]
+      },
+      {
+        "heading": "Approve, refuse, cancel or reset requests",
+        "body": [
+          "Approve or refuse a request you were asked about. A request can be cancelled while it is still open, and reopened if it was cancelled - but never once it has been decided."
+        ]
+      },
+      {
+        "heading": "Nobody approves their own request",
+        "body": [
+          "An approval somebody gave themselves is not an approval, so this refuses it rather than recording it. One refusal ends the request outright, instead of leaving it in everyone else’s list waiting for approvals that cannot change the outcome."
+        ]
+      }
+    ],
+    "scope": [
+      "It does not gate other records. This is a standalone request. It does not stop a purchase order being confirmed or an invoice being posted. Gating an existing document is a different job, and Purchase Approvals does that one for purchase orders.",
+      "Approvers are the people you named. There is no approval by manager, by department or by amount, and no delegation when somebody is away. Say so when you set the types up.",
+      "The approvers are copied onto the request when it is submitted. Not read from the type when somebody clicks approve. Otherwise editing the type's approver list next year would quietly rewrite who was entitled to approve a decision already made, and the record would stop being the truth."
+    ],
+    "requires": [],
+    "price": 77.04,
+    "manifestPrice": 79.0,
+    "currency": "USD",
+    "category": "Human Resources",
+    "version": "19.0.1.0.7",
+    "license": "OPL-1",
+    "depends": [
+      "mail"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_approvals",
+    "screenshots": [
+      "screenshot_request.png"
+    ],
+    "copyWords": 323,
+    "hasVideo": true,
+    "youtubeId": "Ghhsqzbm3Lo",
+    "externalPage": null
+  },
+  {
+    "tech": "mh_cookie_consent_enforcer",
+    "slug": "cookie-consent-enforcer",
+    "name": "Cookie Consent Enforcer",
+    "summary": "Hold analytics and marketing scripts back until the visitor consents to that category, script by script on any Odoo website",
+    "tagline": "Hold analytics and marketing scripts back until the visitor consents to that category, and inject them the moment they do",
+    "intro": [
+      "A consent banner that records the answer but lets the tag fire anyway is not compliance. It is a written record that the tag fired first.",
+      "The free Cookie Consent Banner logs what each visitor agreed to. This is the part that actually stops the scripts.",
+      "Two scripts registered by category. Neither reaches the page until the visitor agrees to that category."
+    ],
+    "features": [
+      {
+        "heading": "Nothing runs before the answer",
+        "body": [
+          "Your scripts never appear in the page as script tags. A browser runs a script tag the moment it parses it, long before anyone has seen the banner - so they travel as inert data and are injected only once the consent record says that category was accepted."
+        ]
+      },
+      {
+        "heading": "Per category, not all or nothing",
+        "body": [
+          "A visitor who accepts analytics but refuses marketing gets the analytics tag and not the pixel. Each script is registered against the category it belongs to, and gated on that category alone."
+        ]
+      },
+      {
+        "heading": "Consent takes effect immediately",
+        "body": [
+          "Agreeing halfway through a visit injects what was just permitted, without a reload. The alternative - waiting for the next page view - loses exactly the session the visitor just opted into."
+        ]
+      },
+      {
+        "heading": "It refuses the easy mistakes",
+        "body": [
+          "A tracker with both a URL and a snippet is ambiguous; one with neither sits in the list looking as though it does something. Script tags pasted into a snippet would end up nested inside the injected tag and never run. All three are refused at the form rather than failing silently on the page."
+        ]
+      },
+      {
+        "heading": "No \"essential\" category",
+        "body": [
+          "A tracker is never essential. Offering the option would only invite marketing scripts to be filed under it, which is the exact failure this app exists to prevent."
+        ]
+      }
+    ],
+    "scope": [],
+    "requires": [
+      "Odoo 19 Community or Enterprise with Website. Installs the free Cookie Consent Banner , which shows the banner and keeps the record. This is a technical control, not legal advice - which scripts belong in which category, and what your policy says, remain yours."
+    ],
+    "price": 69.01,
+    "manifestPrice": 69.0,
+    "currency": "USD",
+    "category": "Website",
+    "version": "19.0.1.0.14",
+    "license": "OPL-1",
+    "depends": [
+      "website",
+      "mh_cookie_consent_banner"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_cookie_consent_enforcer",
+    "screenshots": [
+      "screenshot_trackers.png"
+    ],
+    "copyWords": 300,
+    "hasVideo": true,
+    "youtubeId": "XXyIypFwTvY",
+    "externalPage": null
+  },
+  {
+    "tech": "mh_stock_valuation_report",
+    "slug": "stock-valuation-report",
+    "name": "Stock Valuation Report",
+    "summary": "Inventory valuation report for any period: opening stock, receipts, issues and closing value per product, by warehouse and category, in PDF and Excel",
+    "tagline": "Inventory valuation for any period: opening stock, received, issued and closing value, per product.",
+    "intro": [
+      "Odoo 19 removed the stock valuation layer and, with it, the Valuation view under Inventory > Reporting. In Community, what is left is a single-date reconciliation by accounting account that no menu opens.",
+      "This report puts back the question every month end asks: what was the stock worth on the first, what came in, what went out, and what is it worth now — per product."
+    ],
+    "features": [
+      {
+        "heading": "Opening and closing are Odoo’s own figures",
+        "body": [
+          "The report reads Odoo’s own valuation at the first and the last second of the period — the same computation Odoo itself uses — so standard, average and FIFO costing and lot valuation come out exactly as Odoo books them. Nothing is recalculated."
+        ]
+      },
+      {
+        "heading": "Every row reconciles",
+        "body": [
+          "Received and issued carry the value Odoo recorded on each stock move. Whatever changed the value without a move — a cost update, a landed cost — sits in its own Other column, so opening + received − issued + other = closing on every line."
+        ]
+      },
+      {
+        "heading": "By warehouse, location and category",
+        "body": [
+          "Filter to one or more warehouses or internal locations, sub-locations included, and to product categories, sub-categories included. A filtered value is pro-rated by quantity, which is how Odoo itself values a warehouse. Archived products that still hold stock are included — they are still on your balance sheet."
+        ]
+      },
+      {
+        "heading": "PDF and Excel, grouped by category",
+        "body": [
+          "Print a PDF with category subtotals and a grand total, or export the same rows to Excel for the month-end file."
+        ]
+      },
+      {
+        "heading": "Your month ends at your midnight",
+        "body": [
+          "Period boundaries follow your time zone. Odoo’s own valuation treats a bare date as the end of that day in UTC, which moves a month end by hours anywhere east or west of Greenwich."
+        ]
+      },
+      {
+        "heading": "It says what it found",
+        "body": [
+          "A short summary states the change over the period, the largest value changes with no stock move behind them, and any product whose quantity does not reconcile — rather than leaving you to spot it in the rows."
+        ]
+      }
+    ],
+    "scope": [],
+    "requires": [
+      "Odoo 19 Community or Enterprise with Inventory; installs Odoo’s own Inventory valuation module (stock_account). Third-party apps install on Odoo.sh or On-Premise only — they cannot be installed on Odoo Online (SaaS).",
+      "It only reads: it posts no journal entries and changes no valuation. Stock moved between your own warehouses is not valued by Odoo, so in a report filtered to one warehouse that transfer shows as quantity with no value, and its value effect lands under Other. Stock you hold on consignment for someone else is left out, as Odoo leaves it out of your valuation. Only Inventory Administrators can run it, matching Odoo’s own rule for who sees stock value."
+    ],
+    "price": 69.01,
+    "manifestPrice": 69.0,
+    "currency": "USD",
+    "category": "Warehouse",
+    "version": "19.0.1.0.4",
+    "license": "OPL-1",
+    "depends": [
+      "stock_account"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_stock_valuation_report",
+    "screenshots": [
+      "screenshot_valuation.png"
+    ],
+    "copyWords": 342,
+    "hasVideo": true,
+    "youtubeId": "LLB1_ZdBRyg",
+    "externalPage": null
+  },
+  {
+    "tech": "mh_unbilled_work",
+    "slug": "unbilled-work-report",
+    "name": "Unbilled Work Report",
+    "summary": "Unbilled timesheets aged by how long they have been sitting: project time worked and never invoiced, with the cost and the sale value of each bucket",
+    "tagline": "Project timesheets that have been worked and never invoiced, aged by how long they have been sitting, with the cost and the sale value of each bucket",
+    "intro": [
+      "Odoo knows which timesheets are billable and which have been invoiced. What it does not put anywhere is how long the rest have been sitting - and the age is the whole story.",
+      "Work billed a fortnight late is a nuisance. Work billed six months late is a conversation about whether it really took that long, with nobody left who remembers the detail. Often it simply never gets billed at all.",
+      "By project and by age, with the hours, the cost, and what it is worth."
+    ],
+    "features": [
+      {
+        "heading": "Aged, because age is the story",
+        "body": [
+          "0-30 days, 31-90, 91-180 and over six months, with the date of the oldest entry in each row. Rolling a project into one figure would hide exactly how long the oldest money has been waiting."
+        ]
+      },
+      {
+        "heading": "Only work somebody meant to charge for",
+        "body": [
+          "Non-billable hours are not late invoices - they are hours nobody was ever going to bill, and mixing them in makes the total meaningless. Invoiced timesheets drop out too, or the figure becomes a measure of how much work was done."
+        ]
+      },
+      {
+        "heading": "It admits what it cannot price",
+        "body": [
+          "Entries with no sales order line - which come from projects billed manually, exactly where work gets forgotten - are counted in the hours and the cost, left out of the sale value, and reported as a count. Pricing them would mean inventing a rate, and a made-up number in a money report is worse than an admitted gap."
+        ]
+      },
+      {
+        "heading": "Straight to the old ones",
+        "body": [
+          "One button opens only what has been waiting more than ninety days, and the findings name the projects carrying most of it. That is the list somebody can actually work through this afternoon."
+        ]
+      },
+      {
+        "heading": "Cost and value, side by side",
+        "body": [
+          "What the hours cost you and what they were sold for, from the sales order line's own price rather than a list price that may have been discounted away."
+        ]
+      }
+    ],
+    "scope": [],
+    "requires": [
+      "Odoo 19 Community or Enterprise with Sales - Timesheets. It reads only: nothing is invoiced, changed or written back, and it has no opinion about whether the work should have been billed - only that it has not been."
+    ],
+    "price": 69.01,
+    "manifestPrice": 69.0,
+    "currency": "USD",
+    "category": "Project",
+    "version": "19.0.1.0.15",
+    "license": "OPL-1",
+    "depends": [
+      "sale_timesheet"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_unbilled_work",
+    "screenshots": [
+      "screenshot_unbilled.png"
+    ],
+    "copyWords": 340,
+    "hasVideo": true,
+    "youtubeId": "WdJ8bg27kqw",
     "externalPage": null
   },
   {
@@ -1197,7 +1405,7 @@ export const odooApps = [
     "requires": [
       "Odoo 19 Community or Enterprise, no other module needed. It does not create keys or change their scope - that is Odoo's own screen and this does not get between you and it. It does not record what each call did; for an agent connected over MCP that is AI Agent Guardrails ."
     ],
-    "price": 69.0,
+    "price": 67.94,
     "manifestPrice": 69.0,
     "currency": "USD",
     "category": "Tools",
@@ -1208,7 +1416,7 @@ export const odooApps = [
     ],
     "paidDepends": [],
     "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_api_key_inventory",
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_api_key_inventory",
     "screenshots": [
       "screenshot_keys.png"
     ],
@@ -1266,7 +1474,7 @@ export const odooApps = [
     ],
     "scope": [],
     "requires": [],
-    "price": 69.0,
+    "price": 67.28,
     "manifestPrice": 69.0,
     "currency": "USD",
     "category": "Accounting/Accounting",
@@ -1277,7 +1485,7 @@ export const odooApps = [
     ],
     "paidDepends": [],
     "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_cash_application_matcher",
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_cash_application_matcher",
     "screenshots": [
       "screenshot_bank_lines.png",
       "screenshot_lumpsum_wizard.png",
@@ -1288,74 +1496,6 @@ export const odooApps = [
     "hasVideo": true,
     "youtubeId": "AIkicIJK0ZM",
     "externalPage": "/apps/community-cash-reconciler"
-  },
-  {
-    "tech": "mh_cookie_consent_enforcer",
-    "slug": "cookie-consent-enforcer",
-    "name": "Cookie Consent Enforcer",
-    "summary": "Hold analytics and marketing scripts back until the visitor consents to that category, script by script on any Odoo website",
-    "tagline": "Hold analytics and marketing scripts back until the visitor consents to that category, and inject them the moment they do",
-    "intro": [
-      "A consent banner that records the answer but lets the tag fire anyway is not compliance. It is a written record that the tag fired first.",
-      "The free Cookie Consent Banner logs what each visitor agreed to. This is the part that actually stops the scripts.",
-      "Two scripts registered by category. Neither reaches the page until the visitor agrees to that category."
-    ],
-    "features": [
-      {
-        "heading": "Nothing runs before the answer",
-        "body": [
-          "Your scripts never appear in the page as script tags. A browser runs a script tag the moment it parses it, long before anyone has seen the banner - so they travel as inert data and are injected only once the consent record says that category was accepted."
-        ]
-      },
-      {
-        "heading": "Per category, not all or nothing",
-        "body": [
-          "A visitor who accepts analytics but refuses marketing gets the analytics tag and not the pixel. Each script is registered against the category it belongs to, and gated on that category alone."
-        ]
-      },
-      {
-        "heading": "Consent takes effect immediately",
-        "body": [
-          "Agreeing halfway through a visit injects what was just permitted, without a reload. The alternative - waiting for the next page view - loses exactly the session the visitor just opted into."
-        ]
-      },
-      {
-        "heading": "It refuses the easy mistakes",
-        "body": [
-          "A tracker with both a URL and a snippet is ambiguous; one with neither sits in the list looking as though it does something. Script tags pasted into a snippet would end up nested inside the injected tag and never run. All three are refused at the form rather than failing silently on the page."
-        ]
-      },
-      {
-        "heading": "No \"essential\" category",
-        "body": [
-          "A tracker is never essential. Offering the option would only invite marketing scripts to be filed under it, which is the exact failure this app exists to prevent."
-        ]
-      }
-    ],
-    "scope": [],
-    "requires": [
-      "Odoo 19 Community or Enterprise with Website. Installs the free Cookie Consent Banner , which shows the banner and keeps the record. This is a technical control, not legal advice - which scripts belong in which category, and what your policy says, remain yours."
-    ],
-    "price": 69.0,
-    "manifestPrice": 69.0,
-    "currency": "USD",
-    "category": "Website",
-    "version": "19.0.1.0.14",
-    "license": "OPL-1",
-    "depends": [
-      "website",
-      "mh_cookie_consent_banner"
-    ],
-    "paidDepends": [],
-    "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_cookie_consent_enforcer",
-    "screenshots": [
-      "screenshot_trackers.png"
-    ],
-    "copyWords": 300,
-    "hasVideo": true,
-    "youtubeId": "XXyIypFwTvY",
-    "externalPage": null
   },
   {
     "tech": "mh_eudr_diligence",
@@ -1454,7 +1594,7 @@ export const odooApps = [
       "Before you buy: needs Odoo 19 Community or Enterprise with Inventory and Purchase. Products in scope have to be tracked by lot or serial number — without that there is nothing to attach a plot to, and the app says so rather than reporting a gap it cannot explain."
     ],
     "requires": [],
-    "price": 69.0,
+    "price": 67.28,
     "manifestPrice": 69.0,
     "currency": "USD",
     "category": "Warehouse",
@@ -1466,7 +1606,7 @@ export const odooApps = [
     ],
     "paidDepends": [],
     "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_eudr_diligence",
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_eudr_diligence",
     "screenshots": [
       "screenshot_plots.png",
       "screenshot_statement.png"
@@ -1521,7 +1661,7 @@ export const odooApps = [
       "It does not hide buttons, tabs or fields. Fields are their own job and Field Access Rules does that one server-side. Buttons and tabs are not covered here at all."
     ],
     "requires": [],
-    "price": 69.0,
+    "price": 67.28,
     "manifestPrice": 69.0,
     "currency": "USD",
     "category": "Tools",
@@ -1532,86 +1672,13 @@ export const odooApps = [
     ],
     "paidDepends": [],
     "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_menu_visibility",
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_menu_visibility",
     "screenshots": [
       "screenshot_plan.png"
     ],
     "copyWords": 355,
     "hasVideo": true,
     "youtubeId": "lrrmIBO3GF4",
-    "externalPage": null
-  },
-  {
-    "tech": "mh_stock_valuation_report",
-    "slug": "stock-valuation-report",
-    "name": "Stock Valuation Report",
-    "summary": "Inventory valuation report for any period: opening stock, receipts, issues and closing value per product, by warehouse and category, in PDF and Excel",
-    "tagline": "Inventory valuation for any period: opening stock, received, issued and closing value, per product.",
-    "intro": [
-      "Odoo 19 removed the stock valuation layer and, with it, the Valuation view under Inventory > Reporting. In Community, what is left is a single-date reconciliation by accounting account that no menu opens.",
-      "This report puts back the question every month end asks: what was the stock worth on the first, what came in, what went out, and what is it worth now — per product."
-    ],
-    "features": [
-      {
-        "heading": "Opening and closing are Odoo’s own figures",
-        "body": [
-          "The report reads Odoo’s own valuation at the first and the last second of the period — the same computation Odoo itself uses — so standard, average and FIFO costing and lot valuation come out exactly as Odoo books them. Nothing is recalculated."
-        ]
-      },
-      {
-        "heading": "Every row reconciles",
-        "body": [
-          "Received and issued carry the value Odoo recorded on each stock move. Whatever changed the value without a move — a cost update, a landed cost — sits in its own Other column, so opening + received − issued + other = closing on every line."
-        ]
-      },
-      {
-        "heading": "By warehouse, location and category",
-        "body": [
-          "Filter to one or more warehouses or internal locations, sub-locations included, and to product categories, sub-categories included. A filtered value is pro-rated by quantity, which is how Odoo itself values a warehouse. Archived products that still hold stock are included — they are still on your balance sheet."
-        ]
-      },
-      {
-        "heading": "PDF and Excel, grouped by category",
-        "body": [
-          "Print a PDF with category subtotals and a grand total, or export the same rows to Excel for the month-end file."
-        ]
-      },
-      {
-        "heading": "Your month ends at your midnight",
-        "body": [
-          "Period boundaries follow your time zone. Odoo’s own valuation treats a bare date as the end of that day in UTC, which moves a month end by hours anywhere east or west of Greenwich."
-        ]
-      },
-      {
-        "heading": "It says what it found",
-        "body": [
-          "A short summary states the change over the period, the largest value changes with no stock move behind them, and any product whose quantity does not reconcile — rather than leaving you to spot it in the rows."
-        ]
-      }
-    ],
-    "scope": [],
-    "requires": [
-      "Odoo 19 Community or Enterprise with Inventory; installs Odoo’s own Inventory valuation module (stock_account). Third-party apps install on Odoo.sh or On-Premise only — they cannot be installed on Odoo Online (SaaS).",
-      "It only reads: it posts no journal entries and changes no valuation. Stock moved between your own warehouses is not valued by Odoo, so in a report filtered to one warehouse that transfer shows as quantity with no value, and its value effect lands under Other. Stock you hold on consignment for someone else is left out, as Odoo leaves it out of your valuation. Only Inventory Administrators can run it, matching Odoo’s own rule for who sees stock value."
-    ],
-    "price": 69.0,
-    "manifestPrice": 69.0,
-    "currency": "USD",
-    "category": "Warehouse",
-    "version": "19.0.1.0.2",
-    "license": "OPL-1",
-    "depends": [
-      "stock_account"
-    ],
-    "paidDepends": [],
-    "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_stock_valuation_report",
-    "screenshots": [
-      "screenshot_valuation.png"
-    ],
-    "copyWords": 342,
-    "hasVideo": true,
-    "youtubeId": "LLB1_ZdBRyg",
     "externalPage": null
   },
   {
@@ -1668,7 +1735,7 @@ export const odooApps = [
       "Odoo 19 Community or Enterprise, with Accounting installed. This app also installs the free 1099 Threshold Check , which holds the per-year threshold table.",
       "Not affiliated with or endorsed by the IRS. This is a reporting aid, not tax advice - check the result with whoever files for you."
     ],
-    "price": 69.0,
+    "price": 67.28,
     "manifestPrice": 69.0,
     "currency": "USD",
     "category": "Accounting/Accounting",
@@ -1680,80 +1747,13 @@ export const odooApps = [
     ],
     "paidDepends": [],
     "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_1099_reporting",
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_1099_reporting",
     "screenshots": [
       "screenshot_run.png"
     ],
     "copyWords": 423,
     "hasVideo": true,
     "youtubeId": "pJlrKBZGX-4",
-    "externalPage": null
-  },
-  {
-    "tech": "mh_unbilled_work",
-    "slug": "unbilled-work-report",
-    "name": "Unbilled Work Report",
-    "summary": "Unbilled timesheets aged by how long they have been sitting: project time worked and never invoiced, with the cost and the sale value of each bucket",
-    "tagline": "Project timesheets that have been worked and never invoiced, aged by how long they have been sitting, with the cost and the sale value of each bucket",
-    "intro": [
-      "Odoo knows which timesheets are billable and which have been invoiced. What it does not put anywhere is how long the rest have been sitting - and the age is the whole story.",
-      "Work billed a fortnight late is a nuisance. Work billed six months late is a conversation about whether it really took that long, with nobody left who remembers the detail. Often it simply never gets billed at all.",
-      "By project and by age, with the hours, the cost, and what it is worth."
-    ],
-    "features": [
-      {
-        "heading": "Aged, because age is the story",
-        "body": [
-          "0-30 days, 31-90, 91-180 and over six months, with the date of the oldest entry in each row. Rolling a project into one figure would hide exactly how long the oldest money has been waiting."
-        ]
-      },
-      {
-        "heading": "Only work somebody meant to charge for",
-        "body": [
-          "Non-billable hours are not late invoices - they are hours nobody was ever going to bill, and mixing them in makes the total meaningless. Invoiced timesheets drop out too, or the figure becomes a measure of how much work was done."
-        ]
-      },
-      {
-        "heading": "It admits what it cannot price",
-        "body": [
-          "Entries with no sales order line - which come from projects billed manually, exactly where work gets forgotten - are counted in the hours and the cost, left out of the sale value, and reported as a count. Pricing them would mean inventing a rate, and a made-up number in a money report is worse than an admitted gap."
-        ]
-      },
-      {
-        "heading": "Straight to the old ones",
-        "body": [
-          "One button opens only what has been waiting more than ninety days, and the findings name the projects carrying most of it. That is the list somebody can actually work through this afternoon."
-        ]
-      },
-      {
-        "heading": "Cost and value, side by side",
-        "body": [
-          "What the hours cost you and what they were sold for, from the sales order line's own price rather than a list price that may have been discounted away."
-        ]
-      }
-    ],
-    "scope": [],
-    "requires": [
-      "Odoo 19 Community or Enterprise with Sales - Timesheets. It reads only: nothing is invoiced, changed or written back, and it has no opinion about whether the work should have been billed - only that it has not been."
-    ],
-    "price": 69.0,
-    "manifestPrice": 69.0,
-    "currency": "USD",
-    "category": "Project",
-    "version": "19.0.1.0.14",
-    "license": "OPL-1",
-    "depends": [
-      "sale_timesheet"
-    ],
-    "paidDepends": [],
-    "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_unbilled_work",
-    "screenshots": [
-      "screenshot_unbilled.png"
-    ],
-    "copyWords": 340,
-    "hasVideo": true,
-    "youtubeId": "WdJ8bg27kqw",
     "externalPage": null
   },
   {
@@ -1789,7 +1789,7 @@ export const odooApps = [
     "requires": [
       "Odoo 19, Community or Enterprise. Needs Discuss (for activities). Administrator access, since the check reads across every model in the database. Nothing is written to any record it finds."
     ],
-    "price": 69.0,
+    "price": 67.28,
     "manifestPrice": 69.0,
     "currency": "USD",
     "category": "Tools",
@@ -1800,7 +1800,7 @@ export const odooApps = [
     ],
     "paidDepends": [],
     "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_user_offboarding",
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_user_offboarding",
     "screenshots": [
       "screenshot_check.png"
     ],
@@ -1832,7 +1832,7 @@ export const odooApps = [
       "Monthly/quarterly declaration only - the universally-mandatory, recurring one. Annual fixed-asset and on-demand inventory declarations are a fast-follow."
     ],
     "requires": [],
-    "price": 58.69,
+    "price": 57.53,
     "manifestPrice": 59.0,
     "currency": "USD",
     "category": "Accounting/Localizations",
@@ -1843,260 +1843,13 @@ export const odooApps = [
     ],
     "paidDepends": [],
     "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_ro_saft_exporter",
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_ro_saft_exporter",
     "screenshots": [
       "screenshot_declaration.png"
     ],
     "copyWords": 205,
     "hasVideo": true,
     "youtubeId": "KTmlx96P0IA",
-    "externalPage": null
-  },
-  {
-    "tech": "mh_ai_agent_guardrails",
-    "slug": "ai-agent-guardrails",
-    "name": "AI Agent Guardrails",
-    "summary": "Cap and record what an AI agent does in Odoo over MCP: a write limit per hour, models it may never touch, and a log of every change with the old value",
-    "tagline": "Cap and record what an AI agent does in Odoo over MCP: a write limit per hour, models it may never touch, and a log of every change with the old value",
-    "intro": [
-      "An MCP server connects a language model to Odoo as some user, and from that moment the database cannot tell the agent's writes apart from a person's. That matters because the failure modes are not the same. A person who misreads a screen edits one record. An agent in a loop edits four thousand, and it does it faster than anybody can notice and stop it.",
-      "One login, an hourly ceiling, and the models it may never touch at all.",
-      "Every change, with the value that was there before it."
-    ],
-    "features": [
-      {
-        "heading": "A limit that counts records, not calls",
-        "body": [
-          "Creates, writes and deletes in a rolling hour. An agent rarely writes one at a time, so a limit counting calls would let a single create of five thousand straight through. Past the ceiling it is refused until the hour rolls on."
-        ]
-      },
-      {
-        "heading": "The log keeps what it overwrote",
-        "body": [
-          "Field by field, the value before and the value after. Knowing an agent touched a field is not something anybody can act on; knowing what it wrote over is what lets somebody put it back. Deletions keep the names, because the ids stop resolving the moment they are gone."
-        ]
-      },
-      {
-        "heading": "Models it may never change",
-        "body": [
-          "Refused outright, whatever the access rights say - for the handful where a mistake is expensive and rare enough to be worth typing out. A second lock, on top of the ones the agent's groups already give it."
-        ]
-      },
-      {
-        "heading": "Any MCP server, or none",
-        "body": [
-          "It guards a login rather than a protocol, so it applies whichever MCP or REST bridge you run, and to anything else authenticating as that user. Nothing here talks to the model or to the server, so there is no version of either to keep up with."
-        ]
-      },
-      {
-        "heading": "People are not logged",
-        "body": [
-          "Only the logins you register as agents. Recording everybody would bury the agent's changes in everyone else's, which is the opposite of the point - and the check costs a cached lookup, so the rest of the database pays almost nothing for it."
-        ]
-      }
-    ],
-    "scope": [],
-    "requires": [
-      "Odoo 19 Community or Enterprise, no other module needed. It does not undo changes for you - it tells you exactly what to undo. It does not restrict what the agent may read; that is Record Rule Preview and Field Access Rules . The superuser cannot be an agent - it bypasses access rules by design."
-    ],
-    "price": 49.0,
-    "manifestPrice": 49.0,
-    "currency": "USD",
-    "category": "Tools",
-    "version": "19.0.1.0.12",
-    "license": "OPL-1",
-    "depends": [
-      "base"
-    ],
-    "paidDepends": [],
-    "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_ai_agent_guardrails",
-    "screenshots": [
-      "screenshot_agent.png",
-      "screenshot_log.png"
-    ],
-    "copyWords": 368,
-    "hasVideo": true,
-    "youtubeId": "bipnHBtRO_U",
-    "externalPage": null
-  },
-  {
-    "tech": "mh_access_change_log",
-    "slug": "access-change-log",
-    "name": "Access Change Log",
-    "summary": "An access audit trail: every change to groups, access rights and record rules, with who changed whose access, when, and what it was before",
-    "tagline": "A record of every change to groups, access rights and record rules: who changed whose access, when, and what it was before",
-    "intro": [
-      "Odoo keeps no usable record of access changes. The chatter on a user does not track group membership, so by the time somebody asks who granted this access in March, the only honest answer is a guess.",
-      "That question has a name in every audit framework worth the paper, and it is always asked after the fact - the one moment it cannot be answered by looking at the current state.",
-      "Who did it, to whom, and the old domain next to the new one."
-    ],
-    "features": [
-      {
-        "heading": "It keeps what the value was",
-        "body": [
-          "The group list as it was and as it became, the old domain beside the new one. Knowing something changed is a note; knowing what it was is evidence somebody can act on."
-        ]
-      },
-      {
-        "heading": "Who did it, and to whom",
-        "body": [
-          "Every entry names both, because they are rarely the same person and that pair is what an auditor actually asks for. Group by either."
-        ]
-      },
-      {
-        "heading": "Quiet on purpose",
-        "body": [
-          "Only fields that are about access - somebody editing their signature is not an access change. Installing a module creates hundreds of groups, rights and rules, and none of those is a decision anybody made, so they are not recorded either. A trail full of noise is one nobody reads."
-        ]
-      },
-      {
-        "heading": "A save that changed nothing leaves nothing",
-        "body": [
-          "Values are compared before and after rather than against the instruction sent, so pressing save on an unchanged form does not add an entry. Deletions keep the name of what went, since the id resolves to nothing by the time anybody reads it."
-        ]
-      },
-      {
-        "heading": "It never gets in the way",
-        "body": [
-          "Recording sits inside a guard that swallows its own errors. An audit trail that can refuse a legitimate access change is worse than a gap in the trail, so a failure is logged to the server rather than raised at whoever was doing their job. The log is read-only in the interface, administrators included."
-        ]
-      }
-    ],
-    "scope": [],
-    "requires": [
-      "Odoo 19 Community or Enterprise, no other module needed. It records from the moment it is installed and cannot reconstruct what happened before - it does not pretend to. It logs access configuration, not what people did with the access."
-    ],
-    "price": 49.0,
-    "manifestPrice": 49.0,
-    "currency": "USD",
-    "category": "Tools",
-    "version": "19.0.1.0.12",
-    "license": "OPL-1",
-    "depends": [
-      "base"
-    ],
-    "paidDepends": [],
-    "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_access_change_log",
-    "screenshots": [
-      "screenshot_changes.png"
-    ],
-    "copyWords": 339,
-    "hasVideo": true,
-    "youtubeId": "1TeQUJ4XMuU",
-    "externalPage": null
-  },
-  {
-    "tech": "mh_access_rights_bulk",
-    "slug": "access-rights-bulk-edit",
-    "name": "Access Rights Bulk Edit",
-    "summary": "Grant or revoke model access rights for many groups and models at once, with the exact list of changes shown before anything is saved",
-    "tagline": "Grant or revoke model access rights for many groups and models at once, with the exact list of changes shown before anything is saved",
-    "intro": [
-      "Odoo keeps model access rights in a flat list thousands of rows long. Granting one group read on twelve models means finding twelve rows by search. Revoking is worse, because the row you need may not exist yet - and a missing row looks exactly like a row that grants nothing.",
-      "Pick the groups, pick the models, tick the permissions. Then read what it is about to do.",
-      "Every row it would create or change, named, before a single one is written."
-    ],
-    "features": [
-      {
-        "heading": "Grant and revoke, not set",
-        "body": [
-          "A permission you did not tick is left alone. Granting read does not quietly remove a write somebody already had - which is the failure mode of every matrix-shaped editor that saves the whole row."
-        ]
-      },
-      {
-        "heading": "It refuses the mistake the row count hides",
-        "body": [
-          "Revoking the last group holding a permission on a model leaves only the superuser able to do it. Every row in that change looks reasonable on its own; only the total says what happened. The plan names those models, and applying is refused until you say it was deliberate."
-        ]
-      },
-      {
-        "heading": "A stale plan cannot be applied",
-        "body": [
-          "Change the groups, the models, the operation or the permissions after working it out, and Apply is blocked until it is worked out again. A list on screen that describes a different change is worse than no list."
-        ]
-      },
-      {
-        "heading": "Revoking what was never granted writes nothing",
-        "body": [
-          "An absent row already grants nothing, so creating one to say so would add a row that does not do anything. Those pairs are counted as already correct instead."
-        ]
-      },
-      {
-        "heading": "It writes ordinary access rights",
-        "body": [
-          "Plain ir.model.access rows, nothing wrapped or intercepted. Uninstall the app and every right you granted stays exactly where it is. Each change keeps a note of who asked and when."
-        ]
-      }
-    ],
-    "scope": [],
-    "requires": [
-      "Odoo 19 Community or Enterprise, no other module needed. It grants access to a model, not to particular records or fields - which rows a user sees is Record Rule Preview , which columns they may read is Field Access Rules ."
-    ],
-    "price": 49.0,
-    "manifestPrice": 49.0,
-    "currency": "USD",
-    "category": "Tools",
-    "version": "19.0.1.0.13",
-    "license": "OPL-1",
-    "depends": [
-      "base"
-    ],
-    "paidDepends": [],
-    "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_access_rights_bulk",
-    "screenshots": [
-      "screenshot_plan.png"
-    ],
-    "copyWords": 318,
-    "hasVideo": true,
-    "youtubeId": "WpsWa8j1PGI",
-    "externalPage": null
-  },
-  {
-    "tech": "mh_a11y_auditor",
-    "slug": "accessibility-auditor",
-    "name": "Accessibility Auditor",
-    "summary": "WCAG 2.1 AA checks for missing alt text, unlabeled form fields and broken heading order. European Accessibility Act readiness without an overlay widget.",
-    "tagline": "Real WCAG violations, found in your rendered pages - not another overlay widget",
-    "intro": [
-      "The EU Accessibility Act, enforceable since June 2025, requires e-commerce sites serving EU consumers to meet WCAG 2.1 AA, with fines up to 500,000 euros. Odoo ships a free accessibility widget - contrast, grayscale, and text-size toggles - but that's a visitor-facing overlay, not a fix: it never touches the underlying markup, and EAA enforcement guidance treats overlays as legally insufficient on their own. This app scans your actual published pages - the real rendered HTML your visitors see, not the template source - and finds concrete, fixable violations: images with no alt text, form fields with no label, skipped heading levels, missing page language, links with no accessible text, and vague link text like \"click here.\" A rescan automatically closes issues that have been fixed."
-    ],
-    "features": [
-      {
-        "heading": "Scans what visitors actually see",
-        "body": [
-          "The check fetches your real published pages and parses the rendered output - dynamic content, header, and footer included - not the QWeb template source, which can hide or misrepresent what actually reaches the browser."
-        ]
-      },
-      {
-        "heading": "Every check is exact, none are guesses",
-        "body": [
-          "Color contrast is deliberately left out of this version - doing it correctly needs a full CSS cascade and a real rendering engine, and a half-correct contrast checker is worse than none. Every check this app does perform is exact."
-        ]
-      }
-    ],
-    "scope": [],
-    "requires": [],
-    "price": 49.0,
-    "manifestPrice": 49.0,
-    "currency": "USD",
-    "category": "Extra Tools",
-    "version": "19.0.1.0.9",
-    "license": "OPL-1",
-    "depends": [
-      "website"
-    ],
-    "paidDepends": [],
-    "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_a11y_auditor",
-    "screenshots": [
-      "screenshot_issues.png"
-    ],
-    "copyWords": 226,
-    "hasVideo": true,
-    "youtubeId": "Oq8yKSnLZIc",
     "externalPage": null
   },
   {
@@ -2157,13 +1910,215 @@ export const odooApps = [
     ],
     "paidDepends": [],
     "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_data_cleaning",
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_data_cleaning",
     "screenshots": [
       "screenshot_plan.png"
     ],
     "copyWords": 352,
     "hasVideo": true,
     "youtubeId": "AnmfBL7kRBY",
+    "externalPage": null
+  },
+  {
+    "tech": "mh_ai_agent_guardrails",
+    "slug": "ai-agent-guardrails",
+    "name": "AI Agent Guardrails",
+    "summary": "Cap and record what an AI agent does in Odoo over MCP: a write limit per hour, models it may never touch, and a log of every change with the old value",
+    "tagline": "Cap and record what an AI agent does in Odoo over MCP: a write limit per hour, models it may never touch, and a log of every change with the old value",
+    "intro": [
+      "An MCP server connects a language model to Odoo as some user, and from that moment the database cannot tell the agent's writes apart from a person's. That matters because the failure modes are not the same. A person who misreads a screen edits one record. An agent in a loop edits four thousand, and it does it faster than anybody can notice and stop it.",
+      "One login, an hourly ceiling, and the models it may never touch at all.",
+      "Every change, with the value that was there before it."
+    ],
+    "features": [
+      {
+        "heading": "A limit that counts records, not calls",
+        "body": [
+          "Creates, writes and deletes in a rolling hour. An agent rarely writes one at a time, so a limit counting calls would let a single create of five thousand straight through. Past the ceiling it is refused until the hour rolls on."
+        ]
+      },
+      {
+        "heading": "The log keeps what it overwrote",
+        "body": [
+          "Field by field, the value before and the value after. Knowing an agent touched a field is not something anybody can act on; knowing what it wrote over is what lets somebody put it back. Deletions keep the names, because the ids stop resolving the moment they are gone."
+        ]
+      },
+      {
+        "heading": "Models it may never change",
+        "body": [
+          "Refused outright, whatever the access rights say - for the handful where a mistake is expensive and rare enough to be worth typing out. A second lock, on top of the ones the agent's groups already give it."
+        ]
+      },
+      {
+        "heading": "Any MCP server, or none",
+        "body": [
+          "It guards a login rather than a protocol, so it applies whichever MCP or REST bridge you run, and to anything else authenticating as that user. Nothing here talks to the model or to the server, so there is no version of either to keep up with."
+        ]
+      },
+      {
+        "heading": "People are not logged",
+        "body": [
+          "Only the logins you register as agents. Recording everybody would bury the agent's changes in everyone else's, which is the opposite of the point - and the check costs a cached lookup, so the rest of the database pays almost nothing for it."
+        ]
+      }
+    ],
+    "scope": [],
+    "requires": [
+      "Odoo 19 Community or Enterprise, no other module needed. It does not undo changes for you - it tells you exactly what to undo. It does not restrict what the agent may read; that is Record Rule Preview and Field Access Rules . The superuser cannot be an agent - it bypasses access rules by design."
+    ],
+    "price": 48.26,
+    "manifestPrice": 49.0,
+    "currency": "USD",
+    "category": "Tools",
+    "version": "19.0.1.0.12",
+    "license": "OPL-1",
+    "depends": [
+      "base"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_ai_agent_guardrails",
+    "screenshots": [
+      "screenshot_agent.png",
+      "screenshot_log.png"
+    ],
+    "copyWords": 368,
+    "hasVideo": true,
+    "youtubeId": "bipnHBtRO_U",
+    "externalPage": null
+  },
+  {
+    "tech": "mh_access_change_log",
+    "slug": "access-change-log",
+    "name": "Access Change Log",
+    "summary": "An access audit trail: every change to groups, access rights and record rules, with who changed whose access, when, and what it was before",
+    "tagline": "A record of every change to groups, access rights and record rules: who changed whose access, when, and what it was before",
+    "intro": [
+      "Odoo keeps no usable record of access changes. The chatter on a user does not track group membership, so by the time somebody asks who granted this access in March, the only honest answer is a guess.",
+      "That question has a name in every audit framework worth the paper, and it is always asked after the fact - the one moment it cannot be answered by looking at the current state.",
+      "Who did it, to whom, and the old domain next to the new one."
+    ],
+    "features": [
+      {
+        "heading": "It keeps what the value was",
+        "body": [
+          "The group list as it was and as it became, the old domain beside the new one. Knowing something changed is a note; knowing what it was is evidence somebody can act on."
+        ]
+      },
+      {
+        "heading": "Who did it, and to whom",
+        "body": [
+          "Every entry names both, because they are rarely the same person and that pair is what an auditor actually asks for. Group by either."
+        ]
+      },
+      {
+        "heading": "Quiet on purpose",
+        "body": [
+          "Only fields that are about access - somebody editing their signature is not an access change. Installing a module creates hundreds of groups, rights and rules, and none of those is a decision anybody made, so they are not recorded either. A trail full of noise is one nobody reads."
+        ]
+      },
+      {
+        "heading": "A save that changed nothing leaves nothing",
+        "body": [
+          "Values are compared before and after rather than against the instruction sent, so pressing save on an unchanged form does not add an entry. Deletions keep the name of what went, since the id resolves to nothing by the time anybody reads it."
+        ]
+      },
+      {
+        "heading": "It never gets in the way",
+        "body": [
+          "Recording sits inside a guard that swallows its own errors. An audit trail that can refuse a legitimate access change is worse than a gap in the trail, so a failure is logged to the server rather than raised at whoever was doing their job. The log is read-only in the interface, administrators included."
+        ]
+      }
+    ],
+    "scope": [],
+    "requires": [
+      "Odoo 19 Community or Enterprise, no other module needed. It records from the moment it is installed and cannot reconstruct what happened before - it does not pretend to. It logs access configuration, not what people did with the access."
+    ],
+    "price": 48.26,
+    "manifestPrice": 49.0,
+    "currency": "USD",
+    "category": "Tools",
+    "version": "19.0.1.0.12",
+    "license": "OPL-1",
+    "depends": [
+      "base"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_access_change_log",
+    "screenshots": [
+      "screenshot_changes.png"
+    ],
+    "copyWords": 339,
+    "hasVideo": true,
+    "youtubeId": "1TeQUJ4XMuU",
+    "externalPage": null
+  },
+  {
+    "tech": "mh_access_rights_bulk",
+    "slug": "access-rights-bulk-edit",
+    "name": "Access Rights Bulk Edit",
+    "summary": "Grant or revoke model access rights for many groups and models at once, with the exact list of changes shown before anything is saved",
+    "tagline": "Grant or revoke model access rights for many groups and models at once, with the exact list of changes shown before anything is saved",
+    "intro": [
+      "Odoo keeps model access rights in a flat list thousands of rows long. Granting one group read on twelve models means finding twelve rows by search. Revoking is worse, because the row you need may not exist yet - and a missing row looks exactly like a row that grants nothing.",
+      "Pick the groups, pick the models, tick the permissions. Then read what it is about to do.",
+      "Every row it would create or change, named, before a single one is written."
+    ],
+    "features": [
+      {
+        "heading": "Grant and revoke, not set",
+        "body": [
+          "A permission you did not tick is left alone. Granting read does not quietly remove a write somebody already had - which is the failure mode of every matrix-shaped editor that saves the whole row."
+        ]
+      },
+      {
+        "heading": "It refuses the mistake the row count hides",
+        "body": [
+          "Revoking the last group holding a permission on a model leaves only the superuser able to do it. Every row in that change looks reasonable on its own; only the total says what happened. The plan names those models, and applying is refused until you say it was deliberate."
+        ]
+      },
+      {
+        "heading": "A stale plan cannot be applied",
+        "body": [
+          "Change the groups, the models, the operation or the permissions after working it out, and Apply is blocked until it is worked out again. A list on screen that describes a different change is worse than no list."
+        ]
+      },
+      {
+        "heading": "Revoking what was never granted writes nothing",
+        "body": [
+          "An absent row already grants nothing, so creating one to say so would add a row that does not do anything. Those pairs are counted as already correct instead."
+        ]
+      },
+      {
+        "heading": "It writes ordinary access rights",
+        "body": [
+          "Plain ir.model.access rows, nothing wrapped or intercepted. Uninstall the app and every right you granted stays exactly where it is. Each change keeps a note of who asked and when."
+        ]
+      }
+    ],
+    "scope": [],
+    "requires": [
+      "Odoo 19 Community or Enterprise, no other module needed. It grants access to a model, not to particular records or fields - which rows a user sees is Record Rule Preview , which columns they may read is Field Access Rules ."
+    ],
+    "price": 48.26,
+    "manifestPrice": 49.0,
+    "currency": "USD",
+    "category": "Tools",
+    "version": "19.0.1.0.13",
+    "license": "OPL-1",
+    "depends": [
+      "base"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_access_rights_bulk",
+    "screenshots": [
+      "screenshot_plan.png"
+    ],
+    "copyWords": 318,
+    "hasVideo": true,
+    "youtubeId": "WpsWa8j1PGI",
     "externalPage": null
   },
   {
@@ -2214,11 +2169,11 @@ export const odooApps = [
       "On a multi-database Odoo you must name the database. A stateless request carries no session to read it from, so the database name has to be sent with the connection."
     ],
     "requires": [],
-    "price": 49.0,
+    "price": 48.26,
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Productivity",
-    "version": "19.0.1.0.6",
+    "version": "19.0.1.0.8",
     "license": "OPL-1",
     "depends": [
       "mh_ai_agent_guardrails"
@@ -2231,14 +2186,59 @@ export const odooApps = [
       }
     ],
     "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_mcp_server",
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_mcp_server",
     "screenshots": [
       "screenshot_profile.png",
       "screenshot_calls.png"
     ],
-    "copyWords": 639,
+    "copyWords": 650,
     "hasVideo": true,
     "youtubeId": "nCPgpQ82gVU",
+    "externalPage": null
+  },
+  {
+    "tech": "mh_a11y_auditor",
+    "slug": "accessibility-auditor",
+    "name": "Accessibility Auditor",
+    "summary": "WCAG 2.1 AA checks for missing alt text, unlabeled form fields and broken heading order. European Accessibility Act readiness without an overlay widget.",
+    "tagline": "Real WCAG violations, found in your rendered pages - not another overlay widget",
+    "intro": [
+      "The EU Accessibility Act, enforceable since June 2025, requires e-commerce sites serving EU consumers to meet WCAG 2.1 AA, with fines up to 500,000 euros. Odoo ships a free accessibility widget - contrast, grayscale, and text-size toggles - but that's a visitor-facing overlay, not a fix: it never touches the underlying markup, and EAA enforcement guidance treats overlays as legally insufficient on their own. This app scans your actual published pages - the real rendered HTML your visitors see, not the template source - and finds concrete, fixable violations: images with no alt text, form fields with no label, skipped heading levels, missing page language, links with no accessible text, and vague link text like \"click here.\" A rescan automatically closes issues that have been fixed."
+    ],
+    "features": [
+      {
+        "heading": "Scans what visitors actually see",
+        "body": [
+          "The check fetches your real published pages and parses the rendered output - dynamic content, header, and footer included - not the QWeb template source, which can hide or misrepresent what actually reaches the browser."
+        ]
+      },
+      {
+        "heading": "Every check is exact, none are guesses",
+        "body": [
+          "Color contrast is deliberately left out of this version - doing it correctly needs a full CSS cascade and a real rendering engine, and a half-correct contrast checker is worse than none. Every check this app does perform is exact."
+        ]
+      }
+    ],
+    "scope": [],
+    "requires": [],
+    "price": 47.79,
+    "manifestPrice": 49.0,
+    "currency": "USD",
+    "category": "Extra Tools",
+    "version": "19.0.1.0.9",
+    "license": "OPL-1",
+    "depends": [
+      "website"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_a11y_auditor",
+    "screenshots": [
+      "screenshot_issues.png"
+    ],
+    "copyWords": 226,
+    "hasVideo": true,
+    "youtubeId": "Oq8yKSnLZIc",
     "externalPage": null
   },
   {
@@ -2284,7 +2284,7 @@ export const odooApps = [
     ],
     "scope": [],
     "requires": [],
-    "price": 49.0,
+    "price": 47.79,
     "manifestPrice": 49.0,
     "currency": "USD",
     "category": "Manufacturing",
@@ -2295,7 +2295,7 @@ export const odooApps = [
     ],
     "paidDepends": [],
     "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_spc_cpk_analytics",
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_spc_cpk_analytics",
     "screenshots": [
       "screenshot_spc.png"
     ],
@@ -2349,11 +2349,11 @@ export const odooApps = [
       "This app covers Odoo's AI text-generation assistant only - the editor's \"Generate with AI\" / \"Translate with AI\" tools. It does not touch invoice or document OCR, which is a separate, Enterprise-only Odoo feature this app does not modify or replace."
     ],
     "requires": [],
-    "price": 39.79,
+    "price": 39.39,
     "manifestPrice": 40.0,
     "currency": "USD",
     "category": "Productivity",
-    "version": "19.0.1.0.5",
+    "version": "19.0.1.0.6",
     "license": "OPL-1",
     "depends": [
       "base_setup",
@@ -2361,7 +2361,7 @@ export const odooApps = [
     ],
     "paidDepends": [],
     "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_llm_gateway",
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_llm_gateway",
     "screenshots": [
       "settings_screenshot.png"
     ],
@@ -2371,317 +2371,70 @@ export const odooApps = [
     "externalPage": "/apps/byok-gateway"
   },
   {
-    "tech": "mh_access_migration",
-    "slug": "access-config-migration",
-    "name": "Access Config Migration",
-    "summary": "Export groups, model access rights and record rules from one database and import them into another, with the exact list of what would be created and changed shown before anything is applied",
-    "tagline": "",
+    "tech": "mh_stock_aging_report",
+    "slug": "stock-aging-report",
+    "name": "Inventory Aging Report",
+    "summary": "Stock aging report (stock ageing, inventory ageing): how long stock has sat unsold and the capital tied up in each age bucket, per warehouse and category",
+    "tagline": "Age your inventory into buckets by how long it has sat unsold, with the capital tied up in each, per warehouse and category",
     "intro": [
-      "Export groups, model access rights and record rules from one database and import them into another, with the exact list of what would be created and changed shown before anything is applied"
+      "Quantity on hand tells you nothing about whether stock is a problem. The same 500 units are healthy in a fast-moving line and dead capital in a slow one. What separates them is the date something last actually left the building - and that is not on the quant.",
+      "The free Dead Stock Check gives you the headline number. This is the report that says which products, in which warehouse, and how much money.",
+      "Every product with stock on hand, aged by its last outgoing move, with the capital held in each line."
     ],
     "features": [
       {
-        "heading": "Built on staging, rebuilt by hand on production",
+        "heading": "Six buckets, chosen to match how stock is written down",
         "body": [
-          "That is where two databases start to differ, and the difference stays invisible until somebody cannot do their job — or can do somebody else's.",
-          "Doing it by hand is slow and it is where the mistakes come from. A database restore takes the data with it, so that is not an option either.",
-          "The plan, before anything is written: what would be created, what would change and which permission differs, what already matches, and what cannot be matched at all."
+          "0-30, 31-90, 91-180, 181-365 days, over a year, and never moved. A quarter, a half year, a year - the intervals accountants already use, not even slices that line up with nothing."
         ]
       },
       {
-        "heading": "Import stops at the plan",
+        "heading": "Internal transfers do not reset the clock",
         "body": [
-          "Attach the file and press Build the plan. That is where it stops. Nothing is written until you have read the list and pressed Apply — and the rows that need a decision sort to the top, above the ones that already match."
+          "Only moves that actually left an internal location count as shipping. Counting every stock move would make a pallet shuffled between bays look busy, and that is precisely how dead stock hides."
         ]
       },
       {
-        "heading": "Matched by XML id, and by nothing else",
+        "heading": "Valued at cost, not at hope",
         "body": [
-          "An XML id is the only identifier that means the same thing in two databases. A name can be edited; a database id is per-database.",
-          "A row made by hand in the interface has no XML id, and this reports it as unmatched rather than guessing which local row it meant. That is deliberate: the wrong guess here grants somebody access nobody intended, quietly. Entries for a model that is not installed on the target are skipped the same way, and named."
+          "Each line carries quantity times standard cost. Sale price would overstate the exposure on exactly the stock that is not selling, which is the one place you cannot afford an optimistic number."
         ]
       },
       {
-        "heading": "It never deletes",
+        "heading": "Narrow it to a warehouse or a category",
         "body": [
-          "Anything present on the target and absent from the file is left exactly as it is. A migration that removes access is how a production database locks its own administrators out, and the day you want that, you want to be doing it deliberately and by hand."
+          "Leave both empty for the whole company, or run one report per site and one per range. Categories match down the tree, so a parent category covers everything under it."
+        ]
+      },
+      {
+        "heading": "It names the worst offenders",
+        "body": [
+          "Findings say how many products have not shipped in six months, what they hold, and which five are the largest by value - with one button to open just those lines. A report you have to read twice to act on is a report nobody reads."
         ]
       }
     ],
-    "scope": [
-      "Stated up front so nothing about the scope is a surprise after you install it."
-    ],
+    "scope": [],
     "requires": [
-      "Odoo 19, Community or Enterprise. No dependencies beyond the base system. Administrator access on both databases."
+      "Odoo 19 Community or Enterprise with Inventory. Installs the free Dead Stock Check , which gives the headline figure. It reads existing moves and quants and writes nothing back to your inventory, and it does not tell you what to do with the stock - discount, return or write off remains a judgement call."
     ],
     "price": 39.0,
     "manifestPrice": 39.0,
     "currency": "USD",
-    "category": "Tools",
-    "version": "19.0.1.0.11",
+    "category": "Warehouse",
+    "version": "19.0.1.0.17",
     "license": "OPL-1",
     "depends": [
-      "base"
+      "stock"
     ],
     "paidDepends": [],
     "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_access_migration",
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_stock_aging_report",
     "screenshots": [
-      "screenshot_plan.png"
+      "screenshot_report.png"
     ],
     "copyWords": 324,
     "hasVideo": true,
-    "youtubeId": "jIFMc1kTjuU",
-    "externalPage": null
-  },
-  {
-    "tech": "mh_email_cc_bcc",
-    "slug": "email-cc-bcc-rules",
-    "name": "Email CC BCC Rules",
-    "summary": "Real email CC BCC on Odoo mail - a Bcc field on templates, the composer and mail.mail that actually reaches the recipient, plus standing rules to blind-copy an archive address automatically",
-    "tagline": "Real email CC BCC on Odoo mail - a Bcc field on templates, the composer and mail.mail that actually reaches the recipient.",
-    "intro": [],
-    "features": [
-      {
-        "heading": "A Bcc that actually arrives",
-        "body": [
-          "Odoo's mail server already handles Bcc correctly - it builds the delivery list from the To, Cc and Bcc addresses, then strips the Bcc line before sending. What is missing is any field to put an address in. Adding one by hand does not work either: Odoo checks every delivery address against the message's own recipients and quietly discards the rest, so a Bcc added as a header alone is thrown away. The mail is marked sent and nothing is logged. This puts the address where both steps can see it."
-        ]
-      },
-      {
-        "heading": "Blind, and tested for it",
-        "body": [
-          "There is a test that sends a message through a stand-in mail server and checks the address is in the delivery list and absent from every header the recipients receive. For a feature whose entire purpose is being invisible, \"it says sent\" is not evidence."
-        ]
-      },
-      {
-        "heading": "Sent once, not once per recipient",
-        "body": [
-          "A message to several people becomes several emails inside Odoo, one each, so every copy can be personalised. A Bcc added to all of them would deliver one copy per recipient - six recipients, six copies in the archive mailbox. This attaches it to exactly one, the way Odoo itself handles Cc."
-        ]
-      },
-      {
-        "heading": "Standing rules for an archive address",
-        "body": [
-          "Always blind-copy an address on messages sent from a chosen record type - an archive mailbox, a shared inbox, a compliance address - and narrow it to only the records you mean. A rule that cannot be read is skipped rather than stopping the message, and a filter that cannot be parsed is refused when you save it, not discovered at send time."
-        ]
-      },
-      {
-        "heading": "On templates, the composer and the mail itself",
-        "body": [
-          "A Bcc box in the send-by-email composer, and a Bcc field on mail templates where placeholders work - so an automated email can blind-copy an address taken from the record it is about."
-        ]
-      }
-    ],
-    "scope": [
-      "It does not Bcc other people's chatter replies. Only messages you send through the composer, a template, or a standing rule. A colleague replying in the chatter is not silently blind-copied to anyone.",
-      "It does not thread replies from a blind-copied address. Someone reading a Bcc is reading a message the record does not know they received. Quietly attaching their reply to the thread would show everyone following it that they were copied - the one thing a Bcc must never do. Their reply arrives in their mailbox and stays there.",
-      "It does not change who Odoo notifies. Followers, subscriptions and recipients are untouched. The Bcc is added after Odoo has decided who the message goes to, so nothing about your existing notifications moves.",
-      "It does not send a Bcc-only message. Odoo treats a mail with no visible recipient as a failure before it reaches this module. A Bcc rides along with a real message; it cannot replace one.",
-      "Rules match one record type each. A rule covers one model - contacts, or invoices, or tasks - not a mixture. Cover several by adding a rule for each, which also keeps the filter on each one readable."
-    ],
-    "requires": [],
-    "price": 39.0,
-    "manifestPrice": 39.0,
-    "currency": "USD",
-    "category": "Productivity/Discuss",
-    "version": "19.0.1.0.6",
-    "license": "OPL-1",
-    "depends": [
-      "mail"
-    ],
-    "paidDepends": [],
-    "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_email_cc_bcc",
-    "screenshots": [
-      "screenshot_rules.png"
-    ],
-    "copyWords": 533,
-    "hasVideo": true,
-    "youtubeId": "Ih32rSivNZY",
-    "externalPage": null
-  },
-  {
-    "tech": "mh_field_change_log",
-    "slug": "field-change-log",
-    "name": "Field Change Log",
-    "summary": "Field change history for the models and fields you name: who changed which field on which record, with the old value and the new one, so the log stays readable and does not grow forever",
-    "tagline": "",
-    "intro": [
-      "Record who changed which field on which record, with the old value and the new one — only for the models and fields you name, so the log stays readable and does not grow forever"
-    ],
-    "features": [
-      {
-        "heading": "Who changed this credit limit?",
-        "body": [
-          "Odoo can answer that for the handful of fields its own developers marked as tracked, and for nothing else.",
-          "Every audit-log module for Odoo answers it by recording everything — and every one of them ends up unusable for the same reason. The day somebody actually has to answer the question, the log has four million rows in it and no way to find the one that matters.",
-          "Who, when, on which record, what it was and what it became — for the fields you named and nothing else.",
-          "Nothing is recorded until it is named here. Choosing is the feature."
-        ]
-      },
-      {
-        "heading": "Written for whoever reads it a year later",
-        "body": [
-          "Values are stored as they read on the screen, not as they sit in the database: a linked record by its name, a selection by its label. A stored key like invoice means nothing to somebody reading the log after the fact.",
-          "The record's name is kept as it read at the time, so an entry still means something after the record is renamed — or deleted."
-        ]
-      },
-      {
-        "heading": "What it refuses to record",
-        "body": [
-          "A write that sets a field to the value it already holds. That is not a change, and a log full of them is the log nobody reads.",
-          "Anything written while a module is installing or updating — thousands of rows in one go, and not one of them a decision anybody made.",
-          "Its own tables, and Odoo's internal plumbing."
-        ]
-      }
-    ],
-    "scope": [
-      "A retention period, set in Settings and applied by a nightly job. Two years by default. Zero keeps everything, which is a decision worth making on purpose rather than by leaving a box empty.",
-      "Stated up front so nothing about the scope is a surprise after you install it."
-    ],
-    "requires": [
-      "Odoo 19, Community or Enterprise. No dependencies beyond the base system. Administrator access to choose what is watched and to read the log."
-    ],
-    "price": 39.0,
-    "manifestPrice": 39.0,
-    "currency": "USD",
-    "category": "Tools",
-    "version": "19.0.1.0.11",
-    "license": "OPL-1",
-    "depends": [
-      "base_setup"
-    ],
-    "paidDepends": [],
-    "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_field_change_log",
-    "screenshots": [
-      "screenshot_log.png",
-      "screenshot_watch.png"
-    ],
-    "copyWords": 330,
-    "hasVideo": true,
-    "youtubeId": "K03FvPDZSiE",
-    "externalPage": null
-  },
-  {
-    "tech": "mh_gdpr_breach_clock",
-    "slug": "gdpr-breach-clock",
-    "name": "GDPR Breach Clock",
-    "summary": "Article 33 timer for a personal data incident: 72 hours to tell the supervisory authority, reminders before it lapses, and a record of what was reported when.",
-    "tagline": "The Article 33 72-hour clock starts the moment you log the incident",
-    "intro": [
-      "GDPR Article 33 gives you 72 hours from becoming aware of a personal data breach to notify your supervisory authority - not 72 hours from when the breach happened. Missing that window, or not being able to prove you tracked it, is one of the most common triggers for an SME GDPR fine. Odoo has no native tool for this at all; Odoo's own official guidance tells you to write your own incident-response process. This app gives you one: log an incident and the clock starts automatically, an activity reminder fires once the deadline gets close so it can't be quietly missed, and a one-click report gives you the Article 33(3) notification document ready to send to your authority."
-    ],
-    "features": [
-      {
-        "heading": "The clock starts on \"aware,\" not \"happened\"",
-        "body": [
-          "The single most common mistake in breach response is starting the countdown from when the incident occurred instead of when someone actually found out. This app gets that distinction right by design."
-        ]
-      },
-      {
-        "heading": "A reminder that can't be missed",
-        "body": [
-          "Once the 72-hour deadline is within 24 hours (or already passed), the responsible person gets an activity reminder automatically - no need to remember to check back."
-        ]
-      },
-      {
-        "heading": "Article 33(3) notification, one click",
-        "body": [
-          "The printable report covers exactly what your authority needs: the nature of the breach, categories and number of people affected, your contact point, likely consequences, and the measures you've taken."
-        ]
-      },
-      {
-        "heading": "Kept confidential by design",
-        "body": [
-          "Breach records are sensitive by nature - a dedicated \"Data Protection Officer\" access group keeps them visible only to whoever you assign, not every internal user."
-        ]
-      }
-    ],
-    "scope": [],
-    "requires": [],
-    "price": 39.0,
-    "manifestPrice": 39.0,
-    "currency": "USD",
-    "category": "Extra Tools",
-    "version": "19.0.1.0.9",
-    "license": "OPL-1",
-    "depends": [
-      "mail"
-    ],
-    "paidDepends": [],
-    "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_gdpr_breach_clock",
-    "screenshots": [
-      "screenshot_form.png"
-    ],
-    "copyWords": 268,
-    "hasVideo": true,
-    "youtubeId": "3hRUlkg_vwo",
-    "externalPage": null
-  },
-  {
-    "tech": "mh_accounting_journal_control",
-    "slug": "journal-control",
-    "name": "Journal Control",
-    "summary": "Add bank charges to customer and vendor payments, move money between journals as a matched pair of entries, and limit which users can post to each journal.",
-    "tagline": "",
-    "intro": [
-      "Journal Control bundles three real, persistent gaps in Odoo's own Accounting app: a configurable bank or gateway processing fee posted alongside any payment, a way to move money between your own bank and cash journals without Odoo's own removed internal-transfer UI, and a way to keep a sensitive journal out of the bookkeepers' view except for the users who should see it."
-    ],
-    "features": [
-      {
-        "heading": "Payment Fee Surcharge",
-        "body": [
-          "Set a fee amount and account on any payment; once posted, a separate journal entry records the fee automatically, in the same journal, on the same date. No native Odoo field does this - you'd otherwise book it by hand."
-        ]
-      },
-      {
-        "heading": "Internal Transfer",
-        "body": [
-          "Pick a source and destination journal and an amount - one wizard creates and posts a linked pair of payments, cross-referenced the same way Odoo's own (now-removed) internal-transfer UI used to."
-        ]
-      },
-      {
-        "heading": "Journal User Restriction",
-        "body": [
-          "Restrict a journal to specific users - a payroll or owner's-draw journal, say - without touching access groups. Leave it empty and nothing changes for anyone. The restriction applies to the Billing/Bookkeeper group; Accounting Administrators keep sight of every journal, deliberately, since somebody has to be able to see and undo the restriction itself. Read it as keeping a journal off the team's screens, not as a seal against your own finance lead."
-        ]
-      },
-      {
-        "heading": "Nothing hidden in the accounting",
-        "body": [
-          "Every fee and every transfer is a real, visible journal entry or payment record - nothing is computed off-ledger or shown only in a report."
-        ]
-      },
-      {
-        "heading": "Who this is for",
-        "body": [
-          "Bookkeepers and controllers who take card/gateway payments with real processing fees, move money between their own bank and cash accounts regularly, and want at least one journal (payroll, owner's draw) kept out of view for most of the team."
-        ]
-      }
-    ],
-    "scope": [],
-    "requires": [],
-    "price": 39.0,
-    "manifestPrice": 39.0,
-    "currency": "USD",
-    "category": "Accounting/Accounting",
-    "version": "19.0.1.0.9",
-    "license": "OPL-1",
-    "depends": [
-      "account"
-    ],
-    "paidDepends": [],
-    "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_accounting_journal_control",
-    "screenshots": [
-      "screenshot_payment.png"
-    ],
-    "copyWords": 287,
-    "hasVideo": true,
-    "youtubeId": "NI-1QUI0XoI",
+    "youtubeId": "5gZIX1k6XNo",
     "externalPage": null
   },
   {
@@ -2753,14 +2506,14 @@ export const odooApps = [
     "manifestPrice": 39.0,
     "currency": "USD",
     "category": "Sales/Point of Sale",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.0.1",
     "license": "OPL-1",
     "depends": [
       "point_of_sale"
     ],
     "paidDepends": [],
     "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_pos_sales_reports",
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_pos_sales_reports",
     "screenshots": [
       "screenshot_report.png"
     ],
@@ -2820,7 +2573,7 @@ export const odooApps = [
     "manifestPrice": 39.0,
     "currency": "USD",
     "category": "Project",
-    "version": "19.0.1.0.13",
+    "version": "19.0.1.0.14",
     "license": "OPL-1",
     "depends": [
       "project",
@@ -2828,76 +2581,13 @@ export const odooApps = [
     ],
     "paidDepends": [],
     "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_project_cost_exposure",
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_project_cost_exposure",
     "screenshots": [
       "screenshot_exposure.png"
     ],
     "copyWords": 318,
     "hasVideo": true,
     "youtubeId": "mZFuv-o5q6w",
-    "externalPage": null
-  },
-  {
-    "tech": "mh_purchase_multi_level_approval",
-    "slug": "purchase-approvals",
-    "name": "Purchase Approvals",
-    "summary": "Route purchase orders through amount based approval tiers, with a spending limit per approver and an audit log of who approved what and when.",
-    "tagline": "",
-    "intro": [
-      "Odoo's own Purchase app ships a single amount threshold: below it, anyone can confirm a PO; above it, anyone in the Purchase Manager group can. Purchase Multi-Level Approval replaces that with real, configurable tiers - e.g. under $5,000 needs a Team Lead, under $25,000 needs a Manager, above that needs a Director - each tier gated by its own group, plus a structured, queryable log of every approval decision."
-    ],
-    "features": [
-      {
-        "heading": "As many tiers as you need",
-        "body": [
-          "Add a tier for any amount threshold and pick which group has to approve it. The highest tier a PO's total qualifies for is the one that applies."
-        ]
-      },
-      {
-        "heading": "Works even on a one-step company setup",
-        "body": [
-          "Tiers are checked first and take priority over Odoo's own native single-threshold setting - so this adds real value even if you haven't turned on two-step approval natively."
-        ]
-      },
-      {
-        "heading": "A structured approval log",
-        "body": [
-          "Every approval is recorded - which tier, who approved it, at what amount - in its own reportable list, not just buried in a purchase order's chatter."
-        ]
-      },
-      {
-        "heading": "Zero tiers, zero change",
-        "body": [
-          "With no tiers configured, this app is a complete no-op - native Odoo behavior is completely unchanged until you decide to add one."
-        ]
-      },
-      {
-        "heading": "Who this is for",
-        "body": [
-          "Procurement teams whose real sign-off chain has more than one level and who've outgrown Odoo's single amount threshold, or who want a real, reportable record of who approved what and when."
-        ]
-      }
-    ],
-    "scope": [],
-    "requires": [],
-    "price": 39.0,
-    "manifestPrice": 39.0,
-    "currency": "USD",
-    "category": "Purchases",
-    "version": "19.0.1.0.7",
-    "license": "OPL-1",
-    "depends": [
-      "purchase"
-    ],
-    "paidDepends": [],
-    "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_purchase_multi_level_approval",
-    "screenshots": [
-      "screenshot_tiers.png"
-    ],
-    "copyWords": 231,
-    "hasVideo": true,
-    "youtubeId": "4ci8k_dBuX0",
     "externalPage": null
   },
   {
@@ -2951,20 +2641,397 @@ export const odooApps = [
     "manifestPrice": 39.0,
     "currency": "USD",
     "category": "Warehouse",
-    "version": "19.0.1.0.13",
+    "version": "19.0.1.0.14",
     "license": "OPL-1",
     "depends": [
       "stock"
     ],
     "paidDepends": [],
     "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_reorder_rule_audit",
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_reorder_rule_audit",
     "screenshots": [
       "screenshot_audit.png"
     ],
     "copyWords": 355,
     "hasVideo": true,
     "youtubeId": "03nAYmHkGQ4",
+    "externalPage": null
+  },
+  {
+    "tech": "mh_access_migration",
+    "slug": "access-config-migration",
+    "name": "Access Config Migration",
+    "summary": "Export groups, model access rights and record rules from one database and import them into another, with the exact list of what would be created and changed shown before anything is applied",
+    "tagline": "",
+    "intro": [
+      "Export groups, model access rights and record rules from one database and import them into another, with the exact list of what would be created and changed shown before anything is applied"
+    ],
+    "features": [
+      {
+        "heading": "Built on staging, rebuilt by hand on production",
+        "body": [
+          "That is where two databases start to differ, and the difference stays invisible until somebody cannot do their job — or can do somebody else's.",
+          "Doing it by hand is slow and it is where the mistakes come from. A database restore takes the data with it, so that is not an option either.",
+          "The plan, before anything is written: what would be created, what would change and which permission differs, what already matches, and what cannot be matched at all."
+        ]
+      },
+      {
+        "heading": "Import stops at the plan",
+        "body": [
+          "Attach the file and press Build the plan. That is where it stops. Nothing is written until you have read the list and pressed Apply — and the rows that need a decision sort to the top, above the ones that already match."
+        ]
+      },
+      {
+        "heading": "Matched by XML id, and by nothing else",
+        "body": [
+          "An XML id is the only identifier that means the same thing in two databases. A name can be edited; a database id is per-database.",
+          "A row made by hand in the interface has no XML id, and this reports it as unmatched rather than guessing which local row it meant. That is deliberate: the wrong guess here grants somebody access nobody intended, quietly. Entries for a model that is not installed on the target are skipped the same way, and named."
+        ]
+      },
+      {
+        "heading": "It never deletes",
+        "body": [
+          "Anything present on the target and absent from the file is left exactly as it is. A migration that removes access is how a production database locks its own administrators out, and the day you want that, you want to be doing it deliberately and by hand."
+        ]
+      }
+    ],
+    "scope": [
+      "Stated up front so nothing about the scope is a surprise after you install it."
+    ],
+    "requires": [
+      "Odoo 19, Community or Enterprise. No dependencies beyond the base system. Administrator access on both databases."
+    ],
+    "price": 38.41,
+    "manifestPrice": 39.0,
+    "currency": "USD",
+    "category": "Tools",
+    "version": "19.0.1.0.11",
+    "license": "OPL-1",
+    "depends": [
+      "base"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_access_migration",
+    "screenshots": [
+      "screenshot_plan.png"
+    ],
+    "copyWords": 324,
+    "hasVideo": true,
+    "youtubeId": "jIFMc1kTjuU",
+    "externalPage": null
+  },
+  {
+    "tech": "mh_email_cc_bcc",
+    "slug": "email-cc-bcc-rules",
+    "name": "Email CC BCC Rules",
+    "summary": "Real email CC BCC on Odoo mail - a Bcc field on templates, the composer and mail.mail that actually reaches the recipient, plus standing rules to blind-copy an archive address automatically",
+    "tagline": "Real email CC BCC on Odoo mail - a Bcc field on templates, the composer and mail.mail that actually reaches the recipient.",
+    "intro": [],
+    "features": [
+      {
+        "heading": "A Bcc that actually arrives",
+        "body": [
+          "Odoo's mail server already handles Bcc correctly - it builds the delivery list from the To, Cc and Bcc addresses, then strips the Bcc line before sending. What is missing is any field to put an address in. Adding one by hand does not work either: Odoo checks every delivery address against the message's own recipients and quietly discards the rest, so a Bcc added as a header alone is thrown away. The mail is marked sent and nothing is logged. This puts the address where both steps can see it."
+        ]
+      },
+      {
+        "heading": "Blind, and tested for it",
+        "body": [
+          "There is a test that sends a message through a stand-in mail server and checks the address is in the delivery list and absent from every header the recipients receive. For a feature whose entire purpose is being invisible, \"it says sent\" is not evidence."
+        ]
+      },
+      {
+        "heading": "Sent once, not once per recipient",
+        "body": [
+          "A message to several people becomes several emails inside Odoo, one each, so every copy can be personalised. A Bcc added to all of them would deliver one copy per recipient - six recipients, six copies in the archive mailbox. This attaches it to exactly one, the way Odoo itself handles Cc."
+        ]
+      },
+      {
+        "heading": "Standing rules for an archive address",
+        "body": [
+          "Always blind-copy an address on messages sent from a chosen record type - an archive mailbox, a shared inbox, a compliance address - and narrow it to only the records you mean. A rule that cannot be read is skipped rather than stopping the message, and a filter that cannot be parsed is refused when you save it, not discovered at send time."
+        ]
+      },
+      {
+        "heading": "On templates, the composer and the mail itself",
+        "body": [
+          "A Bcc box in the send-by-email composer, and a Bcc field on mail templates where placeholders work - so an automated email can blind-copy an address taken from the record it is about."
+        ]
+      }
+    ],
+    "scope": [
+      "It does not Bcc other people's chatter replies. Only messages you send through the composer, a template, or a standing rule. A colleague replying in the chatter is not silently blind-copied to anyone.",
+      "It does not thread replies from a blind-copied address. Someone reading a Bcc is reading a message the record does not know they received. Quietly attaching their reply to the thread would show everyone following it that they were copied - the one thing a Bcc must never do. Their reply arrives in their mailbox and stays there.",
+      "It does not change who Odoo notifies. Followers, subscriptions and recipients are untouched. The Bcc is added after Odoo has decided who the message goes to, so nothing about your existing notifications moves.",
+      "It does not send a Bcc-only message. Odoo treats a mail with no visible recipient as a failure before it reaches this module. A Bcc rides along with a real message; it cannot replace one.",
+      "Rules match one record type each. A rule covers one model - contacts, or invoices, or tasks - not a mixture. Cover several by adding a rule for each, which also keeps the filter on each one readable."
+    ],
+    "requires": [],
+    "price": 38.41,
+    "manifestPrice": 39.0,
+    "currency": "USD",
+    "category": "Productivity/Discuss",
+    "version": "19.0.1.0.6",
+    "license": "OPL-1",
+    "depends": [
+      "mail"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_email_cc_bcc",
+    "screenshots": [
+      "screenshot_rules.png"
+    ],
+    "copyWords": 533,
+    "hasVideo": true,
+    "youtubeId": "Ih32rSivNZY",
+    "externalPage": null
+  },
+  {
+    "tech": "mh_field_change_log",
+    "slug": "field-change-log",
+    "name": "Field Change Log",
+    "summary": "Field change history for the models and fields you name: who changed which field on which record, with the old value and the new one, so the log stays readable and does not grow forever",
+    "tagline": "",
+    "intro": [
+      "Record who changed which field on which record, with the old value and the new one — only for the models and fields you name, so the log stays readable and does not grow forever"
+    ],
+    "features": [
+      {
+        "heading": "Who changed this credit limit?",
+        "body": [
+          "Odoo can answer that for the handful of fields its own developers marked as tracked, and for nothing else.",
+          "Every audit-log module for Odoo answers it by recording everything — and every one of them ends up unusable for the same reason. The day somebody actually has to answer the question, the log has four million rows in it and no way to find the one that matters.",
+          "Who, when, on which record, what it was and what it became — for the fields you named and nothing else.",
+          "Nothing is recorded until it is named here. Choosing is the feature."
+        ]
+      },
+      {
+        "heading": "Written for whoever reads it a year later",
+        "body": [
+          "Values are stored as they read on the screen, not as they sit in the database: a linked record by its name, a selection by its label. A stored key like invoice means nothing to somebody reading the log after the fact.",
+          "The record's name is kept as it read at the time, so an entry still means something after the record is renamed — or deleted."
+        ]
+      },
+      {
+        "heading": "What it refuses to record",
+        "body": [
+          "A write that sets a field to the value it already holds. That is not a change, and a log full of them is the log nobody reads.",
+          "Anything written while a module is installing or updating — thousands of rows in one go, and not one of them a decision anybody made.",
+          "Its own tables, and Odoo's internal plumbing."
+        ]
+      }
+    ],
+    "scope": [
+      "A retention period, set in Settings and applied by a nightly job. Two years by default. Zero keeps everything, which is a decision worth making on purpose rather than by leaving a box empty.",
+      "Stated up front so nothing about the scope is a surprise after you install it."
+    ],
+    "requires": [
+      "Odoo 19, Community or Enterprise. No dependencies beyond the base system. Administrator access to choose what is watched and to read the log."
+    ],
+    "price": 38.03,
+    "manifestPrice": 39.0,
+    "currency": "USD",
+    "category": "Tools",
+    "version": "19.0.1.0.11",
+    "license": "OPL-1",
+    "depends": [
+      "base_setup"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_field_change_log",
+    "screenshots": [
+      "screenshot_log.png",
+      "screenshot_watch.png"
+    ],
+    "copyWords": 330,
+    "hasVideo": true,
+    "youtubeId": "K03FvPDZSiE",
+    "externalPage": null
+  },
+  {
+    "tech": "mh_gdpr_breach_clock",
+    "slug": "gdpr-breach-clock",
+    "name": "GDPR Breach Clock",
+    "summary": "Article 33 timer for a personal data incident: 72 hours to tell the supervisory authority, reminders before it lapses, and a record of what was reported when.",
+    "tagline": "The Article 33 72-hour clock starts the moment you log the incident",
+    "intro": [
+      "GDPR Article 33 gives you 72 hours from becoming aware of a personal data breach to notify your supervisory authority - not 72 hours from when the breach happened. Missing that window, or not being able to prove you tracked it, is one of the most common triggers for an SME GDPR fine. Odoo has no native tool for this at all; Odoo's own official guidance tells you to write your own incident-response process. This app gives you one: log an incident and the clock starts automatically, an activity reminder fires once the deadline gets close so it can't be quietly missed, and a one-click report gives you the Article 33(3) notification document ready to send to your authority."
+    ],
+    "features": [
+      {
+        "heading": "The clock starts on \"aware,\" not \"happened\"",
+        "body": [
+          "The single most common mistake in breach response is starting the countdown from when the incident occurred instead of when someone actually found out. This app gets that distinction right by design."
+        ]
+      },
+      {
+        "heading": "A reminder that can't be missed",
+        "body": [
+          "Once the 72-hour deadline is within 24 hours (or already passed), the responsible person gets an activity reminder automatically - no need to remember to check back."
+        ]
+      },
+      {
+        "heading": "Article 33(3) notification, one click",
+        "body": [
+          "The printable report covers exactly what your authority needs: the nature of the breach, categories and number of people affected, your contact point, likely consequences, and the measures you've taken."
+        ]
+      },
+      {
+        "heading": "Kept confidential by design",
+        "body": [
+          "Breach records are sensitive by nature - a dedicated \"Data Protection Officer\" access group keeps them visible only to whoever you assign, not every internal user."
+        ]
+      }
+    ],
+    "scope": [],
+    "requires": [],
+    "price": 38.03,
+    "manifestPrice": 39.0,
+    "currency": "USD",
+    "category": "Extra Tools",
+    "version": "19.0.1.0.9",
+    "license": "OPL-1",
+    "depends": [
+      "mail"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_gdpr_breach_clock",
+    "screenshots": [
+      "screenshot_form.png"
+    ],
+    "copyWords": 268,
+    "hasVideo": true,
+    "youtubeId": "3hRUlkg_vwo",
+    "externalPage": null
+  },
+  {
+    "tech": "mh_accounting_journal_control",
+    "slug": "journal-control",
+    "name": "Journal Control",
+    "summary": "Add bank charges to customer and vendor payments, move money between journals as a matched pair of entries, and limit which users can post to each journal.",
+    "tagline": "",
+    "intro": [
+      "Journal Control bundles three real, persistent gaps in Odoo's own Accounting app: a configurable bank or gateway processing fee posted alongside any payment, a way to move money between your own bank and cash journals without Odoo's own removed internal-transfer UI, and a way to keep a sensitive journal out of the bookkeepers' view except for the users who should see it."
+    ],
+    "features": [
+      {
+        "heading": "Payment Fee Surcharge",
+        "body": [
+          "Set a fee amount and account on any payment; once posted, a separate journal entry records the fee automatically, in the same journal, on the same date. No native Odoo field does this - you'd otherwise book it by hand."
+        ]
+      },
+      {
+        "heading": "Internal Transfer",
+        "body": [
+          "Pick a source and destination journal and an amount - one wizard creates and posts a linked pair of payments, cross-referenced the same way Odoo's own (now-removed) internal-transfer UI used to."
+        ]
+      },
+      {
+        "heading": "Journal User Restriction",
+        "body": [
+          "Restrict a journal to specific users - a payroll or owner's-draw journal, say - without touching access groups. Leave it empty and nothing changes for anyone. The restriction applies to the Billing/Bookkeeper group; Accounting Administrators keep sight of every journal, deliberately, since somebody has to be able to see and undo the restriction itself. Read it as keeping a journal off the team's screens, not as a seal against your own finance lead."
+        ]
+      },
+      {
+        "heading": "Nothing hidden in the accounting",
+        "body": [
+          "Every fee and every transfer is a real, visible journal entry or payment record - nothing is computed off-ledger or shown only in a report."
+        ]
+      },
+      {
+        "heading": "Who this is for",
+        "body": [
+          "Bookkeepers and controllers who take card/gateway payments with real processing fees, move money between their own bank and cash accounts regularly, and want at least one journal (payroll, owner's draw) kept out of view for most of the team."
+        ]
+      }
+    ],
+    "scope": [],
+    "requires": [],
+    "price": 38.03,
+    "manifestPrice": 39.0,
+    "currency": "USD",
+    "category": "Accounting/Accounting",
+    "version": "19.0.1.0.9",
+    "license": "OPL-1",
+    "depends": [
+      "account"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_accounting_journal_control",
+    "screenshots": [
+      "screenshot_payment.png"
+    ],
+    "copyWords": 287,
+    "hasVideo": true,
+    "youtubeId": "NI-1QUI0XoI",
+    "externalPage": null
+  },
+  {
+    "tech": "mh_purchase_multi_level_approval",
+    "slug": "purchase-approvals",
+    "name": "Purchase Approvals",
+    "summary": "Route purchase orders through amount based approval tiers, with a spending limit per approver and an audit log of who approved what and when.",
+    "tagline": "",
+    "intro": [
+      "Odoo's own Purchase app ships a single amount threshold: below it, anyone can confirm a PO; above it, anyone in the Purchase Manager group can. Purchase Multi-Level Approval replaces that with real, configurable tiers - e.g. under $5,000 needs a Team Lead, under $25,000 needs a Manager, above that needs a Director - each tier gated by its own group, plus a structured, queryable log of every approval decision."
+    ],
+    "features": [
+      {
+        "heading": "As many tiers as you need",
+        "body": [
+          "Add a tier for any amount threshold and pick which group has to approve it. The highest tier a PO's total qualifies for is the one that applies."
+        ]
+      },
+      {
+        "heading": "Works even on a one-step company setup",
+        "body": [
+          "Tiers are checked first and take priority over Odoo's own native single-threshold setting - so this adds real value even if you haven't turned on two-step approval natively."
+        ]
+      },
+      {
+        "heading": "A structured approval log",
+        "body": [
+          "Every approval is recorded - which tier, who approved it, at what amount - in its own reportable list, not just buried in a purchase order's chatter."
+        ]
+      },
+      {
+        "heading": "Zero tiers, zero change",
+        "body": [
+          "With no tiers configured, this app is a complete no-op - native Odoo behavior is completely unchanged until you decide to add one."
+        ]
+      },
+      {
+        "heading": "Who this is for",
+        "body": [
+          "Procurement teams whose real sign-off chain has more than one level and who've outgrown Odoo's single amount threshold, or who want a real, reportable record of who approved what and when."
+        ]
+      }
+    ],
+    "scope": [],
+    "requires": [],
+    "price": 38.03,
+    "manifestPrice": 39.0,
+    "currency": "USD",
+    "category": "Purchases",
+    "version": "19.0.1.0.7",
+    "license": "OPL-1",
+    "depends": [
+      "purchase"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_purchase_multi_level_approval",
+    "screenshots": [
+      "screenshot_tiers.png"
+    ],
+    "copyWords": 231,
+    "hasVideo": true,
+    "youtubeId": "4ci8k_dBuX0",
     "externalPage": null
   },
   {
@@ -3010,7 +3077,7 @@ export const odooApps = [
     ],
     "scope": [],
     "requires": [],
-    "price": 39.0,
+    "price": 38.03,
     "manifestPrice": 39.0,
     "currency": "USD",
     "category": "Sales/Sales",
@@ -3021,80 +3088,13 @@ export const odooApps = [
     ],
     "paidDepends": [],
     "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_sale_order_power_tools",
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_sale_order_power_tools",
     "screenshots": [
       "screenshot_order.png"
     ],
     "copyWords": 240,
     "hasVideo": true,
     "youtubeId": "Kxn1qGG6qho",
-    "externalPage": null
-  },
-  {
-    "tech": "mh_stock_aging_report",
-    "slug": "stock-aging-report",
-    "name": "Inventory Aging Report",
-    "summary": "Stock aging report (stock ageing, inventory ageing): how long stock has sat unsold and the capital tied up in each age bucket, per warehouse and category",
-    "tagline": "Age your inventory into buckets by how long it has sat unsold, with the capital tied up in each, per warehouse and category",
-    "intro": [
-      "Quantity on hand tells you nothing about whether stock is a problem. The same 500 units are healthy in a fast-moving line and dead capital in a slow one. What separates them is the date something last actually left the building - and that is not on the quant.",
-      "The free Dead Stock Check gives you the headline number. This is the report that says which products, in which warehouse, and how much money.",
-      "Every product with stock on hand, aged by its last outgoing move, with the capital held in each line."
-    ],
-    "features": [
-      {
-        "heading": "Six buckets, chosen to match how stock is written down",
-        "body": [
-          "0-30, 31-90, 91-180, 181-365 days, over a year, and never moved. A quarter, a half year, a year - the intervals accountants already use, not even slices that line up with nothing."
-        ]
-      },
-      {
-        "heading": "Internal transfers do not reset the clock",
-        "body": [
-          "Only moves that actually left an internal location count as shipping. Counting every stock move would make a pallet shuffled between bays look busy, and that is precisely how dead stock hides."
-        ]
-      },
-      {
-        "heading": "Valued at cost, not at hope",
-        "body": [
-          "Each line carries quantity times standard cost. Sale price would overstate the exposure on exactly the stock that is not selling, which is the one place you cannot afford an optimistic number."
-        ]
-      },
-      {
-        "heading": "Narrow it to a warehouse or a category",
-        "body": [
-          "Leave both empty for the whole company, or run one report per site and one per range. Categories match down the tree, so a parent category covers everything under it."
-        ]
-      },
-      {
-        "heading": "It names the worst offenders",
-        "body": [
-          "Findings say how many products have not shipped in six months, what they hold, and which five are the largest by value - with one button to open just those lines. A report you have to read twice to act on is a report nobody reads."
-        ]
-      }
-    ],
-    "scope": [],
-    "requires": [
-      "Odoo 19 Community or Enterprise with Inventory. Installs the free Dead Stock Check , which gives the headline figure. It reads existing moves and quants and writes nothing back to your inventory, and it does not tell you what to do with the stock - discount, return or write off remains a judgement call."
-    ],
-    "price": 39.0,
-    "manifestPrice": 39.0,
-    "currency": "USD",
-    "category": "Warehouse",
-    "version": "19.0.1.0.16",
-    "license": "OPL-1",
-    "depends": [
-      "stock"
-    ],
-    "paidDepends": [],
-    "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_stock_aging_report",
-    "screenshots": [
-      "screenshot_report.png"
-    ],
-    "copyWords": 324,
-    "hasVideo": true,
-    "youtubeId": "5gZIX1k6XNo",
     "externalPage": null
   },
   {
@@ -3123,7 +3123,7 @@ export const odooApps = [
     ],
     "scope": [],
     "requires": [],
-    "price": 39.0,
+    "price": 38.03,
     "manifestPrice": 39.0,
     "currency": "USD",
     "category": "Extra Tools",
@@ -3134,209 +3134,13 @@ export const odooApps = [
     ],
     "paidDepends": [],
     "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_breach_deadline_calc",
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_breach_deadline_calc",
     "screenshots": [
       "screenshot_incident.png"
     ],
     "copyWords": 265,
     "hasVideo": true,
     "youtubeId": "f7lF6tp7uvw",
-    "externalPage": null
-  },
-  {
-    "tech": "mh_company_audit",
-    "slug": "company-audit",
-    "name": "Company Audit",
-    "summary": "Find the records whose company conflicts with the records they point at, before Odoo refuses the transaction",
-    "tagline": "Find the records whose company conflicts with the records they point at, before Odoo refuses the transaction",
-    "intro": [
-      "A multi-company database drifts. Records get imported, migrated, or written before a module declared its company checks, and they sit there contradicting themselves until somebody opens one and the save fails.",
-      "This checks the whole database and tells you what is inconsistent.",
-      "One cross-company link, and two users who can switch between companies."
-    ],
-    "features": [
-      {
-        "heading": "Records pointing at another company",
-        "body": [
-          "A record in one company linked to a record owned by another. Odoo will refuse the next write on each of them, which is how most people find out - at the worst possible moment. The report names the record, the field, and the company on both sides."
-        ]
-      },
-      {
-        "heading": "Records with no company at all",
-        "body": [
-          "On a model where every other record has one, a blank company means every company in the database can see it. Technical models are left out, because they legitimately have none and reporting them would bury what matters."
-        ]
-      },
-      {
-        "heading": "Users who can switch companies",
-        "body": [
-          "Often entirely correct - a finance lead may need all of them. It is also the setting that turns one careless record into a cross-company leak, and it is the one nobody reviews."
-        ]
-      },
-      {
-        "heading": "Why this data exists at all",
-        "body": [
-          "Odoo enforces company consistency at write time, on the fields that declare the check. That says nothing about records imported, migrated, or written before the flag existed. Those are already in your database, and you cannot create one through the interface to go looking for it."
-        ]
-      },
-      {
-        "heading": "It reports, it never repairs",
-        "body": [
-          "No reassignment, no cleanup, no scheduled monitoring. Moving a record between companies is a decision about your business, not something a report should make on your behalf."
-        ]
-      }
-    ],
-    "scope": [],
-    "requires": [
-      "Odoo 19 Community or Enterprise. Depends only on base, nothing leaves your server, and it is restricted to Settings administrators."
-    ],
-    "price": 29.0,
-    "manifestPrice": 29.0,
-    "currency": "USD",
-    "category": "Accounting/Accounting",
-    "version": "19.0.1.0.11",
-    "license": "OPL-1",
-    "depends": [
-      "base"
-    ],
-    "paidDepends": [],
-    "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_company_audit",
-    "screenshots": [
-      "screenshot_audit.png"
-    ],
-    "copyWords": 289,
-    "hasVideo": true,
-    "youtubeId": "4B3sdWoHqoM",
-    "externalPage": null
-  },
-  {
-    "tech": "mh_group_membership_bulk",
-    "slug": "group-membership-bulk",
-    "name": "Group Membership Bulk",
-    "summary": "Add or remove many users from many groups at once, with the exact list of who gains and loses which access rights shown before anything is saved",
-    "tagline": "Add or remove many users from many groups at once, with the exact list of who gains and loses which access rights shown before anything is saved",
-    "intro": [
-      "Odoo changes group membership one user form at a time. Standing a project team down at the end of an engagement therefore means fifteen forms - and the only record of what was done is whatever the person remembers a month later.",
-      "Every membership that would change, the group left with nobody in it, and the implied group that will not come off by itself."
-    ],
-    "features": [
-      {
-        "heading": "It names the implied groups",
-        "body": [
-          "Groups imply other groups, and that is where people quietly gain access somewhere nobody was looking. Adding says which come along. Removing says the opposite, and it matters more: Odoo does not take an implied group away when the implying one goes, so anybody who had it keeps it."
-        ]
-      },
-      {
-        "heading": "Only what you asked for",
-        "body": [
-          "Memberships this change says nothing about are left alone. A bulk tool that rewrites the whole group list would drop access nobody mentioned, and the person who lost it would have no way to find out why."
-        ]
-      },
-      {
-        "heading": "Emptying a group is said out loud",
-        "body": [
-          "Removing the last member leaves a group configured and unused - easy to miss now, hard to explain later. The plan names those groups and applying is refused until you say it was deliberate. A group that was already empty is not blamed on this change."
-        ]
-      },
-      {
-        "heading": "A stale plan cannot be applied",
-        "body": [
-          "Change the users, the groups or the direction after working it out, and Apply is blocked until it is worked out again. A list describing a different change is worse than no list."
-        ]
-      },
-      {
-        "heading": "It leaves the record the forms never did",
-        "body": [
-          "Each change keeps who asked, when, and exactly which memberships moved - the thing nobody has after doing it fifteen times by hand."
-        ]
-      }
-    ],
-    "scope": [],
-    "requires": [
-      "Odoo 19 Community or Enterprise, no other module needed. It changes who is in a group, not what the group can do - that is access rights , record rules and field access ."
-    ],
-    "price": 29.0,
-    "manifestPrice": 29.0,
-    "currency": "USD",
-    "category": "Tools",
-    "version": "19.0.1.0.14",
-    "license": "OPL-1",
-    "depends": [
-      "base"
-    ],
-    "paidDepends": [],
-    "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_group_membership_bulk",
-    "screenshots": [
-      "screenshot_plan.png"
-    ],
-    "copyWords": 311,
-    "hasVideo": true,
-    "youtubeId": "ftktjPUI06w",
-    "externalPage": null
-  },
-  {
-    "tech": "mh_hr_employee_compliance",
-    "slug": "hr-employee-compliance",
-    "name": "HR Employee Compliance",
-    "summary": "Track visa, licence and certification expiry dates with reminders before they lapse. Log grievances and disciplinary penalties against the employee record.",
-    "tagline": "",
-    "intro": [
-      "HR Employee Compliance bundles three HR record-keeping utilities: expiry tracking for any employee document (licenses, certifications, background checks - not just the Passport/Work Permit fields Odoo already tracks), a complaint/grievance log through to resolution, and a disciplinary penalty record."
-    ],
-    "features": [
-      {
-        "heading": "Document Expiry Tracker",
-        "body": [
-          "Add any document type with an expiry date and a notice period. Odoo already tracks Passport and Work Permit expiry natively with its own reminder - this covers every other document those two fields don't."
-        ]
-      },
-      {
-        "heading": "Automatic reminders, not a spreadsheet",
-        "body": [
-          "A document approaching its notice period gets a real Odoo activity scheduled automatically - the same reminder mechanism Odoo's own contract/work-permit expiry uses, reused here for every other document type."
-        ]
-      },
-      {
-        "heading": "Employee Complaints",
-        "body": [
-          "Log a complaint or grievance and move it through draft, investigating, resolved, and closed - something Community's HR has no equivalent for at all."
-        ]
-      },
-      {
-        "heading": "Disciplinary Penalties",
-        "body": [
-          "Record a verbal warning, written warning, suspension, or termination notice against an employee's file, with a reason and who issued it."
-        ]
-      },
-      {
-        "heading": "Who this is for",
-        "body": [
-          "HR teams tracking licenses and certifications beyond passports and work permits, and anyone who needs a real, dated record of complaints and disciplinary actions instead of scattered emails or a spreadsheet."
-        ]
-      }
-    ],
-    "scope": [],
-    "requires": [],
-    "price": 29.0,
-    "manifestPrice": 29.0,
-    "currency": "USD",
-    "category": "Human Resources",
-    "version": "19.0.1.0.8",
-    "license": "OPL-1",
-    "depends": [
-      "hr"
-    ],
-    "paidDepends": [],
-    "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_hr_employee_compliance",
-    "screenshots": [
-      "screenshot_documents.png"
-    ],
-    "copyWords": 196,
-    "hasVideo": true,
-    "youtubeId": "ffxuNTsuKeU",
     "externalPage": null
   },
   {
@@ -3398,7 +3202,7 @@ export const odooApps = [
     ],
     "paidDepends": [],
     "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_lost_message_recovery",
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_lost_message_recovery",
     "screenshots": [
       "screenshot_message.png"
     ],
@@ -3406,76 +3210,6 @@ export const odooApps = [
     "hasVideo": true,
     "youtubeId": "PQMjAuo0kFE",
     "externalPage": null
-  },
-  {
-    "tech": "mh_currency_rounding_tool",
-    "slug": "multi-currency-rounding",
-    "name": "Multi-Currency Rounding",
-    "summary": "Absorb sub cent differences when a foreign currency invoice is paid, and separate realized from unrealized exchange gain and loss during bank reconciliation.",
-    "tagline": "",
-    "intro": [
-      "Odoo posts every reconciliation residual - a genuine exchange-rate movement or a fraction-of-a-cent rounding artifact - through the same Gain/Loss accounts, with no way to tell them apart afterward. This app adds a configurable threshold so the tiny ones land somewhere else, and keeps your real exchange accounts clean."
-    ],
-    "features": [
-      {
-        "heading": "One threshold, company currency",
-        "body": [
-          "Set a rounding threshold and a dedicated Rounding Difference account. Any reconciliation residual at or below the threshold is redirected there instead of your native exchange gain/loss accounts - anything larger still goes through Odoo's normal handling, untouched."
-        ]
-      },
-      {
-        "heading": "Configured right next to Odoo's own settings",
-        "body": [
-          "No new menu to learn - the threshold and account fields sit directly below Odoo's own exchange-difference settings in Accounting, so anyone configuring one naturally sees the other."
-        ]
-      },
-      {
-        "heading": "One-click visibility",
-        "body": [
-          "A \"View entries\" button opens a filtered list/pivot of everything ever posted to the Rounding Difference account - see exactly what accumulated there, whenever you want."
-        ]
-      },
-      {
-        "heading": "Minimal, surgical change",
-        "body": [
-          "A single, targeted override of the one method Odoo already uses to decide which account absorbs a reconciliation residual - no other part of your reconciliation flow is touched."
-        ]
-      },
-      {
-        "heading": "Tested against a real multi-currency flow",
-        "body": [
-          "Verified with an actual foreign-currency invoice, a real payment, and a real reconciliation - not just checked in isolation - confirming small rate movements route to the rounding account and larger ones still use Odoo's native exchange accounts, exactly as configured."
-        ]
-      },
-      {
-        "heading": "Who this is for",
-        "body": [
-          "Built for Odoo 19 Community Accounting teams invoicing or paying in a foreign currency: bookkeepers who are tired of explaining a Gain/Loss balance that's really just rate-rounding noise, and anyone closing the books who wants that account to reflect real currency exposure - not sub-threshold reconciliation residue mixed in with it."
-        ]
-      }
-    ],
-    "scope": [],
-    "requires": [],
-    "price": 29.0,
-    "manifestPrice": 29.0,
-    "currency": "USD",
-    "category": "Accounting/Accounting",
-    "version": "19.0.1.0.6",
-    "license": "OPL-1",
-    "depends": [
-      "account"
-    ],
-    "paidDepends": [],
-    "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_currency_rounding_tool",
-    "screenshots": [
-      "settings_screenshot.png",
-      "view_entries_screenshot.png"
-    ],
-    "copyWords": 288,
-    "hasVideo": true,
-    "youtubeId": "GCuPAEGlPf0",
-    "externalPage": "/apps/multi-currency-rounding"
   },
   {
     "tech": "mh_count_accuracy",
@@ -3528,14 +3262,14 @@ export const odooApps = [
     "manifestPrice": 29.0,
     "currency": "USD",
     "category": "Warehouse",
-    "version": "19.0.1.0.12",
+    "version": "19.0.1.0.13",
     "license": "OPL-1",
     "depends": [
       "stock"
     ],
     "paidDepends": [],
     "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_count_accuracy",
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_count_accuracy",
     "screenshots": [
       "screenshot_accuracy.png"
     ],
@@ -3591,14 +3325,14 @@ export const odooApps = [
     "manifestPrice": 29.0,
     "currency": "USD",
     "category": "Warehouse",
-    "version": "19.0.1.0.12",
+    "version": "19.0.1.0.13",
     "license": "OPL-1",
     "depends": [
       "stock"
     ],
     "paidDepends": [],
     "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_warehouse_access",
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_warehouse_access",
     "screenshots": [
       "screenshot_access.png",
       "screenshot_count.png"
@@ -3607,6 +3341,272 @@ export const odooApps = [
     "hasVideo": true,
     "youtubeId": "j1kBnmIzSno",
     "externalPage": null
+  },
+  {
+    "tech": "mh_company_audit",
+    "slug": "company-audit",
+    "name": "Company Audit",
+    "summary": "Find the records whose company conflicts with the records they point at, before Odoo refuses the transaction",
+    "tagline": "Find the records whose company conflicts with the records they point at, before Odoo refuses the transaction",
+    "intro": [
+      "A multi-company database drifts. Records get imported, migrated, or written before a module declared its company checks, and they sit there contradicting themselves until somebody opens one and the save fails.",
+      "This checks the whole database and tells you what is inconsistent.",
+      "One cross-company link, and two users who can switch between companies."
+    ],
+    "features": [
+      {
+        "heading": "Records pointing at another company",
+        "body": [
+          "A record in one company linked to a record owned by another. Odoo will refuse the next write on each of them, which is how most people find out - at the worst possible moment. The report names the record, the field, and the company on both sides."
+        ]
+      },
+      {
+        "heading": "Records with no company at all",
+        "body": [
+          "On a model where every other record has one, a blank company means every company in the database can see it. Technical models are left out, because they legitimately have none and reporting them would bury what matters."
+        ]
+      },
+      {
+        "heading": "Users who can switch companies",
+        "body": [
+          "Often entirely correct - a finance lead may need all of them. It is also the setting that turns one careless record into a cross-company leak, and it is the one nobody reviews."
+        ]
+      },
+      {
+        "heading": "Why this data exists at all",
+        "body": [
+          "Odoo enforces company consistency at write time, on the fields that declare the check. That says nothing about records imported, migrated, or written before the flag existed. Those are already in your database, and you cannot create one through the interface to go looking for it."
+        ]
+      },
+      {
+        "heading": "It reports, it never repairs",
+        "body": [
+          "No reassignment, no cleanup, no scheduled monitoring. Moving a record between companies is a decision about your business, not something a report should make on your behalf."
+        ]
+      }
+    ],
+    "scope": [],
+    "requires": [
+      "Odoo 19 Community or Enterprise. Depends only on base, nothing leaves your server, and it is restricted to Settings administrators."
+    ],
+    "price": 28.28,
+    "manifestPrice": 29.0,
+    "currency": "USD",
+    "category": "Accounting/Accounting",
+    "version": "19.0.1.0.11",
+    "license": "OPL-1",
+    "depends": [
+      "base"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_company_audit",
+    "screenshots": [
+      "screenshot_audit.png"
+    ],
+    "copyWords": 289,
+    "hasVideo": true,
+    "youtubeId": "4B3sdWoHqoM",
+    "externalPage": null
+  },
+  {
+    "tech": "mh_group_membership_bulk",
+    "slug": "group-membership-bulk",
+    "name": "Group Membership Bulk",
+    "summary": "Add or remove many users from many groups at once, with the exact list of who gains and loses which access rights shown before anything is saved",
+    "tagline": "Add or remove many users from many groups at once, with the exact list of who gains and loses which access rights shown before anything is saved",
+    "intro": [
+      "Odoo changes group membership one user form at a time. Standing a project team down at the end of an engagement therefore means fifteen forms - and the only record of what was done is whatever the person remembers a month later.",
+      "Every membership that would change, the group left with nobody in it, and the implied group that will not come off by itself."
+    ],
+    "features": [
+      {
+        "heading": "It names the implied groups",
+        "body": [
+          "Groups imply other groups, and that is where people quietly gain access somewhere nobody was looking. Adding says which come along. Removing says the opposite, and it matters more: Odoo does not take an implied group away when the implying one goes, so anybody who had it keeps it."
+        ]
+      },
+      {
+        "heading": "Only what you asked for",
+        "body": [
+          "Memberships this change says nothing about are left alone. A bulk tool that rewrites the whole group list would drop access nobody mentioned, and the person who lost it would have no way to find out why."
+        ]
+      },
+      {
+        "heading": "Emptying a group is said out loud",
+        "body": [
+          "Removing the last member leaves a group configured and unused - easy to miss now, hard to explain later. The plan names those groups and applying is refused until you say it was deliberate. A group that was already empty is not blamed on this change."
+        ]
+      },
+      {
+        "heading": "A stale plan cannot be applied",
+        "body": [
+          "Change the users, the groups or the direction after working it out, and Apply is blocked until it is worked out again. A list describing a different change is worse than no list."
+        ]
+      },
+      {
+        "heading": "It leaves the record the forms never did",
+        "body": [
+          "Each change keeps who asked, when, and exactly which memberships moved - the thing nobody has after doing it fifteen times by hand."
+        ]
+      }
+    ],
+    "scope": [],
+    "requires": [
+      "Odoo 19 Community or Enterprise, no other module needed. It changes who is in a group, not what the group can do - that is access rights , record rules and field access ."
+    ],
+    "price": 28.28,
+    "manifestPrice": 29.0,
+    "currency": "USD",
+    "category": "Tools",
+    "version": "19.0.1.0.14",
+    "license": "OPL-1",
+    "depends": [
+      "base"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_group_membership_bulk",
+    "screenshots": [
+      "screenshot_plan.png"
+    ],
+    "copyWords": 311,
+    "hasVideo": true,
+    "youtubeId": "ftktjPUI06w",
+    "externalPage": null
+  },
+  {
+    "tech": "mh_hr_employee_compliance",
+    "slug": "hr-employee-compliance",
+    "name": "HR Employee Compliance",
+    "summary": "Track visa, licence and certification expiry dates with reminders before they lapse. Log grievances and disciplinary penalties against the employee record.",
+    "tagline": "",
+    "intro": [
+      "HR Employee Compliance bundles three HR record-keeping utilities: expiry tracking for any employee document (licenses, certifications, background checks - not just the Passport/Work Permit fields Odoo already tracks), a complaint/grievance log through to resolution, and a disciplinary penalty record."
+    ],
+    "features": [
+      {
+        "heading": "Document Expiry Tracker",
+        "body": [
+          "Add any document type with an expiry date and a notice period. Odoo already tracks Passport and Work Permit expiry natively with its own reminder - this covers every other document those two fields don't."
+        ]
+      },
+      {
+        "heading": "Automatic reminders, not a spreadsheet",
+        "body": [
+          "A document approaching its notice period gets a real Odoo activity scheduled automatically - the same reminder mechanism Odoo's own contract/work-permit expiry uses, reused here for every other document type."
+        ]
+      },
+      {
+        "heading": "Employee Complaints",
+        "body": [
+          "Log a complaint or grievance and move it through draft, investigating, resolved, and closed - something Community's HR has no equivalent for at all."
+        ]
+      },
+      {
+        "heading": "Disciplinary Penalties",
+        "body": [
+          "Record a verbal warning, written warning, suspension, or termination notice against an employee's file, with a reason and who issued it."
+        ]
+      },
+      {
+        "heading": "Who this is for",
+        "body": [
+          "HR teams tracking licenses and certifications beyond passports and work permits, and anyone who needs a real, dated record of complaints and disciplinary actions instead of scattered emails or a spreadsheet."
+        ]
+      }
+    ],
+    "scope": [],
+    "requires": [],
+    "price": 28.28,
+    "manifestPrice": 29.0,
+    "currency": "USD",
+    "category": "Human Resources",
+    "version": "19.0.1.0.8",
+    "license": "OPL-1",
+    "depends": [
+      "hr"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_hr_employee_compliance",
+    "screenshots": [
+      "screenshot_documents.png"
+    ],
+    "copyWords": 196,
+    "hasVideo": true,
+    "youtubeId": "ffxuNTsuKeU",
+    "externalPage": null
+  },
+  {
+    "tech": "mh_currency_rounding_tool",
+    "slug": "multi-currency-rounding",
+    "name": "Multi-Currency Rounding",
+    "summary": "Absorb sub cent differences when a foreign currency invoice is paid, and separate realized from unrealized exchange gain and loss during bank reconciliation.",
+    "tagline": "",
+    "intro": [
+      "Odoo posts every reconciliation residual - a genuine exchange-rate movement or a fraction-of-a-cent rounding artifact - through the same Gain/Loss accounts, with no way to tell them apart afterward. This app adds a configurable threshold so the tiny ones land somewhere else, and keeps your real exchange accounts clean."
+    ],
+    "features": [
+      {
+        "heading": "One threshold, company currency",
+        "body": [
+          "Set a rounding threshold and a dedicated Rounding Difference account. Any reconciliation residual at or below the threshold is redirected there instead of your native exchange gain/loss accounts - anything larger still goes through Odoo's normal handling, untouched."
+        ]
+      },
+      {
+        "heading": "Configured right next to Odoo's own settings",
+        "body": [
+          "No new menu to learn - the threshold and account fields sit directly below Odoo's own exchange-difference settings in Accounting, so anyone configuring one naturally sees the other."
+        ]
+      },
+      {
+        "heading": "One-click visibility",
+        "body": [
+          "A \"View entries\" button opens a filtered list/pivot of everything ever posted to the Rounding Difference account - see exactly what accumulated there, whenever you want."
+        ]
+      },
+      {
+        "heading": "Minimal, surgical change",
+        "body": [
+          "A single, targeted override of the one method Odoo already uses to decide which account absorbs a reconciliation residual - no other part of your reconciliation flow is touched."
+        ]
+      },
+      {
+        "heading": "Tested against a real multi-currency flow",
+        "body": [
+          "Verified with an actual foreign-currency invoice, a real payment, and a real reconciliation - not just checked in isolation - confirming small rate movements route to the rounding account and larger ones still use Odoo's native exchange accounts, exactly as configured."
+        ]
+      },
+      {
+        "heading": "Who this is for",
+        "body": [
+          "Built for Odoo 19 Community Accounting teams invoicing or paying in a foreign currency: bookkeepers who are tired of explaining a Gain/Loss balance that's really just rate-rounding noise, and anyone closing the books who wants that account to reflect real currency exposure - not sub-threshold reconciliation residue mixed in with it."
+        ]
+      }
+    ],
+    "scope": [],
+    "requires": [],
+    "price": 28.28,
+    "manifestPrice": 29.0,
+    "currency": "USD",
+    "category": "Accounting/Accounting",
+    "version": "19.0.1.0.6",
+    "license": "OPL-1",
+    "depends": [
+      "account"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_currency_rounding_tool",
+    "screenshots": [
+      "settings_screenshot.png",
+      "view_entries_screenshot.png"
+    ],
+    "copyWords": 288,
+    "hasVideo": true,
+    "youtubeId": "GCuPAEGlPf0",
+    "externalPage": "/apps/multi-currency-rounding"
   },
   {
     "tech": "mh_1099_threshold_check",
@@ -3651,8 +3651,8 @@ export const odooApps = [
       "account"
     ],
     "paidDepends": [],
-    "downloads": 3,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_1099_threshold_check",
+    "downloads": 5,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_1099_threshold_check",
     "screenshots": [
       "screenshot_check.png"
     ],
@@ -3701,8 +3701,8 @@ export const odooApps = [
       "base"
     ],
     "paidDepends": [],
-    "downloads": 6,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_access_config_check",
+    "downloads": 9,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_access_config_check",
     "screenshots": [
       "screenshot_check.png"
     ],
@@ -3754,8 +3754,8 @@ export const odooApps = [
       "base"
     ],
     "paidDepends": [],
-    "downloads": 6,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_access_snapshot",
+    "downloads": 9,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_access_snapshot",
     "screenshots": [
       "screenshot_snapshot.png"
     ],
@@ -3809,8 +3809,8 @@ export const odooApps = [
       "purchase"
     ],
     "paidDepends": [],
-    "downloads": 3,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_purchase_approval_exposure",
+    "downloads": 5,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_purchase_approval_exposure",
     "screenshots": [
       "screenshot_exposure.png"
     ],
@@ -3856,8 +3856,8 @@ export const odooApps = [
       "web"
     ],
     "paidDepends": [],
-    "downloads": 2,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_archived_match_hint",
+    "downloads": 4,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_archived_match_hint",
     "screenshots": [
       "screenshot_hint.png"
     ],
@@ -3914,8 +3914,8 @@ export const odooApps = [
       "mail"
     ],
     "paidDepends": [],
-    "downloads": 6,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_audit_trail_check",
+    "downloads": 13,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_audit_trail_check",
     "screenshots": [
       "screenshot_check.png"
     ],
@@ -3962,8 +3962,8 @@ export const odooApps = [
       "crm"
     ],
     "paidDepends": [],
-    "downloads": 2,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_awaiting_reply_badge",
+    "downloads": 4,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_awaiting_reply_badge",
     "screenshots": [
       "screenshot_badge.png"
     ],
@@ -4017,8 +4017,8 @@ export const odooApps = [
       "base"
     ],
     "paidDepends": [],
-    "downloads": 2,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_breach_deadline_clock",
+    "downloads": 4,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_breach_deadline_clock",
     "screenshots": [
       "screenshot_deadlines.png"
     ],
@@ -4062,8 +4062,8 @@ export const odooApps = [
       "mail"
     ],
     "paidDepends": [],
-    "downloads": 6,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_chatter_search",
+    "downloads": 16,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_chatter_search",
     "screenshots": [
       "screenshot_search.png"
     ],
@@ -4119,8 +4119,8 @@ export const odooApps = [
       "base"
     ],
     "paidDepends": [],
-    "downloads": 3,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_company_mismatch_check",
+    "downloads": 5,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_company_mismatch_check",
     "screenshots": [
       "screenshot_check.png"
     ],
@@ -4154,8 +4154,8 @@ export const odooApps = [
       "website"
     ],
     "paidDepends": [],
-    "downloads": 12,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_cookie_consent_banner",
+    "downloads": 18,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_cookie_consent_banner",
     "screenshots": [
       "screenshot_banner.png",
       "screenshot_log.png"
@@ -4215,14 +4215,14 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Warehouse",
-    "version": "19.0.1.0.6",
+    "version": "19.0.1.0.7",
     "license": "OPL-1",
     "depends": [
       "stock_account"
     ],
     "paidDepends": [],
-    "downloads": 10,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_cost_price_history",
+    "downloads": 20,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_cost_price_history",
     "screenshots": [
       "screenshot_history.png"
     ],
@@ -4271,8 +4271,8 @@ export const odooApps = [
       "base"
     ],
     "paidDepends": [],
-    "downloads": 3,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_cpk_calculator",
+    "downloads": 7,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_cpk_calculator",
     "screenshots": [
       "screenshot_capability.png"
     ],
@@ -4326,8 +4326,8 @@ export const odooApps = [
       "account"
     ],
     "paidDepends": [],
-    "downloads": 3,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_currency_rounding_report",
+    "downloads": 5,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_currency_rounding_report",
     "screenshots": [
       "screenshot_report.png"
     ],
@@ -4381,8 +4381,8 @@ export const odooApps = [
       "account"
     ],
     "paidDepends": [],
-    "downloads": 4,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_dac7_threshold_check",
+    "downloads": 6,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_dac7_threshold_check",
     "screenshots": [
       "screenshot_check.png"
     ],
@@ -4470,8 +4470,8 @@ export const odooApps = [
       "mh_cron_health_badge"
     ],
     "paidDepends": [],
-    "downloads": 5,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_housekeeping",
+    "downloads": 7,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_housekeeping",
     "screenshots": [
       "screenshot_menu.png",
       "screenshot_portal.png"
@@ -4507,14 +4507,14 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Warehouse",
-    "version": "19.0.1.0.16",
+    "version": "19.0.1.0.18",
     "license": "OPL-1",
     "depends": [
       "stock"
     ],
     "paidDepends": [],
-    "downloads": 7,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_dead_stock_check",
+    "downloads": 15,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_dead_stock_check",
     "screenshots": [
       "screenshot_check.png"
     ],
@@ -4584,8 +4584,8 @@ export const odooApps = [
       "mail"
     ],
     "paidDepends": [],
-    "downloads": 10,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_direct_download_base",
+    "downloads": 16,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_direct_download_base",
     "screenshots": [
       "main_screenshot.png",
       "screenshot_link.png"
@@ -4618,8 +4618,8 @@ export const odooApps = [
       "web"
     ],
     "paidDepends": [],
-    "downloads": 5,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_advanced_web_domain_widget",
+    "downloads": 9,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_advanced_web_domain_widget",
     "screenshots": [
       "screenshot_snippets.png"
     ],
@@ -4674,8 +4674,8 @@ export const odooApps = [
       "base"
     ],
     "paidDepends": [],
-    "downloads": 5,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_dormant_user_check",
+    "downloads": 10,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_dormant_user_check",
     "screenshots": [
       "screenshot_check.png"
     ],
@@ -4721,8 +4721,8 @@ export const odooApps = [
       "mail"
     ],
     "paidDepends": [],
-    "downloads": 4,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_duplicate_attachment_guard",
+    "downloads": 10,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_duplicate_attachment_guard",
     "screenshots": [
       "screenshot_guard.png"
     ],
@@ -4777,8 +4777,8 @@ export const odooApps = [
       "base"
     ],
     "paidDepends": [],
-    "downloads": 6,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_duplicate_group_check",
+    "downloads": 10,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_duplicate_group_check",
     "screenshots": [
       "screenshot_check.png"
     ],
@@ -4833,8 +4833,8 @@ export const odooApps = [
       "stock"
     ],
     "paidDepends": [],
-    "downloads": 3,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_eudr_scope_check",
+    "downloads": 5,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_eudr_scope_check",
     "screenshots": [
       "screenshot_check.png"
     ],
@@ -4888,8 +4888,8 @@ export const odooApps = [
       "account"
     ],
     "paidDepends": [],
-    "downloads": 3,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_cash_exact_match",
+    "downloads": 6,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_cash_exact_match",
     "screenshots": [
       "screenshot_matches.png"
     ],
@@ -4933,8 +4933,8 @@ export const odooApps = [
       "base"
     ],
     "paidDepends": [],
-    "downloads": 7,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_field_help_editor",
+    "downloads": 11,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_field_help_editor",
     "screenshots": [
       "screenshot_dialog.png"
     ],
@@ -4978,8 +4978,8 @@ export const odooApps = [
       "base"
     ],
     "paidDepends": [],
-    "downloads": 8,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_field_lock",
+    "downloads": 14,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_field_lock",
     "screenshots": [
       "screenshot_rule.png"
     ],
@@ -5033,8 +5033,8 @@ export const odooApps = [
       "base"
     ],
     "paidDepends": [],
-    "downloads": 5,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_gdpr_72h_clock",
+    "downloads": 10,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_gdpr_72h_clock",
     "screenshots": [
       "screenshot_clock.png"
     ],
@@ -5084,8 +5084,8 @@ export const odooApps = [
       "base"
     ],
     "paidDepends": [],
-    "downloads": 4,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_google_ads_spend",
+    "downloads": 10,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_google_ads_spend",
     "screenshots": [
       "screenshot_spend.png"
     ],
@@ -5117,8 +5117,8 @@ export const odooApps = [
       "website"
     ],
     "paidDepends": [],
-    "downloads": 12,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_google_reviews_snippet",
+    "downloads": 26,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_google_reviews_snippet",
     "screenshots": [
       "screenshot_settings.png"
     ],
@@ -5172,8 +5172,8 @@ export const odooApps = [
       "hr"
     ],
     "paidDepends": [],
-    "downloads": 3,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_hr_expiry_exposure",
+    "downloads": 5,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_hr_expiry_exposure",
     "screenshots": [
       "screenshot_exposure.png"
     ],
@@ -5227,8 +5227,8 @@ export const odooApps = [
       "account"
     ],
     "paidDepends": [],
-    "downloads": 3,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_journal_access_report",
+    "downloads": 6,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_journal_access_report",
     "screenshots": [
       "screenshot_access.png"
     ],
@@ -5272,8 +5272,8 @@ export const odooApps = [
       "project"
     ],
     "paidDepends": [],
-    "downloads": 4,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_kanban_wip_limits",
+    "downloads": 7,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_kanban_wip_limits",
     "screenshots": [
       "screenshot_wip.png"
     ],
@@ -5338,8 +5338,8 @@ export const odooApps = [
       "mail"
     ],
     "paidDepends": [],
-    "downloads": 6,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_lost_messages_routing",
+    "downloads": 8,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_lost_messages_routing",
     "screenshots": [
       "screenshot_lost_messages.png"
     ],
@@ -5389,8 +5389,8 @@ export const odooApps = [
       "base"
     ],
     "paidDepends": [],
-    "downloads": 4,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_meta_ads_spend",
+    "downloads": 8,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_meta_ads_spend",
     "screenshots": [
       "screenshot_spend.png"
     ],
@@ -5440,8 +5440,8 @@ export const odooApps = [
       "base"
     ],
     "paidDepends": [],
-    "downloads": 2,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_microsoft_ads_viewer",
+    "downloads": 5,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_microsoft_ads_viewer",
     "screenshots": [
       "screenshot_campaigns.png"
     ],
@@ -5489,8 +5489,8 @@ export const odooApps = [
       "base"
     ],
     "paidDepends": [],
-    "downloads": 4,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_orphan_attachment_scan",
+    "downloads": 12,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_orphan_attachment_scan",
     "screenshots": [
       "screenshot_scan.png",
       "screenshot_confirm.png"
@@ -5543,8 +5543,8 @@ export const odooApps = [
       "analytic"
     ],
     "paidDepends": [],
-    "downloads": 9,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_pos_analytic_account",
+    "downloads": 17,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_pos_analytic_account",
     "screenshots": [
       "screenshot_settings.png"
     ],
@@ -5598,8 +5598,8 @@ export const odooApps = [
       "website"
     ],
     "paidDepends": [],
-    "downloads": 3,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_a11y_page_check",
+    "downloads": 7,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_a11y_page_check",
     "screenshots": [
       "screenshot_check.png"
     ],
@@ -5653,8 +5653,8 @@ export const odooApps = [
       "hr"
     ],
     "paidDepends": [],
-    "downloads": 2,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_pay_transparency_readiness",
+    "downloads": 4,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_pay_transparency_readiness",
     "screenshots": [
       "screenshot_readiness.png"
     ],
@@ -5687,8 +5687,8 @@ export const odooApps = [
       "web"
     ],
     "paidDepends": [],
-    "downloads": 9,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_popup_message",
+    "downloads": 17,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_popup_message",
     "screenshots": [
       "screenshot_message.png"
     ],
@@ -5747,8 +5747,8 @@ export const odooApps = [
       "base_setup"
     ],
     "paidDepends": [],
-    "downloads": 1,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_portal_stale_grant",
+    "downloads": 3,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_portal_stale_grant",
     "screenshots": [
       "screenshot_sweep.png",
       "screenshot_badge.png"
@@ -5781,8 +5781,8 @@ export const odooApps = [
       "product"
     ],
     "paidDepends": [],
-    "downloads": 3,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_product_multi_barcode",
+    "downloads": 8,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_product_multi_barcode",
     "screenshots": [
       "screenshot_barcodes.png"
     ],
@@ -5817,15 +5817,15 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Project",
-    "version": "19.0.1.0.13",
+    "version": "19.0.1.0.14",
     "license": "OPL-1",
     "depends": [
       "project",
       "purchase"
     ],
     "paidDepends": [],
-    "downloads": 2,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_project_commitment_check",
+    "downloads": 4,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_project_commitment_check",
     "screenshots": [
       "screenshot_check.png"
     ],
@@ -5879,8 +5879,8 @@ export const odooApps = [
       "sale"
     ],
     "paidDepends": [],
-    "downloads": 3,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_quotation_aging",
+    "downloads": 6,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_quotation_aging",
     "screenshots": [
       "screenshot_aging.png"
     ],
@@ -5934,8 +5934,8 @@ export const odooApps = [
       "base"
     ],
     "paidDepends": [],
-    "downloads": 3,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_gdpr_retention_exposure",
+    "downloads": 6,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_gdpr_retention_exposure",
     "screenshots": [
       "screenshot_exposure.png"
     ],
@@ -5989,8 +5989,8 @@ export const odooApps = [
       "l10n_ro"
     ],
     "paidDepends": [],
-    "downloads": 2,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_ro_saft_readiness",
+    "downloads": 5,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_ro_saft_readiness",
     "screenshots": [
       "screenshot_check.png"
     ],
@@ -6038,8 +6038,8 @@ export const odooApps = [
       "base"
     ],
     "paidDepends": [],
-    "downloads": 3,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_cron_health_badge",
+    "downloads": 8,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_cron_health_badge",
     "screenshots": [
       "screenshot_list.png",
       "screenshot_form.png"
@@ -6090,8 +6090,8 @@ export const odooApps = [
       "base"
     ],
     "paidDepends": [],
-    "downloads": 2,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_snapchat_ads_viewer",
+    "downloads": 5,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_snapchat_ads_viewer",
     "screenshots": [
       "screenshot_campaigns.png"
     ],
@@ -6155,8 +6155,8 @@ export const odooApps = [
       "base"
     ],
     "paidDepends": [],
-    "downloads": 3,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_stale_user_assignment",
+    "downloads": 7,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_stale_user_assignment",
     "screenshots": [
       "screenshot_sweep.png",
       "screenshot_reassign.png"
@@ -6182,14 +6182,14 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Warehouse",
-    "version": "19.0.1.0.9",
+    "version": "19.0.1.0.10",
     "license": "OPL-1",
     "depends": [
       "stock_account"
     ],
     "paidDepends": [],
-    "downloads": 18,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_stock_card_ledger",
+    "downloads": 30,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_stock_card_ledger",
     "screenshots": [
       "screenshot_ledger.png"
     ],
@@ -6223,14 +6223,14 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Warehouse",
-    "version": "19.0.1.0.12",
+    "version": "19.0.1.0.13",
     "license": "OPL-1",
     "depends": [
       "stock"
     ],
     "paidDepends": [],
-    "downloads": 5,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_count_error_check",
+    "downloads": 10,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_count_error_check",
     "screenshots": [
       "screenshot_check.png"
     ],
@@ -6290,8 +6290,8 @@ export const odooApps = [
       "hr_timesheet"
     ],
     "paidDepends": [],
-    "downloads": 7,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_task_timer",
+    "downloads": 11,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_task_timer",
     "screenshots": [
       "screenshot_timer.png"
     ],
@@ -6345,8 +6345,8 @@ export const odooApps = [
       "base"
     ],
     "paidDepends": [],
-    "downloads": 2,
-    "storeUrl": "https://apps.odoo.com/apps/modules/19.0/mh_whistleblower_deadlines",
+    "downloads": 4,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_whistleblower_deadlines",
     "screenshots": [
       "screenshot_deadlines.png"
     ],
