@@ -5,7 +5,7 @@
 // generator; editing here forks the copy away from what the store actually
 // serves.
 //
-// Store snapshot: 2026-10-18T18:20:18+00:00
+// Store snapshot: 2026-10-18T20:00:18+00:00
 
 export const odooApps = [
   {
@@ -3107,7 +3107,7 @@ export const odooApps = [
     "manifestPrice": 39.0,
     "currency": "USD",
     "category": "Website/Website",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.0.1",
     "license": "OPL-1",
     "depends": [
       "mh_website_tracking_base"
@@ -3409,6 +3409,85 @@ export const odooApps = [
     "copyWords": 523,
     "hasVideo": true,
     "youtubeId": "fr1m0C2n6yE",
+    "externalPage": null
+  },
+  {
+    "tech": "mh_payment_fee_discount",
+    "slug": "payment-fees-and-discounts",
+    "name": "Payment Fees & Discounts",
+    "summary": "Payment fee or payment discount per payment method at website checkout: a fixed or percentage processing fee, surcharge or discount, shown before paying and added to the order as a line",
+    "tagline": "Add a fee or a discount per payment method at website checkout, shown before the customer pays.",
+    "intro": [
+      "Card processors take a percentage of every payment, a bank transfer costs you nothing, cash on delivery costs handling. Odoo's checkout charges every payment method the same order total, so you cannot pass a processing fee on to the customer who chooses the expensive method, or reward the cheap one with a discount.",
+      "Payment Fees and Discounts adds a fee or a discount to each payment method you choose. The customer sees it next to the method on the payment page, and when they pick the method it is added to the order as a line, so the amount they pay, the order and the invoice all match."
+    ],
+    "features": [
+      {
+        "heading": "Fee or discount, fixed or percent",
+        "body": [
+          "For a payment provider, and optionally only some of its payment methods, set a fee or a discount: a fixed amount, a percentage of the order total, or both. The percentage is taken on the order total with taxes and delivery, before the fee. A discount never takes the order below zero. Limit a line to a minimum or maximum order total, or to customers billed in some countries. Lines are set on the provider's new Fees and Discounts tab or under Website > Configuration > eCommerce > Payment Fees and Discounts; the first matching line wins."
+        ]
+      },
+      {
+        "heading": "Shown before paying",
+        "body": [
+          "On the shop's payment page each method shows what it adds, for example \"Fee +$ 9.83\" or \"Discount -$ 9.86\", computed from the current order. When the customer picks a method, the page reloads with that method selected and the fee or discount as its own row in the order summary, above the new total."
+        ]
+      },
+      {
+        "heading": "The amount paid is the order total",
+        "body": [
+          "The fee is a real order line, not an amount added on the side, so the payment, the order and the invoice carry the same total. After the reload the payment form submits the new total. The server applies the fee for the method actually used and refuses a payment whose amount is not the order total with the fee, so a stale page cannot pay the wrong amount; the customer is asked to refresh."
+        ]
+      },
+      {
+        "heading": "One line, never stacked",
+        "body": [
+          "Switching from one method to another replaces the fee line; it never adds a second one. Switching to a method without a fee removes it. Changing the cart removes it until a method is picked again, and the cart page, the express checkout buttons and a fresh visit to the payment page show the order without any fee."
+        ]
+      },
+      {
+        "heading": "Taxes and invoices",
+        "body": [
+          "The line uses a \"Payment Fee or Discount\" service product created on install, with no taxes. Give that product taxes, or pick another product per line, and the product's taxes apply to the line like on any other product: a tax not included in the price is added on top of the fee. The line is invoiced with the order."
+        ]
+      },
+      {
+        "heading": "Surcharges and the law",
+        "body": [
+          "Surcharges on consumer card payments are banned in the EU and the UK and restricted in other countries. A surcharge may be illegal where you sell: check your local rules. Where surcharges are not allowed, use the Discount type instead, to lower the price of the methods that cost you less. This app does not check any law and does not make your pricing compliant."
+        ]
+      },
+      {
+        "heading": "Who it is for",
+        "body": [
+          "Shops on Odoo eCommerce that want the customer who picks an expensive payment method to cover its cost, or want to steer customers to a cheaper method with a discount."
+        ]
+      }
+    ],
+    "scope": [],
+    "requires": [
+      "Odoo 19 or Odoo 20, Community or Enterprise. Also requires eCommerce (website_sale). Third-party apps install on Odoo.sh or On-Premise only - they cannot be installed on Odoo Online (SaaS)."
+    ],
+    "price": 39.0,
+    "manifestPrice": 39.0,
+    "currency": "USD",
+    "category": "Website/Website",
+    "version": "19.0.1.0.0",
+    "license": "OPL-1",
+    "depends": [
+      "website_sale"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_payment_fee_discount",
+    "screenshots": [
+      "screenshot_checkout.png",
+      "screenshot_rules.png"
+    ],
+    "copyWords": 596,
+    "hasVideo": true,
+    "youtubeId": "pm_EEQcNvso",
     "externalPage": null
   },
   {
@@ -4834,7 +4913,7 @@ export const odooApps = [
     "manifestPrice": 29.0,
     "currency": "USD",
     "category": "Website/Website",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.0.1",
     "license": "OPL-1",
     "depends": [
       "website_sale"
@@ -5904,7 +5983,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Website/Website",
-    "version": "19.0.1.0.11",
+    "version": "19.0.1.0.12",
     "license": "OPL-1",
     "depends": [
       "website"
