@@ -5,7 +5,7 @@
 // generator; editing here forks the copy away from what the store actually
 // serves.
 //
-// Store snapshot: 2026-10-15T04:15:07+00:00
+// Store snapshot: 2026-10-18T18:20:18+00:00
 
 export const odooApps = [
   {
@@ -123,7 +123,7 @@ export const odooApps = [
     ],
     "scope": [],
     "requires": [],
-    "price": 163.48,
+    "price": 167.99,
     "manifestPrice": 69.0,
     "currency": "USD",
     "category": "Marketing/Marketing",
@@ -405,6 +405,77 @@ export const odooApps = [
     "externalPage": null
   },
   {
+    "tech": "mh_google_ads_launcher",
+    "slug": "google-ads-odoo-connector",
+    "name": "Google Ads Odoo Connector",
+    "summary": "Create and manage search campaigns, ad groups, keywords and responsive search ads with your own developer token. PPC cost and conversions beside your CRM.",
+    "tagline": "",
+    "intro": [
+      "Google Ads Odoo Connector connects to your own Google Ads account with a developer token, OAuth client, and refresh token you generate yourself - nothing to submit to us, no app review dependency on our end. Once connected, you get real campaign management inside Odoo: browse and sync existing Search campaigns, ad groups, keywords, and responsive search ads, publish new ones, control daily budget and bidding strategy, manage keywords and match types, pause or delete anything, clone a winning campaign, and pull clicks/impressions/cost/conversions for any date range - all through the real Google Ads API."
+    ],
+    "features": [
+      {
+        "heading": "Bring your own credentials",
+        "body": [
+          "Uses a developer token, OAuth client, and refresh token from your own Google Ads Manager account and Google Cloud project - you're managing your own account with your own credentials. Basic Access is a self-service application you submit directly to Google (typically about 5 business days) - there's nothing to submit to us and nothing to wait on from our side."
+        ]
+      },
+      {
+        "heading": "Real campaign management, not just reports",
+        "body": [
+          "Most Google Ads connectors on the Marketplace only sync performance reports. This one builds, publishes, updates, clones, and deletes campaigns, ad groups, keywords, and ads directly - the same actions you'd otherwise do in Google Ads."
+        ]
+      },
+      {
+        "heading": "Budget, bidding, and keyword targeting",
+        "body": [
+          "Set a daily budget and choose a bidding strategy - Manual CPC, Maximize Clicks, or Target CPA - then manage keywords and match types (broad, phrase, exact) at the ad group level, all from standard Odoo form and list views."
+        ]
+      },
+      {
+        "heading": "Performance insights alongside your data",
+        "body": [
+          "Sync clicks, impressions, cost, conversions, CTR, CPC, and CPA for any campaign or ad group - pick a preset range or a custom date window - without opening Google Ads or exporting a report."
+        ]
+      },
+      {
+        "heading": "Every write action stays reviewable before it touches Google",
+        "body": [
+          "Publish, update, clone, and delete are explicit buttons you click after reviewing the record - nothing is pushed to Google automatically in the background. Every field maps directly to a real Google Ads API parameter, so what you set in Odoo is exactly what reaches your account."
+        ]
+      },
+      {
+        "heading": "Who this is for",
+        "body": [
+          "Built for Odoo teams running Google Ads Search campaigns who want campaign management alongside their CRM, sales, and reporting data instead of switching to Google Ads - marketers who manage their own Google Ads and Google Cloud access and don't want to wait on our review queue to get started."
+        ]
+      }
+    ],
+    "scope": [],
+    "requires": [],
+    "price": 99.0,
+    "manifestPrice": 99.0,
+    "currency": "USD",
+    "category": "Marketing/Marketing",
+    "version": "19.0.1.0.8",
+    "license": "OPL-1",
+    "depends": [
+      "base"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_google_ads_launcher",
+    "screenshots": [
+      "screenshot_campaign.png",
+      "screenshot_keywords.png",
+      "screenshot_ads.png"
+    ],
+    "copyWords": 396,
+    "hasVideo": true,
+    "youtubeId": "7-tujViJGtA",
+    "externalPage": null
+  },
+  {
     "tech": "mh_list_view_layouts",
     "slug": "list-view-layouts",
     "name": "List View Layouts",
@@ -466,6 +537,217 @@ export const odooApps = [
     "copyWords": 357,
     "hasVideo": true,
     "youtubeId": "_jn7KswDh-k",
+    "externalPage": null
+  },
+  {
+    "tech": "mh_meta_odoo_connector",
+    "slug": "meta-odoo-connector",
+    "name": "Meta Odoo Connector",
+    "summary": "Meta Ads in Odoo: manage Facebook and Instagram campaigns, ad sets, creatives and Lead Ads beside your CRM. Uses your own system user token, so no App Review is needed.",
+    "tagline": "",
+    "intro": [
+      "Meta Odoo Connector connects to your own Meta Business Manager with a System User access token you generate yourself - no Meta App Review, no OAuth app submission, no waiting on an approval queue. Once connected, you get the full campaign lifecycle inside Odoo: sync your existing campaigns, build ad sets, creatives and ads, publish them, control budget and bid strategy, target an audience, pause or delete anything, clone a winning setup, and pull spend/performance insights for any date range - all through the real Meta Marketing API."
+    ],
+    "features": [
+      {
+        "heading": "Bring your own token, skip App Review",
+        "body": [
+          "Most Meta integrations need Meta to review and approve an app before it can touch live ad accounts. This one uses a System User access token from your own Business Manager instead - you're managing your own accounts with your own credentials, so there's nothing to submit and nothing to wait on."
+        ]
+      },
+      {
+        "heading": "The full campaign lifecycle, not just tracking",
+        "body": [
+          "Most Meta apps on the Odoo Marketplace add pixel tracking or Conversions API events. This one builds, publishes, updates, clones, and deletes campaigns, ad sets, creatives, and ads directly - the same actions you'd otherwise do in Meta Ads Manager."
+        ]
+      },
+      {
+        "heading": "Budget, bidding, and audience targeting",
+        "body": [
+          "Set daily or lifetime budgets, choose a bid strategy and bid amount, and target an audience by country, age range, and gender - all from standard Odoo form and list views, with the same fields Meta's own API exposes."
+        ]
+      },
+      {
+        "heading": "Spend and performance insights alongside your data",
+        "body": [
+          "Sync spend, impressions, clicks, reach, CTR, CPC, and CPM for any campaign, ad set, or ad - pick a preset range or a custom date window - without opening Meta Ads Manager or exporting a report."
+        ]
+      },
+      {
+        "heading": "Every write action stays reviewable before it touches Meta",
+        "body": [
+          "Publish, update, clone, and delete are explicit buttons you click after reviewing the record - nothing is pushed to Meta automatically in the background. Every field maps directly to a real Meta Marketing API parameter, so what you set in Odoo is exactly what reaches your ad account."
+        ]
+      },
+      {
+        "heading": "Who this is for",
+        "body": [
+          "Built for Odoo teams running Facebook and Instagram ad campaigns who want campaign management alongside their CRM, sales, and reporting data instead of switching to Meta Ads Manager - marketers who manage their own Business Manager access and don't want to wait on a Meta App Review process to get started."
+        ]
+      }
+    ],
+    "scope": [],
+    "requires": [],
+    "price": 99.0,
+    "manifestPrice": 99.0,
+    "currency": "USD",
+    "category": "Marketing/Marketing",
+    "version": "19.0.1.0.10",
+    "license": "OPL-1",
+    "depends": [
+      "base",
+      "crm"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_meta_odoo_connector",
+    "screenshots": [
+      "screenshot_connection.png",
+      "screenshot_campaigns.png",
+      "screenshot_adset_targeting.png",
+      "screenshot_ad_creative.png"
+    ],
+    "copyWords": 393,
+    "hasVideo": true,
+    "youtubeId": "ZsTgOVQVe5I",
+    "externalPage": "/apps/meta-odoo-connector"
+  },
+  {
+    "tech": "mh_microsoft_ads_launcher",
+    "slug": "microsoft-ads-connector",
+    "name": "Microsoft Ads Connector",
+    "summary": "Bing Ads inside Odoo: create and manage search campaigns, ad groups, keywords with match types and responsive search ads, using your own developer token and Azure AD client.",
+    "tagline": "",
+    "intro": [
+      "Microsoft Ads Connector connects to your own Microsoft Advertising account with a developer token, Azure AD (Entra ID) OAuth client, and refresh token you generate yourself - nothing to submit to us, no app review dependency on our end. Once connected, you get real campaign management inside Odoo: browse and sync existing Search campaigns, ad groups, keywords, and ads, publish new ones, control daily budget and CPC bids, manage keywords and match types, pause, resume, clone, or delete anything - all through the real Microsoft Advertising API."
+    ],
+    "features": [
+      {
+        "heading": "Bring your own credentials",
+        "body": [
+          "Uses a developer token, Azure AD client ID/secret, and refresh token from your own Microsoft Advertising and Azure accounts - you're managing your own account with your own credentials. A single-account developer token is issued instantly from Microsoft's Developer Portal - there's nothing to submit to us and nothing to wait on from our side."
+        ]
+      },
+      {
+        "heading": "Real campaign management, not just reports",
+        "body": [
+          "Builds, publishes, updates, clones, and deletes campaigns, ad groups, keywords, and ads directly - the same actions you'd otherwise do in the Microsoft Advertising UI."
+        ]
+      },
+      {
+        "heading": "Budget and keyword targeting",
+        "body": [
+          "Set a daily budget per campaign, then manage keywords and match types (broad, phrase, exact) with per-ad-group CPC bids, all from standard Odoo form and list views."
+        ]
+      },
+      {
+        "heading": "Reach Bing's search audience from Odoo",
+        "body": [
+          "Microsoft Advertising reaches the Bing/Microsoft Search Network - a real, if secondary, search-ads channel most Google-first advertisers still don't manage - now on the same screens as the rest of your Odoo data."
+        ]
+      },
+      {
+        "heading": "Every write action stays reviewable before it touches Microsoft",
+        "body": [
+          "Publish, pause, resume, clone, and delete are explicit buttons you click after reviewing the record - nothing is pushed to Microsoft automatically in the background. Every field maps directly to a real Microsoft Advertising API parameter, so what you set in Odoo is exactly what reaches your account."
+        ]
+      },
+      {
+        "heading": "Who this is for",
+        "body": [
+          "Odoo teams running Microsoft Advertising (Bing Ads) search campaigns - often alongside Google Ads - who want campaign management next to their CRM, sales, and reporting data instead of switching to a separate platform, and who manage their own Microsoft Advertising and Azure access without waiting on our review queue."
+        ]
+      }
+    ],
+    "scope": [],
+    "requires": [],
+    "price": 99.0,
+    "manifestPrice": 99.0,
+    "currency": "USD",
+    "category": "Marketing/Marketing",
+    "version": "19.0.1.0.11",
+    "license": "OPL-1",
+    "depends": [
+      "base"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_microsoft_ads_launcher",
+    "screenshots": [
+      "screenshot_campaign.png"
+    ],
+    "copyWords": 358,
+    "hasVideo": true,
+    "youtubeId": "U4CcE_tnDQc",
+    "externalPage": null
+  },
+  {
+    "tech": "mh_snapchat_ads_launcher",
+    "slug": "snapchat-ads-connector",
+    "name": "Snapchat Ads Connector",
+    "summary": "Publish, pause and clone Snap ad squads and ads with your own OAuth credentials. Campaign objectives, daily budgets and delivery status without leaving your ERP.",
+    "tagline": "",
+    "intro": [
+      "Snapchat Ads Connector connects to your own Snapchat Ads account with an OAuth client ID/secret and refresh token you generate yourself - nothing to submit to us, no app review dependency on our end. Once connected, you get real campaign management inside Odoo: browse and sync existing campaigns, ad squads, and ads, publish new ones, control daily budget, audience targeting, and optimization goal, pause, resume, clone, or delete anything, and publish a real ad with its own media upload and creative - all through the real Snapchat Marketing API."
+    ],
+    "features": [
+      {
+        "heading": "Bring your own credentials",
+        "body": [
+          "Uses an OAuth client ID/secret and refresh token from your own Snapchat Business Manager account - the lightest credential model of any connector in this lineup, since Snapchat has no separate developer-token concept. You're managing your own account with your own credentials, self-service, with nothing to submit to us."
+        ]
+      },
+      {
+        "heading": "Real campaign management, not just reports",
+        "body": [
+          "Builds, publishes, updates, clones, and deletes campaigns, ad squads, and ads directly - including a real media upload and creative for the ad itself, not just a placeholder."
+        ]
+      },
+      {
+        "heading": "Budget and audience targeting at the ad squad level",
+        "body": [
+          "Set a daily budget, country targeting, and optimization goal (impressions, swipes, app installs) on each ad squad - matching how Snapchat's own real budget model works, rather than forcing it onto the campaign level."
+        ]
+      },
+      {
+        "heading": "Reach Snapchat's audience from Odoo",
+        "body": [
+          "A genuinely underserved gap on the Odoo App Store - manage a real Snapchat ad presence next to your other ad platforms, without a separate login or dashboard."
+        ]
+      },
+      {
+        "heading": "Every write action stays reviewable before it touches Snapchat",
+        "body": [
+          "Publish, pause, resume, clone, and delete are explicit buttons you click after reviewing the record - nothing is pushed to Snapchat automatically in the background. Every field maps directly to a real Snapchat Marketing API parameter, so what you set in Odoo is exactly what reaches your account."
+        ]
+      },
+      {
+        "heading": "Who this is for",
+        "body": [
+          "Odoo teams running or starting Snapchat Ads campaigns - especially those already managing Meta, Google, or Microsoft ads from Odoo and want the same for Snapchat - who manage their own Snapchat Business Manager access without waiting on our review queue."
+        ]
+      }
+    ],
+    "scope": [],
+    "requires": [],
+    "price": 99.0,
+    "manifestPrice": 99.0,
+    "currency": "USD",
+    "category": "Marketing/Marketing",
+    "version": "19.0.1.0.10",
+    "license": "OPL-1",
+    "depends": [
+      "base"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_snapchat_ads_launcher",
+    "screenshots": [
+      "screenshot_campaign.png"
+    ],
+    "copyWords": 354,
+    "hasVideo": true,
+    "youtubeId": "pI-rzAO3BEI",
     "externalPage": null
   },
   {
@@ -597,288 +879,6 @@ export const odooApps = [
     "copyWords": 367,
     "hasVideo": true,
     "youtubeId": "bjnw1R8BgUE",
-    "externalPage": null
-  },
-  {
-    "tech": "mh_snapchat_ads_launcher",
-    "slug": "snapchat-ads-connector",
-    "name": "Snapchat Ads Connector",
-    "summary": "Publish, pause and clone Snap ad squads and ads with your own OAuth credentials. Campaign objectives, daily budgets and delivery status without leaving your ERP.",
-    "tagline": "",
-    "intro": [
-      "Snapchat Ads Connector connects to your own Snapchat Ads account with an OAuth client ID/secret and refresh token you generate yourself - nothing to submit to us, no app review dependency on our end. Once connected, you get real campaign management inside Odoo: browse and sync existing campaigns, ad squads, and ads, publish new ones, control daily budget, audience targeting, and optimization goal, pause, resume, clone, or delete anything, and publish a real ad with its own media upload and creative - all through the real Snapchat Marketing API."
-    ],
-    "features": [
-      {
-        "heading": "Bring your own credentials",
-        "body": [
-          "Uses an OAuth client ID/secret and refresh token from your own Snapchat Business Manager account - the lightest credential model of any connector in this lineup, since Snapchat has no separate developer-token concept. You're managing your own account with your own credentials, self-service, with nothing to submit to us."
-        ]
-      },
-      {
-        "heading": "Real campaign management, not just reports",
-        "body": [
-          "Builds, publishes, updates, clones, and deletes campaigns, ad squads, and ads directly - including a real media upload and creative for the ad itself, not just a placeholder."
-        ]
-      },
-      {
-        "heading": "Budget and audience targeting at the ad squad level",
-        "body": [
-          "Set a daily budget, country targeting, and optimization goal (impressions, swipes, app installs) on each ad squad - matching how Snapchat's own real budget model works, rather than forcing it onto the campaign level."
-        ]
-      },
-      {
-        "heading": "Reach Snapchat's audience from Odoo",
-        "body": [
-          "A genuinely underserved gap on the Odoo App Store - manage a real Snapchat ad presence next to your other ad platforms, without a separate login or dashboard."
-        ]
-      },
-      {
-        "heading": "Every write action stays reviewable before it touches Snapchat",
-        "body": [
-          "Publish, pause, resume, clone, and delete are explicit buttons you click after reviewing the record - nothing is pushed to Snapchat automatically in the background. Every field maps directly to a real Snapchat Marketing API parameter, so what you set in Odoo is exactly what reaches your account."
-        ]
-      },
-      {
-        "heading": "Who this is for",
-        "body": [
-          "Odoo teams running or starting Snapchat Ads campaigns - especially those already managing Meta, Google, or Microsoft ads from Odoo and want the same for Snapchat - who manage their own Snapchat Business Manager access without waiting on our review queue."
-        ]
-      }
-    ],
-    "scope": [],
-    "requires": [],
-    "price": 97.29,
-    "manifestPrice": 99.0,
-    "currency": "USD",
-    "category": "Marketing/Marketing",
-    "version": "19.0.1.0.10",
-    "license": "OPL-1",
-    "depends": [
-      "base"
-    ],
-    "paidDepends": [],
-    "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_snapchat_ads_launcher",
-    "screenshots": [
-      "screenshot_campaign.png"
-    ],
-    "copyWords": 354,
-    "hasVideo": true,
-    "youtubeId": "pI-rzAO3BEI",
-    "externalPage": null
-  },
-  {
-    "tech": "mh_google_ads_launcher",
-    "slug": "google-ads-odoo-connector",
-    "name": "Google Ads Odoo Connector",
-    "summary": "Create and manage search campaigns, ad groups, keywords and responsive search ads with your own developer token. PPC cost and conversions beside your CRM.",
-    "tagline": "",
-    "intro": [
-      "Google Ads Odoo Connector connects to your own Google Ads account with a developer token, OAuth client, and refresh token you generate yourself - nothing to submit to us, no app review dependency on our end. Once connected, you get real campaign management inside Odoo: browse and sync existing Search campaigns, ad groups, keywords, and responsive search ads, publish new ones, control daily budget and bidding strategy, manage keywords and match types, pause or delete anything, clone a winning campaign, and pull clicks/impressions/cost/conversions for any date range - all through the real Google Ads API."
-    ],
-    "features": [
-      {
-        "heading": "Bring your own credentials",
-        "body": [
-          "Uses a developer token, OAuth client, and refresh token from your own Google Ads Manager account and Google Cloud project - you're managing your own account with your own credentials. Basic Access is a self-service application you submit directly to Google (typically about 5 business days) - there's nothing to submit to us and nothing to wait on from our side."
-        ]
-      },
-      {
-        "heading": "Real campaign management, not just reports",
-        "body": [
-          "Most Google Ads connectors on the Marketplace only sync performance reports. This one builds, publishes, updates, clones, and deletes campaigns, ad groups, keywords, and ads directly - the same actions you'd otherwise do in Google Ads."
-        ]
-      },
-      {
-        "heading": "Budget, bidding, and keyword targeting",
-        "body": [
-          "Set a daily budget and choose a bidding strategy - Manual CPC, Maximize Clicks, or Target CPA - then manage keywords and match types (broad, phrase, exact) at the ad group level, all from standard Odoo form and list views."
-        ]
-      },
-      {
-        "heading": "Performance insights alongside your data",
-        "body": [
-          "Sync clicks, impressions, cost, conversions, CTR, CPC, and CPA for any campaign or ad group - pick a preset range or a custom date window - without opening Google Ads or exporting a report."
-        ]
-      },
-      {
-        "heading": "Every write action stays reviewable before it touches Google",
-        "body": [
-          "Publish, update, clone, and delete are explicit buttons you click after reviewing the record - nothing is pushed to Google automatically in the background. Every field maps directly to a real Google Ads API parameter, so what you set in Odoo is exactly what reaches your account."
-        ]
-      },
-      {
-        "heading": "Who this is for",
-        "body": [
-          "Built for Odoo teams running Google Ads Search campaigns who want campaign management alongside their CRM, sales, and reporting data instead of switching to Google Ads - marketers who manage their own Google Ads and Google Cloud access and don't want to wait on our review queue to get started."
-        ]
-      }
-    ],
-    "scope": [],
-    "requires": [],
-    "price": 96.34,
-    "manifestPrice": 99.0,
-    "currency": "USD",
-    "category": "Marketing/Marketing",
-    "version": "19.0.1.0.8",
-    "license": "OPL-1",
-    "depends": [
-      "base"
-    ],
-    "paidDepends": [],
-    "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_google_ads_launcher",
-    "screenshots": [
-      "screenshot_campaign.png",
-      "screenshot_keywords.png",
-      "screenshot_ads.png"
-    ],
-    "copyWords": 396,
-    "hasVideo": true,
-    "youtubeId": "7-tujViJGtA",
-    "externalPage": null
-  },
-  {
-    "tech": "mh_meta_odoo_connector",
-    "slug": "meta-odoo-connector",
-    "name": "Meta Odoo Connector",
-    "summary": "Meta Ads in Odoo: manage Facebook and Instagram campaigns, ad sets, creatives and Lead Ads beside your CRM. Uses your own system user token, so no App Review is needed.",
-    "tagline": "",
-    "intro": [
-      "Meta Odoo Connector connects to your own Meta Business Manager with a System User access token you generate yourself - no Meta App Review, no OAuth app submission, no waiting on an approval queue. Once connected, you get the full campaign lifecycle inside Odoo: sync your existing campaigns, build ad sets, creatives and ads, publish them, control budget and bid strategy, target an audience, pause or delete anything, clone a winning setup, and pull spend/performance insights for any date range - all through the real Meta Marketing API."
-    ],
-    "features": [
-      {
-        "heading": "Bring your own token, skip App Review",
-        "body": [
-          "Most Meta integrations need Meta to review and approve an app before it can touch live ad accounts. This one uses a System User access token from your own Business Manager instead - you're managing your own accounts with your own credentials, so there's nothing to submit and nothing to wait on."
-        ]
-      },
-      {
-        "heading": "The full campaign lifecycle, not just tracking",
-        "body": [
-          "Most Meta apps on the Odoo Marketplace add pixel tracking or Conversions API events. This one builds, publishes, updates, clones, and deletes campaigns, ad sets, creatives, and ads directly - the same actions you'd otherwise do in Meta Ads Manager."
-        ]
-      },
-      {
-        "heading": "Budget, bidding, and audience targeting",
-        "body": [
-          "Set daily or lifetime budgets, choose a bid strategy and bid amount, and target an audience by country, age range, and gender - all from standard Odoo form and list views, with the same fields Meta's own API exposes."
-        ]
-      },
-      {
-        "heading": "Spend and performance insights alongside your data",
-        "body": [
-          "Sync spend, impressions, clicks, reach, CTR, CPC, and CPM for any campaign, ad set, or ad - pick a preset range or a custom date window - without opening Meta Ads Manager or exporting a report."
-        ]
-      },
-      {
-        "heading": "Every write action stays reviewable before it touches Meta",
-        "body": [
-          "Publish, update, clone, and delete are explicit buttons you click after reviewing the record - nothing is pushed to Meta automatically in the background. Every field maps directly to a real Meta Marketing API parameter, so what you set in Odoo is exactly what reaches your ad account."
-        ]
-      },
-      {
-        "heading": "Who this is for",
-        "body": [
-          "Built for Odoo teams running Facebook and Instagram ad campaigns who want campaign management alongside their CRM, sales, and reporting data instead of switching to Meta Ads Manager - marketers who manage their own Business Manager access and don't want to wait on a Meta App Review process to get started."
-        ]
-      }
-    ],
-    "scope": [],
-    "requires": [],
-    "price": 96.34,
-    "manifestPrice": 99.0,
-    "currency": "USD",
-    "category": "Marketing/Marketing",
-    "version": "19.0.1.0.10",
-    "license": "OPL-1",
-    "depends": [
-      "base",
-      "crm"
-    ],
-    "paidDepends": [],
-    "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_meta_odoo_connector",
-    "screenshots": [
-      "screenshot_connection.png",
-      "screenshot_campaigns.png",
-      "screenshot_adset_targeting.png",
-      "screenshot_ad_creative.png"
-    ],
-    "copyWords": 393,
-    "hasVideo": true,
-    "youtubeId": "ZsTgOVQVe5I",
-    "externalPage": "/apps/meta-odoo-connector"
-  },
-  {
-    "tech": "mh_microsoft_ads_launcher",
-    "slug": "microsoft-ads-connector",
-    "name": "Microsoft Ads Connector",
-    "summary": "Bing Ads inside Odoo: create and manage search campaigns, ad groups, keywords with match types and responsive search ads, using your own developer token and Azure AD client.",
-    "tagline": "",
-    "intro": [
-      "Microsoft Ads Connector connects to your own Microsoft Advertising account with a developer token, Azure AD (Entra ID) OAuth client, and refresh token you generate yourself - nothing to submit to us, no app review dependency on our end. Once connected, you get real campaign management inside Odoo: browse and sync existing Search campaigns, ad groups, keywords, and ads, publish new ones, control daily budget and CPC bids, manage keywords and match types, pause, resume, clone, or delete anything - all through the real Microsoft Advertising API."
-    ],
-    "features": [
-      {
-        "heading": "Bring your own credentials",
-        "body": [
-          "Uses a developer token, Azure AD client ID/secret, and refresh token from your own Microsoft Advertising and Azure accounts - you're managing your own account with your own credentials. A single-account developer token is issued instantly from Microsoft's Developer Portal - there's nothing to submit to us and nothing to wait on from our side."
-        ]
-      },
-      {
-        "heading": "Real campaign management, not just reports",
-        "body": [
-          "Builds, publishes, updates, clones, and deletes campaigns, ad groups, keywords, and ads directly - the same actions you'd otherwise do in the Microsoft Advertising UI."
-        ]
-      },
-      {
-        "heading": "Budget and keyword targeting",
-        "body": [
-          "Set a daily budget per campaign, then manage keywords and match types (broad, phrase, exact) with per-ad-group CPC bids, all from standard Odoo form and list views."
-        ]
-      },
-      {
-        "heading": "Reach Bing's search audience from Odoo",
-        "body": [
-          "Microsoft Advertising reaches the Bing/Microsoft Search Network - a real, if secondary, search-ads channel most Google-first advertisers still don't manage - now on the same screens as the rest of your Odoo data."
-        ]
-      },
-      {
-        "heading": "Every write action stays reviewable before it touches Microsoft",
-        "body": [
-          "Publish, pause, resume, clone, and delete are explicit buttons you click after reviewing the record - nothing is pushed to Microsoft automatically in the background. Every field maps directly to a real Microsoft Advertising API parameter, so what you set in Odoo is exactly what reaches your account."
-        ]
-      },
-      {
-        "heading": "Who this is for",
-        "body": [
-          "Odoo teams running Microsoft Advertising (Bing Ads) search campaigns - often alongside Google Ads - who want campaign management next to their CRM, sales, and reporting data instead of switching to a separate platform, and who manage their own Microsoft Advertising and Azure access without waiting on our review queue."
-        ]
-      }
-    ],
-    "scope": [],
-    "requires": [],
-    "price": 96.34,
-    "manifestPrice": 99.0,
-    "currency": "USD",
-    "category": "Marketing/Marketing",
-    "version": "19.0.1.0.11",
-    "license": "OPL-1",
-    "depends": [
-      "base"
-    ],
-    "paidDepends": [],
-    "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_microsoft_ads_launcher",
-    "screenshots": [
-      "screenshot_campaign.png"
-    ],
-    "copyWords": 358,
-    "hasVideo": true,
-    "youtubeId": "U4CcE_tnDQc",
     "externalPage": null
   },
   {
@@ -1919,7 +1919,7 @@ export const odooApps = [
     "manifestPrice": 49.0,
     "currency": "USD",
     "category": "Warehouse",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.0.1",
     "license": "OPL-1",
     "depends": [
       "stock_account"
@@ -2001,7 +2001,7 @@ export const odooApps = [
     "manifestPrice": 49.0,
     "currency": "USD",
     "category": "Extra Tools",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.0.1",
     "license": "OPL-1",
     "depends": [
       "mail"
@@ -2148,7 +2148,7 @@ export const odooApps = [
     "manifestPrice": 49.0,
     "currency": "USD",
     "category": "Sales/Point of Sale",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.0.1",
     "license": "OPL-1",
     "depends": [
       "point_of_sale",
@@ -2230,7 +2230,7 @@ export const odooApps = [
     "manifestPrice": 49.0,
     "currency": "USD",
     "category": "Sales/Point of Sale",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.0.1",
     "license": "OPL-1",
     "depends": [
       "point_of_sale"
@@ -2297,7 +2297,7 @@ export const odooApps = [
     "manifestPrice": 49.0,
     "currency": "USD",
     "category": "Sales/Point of Sale",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.0.1",
     "license": "OPL-1",
     "depends": [
       "point_of_sale",
@@ -2380,7 +2380,7 @@ export const odooApps = [
     "manifestPrice": 49.0,
     "currency": "USD",
     "category": "Website/Website",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.0.1",
     "license": "OPL-1",
     "depends": [
       "website_sale"
@@ -2438,7 +2438,7 @@ export const odooApps = [
     "manifestPrice": 49.0,
     "currency": "USD",
     "category": "Website/Website",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.0.1",
     "license": "OPL-1",
     "depends": [
       "website",
@@ -3032,7 +3032,7 @@ export const odooApps = [
     "manifestPrice": 39.0,
     "currency": "USD",
     "category": "Warehouse",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.0.1",
     "license": "OPL-1",
     "depends": [
       "stock"
@@ -3046,6 +3046,81 @@ export const odooApps = [
     "copyWords": 643,
     "hasVideo": true,
     "youtubeId": "zo4t_aW68ss",
+    "externalPage": null
+  },
+  {
+    "tech": "mh_google_ads_conversions",
+    "slug": "google-ads-conversions",
+    "name": "Google Ads Conversions",
+    "summary": "Google Ads conversion tracking for the Odoo shop: purchases with order value and lead form submissions, sent only after cookie consent",
+    "tagline": "",
+    "intro": [
+      "Google Ads conversion tracking for the Odoo shop: purchases with order value and lead form submissions, sent only after cookie consent",
+      "Smart Bidding can only optimise for sales if Google Ads is told which clicks became orders and what they were worth. Paste your Google Ads conversion ID and conversion labels into Website settings and your shop reports every completed order to Google Ads with its value, currency and order reference, and, if you set a lead label, every submitted website form as a lead conversion. No Google Analytics app is needed, and this app requests nothing from Google until the visitor accepts marketing cookies.",
+      "Sends conversions to Google Ads only after the visitor accepts marketing cookies."
+    ],
+    "features": [
+      {
+        "heading": "What is sent to Google",
+        "body": [
+          "The Google tag's page view for your conversion ID on each page, which Google Ads also uses for its remarketing audiences. On a completed order, a purchase conversion with the order value excluding tax and shipping, the currency, and the order reference (such as S00042) as transaction_id. On a website form submission, a lead conversion whose transaction_id is the form's record type and number (such as mail.mail-12), with no value. Names, emails, phone numbers and addresses are never sent, and there are no enhanced conversions. The tag runs in the visitor's browser, so Google also receives what any tag receives from a browser, such as the page address and the visitor's IP address. A short version of this is shown next to the settings."
+        ]
+      },
+      {
+        "heading": "Purchase and lead conversions",
+        "body": [
+          "The purchase conversion fires on the order confirmation page, once per order in each browser: a reload is not counted again, and the transaction_id lets Google drop a repeat. The lead conversion fires when the server accepts an Odoo website form (Contact Us, or any form built in the website editor), whatever the form does next, including Odoo's default redirect to a thank-you page. If the redirect leaves before Google confirms the hit, the next page sends it once more under the same transaction_id, so Google still counts it once. A form the server refuses is not counted."
+        ]
+      },
+      {
+        "heading": "Works next to Odoo's Google tag",
+        "body": [
+          "If Odoo's own Google Analytics setting already loads Google's gtag.js on the page (a G- measurement ID), the app reuses it and adds your conversion ID to the same dataLayer, so gtag.js is not loaded twice. Your conversion ID sits in its own gtag group, so the shop events Odoo sends to Google Analytics (add to cart, purchase, virtual page views) never reach Google Ads: Google Ads receives only the page view and the conversions this app sends. With a GTM- container on Odoo 20, which loads Google Tag Manager rather than gtag.js, the app loads gtag.js once itself on the same dataLayer."
+        ]
+      },
+      {
+        "heading": "Consent and Consent Mode v2",
+        "body": [
+          "Built on our free Website Tracking Base, which is installed with it. The tag waits for marketing consent from Odoo's Cookies Bar (\"Allow all\") or from our free Cookie Consent Banner (the Marketing box). Analytics consent alone does not load it. With neither banner switched on it never loads. It never loads for internal users, so your own visits and the website editor are not tracked. When it loads it sets the Consent Mode v2 signals ad_storage, ad_user_data and ad_personalization to granted, and back to denied if the visitor withdraws marketing consent on the page."
+        ]
+      },
+      {
+        "heading": "Settings, per website",
+        "body": [
+          "In Website settings: the conversion ID (AW-...), the purchase conversion label and an optional lead conversion label. Each website keeps its own. A pasted tag snippet or a wrong ID is refused with a message saying what to paste instead."
+        ]
+      },
+      {
+        "heading": "Who it is for",
+        "body": [
+          "Odoo shops and lead-generation sites that advertise on Google Ads and want purchase conversions with order value, and form leads, reported to Google Ads without a Google Analytics 4 app, without adding code to the website by hand, and without loading anything before consent."
+        ]
+      }
+    ],
+    "scope": [
+      "No enhanced conversions: it sends no email, phone or address, hashed or not. It is a browser tag, not the Google Ads API: it cannot report orders from visitors who decline cookies or block the tag, it does not upload offline conversions, and it does not connect to your Google Ads account, create conversion actions or manage campaigns. You create the purchase and lead conversion actions in Google Ads and copy the ID and labels. It sends no add-to-cart, checkout or dynamic remarketing item events: only the page view, purchase and lead, and Odoo's own Google Analytics events are kept off your conversion ID. The value always excludes tax and shipping. Only orders that reach the eCommerce confirmation page are reported, not orders confirmed in the backend, at the Point of Sale or from a portal quotation. Leads come only from Odoo website forms, not from newsletter sign-ups, live chat or third-party forms. One conversion ID per website. If you also use Odoo's own Google Analytics setting, Odoo itself loads Google's tag (gtag.js, or Tag Manager for a GTM- key on Odoo 20) before consent, with the consent signals denied; that is Odoo's behaviour and this app does not change it. Tested with a G- key on Odoo 19 and 20 and a GTM- key on Odoo 20. It is a technical control, not legal advice: what your policy says remains yours to decide."
+    ],
+    "requires": [
+      "Odoo 19 and 20, Community or Enterprise, with the Website and eCommerce apps. Also requires Website Tracking Base (free), installed automatically. Third-party apps install on Odoo.sh or On-Premise only - they cannot be installed on Odoo Online (SaaS)."
+    ],
+    "price": 39.0,
+    "manifestPrice": 39.0,
+    "currency": "USD",
+    "category": "Website/Website",
+    "version": "19.0.1.0.0",
+    "license": "OPL-1",
+    "depends": [
+      "mh_website_tracking_base"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_google_ads_conversions",
+    "screenshots": [
+      "screenshot_settings.png"
+    ],
+    "copyWords": 882,
+    "hasVideo": true,
+    "youtubeId": "HFUaSDLOg9w",
     "externalPage": null
   },
   {
@@ -3235,7 +3310,7 @@ export const odooApps = [
     "manifestPrice": 39.0,
     "currency": "USD",
     "category": "Warehouse",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.0.1",
     "license": "OPL-1",
     "depends": [
       "stock"
@@ -3391,7 +3466,7 @@ export const odooApps = [
     "manifestPrice": 39.0,
     "currency": "USD",
     "category": "Extra Tools",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.0.1",
     "license": "OPL-1",
     "depends": [
       "mail",
@@ -4034,7 +4109,7 @@ export const odooApps = [
     "manifestPrice": 29.0,
     "currency": "USD",
     "category": "Productivity",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.0.1",
     "license": "OPL-1",
     "depends": [
       "mail"
@@ -4166,7 +4241,7 @@ export const odooApps = [
     "manifestPrice": 29.0,
     "currency": "USD",
     "category": "Sales/Point of Sale",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.0.1",
     "license": "OPL-1",
     "depends": [
       "point_of_sale"
@@ -4246,7 +4321,7 @@ export const odooApps = [
     "manifestPrice": 29.0,
     "currency": "USD",
     "category": "Sales/Point of Sale",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.0.1",
     "license": "OPL-1",
     "depends": [
       "point_of_sale"
@@ -4332,7 +4407,7 @@ export const odooApps = [
     "manifestPrice": 29.0,
     "currency": "USD",
     "category": "Sales/Point of Sale",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.0.1",
     "license": "OPL-1",
     "depends": [
       "point_of_sale"
@@ -4414,7 +4489,7 @@ export const odooApps = [
     "manifestPrice": 29.0,
     "currency": "USD",
     "category": "Sales/Point of Sale",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.0.1",
     "license": "OPL-1",
     "depends": [
       "pos_restaurant",
@@ -4428,7 +4503,7 @@ export const odooApps = [
     ],
     "copyWords": 708,
     "hasVideo": true,
-    "youtubeId": null,
+    "youtubeId": "Q2_mN2vA108",
     "externalPage": null
   },
   {
@@ -4487,7 +4562,7 @@ export const odooApps = [
     "manifestPrice": 29.0,
     "currency": "USD",
     "category": "Website/Website",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.0.1",
     "license": "OPL-1",
     "depends": [
       "website_sale"
@@ -4550,7 +4625,7 @@ export const odooApps = [
     "manifestPrice": 29.0,
     "currency": "USD",
     "category": "Purchases",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.0.1",
     "license": "OPL-1",
     "depends": [
       "purchase"
@@ -4695,6 +4770,86 @@ export const odooApps = [
     "copyWords": 320,
     "hasVideo": true,
     "youtubeId": "j1kBnmIzSno",
+    "externalPage": null
+  },
+  {
+    "tech": "mh_website_category_sync",
+    "slug": "ecommerce-category-sync",
+    "name": "eCommerce Category Sync",
+    "summary": "Create website shop categories from your internal product categories and assign every product to them automatically. Set categories once, not twice",
+    "tagline": "Build your website shop categories from your internal product categories, and file every product in the shop automatically.",
+    "intro": [
+      "Odoo keeps two category trees that never talk to each other. Internal product categories drive inventory and accounting; eCommerce categories are what shoppers browse. A shop that already has a full internal tree builds the same tree again by hand under Website, then files every product twice - once in its internal category and once in its eCommerce category. Add a product, move one, open a new category, and the two trees drift apart.",
+      "eCommerce Category Sync links each internal category to an eCommerce category, creates the ones that are missing, and puts products in the right one."
+    ],
+    "features": [
+      {
+        "heading": "Mirror your internal tree in one click",
+        "body": [
+          "Sync Categories gives every internal category an eCommerce category under the same parent. If the internal category is already linked, that link is kept. If an eCommerce category with the same name already sits under the same parent, it is reused and linked. Only when neither exists is a new one created. Run it again and nothing is duplicated."
+        ]
+      },
+      {
+        "heading": "Products filed in the shop for you",
+        "body": [
+          "The same run adds each product to the eCommerce category of its internal category. The eCommerce categories you set on a product by hand are kept, so a product can stay in Sale or New Arrivals as well."
+        ]
+      },
+      {
+        "heading": "Keeps up from then on",
+        "body": [
+          "Two settings per company: create the eCommerce category as soon as a new internal category is created, and assign products automatically when they are created or their internal category changes. Optionally, when a product changes internal category, the eCommerce category linked to the old one is taken off - and nothing else."
+        ]
+      },
+      {
+        "heading": "Keep some categories out of the shop",
+        "body": [
+          "Tick Keep Out of Shop on an internal category such as Raw Materials and it is never mirrored; its sub-categories go under the nearest parent that is in the shop. Odoo's own Expenses category is marked on install."
+        ]
+      },
+      {
+        "heading": "Link what you already built",
+        "body": [
+          "Each internal category form shows its Shop Category. Pick an existing eCommerce category there to link it by hand, or sync only the categories you select from the internal category list."
+        ]
+      },
+      {
+        "heading": "Renames, moves and websites",
+        "body": [
+          "Tick Update Names and Parents when you sync and linked eCommerce categories are renamed and moved to match their internal category again. If you run several websites, new eCommerce categories can be restricted to one of them."
+        ]
+      },
+      {
+        "heading": "Who it is for",
+        "body": [
+          "Shops on Odoo eCommerce that already organise products in internal categories - wholesalers going online, furniture, hardware and electronics stores - and anyone who is tired of keeping two category trees in step by hand."
+        ]
+      }
+    ],
+    "scope": [],
+    "requires": [
+      "Odoo 19 or 20, Community or Enterprise, with the eCommerce app (website_sale). Running Sync Categories needs the Sales Administrator and product management rights an Odoo administrator has. Third-party apps install on Odoo.sh or On-Premise only - they cannot be installed on Odoo Online."
+    ],
+    "price": 29.0,
+    "manifestPrice": 29.0,
+    "currency": "USD",
+    "category": "Website/Website",
+    "version": "19.0.1.0.0",
+    "license": "OPL-1",
+    "depends": [
+      "website_sale"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_website_category_sync",
+    "screenshots": [
+      "screenshot_categories.png",
+      "screenshot_sync.png",
+      "screenshot_settings.png"
+    ],
+    "copyWords": 445,
+    "hasVideo": true,
+    "youtubeId": "QbklSMFbUqM",
     "externalPage": null
   },
   {
@@ -4991,13 +5146,13 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Warehouse",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.0.1",
     "license": "OPL-1",
     "depends": [
       "stock_account"
     ],
     "paidDepends": [],
-    "downloads": 5,
+    "downloads": 7,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_abc_check",
     "screenshots": [
       "screenshot_check.png"
@@ -5220,13 +5375,13 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Warehouse",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.0.2",
     "license": "OPL-1",
     "depends": [
       "stock_account"
     ],
     "paidDepends": [],
-    "downloads": 5,
+    "downloads": 6,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_archive_stock_guard",
     "screenshots": [
       "screenshot_blocked.png",
@@ -5441,7 +5596,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Extra Tools",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.0.2",
     "license": "OPL-1",
     "depends": [
       "base_setup",
@@ -5494,7 +5649,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Website/Website",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.0.2",
     "license": "OPL-1",
     "depends": [
       "website"
@@ -5612,13 +5767,13 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Warehouse",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.0.2",
     "license": "OPL-1",
     "depends": [
       "stock"
     ],
     "paidDepends": [],
-    "downloads": 6,
+    "downloads": 7,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_bulk_scrap",
     "screenshots": [
       "screenshot_bulk_scrap.png"
@@ -5755,7 +5910,7 @@ export const odooApps = [
       "website"
     ],
     "paidDepends": [],
-    "downloads": 19,
+    "downloads": 20,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_cookie_consent_banner",
     "screenshots": [
       "screenshot_banner.png",
@@ -5822,7 +5977,7 @@ export const odooApps = [
       "stock_account"
     ],
     "paidDepends": [],
-    "downloads": 24,
+    "downloads": 26,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_cost_price_history",
     "screenshots": [
       "screenshot_history.png"
@@ -6114,7 +6269,7 @@ export const odooApps = [
       "stock"
     ],
     "paidDepends": [],
-    "downloads": 17,
+    "downloads": 21,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_dead_stock_check",
     "screenshots": [
       "screenshot_check.png"
@@ -6185,7 +6340,7 @@ export const odooApps = [
       "mail"
     ],
     "paidDepends": [],
-    "downloads": 19,
+    "downloads": 20,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_direct_download_base",
     "screenshots": [
       "main_screenshot.png",
@@ -6219,7 +6374,7 @@ export const odooApps = [
       "web"
     ],
     "paidDepends": [],
-    "downloads": 9,
+    "downloads": 10,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_advanced_web_domain_widget",
     "screenshots": [
       "screenshot_snippets.png"
@@ -6430,13 +6585,13 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Warehouse",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.0.3",
     "license": "OPL-1",
     "depends": [
       "stock_account"
     ],
     "paidDepends": [],
-    "downloads": 5,
+    "downloads": 6,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_duplicate_product_check",
     "screenshots": [
       "screenshot_groups.png",
@@ -6738,7 +6893,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Marketing/Marketing",
-    "version": "19.0.1.0.9",
+    "version": "19.0.1.0.10",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -6777,7 +6932,7 @@ export const odooApps = [
       "website"
     ],
     "paidDepends": [],
-    "downloads": 26,
+    "downloads": 27,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_google_reviews_snippet",
     "screenshots": [
       "screenshot_settings.png"
@@ -6887,7 +7042,7 @@ export const odooApps = [
       "account"
     ],
     "paidDepends": [],
-    "downloads": 6,
+    "downloads": 8,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_journal_access_report",
     "screenshots": [
       "screenshot_access.png"
@@ -6965,7 +7120,7 @@ export const odooApps = [
       "web"
     ],
     "paidDepends": [],
-    "downloads": 16,
+    "downloads": 18,
     "storeUrl": "https://apps.odoo.com/apps/modules/18.0/mh_list_view_manager",
     "screenshots": [
       "screenshot_columns.png"
@@ -6998,7 +7153,7 @@ export const odooApps = [
       "mail"
     ],
     "paidDepends": [],
-    "downloads": 8,
+    "downloads": 9,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_lost_messages_routing",
     "screenshots": [
       "screenshot_lost_messages.png"
@@ -7053,7 +7208,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Website/Website",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.0.2",
     "license": "OPL-1",
     "depends": [
       "mh_website_tracking_base"
@@ -7125,13 +7280,13 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Warehouse",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.0.2",
     "license": "OPL-1",
     "depends": [
       "stock_account"
     ],
     "paidDepends": [],
-    "downloads": 5,
+    "downloads": 6,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_merge_products",
     "screenshots": [
       "screenshot_preview.png"
@@ -7182,7 +7337,7 @@ export const odooApps = [
       "base"
     ],
     "paidDepends": [],
-    "downloads": 8,
+    "downloads": 9,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_meta_ads_spend",
     "screenshots": [
       "screenshot_spend.png"
@@ -7233,7 +7388,7 @@ export const odooApps = [
       "base"
     ],
     "paidDepends": [],
-    "downloads": 5,
+    "downloads": 6,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_microsoft_ads_viewer",
     "screenshots": [
       "screenshot_campaigns.png"
@@ -7289,13 +7444,13 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Website/Website",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.0.2",
     "license": "OPL-1",
     "depends": [
       "mh_website_tracking_base"
     ],
     "paidDepends": [],
-    "downloads": 3,
+    "downloads": 4,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_microsoft_uet_tag",
     "screenshots": [
       "screenshot_settings.png"
@@ -7413,13 +7568,13 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Sales/Point of Sale",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.0.1",
     "license": "OPL-1",
     "depends": [
       "point_of_sale"
     ],
     "paidDepends": [],
-    "downloads": 3,
+    "downloads": 8,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_pos_a4_receipt",
     "screenshots": [
       "screenshot_a4_receipt.png",
@@ -7473,7 +7628,7 @@ export const odooApps = [
       "analytic"
     ],
     "paidDepends": [],
-    "downloads": 19,
+    "downloads": 22,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_pos_analytic_account",
     "screenshots": [
       "screenshot_settings.png"
@@ -7542,7 +7697,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Sales/Point of Sale",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.0.2",
     "license": "OPL-1",
     "depends": [
       "point_of_sale"
@@ -7609,13 +7764,13 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Sales/Point of Sale",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.0.1",
     "license": "OPL-1",
     "depends": [
       "point_of_sale"
     ],
     "paidDepends": [],
-    "downloads": 3,
+    "downloads": 6,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_pos_hourly_sales",
     "screenshots": [
       "screenshot_hourly_grid.png"
@@ -7683,13 +7838,13 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Sales/Point of Sale",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.0.1",
     "license": "OPL-1",
     "depends": [
       "point_of_sale"
     ],
     "paidDepends": [],
-    "downloads": 4,
+    "downloads": 8,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_pos_payment_reference",
     "screenshots": [
       "screenshot_payment_screen.png",
@@ -7752,13 +7907,13 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Sales/Point of Sale",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.0.1",
     "license": "OPL-1",
     "depends": [
       "point_of_sale"
     ],
     "paidDepends": [],
-    "downloads": 3,
+    "downloads": 4,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_pos_reorder",
     "screenshots": [
       "screenshot_reorder_dialog.png"
@@ -7924,7 +8079,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Website/Website",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.0.2",
     "license": "OPL-1",
     "depends": [
       "mh_website_tracking_base"
@@ -7964,7 +8119,7 @@ export const odooApps = [
       "web"
     ],
     "paidDepends": [],
-    "downloads": 18,
+    "downloads": 22,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_popup_message",
     "screenshots": [
       "screenshot_message.png"
@@ -8114,13 +8269,13 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Website/Website",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.0.1",
     "license": "OPL-1",
     "depends": [
       "website_sale"
     ],
     "paidDepends": [],
-    "downloads": 3,
+    "downloads": 5,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_website_size_chart",
     "screenshots": [
       "screenshot_size_guide.png",
@@ -8230,7 +8385,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Purchases",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.0.2",
     "license": "OPL-1",
     "depends": [
       "purchase_stock"
@@ -8352,13 +8507,13 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Extra Tools",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.0.2",
     "license": "OPL-1",
     "depends": [
       "base"
     ],
     "paidDepends": [],
-    "downloads": 8,
+    "downloads": 9,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_report_pdf_appendix",
     "screenshots": [
       "screenshot_report_appendix.png"
@@ -8541,7 +8696,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Extra Tools",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.0.1",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -8647,13 +8802,13 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Website/Website",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.0.2",
     "license": "OPL-1",
     "depends": [
       "website"
     ],
     "paidDepends": [],
-    "downloads": 3,
+    "downloads": 5,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_schema_markup",
     "screenshots": [
       "screenshot_settings.png"
@@ -8704,7 +8859,7 @@ export const odooApps = [
       "base"
     ],
     "paidDepends": [],
-    "downloads": 5,
+    "downloads": 6,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_snapchat_ads_viewer",
     "screenshots": [
       "screenshot_campaigns.png"
@@ -8760,13 +8915,13 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Website/Website",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.0.1",
     "license": "OPL-1",
     "depends": [
       "mh_website_tracking_base"
     ],
     "paidDepends": [],
-    "downloads": 3,
+    "downloads": 4,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_snapchat_pixel",
     "screenshots": [
       "screenshot_settings.png"
@@ -8864,7 +9019,7 @@ export const odooApps = [
       "stock_account"
     ],
     "paidDepends": [],
-    "downloads": 31,
+    "downloads": 33,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_stock_card_ledger",
     "screenshots": [
       "screenshot_ledger.png"
@@ -8967,13 +9122,13 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Warehouse",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.0.1",
     "license": "OPL-1",
     "depends": [
       "stock_account"
     ],
     "paidDepends": [],
-    "downloads": 6,
+    "downloads": 9,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_stock_valuation_closing",
     "screenshots": [
       "screenshot_menu.png",
@@ -9031,13 +9186,13 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Services/Project",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.0.2",
     "license": "OPL-1",
     "depends": [
       "project"
     ],
     "paidDepends": [],
-    "downloads": 3,
+    "downloads": 4,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_task_pdf_report",
     "screenshots": [
       "screenshot_task_sheet.png"
@@ -9154,13 +9309,13 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Website/Website",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.0.2",
     "license": "OPL-1",
     "depends": [
       "mh_website_tracking_base"
     ],
     "paidDepends": [],
-    "downloads": 3,
+    "downloads": 4,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_tiktok_pixel",
     "screenshots": [
       "screenshot_settings.png"
@@ -9211,13 +9366,13 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Warehouse",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.0.1",
     "license": "OPL-1",
     "depends": [
       "stock"
     ],
     "paidDepends": [],
-    "downloads": 5,
+    "downloads": 7,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_transfer_creation_rights",
     "screenshots": [
       "screenshot_rights.png",
@@ -9277,13 +9432,13 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Warehouse",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.0.2",
     "license": "OPL-1",
     "depends": [
       "stock"
     ],
     "paidDepends": [],
-    "downloads": 5,
+    "downloads": 7,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_variant_routes",
     "screenshots": [
       "screenshot_variant_list.png",
@@ -9351,7 +9506,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Website/Website",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.0.2",
     "license": "OPL-1",
     "depends": [
       "website_sale"
