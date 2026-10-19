@@ -5,7 +5,7 @@
 // generator; editing here forks the copy away from what the store actually
 // serves.
 //
-// Store snapshot: 2026-10-18T20:00:18+00:00
+// Store snapshot: 2026-10-19T04:09:30+00:00
 
 export const odooApps = [
   {
@@ -219,6 +219,90 @@ export const odooApps = [
     "copyWords": 616,
     "hasVideo": true,
     "youtubeId": "n0_3AehpwSA",
+    "externalPage": null
+  },
+  {
+    "tech": "mh_inventory_reports",
+    "slug": "inventory-reports",
+    "name": "Inventory Reports",
+    "summary": "All in one inventory reports: stock aging, inventory valuation, ABC analysis, FSN analysis, count accuracy and reordering rule audit under one menu",
+    "tagline": "Six inventory reports in one app: stock aging, inventory valuation, ABC, FSN, count accuracy and reordering rule audit, under one menu",
+    "intro": [
+      "Odoo Community has no stock aging, no ABC or FSN classification, no count accuracy figure and no check of reordering rules against real demand, and since Odoo 19 no per-product valuation report for a period. We sell six apps that each answer one of those questions. This app contains all six - the same reports, the same code - so it is one install instead of six, and all six open from one menu: Inventory > Reporting > Inventory Reports.",
+      "The six reports are also sold separately: Inventory Aging Report, Stock Valuation Report, ABC Analysis, FSN Analysis, Stock Count Accuracy and Reordering Rule Audit. This app does not need any of them installed."
+    ],
+    "features": [
+      {
+        "heading": "Inventory Aging",
+        "body": [
+          "Every product with stock on hand, aged by the last time it actually left an internal location: 0-30, 31-90, 91-180, 181-365 days, over a year, and never moved. Each line carries quantity times standard cost. Internal transfers and stock counts do not reset the clock. Filter by warehouse and category; the findings name the five largest holdings that have not shipped in six months."
+        ]
+      },
+      {
+        "heading": "Stock Valuation",
+        "body": [
+          "For any period, per product: opening quantity and value, received, issued, other, and closing quantity and value. Opening and closing are Odoo's own valuation read at the two instants, so standard, average and FIFO costing come out as Odoo books them. Changes with no stock move behind them, such as a cost update or a landed cost, are shown under Other, so every row reconciles. Period boundaries follow your time zone. Filter by warehouse, location and category; print a PDF or export to Excel."
+        ]
+      },
+      {
+        "heading": "ABC Analysis",
+        "body": [
+          "Products ranked by the cost Odoo recorded on their done moves to customers or production in the period. A while the products ranked above hold less than 80% of that value, B up to 95%, C after - both limits yours to change. XYZ classes each product by the variation of its monthly outgoing quantity. List, 3x3 pivot matrix, graph, PDF and Excel. Save the classes on the products, per company, to filter Physical Inventory to A items; a monthly refresh can roll the period forward and save again on its own."
+        ]
+      },
+      {
+        "heading": "FSN Analysis",
+        "body": [
+          "Fast moving, slow moving and non-moving products by how often each is issued: issues to customers, production or transit per month over the period (12 months by default). Thresholds are yours to change. Each class shows the stock value on hand at cost, and the findings name the largest non-moving holdings. PDF and Excel."
+        ]
+      },
+      {
+        "heading": "Count Accuracy",
+        "body": [
+          "Every applied inventory adjustment added up per location and product: how much was found, how much was missing, how many adjustments and when the last one was. Error (ignoring direction) and net (what was left once errors cancelled) are kept apart, the findings name the locations carrying most of the error, and pairs adjusted both up and down are called out."
+        ]
+      },
+      {
+        "heading": "Reordering Rule Audit",
+        "body": [
+          "Every reordering rule against the demand that has already shipped over the window you choose. Minimum too low: the product consumes more over the lead time than the minimum holds. Maximum too high: the top-up is more than 90 days of demand above the minimum, valued at cost. No lead time set: Odoo reports no delay, so the minimum cannot be judged - enter an assumed lead time to see what it would mean. No demand: the product has not shipped at all."
+        ]
+      },
+      {
+        "heading": "Who it is for",
+        "body": [
+          "Inventory managers and controllers who want two or more of these reports, and would rather install, update and give access to one app than six."
+        ]
+      }
+    ],
+    "scope": [
+      "It only reads stock moves, quants, valuation and reordering rules. It posts no journal entries and changes no valuation, reordering rule, count or stock, and it forecasts nothing. The only thing it writes outside its own reports is the ABC and XYZ class, and only when you press Save Classes on Products or tick the monthly refresh.",
+      "Aging, FSN, the stock held in ABC and the reorder audit value stock at the product's current cost, not at sale price and not at what it was bought for. Customer returns are not netted off ABC or FSN demand. A product received recently and not yet issued is non-moving in FSN, the same as one bought years ago. Aging does not tell you what to do with old stock.",
+      "Stock moved between your own warehouses is not valued by Odoo, so in a valuation filtered to one warehouse that transfer shows as quantity with no value, and its value effect lands under Other. Stock you hold on consignment for someone else is left out of the valuation, as Odoo leaves it out.",
+      "Count Accuracy counts only real inventory adjustments, not deliveries, transfers or scrap; a period with no adjustment says so rather than reporting zero error. The Reordering Rule Audit does not assume a lead time where Odoo has none.",
+      "Reports and classes saved in one of the separate apps stay in that app: this app keeps its own reports and its own saved classes, so it can be installed next to any of them without either touching the other."
+    ],
+    "requires": [
+      "Odoo 19 and 20, Community or Enterprise, with Inventory and its valuation module (stock_account). No other app needed. Stock Valuation, ABC Analysis, Count Accuracy and Reordering Rule Audit are for Inventory Administrators, matching Odoo's own rule for who sees stock value; Aging and FSN for all Inventory users. Each company sees only its own reports. Third-party apps install on Odoo.sh or On-Premise only - they cannot be installed on Odoo Online."
+    ],
+    "price": 149.0,
+    "manifestPrice": 149.0,
+    "currency": "USD",
+    "category": "Warehouse",
+    "version": "19.0.1.0.0",
+    "license": "OPL-1",
+    "depends": [
+      "stock_account"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_inventory_reports",
+    "screenshots": [
+      "screenshot_menu.png"
+    ],
+    "copyWords": 872,
+    "hasVideo": true,
+    "youtubeId": "9fRKjQuGGHM",
     "externalPage": null
   },
   {
@@ -3168,13 +3252,13 @@ export const odooApps = [
     ],
     "scope": [],
     "requires": [
-      "Odoo 19 Community or Enterprise with Inventory. Installs the free Dead Stock Check , which gives the headline figure. It reads existing moves and quants and writes nothing back to your inventory, and it does not tell you what to do with the stock - discount, return or write off remains a judgement call."
+      "Odoo 19 Community or Enterprise with Inventory. It works on its own; the free Dead Stock Check gives the headline figure if you want it. It reads existing moves and quants and writes nothing back to your inventory, and it does not tell you what to do with the stock - discount, return or write off remains a judgement call."
     ],
     "price": 39.0,
     "manifestPrice": 39.0,
     "currency": "USD",
     "category": "Warehouse",
-    "version": "19.0.1.0.17",
+    "version": "19.0.1.0.18",
     "license": "OPL-1",
     "depends": [
       "stock"
@@ -3473,7 +3557,7 @@ export const odooApps = [
     "manifestPrice": 39.0,
     "currency": "USD",
     "category": "Website/Website",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.0.1",
     "license": "OPL-1",
     "depends": [
       "website_sale"
@@ -5626,7 +5710,7 @@ export const odooApps = [
   },
   {
     "tech": "mh_report_barcode_qr",
-    "slug": "barcode-and-qr-on-reports",
+    "slug": "barcode-qr-on-reports",
     "name": "Barcode and QR on Reports",
     "summary": "Barcode in report and qrcode in report: the order number as a barcode or QR on quotations, purchase orders, invoices and delivery slips, ready for a scanner",
     "tagline": "Print the order number as a barcode or QR code on quotations, purchase orders, invoices and delivery slips, ready for a scanner.",
@@ -5694,7 +5778,7 @@ export const odooApps = [
   },
   {
     "tech": "mh_before_after_slider",
-    "slug": "before-and-after-slider",
+    "slug": "before-after-slider",
     "name": "Before and After Slider",
     "summary": "Before and after image slider snippet: compare two images with a draggable, swipeable slider. Drag and drop it on any website page",
     "tagline": "Before and after image slider snippet: compare two images with a draggable, swipeable slider. Drag and drop it on any website page",
@@ -6342,7 +6426,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Warehouse",
-    "version": "19.0.1.0.18",
+    "version": "19.0.1.0.19",
     "license": "OPL-1",
     "depends": [
       "stock"
@@ -9092,7 +9176,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Warehouse",
-    "version": "19.0.1.0.10",
+    "version": "19.0.1.0.11",
     "license": "OPL-1",
     "depends": [
       "stock_account"
