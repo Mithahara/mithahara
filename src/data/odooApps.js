@@ -5,7 +5,7 @@
 // generator; editing here forks the copy away from what the store actually
 // serves.
 //
-// Store snapshot: 2026-10-20T23:03:53+00:00
+// Store snapshot: 2026-10-20T23:33:38+00:00
 
 export const odooApps = [
   {
@@ -2102,6 +2102,79 @@ export const odooApps = [
     "externalPage": null
   },
   {
+    "tech": "mh_combined_calendar",
+    "slug": "combined-calendar",
+    "name": "Combined Calendar",
+    "summary": "One calendar for tasks, time off, meetings, activities, orders and deliveries: pick a model and its date fields, each entry opens its source record",
+    "tagline": "One calendar for tasks, time off, meetings, activities, orders and deliveries. Pick a model and its date fields, and every entry opens its source record.",
+    "intro": [
+      "Odoo's Calendar app shows meetings. Everything else with a date lives in its own app: task deadlines in Project, time off in Time Off, expected closings in CRM, delivery dates in Sales and Inventory, to-dos in activities. To see what a week looks like you open five apps and put them side by side in your head.",
+      "Combined Calendar builds calendars from sources you choose. A source is a model, an optional filter and the date fields to use. The calendar view then shows all of them together, colour-coded by source and filterable by user, in Odoo's own calendar view. Entries refresh when the calendar is opened and every hour."
+    ],
+    "features": [
+      {
+        "heading": "Pick sources, no code",
+        "body": [
+          "A source is a model, an optional filter, a start date field, an optional end date field, an optional title field and an optional users field. Standard sources are added for the apps that are installed: meetings, task deadlines, time off, opportunity closing dates, order delivery dates, transfers and activities. Any other model with a stored date field can be added the same way, and the filter uses Odoo's own domain editor."
+        ]
+      },
+      {
+        "heading": "One calendar, filtered your way",
+        "body": [
+          "The calendar view has Odoo's usual day, week, month and year scales. The side panel filters by source, each in its own colour, and by user. A date field shows as an all-day entry; a date and time field shows at its time, and lasts as long as the end field says, or one hour without one."
+        ]
+      },
+      {
+        "heading": "Every entry opens its record",
+        "body": [
+          "Click an entry, then View, then Open Document, and Odoo's own form for the task, leave request, opportunity, order or transfer opens. The entry form also shows who it belongs to and its dates."
+        ]
+      },
+      {
+        "heading": "Shows only what each person may read",
+        "body": [
+          "The calendar holds titles and dates, so what a person sees is decided at read time, not when the calendar is built. An entry is shown to a person only if they can read its source record under their own access rights and record rules, and its title is read as that person: a private meeting of a colleague still shows as Busy. A calendar can also be limited to chosen groups and to one company."
+        ]
+      },
+      {
+        "heading": "Stays up to date",
+        "body": [
+          "Opening a calendar refreshes it, and an hourly scheduled action refreshes all of them. Records that were deleted, archived or no longer match the filter drop out. Each source has a Days Back window (365 days by default; 0 keeps everything) so old records do not pile up."
+        ]
+      },
+      {
+        "heading": "Who it is for",
+        "body": [
+          "Project and operations managers, planners and team leads who want task deadlines, time off, deliveries and meetings on one screen. Calendars can be given to a team or to everyone, and only users in the Combined Calendar Manager group set them up."
+        ]
+      }
+    ],
+    "scope": [],
+    "requires": [
+      "Odoo 19 and 20, Community or Enterprise, with the Calendar app. The standard sources need the app they read from (Project, Time Off, CRM, Sales, Inventory). Third-party apps install on Odoo.sh or On-Premise only - they cannot be installed on Odoo Online."
+    ],
+    "price": 49.0,
+    "manifestPrice": 49.0,
+    "currency": "USD",
+    "category": "Productivity/Calendar",
+    "version": "19.0.1.0.0",
+    "license": "OPL-1",
+    "depends": [
+      "calendar"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_combined_calendar",
+    "screenshots": [
+      "screenshot_calendar.png",
+      "screenshot_setup.png"
+    ],
+    "copyWords": 493,
+    "hasVideo": true,
+    "youtubeId": null,
+    "externalPage": null
+  },
+  {
     "tech": "mh_data_cleaning",
     "slug": "data-cleaning",
     "name": "Data Cleaning",
@@ -3983,6 +4056,92 @@ export const odooApps = [
     "externalPage": null
   },
   {
+    "tech": "mh_sales_checklist",
+    "slug": "sales-stage-checklists",
+    "name": "Sales Stage Checklists",
+    "summary": "CRM checklist, lead checklist and stage checklist for the pipeline, plus a quotation checklist and sale checklist. Required items block the move until ticked",
+    "tagline": "CRM checklist, lead checklist and stage checklist for the pipeline, plus a quotation checklist and sale checklist. Required items block the move until ticked.",
+    "intro": [],
+    "features": [
+      {
+        "heading": "What it does",
+        "body": [
+          "A salesperson drags an opportunity to the next stage, or confirms a quotation, and the step the team agreed on was never done: the discovery call, the credit check, the customer's purchase order. Odoo lets it through, because a stage in Odoo is only a label.",
+          "Sales Stage Checklists gives every CRM stage, and the two steps of a quotation (before sending, before confirming), its own checklist. Mark an item required and Odoo refuses the move and lists the items still open. CRM and sales are in one app, so one install covers the pipeline and the quotation that follows it."
+        ]
+      },
+      {
+        "heading": "Checklist per CRM stage",
+        "body": [
+          "Add any number of items to a stage, from the Checklist Items menu or straight on the stage's own form. Scope an item to selected sales teams, or to one company, or leave it for everybody. Every opportunity in that stage gets a Checklist tab with one line per item, plus a progress bar and a ticked-of-total count of the required items."
+        ]
+      },
+      {
+        "heading": "Checklist per quotation step",
+        "body": [
+          "Items for \"before sending a quotation\" block the Send, Share and Mark as Sent actions. Items for \"before confirming an order\" block Confirm, including when it is called for several quotations at once. Scope them per team like the CRM items."
+        ]
+      },
+      {
+        "heading": "Reminders that never block",
+        "body": [
+          "Switch Required off and an item is only a reminder: it shows on the checklist, is not counted in the progress, and never stops a move."
+        ]
+      },
+      {
+        "heading": "Who ticked it, and when",
+        "body": [
+          "Ticking an item records the user and the time on the line and writes a note in the chatter of the opportunity or order. Unticking clears the line and logs that too."
+        ]
+      },
+      {
+        "heading": "Added later, applied at once",
+        "body": [
+          "Add or change an item and the open opportunities and quotations it concerns get the line straight away. Archive an item and it stops blocking, while the ticks already made stay on record."
+        ]
+      },
+      {
+        "heading": "Access follows the record",
+        "body": [
+          "A salesperson sees and ticks the checklist lines of the opportunities and orders they may see, and no others. Items and lines respect multi-company. Only Sales Administrators edit the items."
+        ]
+      },
+      {
+        "heading": "Who it is for",
+        "body": [
+          "Sales managers who have a playbook and want it followed, teams where a missed step costs a deal or a refund, and anyone who already tried a stage checklist for CRM and a separate one for quotations and does not want to buy and maintain two apps."
+        ]
+      }
+    ],
+    "scope": [],
+    "requires": [
+      "Moving an opportunity to a later stage, or marking it won, needs the required items of the stage it is leaving. This is checked where the stage is saved, so it holds for kanban drag and drop, the status bar, editing the stage in the list view (also for several selected rows), the Won button, server actions and automations, and imports that update existing opportunities. One blocked opportunity in a batch stops the whole batch and nothing is moved.",
+      "Odoo 19 and 20, Community or Enterprise. It needs the CRM and Sales apps; both are installed with it. It adds no third-party service and sends no data anywhere. Third-party apps install on Odoo.sh or On-Premise only - they cannot be installed on Odoo Online (SaaS)."
+    ],
+    "price": 39.0,
+    "manifestPrice": 39.0,
+    "currency": "USD",
+    "category": "Sales/CRM",
+    "version": "19.0.1.0.0",
+    "license": "OPL-1",
+    "depends": [
+      "crm",
+      "sale"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_sales_checklist",
+    "screenshots": [
+      "screenshot_blocked.png",
+      "screenshot_pipeline.png",
+      "screenshot_quotation.png"
+    ],
+    "copyWords": 429,
+    "hasVideo": true,
+    "youtubeId": null,
+    "externalPage": null
+  },
+  {
     "tech": "mh_access_migration",
     "slug": "access-config-migration",
     "name": "Access Config Migration",
@@ -4493,6 +4652,75 @@ export const odooApps = [
     "copyWords": 345,
     "hasVideo": true,
     "youtubeId": "PQMjAuo0kFE",
+    "externalPage": null
+  },
+  {
+    "tech": "mh_pos_brand_theme",
+    "slug": "pos-brand-theme",
+    "name": "POS Brand Theme",
+    "summary": "POS theme with your brand colours: primary and accent colour, dark mode and touch-friendly density per point of sale, applied at the till without rebuilding assets",
+    "tagline": "Your brand colours, a dark mode and a touch-friendly density for each point of sale, applied when the till opens.",
+    "intro": [
+      "Odoo's Point of Sale ships in one purple and one light look for every shop and counter. There is no setting to change the colour of the Payment button, give a bar a dark till for the evening, or make the buttons bigger for a tablet, and the colours are compiled into the stylesheet, so changing them means editing code and rebuilding assets.",
+      "This app adds a Brand Theme block to each point of sale's settings: a primary colour, an accent colour, a colour mode (Light, Dark or Follow device) and a density (Compact, Normal or Large touch). The till reads the choice when it opens and applies it with CSS variables. Nothing is compiled, and only the points of sale that tick Brand Theme change."
+    ],
+    "features": [
+      {
+        "heading": "Colours that stay readable",
+        "body": [
+          "The primary colour fills the main buttons exactly as you chose it, and the text on it turns black or white, whichever reads better (always at least 4.5:1). Where the colour would be used as text or as a button outline on the till's grey or dark surface, it is darkened (lightened in dark mode) only as far as needed to reach 4.5:1, so a pale yellow or a near-white brand still gives readable buttons and links. The settings tell you which text colour a button will have and its contrast as soon as you type the colour."
+        ]
+      },
+      {
+        "heading": "Primary and accent colour",
+        "body": [
+          "The primary colour recolours the Payment, Validate and other primary buttons, outline buttons, primary text and the pressed state of buttons. The accent colour is used for the selected order line, payment line, customer and order in the list, and for the keyboard focus ring. Focus outlines are never removed."
+        ]
+      },
+      {
+        "heading": "Dark mode",
+        "body": [
+          "Dark turns the product screen, order panel, product cards, navbar, payment screen, order list, customer list, dialogs and inputs dark, with the main text above 7:1 on every dark surface. Follow device uses the device's own light or dark setting and switches with it while the till is open."
+        ]
+      },
+      {
+        "heading": "Touch density",
+        "body": [
+          "Compact fits more product cards and sets buttons to about 44px, the smallest touch target this app will make. Normal leaves Odoo's own sizes alone. Large touch makes buttons at least 64px and product cards wider."
+        ]
+      },
+      {
+        "heading": "Who it is for",
+        "body": [
+          "Shops, cafes and franchises that want the till to look like their brand, bars that want a dark till, and anyone running tablets at the counter who wants bigger buttons on one point of sale and Odoo's standard look on the others."
+        ]
+      }
+    ],
+    "scope": [
+      "No custom fonts, logos or background images, no ready-made theme styles to pick from and no grid or list switch for products. The theme belongs to the point of sale, not to a user. The receipt, the customer display and the Self-Order kiosk keep Odoo's own look, and nothing in the back office is changed. Product category colours and the pastel colours Odoo gives the numpad stay as they are. A change in the settings shows when the till is next opened or reloaded; a session that is already open keeps its look until then. Dark mode covers Odoo's own Point of Sale screens; a screen added by another app can stay light until that app is themed."
+    ],
+    "requires": [
+      "Odoo 19 and 20, Community or Enterprise; installs Odoo's own Point of Sale app (point_of_sale). Third-party apps install on Odoo.sh or On-Premise only - they cannot be installed on Odoo Online (SaaS)."
+    ],
+    "price": 29.01,
+    "manifestPrice": 29.0,
+    "currency": "USD",
+    "category": "Sales/Point of Sale",
+    "version": "19.0.1.0.0",
+    "license": "OPL-1",
+    "depends": [
+      "point_of_sale"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_pos_brand_theme",
+    "screenshots": [
+      "screenshot_themed_till.png",
+      "screenshot_dark_till.png"
+    ],
+    "copyWords": 555,
+    "hasVideo": true,
+    "youtubeId": null,
     "externalPage": null
   },
   {
@@ -5765,7 +5993,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Sales",
-    "version": "19.0.1.0.9",
+    "version": "19.0.1.0.10",
     "license": "OPL-1",
     "depends": [
       "sale",
@@ -7318,7 +7546,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Project",
-    "version": "19.0.1.0.7",
+    "version": "19.0.1.0.8",
     "license": "OPL-1",
     "depends": [
       "project"
@@ -7857,7 +8085,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Point of Sale",
-    "version": "19.0.1.0.10",
+    "version": "19.0.1.0.11",
     "license": "OPL-1",
     "depends": [
       "base",
@@ -9483,7 +9711,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Services/Project",
-    "version": "19.0.1.0.7",
+    "version": "19.0.1.0.8",
     "license": "OPL-1",
     "depends": [
       "project",
