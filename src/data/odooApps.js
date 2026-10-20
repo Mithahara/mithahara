@@ -5,7 +5,7 @@
 // generator; editing here forks the copy away from what the store actually
 // serves.
 //
-// Store snapshot: 2026-10-19T04:09:30+00:00
+// Store snapshot: 2026-10-20T23:03:53+00:00
 
 export const odooApps = [
   {
@@ -58,7 +58,7 @@ export const odooApps = [
       "Warehouse-specific access rules are deliberately not in here. They need the Inventory app, and an access product should not force Inventory onto a database that does not use it. That stays a separate module."
     ],
     "requires": [],
-    "price": 392.1,
+    "price": 393.64,
     "manifestPrice": 399.0,
     "currency": "USD",
     "category": "Productivity",
@@ -123,7 +123,7 @@ export const odooApps = [
     ],
     "scope": [],
     "requires": [],
-    "price": 167.99,
+    "price": 168.66,
     "manifestPrice": 69.0,
     "currency": "USD",
     "category": "Marketing/Marketing",
@@ -289,7 +289,7 @@ export const odooApps = [
     "manifestPrice": 149.0,
     "currency": "USD",
     "category": "Warehouse",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.0.1",
     "license": "OPL-1",
     "depends": [
       "stock_account"
@@ -332,7 +332,7 @@ export const odooApps = [
     ],
     "scope": [],
     "requires": [],
-    "price": 146.42,
+    "price": 146.99,
     "manifestPrice": 149.0,
     "currency": "USD",
     "category": "Extra Tools",
@@ -399,7 +399,7 @@ export const odooApps = [
     "requires": [
       "Odoo 19 Community or Enterprise. No dependency beyond base, and nothing leaves your server. Restricted to Settings administrators, since the report itself describes who can reach what."
     ],
-    "price": 145.0,
+    "price": 145.57,
     "manifestPrice": 149.0,
     "currency": "USD",
     "category": "Productivity",
@@ -417,75 +417,6 @@ export const odooApps = [
     "copyWords": 338,
     "hasVideo": true,
     "youtubeId": "oDm7UjsrWzk",
-    "externalPage": null
-  },
-  {
-    "tech": "mh_field_access_rules",
-    "slug": "field-access-rules",
-    "name": "Field Access Rules",
-    "summary": "Field level security for any model: hide or lock any field for the groups you choose, enforced by the server and not just hidden in the form view",
-    "tagline": "Hide or lock any field for the groups you choose, on any model, enforced by the server and not just hidden in the form view",
-    "intro": [
-      "Odoo already has field-level access. A field can carry a list of groups, and users outside them neither read it nor write it - not in the form, not in a list, not in an export, not over the API. What Odoo does not have is a way to say so without editing the field in Python.",
-      "This is that way.",
-      "Two rules: an employee's home address hidden from everyone outside HR, and a tax ID left visible but no longer writable.",
-      "A model, its fields, the groups that keep access, and what everybody else gets."
-    ],
-    "features": [
-      {
-        "heading": "Hidden means gone, not merely invisible",
-        "body": [
-          "The field is absent from the form, the list, the export dialog and the field list the API answers with, and a search filter on it is refused. A field removed from a view arch is still every one of those things."
-        ]
-      },
-      {
-        "heading": "Read only is refused on the server",
-        "body": [
-          "The field stays visible and the write is rejected by the ORM, so an import, a scripted call or a hand-made RPC gets the same answer the form does. The form also greys it out, rather than offering an edit that fails on save."
-        ]
-      },
-      {
-        "heading": "One code path, so nothing forgets",
-        "body": [
-          "The rules feed the single hook the ORM uses to ask whether this user may touch this field - the same one that handles a field declared restricted in source. There is no second path that has to be remembered and patched."
-        ]
-      },
-      {
-        "heading": "It refuses what cannot be undone",
-        "body": [
-          "A rule whose groups hold no active internal user would take the field from everybody, permanently - reading it back is restricted too. A rule on the rule model would hide the screen you would undo it from. A rule on id or display_name breaks the view rather than hiding anything. All three are refused at the form."
-        ]
-      },
-      {
-        "heading": "See who it actually affects",
-        "body": [
-          "One button lists the internal users who fall outside the named groups. That number is what tells you whether the rule does what you thought it did, before anybody discovers it the hard way."
-        ]
-      }
-    ],
-    "scope": [],
-    "requires": [
-      "Odoo 19 Community or Enterprise, no other module needed. It restricts fields, not records - which rows a user sees is record rules, a different question. The superuser is never restricted, so crons and upgrades keep working."
-    ],
-    "price": 99.0,
-    "manifestPrice": 99.0,
-    "currency": "USD",
-    "category": "Tools",
-    "version": "19.0.1.0.15",
-    "license": "OPL-1",
-    "depends": [
-      "base"
-    ],
-    "paidDepends": [],
-    "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_field_access_rules",
-    "screenshots": [
-      "screenshot_rules.png",
-      "screenshot_rule.png"
-    ],
-    "copyWords": 371,
-    "hasVideo": true,
-    "youtubeId": "4EpcRtlghUU",
     "externalPage": null
   },
   {
@@ -537,7 +468,7 @@ export const odooApps = [
     ],
     "scope": [],
     "requires": [],
-    "price": 99.0,
+    "price": 99.39,
     "manifestPrice": 99.0,
     "currency": "USD",
     "category": "Marketing/Marketing",
@@ -557,70 +488,6 @@ export const odooApps = [
     "copyWords": 396,
     "hasVideo": true,
     "youtubeId": "7-tujViJGtA",
-    "externalPage": null
-  },
-  {
-    "tech": "mh_list_view_layouts",
-    "slug": "list-view-layouts",
-    "name": "List View Layouts",
-    "summary": "Set the default list view columns for a model and assign them per group, so a team opens the same layout instead of rebuilding it",
-    "tagline": "Set the default list view columns for a model and assign them per group, so a team opens the same layout instead of rebuilding it",
-    "intro": [
-      "Odoo keeps optional-column visibility in each browser's localStorage. That makes it per person, per browser, and gone when the cache is cleared - so there is no way to say \"everyone in Sales opens quotations with these columns\", and every new starter begins from the default and rebuilds the view by hand.",
-      "This puts that decision in one place: pick a model, pick the columns, pick who it applies to.",
-      "A layout for contacts, applied to one group, kept applied so it does not drift."
-    ],
-    "features": [
-      {
-        "heading": "One layout, assigned to the people who need it",
-        "body": [
-          "Define the visible columns for a model and attach the layout to groups, or leave it open to everyone. Where a person matches more than one layout, the lowest sequence wins, so a specific team layout beats a general default without either having to know about the other."
-        ]
-      },
-      {
-        "heading": "A starting point, or kept applied",
-        "body": [
-          "Off, the layout is what people get the first time and their own adjustments are remembered afterwards. On, it is reapplied every time the list opens, so a shared screen or a reporting view stays as configured instead of drifting one person at a time."
-        ]
-      },
-      {
-        "heading": "It uses Odoo's own hook",
-        "body": [
-          "The layout is applied through the same method Odoo itself calls to decide which optional columns start visible, rather than rewriting the list after it has drawn. Nothing flickers, and a model with no layout behaves exactly as it does today."
-        ]
-      },
-      {
-        "heading": "Visibility is not security",
-        "body": [
-          "Hiding a column hides a column. Nobody sees a field they could not already read, and nobody is prevented from reading one by a layout - that is what access rights and record rules are for, and this app deliberately does not pretend otherwise."
-        ]
-      }
-    ],
-    "scope": [
-      "No column order or width - Odoo does not expose either per user, and claiming it would mean fighting the renderer on every draw. It does not touch the columns a view always shows, and it does not change what anyone is allowed to see."
-    ],
-    "requires": [
-      "Odoo 19 Community or Enterprise. Depends only on base and web, and nothing leaves your server. Layouts are managed by Settings administrators; everyone else simply gets the result."
-    ],
-    "price": 99.0,
-    "manifestPrice": 99.0,
-    "currency": "USD",
-    "category": "Productivity",
-    "version": "19.0.1.0.12",
-    "license": "OPL-1",
-    "depends": [
-      "base",
-      "web"
-    ],
-    "paidDepends": [],
-    "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_list_view_layouts",
-    "screenshots": [
-      "screenshot_layout.png"
-    ],
-    "copyWords": 357,
-    "hasVideo": true,
-    "youtubeId": "_jn7KswDh-k",
     "externalPage": null
   },
   {
@@ -672,7 +539,7 @@ export const odooApps = [
     ],
     "scope": [],
     "requires": [],
-    "price": 99.0,
+    "price": 99.39,
     "manifestPrice": 99.0,
     "currency": "USD",
     "category": "Marketing/Marketing",
@@ -745,7 +612,7 @@ export const odooApps = [
     ],
     "scope": [],
     "requires": [],
-    "price": 99.0,
+    "price": 99.39,
     "manifestPrice": 99.0,
     "currency": "USD",
     "category": "Marketing/Marketing",
@@ -814,7 +681,7 @@ export const odooApps = [
     ],
     "scope": [],
     "requires": [],
-    "price": 99.0,
+    "price": 99.39,
     "manifestPrice": 99.0,
     "currency": "USD",
     "category": "Marketing/Marketing",
@@ -832,6 +699,139 @@ export const odooApps = [
     "copyWords": 354,
     "hasVideo": true,
     "youtubeId": "pI-rzAO3BEI",
+    "externalPage": null
+  },
+  {
+    "tech": "mh_field_access_rules",
+    "slug": "field-access-rules",
+    "name": "Field Access Rules",
+    "summary": "Field level security for any model: hide or lock any field for the groups you choose, enforced by the server and not just hidden in the form view",
+    "tagline": "Hide or lock any field for the groups you choose, on any model, enforced by the server and not just hidden in the form view",
+    "intro": [
+      "Odoo already has field-level access. A field can carry a list of groups, and users outside them neither read it nor write it - not in the form, not in a list, not in an export, not over the API. What Odoo does not have is a way to say so without editing the field in Python.",
+      "This is that way.",
+      "Two rules: an employee's home address hidden from everyone outside HR, and a tax ID left visible but no longer writable.",
+      "A model, its fields, the groups that keep access, and what everybody else gets."
+    ],
+    "features": [
+      {
+        "heading": "Hidden means gone, not merely invisible",
+        "body": [
+          "The field is absent from the form, the list, the export dialog and the field list the API answers with, and a search filter on it is refused. A field removed from a view arch is still every one of those things."
+        ]
+      },
+      {
+        "heading": "Read only is refused on the server",
+        "body": [
+          "The field stays visible and the write is rejected by the ORM, so an import, a scripted call or a hand-made RPC gets the same answer the form does. The form also greys it out, rather than offering an edit that fails on save."
+        ]
+      },
+      {
+        "heading": "One code path, so nothing forgets",
+        "body": [
+          "The rules feed the single hook the ORM uses to ask whether this user may touch this field - the same one that handles a field declared restricted in source. There is no second path that has to be remembered and patched."
+        ]
+      },
+      {
+        "heading": "It refuses what cannot be undone",
+        "body": [
+          "A rule whose groups hold no active internal user would take the field from everybody, permanently - reading it back is restricted too. A rule on the rule model would hide the screen you would undo it from. A rule on id or display_name breaks the view rather than hiding anything. All three are refused at the form."
+        ]
+      },
+      {
+        "heading": "See who it actually affects",
+        "body": [
+          "One button lists the internal users who fall outside the named groups. That number is what tells you whether the rule does what you thought it did, before anybody discovers it the hard way."
+        ]
+      }
+    ],
+    "scope": [],
+    "requires": [
+      "Odoo 19 Community or Enterprise, no other module needed. It restricts fields, not records - which rows a user sees is record rules, a different question. The superuser is never restricted, so crons and upgrades keep working."
+    ],
+    "price": 99.0,
+    "manifestPrice": 99.0,
+    "currency": "USD",
+    "category": "Tools",
+    "version": "19.0.1.0.15",
+    "license": "OPL-1",
+    "depends": [
+      "base"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_field_access_rules",
+    "screenshots": [
+      "screenshot_rules.png",
+      "screenshot_rule.png"
+    ],
+    "copyWords": 371,
+    "hasVideo": true,
+    "youtubeId": "4EpcRtlghUU",
+    "externalPage": null
+  },
+  {
+    "tech": "mh_list_view_layouts",
+    "slug": "list-view-layouts",
+    "name": "List View Layouts",
+    "summary": "Set the default list view columns for a model and assign them per group, so a team opens the same layout instead of rebuilding it",
+    "tagline": "Set the default list view columns for a model and assign them per group, so a team opens the same layout instead of rebuilding it",
+    "intro": [
+      "Odoo keeps optional-column visibility in each browser's localStorage. That makes it per person, per browser, and gone when the cache is cleared - so there is no way to say \"everyone in Sales opens quotations with these columns\", and every new starter begins from the default and rebuilds the view by hand.",
+      "This puts that decision in one place: pick a model, pick the columns, pick who it applies to.",
+      "A layout for contacts, applied to one group, kept applied so it does not drift."
+    ],
+    "features": [
+      {
+        "heading": "One layout, assigned to the people who need it",
+        "body": [
+          "Define the visible columns for a model and attach the layout to groups, or leave it open to everyone. Where a person matches more than one layout, the lowest sequence wins, so a specific team layout beats a general default without either having to know about the other."
+        ]
+      },
+      {
+        "heading": "A starting point, or kept applied",
+        "body": [
+          "Off, the layout is what people get the first time and their own adjustments are remembered afterwards. On, it is reapplied every time the list opens, so a shared screen or a reporting view stays as configured instead of drifting one person at a time."
+        ]
+      },
+      {
+        "heading": "It uses Odoo's own hook",
+        "body": [
+          "The layout is applied through the same method Odoo itself calls to decide which optional columns start visible, rather than rewriting the list after it has drawn. Nothing flickers, and a model with no layout behaves exactly as it does today."
+        ]
+      },
+      {
+        "heading": "Visibility is not security",
+        "body": [
+          "Hiding a column hides a column. Nobody sees a field they could not already read, and nobody is prevented from reading one by a layout - that is what access rights and record rules are for, and this app deliberately does not pretend otherwise."
+        ]
+      }
+    ],
+    "scope": [
+      "No column order or width - Odoo does not expose either per user, and claiming it would mean fighting the renderer on every draw. It does not touch the columns a view always shows, and it does not change what anyone is allowed to see."
+    ],
+    "requires": [
+      "Odoo 19 Community or Enterprise. Depends only on base and web, and nothing leaves your server. Layouts are managed by Settings administrators; everyone else simply gets the result."
+    ],
+    "price": 99.0,
+    "manifestPrice": 99.0,
+    "currency": "USD",
+    "category": "Productivity",
+    "version": "19.0.1.0.12",
+    "license": "OPL-1",
+    "depends": [
+      "base",
+      "web"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_list_view_layouts",
+    "screenshots": [
+      "screenshot_layout.png"
+    ],
+    "copyWords": 357,
+    "hasVideo": true,
+    "youtubeId": "_jn7KswDh-k",
     "externalPage": null
   },
   {
@@ -881,7 +881,7 @@ export const odooApps = [
     "requires": [
       "Odoo 19 Community or Enterprise, no other module needed. It restricts records, not fields - which columns a user may read is Field Access Rules ."
     ],
-    "price": 97.29,
+    "price": 97.67,
     "manifestPrice": 99.0,
     "currency": "USD",
     "category": "Tools",
@@ -944,7 +944,7 @@ export const odooApps = [
     "requires": [
       "Odoo 19 Community or Enterprise, no other module needed. The superuser is never logged out, so crons and upgrades keep working. It does not restrict where people log in from and it is not a login history."
     ],
-    "price": 97.29,
+    "price": 97.67,
     "manifestPrice": 99.0,
     "currency": "USD",
     "category": "Tools",
@@ -1012,7 +1012,7 @@ export const odooApps = [
     "requires": [
       "Odoo 19 Community or Enterprise. Requires AI Agent Guardrails , which registers which logins are agents. It does not decide for you and does not restrict what the agent may read. The approval records themselves are never held - holding a change to them would need approving, and nobody could approve the first one."
     ],
-    "price": 96.31,
+    "price": 96.69,
     "manifestPrice": 49.0,
     "currency": "USD",
     "category": "Tools",
@@ -1085,7 +1085,7 @@ export const odooApps = [
     "requires": [
       "Odoo 19 Community or Enterprise, no other module needed. Third-party apps install on Odoo.sh or On-Premise only — they cannot be installed on Odoo Online (SaaS)."
     ],
-    "price": 86.61,
+    "price": 86.95,
     "manifestPrice": 89.0,
     "currency": "USD",
     "category": "Tools",
@@ -1244,6 +1244,73 @@ export const odooApps = [
     "externalPage": null
   },
   {
+    "tech": "mh_unbilled_work",
+    "slug": "unbilled-work-report",
+    "name": "Unbilled Work Report",
+    "summary": "Unbilled timesheets aged by how long they have been sitting: project time worked and never invoiced, with the cost and the sale value of each bucket",
+    "tagline": "Project timesheets that have been worked and never invoiced, aged by how long they have been sitting, with the cost and the sale value of each bucket",
+    "intro": [
+      "Odoo knows which timesheets are billable and which have been invoiced. What it does not put anywhere is how long the rest have been sitting - and the age is the whole story.",
+      "Work billed a fortnight late is a nuisance. Work billed six months late is a conversation about whether it really took that long, with nobody left who remembers the detail. Often it simply never gets billed at all.",
+      "By project and by age, with the hours, the cost, and what it is worth."
+    ],
+    "features": [
+      {
+        "heading": "Aged, because age is the story",
+        "body": [
+          "0-30 days, 31-90, 91-180 and over six months, with the date of the oldest entry in each row. Rolling a project into one figure would hide exactly how long the oldest money has been waiting."
+        ]
+      },
+      {
+        "heading": "Only work somebody meant to charge for",
+        "body": [
+          "Non-billable hours are not late invoices - they are hours nobody was ever going to bill, and mixing them in makes the total meaningless. Invoiced timesheets drop out too, or the figure becomes a measure of how much work was done."
+        ]
+      },
+      {
+        "heading": "It admits what it cannot price",
+        "body": [
+          "Entries with no sales order line - which come from projects billed manually, exactly where work gets forgotten - are counted in the hours and the cost, left out of the sale value, and reported as a count. Pricing them would mean inventing a rate, and a made-up number in a money report is worse than an admitted gap."
+        ]
+      },
+      {
+        "heading": "Straight to the old ones",
+        "body": [
+          "One button opens only what has been waiting more than ninety days, and the findings name the projects carrying most of it. That is the list somebody can actually work through this afternoon."
+        ]
+      },
+      {
+        "heading": "Cost and value, side by side",
+        "body": [
+          "What the hours cost you and what they were sold for, from the sales order line's own price rather than a list price that may have been discounted away."
+        ]
+      }
+    ],
+    "scope": [],
+    "requires": [
+      "Odoo 19 Community or Enterprise with Sales - Timesheets. It reads only: nothing is invoiced, changed or written back, and it has no opinion about whether the work should have been billed - only that it has not been."
+    ],
+    "price": 69.13,
+    "manifestPrice": 69.0,
+    "currency": "USD",
+    "category": "Project",
+    "version": "19.0.1.0.15",
+    "license": "OPL-1",
+    "depends": [
+      "sale_timesheet"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_unbilled_work",
+    "screenshots": [
+      "screenshot_unbilled.png"
+    ],
+    "copyWords": 340,
+    "hasVideo": true,
+    "youtubeId": "WdJ8bg27kqw",
+    "externalPage": null
+  },
+  {
     "tech": "mh_cookie_consent_enforcer",
     "slug": "cookie-consent-enforcer",
     "name": "Cookie Consent Enforcer",
@@ -1385,73 +1452,6 @@ export const odooApps = [
     "externalPage": null
   },
   {
-    "tech": "mh_unbilled_work",
-    "slug": "unbilled-work-report",
-    "name": "Unbilled Work Report",
-    "summary": "Unbilled timesheets aged by how long they have been sitting: project time worked and never invoiced, with the cost and the sale value of each bucket",
-    "tagline": "Project timesheets that have been worked and never invoiced, aged by how long they have been sitting, with the cost and the sale value of each bucket",
-    "intro": [
-      "Odoo knows which timesheets are billable and which have been invoiced. What it does not put anywhere is how long the rest have been sitting - and the age is the whole story.",
-      "Work billed a fortnight late is a nuisance. Work billed six months late is a conversation about whether it really took that long, with nobody left who remembers the detail. Often it simply never gets billed at all.",
-      "By project and by age, with the hours, the cost, and what it is worth."
-    ],
-    "features": [
-      {
-        "heading": "Aged, because age is the story",
-        "body": [
-          "0-30 days, 31-90, 91-180 and over six months, with the date of the oldest entry in each row. Rolling a project into one figure would hide exactly how long the oldest money has been waiting."
-        ]
-      },
-      {
-        "heading": "Only work somebody meant to charge for",
-        "body": [
-          "Non-billable hours are not late invoices - they are hours nobody was ever going to bill, and mixing them in makes the total meaningless. Invoiced timesheets drop out too, or the figure becomes a measure of how much work was done."
-        ]
-      },
-      {
-        "heading": "It admits what it cannot price",
-        "body": [
-          "Entries with no sales order line - which come from projects billed manually, exactly where work gets forgotten - are counted in the hours and the cost, left out of the sale value, and reported as a count. Pricing them would mean inventing a rate, and a made-up number in a money report is worse than an admitted gap."
-        ]
-      },
-      {
-        "heading": "Straight to the old ones",
-        "body": [
-          "One button opens only what has been waiting more than ninety days, and the findings name the projects carrying most of it. That is the list somebody can actually work through this afternoon."
-        ]
-      },
-      {
-        "heading": "Cost and value, side by side",
-        "body": [
-          "What the hours cost you and what they were sold for, from the sales order line's own price rather than a list price that may have been discounted away."
-        ]
-      }
-    ],
-    "scope": [],
-    "requires": [
-      "Odoo 19 Community or Enterprise with Sales - Timesheets. It reads only: nothing is invoiced, changed or written back, and it has no opinion about whether the work should have been billed - only that it has not been."
-    ],
-    "price": 68.86,
-    "manifestPrice": 69.0,
-    "currency": "USD",
-    "category": "Project",
-    "version": "19.0.1.0.15",
-    "license": "OPL-1",
-    "depends": [
-      "sale_timesheet"
-    ],
-    "paidDepends": [],
-    "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_unbilled_work",
-    "screenshots": [
-      "screenshot_unbilled.png"
-    ],
-    "copyWords": 340,
-    "hasVideo": true,
-    "youtubeId": "WdJ8bg27kqw",
-    "externalPage": null
-  },
-  {
     "tech": "mh_api_key_inventory",
     "slug": "api-key-inventory",
     "name": "API Key Inventory",
@@ -1489,7 +1489,7 @@ export const odooApps = [
     "requires": [
       "Odoo 19 Community or Enterprise, no other module needed. It does not create keys or change their scope - that is Odoo's own screen and this does not get between you and it. It does not record what each call did; for an agent connected over MCP that is AI Agent Guardrails ."
     ],
-    "price": 67.8,
+    "price": 68.07,
     "manifestPrice": 69.0,
     "currency": "USD",
     "category": "Tools",
@@ -1558,7 +1558,7 @@ export const odooApps = [
     ],
     "scope": [],
     "requires": [],
-    "price": 67.14,
+    "price": 67.41,
     "manifestPrice": 69.0,
     "currency": "USD",
     "category": "Accounting/Accounting",
@@ -1678,7 +1678,7 @@ export const odooApps = [
       "Before you buy: needs Odoo 19 Community or Enterprise with Inventory and Purchase. Products in scope have to be tracked by lot or serial number — without that there is nothing to attach a plot to, and the app says so rather than reporting a gap it cannot explain."
     ],
     "requires": [],
-    "price": 67.14,
+    "price": 67.41,
     "manifestPrice": 69.0,
     "currency": "USD",
     "category": "Warehouse",
@@ -1745,7 +1745,7 @@ export const odooApps = [
       "It does not hide buttons, tabs or fields. Fields are their own job and Field Access Rules does that one server-side. Buttons and tabs are not covered here at all."
     ],
     "requires": [],
-    "price": 67.14,
+    "price": 67.41,
     "manifestPrice": 69.0,
     "currency": "USD",
     "category": "Tools",
@@ -1819,7 +1819,7 @@ export const odooApps = [
       "Odoo 19 Community or Enterprise, with Accounting installed. This app also installs the free 1099 Threshold Check , which holds the per-year threshold table.",
       "Not affiliated with or endorsed by the IRS. This is a reporting aid, not tax advice - check the result with whoever files for you."
     ],
-    "price": 67.14,
+    "price": 67.41,
     "manifestPrice": 69.0,
     "currency": "USD",
     "category": "Accounting/Accounting",
@@ -1873,7 +1873,7 @@ export const odooApps = [
     "requires": [
       "Odoo 19, Community or Enterprise. Needs Discuss (for activities). Administrator access, since the check reads across every model in the database. Nothing is written to any record it finds."
     ],
-    "price": 67.14,
+    "price": 67.41,
     "manifestPrice": 69.0,
     "currency": "USD",
     "category": "Tools",
@@ -1916,7 +1916,7 @@ export const odooApps = [
       "Monthly/quarterly declaration only - the universally-mandatory, recurring one. Annual fixed-asset and on-demand inventory declarations are a fast-follow."
     ],
     "requires": [],
-    "price": 57.41,
+    "price": 57.64,
     "manifestPrice": 59.0,
     "currency": "USD",
     "category": "Accounting/Localizations",
@@ -2586,7 +2586,7 @@ export const odooApps = [
     "requires": [
       "Odoo 19 Community or Enterprise, no other module needed. It does not undo changes for you - it tells you exactly what to undo. It does not restrict what the agent may read; that is Record Rule Preview and Field Access Rules . The superuser cannot be an agent - it bypasses access rules by design."
     ],
-    "price": 48.16,
+    "price": 48.35,
     "manifestPrice": 49.0,
     "currency": "USD",
     "category": "Tools",
@@ -2654,7 +2654,7 @@ export const odooApps = [
     "requires": [
       "Odoo 19 Community or Enterprise, no other module needed. It records from the moment it is installed and cannot reconstruct what happened before - it does not pretend to. It logs access configuration, not what people did with the access."
     ],
-    "price": 48.16,
+    "price": 48.35,
     "manifestPrice": 49.0,
     "currency": "USD",
     "category": "Tools",
@@ -2721,7 +2721,7 @@ export const odooApps = [
     "requires": [
       "Odoo 19 Community or Enterprise, no other module needed. It grants access to a model, not to particular records or fields - which rows a user sees is Record Rule Preview , which columns they may read is Field Access Rules ."
     ],
-    "price": 48.16,
+    "price": 48.35,
     "manifestPrice": 49.0,
     "currency": "USD",
     "category": "Tools",
@@ -2789,7 +2789,7 @@ export const odooApps = [
       "On a multi-database Odoo you must name the database. A stateless request carries no session to read it from, so the database name has to be sent with the connection."
     ],
     "requires": [],
-    "price": 48.16,
+    "price": 48.35,
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Productivity",
@@ -2841,7 +2841,7 @@ export const odooApps = [
     ],
     "scope": [],
     "requires": [],
-    "price": 47.69,
+    "price": 47.87,
     "manifestPrice": 49.0,
     "currency": "USD",
     "category": "Extra Tools",
@@ -2904,7 +2904,7 @@ export const odooApps = [
     ],
     "scope": [],
     "requires": [],
-    "price": 47.69,
+    "price": 47.87,
     "manifestPrice": 49.0,
     "currency": "USD",
     "category": "Manufacturing",
@@ -2969,7 +2969,7 @@ export const odooApps = [
       "This app covers Odoo's AI text-generation assistant only - the editor's \"Generate with AI\" / \"Translate with AI\" tools. It does not touch invoice or document OCR, which is a separate, Enterprise-only Odoo feature this app does not modify or replace."
     ],
     "requires": [],
-    "price": 39.31,
+    "price": 39.47,
     "manifestPrice": 40.0,
     "currency": "USD",
     "category": "Productivity",
@@ -2989,6 +2989,74 @@ export const odooApps = [
     "hasVideo": true,
     "youtubeId": "tNQBcdPYmWk",
     "externalPage": "/apps/byok-gateway"
+  },
+  {
+    "tech": "mh_project_cost_exposure",
+    "slug": "project-cost-exposure",
+    "name": "Project Cost Exposure",
+    "summary": "What each project has already cost plus your purchase commitment on open purchase orders, and which projects only look profitable because the bills have not landed yet",
+    "tagline": "See what each project has already cost plus what you have committed on open purchase orders, and which projects only look profitable because the bills have not landed yet",
+    "intro": [
+      "Analytic accounting answers what a project has cost. It cannot answer what a project is going to cost, because a purchase order confirmed last week is a real obligation that appears in no report until the supplier gets round to invoicing.",
+      "That is how a project stays green for a month and then goes red all at once - and why the people who could still have done something find out when it is too late to.",
+      "Billed, spent, and still owed on confirmed orders - and the margin once those orders are invoiced."
+    ],
+    "features": [
+      {
+        "heading": "The list that is the point",
+        "body": [
+          "Projects in profit today that would not be once the open purchase orders are billed. One button opens only those, and the findings name the five worst."
+        ]
+      },
+      {
+        "heading": "Nothing is counted twice",
+        "body": [
+          "The billed part of an order stops counting as committed, because it has already become an actual cost. Counting both would make every project look far worse than it is, which is a different kind of useless."
+        ]
+      },
+      {
+        "heading": "A draft order is not a commitment",
+        "body": [
+          "Only confirmed and done orders count - nobody has told the supplier to go ahead on a draft, and a report that treated quotes as obligations would cry wolf until people stopped reading it."
+        ]
+      },
+      {
+        "heading": "Shared order lines are split",
+        "body": [
+          "One line spread across projects is divided by its analytic percentages rather than charged in full to each, so the company's total commitment adds up to what was actually ordered."
+        ]
+      },
+      {
+        "heading": "Costs and revenue are not netted",
+        "body": [
+          "Summed separately, because netting them reports a project with heavy spending and heavy billing as quiet - and a project already losing money is not listed as a surprise, since it would only bury the ones about to turn."
+        ]
+      }
+    ],
+    "scope": [],
+    "requires": [
+      "Odoo 19 Community or Enterprise with Project and Purchase. It changes nothing - no journal entries, no analytic lines, no orders. It has no opinion about what the budget should have been: it reports what has been committed, not whether committing it was wise. Projects with no analytic account are skipped."
+    ],
+    "price": 39.07,
+    "manifestPrice": 39.0,
+    "currency": "USD",
+    "category": "Project",
+    "version": "19.0.1.0.14",
+    "license": "OPL-1",
+    "depends": [
+      "project",
+      "purchase"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_project_cost_exposure",
+    "screenshots": [
+      "screenshot_exposure.png"
+    ],
+    "copyWords": 318,
+    "hasVideo": true,
+    "youtubeId": "mZFuv-o5q6w",
+    "externalPage": null
   },
   {
     "tech": "mh_email_cc_bcc",
@@ -3205,6 +3273,80 @@ export const odooApps = [
     "copyWords": 882,
     "hasVideo": true,
     "youtubeId": "HFUaSDLOg9w",
+    "externalPage": null
+  },
+  {
+    "tech": "mh_website_hide_variants",
+    "slug": "hide-unavailable-variants",
+    "name": "Hide Unavailable Variants",
+    "summary": "Hide unavailable variants and out of stock variants on the shop product page: sizes and colours nobody can buy disappear instead of being greyed out",
+    "tagline": "Sizes and colours that do not exist or are sold out disappear from the product page, instead of staying on screen greyed out.",
+    "intro": [
+      "On a product with several attributes, Odoo lets the shopper pick a colour and then shows the sizes that do not exist in that colour greyed out, still on the page and still clickable. A size that exists but is sold out is not marked at all: it looks like any other, and the shopper only finds out after choosing it. Hide Unavailable Variants takes those values off the product page, so shoppers only see choices they can buy."
+    ],
+    "features": [
+      {
+        "heading": "What it does",
+        "body": [
+          "On the shop's product page, an attribute value is removed when no variant a shopper can buy has it together with the values already chosen above it. Variants that were never created, archived variants and combinations blocked by an attribute exclusion all count as not buyable. Choose a different value and the page updates: values that are buyable again come back, and the value you have selected is never removed."
+        ]
+      },
+      {
+        "heading": "Sold out counts too",
+        "body": [
+          "Switch on \"Sold out counts as unavailable\" for a website and a variant with no free stock in that website's warehouse is treated like one that does not exist. Products that allow out-of-stock orders, and products whose stock is not tracked, are never treated as sold out. This needs the eCommerce Inventory app (website_sale_stock); without it only variants that do not exist are removed."
+        ]
+      },
+      {
+        "heading": "Per website or per product",
+        "body": [
+          "Website > Configuration > Settings, in the eCommerce section, has \"Hide on all products\" for the website you are editing, so each website has its own setting. The Sales tab of the product form has a choice per product: follow the website, hide, or show greyed out (Odoo's default). The product's choice wins over the website's. Nothing changes until you switch it on."
+        ]
+      },
+      {
+        "heading": "Every attribute display type",
+        "body": [
+          "Works for dropdowns, radio buttons, pills, colour swatches and image swatches. A removed dropdown option is taken out of the list; the other types are removed from the page."
+        ]
+      },
+      {
+        "heading": "How a value is decided",
+        "body": [
+          "Attributes are read in the order they appear on the page, top to bottom. A value is removed only when nothing buyable matches it together with the choices above it. A value that merely conflicts with a choice made below it stays visible, greyed by Odoo as usual, so a shopper can always move to it and is never stuck."
+        ]
+      },
+      {
+        "heading": "Who it is for",
+        "body": [
+          "Shops on Odoo eCommerce that sell products with a size and colour matrix (clothing, shoes, furniture, bikes) where some combinations are not made or sell out, and that are tired of shoppers choosing combinations they cannot buy."
+        ]
+      }
+    ],
+    "scope": [],
+    "requires": [
+      "Odoo 19 or 20, Community or Enterprise, with the eCommerce app (website_sale). The sold-out rule also needs eCommerce Inventory (website_sale_stock). Third-party apps install on Odoo.sh or On-Premise only - they cannot be installed on Odoo Online."
+    ],
+    "price": 39.0,
+    "manifestPrice": 39.0,
+    "currency": "USD",
+    "category": "Website/Website",
+    "version": "19.0.1.0.0",
+    "license": "OPL-1",
+    "depends": [
+      "website_sale"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_website_hide_variants",
+    "screenshots": [
+      "screenshot_hidden.png",
+      "screenshot_odoo_default.png",
+      "screenshot_settings.png",
+      "screenshot_product_form.png"
+    ],
+    "copyWords": 450,
+    "hasVideo": true,
+    "youtubeId": null,
     "externalPage": null
   },
   {
@@ -3841,74 +3983,6 @@ export const odooApps = [
     "externalPage": null
   },
   {
-    "tech": "mh_project_cost_exposure",
-    "slug": "project-cost-exposure",
-    "name": "Project Cost Exposure",
-    "summary": "What each project has already cost plus your purchase commitment on open purchase orders, and which projects only look profitable because the bills have not landed yet",
-    "tagline": "See what each project has already cost plus what you have committed on open purchase orders, and which projects only look profitable because the bills have not landed yet",
-    "intro": [
-      "Analytic accounting answers what a project has cost. It cannot answer what a project is going to cost, because a purchase order confirmed last week is a real obligation that appears in no report until the supplier gets round to invoicing.",
-      "That is how a project stays green for a month and then goes red all at once - and why the people who could still have done something find out when it is too late to.",
-      "Billed, spent, and still owed on confirmed orders - and the margin once those orders are invoiced."
-    ],
-    "features": [
-      {
-        "heading": "The list that is the point",
-        "body": [
-          "Projects in profit today that would not be once the open purchase orders are billed. One button opens only those, and the findings name the five worst."
-        ]
-      },
-      {
-        "heading": "Nothing is counted twice",
-        "body": [
-          "The billed part of an order stops counting as committed, because it has already become an actual cost. Counting both would make every project look far worse than it is, which is a different kind of useless."
-        ]
-      },
-      {
-        "heading": "A draft order is not a commitment",
-        "body": [
-          "Only confirmed and done orders count - nobody has told the supplier to go ahead on a draft, and a report that treated quotes as obligations would cry wolf until people stopped reading it."
-        ]
-      },
-      {
-        "heading": "Shared order lines are split",
-        "body": [
-          "One line spread across projects is divided by its analytic percentages rather than charged in full to each, so the company's total commitment adds up to what was actually ordered."
-        ]
-      },
-      {
-        "heading": "Costs and revenue are not netted",
-        "body": [
-          "Summed separately, because netting them reports a project with heavy spending and heavy billing as quiet - and a project already losing money is not listed as a surprise, since it would only bury the ones about to turn."
-        ]
-      }
-    ],
-    "scope": [],
-    "requires": [
-      "Odoo 19 Community or Enterprise with Project and Purchase. It changes nothing - no journal entries, no analytic lines, no orders. It has no opinion about what the budget should have been: it reports what has been committed, not whether committing it was wise. Projects with no analytic account are skipped."
-    ],
-    "price": 38.92,
-    "manifestPrice": 39.0,
-    "currency": "USD",
-    "category": "Project",
-    "version": "19.0.1.0.14",
-    "license": "OPL-1",
-    "depends": [
-      "project",
-      "purchase"
-    ],
-    "paidDepends": [],
-    "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_project_cost_exposure",
-    "screenshots": [
-      "screenshot_exposure.png"
-    ],
-    "copyWords": 318,
-    "hasVideo": true,
-    "youtubeId": "mZFuv-o5q6w",
-    "externalPage": null
-  },
-  {
     "tech": "mh_access_migration",
     "slug": "access-config-migration",
     "name": "Access Config Migration",
@@ -3952,7 +4026,7 @@ export const odooApps = [
     "requires": [
       "Odoo 19, Community or Enterprise. No dependencies beyond the base system. Administrator access on both databases."
     ],
-    "price": 38.33,
+    "price": 38.48,
     "manifestPrice": 39.0,
     "currency": "USD",
     "category": "Tools",
@@ -4014,7 +4088,7 @@ export const odooApps = [
     "requires": [
       "Odoo 19, Community or Enterprise. No dependencies beyond the base system. Administrator access to choose what is watched and to read the log."
     ],
-    "price": 37.95,
+    "price": 38.1,
     "manifestPrice": 39.0,
     "currency": "USD",
     "category": "Tools",
@@ -4072,7 +4146,7 @@ export const odooApps = [
     ],
     "scope": [],
     "requires": [],
-    "price": 37.95,
+    "price": 38.1,
     "manifestPrice": 39.0,
     "currency": "USD",
     "category": "Extra Tools",
@@ -4118,7 +4192,7 @@ export const odooApps = [
     ],
     "scope": [],
     "requires": [],
-    "price": 37.95,
+    "price": 38.1,
     "manifestPrice": 39.0,
     "currency": "USD",
     "category": "Extra Tools",
@@ -4136,6 +4210,70 @@ export const odooApps = [
     "copyWords": 265,
     "hasVideo": true,
     "youtubeId": "f7lF6tp7uvw",
+    "externalPage": null
+  },
+  {
+    "tech": "mh_warehouse_access",
+    "slug": "warehouse-access-rules",
+    "name": "Warehouse Access Rules",
+    "summary": "Restrict users to the warehouses they work in, and see exactly how many transfers and quants each of them will stop seeing before you switch it on",
+    "tagline": "Restrict users to the warehouses they work in, and see exactly how many transfers and quants each of them will stop seeing before you switch it on",
+    "intro": [
+      "Restricting somebody to their own site is easy to switch on and hard to predict. It hides records, and hidden records look exactly like there being none - so the complaint that follows is never \"the rule is wrong\", it is \"the system is broken\", and it arrives from the warehouse floor on a Monday.",
+      "Two people, their warehouses, and what each one stops seeing.",
+      "Counted before anything is applied, with a button to go and look at the transfers in question."
+    ],
+    "features": [
+      {
+        "heading": "It counts before it hides",
+        "body": [
+          "How many transfers and how many stock lines that person will stop seeing, with one button to open those very transfers and check they are the ones you meant."
+        ]
+      },
+      {
+        "heading": "Nobody you did not name is affected",
+        "body": [
+          "Anybody without a restriction keeps seeing everything, so you can add people one at a time and check each as you go - instead of switching on a rule that quietly narrows the whole company at once."
+        ]
+      },
+      {
+        "heading": "The three places people mean",
+        "body": [
+          "Transfers, stock on hand, and the warehouse list itself. Records with no warehouse at all stay visible to everybody, because hiding those breaks the parts of Odoo that use warehouse-less transfers and explains nothing to the user."
+        ]
+      },
+      {
+        "heading": "It refuses two things",
+        "body": [
+          "A restriction with no warehouses, which would hide every transfer and stock line from that person - archiving is how you turn one off. And a restriction on the superuser, which bypasses record rules by design and would do nothing while looking as though it did something."
+        ]
+      }
+    ],
+    "scope": [
+      "It counts across the whole database rather than as that user, so the figure is what exists and would be hidden. Counting as the user would report zero the moment the rule was on, which is exactly the wrong reassurance."
+    ],
+    "requires": [
+      "Odoo 19 Community or Enterprise with Inventory. It restricts what people see, not what they may do - which operations they can perform is access rights . It does not restrict by location within a warehouse, and it writes nothing to your stock."
+    ],
+    "price": 29.12,
+    "manifestPrice": 29.0,
+    "currency": "USD",
+    "category": "Warehouse",
+    "version": "19.0.1.0.13",
+    "license": "OPL-1",
+    "depends": [
+      "stock"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_warehouse_access",
+    "screenshots": [
+      "screenshot_access.png",
+      "screenshot_count.png"
+    ],
+    "copyWords": 320,
+    "hasVideo": true,
+    "youtubeId": "j1kBnmIzSno",
     "externalPage": null
   },
   {
@@ -4181,7 +4319,7 @@ export const odooApps = [
     ],
     "scope": [],
     "requires": [],
-    "price": 29.0,
+    "price": 29.01,
     "manifestPrice": 29.0,
     "currency": "USD",
     "category": "Human Resources",
@@ -4268,7 +4406,7 @@ export const odooApps = [
     "requires": [
       "Odoo 19 and 20 Community or Enterprise; depends on Discuss (mail). Third-party apps install on Odoo.sh or On-Premise only - they cannot be installed on Odoo Online (SaaS)."
     ],
-    "price": 29.0,
+    "price": 29.01,
     "manifestPrice": 29.0,
     "currency": "USD",
     "category": "Productivity",
@@ -4336,7 +4474,7 @@ export const odooApps = [
     "requires": [
       "Odoo 19 Community or Enterprise, with Discuss. Installs the free Lost Messages Routing , which does the capturing. Only models that accept incoming mail can be targeted."
     ],
-    "price": 29.0,
+    "price": 29.01,
     "manifestPrice": 29.0,
     "currency": "USD",
     "category": "Productivity/Discuss",
@@ -4400,7 +4538,7 @@ export const odooApps = [
     "requires": [
       "Odoo 19 and 20, Community or Enterprise; installs Odoo's own Point of Sale app (point_of_sale). Third-party apps install on Odoo.sh or On-Premise only - they cannot be installed on Odoo Online (SaaS)."
     ],
-    "price": 29.0,
+    "price": 29.01,
     "manifestPrice": 29.0,
     "currency": "USD",
     "category": "Sales/Point of Sale",
@@ -4480,7 +4618,7 @@ export const odooApps = [
     "requires": [
       "Odoo 19 and 20, Community or Enterprise, with Point of Sale (it depends on point_of_sale). You create the sales journals and their sequences yourself in Accounting. Third-party apps install on Odoo.sh or On-Premise only - they cannot be installed on Odoo Online (SaaS)."
     ],
-    "price": 29.0,
+    "price": 29.01,
     "manifestPrice": 29.0,
     "currency": "USD",
     "category": "Sales/Point of Sale",
@@ -4566,7 +4704,7 @@ export const odooApps = [
     "requires": [
       "Odoo 19 and 20, Community or Enterprise; installs Odoo's own Point of Sale app (point_of_sale). The Point of Sale must use pricelists (Settings > Point of Sale > Pricing). Third-party apps install on Odoo.sh or On-Premise only - they cannot be installed on Odoo Online (SaaS)."
     ],
-    "price": 29.0,
+    "price": 29.01,
     "manifestPrice": 29.0,
     "currency": "USD",
     "category": "Sales/Point of Sale",
@@ -4648,7 +4786,7 @@ export const odooApps = [
     "requires": [
       "Odoo 19 and 20, Community or Enterprise. Installs Odoo's own restaurant Point of Sale (pos_restaurant) and employee login (pos_hr, which needs the Employees app). Turn on Log in with Employees for the Point of Sale, then Lock Tables to Waiter. Managers are the employees pos_hr already treats as managers of that Point of Sale. Third-party apps install on Odoo.sh or On-Premise only - they cannot be installed on Odoo Online (SaaS)."
     ],
-    "price": 29.0,
+    "price": 29.01,
     "manifestPrice": 29.0,
     "currency": "USD",
     "category": "Sales/Point of Sale",
@@ -4721,7 +4859,7 @@ export const odooApps = [
     "requires": [
       "Odoo 19 or 20, Community or Enterprise, with the eCommerce app (website_sale). Third-party apps install on Odoo.sh or On-Premise only - they cannot be installed on Odoo Online."
     ],
-    "price": 29.0,
+    "price": 29.01,
     "manifestPrice": 29.0,
     "currency": "USD",
     "category": "Website/Website",
@@ -4784,7 +4922,7 @@ export const odooApps = [
     "requires": [
       "Odoo 19 and Odoo 20, Community or Enterprise, with the Purchase app. Third-party apps install on Odoo.sh or On-Premise only - they cannot be installed on Odoo Online (SaaS)."
     ],
-    "price": 29.0,
+    "price": 29.01,
     "manifestPrice": 29.0,
     "currency": "USD",
     "category": "Purchases",
@@ -4851,7 +4989,7 @@ export const odooApps = [
     "requires": [
       "Odoo 19 Community or Enterprise with Inventory. It does not run counts or create adjustments - it reads the ones you already posted. Values are at cost."
     ],
-    "price": 29.0,
+    "price": 29.01,
     "manifestPrice": 29.0,
     "currency": "USD",
     "category": "Warehouse",
@@ -4869,70 +5007,6 @@ export const odooApps = [
     "copyWords": 357,
     "hasVideo": true,
     "youtubeId": "m0A3u_4iMDc",
-    "externalPage": null
-  },
-  {
-    "tech": "mh_warehouse_access",
-    "slug": "warehouse-access-rules",
-    "name": "Warehouse Access Rules",
-    "summary": "Restrict users to the warehouses they work in, and see exactly how many transfers and quants each of them will stop seeing before you switch it on",
-    "tagline": "Restrict users to the warehouses they work in, and see exactly how many transfers and quants each of them will stop seeing before you switch it on",
-    "intro": [
-      "Restricting somebody to their own site is easy to switch on and hard to predict. It hides records, and hidden records look exactly like there being none - so the complaint that follows is never \"the rule is wrong\", it is \"the system is broken\", and it arrives from the warehouse floor on a Monday.",
-      "Two people, their warehouses, and what each one stops seeing.",
-      "Counted before anything is applied, with a button to go and look at the transfers in question."
-    ],
-    "features": [
-      {
-        "heading": "It counts before it hides",
-        "body": [
-          "How many transfers and how many stock lines that person will stop seeing, with one button to open those very transfers and check they are the ones you meant."
-        ]
-      },
-      {
-        "heading": "Nobody you did not name is affected",
-        "body": [
-          "Anybody without a restriction keeps seeing everything, so you can add people one at a time and check each as you go - instead of switching on a rule that quietly narrows the whole company at once."
-        ]
-      },
-      {
-        "heading": "The three places people mean",
-        "body": [
-          "Transfers, stock on hand, and the warehouse list itself. Records with no warehouse at all stay visible to everybody, because hiding those breaks the parts of Odoo that use warehouse-less transfers and explains nothing to the user."
-        ]
-      },
-      {
-        "heading": "It refuses two things",
-        "body": [
-          "A restriction with no warehouses, which would hide every transfer and stock line from that person - archiving is how you turn one off. And a restriction on the superuser, which bypasses record rules by design and would do nothing while looking as though it did something."
-        ]
-      }
-    ],
-    "scope": [
-      "It counts across the whole database rather than as that user, so the figure is what exists and would be hidden. Counting as the user would report zero the moment the rule was on, which is exactly the wrong reassurance."
-    ],
-    "requires": [
-      "Odoo 19 Community or Enterprise with Inventory. It restricts what people see, not what they may do - which operations they can perform is access rights . It does not restrict by location within a warehouse, and it writes nothing to your stock."
-    ],
-    "price": 29.0,
-    "manifestPrice": 29.0,
-    "currency": "USD",
-    "category": "Warehouse",
-    "version": "19.0.1.0.13",
-    "license": "OPL-1",
-    "depends": [
-      "stock"
-    ],
-    "paidDepends": [],
-    "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_warehouse_access",
-    "screenshots": [
-      "screenshot_access.png",
-      "screenshot_count.png"
-    ],
-    "copyWords": 320,
-    "hasVideo": true,
-    "youtubeId": "j1kBnmIzSno",
     "externalPage": null
   },
   {
@@ -4993,7 +5067,7 @@ export const odooApps = [
     "requires": [
       "Odoo 19 or 20, Community or Enterprise, with the eCommerce app (website_sale). Running Sync Categories needs the Sales Administrator and product management rights an Odoo administrator has. Third-party apps install on Odoo.sh or On-Premise only - they cannot be installed on Odoo Online."
     ],
-    "price": 29.0,
+    "price": 29.01,
     "manifestPrice": 29.0,
     "currency": "USD",
     "category": "Website/Website",
@@ -5062,7 +5136,7 @@ export const odooApps = [
     "requires": [
       "Odoo 19 Community or Enterprise. Depends only on base, nothing leaves your server, and it is restricted to Settings administrators."
     ],
-    "price": 28.22,
+    "price": 28.33,
     "manifestPrice": 29.0,
     "currency": "USD",
     "category": "Accounting/Accounting",
@@ -5128,7 +5202,7 @@ export const odooApps = [
     "requires": [
       "Odoo 19 Community or Enterprise, no other module needed. It changes who is in a group, not what the group can do - that is access rights , record rules and field access ."
     ],
-    "price": 28.22,
+    "price": 28.33,
     "manifestPrice": 29.0,
     "currency": "USD",
     "category": "Tools",
@@ -5197,7 +5271,7 @@ export const odooApps = [
     ],
     "scope": [],
     "requires": [],
-    "price": 28.22,
+    "price": 28.33,
     "manifestPrice": 29.0,
     "currency": "USD",
     "category": "Accounting/Accounting",
@@ -5315,7 +5389,7 @@ export const odooApps = [
       "stock_account"
     ],
     "paidDepends": [],
-    "downloads": 7,
+    "downloads": 8,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_abc_check",
     "screenshots": [
       "screenshot_check.png"
@@ -5544,7 +5618,7 @@ export const odooApps = [
       "stock_account"
     ],
     "paidDepends": [],
-    "downloads": 6,
+    "downloads": 7,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_archive_stock_guard",
     "screenshots": [
       "screenshot_blocked.png",
@@ -5766,7 +5840,7 @@ export const odooApps = [
       "web"
     ],
     "paidDepends": [],
-    "downloads": 3,
+    "downloads": 4,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_report_barcode_qr",
     "screenshots": [
       "screenshot_quotation.png"
@@ -5818,7 +5892,7 @@ export const odooApps = [
       "website"
     ],
     "paidDepends": [],
-    "downloads": 3,
+    "downloads": 4,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_before_after_slider",
     "screenshots": [
       "screenshot_slider.png"
@@ -5936,7 +6010,7 @@ export const odooApps = [
       "stock"
     ],
     "paidDepends": [],
-    "downloads": 7,
+    "downloads": 8,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_bulk_scrap",
     "screenshots": [
       "screenshot_bulk_scrap.png"
@@ -6140,7 +6214,7 @@ export const odooApps = [
       "stock_account"
     ],
     "paidDepends": [],
-    "downloads": 26,
+    "downloads": 27,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_cost_price_history",
     "screenshots": [
       "screenshot_history.png"
@@ -6503,7 +6577,7 @@ export const odooApps = [
       "mail"
     ],
     "paidDepends": [],
-    "downloads": 20,
+    "downloads": 21,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_direct_download_base",
     "screenshots": [
       "main_screenshot.png",
@@ -6754,7 +6828,7 @@ export const odooApps = [
       "stock_account"
     ],
     "paidDepends": [],
-    "downloads": 6,
+    "downloads": 7,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_duplicate_product_check",
     "screenshots": [
       "screenshot_groups.png",
@@ -7095,7 +7169,7 @@ export const odooApps = [
       "website"
     ],
     "paidDepends": [],
-    "downloads": 27,
+    "downloads": 28,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_google_reviews_snippet",
     "screenshots": [
       "screenshot_settings.png"
@@ -7377,7 +7451,7 @@ export const odooApps = [
       "mh_website_tracking_base"
     ],
     "paidDepends": [],
-    "downloads": 3,
+    "downloads": 4,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_matomo_analytics",
     "screenshots": [
       "screenshot_settings.png"
@@ -7449,7 +7523,7 @@ export const odooApps = [
       "stock_account"
     ],
     "paidDepends": [],
-    "downloads": 6,
+    "downloads": 7,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_merge_products",
     "screenshots": [
       "screenshot_preview.png"
@@ -7613,7 +7687,7 @@ export const odooApps = [
       "mh_website_tracking_base"
     ],
     "paidDepends": [],
-    "downloads": 4,
+    "downloads": 5,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_microsoft_uet_tag",
     "screenshots": [
       "screenshot_settings.png"
@@ -7737,7 +7811,7 @@ export const odooApps = [
       "point_of_sale"
     ],
     "paidDepends": [],
-    "downloads": 8,
+    "downloads": 10,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_pos_a4_receipt",
     "screenshots": [
       "screenshot_a4_receipt.png",
@@ -7866,7 +7940,7 @@ export const odooApps = [
       "point_of_sale"
     ],
     "paidDepends": [],
-    "downloads": 3,
+    "downloads": 4,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_pos_discount_reasons",
     "screenshots": [
       "screenshot_report.png"
@@ -7933,7 +8007,7 @@ export const odooApps = [
       "point_of_sale"
     ],
     "paidDepends": [],
-    "downloads": 6,
+    "downloads": 8,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_pos_hourly_sales",
     "screenshots": [
       "screenshot_hourly_grid.png"
@@ -8007,7 +8081,7 @@ export const odooApps = [
       "point_of_sale"
     ],
     "paidDepends": [],
-    "downloads": 8,
+    "downloads": 9,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_pos_payment_reference",
     "screenshots": [
       "screenshot_payment_screen.png",
@@ -8076,7 +8150,7 @@ export const odooApps = [
       "point_of_sale"
     ],
     "paidDepends": [],
-    "downloads": 4,
+    "downloads": 5,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_pos_reorder",
     "screenshots": [
       "screenshot_reorder_dialog.png"
@@ -8248,7 +8322,7 @@ export const odooApps = [
       "mh_website_tracking_base"
     ],
     "paidDepends": [],
-    "downloads": 3,
+    "downloads": 4,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_pinterest_tag",
     "screenshots": [
       "screenshot_settings.png"
@@ -8282,7 +8356,7 @@ export const odooApps = [
       "web"
     ],
     "paidDepends": [],
-    "downloads": 22,
+    "downloads": 24,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_popup_message",
     "screenshots": [
       "screenshot_message.png"
@@ -8376,7 +8450,7 @@ export const odooApps = [
       "product"
     ],
     "paidDepends": [],
-    "downloads": 8,
+    "downloads": 9,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_product_multi_barcode",
     "screenshots": [
       "screenshot_barcodes.png"
@@ -8432,13 +8506,13 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Website/Website",
-    "version": "19.0.1.0.1",
+    "version": "19.0.1.0.2",
     "license": "OPL-1",
     "depends": [
       "website_sale"
     ],
     "paidDepends": [],
-    "downloads": 5,
+    "downloads": 6,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_website_size_chart",
     "screenshots": [
       "screenshot_size_guide.png",
@@ -8554,7 +8628,7 @@ export const odooApps = [
       "purchase_stock"
     ],
     "paidDepends": [],
-    "downloads": 3,
+    "downloads": 4,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_purchase_order_labels",
     "screenshots": [
       "screenshot_print_labels.png"
@@ -8865,7 +8939,7 @@ export const odooApps = [
       "base"
     ],
     "paidDepends": [],
-    "downloads": 3,
+    "downloads": 4,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_same_name_file_check",
     "screenshots": [
       "screenshot_same_name_files.png"
@@ -8971,7 +9045,7 @@ export const odooApps = [
       "website"
     ],
     "paidDepends": [],
-    "downloads": 5,
+    "downloads": 6,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_schema_markup",
     "screenshots": [
       "screenshot_settings.png"
@@ -9084,7 +9158,7 @@ export const odooApps = [
       "mh_website_tracking_base"
     ],
     "paidDepends": [],
-    "downloads": 4,
+    "downloads": 5,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_snapchat_pixel",
     "screenshots": [
       "screenshot_settings.png"
@@ -9291,7 +9365,7 @@ export const odooApps = [
       "stock_account"
     ],
     "paidDepends": [],
-    "downloads": 9,
+    "downloads": 10,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_stock_valuation_closing",
     "screenshots": [
       "screenshot_menu.png",
@@ -9355,7 +9429,7 @@ export const odooApps = [
       "project"
     ],
     "paidDepends": [],
-    "downloads": 4,
+    "downloads": 5,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_task_pdf_report",
     "screenshots": [
       "screenshot_task_sheet.png"
@@ -9478,7 +9552,7 @@ export const odooApps = [
       "mh_website_tracking_base"
     ],
     "paidDepends": [],
-    "downloads": 4,
+    "downloads": 5,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_tiktok_pixel",
     "screenshots": [
       "screenshot_settings.png"
@@ -9535,7 +9609,7 @@ export const odooApps = [
       "stock"
     ],
     "paidDepends": [],
-    "downloads": 7,
+    "downloads": 8,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_transfer_creation_rights",
     "screenshots": [
       "screenshot_rights.png",
@@ -9601,7 +9675,7 @@ export const odooApps = [
       "stock"
     ],
     "paidDepends": [],
-    "downloads": 7,
+    "downloads": 8,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_variant_routes",
     "screenshots": [
       "screenshot_variant_list.png",
@@ -9675,7 +9749,7 @@ export const odooApps = [
       "website_sale"
     ],
     "paidDepends": [],
-    "downloads": 3,
+    "downloads": 4,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_website_tracking_base",
     "screenshots": [
       "screenshot_settings.png"
