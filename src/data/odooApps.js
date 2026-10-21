@@ -5,7 +5,7 @@
 // generator; editing here forks the copy away from what the store actually
 // serves.
 //
-// Store snapshot: 2026-10-20T23:33:38+00:00
+// Store snapshot: 2026-10-21T00:02:48+00:00
 
 export const odooApps = [
   {
@@ -4496,6 +4496,80 @@ export const odooApps = [
     "copyWords": 196,
     "hasVideo": true,
     "youtubeId": "ffxuNTsuKeU",
+    "externalPage": null
+  },
+  {
+    "tech": "mh_invoice_split",
+    "slug": "invoice-split",
+    "name": "Invoice Split",
+    "summary": "Split invoice and split bill into two drafts by lines, part quantities or a percentage; invoice splitting keeps sales and purchase order links and totals intact",
+    "tagline": "Cut a draft customer invoice, vendor bill or credit note in two: move chosen lines, part of a quantity or a percentage to a new draft.",
+    "intro": [
+      "A customer wants one invoice for the furniture and another for the installation. Half of a vendor bill belongs to a different cost centre. Odoo has no way to cut a draft in two: you delete lines, retype them on a new invoice, and the sales or purchase order can lose track of what was invoiced.",
+      "Invoice Split adds a Split button on draft invoices, bills and credit notes. You say what moves, and the app builds the second draft from the first, with the same customer or vendor, journal, currency and terms, and the same links back to the order."
+    ],
+    "features": [
+      {
+        "heading": "Two ways to split",
+        "body": [
+          "Move chosen lines or part quantities: the wizard lists the product lines with a To move column. Type the quantity to move on each line, all of it or only part of it; 0 keeps the line where it is. Or move a percentage of every line: enter a share above 0 and below 100 and each line's quantity is cut by that share."
+        ]
+      },
+      {
+        "heading": "Order links stay right",
+        "body": [
+          "When Sales or Purchase is installed, a moved line keeps its sales order line or purchase order line. The quantity invoiced on the order is the same before and after the split, and the order lists both drafts. If you later cancel one draft, Odoo reopens exactly the quantity that draft carried."
+        ]
+      },
+      {
+        "heading": "The two drafts add up",
+        "body": [
+          "After the split the app checks untaxed amount, tax and total of the two drafts against the original, in the invoice currency. If they would not add up, for example because a part quantity rounds differently on each side, it stops with the difference and changes nothing."
+        ]
+      },
+      {
+        "heading": "What the new draft copies",
+        "body": [
+          "Partner, journal, currency and its rate, payment terms, fiscal position, invoice date, due date, reference, origin, salesperson and the rest of the header Odoo copies on a duplicate. Moved lines keep their product, account, taxes, discount and analytic distribution. Sections and notes follow their lines: a section goes to the new draft when any line under it moves, and leaves the original when nothing under it stays."
+        ]
+      },
+      {
+        "heading": "Draft only",
+        "body": [
+          "Posted and cancelled documents are refused, and so are drafts set to post automatically. Reset to draft first if you must. The new draft has no number until it is posted; the original keeps its own number. Both drafts, the original and the new one, are linked with a note in the chatter."
+        ]
+      },
+      {
+        "heading": "Who it is for",
+        "body": [
+          "Accountants and billing teams who invoice part of an order to one customer and part to another, bill in stages, or re-allocate part of a vendor bill. Works with several companies: the new draft stays in the original's company."
+        ]
+      }
+    ],
+    "scope": [
+      "It does not split posted invoices. It does not split by unit price or by amount: only by quantity or by percentage. One split gives two drafts; split again for more. It does not merge invoices and it does not split many invoices at once. It handles customer invoices, vendor bills and their credit notes, not receipts or journal entries. It does not copy attachments or chatter history to the new draft, and it does not move links added by other apps, such as timesheets, expenses or e-invoicing data. In a foreign currency the two drafts add up in the invoice currency; each posts to the books in your company currency on its own, so a one-cent difference there is possible. It sends no data anywhere."
+    ],
+    "requires": [
+      "Odoo 19 and 20, Community or Enterprise, with Invoicing (the account module). Sales and Purchase are optional: with them installed the order links are kept, without them the app still splits. Third-party apps install on Odoo.sh or On-Premise only - they cannot be installed on Odoo Online (SaaS)."
+    ],
+    "price": 29.01,
+    "manifestPrice": 29.0,
+    "currency": "USD",
+    "category": "Accounting/Accounting",
+    "version": "19.0.1.0.0",
+    "license": "OPL-1",
+    "depends": [
+      "account"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_invoice_split",
+    "screenshots": [
+      "screenshot_split_wizard.png"
+    ],
+    "copyWords": 599,
+    "hasVideo": true,
+    "youtubeId": null,
     "externalPage": null
   },
   {
