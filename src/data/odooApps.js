@@ -5,7 +5,7 @@
 // generator; editing here forks the copy away from what the store actually
 // serves.
 //
-// Store snapshot: 2026-10-21T00:02:48+00:00
+// Store snapshot: 2026-10-21T07:31:03+00:00
 
 export const odooApps = [
   {
@@ -2171,7 +2171,7 @@ export const odooApps = [
     ],
     "copyWords": 493,
     "hasVideo": true,
-    "youtubeId": null,
+    "youtubeId": "HnlLQ2XnAb8",
     "externalPage": null
   },
   {
@@ -2553,6 +2553,88 @@ export const odooApps = [
     "copyWords": 736,
     "hasVideo": true,
     "youtubeId": "6nG6wrro-DY",
+    "externalPage": null
+  },
+  {
+    "tech": "mh_shop_agent_orders",
+    "slug": "shop-agent-orders",
+    "name": "Shop Agent Orders",
+    "summary": "Shop agent orders: a sales agent logs in to the website shop and places the order on behalf of an assigned customer, with the customer's prices and addresses",
+    "tagline": "Let your sales agents log in to the website shop and place the order on behalf of an assigned customer, with that customer's prices, addresses and delivery methods.",
+    "intro": [
+      "Your salespeople or resellers take orders by phone or on a visit, then key them into the backend, or they ask the customer to order alone on the website. Odoo's website shop cannot do it for them: it always puts a logged-in user's cart on that user's own account, so an agent who opens the shop can only buy for himself, at his own prices.",
+      "Shop Agent Orders lets an agent pick one of his customers and shop as that customer: the customer's pricelist, the customer's addresses, the customer's delivery methods. The order belongs to the customer, the agent is recorded on it, and no online payment is taken."
+    ],
+    "features": [
+      {
+        "heading": "Who is an agent, and which customers",
+        "body": [
+          "Members of the new group Shop agent are agents. An agent can be an internal user or a portal user. On the customer's form, in the Sales & Purchase tab, a sales manager lists the Shop agents of that customer. A customer can be ordered for only by the agents listed on it, and a customer can have several agents. An agent with no customer assigned has nothing to pick. A customer is a company, or a person without a parent company: a contact under a company is not offered, so assign the company. Archived customers and the agent's own contact are never offered either. The list of agents on a customer is visible and editable only to Sales Administrators and Settings administrators, not to agents or to the customer."
+        ]
+      },
+      {
+        "heading": "Shopping as the customer",
+        "body": [
+          "The agent opens \"Order for a customer\" and sees his own customers (name and city) with a search box. After he picks one, a bar at the bottom of every shop page says \"Ordering for\" the customer, with a button to exit. The shop then prices everything with that customer's pricelist and fiscal position, delivery methods are the ones available for the customer's delivery address, and checkout shows only that customer's addresses. The agent can add a new address for the order and choose among the customer's existing ones. Pricelist switching and promo codes are switched off while he orders for a customer, so the agent's own pricelist can never leak into the customer's order."
+        ]
+      },
+      {
+        "heading": "A separate cart per customer",
+        "body": [
+          "The cart for a customer is a separate draft order for that customer, that agent and that website. It is never merged with the agent's own cart, with another customer's cart, or with another agent's cart for the same customer. Exiting returns the agent to his own cart; picking the customer again finds the same cart. When the customer logs in to the shop himself he never lands on the agent's cart, and Odoo's abandoned cart reminder emails are not sent for carts an agent is building."
+        ]
+      },
+      {
+        "heading": "No online payment: a quotation or a confirmed order",
+        "body": [
+          "The last step for an agent is a page \"Place the order for\" the customer: the lines at the customer's prices, the totals, the billing and delivery addresses, the delivery method, and one button. There is no payment form. The shop's payment route refuses an order built by an agent, in the mode or after leaving it, and its payment-validate route never confirms one. A setting decides what the button does: Website > Configuration > Settings, under eCommerce, \"Shop Agent Orders\" (also on the website form). \"Send as a quotation\" is the default: the order is saved as a quotation the customer can accept and pay in the portal, and no email is sent. \"Confirm the order\" confirms it, and Odoo's standard order confirmation email goes to the customer. After placing, the agent is back on his own cart."
+        ]
+      },
+      {
+        "heading": "Whose order is it",
+        "body": [
+          "The order belongs to the customer: the customer is the partner on the order and finds it in his portal like any other. The agent is recorded in the field \"Placed by shop agent\" on the order (with a filter in the Sales orders list), and an internal agent is also the order's salesperson. A portal user cannot be a salesperson, so for a portal agent only the field is set. The agent does not get access to the customer's order in the portal: his portal lists his own purchases only. An internal agent finds the orders he placed in the Sales app, under the access his own sales group gives him."
+        ]
+      },
+      {
+        "heading": "Tested against attempts to break it",
+        "body": [
+          "The access rules are covered by automated tests on Odoo 19 and 20 that post other customers' ids straight to the shop's address, cart, checkout and payment routes as a portal agent, that run two agents on one customer, and that end the mode when the assignment, the customer or the agent's group changes during the session. Three browser tours drive the real shop: an agent orders for a customer, exits back to his own cart, and tries to reach a customer who is not his."
+        ]
+      },
+      {
+        "heading": "Who it is for",
+        "body": [
+          "Distributors, wholesalers and B2B sellers on an Odoo website shop whose field reps, resellers or telephone sales staff order for existing customers, and who want the customer's own prices and delivery methods applied without keying the order into the backend."
+        ]
+      }
+    ],
+    "scope": [
+      "It takes no payment, deposit or card on behalf of the customer, and it does not log the agent in as the customer. An agent cannot edit the customer's existing contact or addresses; he can add a new address for the order and choose among the existing ones, and a customer whose address is incomplete needs a new complete address before the agent can place the order. Pricelist promo codes, pricelist switching, the cart's \"Quick reorder\" list, the express payment buttons and the portal's \"Reorder\" are off while ordering for a customer. It does not create customers, import assignments or compute commission: assignments are set on the customer form, one customer at a time. In quotation mode no email is sent, and the agent gets no portal screen listing the orders he placed; internal agents find them in the Sales app. Internal agents see the same products as in the shop, including products that are not published. It was tested with Odoo's eCommerce and Sales only: coupon and loyalty programs, subscriptions, B2B portal add-ons and other eCommerce add-ons were not tested with it, and their promo codes are not blocked by this app. The \"ordering for\" mode lives in the agent's browser session and ends when he logs out."
+    ],
+    "requires": [
+      "Odoo 19 or 20, Community or Enterprise. Also requires eCommerce (website_sale) and Sales (sale). Third-party apps install on Odoo.sh or On-Premise only - they cannot be installed on Odoo Online (SaaS)."
+    ],
+    "price": 49.0,
+    "manifestPrice": 49.0,
+    "currency": "USD",
+    "category": "Website/Website",
+    "version": "19.0.1.0.0",
+    "license": "OPL-1",
+    "depends": [
+      "website_sale",
+      "sale"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_shop_agent_orders",
+    "screenshots": [
+      "screenshot_place.png",
+      "screenshot_assign.png"
+    ],
+    "copyWords": 1094,
+    "hasVideo": true,
+    "youtubeId": null,
     "externalPage": null
   },
   {
@@ -3419,7 +3501,7 @@ export const odooApps = [
     ],
     "copyWords": 450,
     "hasVideo": true,
-    "youtubeId": null,
+    "youtubeId": "K7NfmaUGonA",
     "externalPage": null
   },
   {
@@ -3926,6 +4008,86 @@ export const odooApps = [
     "externalPage": null
   },
   {
+    "tech": "mh_purchase_pricelist",
+    "slug": "purchase-pricelists",
+    "name": "Purchase Pricelists",
+    "summary": "Purchase pricelist for RFQs and POs: vendor pricelist rules by product category, percent off cost or list price, or a formula, so no supplier pricelist line per product.",
+    "tagline": "Price purchase orders from pricelist rules, not one vendor price line per product.",
+    "intro": [
+      "Odoo prices an RFQ line from a vendor price line: one line per product and vendor. A supplier that gives you \"list price minus 30%\" on 2,000 products means 2,000 lines to create and keep up to date. Purchase Pricelists adds purchase pricelists to the Purchase app. A rule can cover one product, a whole product category or all products, take a percentage off (or add one to) the product's cost or Sales Price (its list price), and apply from a minimum quantity or between two dates. Give a vendor a pricelist and its RFQs and purchase orders are priced from the rules."
+    ],
+    "features": [
+      {
+        "heading": "How the price is chosen",
+        "body": [
+          "Each line is priced in this order, and the first step that has an answer wins:",
+          "A rule only takes over from step 1 when you tick \"Overrides Vendor Price Lines\" on that pricelist. With no pricelist on the order, nothing changes: the app is invisible."
+        ]
+      },
+      {
+        "heading": "Purchase pricelists, set up once",
+        "body": [
+          "Open Purchase, Configuration, Purchase Pricelists and add rules the same way as on a sales pricelist: apply on a product, a product category (its child categories are included) or all products; a percentage off or on top of the cost or the Sales Price, or a fixed price; a minimum quantity; a start and end date. The most specific rule that matches wins, as it does on sales pricelists."
+        ]
+      },
+      {
+        "heading": "Set on the vendor, adjustable on the order",
+        "body": [
+          "The vendor form has a Purchase Pricelist field (it is per company). New RFQs to that vendor start with it, a contact falls back to its company's pricelist, and you can change it on the RFQ while the order is a draft or a sent quotation. Changing the vendor, the pricelist, the quantity or the unit, or adding a product, prices the line from the rules. A price you type by hand is kept until you press Update prices, which re-applies the pricelist to every line it can price."
+        ]
+      },
+      {
+        "heading": "Money, units and taxes",
+        "body": [
+          "Rules are worked out in the pricelist's currency and converted to the order's currency at the order date. A line in dozens is priced per dozen, and a minimum quantity is measured in the product's own unit. Taxes are not touched: lines keep the taxes Odoo chose and the subtotal, tax and total follow from the new unit price, with the same tax-included handling Odoo uses for vendor prices. A rule price is the net price, so the line's discount is set to 0."
+        ]
+      },
+      {
+        "heading": "Know which rule priced a line",
+        "body": [
+          "Turn on the optional column Pricelist Rule in the order lines to see which rule set each price. It stays empty when the price came from a vendor price line, the product cost, or was typed by hand."
+        ]
+      },
+      {
+        "heading": "Odoo 19 and vendor lines",
+        "body": [
+          "On Odoo 19, confirming an RFQ normally adds a new vendor price line to each product the vendor did not have, which would then outrank the pricelist on every later order. For lines that a pricelist rule priced, Purchase Pricelists skips that step so a change to the rule reaches the next order. Lines priced by cost or by hand still get Odoo's vendor line."
+        ]
+      },
+      {
+        "heading": "Who it is for",
+        "body": [
+          "Buyers with suppliers that quote by category discount or a percentage off list price, and who are tired of maintaining a vendor price line for every product."
+        ]
+      }
+    ],
+    "scope": [
+      "It does not import vendor price lists or create vendor price lines. The pricelist field is read-only once the order is confirmed, and the Update prices button is for draft and sent orders only. A rule price is final: the order line's discount column is not filled from a rule's percentage. There is no price history or report of rule prices. Purchase pricelists are never offered as a customer's default pricelist, but if Sales is installed they are still ordinary pricelists, so they can be picked by hand on a sales order. It adds no portal, no approval step and no automatic vendor selection. Pricelists work per vendor and per order, not per product, and there is no dedicated security group: Purchase Managers edit pricelists and rules."
+    ],
+    "requires": [
+      "Odoo 19 and 20, Community or Enterprise. Needs the Purchase app and nothing else. Third-party apps install on Odoo.sh or On-Premise only - they cannot be installed on Odoo Online (SaaS)."
+    ],
+    "price": 39.0,
+    "manifestPrice": 39.0,
+    "currency": "USD",
+    "category": "Purchases",
+    "version": "19.0.1.0.0",
+    "license": "OPL-1",
+    "depends": [
+      "purchase"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_purchase_pricelist",
+    "screenshots": [
+      "screenshot_purchase_order.png"
+    ],
+    "copyWords": 698,
+    "hasVideo": true,
+    "youtubeId": null,
+    "externalPage": null
+  },
+  {
     "tech": "mh_reorder_rule_audit",
     "slug": "reordering-rule-audit",
     "name": "Reordering Rule Audit",
@@ -4137,6 +4299,86 @@ export const odooApps = [
       "screenshot_quotation.png"
     ],
     "copyWords": 429,
+    "hasVideo": true,
+    "youtubeId": "oBIJLRgmBxc",
+    "externalPage": null
+  },
+  {
+    "tech": "mh_vendor_evaluation",
+    "slug": "vendor-evaluation",
+    "name": "Vendor Evaluation",
+    "summary": "Vendor rating and supplier evaluation: a weighted vendor score from star ratings on each receipt plus measured on-time rate, days late, price drift and returns, shown on the vendor, RFQ and PO",
+    "tagline": "Rate each receipt with stars, measure on-time delivery, days late, price drift and returns from your own stock and purchase data, and get one weighted score per vendor.",
+    "intro": [],
+    "features": [
+      {
+        "heading": "What it does",
+        "body": [
+          "Before you send an RFQ you want to know which vendor is worth it. Odoo shows one number on the vendor form, an on-time delivery rate, and nothing else: no rating from the people who unpack the goods, no lateness, no price creep against the vendor's price list, no returns, and no single score you can compare. So the real picture lives in a spreadsheet, or in somebody's head.",
+          "Vendor Evaluation puts it in Odoo. The warehouse gives stars on each done receipt. The app measures four numbers from the purchase orders, receipts and returns you already have. You decide what each one weighs, and every vendor gets one score from 0 to 100, with stars, on the vendor, on the RFQ and on the purchase order."
+        ]
+      },
+      {
+        "heading": "Stars on the receipt",
+        "body": [
+          "A done receipt from a vendor gets a Vendor rating tab. Press Rate this receipt and it lists your criteria; click 1 to 5 stars on each. Out of the box the criteria are Quality of goods, Packaging and Communication. Rename them, add your own, set a weight on each, or archive the ones you do not want. A receipt holds one rating per criterion, and a criterion left at no stars is not counted."
+        ]
+      },
+      {
+        "heading": "Four numbers measured from your data",
+        "body": [
+          "On-time delivery: the share of the quantity that is due (already received, or still owed past its date) that arrived on or before its due date. Days late: the average number of days late per unit received, on-time units counting as zero. Price drift: how far the prices on the purchase order lines sit above the vendor price lines on the product, weighted by value, in your company currency. Returns: the share of the received quantity that went back to the vendor.",
+          "They are worked out from confirmed purchase orders, their receipts and backorders, and returns to the vendor. Cancelled orders, draft RFQs, cancelled receipts and cancelled backorders are left out. Quantity still to come that is not yet due is not counted as late."
+        ]
+      },
+      {
+        "heading": "Weights you set",
+        "body": [
+          "Each of the four measured numbers has a weight, and so does each rated criterion. A weight of 0 leaves a criterion out of the score. A criterion with no data for a vendor, for instance nobody has rated Packaging yet, is left out for that vendor rather than counted as zero. You also choose where a measured number scores 0: the days late, the price drift percentage and the returned percentage. The score is the weighted average of what is left. Settings are per company, under Purchase, Configuration, Vendor Evaluation."
+        ]
+      },
+      {
+        "heading": "Where the buyer sees it",
+        "body": [
+          "The vendor form has a Vendor score button. The RFQ and the purchase order show the vendor's stars and score under the vendor, and the order lists have a Vendor score column. Vendor Scores, under Purchase, Orders, ranks every vendor with the best first and opens a breakdown of how each criterion was scored; Vendor Scores by Criterion, under Purchase, Reporting, is a pivot of vendor against criterion. A scheduled action recomputes every score daily, a score is refreshed the moment a rating is added or changed, and there is a Recompute button on each score and a Recompute Vendor Scores entry under Configuration. Purchase users can read scores; Purchase administrators set the weights; Inventory users enter the stars."
+        ]
+      },
+      {
+        "heading": "Who it is for",
+        "body": [
+          "Buyers and purchasing managers who pick between vendors, warehouse teams who see the goods arrive, and anyone who already tried a manual scorecard and found that nobody fills in the measurable part."
+        ]
+      },
+      {
+        "heading": "How it compares with what Odoo already shows",
+        "body": [
+          "Odoo's own On-Time Rate on the vendor form stays as it is and is a different figure: it divides the quantity received on time by everything ordered in the last 365 days (by default), so a backorder that is not yet due counts against the vendor. The score here counts only quantity that is due or delivered, ignores cancelled lines, and sits next to the other numbers in one weighted score. The free scorecards we found on the store give a manual rating with fixed criteria, or measured numbers on a dashboard; none puts both into one weighted score."
+        ]
+      }
+    ],
+    "scope": [],
+    "requires": [
+      "Odoo 19 and 20, Community or Enterprise. It needs the Purchase and Inventory apps, installed with it. It adds no third-party service and sends no data anywhere. Third-party apps install on Odoo.sh or On-Premise only - they cannot be installed on Odoo Online (SaaS)."
+    ],
+    "price": 39.0,
+    "manifestPrice": 39.0,
+    "currency": "USD",
+    "category": "Inventory/Purchase",
+    "version": "19.0.1.0.0",
+    "license": "OPL-1",
+    "depends": [
+      "purchase_stock"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_vendor_evaluation",
+    "screenshots": [
+      "screenshot_ranking.png",
+      "screenshot_breakdown.png",
+      "screenshot_receipt.png",
+      "screenshot_order.png"
+    ],
+    "copyWords": 729,
     "hasVideo": true,
     "youtubeId": null,
     "externalPage": null
@@ -4436,6 +4678,91 @@ export const odooApps = [
     "externalPage": null
   },
   {
+    "tech": "mh_delivery_per_customer",
+    "slug": "delivery-by-customer",
+    "name": "Delivery by Customer",
+    "summary": "Delivery method restriction per customer: customer wise shipping at website checkout and on sales orders, shown only to chosen customers or customer tags",
+    "tagline": "Show a delivery method at website checkout and on sales orders only to the customers or customer tags you choose.",
+    "intro": [
+      "Odoo decides which delivery methods a customer can pick from the delivery address, the product tags, the weight and the volume. It never asks who the customer is. So the trade courier you negotiated for your B2B accounts, or the free pickup meant for your staff, is offered to every shopper who can reach the checkout.",
+      "Delivery by Customer adds a Customers tab to each delivery method. List the customers, or the customer tags, that may use it. Customers who are not listed never see the method at checkout, cannot select it by sending its id to the checkout, and cannot add it to a sales order. A method with nothing listed behaves exactly as in standard Odoo."
+    ],
+    "features": [
+      {
+        "heading": "Allowed customers and tags",
+        "body": [
+          "On the delivery method form, the new Customers tab has two lists: Allowed Customers and Allowed Customer Tags. Leave both empty and the method is offered to everyone, as before. Fill either and it becomes a restricted method."
+        ]
+      },
+      {
+        "heading": "Allow-list: listed OR tagged",
+        "body": [
+          "A restricted method is offered to a customer who is listed, or who carries one of the listed tags. It is an allow-list: there is no block-list. To keep a method from one customer, restrict it to the others, for instance with a tag."
+        ]
+      },
+      {
+        "heading": "Contacts follow their company",
+        "body": [
+          "A contact of a company counts as that company: when the company is listed or tagged, its contacts can use the method. A contact with a listed tag of its own is allowed too. The rule reads the order's customer, not the delivery address contact."
+        ]
+      },
+      {
+        "heading": "Website checkout",
+        "body": [
+          "On the shop's delivery step, a customer who is not allowed sees only the methods they may use. Guests are never in a list, so they do not see restricted methods either. Odoo's other rules (country, state, zip, product tags, weight, volume) still apply on top."
+        ]
+      },
+      {
+        "heading": "The checkout cannot be tricked",
+        "body": [
+          "Posting a hidden method's id to the checkout (the set-delivery-method and delivery-rate calls) changes nothing and returns an error, and a method chosen earlier that the customer may no longer use blocks the payment step through Odoo's own check."
+        ]
+      },
+      {
+        "heading": "Sales orders in the backend",
+        "body": [
+          "The Add shipping wizard lists only the methods the order's customer may use, and refuses to add a restricted method for a customer who is not allowed. Refreshing the price of the method already on the order still works."
+        ]
+      },
+      {
+        "heading": "Websites and companies",
+        "body": [
+          "A method keeps its own Website and Company settings. The customer rule is added to them, so a restricted method on website B is offered only to allowed customers on website B, and a method of another company is not offered at all."
+        ]
+      },
+      {
+        "heading": "Who it is for",
+        "body": [
+          "Shops on Odoo eCommerce with B2B and B2C customers on the same site: a trade courier or pallet freight for wholesale accounts, local pickup for staff or members, a white-glove method for VIP customers, a free-delivery method for one account."
+        ]
+      }
+    ],
+    "scope": [],
+    "requires": [
+      "Odoo 19 or Odoo 20, Community or Enterprise. Also requires eCommerce (website_sale), which brings Delivery with it. Third-party apps install on Odoo.sh or On-Premise only - they cannot be installed on Odoo Online (SaaS)."
+    ],
+    "price": 29.01,
+    "manifestPrice": 29.0,
+    "currency": "USD",
+    "category": "Website/Website",
+    "version": "19.0.1.0.0",
+    "license": "OPL-1",
+    "depends": [
+      "website_sale"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_delivery_per_customer",
+    "screenshots": [
+      "screenshot_form.png",
+      "screenshot_checkout.png"
+    ],
+    "copyWords": 503,
+    "hasVideo": true,
+    "youtubeId": null,
+    "externalPage": null
+  },
+  {
     "tech": "mh_hr_employee_compliance",
     "slug": "hr-employee-compliance",
     "name": "HR Employee Compliance",
@@ -4569,7 +4896,7 @@ export const odooApps = [
     ],
     "copyWords": 599,
     "hasVideo": true,
-    "youtubeId": null,
+    "youtubeId": "6e-n7si3cVY",
     "externalPage": null
   },
   {
@@ -4794,7 +5121,7 @@ export const odooApps = [
     ],
     "copyWords": 555,
     "hasVideo": true,
-    "youtubeId": null,
+    "youtubeId": "j2CtTDIFhyE",
     "externalPage": null
   },
   {
@@ -5245,6 +5572,76 @@ export const odooApps = [
     "externalPage": null
   },
   {
+    "tech": "mh_shop_quantity",
+    "slug": "shop-quantity-selector",
+    "name": "Shop Quantity Selector",
+    "summary": "Quantity selector for the shop page: a quantity box beside add to cart on products in the shop grid, so customers can order 12 of an item without opening each product page.",
+    "tagline": "A quantity box next to Add to Cart on the products in the shop grid, so customers can order 12 of an item without opening each product page.",
+    "intro": [],
+    "features": [
+      {
+        "heading": "What it does",
+        "body": [
+          "Odoo's shop grid has a one-click Add to Cart button, and it always adds one. A customer who wants twelve of the same item has to open the product page first, set the quantity there and add it. This app puts a quantity box beside the Add to Cart button on the grid: type a number, press Add to Cart, and that many go into the cart.",
+          "The number goes through Odoo's own add to cart, so the cart icon count, the added-to-cart message, stock warnings and pricelist quantity prices work exactly as they do from the product page."
+        ]
+      },
+      {
+        "heading": "Which products get the box",
+        "body": [
+          "The box appears on the products where Odoo's Add to Cart button adds straight to the cart: a product with a single variant, no optional products and one unit of measure, that is not a combo, and where Odoo shows its Add to Cart button (so not a sold-out product that cannot be sold past zero stock, and not a product whose price is zero when Odoo is set to show Contact Us instead). Products with variants to choose, optional products, several units of measure or a combo keep Odoo's button and its dialog, with no box."
+        ]
+      },
+      {
+        "heading": "Whole numbers, never a broken cart",
+        "body": [
+          "The box takes whole numbers of 1 or more. An empty box, 0 or a negative number becomes 1, and a decimal is cut to a whole number, before it is sent. Pressing Enter inside the box adds to the cart instead of submitting anything."
+        ]
+      },
+      {
+        "heading": "Stock and prices stay Odoo's",
+        "body": [
+          "If stock is limited and a customer types more than is available, Odoo's own stock check decides what is added and shows its usual message. If a pricelist has a price for a minimum quantity, typing that quantity gets that price, as on the product page."
+        ]
+      },
+      {
+        "heading": "On or off for each website",
+        "body": [
+          "Website > Settings > eCommerce has a Quantity Box on Shop Grid setting, on by default, saved for each website. Switched off, the shop grid is exactly Odoo's own."
+        ]
+      },
+      {
+        "heading": "Who it is for",
+        "body": [
+          "Shops that sell items customers buy in bulk, such as consumables, spare parts, trade supplies or party goods, where opening a product page for every line slows the order down."
+        ]
+      }
+    ],
+    "scope": [],
+    "requires": [
+      "Odoo 19 or 20, Community or Enterprise, with the eCommerce app (website_sale). Third-party apps install on Odoo.sh or On-Premise only - they cannot be installed on Odoo Online."
+    ],
+    "price": 29.01,
+    "manifestPrice": 29.0,
+    "currency": "USD",
+    "category": "Website/Website",
+    "version": "19.0.1.0.0",
+    "license": "OPL-1",
+    "depends": [
+      "website_sale"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_shop_quantity",
+    "screenshots": [
+      "screenshot_shop_grid.png"
+    ],
+    "copyWords": 403,
+    "hasVideo": true,
+    "youtubeId": null,
+    "externalPage": null
+  },
+  {
     "tech": "mh_count_accuracy",
     "slug": "stock-count-accuracy",
     "name": "Stock Count Accuracy",
@@ -5309,6 +5706,65 @@ export const odooApps = [
     "copyWords": 357,
     "hasVideo": true,
     "youtubeId": "m0A3u_4iMDc",
+    "externalPage": null
+  },
+  {
+    "tech": "mh_supplier_credit_limit",
+    "slug": "supplier-credit-limit",
+    "name": "Supplier Credit Limit",
+    "summary": "Purchase credit limit per vendor: what you owe plus open purchase orders. Orders over the vendor credit limit wait in To Approve for a purchase manager",
+    "tagline": "Set a credit limit per vendor on what you owe plus open purchase orders. An order that would take the vendor over the limit waits in To Approve for a purchase manager.",
+    "intro": [],
+    "features": [
+      {
+        "heading": "What it does",
+        "body": [
+          "Odoo's purchase app approves by the size of one order: a single amount, the same for every vendor, and it has no idea what you already owe. Five orders of 8,000 each pass a 10,000 threshold one at a time, and a vendor you have agreed to owe at most 30,000 is suddenly owed 40,000. Supplier Credit Limit puts the limit on the vendor instead. Switch it on for a vendor, enter the amount, and every order for that vendor is checked against the total of what you owe them and what you have already ordered from them."
+        ]
+      },
+      {
+        "heading": "Where the block holds",
+        "body": [
+          "The check does not sit on one button. It runs wherever an order becomes a Purchase Order: the Confirm Order button, a server action that confirms or writes the status (including one run on a selection in a list), an import with a Status column, and an API write or create of the status. For a user who is not a purchase manager these all stop at the limit (the button sends the order to To Approve; a direct write of the status is refused with a message naming the order and the numbers). This is proved by tests on Odoo 19 and Odoo 20 for every route above, and by a browser test that confirms an over-limit order as a buyer and releases it as a manager."
+        ]
+      },
+      {
+        "heading": "How it differs from Purchase Approvals",
+        "body": [
+          "Purchase Approvals (a separate paid app by us) routes an order through approval tiers by the order's own amount, each tier with its own approver group. Supplier Credit Limit does not look at the size of one order alone: it looks at the money owed to one vendor. It needs no other app and does not use Purchase Approvals. If you install both, an order must pass both: a tier approver who is not a purchase manager cannot release an order that is over a vendor's credit limit. Approval Exposure (free) reports what approval your confirmed orders actually cleared; it does not set limits."
+        ]
+      },
+      {
+        "heading": "Who it is for",
+        "body": [
+          "Purchasing and finance teams who agree credit terms with vendors and need a hard stop when new orders would take what they owe past what was agreed."
+        ]
+      }
+    ],
+    "scope": [],
+    "requires": [
+      "Odoo 19 or Odoo 20, Community or Enterprise. Also requires Purchase (purchase) and Invoicing (account). Third-party apps install on Odoo.sh or On-Premise only - they cannot be installed on Odoo Online (SaaS)."
+    ],
+    "price": 29.01,
+    "manifestPrice": 29.0,
+    "currency": "USD",
+    "category": "Purchases",
+    "version": "19.0.1.0.0",
+    "license": "OPL-1",
+    "depends": [
+      "purchase",
+      "account"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_supplier_credit_limit",
+    "screenshots": [
+      "screenshot_over_limit.png",
+      "screenshot_vendor.png"
+    ],
+    "copyWords": 406,
+    "hasVideo": true,
+    "youtubeId": null,
     "externalPage": null
   },
   {
@@ -5843,7 +6299,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Purchases",
-    "version": "19.0.1.0.10",
+    "version": "19.0.1.0.11",
     "license": "OPL-1",
     "depends": [
       "purchase"
@@ -8178,6 +8634,65 @@ export const odooApps = [
     "externalPage": null
   },
   {
+    "tech": "mh_pos_cash_alert",
+    "slug": "pos-cash-drawer-alert",
+    "name": "POS Cash Drawer Alert",
+    "summary": "Cash drawer limit alert in POS: warn the cashier when the cash in the drawer goes over a limit during the session, without blocking a sale",
+    "tagline": "Cash drawer limit alert in POS: warn the cashier when the cash in the drawer goes over a limit during the session, without blocking a sale",
+    "intro": [
+      "Cash piles up in the drawer during a busy day. Odoo only compares the drawer with what it expects when the session is closed, so nobody is told at 3 pm that the till holds far more cash than it should. The one related setting Odoo has, Authorized Difference, limits the gap at closing, not the cash held during the session."
+    ],
+    "features": [
+      {
+        "heading": "What it does",
+        "body": [
+          "You set a limit per Point of Sale. When a payment, a refund or a cash in/out takes the cash in the drawer over that limit, the cashier sees a warning on the till with the amount in the drawer and the limit. It never blocks a sale."
+        ]
+      },
+      {
+        "heading": "What counts as cash in the drawer",
+        "body": [
+          "Opening cash of the session, plus the cash payments of paid orders, minus cash refunds, plus Cash In and minus Cash Out, for the current session of that Point of Sale. Change given back is netted off: a 30 sale paid with a 100 note adds 30, not 100. Orders still in draft, card and other non-cash payments, cancelled orders and other sessions are not counted. It is the figure Odoo shows as the theoretical closing balance, live instead of at closing."
+        ]
+      },
+      {
+        "heading": "Two tills",
+        "body": [
+          "Odoo does not let two Points of Sale share one cash payment method, so each till has its own cash method, its own session and its own limit, and counts only its own drawer. Two devices on the same till (same session) share one drawer: an order sold on another device counts once it has synced to the server and this till checks again (after its next payment or cash in/out). On Odoo 20, Odoo allows one cash payment method per Point of Sale; on Odoo 19 a Point of Sale with several cash methods counts all of them as one drawer."
+        ]
+      },
+      {
+        "heading": "Who it is for",
+        "body": [
+          "Shops and restaurants that take a lot of cash and want the till emptied before the drawer holds more than the owner is comfortable with."
+        ]
+      }
+    ],
+    "scope": [],
+    "requires": [
+      "Odoo 19 and 20, Community or Enterprise. Depends only on Point of Sale (point_of_sale). Third-party apps install on Odoo.sh or On-Premise only - they cannot be installed on Odoo Online (SaaS)."
+    ],
+    "price": 0.0,
+    "manifestPrice": 0.0,
+    "currency": "USD",
+    "category": "Sales/Point of Sale",
+    "version": "19.0.1.0.0",
+    "license": "OPL-1",
+    "depends": [
+      "point_of_sale"
+    ],
+    "paidDepends": [],
+    "downloads": 1,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_pos_cash_alert",
+    "screenshots": [
+      "screenshot_alert.png"
+    ],
+    "copyWords": 360,
+    "hasVideo": true,
+    "youtubeId": null,
+    "externalPage": null
+  },
+  {
     "tech": "mh_pos_discount_reasons",
     "slug": "pos-discount-reasons",
     "name": "POS Discount Reasons",
@@ -8392,6 +8907,81 @@ export const odooApps = [
     "copyWords": 400,
     "hasVideo": true,
     "youtubeId": "jNXn_9r80SQ",
+    "externalPage": null
+  },
+  {
+    "tech": "mh_pos_purchase_order",
+    "slug": "pos-purchase-order",
+    "name": "POS Purchase Order",
+    "summary": "Purchase from POS: create a purchase order or RFQ from the POS cart, pick the vendor and order what the till is short of without leaving the Point of Sale",
+    "tagline": "Create a purchase order or RFQ from the POS cart: pick the vendor, order what the till is short of, and stay in the Point of Sale.",
+    "intro": [
+      "The shelf is running short and the cashier has to leave the till, open the Purchase app and type the products again. Odoo's Point of Sale has no purchase button.",
+      "This app adds a Purchase Order button to the Point of Sale product screen (in the three-dot menu beside Customer and Note). It reads the products in the current cart and, for each one, finds the vendors listed on the product's Purchase tab. A popup shows a vendor for every line, the quantity, the unit and the price from that vendor line. Press Create and Odoo creates one request for quotation per vendor, or confirmed purchase orders if you choose that."
+    ],
+    "features": [
+      {
+        "heading": "Vendor from the product",
+        "body": [
+          "Each cart line gets the product's first vendor line by default. The dropdown lists only the vendors on that product's Purchase tab, so a line cannot be ordered from a vendor the product does not have. Choose Do not order to leave a line out."
+        ]
+      },
+      {
+        "heading": "Quantity, unit and price from the vendor line",
+        "body": [
+          "The quantity is the cart quantity in the vendor line's unit (24 pieces become 2 dozen when the vendor sells by the dozen). Below the vendor's minimum quantity it is raised to that minimum. The price on the order line is the vendor line's price."
+        ]
+      },
+      {
+        "heading": "One order per vendor",
+        "body": [
+          "Lines for the same vendor go on one purchase order, so three vendors give three orders. Choose Request for quotation or Confirmed purchase order. The new order's source document shows the shop and the receipt number."
+        ]
+      },
+      {
+        "heading": "The sale is not touched",
+        "body": [
+          "Nothing is added to the POS order, no sale order is created and the cart stays as it was, so the customer in front of the till is not affected."
+        ]
+      },
+      {
+        "heading": "Checked on the server",
+        "body": [
+          "The server refuses anyone who is not a Purchase user, and anyone who cannot open that Point of Sale or does not belong to its company. The purchase order is created as the cashier, in the shop's company, under Odoo's own access rules; it is not created with elevated rights."
+        ]
+      },
+      {
+        "heading": "Who it is for",
+        "body": [
+          "Retail counters that restock from the till: a clerk sees the last bottle go and reorders it before the customer has left, and the buyer finds the RFQ waiting."
+        ]
+      }
+    ],
+    "scope": [
+      "A product with no vendor line is shown as No vendor and left out: the app never guesses a vendor. A vendor line that has expired or not started yet, belongs to another company, is for a different variant, belongs to an archived vendor, or sits on a product that cannot be purchased or is a service is not offered. It needs a connection to the server: offline it creates nothing and tells the cashier, and nothing is queued for later. Every press creates new purchase orders; it does not add to an existing one, and it does not link the order to the POS session (no smart button) or print anything. If your purchase settings require approval, a confirmed order may stop at To Approve, as Odoo decides. Some paid apps also link the order to the POS session; this one does not. Tested on a retail Point of Sale, not on restaurant floors."
+    ],
+    "requires": [
+      "Odoo 19 and 20, Community or Enterprise; installs Odoo's own Point of Sale and Purchase apps (point_of_sale, purchase). Third-party apps install on Odoo.sh or On-Premise only - they cannot be installed on Odoo Online (SaaS)."
+    ],
+    "price": 0.0,
+    "manifestPrice": 0.0,
+    "currency": "USD",
+    "category": "Sales/Point of Sale",
+    "version": "19.0.1.0.0",
+    "license": "OPL-1",
+    "depends": [
+      "point_of_sale",
+      "purchase"
+    ],
+    "paidDepends": [],
+    "downloads": 3,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_pos_purchase_order",
+    "screenshots": [
+      "screenshot_purchase_order_dialog.png"
+    ],
+    "copyWords": 557,
+    "hasVideo": true,
+    "youtubeId": null,
     "externalPage": null
   },
   {
@@ -9471,6 +10061,94 @@ export const odooApps = [
     "externalPage": null
   },
   {
+    "tech": "mh_purchase_split",
+    "slug": "split-purchase-orders",
+    "name": "Split Purchase Orders",
+    "summary": "Split RFQ, extract purchase lines and move lines between RFQs: tick lines into a new or existing RFQ, same vendor or another one, with the link noted on both orders",
+    "tagline": "Split RFQ, extract purchase lines and move lines between RFQs: tick lines into a new or existing RFQ, same vendor or another one, with the link noted on both orders",
+    "intro": [
+      "One RFQ holds lines that belong on two orders: some go to another vendor, some should be ordered separately, some were added to the wrong RFQ. Odoo can merge RFQs but has no way to cut one in two, so the lines are deleted and typed again on a new RFQ, with the quantities, taxes and analytic split typed again too.",
+      "This adds a Split Lines button on draft and sent RFQs, and a Split Lines action on the purchase order list. You tick the lines, choose where they go, and press one button. The lines themselves move, so what was on them is still on them."
+    ],
+    "features": [
+      {
+        "heading": "Split, extract or move",
+        "body": [
+          "Split moves the ticked lines to a new RFQ. Extract copies them to a new RFQ and leaves the original as it is. Move puts them into an RFQ that already exists, any draft or sent RFQ of the same company. The new RFQ gets the next number of the purchase sequence and a vendor you choose: the same vendor or another one."
+        ]
+      },
+      {
+        "heading": "Several RFQs at once",
+        "body": [
+          "Select RFQs in the list and choose Split Lines from the Actions menu. The wizard lists the lines of every selected RFQ, and the ticked ones go to one new RFQ, whose source document lists the RFQs they came from."
+        ]
+      },
+      {
+        "heading": "What stays on a moved line",
+        "body": [
+          "Quantity, unit of measure, taxes, analytic distribution, unit price, discount, expected date and description stay as they were when the vendor stays the same. A line moved to an existing RFQ is added after the lines already there. A note with a link is posted in the chatter of both RFQs, listing the lines."
+        ]
+      },
+      {
+        "heading": "Moving to another vendor",
+        "body": [
+          "A line that goes to a different vendor is priced again, with Odoo's own rules: the new vendor's price list when it has one for the product, otherwise the product cost. A price typed by hand is not carried over. The chatter of the new RFQ lists the old and the new unit price of every line. Taxes and analytic distribution are kept as they are on the line. A new RFQ for another vendor takes that vendor's payment terms and fiscal position."
+        ]
+      },
+      {
+        "heading": "Sections",
+        "body": [
+          "When the new RFQ is created, the section and subsection above each moved line are copied to it, once, in order. You can switch that off. The original headings stay on the original RFQ."
+        ]
+      },
+      {
+        "heading": "What is refused",
+        "body": [
+          "Orders that are not RFQs. Confirmed, cancelled and locked orders are refused.",
+          "Lines already received or billed. A line with a received quantity, a vendor bill line or a stock move is refused, in every mode.",
+          "Another company or another currency. The destination must be in the same company and in the same currency as the ticked lines. A vendor invoiced in another currency gets no new RFQ from this app. With Odoo 20 the destination must also use the same tax-included or tax-excluded pricing.",
+          "Emptying an RFQ. Moving every product line out of an RFQ is refused, so no RFQ is left empty. Keep one line, use Extract, or cancel the RFQ."
+        ]
+      },
+      {
+        "heading": "Who it is for",
+        "body": [
+          "Buyers who build one big RFQ and then find that part of it should go to another vendor, or who send a few lines out for a better quote and do not want to retype them."
+        ]
+      }
+    ],
+    "scope": [
+      "It does not split the quantity of a line. A line moves whole, or is copied whole.",
+      "It does not split confirmed orders or orders that have receipts. That is a different job, with receipts and bills to unwind.",
+      "It does not move notes or section headings by themselves. Notes stay where they are, and headings are copied, not moved.",
+      "An extracted line is a new line. It is not linked to the replenishment rule, sale order or downstream move of the line it was copied from, which stays on the original.",
+      "It does not merge RFQs. Odoo already does that."
+    ],
+    "requires": [
+      "Odoo 19 and 20, Community or Enterprise. Needs Purchase. Third-party apps install on Odoo.sh or On-Premise only - they cannot be installed on Odoo Online."
+    ],
+    "price": 0.0,
+    "manifestPrice": 0.0,
+    "currency": "USD",
+    "category": "Purchases",
+    "version": "19.0.1.0.0",
+    "license": "OPL-1",
+    "depends": [
+      "purchase"
+    ],
+    "paidDepends": [],
+    "downloads": 1,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_purchase_split",
+    "screenshots": [
+      "screenshot_split_wizard.png",
+      "screenshot_new_rfq.png"
+    ],
+    "copyWords": 687,
+    "hasVideo": true,
+    "youtubeId": null,
+    "externalPage": null
+  },
+  {
     "tech": "mh_stale_user_assignment",
     "slug": "stale-user-assignments",
     "name": "Stale User Assignments",
@@ -9792,7 +10470,7 @@ export const odooApps = [
       "hr_timesheet"
     ],
     "paidDepends": [],
-    "downloads": 11,
+    "downloads": 12,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_task_timer",
     "screenshots": [
       "screenshot_timer.png"
