@@ -5,7 +5,7 @@
 // generator; editing here forks the copy away from what the store actually
 // serves.
 //
-// Store snapshot: 2026-10-21T07:31:03+00:00
+// Store snapshot: 2026-10-21T19:25:54+00:00
 
 export const odooApps = [
   {
@@ -2157,7 +2157,7 @@ export const odooApps = [
     "manifestPrice": 49.0,
     "currency": "USD",
     "category": "Productivity/Calendar",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.0.1",
     "license": "OPL-1",
     "depends": [
       "calendar"
@@ -2619,7 +2619,7 @@ export const odooApps = [
     "manifestPrice": 49.0,
     "currency": "USD",
     "category": "Website/Website",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.0.1",
     "license": "OPL-1",
     "depends": [
       "website_sale",
@@ -2634,7 +2634,7 @@ export const odooApps = [
     ],
     "copyWords": 1094,
     "hasVideo": true,
-    "youtubeId": null,
+    "youtubeId": "GQDm1Ve6h_4",
     "externalPage": null
   },
   {
@@ -3485,7 +3485,7 @@ export const odooApps = [
     "manifestPrice": 39.0,
     "currency": "USD",
     "category": "Website/Website",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.0.1",
     "license": "OPL-1",
     "depends": [
       "website_sale"
@@ -4071,7 +4071,7 @@ export const odooApps = [
     "manifestPrice": 39.0,
     "currency": "USD",
     "category": "Purchases",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.0.1",
     "license": "OPL-1",
     "depends": [
       "purchase"
@@ -4084,7 +4084,7 @@ export const odooApps = [
     ],
     "copyWords": 698,
     "hasVideo": true,
-    "youtubeId": null,
+    "youtubeId": "noZDeUoHcW4",
     "externalPage": null
   },
   {
@@ -4284,7 +4284,7 @@ export const odooApps = [
     "manifestPrice": 39.0,
     "currency": "USD",
     "category": "Sales/CRM",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.0.1",
     "license": "OPL-1",
     "depends": [
       "crm",
@@ -4364,7 +4364,7 @@ export const odooApps = [
     "manifestPrice": 39.0,
     "currency": "USD",
     "category": "Inventory/Purchase",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.0.1",
     "license": "OPL-1",
     "depends": [
       "purchase_stock"
@@ -4380,7 +4380,7 @@ export const odooApps = [
     ],
     "copyWords": 729,
     "hasVideo": true,
-    "youtubeId": null,
+    "youtubeId": "jmTyo96t1i8",
     "externalPage": null
   },
   {
@@ -4745,7 +4745,7 @@ export const odooApps = [
     "manifestPrice": 29.0,
     "currency": "USD",
     "category": "Website/Website",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.0.1",
     "license": "OPL-1",
     "depends": [
       "website_sale"
@@ -4759,7 +4759,7 @@ export const odooApps = [
     ],
     "copyWords": 503,
     "hasVideo": true,
-    "youtubeId": null,
+    "youtubeId": "eHjayebFQfI",
     "externalPage": null
   },
   {
@@ -4883,7 +4883,7 @@ export const odooApps = [
     "manifestPrice": 29.0,
     "currency": "USD",
     "category": "Accounting/Accounting",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.0.1",
     "license": "OPL-1",
     "depends": [
       "account"
@@ -5107,7 +5107,7 @@ export const odooApps = [
     "manifestPrice": 29.0,
     "currency": "USD",
     "category": "Sales/Point of Sale",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.0.1",
     "license": "OPL-1",
     "depends": [
       "point_of_sale"
@@ -5625,7 +5625,7 @@ export const odooApps = [
     "manifestPrice": 29.0,
     "currency": "USD",
     "category": "Website/Website",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.0.1",
     "license": "OPL-1",
     "depends": [
       "website_sale"
@@ -5638,7 +5638,7 @@ export const odooApps = [
     ],
     "copyWords": 403,
     "hasVideo": true,
-    "youtubeId": null,
+    "youtubeId": "beDViPlxphI",
     "externalPage": null
   },
   {
@@ -5749,7 +5749,7 @@ export const odooApps = [
     "manifestPrice": 29.0,
     "currency": "USD",
     "category": "Purchases",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.0.1",
     "license": "OPL-1",
     "depends": [
       "purchase",
@@ -5764,7 +5764,7 @@ export const odooApps = [
     ],
     "copyWords": 406,
     "hasVideo": true,
-    "youtubeId": null,
+    "youtubeId": "S4leaWFntkk",
     "externalPage": null
   },
   {
@@ -8676,20 +8676,20 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Sales/Point of Sale",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.0.1",
     "license": "OPL-1",
     "depends": [
       "point_of_sale"
     ],
     "paidDepends": [],
-    "downloads": 1,
+    "downloads": 3,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_pos_cash_alert",
     "screenshots": [
       "screenshot_alert.png"
     ],
     "copyWords": 360,
     "hasVideo": true,
-    "youtubeId": null,
+    "youtubeId": "R_7M3znVbL4",
     "externalPage": null
   },
   {
@@ -8967,21 +8967,21 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Sales/Point of Sale",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.0.1",
     "license": "OPL-1",
     "depends": [
       "point_of_sale",
       "purchase"
     ],
     "paidDepends": [],
-    "downloads": 3,
+    "downloads": 5,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_pos_purchase_order",
     "screenshots": [
       "screenshot_purchase_order_dialog.png"
     ],
     "copyWords": 557,
     "hasVideo": true,
-    "youtubeId": null,
+    "youtubeId": "cKlUcqTT1qU",
     "externalPage": null
   },
   {
@@ -10131,13 +10131,13 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Purchases",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.0.1",
     "license": "OPL-1",
     "depends": [
       "purchase"
     ],
     "paidDepends": [],
-    "downloads": 1,
+    "downloads": 3,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_purchase_split",
     "screenshots": [
       "screenshot_split_wizard.png",
@@ -10145,7 +10145,7 @@ export const odooApps = [
     ],
     "copyWords": 687,
     "hasVideo": true,
-    "youtubeId": null,
+    "youtubeId": "SSr-pwY5ZlQ",
     "externalPage": null
   },
   {
@@ -10470,7 +10470,7 @@ export const odooApps = [
       "hr_timesheet"
     ],
     "paidDepends": [],
-    "downloads": 12,
+    "downloads": 14,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_task_timer",
     "screenshots": [
       "screenshot_timer.png"
