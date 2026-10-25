@@ -5,7 +5,7 @@
 // generator; editing here forks the copy away from what the store actually
 // serves.
 //
-// Store snapshot: 2026-10-21T19:25:54+00:00
+// Store snapshot: 2026-10-25T00:06:04+00:00
 
 export const odooApps = [
   {
@@ -2472,6 +2472,84 @@ export const odooApps = [
     "externalPage": null
   },
   {
+    "tech": "mh_rfm_segments",
+    "slug": "rfm-customer-segments",
+    "name": "RFM Customer Segments",
+    "summary": "RFM analysis and customer segmentation from invoices: tag Champions and At risk customers and build a mailing list per segment.",
+    "tagline": "RFM analysis from your own invoices: score every customer on recency, frequency and monetary value, tag the Champions and the At risk, and fill a mailing list per segment.",
+    "intro": [],
+    "features": [
+      {
+        "heading": "What it does",
+        "body": [
+          "You want to write to your best customers differently from the ones who stopped buying, but Odoo has no customer segmentation: you export invoices and build the scores in a spreadsheet, and the result is stale the day after.",
+          "RFM Customer Segments reads the posted customer invoices and credit notes of a period you choose and gives every customer three scores from 1 to 5: Recency (days since the last invoice), Frequency (number of invoices) and Monetary (net sales). From the three scores each customer lands in one of five segments: Champions, Loyal, Potential, At risk or Lost. You can then tag the customers and refresh one mailing list per segment in a click."
+        ]
+      },
+      {
+        "heading": "Scored from your invoices",
+        "body": [
+          "Posted customer invoices and credit notes dated inside the period, of one company. Invoices of a contact roll up to its company. Amounts are the untaxed totals in the company currency. A credit note lowers Monetary but is not counted as a purchase: it does not add to Frequency and does not make the customer more recent. A customer needs at least one posted invoice in the period to be scored. Draft and cancelled invoices and vendor bills are ignored."
+        ]
+      },
+      {
+        "heading": "Scores and segments",
+        "body": [
+          "Each score is a percentile rank among the customers of the run, so a score of 5 means the top fifth. Customers with equal values get equal scores, and a run with a single customer, or where all values are equal, scores 3. Frequency and Monetary are averaged (rounded up) into one value, and the segment follows from that value and Recency:"
+        ]
+      },
+      {
+        "heading": "Tags and mailing lists",
+        "body": [
+          "Apply Tags puts the tag RFM - Champions (and so on) on each scored customer and removes the other four RFM tags from them. Your own tags stay, and customers who are not in the run are not touched.",
+          "Refresh Mailing Lists keeps one Email Marketing list per segment, named for example RFM - Champions (Your Company), and makes it hold exactly the customers of that segment, matched by email address. An existing mailing contact with the same email is reused and an opt-out already recorded on a list is kept. Customers without an email address are skipped, and the message tells you how many."
+        ]
+      },
+      {
+        "heading": "Runs you can compare",
+        "body": [
+          "Every run is kept with its period and its customer lines. Open Customer Scores to filter by segment, group by run, or use the pivot of customers and net sales per segment."
+        ]
+      },
+      {
+        "heading": "Access and companies",
+        "body": [
+          "Runs and scores are available to users with the Invoicing (Billing) access right and follow multi-company: a user only sees the runs of the companies they work in. Applying tags needs the right to edit contacts, and refreshing the lists needs Email Marketing user rights."
+        ]
+      },
+      {
+        "heading": "Who it is for",
+        "body": [
+          "Small and mid-size sellers who invoice in Odoo and send email campaigns, and marketers who want a first, rule-based customer segmentation without a data tool."
+        ]
+      }
+    ],
+    "scope": [],
+    "requires": [
+      "Odoo 19 and 20, Community or Enterprise. It needs the Invoicing and Email Marketing apps, installed with it. It adds no third-party service and sends no data anywhere. Third-party apps install on Odoo.sh or On-Premise only - they cannot be installed on Odoo Online (SaaS)."
+    ],
+    "price": 49.0,
+    "manifestPrice": 49.0,
+    "currency": "USD",
+    "category": "Sales/Sales",
+    "version": "19.0.1.0.0",
+    "license": "OPL-1",
+    "depends": [
+      "account",
+      "mass_mailing"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_rfm_segments",
+    "screenshots": [
+      "screenshot_segments.png"
+    ],
+    "copyWords": 517,
+    "hasVideo": true,
+    "youtubeId": null,
+    "externalPage": null
+  },
+  {
     "tech": "mh_website_request_quote",
     "slug": "request-a-quote",
     "name": "Request a Quote",
@@ -3708,6 +3786,80 @@ export const odooApps = [
     "externalPage": null
   },
   {
+    "tech": "mh_mail_template_company",
+    "slug": "mail-template-companies",
+    "name": "Mail Template Companies",
+    "summary": "Multi company mail template: a separate email template for each company, so a quotation or invoice of company B is sent with company B wording",
+    "tagline": "Multi company mail template: a separate email template for each company, so a quotation or invoice of company B is sent with company B wording.",
+    "intro": [
+      "Odoo keeps one email template per document type for the whole database. In a multi company group, a quotation, invoice or purchase order of company B goes out with the wording written for company A. This app lets a template carry one variant per company. Records of that company are sent the variant; everything else keeps using the original."
+    ],
+    "features": [
+      {
+        "heading": "One button, one copy per company",
+        "body": [
+          "Open any email template and press Add company variants. Pick the companies. Each gets a copy of the template that you edit like any other: subject, body, sender, attachments, language, mail layout. Odoo's own templates work the same, for example Sales: Send Quotation or the invoice template."
+        ]
+      },
+      {
+        "heading": "The right wording at send time",
+        "body": [
+          "Odoo code picks the template first and renders it per record afterwards, so the company is only known at render time. The swap therefore happens there, on the record's own company, not the company you are logged in as. A quotation of company B opened while you work in company A still gets company B wording. A record without a company gets the variant of the sending company."
+        ]
+      },
+      {
+        "heading": "Mixed batches are split",
+        "body": [
+          "Records of several companies sent in one go are rendered one company at a time, each with its own variant, and companies without a variant get the original template."
+        ]
+      },
+      {
+        "heading": "Through Odoo's own screens",
+        "body": [
+          "Tested with the real calls: the quotation Send wizard, the purchase RFQ Send wizard, the invoice Send and Print defaults, order confirmation emails, a template sent from code, the chatter, a server action that sends a template, and the composer for one record or for several."
+        ]
+      },
+      {
+        "heading": "Each company sees its own variants",
+        "body": [
+          "A record rule hides a company's variants from users who have not switched that company on. Original templates stay visible to everyone, as before. Sending is not affected by who can see what."
+        ]
+      }
+    ],
+    "scope": [
+      "It does not keep variants in sync. A variant is a copy made when you add it. Editing the original later does not change the copies.",
+      "It does not change email signatures, outgoing mail servers or from addresses by itself. Put the sender, reply-to or mail server on the variant if a company needs its own.",
+      "The invoice Send and Print wizard takes subject, body, language and reply-to from the variant, but its attachments, mail server and recipient defaults still come from the original template.",
+      "The composer in mass mode (several records at once) renders subject and body per record from the right variant, but copies sender, reply-to, attachments and mail server from the template you picked.",
+      "It does not translate or manage translations. A variant has its own text and language field like any template.",
+      "A variant is a normal template, so it can also be picked by name. Picking a company's variant for a record of another company still sends that record its own company's wording.",
+      "It does not cover templates with no company link. A record of a model without a company field is treated as a record without a company."
+    ],
+    "requires": [
+      "Odoo 19 or 20, Community or Enterprise. Depends only on Discuss (mail). Third-party apps install on Odoo.sh or On-Premise only - they cannot be installed on Odoo Online."
+    ],
+    "price": 39.0,
+    "manifestPrice": 39.0,
+    "currency": "USD",
+    "category": "Productivity/Discuss",
+    "version": "19.0.1.0.0",
+    "license": "OPL-1",
+    "depends": [
+      "mail"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_mail_template_company",
+    "screenshots": [
+      "screenshot_composer.png",
+      "screenshot_variants.png"
+    ],
+    "copyWords": 527,
+    "hasVideo": true,
+    "youtubeId": null,
+    "externalPage": null
+  },
+  {
     "tech": "mh_pos_sales_reports",
     "slug": "pos-sales-reports",
     "name": "POS Sales Reports",
@@ -3793,6 +3945,98 @@ export const odooApps = [
     "externalPage": null
   },
   {
+    "tech": "mh_payment_allocation",
+    "slug": "payment-allocation",
+    "name": "Payment Allocation",
+    "summary": "Payment allocation: allocate one customer payment or vendor payment to multiple invoices and bills, with a different amount on each invoice; any rest stays as an unallocated payment",
+    "tagline": "One bank transfer, several invoices, a different amount on each: allocate a customer payment or vendor payment per invoice and bill.",
+    "intro": [
+      "A customer sends one transfer for several invoices and it matches none of them: 500 of invoice A, 300 of invoice B, invoice C in full. Odoo's Register Payment takes one total per partner and fills the oldest invoices first, so you cannot say what each invoice receives. People register several small payments, and then nothing matches the single line on the bank statement.",
+      "Payment Allocation adds an Allocate Payment wizard under Accounting > Customers and Accounting > Vendors. You enter the amount received or paid, the partner's open invoices (or bills) are listed, and you type how much goes to each. One payment is created and posted, and each chosen invoice is matched for exactly the amount you typed."
+    ],
+    "features": [
+      {
+        "heading": "Per-invoice amounts",
+        "body": [
+          "The wizard lists the partner's open invoices with due date, open amount and an Allocate column. Type any amount from 0 up to the open amount on each line. Allocated and unallocated totals update as you type."
+        ]
+      },
+      {
+        "heading": "One payment, matched exactly",
+        "body": [
+          "Create Payment makes one payment in the journal and date you chose and posts it. Odoo's own reconciliation engine matches each invoice for the amount you typed, so invoices show Partial or Paid as usual and the payment can match one bank statement line."
+        ]
+      },
+      {
+        "heading": "Auto and Clear",
+        "body": [
+          "Auto (oldest first) fills the Allocate column by due date until the payment amount is used up, and you can then change any line by hand. Clear empties the column."
+        ]
+      },
+      {
+        "heading": "The rest stays on the payment",
+        "body": [
+          "If you allocate less than the payment amount, the remainder stays on the payment as an ordinary unallocated amount. Odoo shows it as an outstanding credit on the customer, to use on a later invoice."
+        ]
+      },
+      {
+        "heading": "From selected invoices",
+        "body": [
+          "Select invoices or bills in the list view and choose Action > Allocate Payment. The wizard opens with those documents filled in at their full open amount and the payment amount set to their total; change any figure before you confirm."
+        ]
+      },
+      {
+        "heading": "Checks before anything is posted",
+        "body": [
+          "The allocations cannot add up to more than the payment amount, no line can take more than its open amount or less than zero, and a document that was paid or changed since the wizard opened is refused. Each invoice gets a chatter note naming the payment."
+        ]
+      },
+      {
+        "heading": "Vendors too",
+        "body": [
+          "The same wizard under Vendors pays vendor bills: one outgoing payment, a different amount on each bill."
+        ]
+      },
+      {
+        "heading": "Foreign currency and companies",
+        "body": [
+          "Invoices and the payment share one currency per payment; exchange differences are booked by Odoo as for any payment. The wizard works in the active company and lists only that company's documents."
+        ]
+      },
+      {
+        "heading": "Who it is for",
+        "body": [
+          "Accountants and bookkeepers who receive or make one transfer for several documents and need the books to show exactly what each one received, on Community or Enterprise, in any country."
+        ]
+      }
+    ],
+    "scope": [
+      "It handles customer invoices and vendor bills only: credit notes are not listed (use Odoo's outstanding credits for those). One partner, one currency and one company per payment; for many partners at once, use Odoo's own Register Payment on the selected invoices. It has no write-off or payment difference: the part you do not allocate stays on the payment. A document booked on a different receivable or payable account than the payment uses is refused, because Odoo cannot match them. It does not export bank files, has no approval step and does not pay from the customer portal. It sends no data anywhere."
+    ],
+    "requires": [
+      "Odoo 19 and 20, Community or Enterprise, with Invoicing (the account module). Third-party apps install on Odoo.sh or On-Premise only - they cannot be installed on Odoo Online (SaaS)."
+    ],
+    "price": 39.0,
+    "manifestPrice": 39.0,
+    "currency": "USD",
+    "category": "Accounting/Accounting",
+    "version": "19.0.1.0.0",
+    "license": "OPL-1",
+    "depends": [
+      "account"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_payment_allocation",
+    "screenshots": [
+      "screenshot_allocation_wizard.png"
+    ],
+    "copyWords": 590,
+    "hasVideo": true,
+    "youtubeId": null,
+    "externalPage": null
+  },
+  {
     "tech": "mh_payment_fee_discount",
     "slug": "payment-fees-and-discounts",
     "name": "Payment Fees & Discounts",
@@ -3869,6 +4113,85 @@ export const odooApps = [
     "copyWords": 596,
     "hasVideo": true,
     "youtubeId": "pm_EEQcNvso",
+    "externalPage": null
+  },
+  {
+    "tech": "mh_portal_partial_payment",
+    "slug": "portal-partial-payment",
+    "name": "Portal Partial Payment",
+    "summary": "Pay part of an invoice online: customers pay a custom amount or tick several invoices and pay them in one payment from the portal",
+    "tagline": "Let customers pay part of an invoice, or tick several invoices and pay them together, from the portal.",
+    "intro": [
+      "A customer owes 2,810.00 across two invoices and can pay 1,500.00 today. On the portal, Odoo offers the full amount of one invoice (or its next instalment), or all overdue invoices at once. So they pay nothing, and you send a payment link by hand with a custom amount.",
+      "Portal Partial Payment adds two things to Odoo's customer portal. In the Pay Now dialog of an invoice, a customer can pay a different amount. On the invoice list, they can tick the invoices they want to settle and pay them in one online payment, for the full total or for a smaller amount. Both go through Odoo's own payment form and payment transaction with the providers you already use, and Odoo posts and reconciles the payment as usual."
+    ],
+    "features": [
+      {
+        "heading": "Pay a different amount",
+        "body": [
+          "In the Pay Now dialog of an open invoice, a customer types any amount above zero and up to the amount due, and continues to Odoo's payment form for that amount. The invoice is then Partially Paid with the rest still due, and the customer can pay the rest the same way."
+        ]
+      },
+      {
+        "heading": "Tick invoices, pay once",
+        "body": [
+          "The invoice list gets a checkbox on every invoice that can be paid online and a Pay selected button. The page it opens lists the invoices, the total due and the payment form. One payment transaction is linked to every invoice selected, and one payment is reconciled with them."
+        ]
+      },
+      {
+        "heading": "A smaller amount for several invoices",
+        "body": [
+          "On that page the customer can lower the amount below the total. Odoo's standard reconciliation then settles the invoices with the earliest due date first and leaves the last one partly paid. The amount is not split per invoice by the customer."
+        ]
+      },
+      {
+        "heading": "The server checks the amount",
+        "body": [
+          "The amount must be above zero and not more than what is due on the invoices selected, rounded to the currency. A tampered form is refused. A customer can only select their own invoices, from one company and in one currency, and an invoice with a payment already pending cannot be paid again."
+        ]
+      },
+      {
+        "heading": "Works with your providers",
+        "body": [
+          "The payment uses Odoo's own payment form, so any provider you already use is offered, filtered by the amount being paid (a provider with a maximum amount is offered when the amount is under it). It was tested with Odoo's Demo provider."
+        ]
+      },
+      {
+        "heading": "One switch per company",
+        "body": [
+          "Accounting > Settings > Customer Payments has a Partial and selected-invoice payment setting, on by default, per company. Off, the portal is exactly Odoo's standard one. The setting follows the company of each invoice."
+        ]
+      },
+      {
+        "heading": "Who it is for",
+        "body": [
+          "Businesses that take card payment on account from business customers (services, distributors, agencies) and any company with large invoices that customers often pay in parts."
+        ]
+      }
+    ],
+    "scope": [],
+    "requires": [
+      "Odoo 19 or Odoo 20, Community or Enterprise. Also requires Invoicing with online payment (account_payment) and at least one payment provider. Third-party apps install on Odoo.sh or On-Premise only - they cannot be installed on Odoo Online (SaaS)."
+    ],
+    "price": 39.0,
+    "manifestPrice": 39.0,
+    "currency": "USD",
+    "category": "Accounting/Accounting",
+    "version": "19.0.1.0.0",
+    "license": "OPL-1",
+    "depends": [
+      "account_payment"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_portal_partial_payment",
+    "screenshots": [
+      "screenshot_list.png",
+      "screenshot_pay.png"
+    ],
+    "copyWords": 474,
+    "hasVideo": true,
+    "youtubeId": null,
     "externalPage": null
   },
   {
@@ -4301,6 +4624,130 @@ export const odooApps = [
     "copyWords": 429,
     "hasVideo": true,
     "youtubeId": "oBIJLRgmBxc",
+    "externalPage": null
+  },
+  {
+    "tech": "mh_timesheet_approval",
+    "slug": "timesheet-approval",
+    "name": "Timesheet Approval",
+    "summary": "Timesheet approval workflow: employees submit the week, managers approve or refuse, and approved timesheets are locked. Approve timesheets and lock timesheets before you invoice them",
+    "tagline": "Timesheet approval workflow: employees submit the week, managers approve or refuse, and approved timesheets are locked.",
+    "intro": [],
+    "features": [
+      {
+        "heading": "What it does",
+        "body": [
+          "Odoo Community lets anybody edit a timesheet for ever. Nobody signs off a week, so hours change after they were checked, after they were invoiced and after payroll was run.",
+          "Timesheet Approval adds the missing review step. An employee presses Submit Week and every timesheet logged in that Monday-to-Sunday week goes to the manager as one submission. The manager approves it, or refuses it with a reason. While a week is submitted or approved its hours are locked."
+        ]
+      },
+      {
+        "heading": "Submit a week",
+        "body": [
+          "Approval, Submit Week: pick any day of the week and press Submit. The week becomes one submission with its total hours, and the employee's manager gets a to-do when that manager is a timesheet approver. A week with no timesheets cannot be submitted."
+        ]
+      },
+      {
+        "heading": "Approve, refuse or reopen",
+        "body": [
+          "Approvers are Odoo's own Timesheets \"User: all timesheets\" group. They approve a submitted week, or refuse it with a reason that is shown on the submission and sent to the employee as a to-do. An approved week can be reopened. A refused or reopened week unlocks, can be corrected, and is submitted again; timesheets added or moved in the meantime are picked up."
+        ]
+      },
+      {
+        "heading": "Locked means locked",
+        "body": [
+          "In a submitted or approved week nobody can change the date, hours, description, task, employee or user of a timesheet, or delete it, and nothing can be added to that week or moved into it, not even a manager with the all-timesheets right. This is checked where the timesheet is saved, so the timesheet list, the task form, the calendar, imports and the API all meet the same rule. Other fields that other apps write, such as invoicing links, stay writable. The locked rows are greyed out in the timesheet list."
+        ]
+      },
+      {
+        "heading": "Status on every timesheet",
+        "body": [
+          "The timesheet list gets an Approval column and the filters Not submitted, Waiting for approval and Approved. Approvers also get a To Approve menu, and every submission has a chatter that records each decision."
+        ]
+      },
+      {
+        "heading": "Access and companies",
+        "body": [
+          "Employees see only their own submissions; approvers see all of them. A submission belongs to the employee's company and follows Odoo's multi-company rules. An employee can submit only their own weeks; approvers can submit for anybody."
+        ]
+      },
+      {
+        "heading": "Who it is for",
+        "body": [
+          "Service firms and agencies on Odoo Community that bill from timesheets, and any team where a manager has to sign hours off before they are invoiced or paid."
+        ]
+      }
+    ],
+    "scope": [],
+    "requires": [
+      "Odoo 19 and 20, with the Timesheets app (hr_timesheet), which installs Project and Employees with it. It adds no third-party service and sends no data anywhere. Third-party apps install on Odoo.sh or On-Premise only - they cannot be installed on Odoo Online (SaaS)."
+    ],
+    "price": 39.0,
+    "manifestPrice": 39.0,
+    "currency": "USD",
+    "category": "Services/Timesheets",
+    "version": "19.0.1.0.0",
+    "license": "OPL-1",
+    "depends": [
+      "hr_timesheet"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_timesheet_approval",
+    "screenshots": [
+      "shot_list.png",
+      "shot_refused.png",
+      "shot_mine.png"
+    ],
+    "copyWords": 413,
+    "hasVideo": true,
+    "youtubeId": null,
+    "externalPage": null
+  },
+  {
+    "tech": "mh_variant_price_percent",
+    "slug": "variant-price-percent",
+    "name": "Variant Price Percent",
+    "summary": "Variant price percentage: an attribute value adds a percent of the base price instead of a fixed amount. Change the product price and every variant extra price follows.",
+    "tagline": "Variant price percentage: an attribute value adds a percent of the base price instead of a fixed amount. Change the product price and every variant extra price follows.",
+    "intro": [],
+    "features": [
+      {
+        "heading": "What it does",
+        "body": [
+          "In Odoo an attribute value on a product carries one fixed Extra Price. When the base price moves, you re-type the extra on every value of every product. This app adds an Extra Price (%) next to Extra Price. The Extra Price becomes that percentage of the product's Sales Price, and is recalculated whenever the percentage or the Sales Price changes.",
+          "Quotations, sales orders, the eCommerce shop and pricelists keep reading the same Extra Price field they always read, so the percentage-based price shows up everywhere without further setup. Pricelist rules then apply to the total, as they do for a hand-typed extra."
+        ]
+      },
+      {
+        "heading": "Who it is for",
+        "body": [
+          "Sellers of configurable products - furniture, signage, apparel, machinery - whose base price moves often and whose options are priced as a share of it."
+        ]
+      }
+    ],
+    "scope": [],
+    "requires": [
+      "Odoo 19 or 20, Community or Enterprise, with the Sales app. Third-party apps install on Odoo.sh or On-Premise only - they cannot be installed on Odoo Online."
+    ],
+    "price": 39.0,
+    "manifestPrice": 39.0,
+    "currency": "USD",
+    "category": "Sales/Sales",
+    "version": "19.0.1.0.0",
+    "license": "OPL-1",
+    "depends": [
+      "sale"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_variant_price_percent",
+    "screenshots": [
+      "screenshot_attribute_values.png"
+    ],
+    "copyWords": 163,
+    "hasVideo": true,
+    "youtubeId": null,
     "externalPage": null
   },
   {
@@ -5437,6 +5884,45 @@ export const odooApps = [
     "externalPage": null
   },
   {
+    "tech": "mh_partner_org_chart",
+    "slug": "partner-org-chart",
+    "name": "Partner Org Chart",
+    "summary": "Partner org chart and contact org chart: an Org Chart tab on every company and contact form that draws the contacts under a company as a tree",
+    "tagline": "",
+    "intro": [
+      "Partner org chart and contact org chart: an Org Chart tab on every company and contact form that draws the contacts under a company as a tree.",
+      "A company in Odoo can have dozens of contacts, invoice addresses and delivery addresses, and the partner form shows them as a flat list of cards. Nobody can see at a glance who sits under whom, or who is the right person to call.",
+      "Partner Org Chart adds an Org Chart tab to the partner form. It draws the top company and everything under it as an indented tree, nested as deep as your data goes. Each line shows the name, with badges for the job title, the email and the address type (invoice, delivery and so on). Click a name to open that contact.",
+      "Open the tab on the company, or on any contact. The tree always starts at the top company you are allowed to see, so every contact of a company shows the same chart, and the contact you are on is underlined.",
+      "The chart is built with your own access rights. Contacts of another company that you cannot see in a multi-company database are not drawn, and neither is a parent company you cannot see. Archived contacts are left out.",
+      "Account managers and sales teams in B2B, who need to know the people around a customer before they pick up the phone.",
+      "The Org Chart tab opened from a contact (underlined): the company, its contacts and the contacts under them, with job titles, emails and address types.",
+      "Questions before or after purchase: support@mithahara.com"
+    ],
+    "features": [],
+    "scope": [],
+    "requires": [],
+    "price": 29.01,
+    "manifestPrice": 29.0,
+    "currency": "USD",
+    "category": "Sales/CRM",
+    "version": "19.0.1.0.0",
+    "license": "OPL-1",
+    "depends": [
+      "base"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_partner_org_chart",
+    "screenshots": [
+      "screenshot_org_chart.png"
+    ],
+    "copyWords": 264,
+    "hasVideo": true,
+    "youtubeId": null,
+    "externalPage": null
+  },
+  {
     "tech": "mh_website_product_tabs",
     "slug": "product-tabs",
     "name": "Product Tabs",
@@ -5768,6 +6254,122 @@ export const odooApps = [
     "externalPage": null
   },
   {
+    "tech": "mh_survey_file_upload",
+    "slug": "survey-file-upload",
+    "name": "Survey File Upload",
+    "summary": "Survey attachment question: respondents upload a file (PDF, image, document) to a survey answer, with size and type limits, and you download it from the results",
+    "tagline": "Add a file upload question to Odoo Surveys: respondents attach a PDF, image or document to their answer, and you download it from the results.",
+    "intro": [],
+    "features": [
+      {
+        "heading": "What it does",
+        "body": [
+          "Odoo Surveys cannot ask for a document. Its question types are text, numbers, dates, choices, scales and matrices, so a job application, an insurance claim or an intake form has to send the CV or the photo by email on the side. This app adds one more question type, File Upload, so the document comes back with the answer.",
+          "On the survey page the respondent picks one or more files. The server checks each file against the limits you set on the question and stores it as an attachment on the answer, next to the other answers of that participation."
+        ]
+      },
+      {
+        "heading": "Who it is for",
+        "body": [
+          "HR and recruitment teams collecting CVs, insurance and service firms collecting claim documents, schools collecting forms, and anyone whose Odoo survey needs a document or a photo back with the answers."
+        ]
+      }
+    ],
+    "scope": [],
+    "requires": [
+      "Odoo 19 and 20, Community or Enterprise. Needs the Surveys app (survey). Third-party apps install on Odoo.sh or On-Premise only - they cannot be installed on Odoo Online."
+    ],
+    "price": 29.01,
+    "manifestPrice": 29.0,
+    "currency": "USD",
+    "category": "Marketing/Surveys",
+    "version": "19.0.1.0.0",
+    "license": "OPL-1",
+    "depends": [
+      "survey"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_survey_file_upload",
+    "screenshots": [
+      "screenshot_question.png",
+      "screenshot_survey.png",
+      "screenshot_results.png"
+    ],
+    "copyWords": 163,
+    "hasVideo": true,
+    "youtubeId": null,
+    "externalPage": null
+  },
+  {
+    "tech": "mh_variant_descriptions",
+    "slug": "variant-descriptions",
+    "name": "Variant Descriptions",
+    "summary": "Variant description on the website product page: a rich text eCommerce description for each product variant that swaps when the visitor picks another variant. Falls back to the product description.",
+    "tagline": "",
+    "intro": [
+      "Give each product variant its own description on the shop page. It swaps when the visitor picks another size, colour or memory, and falls back to the product description when a variant has none.",
+      "Odoo gives a product one eCommerce description, shared by every variant. When the size, colour or memory changes what the customer is buying, the page cannot say so: the 12 litre bag and the 28 litre bag read the same, so shops copy the same text into every product or leave the differences out."
+    ],
+    "features": [
+      {
+        "heading": "A rich text description on every variant",
+        "body": [
+          "The variant form gets a Variant Description page with the usual rich text editor. On Odoo 19 the same field is also on the Variants edit form you reach from the product's Variants button. Users who can edit products (the Products / Create group) can edit it; there is no custom field and no view to edit."
+        ]
+      },
+      {
+        "heading": "Swaps on the shop page",
+        "body": [
+          "The text shows in the normal description position under the product title, and changes when the visitor picks another combination, with no page reload. The first variant's text is already in the page when it loads."
+        ]
+      },
+      {
+        "heading": "Falls back to the product description",
+        "body": [
+          "A variant with no text of its own, or only empty editor markup, shows the product's eCommerce description. You only write text for the variants that need it."
+        ]
+      },
+      {
+        "heading": "Sanitised, translatable, per website",
+        "body": [
+          "The text is sanitised when it is saved: scripts, event handlers and javascript: links are removed. It is translated with Odoo's own translation tool. A product limited to one website is not shown on the others, as in standard Odoo."
+        ]
+      },
+      {
+        "heading": "Who it is for",
+        "body": [
+          "Shops on Odoo eCommerce whose variants differ in more than a label: bag sizes with different capacities, phones with different memory, furniture with different dimensions or care notes, products where one variant carries a warning the others do not."
+        ]
+      }
+    ],
+    "scope": [],
+    "requires": [
+      "Odoo 19 or 20, Community or Enterprise, with the eCommerce app (website_sale). Third-party apps install on Odoo.sh or On-Premise only - they cannot be installed on Odoo Online."
+    ],
+    "price": 29.01,
+    "manifestPrice": 29.0,
+    "currency": "USD",
+    "category": "Website/Website",
+    "version": "19.0.1.0.0",
+    "license": "OPL-1",
+    "depends": [
+      "website_sale"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_variant_descriptions",
+    "screenshots": [
+      "screenshot_page_small.png",
+      "screenshot_page_large.png",
+      "screenshot_variant_form.png"
+    ],
+    "copyWords": 314,
+    "hasVideo": true,
+    "youtubeId": null,
+    "externalPage": null
+  },
+  {
     "tech": "mh_website_category_sync",
     "slug": "ecommerce-category-sync",
     "name": "eCommerce Category Sync",
@@ -6049,6 +6651,75 @@ export const odooApps = [
     "hasVideo": true,
     "youtubeId": "GCuPAEGlPf0",
     "externalPage": "/apps/multi-currency-rounding"
+  },
+  {
+    "tech": "mh_report_custom_fonts",
+    "slug": "report-custom-fonts",
+    "name": "Report Custom Fonts",
+    "summary": "Custom font for PDF reports: upload a TTF or OTF and pick it in the Document Layout, so invoices and quotations print in your own typeface",
+    "tagline": "Custom font for PDF reports: upload a TTF or OTF and pick it in the Document Layout, so invoices and quotations print in your own typeface.",
+    "intro": [
+      "Odoo's Document Layout window offers eight fixed fonts. A company that prints invoices in Devanagari, Tamil, Thai or Arabic script, or in its brand typeface, has to edit QWeb by hand for every client. This app adds a Custom font field to the Document Layout window. Upload a TTF or OTF file once, pick it, and every PDF of that company is printed in it."
+    ],
+    "features": [
+      {
+        "heading": "Upload once, pick in Document Layout",
+        "body": [
+          "Settings > Report Fonts holds your font files (TTF or OTF, up to 4 MB each). In the Document Layout window a new Custom font field lists the fonts of the company; you can also create one from there. The file type is checked from the file content, not its name."
+        ]
+      },
+      {
+        "heading": "Embedded in the report page",
+        "body": [
+          "The font file is embedded in the report page as a base64 font face, so nothing is fetched from the internet while the PDF is made and it works offline. Tested on Odoo 19 and 20 by making a real PDF with Odoo's PDF engine and checking that the uploaded font is in it."
+        ]
+      },
+      {
+        "heading": "Per company",
+        "body": [
+          "Each company has its own fonts and its own choice. A user only sees and uses the fonts of the companies they have switched on, and a font cannot be assigned to another company. Header and footer pages get the font too."
+        ]
+      },
+      {
+        "heading": "Falls back to the standard font",
+        "body": [
+          "The font chosen in the Text field stays as the fallback, for characters your font does not contain. Remove the Custom font and the PDFs go back to the standard font."
+        ]
+      }
+    ],
+    "scope": [
+      "It does not change the font of the Odoo backend or the Point of Sale screen. It only affects PDF reports. Free apps on the store change the backend font; they do not touch PDFs.",
+      "It does not load Google Fonts or any web font service. You upload the file; nothing is fetched while a report is made.",
+      "It takes one file per font. Bold text is the same file thickened by the PDF engine, not a separate bold face. Upload the regular file only.",
+      "It sets one font per company, not per report, per partner or per element.",
+      "It does not subset fonts. The font file is added to every PDF as it is, so a large CJK font makes every PDF large. Files over 4 MB are refused.",
+      "The preview pane in the Document Layout window keeps showing the standard font; the printed PDF shows yours.",
+      "It accepts TTF and OTF only. WOFF and WOFF2 files are refused.",
+      "It does not check that the font covers your script. Characters missing from the font are drawn in the fallback font."
+    ],
+    "requires": [
+      "Odoo 19 or 20, Community or Enterprise. Depends only on the web module. Third-party apps install on Odoo.sh or On-Premise only - they cannot be installed on Odoo Online."
+    ],
+    "price": 19.0,
+    "manifestPrice": 19.0,
+    "currency": "USD",
+    "category": "Tools",
+    "version": "19.0.1.0.0",
+    "license": "OPL-1",
+    "depends": [
+      "web"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_report_custom_fonts",
+    "screenshots": [
+      "screenshot_layout.png",
+      "screenshot_pdf.png"
+    ],
+    "copyWords": 469,
+    "hasVideo": true,
+    "youtubeId": null,
+    "externalPage": null
   },
   {
     "tech": "mh_1099_threshold_check",
@@ -8037,7 +8708,7 @@ export const odooApps = [
       "account"
     ],
     "paidDepends": [],
-    "downloads": 8,
+    "downloads": 9,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_journal_access_report",
     "screenshots": [
       "screenshot_access.png"
@@ -8281,7 +8952,7 @@ export const odooApps = [
       "stock_account"
     ],
     "paidDepends": [],
-    "downloads": 7,
+    "downloads": 9,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_merge_products",
     "screenshots": [
       "screenshot_preview.png"
@@ -8682,7 +9353,7 @@ export const odooApps = [
       "point_of_sale"
     ],
     "paidDepends": [],
-    "downloads": 3,
+    "downloads": 8,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_pos_cash_alert",
     "screenshots": [
       "screenshot_alert.png"
@@ -8824,7 +9495,7 @@ export const odooApps = [
       "point_of_sale"
     ],
     "paidDepends": [],
-    "downloads": 8,
+    "downloads": 9,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_pos_hourly_sales",
     "screenshots": [
       "screenshot_hourly_grid.png"
@@ -8974,7 +9645,7 @@ export const odooApps = [
       "purchase"
     ],
     "paidDepends": [],
-    "downloads": 5,
+    "downloads": 8,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_pos_purchase_order",
     "screenshots": [
       "screenshot_purchase_order_dialog.png"
@@ -9697,7 +10368,7 @@ export const odooApps = [
       "base"
     ],
     "paidDepends": [],
-    "downloads": 6,
+    "downloads": 7,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_gdpr_retention_exposure",
     "screenshots": [
       "screenshot_exposure.png"
@@ -10137,7 +10808,7 @@ export const odooApps = [
       "purchase"
     ],
     "paidDepends": [],
-    "downloads": 3,
+    "downloads": 8,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_purchase_split",
     "screenshots": [
       "screenshot_split_wizard.png",
@@ -10470,7 +11141,7 @@ export const odooApps = [
       "hr_timesheet"
     ],
     "paidDepends": [],
-    "downloads": 14,
+    "downloads": 16,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_task_timer",
     "screenshots": [
       "screenshot_timer.png"
