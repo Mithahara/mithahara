@@ -5,7 +5,7 @@
 // generator; editing here forks the copy away from what the store actually
 // serves.
 //
-// Store snapshot: 2026-10-25T04:10:15+00:00
+// Store snapshot: 2026-10-25T18:19:12+00:00
 
 export const odooApps = [
   {
@@ -2532,7 +2532,7 @@ export const odooApps = [
     "manifestPrice": 49.0,
     "currency": "USD",
     "category": "Sales/Sales",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.0.1",
     "license": "OPL-1",
     "depends": [
       "account",
@@ -3842,7 +3842,7 @@ export const odooApps = [
     "manifestPrice": 39.0,
     "currency": "USD",
     "category": "Productivity/Discuss",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.0.1",
     "license": "OPL-1",
     "depends": [
       "mail"
@@ -4020,7 +4020,7 @@ export const odooApps = [
     "manifestPrice": 39.0,
     "currency": "USD",
     "category": "Accounting/Accounting",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.0.1",
     "license": "OPL-1",
     "depends": [
       "account"
@@ -4177,7 +4177,7 @@ export const odooApps = [
     "manifestPrice": 39.0,
     "currency": "USD",
     "category": "Accounting/Accounting",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.0.1",
     "license": "OPL-1",
     "depends": [
       "account_payment"
@@ -4686,7 +4686,7 @@ export const odooApps = [
     "manifestPrice": 39.0,
     "currency": "USD",
     "category": "Services/Timesheets",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.0.1",
     "license": "OPL-1",
     "depends": [
       "hr_timesheet"
@@ -4734,7 +4734,7 @@ export const odooApps = [
     "manifestPrice": 39.0,
     "currency": "USD",
     "category": "Sales/Sales",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.0.1",
     "license": "OPL-1",
     "depends": [
       "sale"
@@ -5890,23 +5890,44 @@ export const odooApps = [
     "summary": "Partner org chart and contact org chart: an Org Chart tab on every company and contact form that draws the contacts under a company as a tree",
     "tagline": "",
     "intro": [
-      "Partner org chart and contact org chart: an Org Chart tab on every company and contact form that draws the contacts under a company as a tree.",
-      "A company in Odoo can have dozens of contacts, invoice addresses and delivery addresses, and the partner form shows them as a flat list of cards. Nobody can see at a glance who sits under whom, or who is the right person to call.",
-      "Partner Org Chart adds an Org Chart tab to the partner form. It draws the top company and everything under it as an indented tree, nested as deep as your data goes. Each line shows the name, with badges for the job title, the email and the address type (invoice, delivery and so on). Click a name to open that contact.",
-      "Open the tab on the company, or on any contact. The tree always starts at the top company you are allowed to see, so every contact of a company shows the same chart, and the contact you are on is underlined.",
-      "The chart is built with your own access rights. Contacts of another company that you cannot see in a multi-company database are not drawn, and neither is a parent company you cannot see. Archived contacts are left out.",
-      "Account managers and sales teams in B2B, who need to know the people around a customer before they pick up the phone.",
-      "The Org Chart tab opened from a contact (underlined): the company, its contacts and the contacts under them, with job titles, emails and address types.",
-      "Questions before or after purchase: support@mithahara.com"
+      "Partner org chart and contact org chart: an Org Chart tab on every company and contact form that draws the contacts under a company as a tree."
     ],
-    "features": [],
+    "features": [
+      {
+        "heading": "What it does",
+        "body": [
+          "A company in Odoo can have dozens of contacts, invoice addresses and delivery addresses, and the partner form shows them as a flat list of cards. Nobody can see at a glance who sits under whom, or who is the right person to call.",
+          "Partner Org Chart adds an Org Chart tab to the partner form. It draws the top company and everything under it as an indented tree, nested as deep as your data goes. Each line shows the name, with badges for the job title, the email and the address type (invoice, delivery and so on). Click a name to open that contact."
+        ]
+      },
+      {
+        "heading": "Works from any contact",
+        "body": [
+          "Open the tab on the company, or on any contact. The tree always starts at the top company you are allowed to see, so every contact of a company shows the same chart, and the contact you are on is underlined."
+        ]
+      },
+      {
+        "heading": "Respects access rights",
+        "body": [
+          "The chart is built with your own access rights. Contacts of another company that you cannot see in a multi-company database are not drawn, and neither is a parent company you cannot see. Archived contacts are left out."
+        ]
+      },
+      {
+        "heading": "Who it is for",
+        "body": [
+          "Account managers and sales teams in B2B, who need to know the people around a customer before they pick up the phone."
+        ]
+      }
+    ],
     "scope": [],
-    "requires": [],
+    "requires": [
+      "Odoo 19 and 20, Community or Enterprise. No dependencies beyond the base Contacts data, no third-party service, and no data leaves your database. Third-party apps install on Odoo.sh or On-Premise only - they cannot be installed on Odoo Online (SaaS)."
+    ],
     "price": 29.01,
     "manifestPrice": 29.0,
     "currency": "USD",
     "category": "Sales/CRM",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.0.2",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -5917,7 +5938,7 @@ export const odooApps = [
     "screenshots": [
       "screenshot_org_chart.png"
     ],
-    "copyWords": 264,
+    "copyWords": 247,
     "hasVideo": true,
     "youtubeId": "nNuPF0r_S48",
     "externalPage": null
@@ -6283,7 +6304,7 @@ export const odooApps = [
     "manifestPrice": 29.0,
     "currency": "USD",
     "category": "Marketing/Surveys",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.0.1",
     "license": "OPL-1",
     "depends": [
       "survey"
@@ -6351,7 +6372,7 @@ export const odooApps = [
     "manifestPrice": 29.0,
     "currency": "USD",
     "category": "Website/Website",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.0.1",
     "license": "OPL-1",
     "depends": [
       "website_sale"
@@ -6704,7 +6725,7 @@ export const odooApps = [
     "manifestPrice": 19.0,
     "currency": "USD",
     "category": "Tools",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.0.1",
     "license": "OPL-1",
     "depends": [
       "web"
@@ -7552,6 +7573,131 @@ export const odooApps = [
     "externalPage": null
   },
   {
+    "tech": "mh_contact_data_check",
+    "slug": "contact-data-check",
+    "name": "Contact Data Check",
+    "summary": "Contact data check: count and list contacts with an invalid phone number, ALL CAPS or lowercase name, stray spaces or a bad email address",
+    "tagline": "Contact data check: count and list contacts with an invalid phone number, ALL CAPS or lowercase name, stray spaces or a bad email address",
+    "intro": [
+      "Contacts pile up phone numbers nobody can dial, names typed in capitals, a stray space after a surname and half-typed email addresses. Odoo has no screen that counts them in one place, so nobody knows how big the problem is until a report groups \"Acme\" and \"Acme \" separately.",
+      "Open Contacts > Reporting > Contact Data Check. You get four counters, each with a Show contacts button that opens an ordinary contact list you can sort, filter, export and open."
+    ],
+    "features": [
+      {
+        "heading": "Phone numbers Odoo cannot sanitise",
+        "body": [
+          "A phone is filled in but Odoo's own Sanitized Number for it is empty, so the number cannot be searched or dialled in international form. The screen also shows how many of those contacts have no country set, because that is often the whole fix.",
+          "A number without a + or 00 prefix needs a country to be read: Odoo uses the contact's country, then the company's. With neither, only numbers that start with + or 00 are usable, so a perfectly good local number is counted too. The count is Odoo's stored result, which is worked out when the number or the contact's country is saved. A number saved before you set the company's country stays counted until it is saved again."
+        ]
+      },
+      {
+        "heading": "Names in CAPITALS or all lowercase",
+        "body": [
+          "A name counts when every letter in it is upper case or every letter is lower case. A name with no letters, like 12345, is ignored. Companies are left out unless you tick the box on the screen, because SAP and IBM are correctly written in capitals. On Odoo 20, Odoo itself only treats a contact as a company when it has a VAT number, so a company without one is checked like a person."
+        ]
+      },
+      {
+        "heading": "Stray spaces",
+        "body": [
+          "A space at the start or end, or two spaces in a row, in the name, email or phone."
+        ]
+      },
+      {
+        "heading": "Email addresses that look wrong",
+        "body": [
+          "The email field has nothing shaped like name@domain.tld in it: no @, no dot after it, or two @ in a row. A field holding several addresses is fine as long as one looks right. A blank field is not counted, and an address whose only fault is a trailing space is counted under spaces, not twice."
+        ]
+      }
+    ],
+    "scope": [
+      "It never changes a contact. It does not fix a number, a name or a space, and it does not check that a phone number or an email address exists. It does not stop bad data being typed in later.",
+      "It counts active contacts that you are allowed to open, so archived contacts and other companies' contacts you cannot see are not included. A name in mixed case is never flagged, even if it is wrong, and a correctly capitalised acronym such as a person's initials is flagged: the check only compares each name with its own upper- and lower-case form. Only the phone field is read, not any extra number field another app adds."
+    ],
+    "requires": [
+      "Odoo 19 and 20, Community or Enterprise, with the Contacts app. Third-party apps install on Odoo.sh or On-Premise only - they cannot be installed on Odoo Online."
+    ],
+    "price": 0.0,
+    "manifestPrice": 0.0,
+    "currency": "USD",
+    "category": "Contacts",
+    "version": "19.0.1.0.0",
+    "license": "OPL-1",
+    "depends": [
+      "contacts",
+      "phone_validation"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_contact_data_check",
+    "screenshots": [
+      "screenshot_check.png"
+    ],
+    "copyWords": 511,
+    "hasVideo": true,
+    "youtubeId": null,
+    "externalPage": null
+  },
+  {
+    "tech": "mh_contact_sheet",
+    "slug": "contact-sheet",
+    "name": "Contact Sheet",
+    "summary": "Contact sheet PDF: print the contacts of a company with job title, phone, email and address type, one page per company",
+    "tagline": "Contact sheet PDF: print the contacts of a company with job title, phone, email and address type, one page per company",
+    "intro": [],
+    "features": [
+      {
+        "heading": "What it does",
+        "body": [
+          "You need a printed or mailed list of who works at a customer or supplier. Odoo has no print button for it: the contacts sit on a tab of the company form, and the list view Export gives you a spreadsheet, not a page you can hand over. Contact Sheet adds a Contact Sheet entry to the Print menu of partners.",
+          "Open a company (or tick several companies in the list), choose Print, then Contact Sheet. You get a PDF with one page per company: the company name, phone and email at the top, then one row per active contact with name, job position, phone, email and address type (Contact, Invoice, Delivery, Other)."
+        ]
+      },
+      {
+        "heading": "Contacts under contacts stay under them",
+        "body": [
+          "A contact that sits under another contact is listed right below its parent and indented, so an assistant appears under the person they assist and not as a stray line in the middle of the list."
+        ]
+      },
+      {
+        "heading": "It follows your access rights",
+        "body": [
+          "The sheet is built through Odoo's normal report path. Contacts you are not allowed to read, and contacts of companies you are not logged in to, are left out. A company you cannot read cannot be printed at all. Archived contacts are not listed."
+        ]
+      },
+      {
+        "heading": "Long lists stop with a note",
+        "body": [
+          "At most 200 contacts are listed per company. If a company has more, the sheet says that only the first 200 are shown."
+        ]
+      }
+    ],
+    "scope": [
+      "It adds no fields and changes no data. There is no mobile column, because Odoo 19 and 20 no longer keep a separate mobile number on partners. It does not draw a tree, edit contacts, export vCard or CSV (the list view Export already exports CSV and Excel), send email or publish a directory page. Archived contacts are never listed, and the sheet cannot be reordered or have columns chosen."
+    ],
+    "requires": [
+      "Odoo 19 or 20 Community or Enterprise, no other module needed. Third-party apps install on Odoo.sh or On-Premise only - they cannot be installed on Odoo Online (SaaS)."
+    ],
+    "price": 0.0,
+    "manifestPrice": 0.0,
+    "currency": "USD",
+    "category": "Sales/CRM",
+    "version": "19.0.1.0.0",
+    "license": "OPL-1",
+    "depends": [
+      "base"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_contact_sheet",
+    "screenshots": [
+      "screenshot_contact_sheet.png"
+    ],
+    "copyWords": 327,
+    "hasVideo": true,
+    "youtubeId": null,
+    "externalPage": null
+  },
+  {
     "tech": "mh_cookie_consent_banner",
     "slug": "cookie-consent-banner",
     "name": "Cookie Consent Banner",
@@ -7643,7 +7789,7 @@ export const odooApps = [
       "stock_account"
     ],
     "paidDepends": [],
-    "downloads": 27,
+    "downloads": 30,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_cost_price_history",
     "screenshots": [
       "screenshot_history.png"
@@ -7651,6 +7797,68 @@ export const odooApps = [
     "copyWords": 458,
     "hasVideo": true,
     "youtubeId": "l3mtcfUOXhw",
+    "externalPage": null
+  },
+  {
+    "tech": "mh_count_coverage",
+    "slug": "count-coverage",
+    "name": "Count Coverage",
+    "summary": "Locations never counted - when each warehouse location was last counted, days since, and the stock value sitting in locations nobody has counted",
+    "tagline": "",
+    "intro": [
+      "Locations never counted - when each warehouse location was last counted, days since, and the stock value sitting in locations nobody has counted",
+      "Odoo writes the date on a location every time a count is applied, and then shows it in exactly one place: the location's own form. There is no list, no filter, no way to ask which locations nobody has counted. This is that list."
+    ],
+    "features": [
+      {
+        "heading": "Every internal location, oldest count first",
+        "body": [
+          "The date it was last counted, the days since, how many products are in it, the units, and the stock value at product cost. Locations never counted sit at the top, in red. Locations not counted for over a year are in amber."
+        ]
+      },
+      {
+        "heading": "Filters that answer the question",
+        "body": [
+          "Never counted, or not counted in 90, 180 or 365 days. Hide locations with no stock. Group by warehouse. Group by Counted or Never and the totals say how much stock value sits in locations nobody has counted."
+        ]
+      },
+      {
+        "heading": "A count that found nothing still counts",
+        "body": [
+          "Odoo writes the date on the location even when every quantity matched, so a location that was counted and was right is not reported as uncounted. If your database has counts from before Odoo kept that date, the last inventory adjustment move is used instead, and the later of the two wins."
+        ]
+      },
+      {
+        "heading": "Reads only",
+        "body": [
+          "No count, adjustment or location is created or changed, and nothing new is stored: the list is a view over what Odoo already holds. Each company sees only its own locations."
+        ]
+      }
+    ],
+    "scope": [
+      "It does not schedule or generate counts: Odoo already has the Count Sheet, a cycle count frequency on each location and Request a Count. It does not compare counted with system quantity or measure how accurate a count was. It does not look inside child locations: each location is judged on its own date. Units are a plain sum of on-hand quantities in each product's own unit of measure, so kilograms and pieces are added as they are. Value is quantity times the product cost price of the location's company, positive quantities only. Days are counted by the database clock, so a user far from UTC can see a day's difference."
+    ],
+    "requires": [
+      "Odoo 19 or 20, Community or Enterprise, with Inventory. Reading it needs the Inventory User right. Third-party apps install on Odoo.sh or On-Premise only - they cannot be installed on Odoo Online."
+    ],
+    "price": 0.0,
+    "manifestPrice": 0.0,
+    "currency": "USD",
+    "category": "Warehouse",
+    "version": "19.0.1.0.0",
+    "license": "OPL-1",
+    "depends": [
+      "stock"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_count_coverage",
+    "screenshots": [
+      "screenshot_coverage.png"
+    ],
+    "copyWords": 362,
+    "hasVideo": true,
+    "youtubeId": null,
     "externalPage": null
   },
   {
@@ -8764,6 +8972,67 @@ export const odooApps = [
     "externalPage": null
   },
   {
+    "tech": "mh_lapsed_customers",
+    "slug": "lapsed-customers",
+    "name": "Lapsed Customers",
+    "summary": "Lapsed customers report: last invoice date and days since the last invoice for every customer, filter customers silent for N days",
+    "tagline": "Lapsed customers report: last invoice date and days since the last invoice for every customer, filter customers silent for N days",
+    "intro": [],
+    "features": [
+      {
+        "heading": "What it does",
+        "body": [
+          "Odoo does not keep a \"last invoice date\" on the customer. To find the customers who stopped buying you have to open invoices, group by customer and read dates by eye, because a grouped list cannot show a latest date. This adds one list under Invoicing > Reporting > Partner Reports > Lapsed Customers."
+        ]
+      },
+      {
+        "heading": "One line per customer",
+        "body": [
+          "Each customer with at least one posted customer invoice gets a line: the date of the last invoice, how many days ago that was, how many invoices and the total invoiced in your company currency. The oldest silence is on top. Contacts and delivery addresses roll up to their company, so a buyer's invoices count towards the company they work for."
+        ]
+      },
+      {
+        "heading": "Silent for more than N days",
+        "body": [
+          "The list opens on the \"Lapsed (company setting)\" filter. The number of days is set per company, 180 by default, on the company form (Settings > Companies). Ready-made filters for 90 and 365 days are included, and any other number works with a custom filter on Days Silent. The days are worked out when you open the list, so the report is never out of date. Export works like any Odoo list."
+        ]
+      },
+      {
+        "heading": "Several companies",
+        "body": [
+          "Each company is reported separately and judged against its own threshold. Users only see the companies they are allowed into."
+        ]
+      }
+    ],
+    "scope": [
+      "It does not score, tag or segment customers, and it does not build mailing lists. It only lists them.",
+      "It counts posted customer invoices only. Credit notes, draft and cancelled invoices, vendor bills and receipts are ignored, so a customer whose invoices were all credited still appears with their original total. A customer who only buys at the Point of Sale without an invoice, or who only has a sales order, does not appear.",
+      "It does not change anything: no fields are added to the customer form and nothing is stored."
+    ],
+    "requires": [
+      "Odoo 19 and 20, Community or Enterprise. Needs only Invoicing (account). Users need the Billing or Read-only accounting right. Third-party apps install on Odoo.sh or On-Premise only - they cannot be installed on Odoo Online (SaaS)."
+    ],
+    "price": 0.0,
+    "manifestPrice": 0.0,
+    "currency": "USD",
+    "category": "Accounting/Accounting",
+    "version": "19.0.1.0.0",
+    "license": "OPL-1",
+    "depends": [
+      "account"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_lapsed_customers",
+    "screenshots": [
+      "screenshot_lapsed.png"
+    ],
+    "copyWords": 334,
+    "hasVideo": true,
+    "youtubeId": null,
+    "externalPage": null
+  },
+  {
     "tech": "mh_list_view_manager",
     "slug": "list-view-manager",
     "name": "List View Manager",
@@ -9294,7 +9563,7 @@ export const odooApps = [
       "analytic"
     ],
     "paidDepends": [],
-    "downloads": 22,
+    "downloads": 23,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_pos_analytic_account",
     "screenshots": [
       "screenshot_settings.png"
@@ -9645,7 +9914,7 @@ export const odooApps = [
       "purchase"
     ],
     "paidDepends": [],
-    "downloads": 8,
+    "downloads": 9,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_pos_purchase_order",
     "screenshots": [
       "screenshot_purchase_order_dialog.png"
@@ -10619,6 +10888,125 @@ export const odooApps = [
     "externalPage": null
   },
   {
+    "tech": "mh_sensitive_field_check",
+    "slug": "sensitive-field-check",
+    "name": "Sensitive Field Check",
+    "summary": "Sensitive field check - list fields like salary, wage, iban, vat and password that have no field level groups restriction in code",
+    "tagline": "Sensitive field check - list fields like salary, wage, iban, vat and password that have no field level groups restriction in code",
+    "intro": [
+      "Odoo can restrict a field to certain groups, but only when a developer wrote groups on that field in code. Nothing in the standard menus tells you which fields have no such restriction. This app does: it reads the loaded models, finds fields whose names look sensitive (salary, wage, ssn, iban, password, vat, cost, margin, birthday and more) and shows, for each, the groups written on the field - or nothing."
+    ],
+    "features": [
+      {
+        "heading": "A list you can filter and export",
+        "body": [
+          "Open Settings > Sensitive Field Check > Check Fields. You get one row per match: model, technical field name, label, type, the keyword that matched and the field-level groups exactly as written in code. It opens on \"No field-level groups\". Group by model or by keyword, search, and use the normal list export."
+        ]
+      },
+      {
+        "heading": "Your own keyword list",
+        "body": [
+          "The keywords are an editable list under Sensitive Field Check > Keywords. Add the word your industry uses, delete the ones that are noise for you. A keyword matches whole words of the technical field name split on underscores: salary matches salary and basic_salary but not salaryman, and api_key matches api_key. Labels are not searched.",
+          "In the list, fields without groups are shown in red and fields with groups in grey. Groups are shown exactly as written in code; a single dot means Odoo's no-access marker, a field no user can read through the ORM."
+        ]
+      },
+      {
+        "heading": "Read it as questions, not as leaks",
+        "body": [
+          "The list is a set of questions to ask, not a list of leaks. A field with no groups on it may hold nothing, may be computed blank, or may sit on a model your users cannot open at all. Which models a group may open (access rights) and which rows it sees (record rules) are different layers, and this app does not look at them."
+        ]
+      },
+      {
+        "heading": "Who it is for",
+        "body": [
+          "Administrators and consultants who have to answer \"who can see salary, cost or bank details in this database?\" and want a starting list of the fields to look at, instead of reading model source."
+        ]
+      }
+    ],
+    "scope": [
+      "It only checks groups written on the field itself. Access rights (which models a group can open) and record rules (which rows) are not checked, so \"no field-level groups\" does not mean \"every employee can read it\".",
+      "It does not see other apps' rules. A restriction added through another app's own hook, including our Field Access Rules, is not visible to it, so a field protected that way still shows as having no groups.",
+      "It does not read record data and cannot tell you whether a field holds anything. It does not judge form views either: a groups attribute on a view hides a field in that view only and is not counted.",
+      "It finds names, not meaning. A field called something unrelated that holds a secret will not be listed, and a harmless field named like a keyword will. It does not change any access.",
+      "It is a snapshot. The list is rebuilt each time you open Check Fields; it is not a live monitor. Abstract and wizard models are skipped. Only administrators can open it."
+    ],
+    "requires": [
+      "Odoo 19 and 20, Community or Enterprise. No other module needed. Third-party apps install on Odoo.sh or On-Premise only - they cannot be installed on Odoo Online (SaaS)."
+    ],
+    "price": 0.0,
+    "manifestPrice": 0.0,
+    "currency": "USD",
+    "category": "Extra Tools",
+    "version": "19.0.1.0.0",
+    "license": "OPL-1",
+    "depends": [
+      "base"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_sensitive_field_check",
+    "screenshots": [
+      "screenshot_check.png"
+    ],
+    "copyWords": 540,
+    "hasVideo": true,
+    "youtubeId": null,
+    "externalPage": null
+  },
+  {
+    "tech": "mh_shipping_method_checker",
+    "slug": "shipping-method-checker",
+    "name": "Shipping Method Checker",
+    "summary": "Shipping method not showing? See why each delivery method is available or hidden for an address: country, state, zip, weight, tag and price rules",
+    "tagline": "Shipping method not showing? See why each delivery method is available or hidden for an address: country, state, zip, weight, tag and price rules",
+    "intro": [
+      "A customer writes \"your shipping method is not showing\". Odoo hides delivery methods using rules spread over several tabs - country, state, zip prefix, weight, volume, product tags, price rules and website publication - and the only message anyone ever sees is \"No shipping method is available\". This app tells you which rule hid which method."
+    ],
+    "features": [
+      {
+        "heading": "What it does",
+        "body": [
+          "One screen, under Sales > Configuration > Shipping Method Checker. Type a delivery address (or pick a customer to fill it in), add the products and quantities, and every active delivery method is listed as Available or Hidden. The list updates as you change the address or the basket.",
+          "The reason is written out. A hidden method says what hid it, in words: \"Country France is not one of: Belgium\", \"Zip 90210 does not start with any of: 10, 75\", \"Order weight 20.0 is over the maximum of 10.0 kg\", \"A product has an excluded tag: Fragile\", \"No product has any of the required tags: Liquid\".",
+          "It uses Odoo's own rules, not a copy of them. The Available / Hidden answer is Odoo's own delivery.carrier _is_available_for_order(), the method the website checkout uses to decide which methods to offer, run on a draft order that is never saved. The reason is read from Odoo's own address, tag, weight and volume checks in the order Odoo applies them, so the explanation cannot drift from what the shop really does. The module's tests compare every row with Odoo's answer for really saved sales orders, on Odoo 19 and 20.",
+          "Price rules are covered too. A \"Based on Rules\" method is hidden by Odoo when no price rule fits the order. The checker reports that case as \"Price rules\".",
+          "Website publication is shown when the Website app is installed. An optional Website column (switch it on from the column menu) says whether the method is published and therefore shown at website checkout, or published but hidden for this order, or not published."
+        ]
+      },
+      {
+        "heading": "Who it is for",
+        "body": [
+          "Shop owners and support staff who get \"why can't I choose this delivery method?\" tickets, and whoever sets up delivery methods and wants to test them against a real address before customers do."
+        ]
+      }
+    ],
+    "scope": [
+      "It does not price a shipment, call a carrier API or change any delivery method. For \"Based on Rules\" methods it tells you when Odoo finds no price rule for the order, but it does not say which rule would apply or what the shipping would cost. Weight and volume come from the products' own weight and volume fields times the quantity you enter; there is no field to type a weight directly. It explains Odoo's own rules only: if another app hides a method with its own rule, such as a customer-specific restriction, the row says \"Hidden by another rule\" because none of Odoo's checks explains it. It lists the delivery methods of the selected company that you are allowed to see, and it saves nothing."
+    ],
+    "requires": [
+      "Odoo 19 and 20 Community or Enterprise. Needs the Delivery app (Sales). Third-party apps install on Odoo.sh or On-Premise only - they cannot be installed on Odoo Online (SaaS)."
+    ],
+    "price": 0.0,
+    "manifestPrice": 0.0,
+    "currency": "USD",
+    "category": "Sales",
+    "version": "19.0.1.0.0",
+    "license": "OPL-1",
+    "depends": [
+      "delivery"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_shipping_method_checker",
+    "screenshots": [
+      "screenshot_checker.png"
+    ],
+    "copyWords": 515,
+    "hasVideo": true,
+    "youtubeId": null,
+    "externalPage": null
+  },
+  {
     "tech": "mh_snapchat_ads_viewer",
     "slug": "snapchat-ads-viewer",
     "name": "Snapchat Ads Viewer",
@@ -11016,7 +11404,7 @@ export const odooApps = [
       "stock_account"
     ],
     "paidDepends": [],
-    "downloads": 10,
+    "downloads": 11,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_stock_valuation_closing",
     "screenshots": [
       "screenshot_menu.png",
@@ -11026,6 +11414,84 @@ export const odooApps = [
     "copyWords": 524,
     "hasVideo": true,
     "youtubeId": "TJAkfot0Obo",
+    "externalPage": null
+  },
+  {
+    "tech": "mh_survey_close_date",
+    "slug": "survey-close-date",
+    "name": "Survey Close Date",
+    "summary": "Survey end date and response limit: close a survey on a date or after a maximum number of responses, and the public link shows a closed page",
+    "tagline": "Survey end date and response limit: close a survey on a date or after a maximum number of responses, and the public link shows a closed page",
+    "intro": [],
+    "features": [
+      {
+        "heading": "What it does",
+        "body": [
+          "An Odoo survey has a Close button, but it only works by hand: there is no end date and no cap on responses, so a survey stays open until somebody remembers to press it. This adds two optional settings to the survey form, under Options, Participants: Close on (a date and time) and Max responses (a number).",
+          "When either one is reached, the public link shows Odoo's own \"This survey is now closed\" page. Nobody can start a new answer, and an answer that someone was still filling in can no longer be submitted."
+        ]
+      },
+      {
+        "heading": "The same rule on every public step",
+        "body": [
+          "The check sits in the one place every public survey step already goes through - opening the link, starting, moving to the next page and submitting - so a respondent who opened the form before the deadline cannot finish it after."
+        ]
+      },
+      {
+        "heading": "Only real responses count toward the cap",
+        "body": [
+          "Max responses counts submitted responses. Test entries from the backend and answers that were started but not finished do not use up a place. The form shows the current count next to the cap."
+        ]
+      },
+      {
+        "heading": "What your team sees",
+        "body": [
+          "A Closed ribbon on the survey form and kanban card, a Closed column in the list (closed surveys are greyed out) and Closed / Open filters in the survey search. Survey users still open the survey and see every result. Backend test entries still work, so you can preview a closed survey. A respondent who already submitted still sees their thank-you page."
+        ]
+      },
+      {
+        "heading": "Reopening",
+        "body": [
+          "Clear the date or move it forward, or raise the cap, and the link works again at once. Nothing is archived or deleted (Odoo's own Close button, which archives the survey, still works as before)."
+        ]
+      },
+      {
+        "heading": "Who it is for",
+        "body": [
+          "Anyone running a registration form, a feedback form with a deadline, a poll that should stop at 100 answers, or an application form that closes on a given day, without a developer or a scheduled action."
+        ]
+      }
+    ],
+    "scope": [
+      "It does not send reminders to people who have not answered, and it has no per-question deadlines.",
+      "It cannot open a survey later. There is a close date, not a start date.",
+      "It is not a hard lock on the cap. If two people submit in the same instant, a survey can end a response or two over its cap.",
+      "The closed page is Odoo's own \"survey expired\" page. Its wording is not customisable here.",
+      "It does not archive or delete anything - the survey stays active, only the public link stops - and sends no data to any third party. Odoo's attempts-per-person setting for scored surveys is unchanged."
+    ],
+    "requires": [
+      "Odoo 19 and 20 Community or Enterprise, with the Survey app. Third-party apps install on Odoo.sh or On-Premise only - they cannot be installed on Odoo Online (SaaS)."
+    ],
+    "price": 0.0,
+    "manifestPrice": 0.0,
+    "currency": "USD",
+    "category": "Marketing/Surveys",
+    "version": "19.0.1.0.0",
+    "license": "OPL-1",
+    "depends": [
+      "survey"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_survey_close_date",
+    "screenshots": [
+      "screenshot_survey.png",
+      "screenshot_kanban.png",
+      "screenshot_closed.png"
+    ],
+    "copyWords": 464,
+    "hasVideo": true,
+    "youtubeId": null,
     "externalPage": null
   },
   {
@@ -11152,6 +11618,53 @@ export const odooApps = [
     "externalPage": null
   },
   {
+    "tech": "mh_template_text_check",
+    "slug": "template-text-check",
+    "name": "Template Text Check",
+    "summary": "Mail template hard-coded company name, phone, email and URL check - lists every email template that spells out a company detail instead of using a placeholder",
+    "tagline": "",
+    "intro": [
+      "Mail template hard-coded company name, phone, email and URL check - lists every email template that spells out a company detail instead of using a placeholder",
+      "Mail templates get copied from one company to the next, and somebody types the company name, phone number, email address or website straight into the subject, the sender or the body. It looks fine until a second company sends the email and the customer reads the first company's name and phone number. Odoo has no screen that finds these.",
+      "Open Settings > Technical > Email > Template Text Check. The app reads the subject, Send From, To, Cc, Reply To and body of every active mail template, in every active language, and lists each place where the literal text of one of your companies appears: the template, the field, what was found, which company it belongs to and the text around it.",
+      "Four kinds of hit",
+      "Company name, email address, phone number and website, matched against the real details on the company records you can see. A template that mentions a customer or another brand is not flagged.",
+      "Placeholders are left alone",
+      "Anything Odoo fills in when the email is sent is skipped: {{ ... }} expressions in the subject and address fields, and in the body every t-out, t-esc, t-field and t-if expression, including the sample text Odoo keeps inside a t-out element. A template that uses {{ object.company_id.name }} or t-out=\"object.company_id.phone\" is clean, even when the sample text inside it is a real company name.",
+      "Phone numbers by digits, not by spelling",
+      "+1 555 123 4567, (555) 123-4567 and tel:+15551234567 are the same number. A number that merely contains the same digits as part of a longer one is not a hit.",
+      "Filter, group, open",
+      "Filter by kind, group by template, company or field, search by what was found, and open the template from the row. Each scan replaces your previous results, and they are visible to you only."
+    ],
+    "features": [],
+    "scope": [
+      "It does not edit templates, make a copy for each company or choose a template when an email is sent. It reads and lists, nothing else.",
+      "It reads only the companies you are allowed to see, and only active templates. It does not look inside the Python of an expression, so a company name typed as a string inside {{ ... }} is not found. It does not scan attachments, report PDFs, the \"To (Partners)\" field or the layout Odoo wraps around an email. It matches exact spellings: another address at your company's domain, or \"Acme Widget Co\" when the company is \"Acme Widgets\", is not a hit."
+    ],
+    "requires": [
+      "Odoo 19 and 20, Community or Enterprise, with the Discuss (mail) app. Third-party apps install on Odoo.sh or On-Premise only - they cannot be installed on Odoo Online. Reading the list needs the Email Template Editor right, which is Odoo's own setting."
+    ],
+    "price": 0.0,
+    "manifestPrice": 0.0,
+    "currency": "USD",
+    "category": "Productivity",
+    "version": "19.0.1.0.0",
+    "license": "OPL-1",
+    "depends": [
+      "mail"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_template_text_check",
+    "screenshots": [
+      "screenshot_check.png"
+    ],
+    "copyWords": 435,
+    "hasVideo": true,
+    "youtubeId": null,
+    "externalPage": null
+  },
+  {
     "tech": "mh_tiktok_pixel",
     "slug": "tiktok-pixel",
     "name": "TikTok Pixel",
@@ -11214,6 +11727,82 @@ export const odooApps = [
     "externalPage": null
   },
   {
+    "tech": "mh_timesheet_hours_guard",
+    "slug": "timesheet-hours-guard",
+    "name": "Timesheet Hours Guard",
+    "summary": "Timesheet limit: set a daily hour limit and refuse timesheets over it, dated in the future or too old. Timesheet hours limit per employee",
+    "tagline": "Timesheet limit: set a daily hour limit and refuse timesheets over it, dated in the future or too old. Timesheet hours limit per employee.",
+    "intro": [],
+    "features": [
+      {
+        "heading": "What it does",
+        "body": [
+          "Odoo accepts any timesheet: 40 hours on one day, a date next month, a line from last year. Nothing stops the wrong entry from being saved. This app adds three company settings under Settings, Timesheets, Timesheets Control, and refuses the timesheet that breaks them."
+        ]
+      },
+      {
+        "heading": "Hours limit per day",
+        "body": [
+          "A timesheet that would take one employee past N hours on one day is refused. The default is 24 hours; set it lower, or 0 to turn it off. The message names the employee, the day, the hours that would be logged and the hours already logged by other timesheets. If the company encodes timesheets in days, the message shows days."
+        ]
+      },
+      {
+        "heading": "No future dates, no old dates",
+        "body": [
+          "Two more switches: refuse a timesheet dated after today (off by default), and refuse one dated more than N days before today (0 means off, the default). The oldest day you allow is still accepted; the day after it is not."
+        ]
+      },
+      {
+        "heading": "Every way in meets the same rule",
+        "body": [
+          "The rule is enforced where the timesheet is saved, so the list view, the task form, the calendar, an import and the API all meet it. A batch of lines is counted together. Editing the date, the employee or the hours of an existing line is checked again, and an unrelated edit, such as a new description, is not."
+        ]
+      },
+      {
+        "heading": "Per company",
+        "body": [
+          "Each company has its own three settings, and a timesheet is judged by the settings of its own company. Employees are counted one by one: two employees, or two companies, never share a daily budget. An employee with no user, logged for by a manager, is limited the same way."
+        ]
+      },
+      {
+        "heading": "Works on its own, and next to Timesheet Approval",
+        "body": [
+          "It needs only the Timesheets app. It is also tested installed together with Timesheet Approval: the daily limit still applies, and a week that is submitted or approved stays locked by that app."
+        ]
+      }
+    ],
+    "scope": [
+      "It does not send reminders, approve timesheets, lock weeks, or set limits per project or per task. It does not handle overtime or payroll.",
+      "The daily limit is a plain number of hours per employee. It does not read the employee's working schedule or time off.",
+      "Only timesheets (lines with a project) are counted and checked. Hours are counted as Odoo stores them, with the project time unit read as hours.",
+      "Code running as superuser, such as scheduled actions or sudo, is not blocked.",
+      "Timesheets already in the database are not checked until someone changes their date or employee or makes them longer. Reducing an over-booked day is always allowed."
+    ],
+    "requires": [
+      "Odoo 19 and 20 Community or Enterprise, with the Timesheets app (hr_timesheet). Third-party apps install on Odoo.sh or On-Premise only - they cannot be installed on Odoo Online (SaaS)."
+    ],
+    "price": 0.0,
+    "manifestPrice": 0.0,
+    "currency": "USD",
+    "category": "Services/Timesheets",
+    "version": "19.0.1.0.0",
+    "license": "OPL-1",
+    "depends": [
+      "hr_timesheet"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_timesheet_hours_guard",
+    "screenshots": [
+      "screenshot_refused.png",
+      "screenshot_settings.png"
+    ],
+    "copyWords": 453,
+    "hasVideo": true,
+    "youtubeId": null,
+    "externalPage": null
+  },
+  {
     "tech": "mh_transfer_creation_rights",
     "slug": "transfer-creation-rights",
     "name": "Transfer Creation Rights",
@@ -11269,6 +11858,123 @@ export const odooApps = [
     "copyWords": 422,
     "hasVideo": true,
     "youtubeId": "KlrBy6ekijc",
+    "externalPage": null
+  },
+  {
+    "tech": "mh_unapplied_payments",
+    "slug": "unapplied-payments",
+    "name": "Unapplied Payments",
+    "summary": "Unapplied payments list: unallocated and unreconciled payment amounts still open per customer and vendor, with days open. Opens the payment. Read only.",
+    "tagline": "Unapplied payments list: unallocated and unreconciled payment amounts still open per customer and vendor, with days open. Opens the payment. Read only.",
+    "intro": [
+      "A customer pays 1,500 against a 1,000 invoice, or pays before there is an invoice at all. The extra sits on the receivable account as a payment that was never fully applied. Odoo's Payments list has a Reconciled filter, but no column that says how much of a payment is still open and no list of only the payments that are. Odoo 19 and 20 Community and Enterprise."
+    ],
+    "features": [
+      {
+        "heading": "What it does",
+        "body": [
+          "Adds Reporting > Management > Unapplied Payments, in the Invoicing or Accounting app: one list of every posted customer and vendor payment that still has an amount open. Columns: payment, partner, type, date, payment amount, unapplied amount, the unapplied amount in company currency, and days open. Click a row to open the payment.",
+          "It opens grouped by type, then partner. Filter customer or vendor payments, payments older than 30 or 90 days, or a payment date range. A group row shows the oldest age in the group and the company-currency total."
+        ]
+      },
+      {
+        "heading": "Where the number comes from",
+        "body": [
+          "The unapplied amount is the open balance of the payment's own journal item on the receivable or payable account: the same figure Odoo reconciles with. It is not a stored copy and cannot go stale; the list reads it live every time. It is shown in the payment currency, and in company currency, which is the one that adds up. Customer and vendor money are different things, so the list has no grand total across both."
+        ]
+      }
+    ],
+    "scope": [
+      "It does not apply or reconcile anything. It is read only and changes no amount. To open a payment and match it, use Odoo's own screens.",
+      "It does not look at bank statement matching. A payment can be applied to an invoice and still wait for its bank line, or the other way round. This list is about the receivable or payable side only.",
+      "It does not tell an invoice from a credit note or a manual entry. A payment matched to any of them counts as applied for the part matched.",
+      "It shows only posted payments. Drafts and cancelled payments are not listed, and neither are internal transfers, which do not touch the receivable or payable account.",
+      "It is not an aged receivable report. It does not list unpaid invoices. Odoo Enterprise has its own partner reports; this is a plain list for Community and Enterprise alike."
+    ],
+    "requires": [
+      "Odoo 19 or 20, Community or Enterprise, with Invoicing (account). Third-party apps install on Odoo.sh or On-Premise only - they cannot be installed on Odoo Online (SaaS). Billing and read-only accounting users can open the list; in a multi-company database each user sees only the companies they are logged in to."
+    ],
+    "price": 0.0,
+    "manifestPrice": 0.0,
+    "currency": "USD",
+    "category": "Accounting/Accounting",
+    "version": "19.0.1.0.0",
+    "license": "OPL-1",
+    "depends": [
+      "account"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_unapplied_payments",
+    "screenshots": [
+      "screenshot_unapplied_payments.png"
+    ],
+    "copyWords": 413,
+    "hasVideo": true,
+    "youtubeId": null,
+    "externalPage": null
+  },
+  {
+    "tech": "mh_variant_extra_prices",
+    "slug": "variant-extra-prices",
+    "name": "Variant Extra Prices",
+    "summary": "Variant extra price list - every attribute value extra price of every product in one editable list, with the number of variants each one touches",
+    "tagline": "Variant extra price list - every attribute value extra price across all products in one editable list, filtered by attribute or product.",
+    "intro": [],
+    "features": [
+      {
+        "heading": "The list Odoo never gave you",
+        "body": [
+          "Odoo stores the extra price of an attribute value (for example +25 for Blue) on each product. To see it you open the product, open the attribute line and read it, one product at a time. There is no list across products and no menu for it. This adds that list under Sales > Products > Variant Extra Prices: one row per product and attribute value, with the extra price you can edit in place."
+        ]
+      },
+      {
+        "heading": "Find and change prices in bulk",
+        "body": [
+          "Filter to values that have an extra price, or to those that have none. Search by product, product category, attribute or value. Group by product or by attribute. Select several rows and edit one price cell to set all of them at once."
+        ]
+      },
+      {
+        "heading": "See how many prices a change touches",
+        "body": [
+          "Each row shows the number of variants that carry the value, archived variants included, so you know how many variant prices move before you change a number."
+        ]
+      },
+      {
+        "heading": "Odoo's own field, nothing new stored",
+        "body": [
+          "The list reads and writes the extra price Odoo already keeps, so what you type is what the variant sells for. Archived products are left out, and you only see the products of your own companies. Saving needs the right to edit products, as it does in Odoo."
+        ]
+      }
+    ],
+    "scope": [
+      "It does not calculate percentages. Every extra here is a fixed amount.",
+      "It does not set a price per variant, change pricelists or touch the website. It edits the extra price of an attribute value, which Odoo adds to the product price.",
+      "It does not total prices sensibly. If you group the list, Odoo adds up the extra prices in each group; that sum has no meaning, so ignore it.",
+      "It does not create attribute values or keep a price history. A change overwrites the old number and nothing records what it was.",
+      "It does not show the Variant Extra Prices menu to everyone. The menu appears for users who have the Variants setting enabled and the Sales salesman right."
+    ],
+    "requires": [
+      "Odoo 19 and 20, Community or Enterprise. Needs the Sales app. Third-party apps install on Odoo.sh or On-Premise only - they cannot be installed on Odoo Online (SaaS)."
+    ],
+    "price": 0.0,
+    "manifestPrice": 0.0,
+    "currency": "USD",
+    "category": "Sales",
+    "version": "19.0.1.0.0",
+    "license": "OPL-1",
+    "depends": [
+      "sale"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_variant_extra_prices",
+    "screenshots": [
+      "screenshot_extra_prices.png"
+    ],
+    "copyWords": 360,
+    "hasVideo": true,
+    "youtubeId": null,
     "externalPage": null
   },
   {
