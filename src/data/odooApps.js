@@ -5,7 +5,7 @@
 // generator; editing here forks the copy away from what the store actually
 // serves.
 //
-// Store snapshot: 2026-10-25T18:19:12+00:00
+// Store snapshot: 2026-10-25T19:40:13+00:00
 
 export const odooApps = [
   {
@@ -7516,6 +7516,67 @@ export const odooApps = [
     "externalPage": null
   },
   {
+    "tech": "mh_collections_by_salesperson",
+    "slug": "collected-by-salesperson",
+    "name": "Collected by Salesperson",
+    "summary": "Collections by salesperson: cash received per salesperson per month, customer payments matched to each salesperson's invoices. Partial payments, refunds and company currency. Read only.",
+    "tagline": "",
+    "intro": [
+      "Collections by salesperson: cash received per salesperson per month, customer payments matched to each salesperson's invoices. Partial payments, refunds and company currency. Read only.",
+      "Odoo's invoice analysis reports what each salesperson invoiced. It has a Salesperson column and an invoice date, but nothing for what the customers actually paid: an invoice that is half paid counts in full, and there is no payment date to group by. So \"how much cash did each salesperson bring in last month\" has no screen. This is that screen. Odoo 19 and 20 Community and Enterprise."
+    ],
+    "features": [
+      {
+        "heading": "What it does",
+        "body": [
+          "Adds Reporting > Management > Collections by Salesperson, in the Invoicing or Accounting app. One row for each match between a customer payment (or a bank statement line) and a customer invoice: salesperson, customer, invoice, payment entry, payment date, payment journal and the amount collected in company currency.",
+          "It opens as a pivot of salespeople by payment month. Switch to the list or the graph, filter by payment date, group by customer, payment journal or company, and click a row to open its invoice."
+        ]
+      },
+      {
+        "heading": "How each number is worked out",
+        "body": [
+          "Date. The date of the payment or bank line. Not the invoice date, and not the day somebody matched the two.",
+          "Partial payments. Each payment counts for the part it cleared. An invoice paid in three instalments is three rows, each dated on its own payment. The unpaid rest is not counted.",
+          "One payment, several invoices. The payment is split between the invoices it was matched to, each part under that invoice's salesperson.",
+          "Credit notes. A credit note set against an invoice is not cash and is not counted. Money paid back to a customer against a credit note is a negative row under the credit note's salesperson, so the monthly total is net cash.",
+          "Currency. Rows are in company currency: the value the payment was booked at, for the part matched. If the rate moved between the invoice and the payment, the gain or loss Odoo books on its exchange-difference entry is not in the figure, because it is not cash received. When a total spans companies with different currencies, Odoo's pivot and list convert it to the current company's currency, the same way its own invoice analysis does.",
+          "Salesperson. The Salesperson on the invoice as it is now. Change it on the invoice and the history follows. Invoices with no salesperson are listed with an empty one; there is a filter for them."
+        ]
+      }
+    ],
+    "scope": [
+      "It does not calculate commission. No rates, no rules, no settlement. It shows the cash; what you pay on it is up to you.",
+      "It does not count a payment that is not matched to an invoice. An advance or the overpaid part of a payment has no invoice, so it has no salesperson and is not listed. Unpaid invoices are not listed either.",
+      "It does not count credit-note set-offs or manual journal entries as cash. Only a payment or a bank statement line matched to a customer invoice, credit note or sales receipt is a row.",
+      "It keeps no history of its own. If a match is undone in Odoo the row disappears, and there is no record of who the salesperson was when the money came in.",
+      "It does not sort by product or sales team, and it prints no PDF. Group by salesperson, month, customer, payment journal or company; export the list or pivot with Odoo's own export.",
+      "It does not convert each row to another currency. Rows are in the company's currency; only totals across companies are converted, by Odoo."
+    ],
+    "requires": [
+      "Odoo 19 or 20, Community or Enterprise, with Invoicing (account). Third-party apps install on Odoo.sh or On-Premise only - they cannot be installed on Odoo Online (SaaS). Billing and read-only accounting users can open it; in a multi-company database each user sees only the companies they are logged in to."
+    ],
+    "price": 0.0,
+    "manifestPrice": 0.0,
+    "currency": "USD",
+    "category": "Accounting/Accounting",
+    "version": "19.0.1.0.0",
+    "license": "OPL-1",
+    "depends": [
+      "account"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_collections_by_salesperson",
+    "screenshots": [
+      "screenshot_collections.png"
+    ],
+    "copyWords": 594,
+    "hasVideo": true,
+    "youtubeId": null,
+    "externalPage": null
+  },
+  {
     "tech": "mh_company_mismatch_check",
     "slug": "company-mismatch-check",
     "name": "Company Mismatch Check",
@@ -7627,7 +7688,7 @@ export const odooApps = [
       "phone_validation"
     ],
     "paidDepends": [],
-    "downloads": 0,
+    "downloads": 1,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_contact_data_check",
     "screenshots": [
       "screenshot_check.png"
@@ -7687,7 +7748,7 @@ export const odooApps = [
       "base"
     ],
     "paidDepends": [],
-    "downloads": 0,
+    "downloads": 1,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_contact_sheet",
     "screenshots": [
       "screenshot_contact_sheet.png"
@@ -7851,7 +7912,7 @@ export const odooApps = [
       "stock"
     ],
     "paidDepends": [],
-    "downloads": 0,
+    "downloads": 1,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_count_coverage",
     "screenshots": [
       "screenshot_coverage.png"
@@ -9022,7 +9083,7 @@ export const odooApps = [
       "account"
     ],
     "paidDepends": [],
-    "downloads": 0,
+    "downloads": 1,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_lapsed_customers",
     "screenshots": [
       "screenshot_lapsed.png"
@@ -9393,6 +9454,128 @@ export const odooApps = [
     "copyWords": 433,
     "hasVideo": true,
     "youtubeId": "dRdXWkpTkww",
+    "externalPage": null
+  },
+  {
+    "tech": "mh_models_without_access",
+    "slug": "models-without-access",
+    "name": "Models Without Access",
+    "summary": "Models without access rights: list every model no group can open, with its record count and whether it has record rules",
+    "tagline": "Models without access rights - every model no group can open, with its module, how many records it holds and whether it has record rules",
+    "intro": [
+      "A model with no access line is closed to everyone except the superuser, and Odoo says nothing about it. The only trace is a line in the server log when a module loads. This puts that list on a screen: Settings, Models Without Access."
+    ],
+    "features": [
+      {
+        "heading": "What it does",
+        "body": [
+          "One row per concrete model that no active access line opens to anyone. Each row shows the model, the module that created it, how many records it holds (archived ones included, counted up to 10,000) and whether it has a record rule. The list is built the moment an administrator opens the menu and reads the access lines as they are right then."
+        ]
+      },
+      {
+        "heading": "Start with the models that hold records",
+        "body": [
+          "The Has Records filter is on by default, because a missing access line on an empty table hurts nobody. Switch to Empty to see the rest, filter to models with or without record rules, group by module, or search by name or technical name."
+        ]
+      },
+      {
+        "heading": "What no access means",
+        "body": [
+          "On Odoo 19 a model is listed when it has no active access line granting read, write, create or delete. A line with no group is open to every user, so a model whose only line has no group is not listed. On Odoo 20, which keeps access in ir.access, a model is listed when it has no active line with a group: a line without a group only restricts, so a model with only that line is listed. Lines you archived are ignored on both, as Odoo ignores them. Abstract and transient models are left out."
+        ]
+      },
+      {
+        "heading": "Expect a long list",
+        "body": [
+          "Most of what appears is internal plumbing that is closed on purpose, and a model reached only by code running as the superuser needs no line. The list tells you what is closed. It does not tell you what should be open."
+        ]
+      },
+      {
+        "heading": "Administrators only",
+        "body": [
+          "The menu is for the Settings group, and building the list is refused for anyone else even if they can reach the model by another route. Nothing is changed in your database apart from the temporary rows that make up the list, which Odoo clears itself."
+        ]
+      }
+    ],
+    "scope": [
+      "It does not grant access to anything and does not judge whether a closed model is a mistake. It does not read record rules beyond saying whether one exists. It counts records up to 10,000 and says so when it stops there. It does not follow inherited models: a model that delegates to a parent also needs access to that parent, and this reads each model on its own. It keeps no history."
+    ],
+    "requires": [
+      "Odoo 19 or 20, Community or Enterprise. No other module is needed. Third-party apps install on Odoo.sh or On-Premise only - they cannot be installed on Odoo Online."
+    ],
+    "price": 0.0,
+    "manifestPrice": 0.0,
+    "currency": "USD",
+    "category": "Tools",
+    "version": "19.0.1.0.0",
+    "license": "OPL-1",
+    "depends": [
+      "base"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_models_without_access",
+    "screenshots": [
+      "screenshot_models.png"
+    ],
+    "copyWords": 454,
+    "hasVideo": true,
+    "youtubeId": null,
+    "externalPage": null
+  },
+  {
+    "tech": "mh_near_threshold_orders",
+    "slug": "near-threshold-orders",
+    "name": "Near-Threshold Orders",
+    "summary": "Purchase orders split below the approval limit - vendors whose orders each stay under the approval threshold but add up to more than it",
+    "tagline": "Purchase orders split below the approval limit - vendors whose orders each stay under the approval threshold but add up to more than it",
+    "intro": [
+      "Odoo asks a manager to confirm a purchase order only when that one order reaches the approval amount. It never adds up what a vendor was bought from across several orders, so five orders of 1,900 against a 5,000 threshold pass without anyone looking, although together they come to 9,500. This report finds those vendors."
+    ],
+    "features": [
+      {
+        "heading": "What it does",
+        "body": [
+          "One button, Find Orders, under Purchase > Reporting > Near-Threshold Orders. For each vendor it takes the confirmed orders that are each under the approval threshold, adds up those confirmed within the window (7 days by default, you can change it) and lists every vendor where the sum reaches the threshold: how many orders, what they add up to, first and last confirmation. One click opens the orders themselves."
+        ]
+      },
+      {
+        "heading": "Where the threshold comes from",
+        "body": [
+          "The company's own purchase approval amount, the one under Settings > Purchase > Purchase Order Approval. If two-step approval is switched off, type the amount you care about on the report. Order totals include taxes and are converted to the company currency at the order date, the way Odoo's own check does it. An order at or over the threshold is left out: it already needed a manager."
+        ]
+      },
+      {
+        "heading": "Reads only",
+        "body": [
+          "Nothing is blocked, delayed, flagged or changed, and the native threshold is not touched. The list is built when you press the button and is not kept. Orders are read with your own access rights, so each company shows only its own orders."
+        ]
+      }
+    ],
+    "scope": [
+      "It does not block or delay any order, add an approval limit or change Odoo's threshold. It does not say anyone split an order on purpose: weekly standing orders can add up innocently, so the report says added up, not split. It reads one company at a time and only confirmed orders, not drafts or cancelled ones. A window starts at each order, so overlapping windows of the same vendor can appear as separate rows, and a window already contained in a larger one is not repeated. It has no tiers, approvers or approval log: it only shows where a single threshold was never put to the test."
+    ],
+    "requires": [
+      "Odoo 19 or 20, Community or Enterprise, with Purchase. Opening the report needs the Purchase Manager right. Third-party apps install on Odoo.sh or On-Premise only - they cannot be installed on Odoo Online."
+    ],
+    "price": 0.0,
+    "manifestPrice": 0.0,
+    "currency": "USD",
+    "category": "Purchases",
+    "version": "19.0.1.0.0",
+    "license": "OPL-1",
+    "depends": [
+      "purchase"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_near_threshold_orders",
+    "screenshots": [
+      "screenshot_near_threshold.png"
+    ],
+    "copyWords": 377,
+    "hasVideo": true,
+    "youtubeId": null,
     "externalPage": null
   },
   {
@@ -10260,6 +10443,142 @@ export const odooApps = [
     "externalPage": null
   },
   {
+    "tech": "mh_post_confirm_po_edits",
+    "slug": "post-confirm-po-edits",
+    "name": "Post-Confirm PO Edits",
+    "summary": "Purchase order changes after confirmation - see every confirmed order whose amount was edited, with the amount before and after, who changed it and when",
+    "tagline": "Purchase order changes after confirmation - see every confirmed order whose amount was edited, with the amount before and after, who changed it and when",
+    "intro": [],
+    "features": [
+      {
+        "heading": "Odoo lets a confirmed order change quietly",
+        "body": [
+          "The vendor has the price. Later somebody opens the order and changes a line, and the new total replaces the old one. No list shows which confirmed orders moved, by how much, or who did it. This app keeps that list."
+        ]
+      },
+      {
+        "heading": "One line per change",
+        "body": [
+          "Every time the untaxed amount of a confirmed order changes, a line is written: order, vendor, amount before, amount after, the difference, the user and the time. Open it from Purchase > Reporting > Post-Confirm PO Edits."
+        ]
+      },
+      {
+        "heading": "Filter, group, add up",
+        "body": [
+          "Filter to a month, to changes that went up or down. Group by order, vendor, user or month. The list totals the net change and a pivot adds it up per vendor, in company currency so orders in different currencies can be summed."
+        ]
+      },
+      {
+        "heading": "Works the same on 19 and 20",
+        "body": [
+          "It records the change at the moment it happens, so it does not depend on the chatter. Odoo 20 no longer stores chatter tracking values in a table unless an extra technical module is installed, and Odoo 19 keeps them only in an admin-only technical screen; this app needs neither."
+        ]
+      },
+      {
+        "heading": "Confirming is not an edit",
+        "body": [
+          "An order that is edited and then confirmed, or confirmed from To Approve, is not listed for the work done before confirmation. Only changes to an order that is in the Purchase Order state count, and an order set back to draft is ignored until it is confirmed again."
+        ]
+      },
+      {
+        "heading": "Who it is for",
+        "body": [
+          "Purchase managers and finance who need to answer \"which confirmed orders changed, and who changed them\". Needs Odoo 19 or 20, Community or Enterprise, with the Purchase app. Third-party apps install on Odoo.sh or On-Premise only - they cannot be installed on Odoo Online."
+        ]
+      }
+    ],
+    "scope": [
+      "It does not record anything from before you installed it. Edits made yesterday are not in the list. Orders confirmed earlier are watched from the day of install, and the first change you make to them after that is recorded.",
+      "It does not block, approve or reverse an edit. It is a list. Odoo's Lock Confirmed Orders setting makes users unlock an order before editing it, and edit-restriction apps block edits per user; this app only lists what changed.",
+      "It does not keep old versions of an order. It records the untaxed total only, so it cannot tell you which line was changed. A change that raises one line and lowers another by the same amount leaves the total unchanged and is not listed.",
+      "It does not list tax-only changes, or edits made while an order is a draft or waiting in To Approve. Two edits in one save that cancel out leave no line; two separate saves leave two lines whose changes add up to zero."
+    ],
+    "requires": [],
+    "price": 0.0,
+    "manifestPrice": 0.0,
+    "currency": "USD",
+    "category": "Purchases",
+    "version": "19.0.1.0.0",
+    "license": "OPL-1",
+    "depends": [
+      "purchase"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_post_confirm_po_edits",
+    "screenshots": [
+      "screenshot_edits.png"
+    ],
+    "copyWords": 487,
+    "hasVideo": true,
+    "youtubeId": null,
+    "externalPage": null
+  },
+  {
+    "tech": "mh_print_script_check",
+    "slug": "print-script-check",
+    "name": "Print Script Check",
+    "summary": "Print script check: list contacts, products and company names in Devanagari, Thai, Tamil or other scripts the PDF layout font cannot print",
+    "tagline": "Print script check: list contacts, products and company names in Devanagari, Thai, Tamil or other scripts the PDF layout font cannot print",
+    "intro": [
+      "A customer called in Devanagari, a product named in Thai: the invoice PDF prints empty boxes where the name should be, and nothing in Odoo warns you. The font chosen under Settings > Document Layout is one of eight files Odoo ships, and each covers only some scripts. This app reads that font file and lists every name it cannot print, before a customer receives the PDF.",
+      "Open Settings > Print Script Check. You get an ordinary list for the current company: the script, the type of record, the name and the exact characters the font has no glyph for. Group it by script or type, search by name, open the record."
+    ],
+    "features": [
+      {
+        "heading": "Reads the real font file",
+        "body": [
+          "The coverage is read from the Regular face of the layout font that Odoo ships on your version (Lato, Roboto, Open Sans, Montserrat, Oswald, Raleway, Tajawal, and the monospace font of Odoo 19 or 20), not from a table of guesses. Tajawal, for example, contains Arabic and Lato does not, so the same name is listed under one layout and not the other."
+        ]
+      },
+      {
+        "heading": "Contacts, products and the company",
+        "body": [
+          "Contact names, product names in every language they are translated into, and the company name are checked. Only letters, marks and digits count: a symbol or a punctuation mark is not reported. One row is written per name and script, so a name mixing Devanagari and Thai appears twice."
+        ]
+      },
+      {
+        "heading": "Per company",
+        "body": [
+          "The scan covers the company selected in the company switcher, against that company's own layout font. Records of other companies are left out; records shared by all companies are included. Switch company and scan again to check the next one."
+        ]
+      },
+      {
+        "heading": "Read only",
+        "body": [
+          "A scan never changes a contact, a product or a company. The results are temporary and are replaced by the next scan."
+        ]
+      }
+    ],
+    "scope": [
+      "It does not install or upload a font, change the document layout or render a PDF. It tells you the layout font has no glyph for a character, not what your server prints instead.",
+      "That depends on the fonts installed on the machine that makes the PDF. We rendered invoices with wkhtmltopdf on the stock Odoo 19 Docker image: a Devanagari name printed as empty boxes in the Lato, Tajawal and Fira Mono layouts, while an Arabic name printed through DejaVu Sans and a Chinese name through Noto Sans CJK in the Lato and Roboto layouts. Your server may differ, so print one invoice for a listed name to see.",
+      "Names that are plain ASCII are not examined. Only contact, product and company names are read: not addresses, descriptions or product variants' attribute values. Only the Regular face is read, so a bold or italic face with different coverage is not checked. A layout font that other apps add, with no file in Odoo's own font folders, stops the scan with a message instead of showing an empty list."
+    ],
+    "requires": [
+      "Odoo 19 and 20, Community or Enterprise, with the Product module (installed with Sales, Invoicing or Inventory). Third-party apps install on Odoo.sh or On-Premise only - they cannot be installed on Odoo Online."
+    ],
+    "price": 0.0,
+    "manifestPrice": 0.0,
+    "currency": "USD",
+    "category": "Productivity",
+    "version": "19.0.1.0.0",
+    "license": "OPL-1",
+    "depends": [
+      "product"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_print_script_check",
+    "screenshots": [
+      "screenshot_check.png"
+    ],
+    "copyWords": 501,
+    "hasVideo": true,
+    "youtubeId": null,
+    "externalPage": null
+  },
+  {
     "tech": "mh_product_multi_barcode",
     "slug": "product-package-barcodes",
     "name": "Product Package Barcodes",
@@ -10943,7 +11262,7 @@ export const odooApps = [
       "base"
     ],
     "paidDepends": [],
-    "downloads": 0,
+    "downloads": 1,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_sensitive_field_check",
     "screenshots": [
       "screenshot_check.png"
@@ -10996,7 +11315,7 @@ export const odooApps = [
       "delivery"
     ],
     "paidDepends": [],
-    "downloads": 0,
+    "downloads": 1,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_shipping_method_checker",
     "screenshots": [
       "screenshot_checker.png"
@@ -11482,7 +11801,7 @@ export const odooApps = [
       "survey"
     ],
     "paidDepends": [],
-    "downloads": 0,
+    "downloads": 1,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_survey_close_date",
     "screenshots": [
       "screenshot_survey.png",
@@ -11654,7 +11973,7 @@ export const odooApps = [
       "mail"
     ],
     "paidDepends": [],
-    "downloads": 0,
+    "downloads": 1,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_template_text_check",
     "screenshots": [
       "screenshot_check.png"
@@ -11791,7 +12110,7 @@ export const odooApps = [
       "hr_timesheet"
     ],
     "paidDepends": [],
-    "downloads": 0,
+    "downloads": 1,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_timesheet_hours_guard",
     "screenshots": [
       "screenshot_refused.png",
@@ -11904,7 +12223,7 @@ export const odooApps = [
       "account"
     ],
     "paidDepends": [],
-    "downloads": 0,
+    "downloads": 1,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_unapplied_payments",
     "screenshots": [
       "screenshot_unapplied_payments.png"
@@ -11967,7 +12286,7 @@ export const odooApps = [
       "sale"
     ],
     "paidDepends": [],
-    "downloads": 0,
+    "downloads": 1,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_variant_extra_prices",
     "screenshots": [
       "screenshot_extra_prices.png"
