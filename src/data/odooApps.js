@@ -5,7 +5,7 @@
 // generator; editing here forks the copy away from what the store actually
 // serves.
 //
-// Store snapshot: 2026-10-25T00:06:04+00:00
+// Store snapshot: 2026-10-25T04:10:15+00:00
 
 export const odooApps = [
   {
@@ -2546,7 +2546,7 @@ export const odooApps = [
     ],
     "copyWords": 517,
     "hasVideo": true,
-    "youtubeId": null,
+    "youtubeId": "Scy5Oi6RnRY",
     "externalPage": null
   },
   {
@@ -3856,7 +3856,7 @@ export const odooApps = [
     ],
     "copyWords": 527,
     "hasVideo": true,
-    "youtubeId": null,
+    "youtubeId": "eea2xz2VgLk",
     "externalPage": null
   },
   {
@@ -4033,7 +4033,7 @@ export const odooApps = [
     ],
     "copyWords": 590,
     "hasVideo": true,
-    "youtubeId": null,
+    "youtubeId": "CW6qynUlNzA",
     "externalPage": null
   },
   {
@@ -4191,7 +4191,7 @@ export const odooApps = [
     ],
     "copyWords": 474,
     "hasVideo": true,
-    "youtubeId": null,
+    "youtubeId": "r9glfIUTCKE",
     "externalPage": null
   },
   {
@@ -4701,7 +4701,7 @@ export const odooApps = [
     ],
     "copyWords": 413,
     "hasVideo": true,
-    "youtubeId": null,
+    "youtubeId": "b5hsyHCdEyY",
     "externalPage": null
   },
   {
@@ -4747,7 +4747,7 @@ export const odooApps = [
     ],
     "copyWords": 163,
     "hasVideo": true,
-    "youtubeId": null,
+    "youtubeId": "6MYkke8YMjo",
     "externalPage": null
   },
   {
@@ -5919,7 +5919,7 @@ export const odooApps = [
     ],
     "copyWords": 264,
     "hasVideo": true,
-    "youtubeId": null,
+    "youtubeId": "nNuPF0r_S48",
     "externalPage": null
   },
   {
@@ -6298,7 +6298,7 @@ export const odooApps = [
     ],
     "copyWords": 163,
     "hasVideo": true,
-    "youtubeId": null,
+    "youtubeId": "r16A5qR2ZcA",
     "externalPage": null
   },
   {
@@ -6366,7 +6366,7 @@ export const odooApps = [
     ],
     "copyWords": 314,
     "hasVideo": true,
-    "youtubeId": null,
+    "youtubeId": "F1z6XkBiFXw",
     "externalPage": null
   },
   {
@@ -6718,7 +6718,7 @@ export const odooApps = [
     ],
     "copyWords": 469,
     "hasVideo": true,
-    "youtubeId": null,
+    "youtubeId": "f3lID7Zc6QE",
     "externalPage": null
   },
   {
