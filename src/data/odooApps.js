@@ -7573,7 +7573,7 @@ export const odooApps = [
     ],
     "copyWords": 594,
     "hasVideo": true,
-    "youtubeId": null,
+    "youtubeId": "bRCdg81TFUk",
     "externalPage": null
   },
   {
@@ -7695,7 +7695,7 @@ export const odooApps = [
     ],
     "copyWords": 511,
     "hasVideo": true,
-    "youtubeId": null,
+    "youtubeId": "0L3U7Rs7QWM",
     "externalPage": null
   },
   {
@@ -7755,7 +7755,7 @@ export const odooApps = [
     ],
     "copyWords": 327,
     "hasVideo": true,
-    "youtubeId": null,
+    "youtubeId": "1M7Kby14LhY",
     "externalPage": null
   },
   {
@@ -7919,7 +7919,7 @@ export const odooApps = [
     ],
     "copyWords": 362,
     "hasVideo": true,
-    "youtubeId": null,
+    "youtubeId": "IoCQCsI56uY",
     "externalPage": null
   },
   {
@@ -9090,7 +9090,7 @@ export const odooApps = [
     ],
     "copyWords": 334,
     "hasVideo": true,
-    "youtubeId": null,
+    "youtubeId": "uyLCmdQqEZw",
     "externalPage": null
   },
   {
@@ -9520,7 +9520,7 @@ export const odooApps = [
     ],
     "copyWords": 454,
     "hasVideo": true,
-    "youtubeId": null,
+    "youtubeId": "cWF4sjHJCpk",
     "externalPage": null
   },
   {
@@ -9575,7 +9575,7 @@ export const odooApps = [
     ],
     "copyWords": 377,
     "hasVideo": true,
-    "youtubeId": null,
+    "youtubeId": "8NBjek3TM8s",
     "externalPage": null
   },
   {
@@ -10511,7 +10511,7 @@ export const odooApps = [
     ],
     "copyWords": 487,
     "hasVideo": true,
-    "youtubeId": null,
+    "youtubeId": "C8pUP6BpPEI",
     "externalPage": null
   },
   {
@@ -10575,7 +10575,7 @@ export const odooApps = [
     ],
     "copyWords": 501,
     "hasVideo": true,
-    "youtubeId": null,
+    "youtubeId": "2sT7u14KVOQ",
     "externalPage": null
   },
   {
@@ -11269,7 +11269,7 @@ export const odooApps = [
     ],
     "copyWords": 540,
     "hasVideo": true,
-    "youtubeId": null,
+    "youtubeId": "wVkBIbfj5hs",
     "externalPage": null
   },
   {
@@ -11322,7 +11322,7 @@ export const odooApps = [
     ],
     "copyWords": 515,
     "hasVideo": true,
-    "youtubeId": null,
+    "youtubeId": "H26CHlHEJKY",
     "externalPage": null
   },
   {
@@ -11810,7 +11810,7 @@ export const odooApps = [
     ],
     "copyWords": 464,
     "hasVideo": true,
-    "youtubeId": null,
+    "youtubeId": "JPfcReP1fkU",
     "externalPage": null
   },
   {
@@ -11980,7 +11980,7 @@ export const odooApps = [
     ],
     "copyWords": 435,
     "hasVideo": true,
-    "youtubeId": null,
+    "youtubeId": "ds-L-a41M0w",
     "externalPage": null
   },
   {
@@ -12118,7 +12118,7 @@ export const odooApps = [
     ],
     "copyWords": 453,
     "hasVideo": true,
-    "youtubeId": null,
+    "youtubeId": "ks23IzHt9dI",
     "externalPage": null
   },
   {
@@ -12230,7 +12230,7 @@ export const odooApps = [
     ],
     "copyWords": 413,
     "hasVideo": true,
-    "youtubeId": null,
+    "youtubeId": "paNy9puBtFo",
     "externalPage": null
   },
   {
@@ -12293,7 +12293,7 @@ export const odooApps = [
     ],
     "copyWords": 360,
     "hasVideo": true,
-    "youtubeId": null,
+    "youtubeId": "T0FkiktrgPM",
     "externalPage": null
   },
   {
