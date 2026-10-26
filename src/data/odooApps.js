@@ -7299,7 +7299,7 @@ export const odooApps = [
     ],
     "copyWords": 447,
     "hasVideo": true,
-    "youtubeId": null,
+    "youtubeId": "gaAZANc6gCc",
     "externalPage": null
   },
   {
@@ -8855,7 +8855,7 @@ export const odooApps = [
     ],
     "copyWords": 376,
     "hasVideo": true,
-    "youtubeId": null,
+    "youtubeId": "RNg2ppkvfAo",
     "externalPage": null
   },
   {
@@ -9109,7 +9109,7 @@ export const odooApps = [
     ],
     "copyWords": 557,
     "hasVideo": true,
-    "youtubeId": null,
+    "youtubeId": "_HtJYmk4fnQ",
     "externalPage": null
   },
   {
@@ -9700,7 +9700,7 @@ export const odooApps = [
     ],
     "copyWords": 448,
     "hasVideo": true,
-    "youtubeId": null,
+    "youtubeId": "DpEqBrg4Xv0",
     "externalPage": null
   },
   {
