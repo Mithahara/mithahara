@@ -5,7 +5,7 @@
 // generator; editing here forks the copy away from what the store actually
 // serves.
 //
-// Store snapshot: 2026-10-25T19:40:13+00:00
+// Store snapshot: 2026-10-26T06:12:11+00:00
 
 export const odooApps = [
   {
@@ -7233,6 +7233,76 @@ export const odooApps = [
     "externalPage": null
   },
   {
+    "tech": "mh_barcode_check",
+    "slug": "barcode-check",
+    "name": "Barcode Check",
+    "summary": "Barcode check: count and list products and packagings with a missing, invalid or wrong length barcode or a wrong EAN-13 check digit",
+    "tagline": "Barcode check: count and list products and packagings with a missing, invalid or wrong length barcode or a wrong EAN-13 check digit",
+    "intro": [
+      "Before you print labels or hand out scanners, you want to know which products have a barcode that cannot be right: none at all, a typo, a code of the wrong length or a last digit that does not match the rest. Odoo only finds out when a scan fails or a label comes out wrong, and it has no screen that counts them.",
+      "Open Inventory > Reporting > Barcode Check. You get seven counters, each with a Show button that opens an ordinary list you can sort, filter, export and open."
+    ],
+    "features": [
+      {
+        "heading": "Products with no barcode",
+        "body": [
+          "Active goods that are tracked in stock or can be sold and have an empty barcode. Services are not counted, and neither are goods that are neither stocked nor sold."
+        ]
+      },
+      {
+        "heading": "Letters, spaces or symbols",
+        "body": [
+          "The barcode holds anything that is not a digit 0-9, including a space left at the end by a paste. Counted for products and for packagings."
+        ]
+      },
+      {
+        "heading": "Wrong length",
+        "body": [
+          "Digits only, but not 8 (EAN-8), 12 (UPC-A), 13 (EAN-13) or 14 (GTIN-14) long. Counted for products and for packagings."
+        ]
+      },
+      {
+        "heading": "Wrong check digit",
+        "body": [
+          "The length fits, but the last digit does not match the others under the GS1 check digit rule used by EAN-8, UPC-A, EAN-13 and GTIN-14. Counted for products and for packagings.",
+          "A barcode is counted once, under the first problem it has: empty, then non-digits, then length, then check digit. The screen only reads; it never changes a record."
+        ]
+      },
+      {
+        "heading": "Who it is for",
+        "body": [
+          "Warehouse and inventory managers who are about to print barcode labels, roll out scanners or import a product list, and want to clean the barcodes first."
+        ]
+      }
+    ],
+    "scope": [
+      "It does not fix, generate or fill in barcodes. It does not look for duplicates: Odoo already refuses a barcode used twice. It does not check GS1-128 or SSCC strings, or barcodes that are deliberately internal codes, so an internal code such as ABC-1 is counted under letters. A code that passes is not proof that a scanner will read it or that the number is registered to you; only the length and the check digit are tested.",
+      "It counts active products and packagings that you are allowed to open, so archived records and other companies' records you cannot see are not included. A product with several variants is checked variant by variant. A packaging always has a barcode, so there is no missing counter for packagings. On a barcode with leading zeros, the check uses the whole string at its own length, so a 13-digit code starting with 0 is checked as an EAN-13."
+    ],
+    "requires": [
+      "Odoo 19 and 20, Community or Enterprise. Also requires stock (Inventory). Third-party apps install on Odoo.sh or On-Premise only - they cannot be installed on Odoo Online (SaaS)."
+    ],
+    "price": 0.0,
+    "manifestPrice": 0.0,
+    "currency": "USD",
+    "category": "Inventory/Inventory",
+    "version": "19.0.1.0.0",
+    "license": "OPL-1",
+    "depends": [
+      "stock"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_barcode_check",
+    "screenshots": [
+      "screenshot_check.png"
+    ],
+    "copyWords": 447,
+    "hasVideo": true,
+    "youtubeId": null,
+    "externalPage": null
+  },
+  {
     "tech": "mh_report_barcode_qr",
     "slug": "barcode-qr-on-reports",
     "name": "Barcode and QR on Reports",
@@ -7560,13 +7630,13 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Accounting/Accounting",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.0.1",
     "license": "OPL-1",
     "depends": [
       "account"
     ],
     "paidDepends": [],
-    "downloads": 0,
+    "downloads": 4,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_collections_by_salesperson",
     "screenshots": [
       "screenshot_collections.png"
@@ -7681,14 +7751,14 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Contacts",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.0.1",
     "license": "OPL-1",
     "depends": [
       "contacts",
       "phone_validation"
     ],
     "paidDepends": [],
-    "downloads": 1,
+    "downloads": 5,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_contact_data_check",
     "screenshots": [
       "screenshot_check.png"
@@ -7742,13 +7812,13 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Sales/CRM",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.0.1",
     "license": "OPL-1",
     "depends": [
       "base"
     ],
     "paidDepends": [],
-    "downloads": 1,
+    "downloads": 4,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_contact_sheet",
     "screenshots": [
       "screenshot_contact_sheet.png"
@@ -7906,13 +7976,13 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Warehouse",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.0.1",
     "license": "OPL-1",
     "depends": [
       "stock"
     ],
     "paidDepends": [],
-    "downloads": 1,
+    "downloads": 5,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_count_coverage",
     "screenshots": [
       "screenshot_coverage.png"
@@ -8739,6 +8809,56 @@ export const odooApps = [
     "externalPage": null
   },
   {
+    "tech": "mh_field_reach",
+    "slug": "field-reach",
+    "name": "Field Reach",
+    "summary": "Field access report: who can see this field. Pick a model and a field, list every user who can read it and every user who can write it, with the reason",
+    "tagline": "Field access report: who can see this field. Pick a model and a field, list every user who can read it and every user who can write it, with the reason",
+    "intro": [
+      "Odoo lets a field carry a list of groups, and a user outside them neither reads nor writes the field, whether in a form, a list, an export or over the API. Those groups live in Python only, so no screen can tell you which people they let in. Field Reach does: Settings, Field Reach, choose a model, choose a field, press Check."
+    ],
+    "features": [
+      {
+        "heading": "What it does",
+        "body": [
+          "You get one row per active internal user showing whether they can read the field, whether they can write it, and why: no restriction, field restricted to a group the user is or is not in, model not readable or writable, or blocked or allowed by the model's own override. Filter to the users who can read it or the ones who can write it, search a user, and export the list like any Odoo list."
+        ]
+      },
+      {
+        "heading": "Administrators only",
+        "body": [
+          "The menu is for the Settings group, and running the check is refused for anyone else. Nothing is changed in your database apart from the temporary rows that make up the list, which Odoo clears itself."
+        ]
+      }
+    ],
+    "scope": [
+      "The verdict is the answer of Odoo's own field-access call, run as each user. A user in a group that implies the required group counts, and a model that overrides the call (employees, users, tasks) is judged by its override. When the override and not the field's groups made the difference, the row says so.",
+      "It does not change any field, group or user, and does not judge whether a reader should have access. It does not read record rules, so \"can read the field\" does not mean \"can see this particular record\". The superuser, who reads everything by design, is not listed, and portal and public users are left out. Users of every company are listed. It does not say whether a field is read-only in a form because of its definition (computed fields, readonly flags), only whether Odoo's access check would let the user write it. It keeps no history: it reads groups and access as they are the moment you press Check."
+    ],
+    "requires": [
+      "Odoo 19 or 20, Community or Enterprise. No other module is needed. Third-party apps install on Odoo.sh or On-Premise only - they cannot be installed on Odoo Online."
+    ],
+    "price": 0.0,
+    "manifestPrice": 0.0,
+    "currency": "USD",
+    "category": "Tools",
+    "version": "19.0.1.0.0",
+    "license": "OPL-1",
+    "depends": [
+      "base"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_field_reach",
+    "screenshots": [
+      "screenshot_reach.png"
+    ],
+    "copyWords": 376,
+    "hasVideo": true,
+    "youtubeId": null,
+    "externalPage": null
+  },
+  {
     "tech": "mh_gdpr_72h_clock",
     "slug": "gdpr-72-hour-clock",
     "name": "GDPR 72-Hour Clock",
@@ -8933,6 +9053,66 @@ export const odooApps = [
     "externalPage": null
   },
   {
+    "tech": "mh_invoice_salesperson_check",
+    "slug": "invoice-salesperson-check",
+    "name": "Invoice Salesperson Check",
+    "summary": "Invoice salesperson check: posted customer invoices credited to OdooBot, a user with no sales role, or not the order's or the customer's salesperson. Read only.",
+    "tagline": "Invoice salesperson check: posted customer invoices credited to OdooBot, a user with no sales role, or not the order's or the customer's salesperson. Read only.",
+    "intro": [
+      "Commission, sales targets and \"My Invoices\" all follow the Salesperson on the customer invoice. Odoo fills that field by itself when an invoice is made by hand: the customer's salesperson, else whoever is logged in, else the user who created it (OdooBot, for an invoice made by an automated action). It is also editable after posting. Nothing then compares it with the sales order or the customer, so a bookkeeper or OdooBot can end up credited with an invoice and nobody sees it. This is the screen that does. Odoo 19 and 20 Community and Enterprise."
+    ],
+    "features": [
+      {
+        "heading": "What it does",
+        "body": [
+          "Adds Accounting > Customers > Invoice Salesperson Check. One row for each posted customer invoice or credit note: invoice date, invoice, customer, salesperson, a verdict, the other salesperson it disagrees with, and the untaxed amount in company currency. It opens on the rows that need a look, grouped by verdict; switch to the pivot for the untaxed amount at stake per verdict, filter by invoice date, document type, salesperson or customer, and click a row to open the invoice.",
+          "It reads the invoices as they are and stores nothing, so setting the salesperson right on the invoice removes the row."
+        ]
+      },
+      {
+        "heading": "The verdicts",
+        "body": [
+          "Each row gets the first verdict that applies, in this order.",
+          "No salesperson. The invoice has none.",
+          "OdooBot or non-internal user. The salesperson is OdooBot, or a portal or public user.",
+          "No sales role. An internal user who holds none of the Sales access groups (Own Documents Only, All Documents, Administrator). A Sales Administrator counts as having the role, because it is implied. This is a guess from access groups: a salesperson who is not set up in the Sales app looks the same as a bookkeeper.",
+          "Differs from order. The invoice was made from a sales order and the order has a different salesperson. The other salesperson column shows the order's. An order with no salesperson is not a difference. A credit note made from an invoice keeps its order, so it is compared with the order too.",
+          "Differs from customer. The invoice was not made from an order and the customer (or the customer's company) has a different salesperson set. An order's salesperson may legitimately differ from the customer's, so this check is skipped for invoices that have an order.",
+          "OK. None of the above."
+        ]
+      }
+    ],
+    "scope": [
+      "It does not change anything. It does not reassign a salesperson, and it does not decide which of two salespeople is right. A difference is a prompt to look, not proof of a mistake.",
+      "It does not calculate commission or targets. It only shows whose name is on the invoice and how much untaxed value sits behind each verdict.",
+      "It keeps no history. It reads the salesperson as it is now. It does not show who changed it or when, and once it is corrected the row says OK.",
+      "It only reads posted customer invoices and credit notes. Drafts, cancelled invoices, vendor bills and sales receipts are not listed.",
+      "It does not read Sales Teams. \"No sales role\" looks at access groups only. If an invoice covers orders of two salespeople and none matches, the lowest user id is shown as the other salesperson."
+    ],
+    "requires": [
+      "Odoo 19 or 20, Community or Enterprise, with Sales (it compares with the order). Third-party apps install on Odoo.sh or On-Premise only - they cannot be installed on Odoo Online (SaaS). Billing and read-only accounting users can open it; in a multi-company database each user sees only the companies they are logged in to."
+    ],
+    "price": 0.0,
+    "manifestPrice": 0.0,
+    "currency": "USD",
+    "category": "Accounting/Accounting",
+    "version": "19.0.1.0.0",
+    "license": "OPL-1",
+    "depends": [
+      "sale"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_invoice_salesperson_check",
+    "screenshots": [
+      "screenshot_check.png"
+    ],
+    "copyWords": 557,
+    "hasVideo": true,
+    "youtubeId": null,
+    "externalPage": null
+  },
+  {
     "tech": "mh_journal_access_report",
     "slug": "journal-access-report",
     "name": "Journal Access Report",
@@ -9077,13 +9257,13 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Accounting/Accounting",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.0.1",
     "license": "OPL-1",
     "depends": [
       "account"
     ],
     "paidDepends": [],
-    "downloads": 1,
+    "downloads": 5,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_lapsed_customers",
     "screenshots": [
       "screenshot_lapsed.png"
@@ -9457,6 +9637,73 @@ export const odooApps = [
     "externalPage": null
   },
   {
+    "tech": "mh_mixed_draft_invoices",
+    "slug": "mixed-draft-invoices",
+    "name": "Mixed Draft Invoices",
+    "summary": "Mixed draft invoices report: draft invoices, bills and credit notes that mix goods and services, several orders or several analytic accounts",
+    "tagline": "Mixed draft invoices report: draft invoices, bills and credit notes that mix goods and services, several orders or several analytic accounts",
+    "intro": [],
+    "features": [
+      {
+        "heading": "What it does",
+        "body": [
+          "Before you post a batch of invoices there is no screen that tells you which drafts need a second look. Odoo's invoice list has no column or ready-made filter for whether a draft mixes goods and services, was built from more than one sales or purchase order, or carries more than one analytic account, so you open each draft and read its lines. This adds one list under Invoicing > Reporting > Mixed Draft Invoices."
+        ]
+      },
+      {
+        "heading": "One line per draft",
+        "body": [
+          "Every draft customer invoice, vendor bill and credit note (customer or vendor) gets a row: how many goods lines, how many service lines, how many source orders, how many analytic accounts, and the total. Click a row and the draft itself opens. The counts are worked out when you open the list, so they are never out of date, and nothing is stored."
+        ]
+      },
+      {
+        "heading": "Filters for the mixes",
+        "body": [
+          "The list opens on \"Any mix\". Separate filters pick the drafts that mix goods and services, that come from several orders, or that carry several analytic accounts, and you can narrow to customer invoices, vendor bills or credit notes and group by type, partner or company. Export works like any Odoo list."
+        ]
+      },
+      {
+        "heading": "How things are counted",
+        "body": [
+          "Goods lines are lines whose product is of type Goods and service lines are lines whose product is of type Service. Section lines, note lines, lines without a product and Combo products are in neither count. Orders are the distinct sales orders (on customer documents) and purchase orders (on vendor documents) that the lines are linked to. Analytic accounts are the distinct accounts across the lines' analytic distribution; a line split between two accounts counts both, and a line with no analytic distribution counts none."
+        ]
+      },
+      {
+        "heading": "Sales and Purchase are optional",
+        "body": [
+          "The app needs only Invoicing. When Sales or Purchase is installed, even after this app, the order counts include their links; without them the order count is simply zero."
+        ]
+      }
+    ],
+    "scope": [
+      "It does not split, merge, edit, post or delete anything, and it does not say that a mix is wrong. A draft that mixes goods and services is often correct; the list only tells you which drafts to look at.",
+      "It lists drafts only. Posted and cancelled invoices, receipts and journal entries are not shown. An order is counted only where the invoice line is linked to it, so a line typed by hand without an order link counts as no order.",
+      "It does not break the analytic count down by plan, and it does not look at taxes, accounts or fiscal positions."
+    ],
+    "requires": [
+      "Odoo 19 and 20, Community or Enterprise. Needs only Invoicing (account). Users need the Billing or Read-only accounting right. Third-party apps install on Odoo.sh or On-Premise only - they cannot be installed on Odoo Online (SaaS)."
+    ],
+    "price": 0.0,
+    "manifestPrice": 0.0,
+    "currency": "USD",
+    "category": "Accounting/Accounting",
+    "version": "19.0.1.0.0",
+    "license": "OPL-1",
+    "depends": [
+      "account"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_mixed_draft_invoices",
+    "screenshots": [
+      "screenshot_mixed.png"
+    ],
+    "copyWords": 448,
+    "hasVideo": true,
+    "youtubeId": null,
+    "externalPage": null
+  },
+  {
     "tech": "mh_models_without_access",
     "slug": "models-without-access",
     "name": "Models Without Access",
@@ -9507,13 +9754,13 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Tools",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.0.1",
     "license": "OPL-1",
     "depends": [
       "base"
     ],
     "paidDepends": [],
-    "downloads": 0,
+    "downloads": 6,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_models_without_access",
     "screenshots": [
       "screenshot_models.png"
@@ -9562,13 +9809,13 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Purchases",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.0.1",
     "license": "OPL-1",
     "depends": [
       "purchase"
     ],
     "paidDepends": [],
-    "downloads": 0,
+    "downloads": 5,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_near_threshold_orders",
     "screenshots": [
       "screenshot_near_threshold.png"
@@ -10498,13 +10745,13 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Purchases",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.0.1",
     "license": "OPL-1",
     "depends": [
       "purchase"
     ],
     "paidDepends": [],
-    "downloads": 0,
+    "downloads": 5,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_post_confirm_po_edits",
     "screenshots": [
       "screenshot_edits.png"
@@ -10562,13 +10809,13 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Productivity",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.0.1",
     "license": "OPL-1",
     "depends": [
       "product"
     ],
     "paidDepends": [],
-    "downloads": 0,
+    "downloads": 5,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_print_script_check",
     "screenshots": [
       "screenshot_check.png"
@@ -11256,13 +11503,13 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Extra Tools",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.0.1",
     "license": "OPL-1",
     "depends": [
       "base"
     ],
     "paidDepends": [],
-    "downloads": 1,
+    "downloads": 5,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_sensitive_field_check",
     "screenshots": [
       "screenshot_check.png"
@@ -11309,13 +11556,13 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Sales",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.0.1",
     "license": "OPL-1",
     "depends": [
       "delivery"
     ],
     "paidDepends": [],
-    "downloads": 1,
+    "downloads": 4,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_shipping_method_checker",
     "screenshots": [
       "screenshot_checker.png"
@@ -11795,13 +12042,13 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Marketing/Surveys",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.0.1",
     "license": "OPL-1",
     "depends": [
       "survey"
     ],
     "paidDepends": [],
-    "downloads": 1,
+    "downloads": 5,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_survey_close_date",
     "screenshots": [
       "screenshot_survey.png",
@@ -11926,7 +12173,7 @@ export const odooApps = [
       "hr_timesheet"
     ],
     "paidDepends": [],
-    "downloads": 16,
+    "downloads": 17,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_task_timer",
     "screenshots": [
       "screenshot_timer.png"
@@ -11967,13 +12214,13 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Productivity",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.0.1",
     "license": "OPL-1",
     "depends": [
       "mail"
     ],
     "paidDepends": [],
-    "downloads": 1,
+    "downloads": 5,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_template_text_check",
     "screenshots": [
       "screenshot_check.png"
@@ -12104,13 +12351,13 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Services/Timesheets",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.0.1",
     "license": "OPL-1",
     "depends": [
       "hr_timesheet"
     ],
     "paidDepends": [],
-    "downloads": 1,
+    "downloads": 5,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_timesheet_hours_guard",
     "screenshots": [
       "screenshot_refused.png",
@@ -12217,13 +12464,13 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Accounting/Accounting",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.0.1",
     "license": "OPL-1",
     "depends": [
       "account"
     ],
     "paidDepends": [],
-    "downloads": 1,
+    "downloads": 4,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_unapplied_payments",
     "screenshots": [
       "screenshot_unapplied_payments.png"
@@ -12280,13 +12527,13 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Sales",
-    "version": "19.0.1.0.0",
+    "version": "19.0.1.0.1",
     "license": "OPL-1",
     "depends": [
       "sale"
     ],
     "paidDepends": [],
-    "downloads": 1,
+    "downloads": 4,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_variant_extra_prices",
     "screenshots": [
       "screenshot_extra_prices.png"
