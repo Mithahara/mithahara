@@ -313,7 +313,7 @@ export const odooApps = [
     "tagline": "Per-field anonymization, a legal hold override, and an append-only purge log - not a Data Recycle clone",
     "intro": [
       "GDPR Article 5(1)(e) storage limitation - keep personal data no longer than necessary - is one of the most commonly cited failure points in EU DPA enforcement actions.",
-      "Odoo Community already ships Data Recycle for free, which finds stale records and archives/deletes the whole record on a schedule. This app deliberately does not duplicate that. What it adds: per-field anonymization that blanks just the PII fields (name, email, phone, notes) while leaving the record and its non-personal business data intact; a Legal Hold override that exempts a specific record from anonymization for litigation or a statutory requirement, checked before every run, no exceptions; and a regulator-exportable, append-only audit log - proof of what was anonymized, when, and under which rule. No one can edit or delete a log entry through the UI once it's written.",
+      "Odoo Community already ships Data Recycle for free, which finds stale records and archives/deletes the whole record on a schedule. This app deliberately does not duplicate that. What it adds: per-field anonymization that blanks just the PII fields (name, email, phone, notes) while leaving the record and its non-personal business data intact; a Legal Hold override that exempts a specific record from anonymization for litigation or a statutory requirement, checked before every run, no exceptions; and a read-only audit log - a record of what was anonymized, when, and under which rule. No user group has write access to it, and its list has no create, edit or delete buttons.",
       "Meant to sit beside Data Recycle and OCA's data-protection registry, not replace either."
     ],
     "features": [
@@ -507,9 +507,9 @@ export const odooApps = [
         ]
       },
       {
-        "heading": "The full campaign lifecycle, not just tracking",
+        "heading": "Build, publish and manage from Odoo",
         "body": [
-          "Most Meta apps on the Odoo Marketplace add pixel tracking or Conversions API events. This one builds, publishes, updates, clones, and deletes campaigns, ad sets, creatives, and ads directly - the same actions you'd otherwise do in Meta Ads Manager."
+          "It creates and publishes campaigns, ad sets, creatives and ads, updates and deletes campaigns, ad sets and ads, and clones campaigns and ad sets, the same actions you would otherwise do in Meta Ads Manager. Sync pulls your existing campaigns; ad sets, creatives and ads are not pulled from Meta."
         ]
       },
       {
@@ -916,7 +916,7 @@ export const odooApps = [
       {
         "heading": "Idle, not lifetime",
         "body": [
-          "The clock runs from the last request, not from login, and any request counts - so a dashboard left open on a screen that polls does not pass for somebody sitting at it."
+          "The clock runs from the last request, not from login, and any request counts - so a screen left open on a page that polls in the background counts as activity and keeps the session alive."
         ]
       },
       {
