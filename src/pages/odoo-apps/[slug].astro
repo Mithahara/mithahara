@@ -59,6 +59,14 @@ const pageTitle = `${app.name} for Odoo 19 & 20`.length + 12 <= 60
   ? `${app.name} for Odoo 19 & 20`
   : (`${app.name} for Odoo`.length + 12 <= 60 ? `${app.name} for Odoo` : app.name);
 
+// Listing tiles when the listing has them; otherwise the four facts every buyer checks first.
+const tiles = (app.tiles.length ? app.tiles : [
+  { n: formatPrice(app), l: 'App Store price, per Odoo version' },
+  { n: '19 · 20', l: 'Odoo versions, each sold on its own page' },
+  { n: 'Odoo.sh', l: 'or On-Premise; not Odoo Online (SaaS)' },
+  { n: app.version.split('.').slice(-3).join('.'), l: `version of ${app.tech}` },
+]).slice(0, 6);
+
 const jsonLd = odooAppJsonLd(app);
 const faqLd = app.faq.length > 0 && {
   '@context': 'https://schema.org',
@@ -81,81 +89,112 @@ const graph = [...(faqLd ? [faqLd] : []), ...(app.youtubeId
   : [jsonLd])];
 ---
 <Layout path={`/odoo-apps/${app.slug}`} title={pageTitle} description={metaDescription}>
-  <section class="page-section app-detail">
-    <div class="container">
-      <div class="log-row">
-        <span class="log-tag">Odoo 19 · 20</span>
-        {app.category && <span class="log-tag">{app.category.split('/')[0]}</span>}
-        <span class={app.price ? 'log-tag gold' : 'log-tag'}>{formatPrice(app)}</span>
+  <div class="sap">
+    <nav class="sap-rail" aria-label="Page sections">
+      <div class="sap-wrap sap-rail-row">
+        <p class="sap-crumb"><a href="/odoo-apps">Odoo Apps</a> <span aria-hidden="true">›</span> {app.name}</p>
+        <ul class="sap-tabs">
+          <li><a href="#overview">Overview</a></li>
+          {app.features.length > 0 && <li><a href="#how">How it works</a></li>}
+          {app.scope.length > 0 && <li><a href="#limits">Limits</a></li>}
+          {app.faq.length > 0 && <li><a href="#faq">Questions</a></li>}
+          <li><a href="#requirements">Requirements</a></li>
+        </ul>
       </div>
+    </nav>
 
-      <h1 class="section-title">{app.name}</h1>
-      {app.tagline && <p class="venture-tagline">{app.tagline}</p>}
-
-      <div class="hero-actions" style="justify-content: center;">
-        <a class="cta-button primary" href={app.storeUrl19} target="_blank" rel="noopener noreferrer">
-          Get it for Odoo 19
-        </a>
-        <a class="cta-button primary" href={app.storeUrl20} target="_blank" rel="noopener noreferrer">
-          Get it for Odoo 20
-        </a>
-        <a class="cta-button secondary" href={demoMailto}>
-          Request a live demo
-        </a>
-      </div>
-      <p class="demo-note">
-        {app.youtubeId
-          ? `The video below shows ${app.name} running on a real Odoo 19 database. Want it driven against your own data, or a question answered first? Ask and we will set up a session.`
-          : `Want to see ${app.name} running against your own data before you buy? Ask and we will set up a session.`}
-      </p>
-
-      {app.youtubeId && (
-        <div class="video-frame">
-          <iframe
-            src={`https://www.youtube-nocookie.com/embed/${app.youtubeId}`}
-            title={`${app.name} demo video`}
-            loading="lazy"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen
-          ></iframe>
+    <header class="sap-hero" id="overview">
+      <div class={`sap-wrap sap-hero-grid${app.youtubeId ? '' : ' single'}`}>
+        <div>
+          <p class="sap-meta">Odoo 19 · 20{app.category ? ` · ${app.category.split('/')[0]}` : ''} · {formatPrice(app)}</p>
+          <h1>{app.name}</h1>
+          {app.tagline && <p class="sap-lead">{app.tagline}</p>}
+          <div class="sap-actions">
+            <a class="sap-btn" href={app.storeUrl19} target="_blank" rel="noopener noreferrer">Get it for Odoo 19</a>
+            <a class="sap-btn sap-btn-outline" href={app.storeUrl20} target="_blank" rel="noopener noreferrer">Get it for Odoo 20</a>
+          </div>
+          <p class="sap-note">
+            <a href={demoMailto}>Request a live demo</a> · Odoo.sh or On-Premise only, not Odoo Online (SaaS).
+          </p>
+          {app.tech === 'mh_mcp_server' && (
+            <p class="sap-note">Using Codex? <a href="/odoo-apps/mcp-server-for-odoo/codex">Set it up with the Codex plugin</a>.</p>
+          )}
         </div>
-      )}
-
-      {app.tech === 'mh_mcp_server' && (
-        <p>Using Codex? <a href="/odoo-apps/mcp-server-for-odoo/codex">Set it up with the Codex plugin</a>.</p>
-      )}
-
-      {app.intro.map((paragraph) => <p>{paragraph}</p>)}
-
-      {app.features.length > 0 && (
-        <>
-          <h2 class="sec-head">What it does</h2>
-          <div class="feature-blocks">
-            {app.features.map((feature) => (
-              <div class="feature-block">
-                {feature.heading && <h3>{feature.heading}</h3>}
-                {feature.body.map((line) => <p>{line}</p>)}
-              </div>
-            ))}
+        {app.youtubeId && (
+          <div class="sap-frame sap-video">
+            <iframe
+              src={`https://www.youtube-nocookie.com/embed/${app.youtubeId}`}
+              title={`${app.name} demo video`}
+              loading="lazy"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowfullscreen
+            ></iframe>
           </div>
-        </>
-      )}
+        )}
+      </div>
+    </header>
 
-      {app.scope.length > 0 && (
-        <>
-          <h2 class="sec-head">What it does not do</h2>
-          <div class="scope-box">
-            {app.scope.map((line) => <p>{line}</p>)}
+    <section class="sap-band sap-tint" aria-label="At a glance">
+      <div class="sap-wrap sap-tiles">
+        {tiles.map((tile) => (
+          <div class="sap-tile">
+            <p class="sap-tile-n">{tile.n}</p>
+            <p class="sap-tile-l">{tile.l}</p>
           </div>
-        </>
-      )}
+        ))}
+      </div>
+    </section>
 
-      {app.screenshots.length > 0 && (
-        <>
-          <h2 class="sec-head">Screenshots</h2>
-          <div class="screenshot-grid">
+    {app.intro.length > 0 && (
+      <section class="sap-band">
+        <div class="sap-wrap sap-prose">
+          {app.intro.map((paragraph) => <p>{paragraph}</p>)}
+        </div>
+      </section>
+    )}
+
+    {app.features.length > 0 && <h2 class="sap-sr" id="how">How it works</h2>}
+    {app.features.map((feature, i) => (
+      <section class={`sap-band${i % 2 === 0 ? '' : ' sap-tint'}`}>
+        <div class={`sap-wrap sap-step${feature.images.length ? '' : ' single'}${i % 2 === 1 ? ' rev' : ''}`}>
+          <div class="sap-prose">
+            {feature.heading && <h3>{feature.heading}</h3>}
+            {feature.use && (
+              <p class="sap-use">
+                <strong>Use it when</strong> {feature.use}
+                {feature.mode && <span class="sap-chip">{feature.mode}</span>}
+              </p>
+            )}
+            {feature.body.map((line) => <p>{line}</p>)}
+            {feature.result && <p class="sap-callout">{feature.result}</p>}
+            {feature.warn && <p class="sap-callout warn">{feature.warn}</p>}
+          </div>
+          {feature.images.length > 0 && (
+            <div class="sap-shots">
+              {feature.images.map((shot) => (
+                <figure class="sap-frame">
+                  <img
+                    src={`/odoo-apps/${app.slug}/${shot}`}
+                    alt={`${app.name}: ${feature.heading || 'screenshot'}`}
+                    width={app.shotDims[shot]?.[0]}
+                    height={app.shotDims[shot]?.[1]}
+                    loading="lazy"
+                  />
+                </figure>
+              ))}
+            </div>
+          )}
+        </div>
+      </section>
+    ))}
+
+    {app.screenshots.length > 0 && (
+      <section class="sap-band">
+        <div class="sap-wrap">
+          <h2>Screenshots</h2>
+          <div class="sap-gallery">
             {app.screenshots.map((shot) => (
-              <figure class="screenshot-card">
+              <figure class="sap-frame">
                 <img
                   src={`/odoo-apps/${app.slug}/${shot}`}
                   alt={`${app.name} in Odoo — ${shot.split('/').pop().replace(/\.\w+$/, '').replace(/[_-]+/g, ' ')}`}
@@ -166,13 +205,26 @@ const graph = [...(faqLd ? [faqLd] : []), ...(app.youtubeId
               </figure>
             ))}
           </div>
-        </>
-      )}
+        </div>
+      </section>
+    )}
 
-      {app.faq.length > 0 && (
-        <>
-          <h2 class="sec-head">Questions buyers ask</h2>
-          <div class="faq-plain">
+    {app.scope.length > 0 && (
+      <section class="sap-band sap-blue" id="limits">
+        <div class="sap-wrap sap-prose">
+          <h2>What it does not do</h2>
+          <ul class="sap-rules">
+            {app.scope.map((line) => <li>{line}</li>)}
+          </ul>
+        </div>
+      </section>
+    )}
+
+    {app.faq.length > 0 && (
+      <section class="sap-band" id="faq">
+        <div class="sap-wrap sap-prose">
+          <h2>Questions buyers ask</h2>
+          <div class="sap-faq">
             {app.faq.map((item) => (
               <details>
                 <summary>{item.q}</summary>
@@ -180,173 +232,197 @@ const graph = [...(faqLd ? [faqLd] : []), ...(app.youtubeId
               </details>
             ))}
           </div>
-        </>
-      )}
+        </div>
+      </section>
+    )}
 
-      <h2 class="sec-head">Requirements</h2>
-      <ul class="feature-list requirements">
-        <li>Odoo 19.0 or 20.0. The App Store sells each version separately, so buy the one that matches your database.</li>
-        <li>
-          <strong>Odoo.sh or On-Premise only.</strong> Third-party apps cannot be installed on
-          Odoo Online (SaaS) databases — check your hosting before buying.
-        </li>
-        {(app.paidDepends ?? []).map((dep) => (
+    <section class="sap-band sap-tint" id="requirements">
+      <div class="sap-wrap sap-prose">
+        <h2>Requirements</h2>
+        <ul class="sap-rules">
+          <li>Odoo 19.0 or 20.0. The App Store sells each version separately, so buy the one that matches your database.</li>
           <li>
-            <strong>Also requires {dep.name}</strong>
-            {dep.price ? ` ($${dep.price.toFixed(0)})` : ''} — a separate paid app. The
-            App Store price shown above covers both; this app will not install without it.
+            <strong>Odoo.sh or On-Premise only.</strong> Third-party apps cannot be installed on
+            Odoo Online (SaaS) databases. Check your hosting before buying.
           </li>
-        ))}
-        {app.requires.map((line) => <li>{line}</li>)}
-        <li>Module <code>{app.tech}</code>, version {app.version}, licensed {app.license}.</li>
-      </ul>
+          {(app.paidDepends ?? []).map((dep) => (
+            <li>
+              <strong>Also requires {dep.name}</strong>
+              {dep.price ? ` ($${dep.price.toFixed(0)})` : ''}, a separate paid app. The App Store
+              price shown covers both; this app will not install without it.
+            </li>
+          ))}
+          {app.requires.map((line) => <li>{line}</li>)}
+          <li>Module <code>{app.tech}</code>, version {app.version}, licensed {app.license}.</li>
+        </ul>
+        {app.price > 0 && app.manifestPrice > 0 && app.manifestPrice < app.price && (
+          <p class="sap-note">
+            The Odoo App Store lists this app at {formatPrice(app)} because it requires a paid
+            dependency; the module's own price is {formatPrice({ ...app, price: app.manifestPrice })}.
+          </p>
+        )}
+      </div>
+    </section>
 
-      {app.price > 0 && app.manifestPrice > 0 && app.manifestPrice < app.price && (
-        <p class="price-note">
-          The Odoo App Store lists this app at {formatPrice(app)} because it requires a paid
-          dependency; the module's own price is {formatPrice({ ...app, price: app.manifestPrice })}.
-          {' '}{formatPrice(app)} is the total you pay to install it.
-        </p>
-      )}
-
-      {related.length > 0 && (
-        <>
-          <h2 class="sec-head">Related apps</h2>
-          <div class="app-grid">
+    {related.length > 0 && (
+      <section class="sap-band">
+        <div class="sap-wrap">
+          <h2>Related apps</h2>
+          <div class="sap-related">
             {related.map((other) => (
-              <a class="app-card-hub" href={odooAppHref(other)}>
-                <div class="app-card-body">
-                  <div class="app-card-head">
-                    <span class="app-card-name">{other.name}</span>
-                    <span class="app-price">{formatPrice(other)}</span>
-                  </div>
-                  <p class="app-card-tagline">{other.tagline || other.summary}</p>
-                </div>
+              <a href={odooAppHref(other)}>
+                <span class="sap-related-name">{other.name}</span>
+                <span class="sap-related-price">{formatPrice(other)}</span>
+                <span class="sap-related-tag">{other.tagline || other.summary}</span>
               </a>
             ))}
           </div>
-        </>
-      )}
+        </div>
+      </section>
+    )}
 
-      <p style="text-align: center; margin-top: 2rem;">
-        <a href="/odoo-apps">← All Odoo apps</a>
-      </p>
-    </div>
-  </section>
+    <section class="sap-band sap-deep">
+      <div class="sap-wrap sap-closing">
+        <h2>{app.name}</h2>
+        <div class="sap-actions">
+          <a class="sap-btn sap-btn-light" href={app.storeUrl19} target="_blank" rel="noopener noreferrer">Get it for Odoo 19</a>
+          <a class="sap-btn sap-btn-ghost" href={app.storeUrl20} target="_blank" rel="noopener noreferrer">Get it for Odoo 20</a>
+        </div>
+      </div>
+    </section>
+  </div>
 
   {graph.map((entry) => (
     <script type="application/ld+json" set:html={JSON.stringify(entry)} />
   ))}
 </Layout>
 
-<style>
-  .sec-head {
-    max-width: 46rem;
-    margin: 2.75rem auto 1rem;
-    text-align: left;
-    font-size: 1.4rem;
-  }
-
-  .faq-plain {
-    max-width: 46rem;
-    margin: 0 auto;
-    text-align: left;
-  }
-
-  .faq-plain details {
-    border-bottom: 1px solid var(--border-sand);
-    padding: 0.85rem 0;
-  }
-
-  .faq-plain summary {
-    cursor: pointer;
-    font-weight: 600;
-    min-height: 2.75rem;
-    display: flex;
-    align-items: center;
-  }
-
-  .faq-plain summary:focus-visible {
-    outline: 2px solid var(--moss);
-    outline-offset: 2px;
-  }
-
-  .faq-plain p {
-    margin: 0.5rem 0 0;
-  }
-
-  .requirements {
-    max-width: 46rem;
-    margin-inline: auto;
+<style is:global>
+  .sap {
+    --blue: #0057d2; --deep: #0040b0; --navy: #022879;
+    --chrome: #f5f6f7; --band: #eaecee; --band-blue: #ebf8ff; --lavender: #f7f4ff;
+    --ink: #000; --lead: #3c3c3c; --body: #223548; --list: #354a5f; --meta: #475e75; --nav: #545454;
+    font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
+    background: #fff;
+    color: var(--body);
+    font-size: 18px;
+    line-height: 27px;
     text-align: left;
   }
+  .sap h1, .sap h2, .sap h3, .sap p, .sap ul, .sap figure { margin: 0; font-family: inherit; text-align: left; }
+  .sap a { color: var(--blue); text-decoration: none; }
+  .sap a:hover { text-decoration: underline; }
+  .sap-wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+  .sap-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
 
-  .video-frame {
-    position: relative;
-    aspect-ratio: 16 / 9;
-    margin: 2rem auto 0;
-    max-width: 44rem;
-    border-radius: 8px;
-    overflow: hidden;
-    background: var(--ink);
+  /* rail: breadcrumb over a row of section tabs */
+  .sap-rail { background: var(--chrome); border-bottom: 1px solid var(--band); }
+  .sap-rail-row { padding-top: 12px; padding-bottom: 0; }
+  .sap-crumb { font-size: 15px; line-height: 21px; color: var(--nav); }
+  .sap-crumb a { color: var(--nav); }
+  .sap-tabs { list-style: none; padding: 0; display: flex; gap: 24px; overflow-x: auto; white-space: nowrap; }
+  .sap-tabs a { display: block; padding: 12px 0 10px; font-size: 14px; line-height: 21px; color: var(--nav); border-bottom: 2px solid transparent; }
+  .sap-tabs a:hover { color: var(--blue); border-bottom-color: var(--blue); text-decoration: none; }
+
+  /* hero */
+  .sap-hero { padding: 56px 0 48px; }
+  .sap-hero-grid { display: grid; grid-template-columns: 1fr; gap: 40px; align-items: center; }
+  .sap-meta { font-size: 14px; line-height: 21px; color: var(--meta); margin-bottom: 12px; }
+  .sap h1 { font-size: 36px; line-height: 39.6px; font-weight: 500; color: var(--ink); }
+  .sap-lead { font-size: 20px; line-height: 30px; color: var(--lead); margin-top: 16px; max-width: 34em; }
+  .sap-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+  .sap-btn { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 12px 16px; border-radius: 8px; border: 1px solid var(--blue); background: var(--blue); color: #fff !important; font-size: 16px; line-height: 17.6px; font-weight: 500; }
+  .sap-btn:hover { background: var(--deep); border-color: var(--deep); text-decoration: none !important; }
+  .sap-btn-outline { background: #fff; color: var(--deep) !important; border-color: var(--meta); }
+  .sap-btn-outline:hover { background: var(--band-blue); border-color: var(--deep); }
+  .sap-btn-light { background: #fff; color: var(--deep) !important; border-color: #fff; }
+  .sap-btn-light:hover { background: var(--band-blue); border-color: var(--band-blue); }
+  .sap-btn-ghost { background: transparent; border-color: #fff; }
+  .sap-btn-ghost:hover { background: rgba(255,255,255,.14); border-color: #fff; }
+  .sap-btn:focus-visible, .sap a:focus-visible, .sap summary:focus-visible { outline: 3px solid var(--navy); outline-offset: 2px; }
+  .sap-note { font-size: 14px; line-height: 21px; color: var(--meta); margin-top: 16px; }
+
+  /* media: natural size, framed, never enlarged */
+  .sap-frame { border: 1px solid var(--band); border-radius: 12px; overflow: hidden; background: #fff; }
+  .sap-frame img { display: block; width: 100%; height: auto; }
+  .sap-video { position: relative; aspect-ratio: 16 / 9; background: #000; }
+  .sap-video iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
+
+  /* bands */
+  .sap-band { padding: 56px 0; }
+  .sap-tint { background: var(--chrome); }
+  .sap-blue { background: var(--band-blue); }
+  .sap-deep { background: var(--deep); color: #fff; }
+  .sap h2 { font-size: 32px; line-height: 35.2px; font-weight: 500; color: var(--ink); margin-bottom: 32px; }
+  .sap h3 { font-size: 20px; line-height: 22px; font-weight: 500; color: var(--ink); margin-bottom: 16px; }
+  .sap-wrap.sap-prose { max-width: 1120px; }
+  .sap-wrap.sap-prose > * { max-width: 768px; }
+  .sap-prose p + p { margin-top: 16px; }
+
+  /* stat tiles: hairline over a big number */
+  .sap-tiles { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px 24px; padding-top: 8px; padding-bottom: 8px; }
+  .sap-tile { border-top: 1px solid var(--meta); padding-top: 12px; }
+  .sap-tile-n { font-size: 32px; line-height: 35.2px; font-weight: 500; color: var(--ink); }
+  .sap-tile-l { font-size: 14px; line-height: 21px; color: var(--meta); margin-top: 8px; }
+
+  /* steps: text beside its screenshot, alternating */
+  .sap-step.single > .sap-prose { max-width: 768px; }
+  .sap-step { display: grid; grid-template-columns: 1fr; gap: 32px; align-items: start; }
+  .sap-use { font-size: 15px; line-height: 21px; color: var(--list); font-weight: 350; margin-bottom: 16px; }
+  .sap-use strong { color: var(--ink); font-weight: 500; margin-right: 4px; }
+  .sap-chip { display: inline-block; margin-left: 8px; padding: 1px 8px; border: 1px solid var(--meta); border-radius: 4px; font-size: 14px; line-height: 21px; color: var(--meta); }
+  .sap-callout { margin-top: 20px; padding: 12px 16px; border-left: 3px solid var(--blue); background: var(--band-blue); font-size: 16px; line-height: 24px; color: var(--body); }
+  .sap-callout.warn { border-left-color: var(--navy); background: var(--lavender); }
+  .sap-shots { display: grid; gap: 16px; }
+  .sap-gallery { display: grid; grid-template-columns: 1fr; gap: 24px; }
+
+  /* hairline-ruled lists */
+  .sap-rules { list-style: none; padding: 0; }
+  .sap-rules li { padding: 16px 0; border-top: 1px solid var(--meta); font-size: 16px; line-height: 24px; color: var(--list); }
+  .sap-rules li:last-child { border-bottom: 1px solid var(--meta); }
+  .sap code { font-size: 0.9em; }
+
+  /* FAQ */
+  .sap-faq details { border-top: 1px solid var(--meta); padding: 0; }
+  .sap-faq details:last-child { border-bottom: 1px solid var(--meta); }
+  .sap-faq summary { cursor: pointer; list-style: none; display: flex; justify-content: space-between; gap: 16px; align-items: center; min-height: 56px; padding: 12px 0; font-size: 20px; line-height: 26px; font-weight: 500; color: var(--ink); }
+  .sap-faq summary::-webkit-details-marker { display: none; }
+  .sap-faq summary::after { content: '+'; font-size: 24px; color: var(--blue); flex: none; }
+  .sap-faq details[open] summary::after { content: '\2212'; }
+  .sap-faq details p { padding: 0 0 20px; font-size: 18px; color: var(--body); }
+
+  /* related */
+  .sap-related { display: grid; grid-template-columns: 1fr; gap: 16px; }
+  .sap-related a { display: grid; gap: 8px; padding: 20px; border: 1px solid var(--band); border-radius: 8px; color: var(--body); background: #fff; }
+  .sap-related a:hover { border-color: var(--blue); text-decoration: none; }
+  .sap-related-name { font-size: 20px; line-height: 22px; font-weight: 500; color: var(--ink); }
+  .sap-related-price { font-size: 14px; color: var(--meta); }
+  .sap-related-tag { font-size: 15px; line-height: 21px; color: var(--list); font-weight: 350; }
+
+  .sap-closing { display: flex; flex-direction: column; align-items: flex-start; }
+  .sap-closing h2 { color: #fff; margin-bottom: 0; }
+
+  @media (min-width: 768px) {
+    .sap-tiles { grid-template-columns: repeat(3, 1fr); }
+    .sap-gallery { grid-template-columns: repeat(2, 1fr); }
+    .sap-related { grid-template-columns: repeat(3, 1fr); }
+    .sap-closing { flex-direction: row; align-items: center; justify-content: space-between; }
   }
-
-  .video-frame iframe {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    border: 0;
+  @media (min-width: 1024px) {
+    .sap h1 { font-size: 36px; }
+    .sap-hero-grid { grid-template-columns: 1fr 1fr; }
+    .sap-hero-grid.single { grid-template-columns: 1fr; }
+    .sap-step { grid-template-columns: 5fr 6fr; gap: 56px; }
+    .sap-step.rev { grid-template-columns: 6fr 5fr; }
+    .sap-step.rev .sap-shots { order: -1; }
+    .sap-step.single { grid-template-columns: 1fr; }
+    .sap-shots { position: sticky; top: 16px; }
+    .sap-tiles { grid-template-columns: repeat(6, 1fr); }
   }
-
-  .feature-blocks {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    max-width: 46rem;
-    margin: 0 auto;
-    text-align: left;
-  }
-
-  .feature-block h3 {
-    margin: 0 0 0.35rem;
-    font-size: 1.05rem;
-  }
-
-  .feature-block p {
-    margin: 0 0 0.5rem;
-  }
-
-  .scope-box {
-    max-width: 46rem;
-    margin: 0 auto;
-    padding: 1rem 1.25rem;
-    border-left: 3px solid var(--moss);
-    background: var(--sand-card);
-    border-radius: 0 6px 6px 0;
-    text-align: left;
-  }
-
-  .scope-box p:last-child {
-    margin-bottom: 0;
-  }
-
-  .demo-note {
-    max-width: 62ch;
-    margin: 0.9rem auto 0;
-    text-align: center;
-    font-size: 0.92rem;
-    opacity: 0.75;
-  }
-
-  .price-note {
-    max-width: 46rem;
-    margin: 1rem auto 0;
-    font-size: 0.9rem;
-    opacity: 0.85;
-  }
-
-  .app-detail code {
-    font-size: 0.9em;
+  @media (max-width: 767px) {
+    .sap-band { padding: 40px 0; }
+    .sap-hero { padding: 40px 0 32px; }
+    .sap h2 { font-size: 28px; line-height: 31px; }
+    .sap-faq summary { font-size: 18px; }
   }
 </style>
