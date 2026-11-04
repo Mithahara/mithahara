@@ -22,17 +22,17 @@ const sections = [...groups.entries()]
   .sort((a, b) => b.apps.length - a.apps.length || a.name.localeCompare(b.name));
 
 const description =
-  `All ${odooApps.length} Odoo apps built by Mithahara for Odoo 19 — ${paid.length} paid and ` +
+  `All ${odooApps.length} Odoo apps built by Mithahara for Odoo 19 and 20 — ${paid.length} paid and ` +
   `${free.length} free modules covering compliance, accounting, access control, advertising and warehouse.`;
 ---
 <Layout path="/odoo-apps" title="Odoo Apps" description={description}>
   <section class="page-section">
     <div class="container">
-      <div class="log-row"><span class="log-tag">Odoo 19</span></div>
+      <div class="log-row"><span class="log-tag">Odoo 19 · 20</span></div>
       <h1 class="section-title">Odoo Apps</h1>
       <p class="venture-tagline">{odooApps.length} modules on the Odoo App Store</p>
       <p class="venture-description">
-        Every app below is live on the Odoo App Store for Odoo 19, Community and Enterprise.
+        Every app below is live on the Odoo App Store for Odoo 19 and Odoo 20.
         {' '}{free.length} are free and {paid.length} are paid, and most paid apps have a free
         counterpart that does one part of the job so you can try the approach before buying.
       </p>

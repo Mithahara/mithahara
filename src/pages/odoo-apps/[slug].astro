@@ -23,7 +23,20 @@ const related = odooApps
 // The meta description has to stand alone in a search result, so it leads with
 // the tagline (written for a human) and falls back to the manifest summary
 // (written for the store's substring matcher) only when there is no tagline.
-const metaDescription = (app.tagline || app.summary || '').slice(0, 158);
+// It ends with what a buyer weighs first - the versions covered and the price - so the
+// tagline is the part that gets cut to fit, at a word boundary, never the suffix.
+const metaSuffix = ` Odoo 19 & 20. ${app.price ? formatPrice(app) : 'Free'}.`;
+const metaLead = (app.tagline || app.summary || '').replace(/[.\s]+$/, '');
+const metaRoom = 158 - metaSuffix.length;
+// A cut tagline should end where a clause ends, not mid-phrase: back up to the last dash, comma or
+// colon when that keeps at least half of what fits, else to the last whole word.
+const metaCut = (text, room) => {
+  if (text.length + 1 <= room) return text;
+  const head = text.slice(0, room - 1);
+  const clause = Math.max(head.lastIndexOf(' - '), head.lastIndexOf(', '), head.lastIndexOf(': '), head.lastIndexOf(' — '));
+  return clause > room / 2 ? head.slice(0, clause) : head.replace(/\s+\S*$/, '');
+};
+const metaDescription = metaCut(metaLead, metaRoom) + '.' + metaSuffix;
 
 // The Odoo App Store renders a "Live Preview" button from the manifest's
 // live_test_url and points it here, so this page has to actually offer one.
@@ -42,12 +55,21 @@ const demoMailto = `mailto:${contacts.email}?subject=${encodeURIComponent(demoSu
 // Google truncates around 60 characters including the " | Mithahara" suffix the
 // layout appends (12), so the long names fall back to the shorter qualifier
 // rather than being cut mid-phrase.
-const pageTitle = `${app.name} for Odoo 19`.length + 12 <= 60
-  ? `${app.name} for Odoo 19`
+const pageTitle = `${app.name} for Odoo 19 & 20`.length + 12 <= 60
+  ? `${app.name} for Odoo 19 & 20`
   : (`${app.name} for Odoo`.length + 12 <= 60 ? `${app.name} for Odoo` : app.name);
 
 const jsonLd = odooAppJsonLd(app);
-const graph = app.youtubeId
+const faqLd = app.faq.length > 0 && {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: app.faq.map((item) => ({
+    '@type': 'Question',
+    name: item.q,
+    acceptedAnswer: { '@type': 'Answer', text: item.a },
+  })),
+};
+const graph = [...(faqLd ? [faqLd] : []), ...(app.youtubeId
   ? [jsonLd, {
       '@context': 'https://schema.org',
       '@type': 'VideoObject',
@@ -56,13 +78,13 @@ const graph = app.youtubeId
       embedUrl: `https://www.youtube.com/embed/${app.youtubeId}`,
       thumbnailUrl: `https://i.ytimg.com/vi/${app.youtubeId}/maxresdefault.jpg`,
     }]
-  : [jsonLd];
+  : [jsonLd])];
 ---
 <Layout path={`/odoo-apps/${app.slug}`} title={pageTitle} description={metaDescription}>
   <section class="page-section app-detail">
     <div class="container">
       <div class="log-row">
-        <span class="log-tag">Odoo 19</span>
+        <span class="log-tag">Odoo 19 · 20</span>
         {app.category && <span class="log-tag">{app.category.split('/')[0]}</span>}
         <span class={app.price ? 'log-tag gold' : 'log-tag'}>{formatPrice(app)}</span>
       </div>
@@ -71,8 +93,11 @@ const graph = app.youtubeId
       {app.tagline && <p class="venture-tagline">{app.tagline}</p>}
 
       <div class="hero-actions" style="justify-content: center;">
-        <a class="cta-button primary" href={app.storeUrl} target="_blank" rel="noopener noreferrer">
-          View on the Odoo App Store
+        <a class="cta-button primary" href={app.storeUrl19} target="_blank" rel="noopener noreferrer">
+          Get it for Odoo 19
+        </a>
+        <a class="cta-button primary" href={app.storeUrl20} target="_blank" rel="noopener noreferrer">
+          Get it for Odoo 20
         </a>
         <a class="cta-button secondary" href={demoMailto}>
           Request a live demo
@@ -133,7 +158,9 @@ const graph = app.youtubeId
               <figure class="screenshot-card">
                 <img
                   src={`/odoo-apps/${app.slug}/${shot}`}
-                  alt={`${app.name} in Odoo — ${shot.replace(/\.\w+$/, '').replace(/[_-]+/g, ' ')}`}
+                  alt={`${app.name} in Odoo — ${shot.split('/').pop().replace(/\.\w+$/, '').replace(/[_-]+/g, ' ')}`}
+                  width={app.shotDims[shot]?.[0]}
+                  height={app.shotDims[shot]?.[1]}
                   loading="lazy"
                 />
               </figure>
@@ -142,9 +169,23 @@ const graph = app.youtubeId
         </>
       )}
 
+      {app.faq.length > 0 && (
+        <>
+          <h2 class="sec-head">Questions buyers ask</h2>
+          <div class="faq-plain">
+            {app.faq.map((item) => (
+              <details>
+                <summary>{item.q}</summary>
+                <p>{item.a}</p>
+              </details>
+            ))}
+          </div>
+        </>
+      )}
+
       <h2 class="sec-head">Requirements</h2>
       <ul class="feature-list requirements">
-        <li>Odoo 19.0, Community or Enterprise.</li>
+        <li>Odoo 19.0 or 20.0. The App Store sells each version separately, so buy the one that matches your database.</li>
         <li>
           <strong>Odoo.sh or On-Premise only.</strong> Third-party apps cannot be installed on
           Odoo Online (SaaS) databases — check your hosting before buying.
@@ -204,6 +245,34 @@ const graph = app.youtubeId
     margin: 2.75rem auto 1rem;
     text-align: left;
     font-size: 1.4rem;
+  }
+
+  .faq-plain {
+    max-width: 46rem;
+    margin: 0 auto;
+    text-align: left;
+  }
+
+  .faq-plain details {
+    border-bottom: 1px solid var(--border-sand);
+    padding: 0.85rem 0;
+  }
+
+  .faq-plain summary {
+    cursor: pointer;
+    font-weight: 600;
+    min-height: 2.75rem;
+    display: flex;
+    align-items: center;
+  }
+
+  .faq-plain summary:focus-visible {
+    outline: 2px solid var(--moss);
+    outline-offset: 2px;
+  }
+
+  .faq-plain p {
+    margin: 0.5rem 0 0;
   }
 
   .requirements {
