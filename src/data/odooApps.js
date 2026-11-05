@@ -5,7 +5,7 @@
 // generator; editing here forks the copy away from what the store actually
 // serves.
 //
-// Store snapshot: 2026-11-04T04:12:05+00:00
+// Store snapshot: 2026-11-05T04:11:11+00:00
 
 export const odooApps = [
   {
@@ -221,7 +221,7 @@ export const odooApps = [
       "It does not replace a security review by somebody who knows your business, and it changes no permission on its own: every action that writes to your configuration, keys or sessions asks you to confirm. It does not review portal or public users, hide menus, buttons or tabs, or edit views. Warehouse-specific access rules are deliberately not here: they need the Inventory app, and an access product should not force Inventory onto a database that does not use it."
     ],
     "requires": [],
-    "price": 398.25,
+    "price": 399.0,
     "manifestPrice": 399.0,
     "currency": "USD",
     "category": "Productivity",
@@ -476,305 +476,6 @@ export const odooApps = [
     "externalPage": null
   },
   {
-    "tech": "mh_inventory_reports",
-    "slug": "inventory-reports",
-    "name": "Inventory Reports",
-    "summary": "Puts six inventory reports under one menu: All in one inventory reports: stock aging, inventory valuation, ABC analysis, FSN analysis, count accuracy and reordering rule audit under one menu",
-    "tagline": "Six inventory reports under one menu: stock aging, valuation, ABC and XYZ, fast and slow movers, count accuracy and reordering rules",
-    "intro": [
-      "A warehouse is asked the same questions at every review: which stock stopped moving, what the stock was worth and why that changed, which products carry the value that ships, where the counts keep disagreeing with the system, and whether the reordering rules still fit the demand. Inventory Reports answers each one from the stock moves, quants, valuation and reordering rules already in your Odoo database, saves the result as a record you can reopen, and says in plain words what stood out. This page walks through every report with screenshots of an Odoo 19 database seeded with made-up data (18 products, two warehouses, a year of moves), checks the numbers against Odoo's own, and says where it stops."
-    ],
-    "features": [
-      {
-        "heading": "Why six reports in one app",
-        "body": [
-          "Each report answers one question and reads the same stock records, so they live together under Inventory > Reporting > Inventory Reports ."
-        ],
-        "images": []
-      },
-      {
-        "heading": "1 Inventory Aging: how long has the stock sat",
-        "body": [
-          "The same 500 units are healthy stock in a fast line and dead capital in a slow one. What tells them apart is the date something last shipped, and that is not on the stock record.",
-          "Create a record, optionally pick warehouses and categories, and press Run Report . Every product with stock in an internal location gets a row: quantity, value at the product's current cost, the date it last shipped, the days since and a bucket (0-30, 31-90, 91-180, 181-365, over a year, never moved). Sitting 6m+ adds up the value of everything over 180 days. Amber rows are 181-365 days, red rows are over a year or never moved.",
-          "The result: 18 products worth 37,817.40, of which 9,164.00 has not shipped for six months.",
-          "The top of the product list, largest value first: amber and red rows are the stale stock.",
-          "Warehouse filter: stock and last-shipped date are both limited to East Depot.",
-          "Two of the nine Motor 0.75kW units were transferred to East Depot twelve days before the run, and the row still reads 300 days: only a move to a customer, to production or to transit counts as shipping, so a transfer, a scrap or a stock-count loss does not restart the clock. Shipping one motor for real made the same row read 0 days in a control run. Filtered to East Depot, the two products stored there read Never moved, because they only ever shipped from the main warehouse.",
-          "It does not say what to do with old stock. A product with no outgoing move is Never moved even if it was received yesterday. It has no PDF or Excel export. It works per product, not per lot or serial number."
-        ],
-        "use": "money is tied up in stock and nobody can say which of it has stopped moving.",
-        "mode": "Inventory users and administrators",
-        "images": [
-          "images/aging-result.webp",
-          "images/aging-lines.webp",
-          "images/aging-east.webp"
-        ]
-      },
-      {
-        "heading": "2 Stock Valuation: what it was worth, and why that changed",
-        "body": [
-          "Odoo gives you the stock value today. A review asks what it was at the start of the month, what came in, what went out, and what moved without a stock move.",
-          "Pick a period (and, if you like, warehouses, locations and categories) and press Run Report . Per product: opening, received, issued, other and closing, with quantity and value. Opening and closing are Odoo's own product valuation read at the two instants, so standard, average and FIFO costing come out exactly as Odoo books them; received and issued carry the value Odoo recorded on each move. Other is what is left, so every row reconciles; it holds cost updates and landed costs.",
-          "On the seeded database the closing value (37,817.40) equals the sum of Odoo's own product valuation and the sum of the stock value Odoo shows on the quants; the opening value equals Odoo's valuation one second before the period; closing quantity matches the quants; none of the 18 rows fails to reconcile. Cost updates entered on the run day show up under Other (Gear Oil 20L 280.00, Motor 0.75kW 108.00 on this version). Odoo 19 books a standard-cost change differently from Odoo 20, so the same data gives different opening and other figures on the two versions; the report follows Odoo's figures in both.",
-          "Filtered to one warehouse, a transfer between your own warehouses moves quantity and no value, because Odoo does not value it, and its value effect lands under Other: the Motor 0.75kW row shows 9 units at 2,160.00 opening, 2 issued with 0.00 value, 7 units at 1,764.00 closing and -396.00 under Other. The findings say so.",
-          "It posts nothing and changes no cost. Day boundaries follow the user's time zone. It exports to Excel (a subtotal per category and a total) and prints a PDF listing every product.",
-          "Opening 31,547.00 plus received 12,255.00 minus issued 6,524.60 plus other 540.00 gives closing 37,817.40.",
-          "Per product: received, issued, other and closing. The opening column is hidden here to fit; the screen shows it.",
-          "Filtered to the main warehouse: Other is 36.00, because the 2 motors moved to East Depot carry quantity and no value."
-        ],
-        "use": "month-end stock value has to be explained, per product, from one date to another.",
-        "mode": "Inventory Administrators; PDF and Excel",
-        "warn": "Issued is every move that leaves the valued locations in the period, so a scrap and a stock-count loss count as issued value too. Stock owned by someone else (consignment) is left out. It reads product valuation and stock moves, never accounting entries, so it is not a general-ledger reconciliation.",
-        "images": [
-          "images/valuation-result.webp",
-          "images/valuation-lines.webp",
-          "images/valuation-main.webp"
-        ]
-      },
-      {
-        "heading": "3 ABC Analysis: which products carry the value that ships",
-        "body": [
-          "Every product gets the same attention, so the few that carry the business are managed like the many that do not.",
-          "The period defaults to the last twelve whole months. Products are ranked by the cost Odoo recorded on their outgoing moves to customers and production. A is the smallest set that reaches 80 percent of the value (limits are yours), B runs to 95 percent, the rest is C. XYZ measures how steady the monthly demand is: X below a coefficient of variation of 0.50, Y below 1.00, Z beyond, and Z for no demand at all. The matrix button opens the 3 by 3 pivot.",
-          "8 A, 4 B and 6 C products; outgoing value 83,776.00; 7,370.00 of stock sits in C.",
-          "The ranking: class, XYZ, outgoing value and cumulative share.",
-          "The matrix, in outgoing value per class pair.",
-          "After Save Classes: 18 products carry a class (8 A, 4 B, 6 C).",
-          "Hex Bolt M8x40 is A and X: steady demand, 4,880.00 of outgoing value. Contactor 24V is B and Z: it sold only in six of twelve months. Legacy Gearbox GB-200 and Cable 3x1.5 100m never went out in the period and are C and Z with their stock counted as stock held in C.",
-          "Save Classes on Products asks for confirmation and writes the class onto the products of the analysis's company; products outside it keep theirs. The saved classes appear in the ABC Classes menu entry, as optional columns on the product list and as filters on the product search and on Physical Inventory. Ticking Monthly Refresh lets a scheduled action move the period forward each month, run again and save.",
-          "Scrap, internal transfers, inventory losses and vendor returns are not demand. Only storable products are analysed. PDF and Excel (with a Matrix sheet) are included."
-        ],
-        "use": "a few products carry most of the outgoing value and the rest only look busy.",
-        "mode": "Writes classes to products only on Save Classes",
-        "warn": "Customer returns are not netted off demand: a 100-unit return of Hex Bolt left its outgoing figures unchanged in a control run. With fewer than three calendar months in the period the findings say XYZ has too few points.",
-        "images": [
-          "images/abc-result.webp",
-          "images/abc-lines.webp",
-          "images/abc-matrix.webp",
-          "images/abc-classes.webp"
-        ]
-      },
-      {
-        "heading": "4 FSN Analysis: fast, slow and non-moving",
-        "body": [
-          "A product that shipped once yesterday after a year of silence is fresh by age and slow by frequency. Aging cannot tell you that; counting issues can.",
-          "Pick a period in months (12 by default) and thresholds: fast from 1.00 issues a month, slow from 0.00 (so a single issue makes a product slow). An issue is one done stock move out of an internal location to a customer, to production or to transit; a delivery picked from three bins is one issue. The result gives each class its product count and its stock value at cost.",
-          "12 fast, 4 slow, 2 non-moving; non-moving stock holds 3,432.00 (9%), slow 5,792.00 (15%).",
-          "Products grouped by class, with issues per month.",
-          "Hex Bolt M8x40 had 61 issues in twelve months, 5.08 a month, so it is fast. Legacy Gearbox GB-200 and Cable 3x1.5 100m had none and are the largest non-moving holdings. The Non-moving button opens only those rows.",
-          "Products with no stock and no issue in the period are left out, negative stock is not counted, and a product received recently and not yet issued is non-moving. Customer returns are not netted off the issues. The PDF carries the class totals and the non-moving products; the Excel file has every product."
-        ],
-        "use": "you need to know how often products ship, not how old the stock is.",
-        "mode": "Inventory users and administrators; PDF and Excel",
-        "images": [
-          "images/fsn-result.webp",
-          "images/fsn-lines.webp"
-        ]
-      },
-      {
-        "heading": "5 Count Accuracy: where the records were wrong",
-        "body": [
-          "Every adjustment is a measurement of the gap between what Odoo believed and what was on the shelf. Odoo posts the correction and moves on; the gap itself is not added up anywhere.",
-          "Choose a window in days (365 by default) and run. Every applied inventory adjustment is added up per location and product: stock found, stock missing, how many adjustments, and two values at current cost. Error is found plus missing, the size of the mistake; Net is found minus missing, what was left once the errors cancelled.",
-          "11 adjustments: 387.60 of error, netting to -285.60.",
-          "By location and product, largest error first.",
-          "Hex Bolt M8x40 in Bin A was adjusted three times: 10 found, 80 missing, a net of -56.00 on an error of 72.00. Four product and location pairs were adjusted both up and down in the window, which the findings call a putaway or picking problem rather than shrinkage.",
-          "Deliveries, transfers and scrap are not counted, only inventory adjustments. A window with no adjustment says it cannot tell \"not counted\" from \"counts agreed\". No PDF or Excel."
-        ],
-        "use": "inventory adjustments are posted and forgotten, so the pattern of drift is never seen.",
-        "mode": "Inventory Administrators",
-        "images": [
-          "images/count-result.webp",
-          "images/count-lines.webp"
-        ]
-      },
-      {
-        "heading": "6 Reordering Rule Audit: do the rules fit the demand",
-        "body": [
-          "A reordering rule is a guess made once. Demand moves; the minimum does not, and the stock-out that follows is blamed on the supplier.",
-          "Each rule is compared with the demand that already shipped over a window (90 days by default). The verdicts are Minimum too low (the minimum is below what the product ships while the replenishment is on its way), Maximum too high (the gap to the maximum is more than 90 days of demand), No lead time set , No demand and Looks right .",
-          "10 rules: 2 reorder too late and 18,640.00 sits above what a quarter of demand needs.",
-          "Rules and verdicts. Needed over lead time is units shipped per day times lead days.",
-          "The second run with an assumed lead time; assumed rows are flagged.",
-          "Washer M8 has a minimum of 15 and a lead time of 7 days, but shipped 2,200 units in 90 days, so 171.11 are needed while a replenishment is on its way: Minimum too low. Grease Cartridge has no lead time, so the audit says it cannot judge rather than guess. Running again with Assume lead time of 10 days flags that row as an assumed lead and judges it Looks right; nothing else changes.",
-          "It does not forecast and changes no rule. Scrap, count losses, vendor returns and transfers are not demand. No PDF or Excel."
-        ],
-        "use": "a minimum set two years ago no longer matches what the product ships.",
-        "mode": "Inventory Administrators; changes no rule",
-        "warn": "The lead time is what Odoo reports for the rule. With Purchase installed, a product on the Buy route with no vendor reports 365 days in Odoo itself, and the audit uses that figure. A saved audit also keeps a row only while its reordering rule exists: deleting a rule deletes its row from every saved audit.",
-        "images": [
-          "images/reorder-result.webp",
-          "images/reorder-lines.webp",
-          "images/reorder-assumed.webp"
-        ]
-      },
-      {
-        "heading": "Menus and who can open what",
-        "body": [
-          "All six reports sit under Inventory > Reporting > Inventory Reports , with ABC Classes as a seventh entry. Inventory Administrators can open all of them. Inventory users have the access rights for Aging and FSN only; Valuation, ABC, Count Accuracy and the audit raise an access error for them. Every report model has a company rule, and users can delete report records.",
-          "Multi-company is covered by automated tests (another company's users cannot read a report; another company's stock and moves are ignored) and was not run by hand.",
-          "The menu, as an Inventory Administrator sees it: seven entries.",
-          "The menu bar of an Inventory user: no Reporting menu."
-        ],
-        "use": "you are deciding who should see which report.",
-        "mode": "Company rules on every report",
-        "warn": "The Aging and FSN entries carry no group, but their parent, Inventory > Reporting, is restricted to Inventory Administrators in Odoo 19 Community. An Inventory user has the access right and no menu to click, so they need a direct link or a bookmark. Recorded, not fixed.",
-        "images": [
-          "images/menu.webp",
-          "images/menu-user.webp"
-        ]
-      }
-    ],
-    "scope": [],
-    "requires": [],
-    "price": 149.0,
-    "manifestPrice": 149.0,
-    "currency": "USD",
-    "category": "Warehouse",
-    "version": "19.0.1.0.7",
-    "license": "OPL-1",
-    "depends": [
-      "stock_account"
-    ],
-    "paidDepends": [],
-    "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_inventory_reports",
-    "storeUrl19": "https://apps.odoo.com/apps/modules/19.0/mh_inventory_reports",
-    "storeUrl20": "https://apps.odoo.com/apps/modules/20.0/mh_inventory_reports",
-    "screenshots": [],
-    "shotDims": {
-      "images/aging-result.webp": [
-        1000,
-        1463
-      ],
-      "images/aging-lines.webp": [
-        1000,
-        962
-      ],
-      "images/aging-east.webp": [
-        1000,
-        1433
-      ],
-      "images/valuation-result.webp": [
-        1000,
-        1978
-      ],
-      "images/valuation-lines.webp": [
-        1000,
-        1732
-      ],
-      "images/valuation-main.webp": [
-        1000,
-        1762
-      ],
-      "images/abc-result.webp": [
-        1000,
-        950
-      ],
-      "images/abc-lines.webp": [
-        1000,
-        1000
-      ],
-      "images/abc-matrix.webp": [
-        1000,
-        1197
-      ],
-      "images/abc-classes.webp": [
-        1000,
-        2289
-      ],
-      "images/fsn-result.webp": [
-        1000,
-        908
-      ],
-      "images/fsn-lines.webp": [
-        1000,
-        1000
-      ],
-      "images/count-result.webp": [
-        1000,
-        1493
-      ],
-      "images/count-lines.webp": [
-        1000,
-        370
-      ],
-      "images/reorder-result.webp": [
-        1000,
-        1645
-      ],
-      "images/reorder-lines.webp": [
-        1000,
-        953
-      ],
-      "images/reorder-assumed.webp": [
-        1000,
-        1392
-      ],
-      "images/menu.webp": [
-        558,
-        1002
-      ],
-      "images/menu-user.webp": [
-        1000,
-        124
-      ]
-    },
-    "tiles": [
-      {
-        "n": "6",
-        "l": "reports in one install, plus ABC Classes: 7 menu entries"
-      },
-      {
-        "n": "121",
-        "l": "automated tests, none failing"
-      },
-      {
-        "n": "0",
-        "l": "journal entries posted and costs changed"
-      },
-      {
-        "n": "3",
-        "l": "reports with PDF and Excel: Valuation, ABC, FSN"
-      },
-      {
-        "n": "18",
-        "l": "products in the seeded database behind every screenshot"
-      },
-      {
-        "n": "Admins",
-        "l": "see the Reporting menu; Inventory users need a direct link"
-      }
-    ],
-    "faq": [
-      {
-        "q": "Does it change my stock or my accounting?",
-        "a": "No journal entry is posted and no cost is changed. The only write to products is the ABC and XYZ class, when you press Save Classes or the monthly refresh runs."
-      },
-      {
-        "q": "Do the valuation figures match Odoo's?",
-        "a": "Opening and closing are Odoo's own product valuation. On the seeded database the closing value matched the sum of Odoo's own stock values to the cent."
-      },
-      {
-        "q": "Can an Inventory user open the reports?",
-        "a": "Aging and FSN, by direct link: the menu that holds them is visible to Inventory Administrators only. The other four are for administrators."
-      },
-      {
-        "q": "Does it need the separate single-report apps?",
-        "a": "No. The module carries its own copy of each report and needs none of them installed."
-      },
-      {
-        "q": "Does it work per lot or serial number?",
-        "a": "No. It works per product."
-      }
-    ],
-    "copyWords": 1906,
-    "hasVideo": true,
-    "youtubeId": "9fRKjQuGGHM",
-    "externalPage": null
-  },
-  {
     "tech": "mh_access_explorer",
     "slug": "access-explorer",
     "name": "Access Explorer",
@@ -950,11 +651,11 @@ export const odooApps = [
     ],
     "scope": [],
     "requires": [],
-    "price": 148.72,
+    "price": 149.0,
     "manifestPrice": 149.0,
     "currency": "USD",
     "category": "Productivity",
-    "version": "19.0.1.0.14",
+    "version": "19.0.1.0.15",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -1216,7 +917,7 @@ export const odooApps = [
       "It blanks the fields a rule names, on the records a rule matches, and logs each record. It does not decide for you what personal data is, and it is not legal advice or a compliance certificate. In more detail:"
     ],
     "requires": [],
-    "price": 148.72,
+    "price": 149.0,
     "manifestPrice": 149.0,
     "currency": "USD",
     "category": "Extra Tools",
@@ -1359,6 +1060,305 @@ export const odooApps = [
     "externalPage": null
   },
   {
+    "tech": "mh_inventory_reports",
+    "slug": "inventory-reports",
+    "name": "Inventory Reports",
+    "summary": "Puts six inventory reports under one menu: All in one inventory reports: stock aging, inventory valuation, ABC analysis, FSN analysis, count accuracy and reordering rule audit under one menu",
+    "tagline": "Six inventory reports under one menu: stock aging, valuation, ABC and XYZ, fast and slow movers, count accuracy and reordering rules",
+    "intro": [
+      "A warehouse is asked the same questions at every review: which stock stopped moving, what the stock was worth and why that changed, which products carry the value that ships, where the counts keep disagreeing with the system, and whether the reordering rules still fit the demand. Inventory Reports answers each one from the stock moves, quants, valuation and reordering rules already in your Odoo database, saves the result as a record you can reopen, and says in plain words what stood out. This page walks through every report with screenshots of an Odoo 19 database seeded with made-up data (18 products, two warehouses, a year of moves), checks the numbers against Odoo's own, and says where it stops."
+    ],
+    "features": [
+      {
+        "heading": "Why six reports in one app",
+        "body": [
+          "Each report answers one question and reads the same stock records, so they live together under Inventory > Reporting > Inventory Reports ."
+        ],
+        "images": []
+      },
+      {
+        "heading": "1 Inventory Aging: how long has the stock sat",
+        "body": [
+          "The same 500 units are healthy stock in a fast line and dead capital in a slow one. What tells them apart is the date something last shipped, and that is not on the stock record.",
+          "Create a record, optionally pick warehouses and categories, and press Run Report . Every product with stock in an internal location gets a row: quantity, value at the product's current cost, the date it last shipped, the days since and a bucket (0-30, 31-90, 91-180, 181-365, over a year, never moved). Sitting 6m+ adds up the value of everything over 180 days. Amber rows are 181-365 days, red rows are over a year or never moved.",
+          "The result: 18 products worth 37,817.40, of which 9,164.00 has not shipped for six months.",
+          "The top of the product list, largest value first: amber and red rows are the stale stock.",
+          "Warehouse filter: stock and last-shipped date are both limited to East Depot.",
+          "Two of the nine Motor 0.75kW units were transferred to East Depot twelve days before the run, and the row still reads 300 days: only a move to a customer, to production or to transit counts as shipping, so a transfer, a scrap or a stock-count loss does not restart the clock. Shipping one motor for real made the same row read 0 days in a control run. Filtered to East Depot, the two products stored there read Never moved, because they only ever shipped from the main warehouse.",
+          "It does not say what to do with old stock. A product with no outgoing move is Never moved even if it was received yesterday. It has no PDF or Excel export. It works per product, not per lot or serial number."
+        ],
+        "use": "money is tied up in stock and nobody can say which of it has stopped moving.",
+        "mode": "Inventory users and administrators",
+        "images": [
+          "images/aging-result.webp",
+          "images/aging-lines.webp",
+          "images/aging-east.webp"
+        ]
+      },
+      {
+        "heading": "2 Stock Valuation: what it was worth, and why that changed",
+        "body": [
+          "Odoo gives you the stock value today. A review asks what it was at the start of the month, what came in, what went out, and what moved without a stock move.",
+          "Pick a period (and, if you like, warehouses, locations and categories) and press Run Report . Per product: opening, received, issued, other and closing, with quantity and value. Opening and closing are Odoo's own product valuation read at the two instants, so standard, average and FIFO costing come out exactly as Odoo books them; received and issued carry the value Odoo recorded on each move. Other is what is left, so every row reconciles; it holds cost updates and landed costs.",
+          "On the seeded database the closing value (37,817.40) equals the sum of Odoo's own product valuation and the sum of the stock value Odoo shows on the quants; the opening value equals Odoo's valuation one second before the period; closing quantity matches the quants; none of the 18 rows fails to reconcile. Cost updates entered on the run day show up under Other (Gear Oil 20L 280.00, Motor 0.75kW 108.00 on this version). Odoo 19 books a standard-cost change differently from Odoo 20, so the same data gives different opening and other figures on the two versions; the report follows Odoo's figures in both.",
+          "Filtered to one warehouse, a transfer between your own warehouses moves quantity and no value, because Odoo does not value it, and its value effect lands under Other: the Motor 0.75kW row shows 9 units at 2,160.00 opening, 2 issued with 0.00 value, 7 units at 1,764.00 closing and -396.00 under Other. The findings say so.",
+          "It posts nothing and changes no cost. Day boundaries follow the user's time zone. It exports to Excel (a subtotal per category and a total) and prints a PDF listing every product.",
+          "Opening 31,547.00 plus received 12,255.00 minus issued 6,524.60 plus other 540.00 gives closing 37,817.40.",
+          "Per product: received, issued, other and closing. The opening column is hidden here to fit; the screen shows it.",
+          "Filtered to the main warehouse: Other is 36.00, because the 2 motors moved to East Depot carry quantity and no value."
+        ],
+        "use": "month-end stock value has to be explained, per product, from one date to another.",
+        "mode": "Inventory Administrators; PDF and Excel",
+        "warn": "Issued is every move that leaves the valued locations in the period, so a scrap and a stock-count loss count as issued value too. Stock owned by someone else (consignment) is left out. It reads product valuation and stock moves, never accounting entries, so it is not a general-ledger reconciliation.",
+        "images": [
+          "images/valuation-result.webp",
+          "images/valuation-lines.webp",
+          "images/valuation-main.webp"
+        ]
+      },
+      {
+        "heading": "3 ABC Analysis: which products carry the value that ships",
+        "body": [
+          "Every product gets the same attention, so the few that carry the business are managed like the many that do not.",
+          "The period defaults to the last twelve whole months. Products are ranked by the cost Odoo recorded on their outgoing moves to customers and production. A is the smallest set that reaches 80 percent of the value (limits are yours), B runs to 95 percent, the rest is C. XYZ measures how steady the monthly demand is: X below a coefficient of variation of 0.50, Y below 1.00, Z beyond, and Z for no demand at all. The matrix button opens the 3 by 3 pivot.",
+          "8 A, 4 B and 6 C products; outgoing value 83,776.00; 7,370.00 of stock sits in C.",
+          "The ranking: class, XYZ, outgoing value and cumulative share.",
+          "The matrix, in outgoing value per class pair.",
+          "After Save Classes: 18 products carry a class (8 A, 4 B, 6 C).",
+          "Hex Bolt M8x40 is A and X: steady demand, 4,880.00 of outgoing value. Contactor 24V is B and Z: it sold only in six of twelve months. Legacy Gearbox GB-200 and Cable 3x1.5 100m never went out in the period and are C and Z with their stock counted as stock held in C.",
+          "Save Classes on Products asks for confirmation and writes the class onto the products of the analysis's company; products outside it keep theirs. The saved classes appear in the ABC Classes menu entry, as optional columns on the product list and as filters on the product search and on Physical Inventory. Ticking Monthly Refresh lets a scheduled action move the period forward each month, run again and save.",
+          "Scrap, internal transfers, inventory losses and vendor returns are not demand. Only storable products are analysed. PDF and Excel (with a Matrix sheet) are included."
+        ],
+        "use": "a few products carry most of the outgoing value and the rest only look busy.",
+        "mode": "Writes classes to products only on Save Classes",
+        "warn": "Customer returns are not netted off demand: a 100-unit return of Hex Bolt left its outgoing figures unchanged in a control run. With fewer than three calendar months in the period the findings say XYZ has too few points.",
+        "images": [
+          "images/abc-result.webp",
+          "images/abc-lines.webp",
+          "images/abc-matrix.webp",
+          "images/abc-classes.webp"
+        ]
+      },
+      {
+        "heading": "4 FSN Analysis: fast, slow and non-moving",
+        "body": [
+          "A product that shipped once yesterday after a year of silence is fresh by age and slow by frequency. Aging cannot tell you that; counting issues can.",
+          "Pick a period in months (12 by default) and thresholds: fast from 1.00 issues a month, slow from 0.00 (so a single issue makes a product slow). An issue is one done stock move out of an internal location to a customer, to production or to transit; a delivery picked from three bins is one issue. The result gives each class its product count and its stock value at cost.",
+          "12 fast, 4 slow, 2 non-moving; non-moving stock holds 3,432.00 (9%), slow 5,792.00 (15%).",
+          "Products grouped by class, with issues per month.",
+          "Hex Bolt M8x40 had 61 issues in twelve months, 5.08 a month, so it is fast. Legacy Gearbox GB-200 and Cable 3x1.5 100m had none and are the largest non-moving holdings. The Non-moving button opens only those rows.",
+          "Products with no stock and no issue in the period are left out, negative stock is not counted, and a product received recently and not yet issued is non-moving. Customer returns are not netted off the issues. The PDF carries the class totals and the non-moving products; the Excel file has every product."
+        ],
+        "use": "you need to know how often products ship, not how old the stock is.",
+        "mode": "Inventory users and administrators; PDF and Excel",
+        "images": [
+          "images/fsn-result.webp",
+          "images/fsn-lines.webp"
+        ]
+      },
+      {
+        "heading": "5 Count Accuracy: where the records were wrong",
+        "body": [
+          "Every adjustment is a measurement of the gap between what Odoo believed and what was on the shelf. Odoo posts the correction and moves on; the gap itself is not added up anywhere.",
+          "Choose a window in days (365 by default) and run. Every applied inventory adjustment is added up per location and product: stock found, stock missing, how many adjustments, and two values at current cost. Error is found plus missing, the size of the mistake; Net is found minus missing, what was left once the errors cancelled.",
+          "11 adjustments: 387.60 of error, netting to -285.60.",
+          "By location and product, largest error first.",
+          "Hex Bolt M8x40 in Bin A was adjusted three times: 10 found, 80 missing, a net of -56.00 on an error of 72.00. Four product and location pairs were adjusted both up and down in the window, which the findings call a putaway or picking problem rather than shrinkage.",
+          "Deliveries, transfers and scrap are not counted, only inventory adjustments. A window with no adjustment says it cannot tell \"not counted\" from \"counts agreed\". No PDF or Excel."
+        ],
+        "use": "inventory adjustments are posted and forgotten, so the pattern of drift is never seen.",
+        "mode": "Inventory Administrators",
+        "images": [
+          "images/count-result.webp",
+          "images/count-lines.webp"
+        ]
+      },
+      {
+        "heading": "6 Reordering Rule Audit: do the rules fit the demand",
+        "body": [
+          "A reordering rule is a guess made once. Demand moves; the minimum does not, and the stock-out that follows is blamed on the supplier.",
+          "Each rule is compared with the demand that already shipped over a window (90 days by default). The verdicts are Minimum too low (the minimum is below what the product ships while the replenishment is on its way), Maximum too high (the gap to the maximum is more than 90 days of demand), No lead time set , No demand and Looks right .",
+          "10 rules: 2 reorder too late and 18,640.00 sits above what a quarter of demand needs.",
+          "Rules and verdicts. Needed over lead time is units shipped per day times lead days.",
+          "The second run with an assumed lead time; assumed rows are flagged.",
+          "Washer M8 has a minimum of 15 and a lead time of 7 days, but shipped 2,200 units in 90 days, so 171.11 are needed while a replenishment is on its way: Minimum too low. Grease Cartridge has no lead time, so the audit says it cannot judge rather than guess. Running again with Assume lead time of 10 days flags that row as an assumed lead and judges it Looks right; nothing else changes.",
+          "It does not forecast and changes no rule. Scrap, count losses, vendor returns and transfers are not demand. No PDF or Excel."
+        ],
+        "use": "a minimum set two years ago no longer matches what the product ships.",
+        "mode": "Inventory Administrators; changes no rule",
+        "warn": "The lead time is what Odoo reports for the rule. With Purchase installed, a product on the Buy route with no vendor reports 365 days in Odoo itself, and the audit uses that figure. A saved audit also keeps a row only while its reordering rule exists: deleting a rule deletes its row from every saved audit.",
+        "images": [
+          "images/reorder-result.webp",
+          "images/reorder-lines.webp",
+          "images/reorder-assumed.webp"
+        ]
+      },
+      {
+        "heading": "Menus and who can open what",
+        "body": [
+          "All six reports sit under Inventory > Reporting > Inventory Reports , with ABC Classes as a seventh entry. Inventory Administrators can open all of them. Inventory users have the access rights for Aging and FSN only; Valuation, ABC, Count Accuracy and the audit raise an access error for them. Every report model has a company rule, and users can delete report records.",
+          "Multi-company is covered by automated tests (another company's users cannot read a report; another company's stock and moves are ignored) and was not run by hand.",
+          "The menu, as an Inventory Administrator sees it: seven entries.",
+          "The menu bar of an Inventory user: no Reporting menu."
+        ],
+        "use": "you are deciding who should see which report.",
+        "mode": "Company rules on every report",
+        "warn": "The Aging and FSN entries carry no group, but their parent, Inventory > Reporting, is restricted to Inventory Administrators in Odoo 19 Community. An Inventory user has the access right and no menu to click, so they need a direct link or a bookmark. Recorded, not fixed.",
+        "images": [
+          "images/menu.webp",
+          "images/menu-user.webp"
+        ]
+      }
+    ],
+    "scope": [],
+    "requires": [],
+    "price": 149.0,
+    "manifestPrice": 149.0,
+    "currency": "USD",
+    "category": "Warehouse",
+    "version": "19.0.1.0.8",
+    "license": "OPL-1",
+    "depends": [
+      "stock_account"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_inventory_reports",
+    "storeUrl19": "https://apps.odoo.com/apps/modules/19.0/mh_inventory_reports",
+    "storeUrl20": "https://apps.odoo.com/apps/modules/20.0/mh_inventory_reports",
+    "screenshots": [],
+    "shotDims": {
+      "images/aging-result.webp": [
+        1000,
+        1463
+      ],
+      "images/aging-lines.webp": [
+        1000,
+        962
+      ],
+      "images/aging-east.webp": [
+        1000,
+        1433
+      ],
+      "images/valuation-result.webp": [
+        1000,
+        1978
+      ],
+      "images/valuation-lines.webp": [
+        1000,
+        1732
+      ],
+      "images/valuation-main.webp": [
+        1000,
+        1762
+      ],
+      "images/abc-result.webp": [
+        1000,
+        950
+      ],
+      "images/abc-lines.webp": [
+        1000,
+        1000
+      ],
+      "images/abc-matrix.webp": [
+        1000,
+        1197
+      ],
+      "images/abc-classes.webp": [
+        1000,
+        2289
+      ],
+      "images/fsn-result.webp": [
+        1000,
+        908
+      ],
+      "images/fsn-lines.webp": [
+        1000,
+        1000
+      ],
+      "images/count-result.webp": [
+        1000,
+        1493
+      ],
+      "images/count-lines.webp": [
+        1000,
+        370
+      ],
+      "images/reorder-result.webp": [
+        1000,
+        1645
+      ],
+      "images/reorder-lines.webp": [
+        1000,
+        953
+      ],
+      "images/reorder-assumed.webp": [
+        1000,
+        1392
+      ],
+      "images/menu.webp": [
+        558,
+        1002
+      ],
+      "images/menu-user.webp": [
+        1000,
+        124
+      ]
+    },
+    "tiles": [
+      {
+        "n": "6",
+        "l": "reports in one install, plus ABC Classes: 7 menu entries"
+      },
+      {
+        "n": "121",
+        "l": "automated tests, none failing"
+      },
+      {
+        "n": "0",
+        "l": "journal entries posted and costs changed"
+      },
+      {
+        "n": "3",
+        "l": "reports with PDF and Excel: Valuation, ABC, FSN"
+      },
+      {
+        "n": "18",
+        "l": "products in the seeded database behind every screenshot"
+      },
+      {
+        "n": "Admins",
+        "l": "see the Reporting menu; Inventory users need a direct link"
+      }
+    ],
+    "faq": [
+      {
+        "q": "Does it change my stock or my accounting?",
+        "a": "No journal entry is posted and no cost is changed. The only write to products is the ABC and XYZ class, when you press Save Classes or the monthly refresh runs."
+      },
+      {
+        "q": "Do the valuation figures match Odoo's?",
+        "a": "Opening and closing are Odoo's own product valuation. On the seeded database the closing value matched the sum of Odoo's own stock values to the cent."
+      },
+      {
+        "q": "Can an Inventory user open the reports?",
+        "a": "Aging and FSN, by direct link: the menu that holds them is visible to Inventory Administrators only. The other four are for administrators."
+      },
+      {
+        "q": "Does it need the separate single-report apps?",
+        "a": "No. The module carries its own copy of each report and needs none of them installed."
+      },
+      {
+        "q": "Does it work per lot or serial number?",
+        "a": "No. It works per product."
+      }
+    ],
+    "copyWords": 1906,
+    "hasVideo": true,
+    "youtubeId": "9fRKjQuGGHM",
+    "externalPage": null
+  },
+  {
     "tech": "mh_drive_attachments",
     "slug": "google-drive-attachments",
     "name": "Google Drive Attachments",
@@ -1498,7 +1498,7 @@ export const odooApps = [
     "manifestPrice": 149.0,
     "currency": "USD",
     "category": "Tools",
-    "version": "19.0.1.0.13",
+    "version": "19.0.1.0.14",
     "license": "OPL-1",
     "depends": [
       "cloud_storage",
@@ -1623,6 +1623,937 @@ export const odooApps = [
     "copyWords": 1688,
     "hasVideo": true,
     "youtubeId": "n0_3AehpwSA",
+    "externalPage": null
+  },
+  {
+    "tech": "mh_list_view_layouts",
+    "slug": "list-view-layouts",
+    "name": "List View Layouts",
+    "summary": "Sets the default list view columns (the optional ones) per model and per group so each team opens the same layout",
+    "tagline": "",
+    "intro": [
+      "Choose which columns each team opens a list with, once, from a screen. Odoo remembers column choices per person and per browser; this makes them a team decision, with a mode that keeps the layout in place",
+      "List View Layouts is for the administrator who keeps being asked to \"make everyone's quotation list look like this\" on an Odoo 19 database. Odoo hides or shows the optional columns of a list according to what is saved in each person's own browser, so the choice belongs to one person on one machine and is gone when the cache is cleared. You pick a model, tick the optional columns that should be visible, name the groups it is for and decide whether it is a starting point or is kept applied. This page walks through each step with screenshots of an Odoo 19 database seeded with made-up data, and says plainly where the limits are, including three that you should read before you buy.",
+      "Install it and a List View Layouts entry appears under Settings, for administrators only. It depends on Odoo's base and web modules and nothing else. The screenshots were taken in an Odoo 19 Community database with the Sales and Contacts apps installed for the examples: a fictitious office-supply company with one salesperson, one sales manager and an administrator. The data is synthetic, and every column name and number quoted beside a screenshot is read off that screenshot or off the test it came from."
+    ],
+    "features": [
+      {
+        "heading": "Why a team cannot share a column choice in standard Odoo",
+        "body": [
+          "Most Odoo lists carry a few columns that are optional. A small control at the right of the header opens a menu of ticks, one per optional column, and ticking a box shows the column. That is a useful feature for one person. It is not a team feature, because where the choice is stored is the person's own browser: it is per person, per browser, and it is lost when the browser cache is cleared or when the same person signs in from another machine.",
+          "The consequences are small each time and constant over a year. A new salesperson opens Quotations and sees whatever Odoo ships by default, then spends a few minutes finding the Customer Reference column that the whole team works from. A manager asks for the untaxed amount to be visible and is told to tick it, on every machine, for every person. Someone clears their browser data and the list is back to the default. There is no way to say \"everyone in Sales opens quotations with these columns\" in one place.",
+          "It is that one place. A layout is one record: a model, the optional columns that should be visible, the groups it is for and a sequence number. When a list of that model opens, the layout decides which optional columns start visible. It does this through the same method Odoo itself calls to decide which optional columns start visible, so there is nothing to redraw and no flicker, and a model without a layout behaves exactly as it does today.",
+          "You also decide how firm the layout is. A layout can be a starting point, which people can then adjust and which Odoo then remembers for them as usual, or it can be kept applied, which puts it back every time the list is drawn. The rest of this page shows both, with the screens."
+        ],
+        "use": "a new starter asks which columns the rest of the team looks at, and the honest answer is \"switch them on yourself\".",
+        "mode": "Explains the gap, changes nothing",
+        "images": []
+      },
+      {
+        "heading": "1 Write a layout: model, columns and groups",
+        "body": [
+          "A column decision is normally made verbally (\"we all use the customer reference\") and then lives in nobody's notes. When the auditor, the new starter or the next administrator asks why a list looks as it does, there is nothing to open.",
+          "The form is one short screen. The title holds the layout's name, with a hint such as \"e.g. Sales team quotation columns\". Under it come the Model , the Groups as tags, the Sequence and the Keep it applied tick, and then a Visible Columns area where each chosen column is a tag. A note at the foot says that optional columns not listed are hidden for the people the layout applies to, that columns the list always shows are unaffected, and that nobody gains access to a field they could not already read.",
+          "The list of layouts is ordered by sequence and shows the name, the model, the groups and whether the layout is kept applied. A drag handle sits at the left of every row, so reordering layouts is a drag, not a number you retype. The menu entry is under Settings and is for administrators only; every internal user can read layouts, which is what makes the lookup work, and only Settings administrators can create, change or delete one.",
+          "The form protects you from two mistakes. If you change the model, the columns picked for the old model are cleared, because they would never match anything on the new one. And if a column from another model reaches the record some other way, the save is refused with a message that names the columns, so a layout cannot be stored that silently never applies.",
+          "The layout list: name, model, groups and Keep it applied. The first row has the lowest sequence.",
+          "One layout: model, group, sequence, the Keep it applied tick and five visible columns.",
+          "Northfield Office Supply's salespeople all work from the customer's purchase order number. The administrator opens Settings > List View Layouts , presses New and calls it Sales team quotation columns . The model is Sales Order . For the columns she ticks Creation Date , Customer Reference , Expiration , Total and Status . She names the group Sales / User: Own Documents Only , leaves Keep it applied off and saves. Nobody has been told anything, and nothing has been installed on anyone's machine.",
+          "A layout does not add columns a list never had. It decides which of the list's own optional columns start visible, and it leaves the columns the list always shows alone."
+        ],
+        "use": "you know which columns a team should open a list with and who that team is.",
+        "mode": "Saves one layout record",
+        "result": "a layout written down with its model, columns, groups, sequence and mode, which applies from the next time a list of that model is opened.",
+        "warn": "The Visible Columns picker lists stored fields only. A column that Odoo computes on the fly, without storing it, cannot be chosen, and it is therefore hidden for everyone the layout applies to. Section 6 shows the visible effect and the Limits section lists it.",
+        "images": [
+          "images/lvl-1-layouts-list.webp",
+          "images/lvl-2-layout-form.webp"
+        ]
+      },
+      {
+        "heading": "2 The list opens with the team's columns",
+        "body": [
+          "Without a layout, a person who opens a list gets Odoo's defaults. The defaults are sensible for a company nobody knows, and they are wrong for yours in two or three columns, every time, for every starter.",
+          "With the layout above saved, Maya Chen, a salesperson, opens Sales > Orders > Quotations . Before the layout the list showed Number, Creation Date, Customer, Salesperson, Activities, Total and Status. After it, the list shows Number, Creation Date, Customer, Total, Status, Customer Reference and Expiration. Salesperson and Activities have gone from the default, and the two columns the team works from have come in.",
+          "Look at the two screenshots at the same row, S00009 for Ashgrove Studio at $ 400.00. It is the same record in the same list for the same person. Only the columns changed. Number and Customer are columns the list always shows, which is why they stay.",
+          "The layout reaches Maya although she is in the group Sales / User: All Documents and not in the one named in the layout. That is intended: the group in a layout also covers every group that includes it, so naming the basic Sales group covers the people with the wider rights too.",
+          "Before: Odoo's default optional columns for Quotations.",
+          "After: the same rows, with the columns the team chose.",
+          "A second salesperson starts on Monday. Nobody shows her which boxes to tick. She signs in, opens Quotations, and sees the Customer Reference and Expiration columns straight away, exactly as everyone on her team does. The next person to join does the same, from a different laptop, and sees the same list. Until now the only way to get that was to sit next to the new starter and click through the column menu with them.",
+          "It does not change which records a person sees, and it does not change the order or the width of the columns. Odoo does not give a list a per-user column order or width to set, so the app does not pretend to."
+        ],
+        "use": "a salesperson opens Quotations for the first time, or from a new browser.",
+        "mode": "Changes what is shown, not what exists",
+        "result": "every person the layout names opens the list with the same optional columns, on any browser, with nothing to set up on their side.",
+        "warn": "The layout is read once for each model each time the page loads and is then kept for that page. After you change a layout, people see the change the next time they reload the page or sign in again, not in a list that is already open.",
+        "images": [
+          "images/lvl-3-quotes-before.webp",
+          "images/lvl-4-quotes-after.webp"
+        ]
+      },
+      {
+        "heading": "3 Two layouts, one person: the lowest sequence wins",
+        "body": [
+          "Teams overlap. A sales manager is also a salesperson in every sense that matters to Odoo, so a layout written for the sales team reaches the manager too. If a layout could only be broad or narrow, you would have to choose between giving managers the team's list and writing an exception into every layout.",
+          "Layouts are tried in order of sequence, lowest first, and the first one that fits the person is the one they get. A layout with no groups fits everybody, so it works as the general default at the bottom; a layout for a smaller group sits above it with a lower number.",
+          "In the example there are two layouts for Sales Orders. Sales managers: team and untaxed view has sequence 1 and names Sales / Administrator . Sales team quotation columns has sequence 10 and names the basic Sales user group. Daniel Ortiz is a sales manager, so both fit him, and the lower number wins. His list shows Number, Customer, Salesperson, Sales Team, Untaxed Amount, Total and Status, and not the Creation Date, Customer Reference and Expiration that Maya's list shows. Each of them gets exactly one layout. The layouts are never merged.",
+          "The manager's list: the sequence 1 layout beats the sequence 10 team layout.",
+          "The column picker on Maya's list: the five ticks are the five columns the layout named.",
+          "Northfield also wants all staff to see the same columns on contacts, so the administrator adds a third layout for the Contact model with no groups and sequence 20: Email, Phone, City and Country. It reaches everybody who opens a list of contacts, because it names nobody in particular. If the finance team later needs its own contact columns, she adds a layout for that group with a lower sequence, and finance gets it while everybody else keeps the general one.",
+          "It does not combine two layouts into one, and it has no per-person exceptions: a layout is a model, some columns and some groups, and that is the whole language."
+        ],
+        "use": "managers need a different list from their team, for the same model.",
+        "mode": "Reads layouts, changes none",
+        "result": "one layout per person, chosen by order, so a specific team can have its own list without the general layout being rewritten.",
+        "warn": "Layouts are per model and not per list. A layout for Sales Order applies to every list of sales orders, such as Quotations and Orders, and not just the one you were looking at when you wrote it. There is no way to give two lists of the same model two layouts.",
+        "images": [
+          "images/lvl-6-manager-view.webp",
+          "images/lvl-5-column-picker.webp"
+        ]
+      },
+      {
+        "heading": "4 A starting point that people can still change",
+        "body": [
+          "Some people really do want one column fewer. If every layout overrode them for ever, the first person to be annoyed would ask for it to be removed, and the layout would not be worth keeping.",
+          "With Keep it applied off, which is the default, the layout is the starting point only. It applies the first time a person opens a list. As soon as that person ticks or unticks a column in the column picker, Odoo saves their choice in their browser, and from then on the layout leaves that list alone and their own choice is what they get.",
+          "In the screenshot Maya has unticked Total in the column picker and reloaded. Her list has no Total column, and the other four optional columns from the layout are still there. The layout did its job once and then stepped back. Odoo's own behaviour takes over, which is what a person who made a choice would expect.",
+          "After unticking Total and reloading, her choice is kept: no Total column, everything else as the layout set it.",
+          "Maya never looks at totals, because her customers pay by purchase order and she checks amounts in the order form. She unticks Total once. The layout does not bring it back the next time she signs in, and her team-mates, who never touched the picker, still see Total, because their browsers have no saved choice. One person's change stays one person's change.",
+          "It does not reset what people have already chosen, and it cannot see their saved choices: the choice lives in the browser, and the server is never told about it."
+        ],
+        "use": "you want a good first list, and you are happy for people to adjust it afterwards.",
+        "mode": "Their own choice is respected",
+        "result": "a good first list for everyone, and people who change it keep the change.",
+        "warn": "Once a person has made their own choice in a browser, a later change to the layout no longer reaches them in that browser. If you rewrite a layout and some people do not see the change, that is the reason. Switching on Keep it applied is the way to reach them.",
+        "images": [
+          "images/lvl-8-own-choice-kept.webp"
+        ]
+      },
+      {
+        "heading": "5 Keep it applied: the list does not drift",
+        "body": [
+          "A list that is projected in a meeting, or that a manager compares across people, is only useful when everyone's copy looks alike. Left alone, a list drifts one person at a time: somebody hides a column to make room, somebody else shows one for a task and forgets, and a month later nobody's list matches.",
+          "With Keep it applied ticked, the layout is reapplied each time Odoo draws the list. The column picker is still there and still opens, but it no longer changes anything that lasts: the layout is put back at once.",
+          "In the screenshot Daniel, whose layout is kept applied, has unticked Salesperson . The picker shows Salesperson ticked again and the column is still on the list. His click had no lasting effect. The only way a column leaves or enters his list is for an administrator to change the layout.",
+          "Kept applied: Daniel clicked Salesperson, and the picker shows it ticked and the column in place.",
+          "The sales managers review quotations together every Monday, with the list on a shared screen. Their layout is kept applied, so Salesperson, Sales Team, Untaxed Amount, Total and Status are on everyone's copy, and a manager who forgot what they had hidden last week does not hold the meeting up. When the meeting wants Creation Date as well, the administrator adds it to the layout, and it appears for every manager the next time they reload.",
+          "It does not lock the list against everything. People can still filter, sort, group and search as usual, and it does not stop a person from reading a column through an export or a record form. It decides which optional columns the list shows, and nothing else."
+        ],
+        "use": "a shared screen, a reporting list or a team standard has to look the same for everyone, every time.",
+        "mode": "Layout wins over the picker",
+        "result": "the same list for everyone the layout names, however many times they open it, and a column picker that cannot undo it.",
+        "warn": "While a layout is kept applied the column picker still lets a person click a column, and the click is undone straight away. The picker does not grey out or say why. Tell the people the layout covers, or leave Keep it applied off for them.",
+        "images": [
+          "images/lvl-7-enforced-toggle.webp"
+        ]
+      },
+      {
+        "heading": "6 Lists inside forms follow the layout too",
+        "body": [
+          "Documents carry lists of their own. A quotation has order lines, an invoice has invoice lines, and each of those lists has optional columns. Teams argue about the order lines at least as much as about the main list, and the column menu on a line list is just as personal as the one on Quotations.",
+          "The layout is looked up by model, whichever list asks. So a layout for Sales Order Line reaches the order lines inside a quotation form, because that list shows lines of that model. In the example the administrator adds a layout called Order lines: amounts first for the basic Sales group with three columns: Description, Taxes and Amount.",
+          "The two screenshots show the same quotation, the same two lines, Standing Desk and Office Chair. Before the layout the first column is Product. After it the first column is Description. Quantity and Unit Price are columns the list always shows and stay where they were.",
+          "Before: the order lines carry a Product column.",
+          "After: Description takes the place of Product.",
+          "Northfield wants the line description and the tax visible on every quotation, because customers query both. The administrator writes one layout for Sales Order Line. Every salesperson who opens a quotation after that has those columns on the lines, without ever opening the column menu.",
+          "It cannot show or hide a column that is not optional, and it cannot choose between two lists of the same model. If you do not want the layout to reach a list inside a form, do not write a layout for that model."
+        ],
+        "use": "you want a layout for the lines of a document, and not only for the main list.",
+        "mode": "Applies to every list of the model",
+        "result": "the same layouts for the lines of a document as for its main list, written in the same screen.",
+        "warn": "Look closely at the screenshot. The Product column went. Product on an order line is a computed column that Odoo does not store, so it cannot be ticked in the layout, and a layout hides every optional column that it does not list. Description was ticked, and is shown. Before you write a layout for a model, open the list as a test user and check that nothing you need has dropped out.",
+        "images": [
+          "images/lvl-9-lines-before.webp",
+          "images/lvl-10-lines-after.webp"
+        ]
+      },
+      {
+        "heading": "7 Layouts change columns, never access",
+        "body": [
+          "It is tempting to read \"hide a column\" as \"keep it private\". A hidden column is a column that is not drawn. The value is still in the database, and the field can still be exported, searched or read through the API by anyone who is allowed to read it.",
+          "This app deliberately does not pretend otherwise. A layout works on the optional columns that the list already has, and on nothing else: it never adds a field to a view, so it cannot show a person a field their access rights would keep from them. Access rights, record rules and field groups remain the way to decide who can read what, and a layout is never part of that decision.",
+          "The layout record has two permissions. Every internal user can read layouts, because the list reads them as that user when it opens, and only a Settings administrator can create, change or delete one. A test checks that an ordinary user can read the layouts and is refused when they try to create one. A person who is not allowed to open a list never has a layout applied to it, because the layout only runs when that list is drawn.",
+          "If the lookup fails for any reason, such as a lost network connection, the list opens with Odoo's own columns. A layout that cannot be read does not leave a person with an empty list.",
+          "The finance lead asks whether the layout for the sales team stops them from seeing the untaxed amount. It does not: the column is not on their list, but a record form or an export still shows the field, as it always did. To stop that, she would restrict the field itself, with a field-level access rule. The two jobs are different, and each is done in the place built for it: layouts decide what a list shows first, and access rights decide what a person may read."
+        ],
+        "use": "someone asks whether hiding a column here keeps the data private.",
+        "mode": "Shows or hides columns, nothing more",
+        "images": []
+      },
+      {
+        "heading": "Who it is for",
+        "body": [
+          "The Odoo administrator who is asked, again, to make everyone's list look the same. One layout, one group, and the question is answered for good rather than person by person.",
+          "The consultant who sets up several databases and wants a client's list conventions written down in a list of records, where the client's next administrator can read them, rather than in an email.",
+          "The team lead who runs a weekly review from a shared screen and needs every copy to look alike. Keep it applied is for exactly that.",
+          "It is not for end users: only administrators can open it. If your goal is for each person to save their own favourite columns, that is a different job, and the free List View Manager is for it."
+        ],
+        "use": "you are the person who gets asked to fix a list for somebody else.",
+        "mode": "A buying guide, not a feature",
+        "images": []
+      },
+      {
+        "heading": "What this app does not do",
+        "body": [
+          "It changes column visibility, never access. Nobody sees a field they could not already read, and hiding a column is not a security control. Use record rules, access rights and field-level rules for that.",
+          "It handles optional columns only. A column that the list always shows cannot be hidden by a layout, and a layout cannot add a column that a list does not have.",
+          "Only stored fields can be picked. Optional columns that Odoo computes without storing, such as Product on the order lines of a quotation or Expected Date on a quotation list, cannot be ticked in the layout. A layout can never show such a column, and one that Odoo would normally show is hidden for the people the layout covers. Check each list as a test user before you roll a layout out.",
+          "A layout covers every list of its model, including lists inside forms. It is not per menu, per action or per list.",
+          "A layout with no columns ticked hides every optional column, because a column that is not listed is hidden. An empty layout is rarely what you want.",
+          "With Keep it applied on, the column picker still accepts clicks and undoes them at once, with no message.",
+          "With Keep it applied off, people who have already made their own choice in a browser are not reached by later changes to the layout in that browser.",
+          "A change reaches a person when the page is reloaded, not in a list that is already open.",
+          "It does not set column order or column width. Odoo does not expose either per user, so the app leaves both alone.",
+          "It has no history of its own beyond Odoo's standard record tracking, and it does not report who has what layout."
+        ],
+        "use": "you want to know where the edges are before you buy.",
+        "mode": "Read this before you buy",
+        "images": []
+      },
+      {
+        "heading": "Odoo 19.0 and the other version",
+        "body": [
+          "This page is for the Odoo 19 build. The Odoo Apps store lists and sells each Odoo version separately; the Odoo 20 build has its own page and its own purchase. The layout form, the lookup, the two modes and the way the layout is applied to the list work the same way on both. The only difference is how each version of Odoo names its access-rights file: this build ships security/ir.model.access.csv."
+        ],
+        "use": "you run more than one Odoo version.",
+        "mode": "Each version is its own listing",
+        "images": []
+      }
+    ],
+    "scope": [],
+    "requires": [],
+    "price": 99.0,
+    "manifestPrice": 99.0,
+    "currency": "USD",
+    "category": "Productivity",
+    "version": "19.0.1.0.16",
+    "license": "OPL-1",
+    "depends": [
+      "base",
+      "web"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_list_view_layouts",
+    "storeUrl19": "https://apps.odoo.com/apps/modules/19.0/mh_list_view_layouts",
+    "storeUrl20": "https://apps.odoo.com/apps/modules/20.0/mh_list_view_layouts",
+    "screenshots": [],
+    "shotDims": {
+      "images/lvl-1-layouts-list.webp": [
+        1000,
+        214
+      ],
+      "images/lvl-2-layout-form.webp": [
+        1000,
+        667
+      ],
+      "images/lvl-3-quotes-before.webp": [
+        1000,
+        219
+      ],
+      "images/lvl-4-quotes-after.webp": [
+        1000,
+        216
+      ],
+      "images/lvl-6-manager-view.webp": [
+        1000,
+        219
+      ],
+      "images/lvl-5-column-picker.webp": [
+        1000,
+        589
+      ],
+      "images/lvl-8-own-choice-kept.webp": [
+        1000,
+        216
+      ],
+      "images/lvl-7-enforced-toggle.webp": [
+        1000,
+        589
+      ],
+      "images/lvl-9-lines-before.webp": [
+        1000,
+        174
+      ],
+      "images/lvl-10-lines-after.webp": [
+        1000,
+        174
+      ]
+    },
+    "tiles": [
+      {
+        "n": "11",
+        "l": "automated tests, none failing"
+      },
+      {
+        "n": "2",
+        "l": "modes: a starting point, or kept applied"
+      },
+      {
+        "n": "1",
+        "l": "hook: the method Odoo uses for optional columns"
+      },
+      {
+        "n": "1",
+        "l": "model, no wizards, no scheduled jobs"
+      },
+      {
+        "n": "2",
+        "l": "modules it depends on: base and web"
+      },
+      {
+        "n": "19.0",
+        "l": "Odoo version of this build"
+      }
+    ],
+    "faq": [
+      {
+        "q": "Is this different from the column menu Odoo already has?",
+        "a": "Yes. The column menu changes what one person sees in one browser. A layout is written once, by an administrator, for a model and a set of groups, and it applies to everyone it names on any browser."
+      },
+      {
+        "q": "Where do the layouts live?",
+        "a": "In your Odoo database, as ordinary records under Settings. Nothing is sent anywhere, and the app calls no outside service."
+      },
+      {
+        "q": "Does a layout apply to every list of a model?",
+        "a": "Yes. It is looked up by model, so every list of that model is covered, including a list inside a form such as the lines of a quotation. It cannot be restricted to one menu or one action."
+      },
+      {
+        "q": "What happens to a model that has no layout?",
+        "a": "Nothing. The list behaves exactly as it did before the app was installed."
+      },
+      {
+        "q": "What if a person is in two of the groups?",
+        "a": "They get the layout with the lowest sequence number among those that fit them. The layouts are not merged."
+      },
+      {
+        "q": "Can people still change their columns?",
+        "a": "With Keep it applied off, yes, and Odoo remembers it for them. With it on, the picker still opens but the layout is put back at once."
+      },
+      {
+        "q": "Why did a column disappear that I did not untick?",
+        "a": "A layout hides every optional column it does not list. If the column is one that Odoo computes without storing, it cannot be listed, so it is hidden. Check the list as a test user."
+      },
+      {
+        "q": "Do I need to restart Odoo after changing a layout?",
+        "a": "No restart. People see the change when they reload the page."
+      },
+      {
+        "q": "Does it make a column private?",
+        "a": "No. A hidden column is only not drawn. Use access rights, record rules and field-level rules to keep data private."
+      },
+      {
+        "q": "What happens if I uninstall it?",
+        "a": "Every list goes back to Odoo's own defaults and to each person's own saved choices. Nothing in your records was changed."
+      }
+    ],
+    "copyWords": 3382,
+    "hasVideo": true,
+    "youtubeId": "_jn7KswDh-k",
+    "externalPage": null
+  },
+  {
+    "tech": "mh_record_rule_preview",
+    "slug": "record-rule-preview",
+    "name": "Record Rule Preview",
+    "summary": "Counts how many records a chosen user can reach with a new rule in force, then rolls the rule back, before you apply it: write a record rule and see how many records it actually leaves a chosen user, counted for real before you save it",
+    "tagline": "Write a record rule and see how many records it actually leaves a chosen user, counted for real before you save it",
+    "intro": [
+      "Record Rule Preview is for whoever writes the domains that decide who sees which records in an Odoo 19 database. You name the model, the domain and a user, press Preview, and read a number: how many records that user can reach with the rule in force. The number is counted through Odoo itself, with every other rule on the model already in the count, and the rule is rolled back before you look at it. Only when the number is what you meant do you press Apply. This page walks through every step with screenshots of an Odoo 19 database seeded with made-up data.",
+      "Install it and a Record Rule Preview entry appears under Settings, for administrators only. It depends on Odoo's base module and nothing else. The screenshots were taken in an Odoo 19 Community database with the CRM app installed for the examples: a fictitious office-supply company, three salespeople and sixty customers. The data is synthetic, and every number quoted beside a screenshot is read off that screenshot."
+    ],
+    "features": [
+      {
+        "heading": "Why a rule needs a count first",
+        "body": [
+          "A record rule with a domain that is wrong by one operator raises nothing. The users it catches simply stop seeing records, and nobody reports that as a bug, because an empty list looks like an empty list. You find out weeks later, from a salesperson who assumed their pipeline had gone cold.",
+          "Global rules are worse. Global record rules are ANDed together, so a rule that is correct on its own can still take everything away once another global rule exists on the same model. Reading two domains and working out the intersection in your head is exactly the step that goes wrong.",
+          "It moves the question to before you save. You write the record rule as a draft, name a user it should affect, and the app creates it for real inside a database savepoint, counts the records that user can reach, and rolls the whole thing back. The count is measured, not predicted: it was taken with every other record rule in force, so the intersection is in the number rather than in your head.",
+          "Then it refuses the usual mistakes. Apply is blocked until the draft has been previewed, blocked again if you edit it afterwards, and blocked when the rule leaves the sample user with nothing unless you say in writing that you meant it. Applying creates an ordinary ir.rule, so Odoo enforces it exactly as it enforces any other."
+        ],
+        "use": "you write or change record rules and want to know what they leave before the people they catch find out.",
+        "mode": "Saves a draft, no rule yet",
+        "images": []
+      },
+      {
+        "heading": "1 Write the draft: model, groups, domain and who to count for",
+        "body": [
+          "A record rule is easy to type and hard to judge. In the standard form it takes effect the moment you save it, and the form does not tell you whom it catches. Nobody keeps a record of why it was written either.",
+          "Open Settings > Record Rule Preview and press New. The form asks for a Name , the Model , optional Groups , the permissions it covers (Read, Write, Create, Delete, all ticked to start) and a Domain , which starts as [] . The domain is a normal Odoo domain with user , company_id and company_ids available, the same names a record rule uses.",
+          "Count for is the user the rule is measured against. It lists internal users only. A Why note is for whoever reads the draft in a year. Leave Groups empty and a Global rule box appears ticked: with no groups the rule applies to every user, and the form says so.",
+          "The list shows every draft with its model, groups, user, the two counts and a state badge, and filters for Applied, Not applied yet and Global. It can be grouped by model or by state.",
+          "A new draft: model, groups, permissions and domain. With no groups it is marked as a global rule.",
+          "The draft list, every row with its two counts and its state.",
+          "Northfield Office Supply closed its Lyon branch. The administrator opens a draft called Hide the closed Lyon branch on Contact, leaves Groups empty, writes the domain [('city', '!=', 'Lyon')] , picks Priya Nair in Count for and adds the note Lyon office closed 30 Sep . Nothing is enforced yet: it is a row in the draft list, in the Draft state.",
+          "A draft is not a rule. Nothing it contains is enforced until Apply, and the form does not check that the model's records are the ones you meant: that is what Preview is for."
+        ],
+        "use": "a rule is still an idea and you want it written down, with its reason, before it can hurt anybody.",
+        "mode": "Saves a draft, no rule yet",
+        "result": "a saved draft with its model, domain, permissions, user and reason, visible in one list.",
+        "warn": "Only administrators (Settings) can see the menu or the drafts. A draft that names a model that is not loaded in the database is refused when you press Preview.",
+        "images": [
+          "images/rrp-2-draft-form.webp",
+          "images/rrp-1-drafts-list.webp"
+        ]
+      },
+      {
+        "heading": "2 Preview: the number is measured, not predicted",
+        "body": [
+          "The number you want is how many records a user ends up with. You cannot get it by reading the domain, because the user is also covered by every other rule on the model, and those combine in ways the domain alone does not show.",
+          "Press Preview . The app first counts what the sample user can read today. It then creates your rule for real inside a database savepoint, counts again as that user through Odoo's own search, deletes the rule and undoes the savepoint. The form fills in Count Before , Count After , and a sentence under What this does , and the draft moves to Previewed.",
+          "The sentence is one of four. The same count either way, with a reason. None of the records, with a warning that this is almost always a domain mistake. More records than before, with an explanation. Or fewer, with how many were taken away. Each names the user it measured.",
+          "The result of a preview: before, after, and the verdict in words.",
+          "Previewing Salespeople see their own customers for Daniel Ortiz reads Count Before 65, Count After 23. The sentence says Daniel Ortiz would see 23 of the 65 record(s) now reachable - 42 taken away . Twenty-three is the number of customers assigned to Daniel in the sample data. The rule was created and removed again: the rules list holds exactly what it held before, and nothing about anyone's access changed.",
+          "The count is what the user can read, counted with Odoo's normal search, so archived records are not in it. It measures one user at a time and it does not test write, create or delete."
+        ],
+        "use": "you need to know how many records a user ends up with, with every other record rule counted in.",
+        "mode": "Measures, then rolls back",
+        "result": "Count Before, Count After and a plain-words verdict naming the user, with nothing enforced and nothing left behind.",
+        "warn": "A user who is not in any of the groups you picked is not affected by a group rule, so the count will not change. The verdict then says the domain matches everything or another rule is narrower, which is not the real reason: check the user belongs to the group.",
+        "images": [
+          "images/rrp-3-result.webp"
+        ]
+      },
+      {
+        "heading": "3 Global rules: the other rules are already in the number",
+        "body": [
+          "A global rule has no groups, so it applies to every user, and it is ANDed with every other global rule on the model and with whatever group rules the user already has. Whether a new one is harmless depends on what is already there.",
+          "Preview a draft with no groups and the verdict gets a second paragraph: This is a global rule, so it applies to every user and ANDs with the other global rules on this model. The count above already includes them. The form shows the Global rule box ticked. The words matter because of what the count contains: it was taken with every other rule in force, so it is already the intersection.",
+          "A global rule previewed: the 18 already has the own-customers rule in it.",
+          "The own-customers rule from section 1 is applied. The Lyon branch has closed, and the administrator previews Hide the closed Lyon branch , [('city', '!=', 'Lyon')] , with no groups, for Priya Nair. Count Before is 18 , not 65: Priya is already limited to her own customers by the rule applied earlier. Count After is 15 : three of her eighteen customers are in Lyon. The verdict reads Priya Nair would see 15 of the 18 record(s) now reachable - 3 taken away , and adds the global-rule note.",
+          "A global rule applies to everybody, but the count is for one user. Preview it again with a different name in Count for to see another person, particularly the person most likely to be caught."
+        ],
+        "use": "the rule has no groups, so it applies to everyone and has to be judged against the rules already there.",
+        "mode": "Measures, then rolls back",
+        "result": "a count that already includes the rules in force, with the verdict saying the rule applies to every user.",
+        "warn": "Everyone is affected, not only the user you counted. Preview again for other people before you apply.",
+        "images": [
+          "images/rrp-7-global-result.webp"
+        ]
+      },
+      {
+        "heading": "4 The zero guard: a rule that leaves nobody anything",
+        "body": [
+          "A domain that matches nothing is the most common way these go wrong. The form saves, the rule applies, and the user's list is empty. Because an empty list is a valid result, nothing complains.",
+          "When Count After is zero, the draft shows a box: Yes, leave this user with nothing . It is the only way past. Press Apply without ticking it and Odoo refuses with This rule leaves Maya Chen with no records at all. Tick \"Yes, leave this user with nothing\" if that is deliberate. The verdict above already said it in other words: that is almost always a domain mistake rather than an intention.",
+          "The box stays hidden while the draft is a plain Draft and whenever the count is above zero, so it only appears in the one situation that needs it.",
+          "A rule that leaves the user nothing: the verdict and the box that has to be ticked.",
+          "Apply without ticking the box is refused.",
+          "A draft called Maya sees only her own region carries the domain [('user_id', '=', company_id)] . It looks plausible: it compares the salesperson on a contact with something the user has. But company_id is a company, not a user, and no contact has a salesperson with that id. Previewed for Maya Chen, Count Before is 14 and Count After is 0 . Applying it for real would have emptied her customer list; the preview shows it first and Apply refuses until someone says otherwise.",
+          "It only catches zero. A domain that is wrong in a way that leaves the user a few records, or the wrong ones, is not flagged: that is why the verdict names the count and the user, so you can compare it with what you expected."
+        ],
+        "use": "a domain might be wrong in the way that matches nothing, and you want it stopped before it empties a list.",
+        "mode": "Blocks Apply until ticked",
+        "result": "an empty result you cannot apply by accident: Apply refuses until the draft carries an explicit yes.",
+        "warn": "The tick is for rules that are meant to hide everything from this user. If that is not what you meant, change the domain and preview again.",
+        "images": [
+          "images/rrp-8-zero-result.webp",
+          "images/rrp-9-zero-refused.webp"
+        ]
+      },
+      {
+        "heading": "5 A stale preview cannot be applied",
+        "body": [
+          "A number on the screen is only worth anything while it describes the rule beside it. If somebody edits the domain after previewing and then presses Apply, the form still shows the old counts, and you would be applying one rule on the evidence of another.",
+          "The app records what each preview measured: the model, the domain, the groups, the permissions and the user to count for. Change any of those and Apply is refused with The draft changed since it was previewed, so the counts on screen describe a rule that no longer exists. Preview it again before applying. Changing the name, the note or the tick box does not invalidate it, because none of them changes what was measured.",
+          "Two other refusals follow the same idea. Apply is not offered on a draft that has not been previewed, and the action itself refuses if it is called anyway. And an applied draft cannot be applied twice: the message tells you to edit the rule it created, or copy the draft.",
+          "Apply after an edit is refused until the draft is previewed again.",
+          "The Lyon draft was previewed. Someone changes its domain to compare a different city and presses Apply without previewing again. The dialog above appears. They press Preview, the counts are measured for the new domain, and only then does Apply go through.",
+          "The form keeps showing the old counts after an edit until you press Preview again. The refusal comes when you press Apply, not as soon as you type, so read the counts only on a form you have just previewed."
+        ],
+        "use": "more than one person edits drafts, or you change a domain after looking at the numbers.",
+        "mode": "Blocks Apply",
+        "result": "Apply only ever creates the rule that was measured, or tells you to measure again.",
+        "warn": "Previewing again after every edit is the habit this builds. It costs one click and it is rolled back every time.",
+        "images": [
+          "images/rrp-10-stale-refused.webp"
+        ]
+      },
+      {
+        "heading": "6 Mistakes refused at the form: bad domains, empty permissions, the superuser",
+        "body": [
+          "Some mistakes should never reach a preview at all: a domain that is not a domain, a rule that restricts nothing, or a sample user who is exempt from every rule.",
+          "These are checked when you save the draft. A domain that does not parse is refused with This domain does not parse and the reason from the parser. A domain that parses but is not a list, such as a dictionary, is refused with A record rule domain has to be a list . A draft with all four permissions unticked is refused, because a rule that restricts nothing is not saved by Odoo either. And the superuser cannot be the user to count for: it bypasses every record rule, so it would report every rule as harmless.",
+          "A domain that parses but names a field the model does not have is saved. It is caught when you press Preview, where Odoo refuses to create the record rule with Invalid domain: Invalid field and the draft stays as it was.",
+          "A broken domain is refused at the form, with the parser's own reason.",
+          "Editing the Maya draft, someone deletes the closing bracket and saves. The dialog above appears at once and the draft keeps its previous domain. Nothing was previewed, applied or counted, and the mistake did not wait until the rule was running.",
+          "The parse check evaluates the expression with the names the record rule uses. It does not check that the fields exist or that the logic is what you meant: the field check comes at Preview, the logic is what the count is for."
+        ],
+        "use": "the draft itself is wrong, before any count is worth taking.",
+        "mode": "Refused on save",
+        "result": "four kinds of broken draft stopped on save, each with a message that says what to fix.",
+        "warn": "An unknown field in a domain is only caught at Preview, not at save.",
+        "images": [
+          "images/rrp-11-parse-error.webp"
+        ]
+      },
+      {
+        "heading": "7 Apply: an ordinary record rule, not a copy",
+        "body": [
+          "After the preview you still need the real thing, and you want it to be the real thing: not a copy that lives inside this app and stops working when the app is removed.",
+          "Apply asks for confirmation ( This creates a real record rule. Users lose access as soon as it is saved. ) and creates one ordinary ir.rule record with your name, model, domain, groups and permissions. The draft becomes Applied, its fields lock, and an Open the rule button takes you to the rule. Nothing is wrapped or intercepted, so Odoo enforces it as it enforces any other record rule.",
+          "Nothing in the rule points back at the app, so uninstalling the app leaves the rules you made where they are.",
+          "Apply asks first.",
+          "An applied draft: locked, with a button to the real rule.",
+          "What Apply created: an ordinary record rule, no mention of this app.",
+          "The own-customers draft was previewed at 65 to 23 for Daniel Ortiz. The administrator presses Apply and confirms. The rule appears in Odoo's own record rules as Salespeople see their own customers , on Contact, for the group Sales / User: Own Documents Only. Then Priya Nair's draft is previewed for the Lyon rule and reads 18 before, which is her own customer count: the rule that was just applied is already doing its job.",
+          "Once applied, the rule is yours: edit it in the standard form. The draft does not follow later changes, and if you delete the rule the draft still says Applied while its Open the rule button reports that there is nothing to open."
+        ],
+        "use": "the count is what you meant and you want the record rule live.",
+        "mode": "Writes one record rule",
+        "result": "one ordinary record rule that Odoo enforces like any other, found again from the draft with one click.",
+        "warn": "The effect is immediate once confirmed. The preview is your chance to be wrong cheaply; Apply is not.",
+        "images": [
+          "images/rrp-4-apply-confirm.webp",
+          "images/rrp-5-applied.webp",
+          "images/rrp-6-ordinary-rule.webp"
+        ]
+      },
+      {
+        "heading": "Who it is for",
+        "body": [
+          "The Odoo administrator who is asked to \"make salespeople see only their own\" and does not want to find out by phone call what that did. Preview gives the number first, on the account that matters.",
+          "The IT lead or consultant who writes record rules for several clients and wants every one kept as a draft with a reason, a user it was measured for and the counts it produced.",
+          "Whoever answers the auditor : the draft list shows, for each applied record rule, the name, the model, the reason, who it was measured for and what it removed on the day.",
+          "It is not for end users: only administrators can open it. It also pairs with the free Access Snapshot , which shows what one user can already do on one model, before you decide what to change."
+        ],
+        "images": []
+      },
+      {
+        "heading": "What this app does not do",
+        "body": [
+          "It restricts records, not fields. Which columns a user may read is field access, a different question: Field Access Rules covers it.",
+          "The count is the number of records the sample user can read, counted with Odoo's normal search. It does not test whether they can write, create or delete, even when those permissions are ticked, it does not count archived records, and it measures one user per preview.",
+          "A group rule is only measured for people who are in the group. If the user you pick is not, the count does not change and the verdict gives the wrong reason (it blames the domain, not the missing membership). Pick a member.",
+          "It does not edit or delete existing record rules: it makes new ones. And it does not watch the rules it made: once applied, the draft is a record of what was decided, not a live view of the record rule."
+        ],
+        "images": []
+      }
+    ],
+    "scope": [],
+    "requires": [],
+    "price": 99.0,
+    "manifestPrice": 99.0,
+    "currency": "USD",
+    "category": "Tools",
+    "version": "19.0.1.0.17",
+    "license": "OPL-1",
+    "depends": [
+      "base"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_record_rule_preview",
+    "storeUrl19": "https://apps.odoo.com/apps/modules/19.0/mh_record_rule_preview",
+    "storeUrl20": "https://apps.odoo.com/apps/modules/20.0/mh_record_rule_preview",
+    "screenshots": [],
+    "shotDims": {
+      "images/rrp-2-draft-form.webp": [
+        1000,
+        942
+      ],
+      "images/rrp-1-drafts-list.webp": [
+        1000,
+        236
+      ],
+      "images/rrp-3-result.webp": [
+        1000,
+        529
+      ],
+      "images/rrp-7-global-result.webp": [
+        1000,
+        614
+      ],
+      "images/rrp-8-zero-result.webp": [
+        1000,
+        632
+      ],
+      "images/rrp-9-zero-refused.webp": [
+        1000,
+        325
+      ],
+      "images/rrp-10-stale-refused.webp": [
+        1000,
+        325
+      ],
+      "images/rrp-11-parse-error.webp": [
+        1000,
+        292
+      ],
+      "images/rrp-4-apply-confirm.webp": [
+        1000,
+        319
+      ],
+      "images/rrp-5-applied.webp": [
+        1000,
+        707
+      ],
+      "images/rrp-6-ordinary-rule.webp": [
+        1000,
+        1087
+      ]
+    },
+    "tiles": [
+      {
+        "n": "0",
+        "l": "rules left behind by a preview: it is rolled back"
+      },
+      {
+        "n": "7",
+        "l": "kinds of mistake refused before they cost you"
+      },
+      {
+        "n": "16",
+        "l": "automated tests, none failing"
+      },
+      {
+        "n": "1",
+        "l": "ordinary record rule created on Apply, nothing wrapped"
+      },
+      {
+        "n": "base",
+        "l": "the only module it depends on"
+      },
+      {
+        "n": "19.0",
+        "l": "Odoo version of this build"
+      }
+    ],
+    "faq": [
+      {
+        "q": "Does previewing change anything in my database?",
+        "a": "No. The record rule is created inside a database savepoint, the records are counted, and the rule is removed again. The tests check that the number of record rules is the same after a preview and that what the user sees is unchanged. Only the draft itself is saved."
+      },
+      {
+        "q": "Is the number a prediction?",
+        "a": "No. It is counted, as that user, through Odoo's own search, with the record rule in force. Reproducing what Odoo would do from the domain is the guess this app removes."
+      },
+      {
+        "q": "Why can't I pick the administrator to count for?",
+        "a": "The superuser bypasses every record rule, so counting against it would always say no change and every rule would look harmless. Pick a user the rule is meant to affect."
+      },
+      {
+        "q": "What if I edit the draft after previewing?",
+        "a": "Apply is refused until you preview again, because the count on screen would describe a rule that no longer exists."
+      },
+      {
+        "q": "Does it work with several companies?",
+        "a": "The domain can use company_id and company_ids , as record rules do. Counts are for the one user you pick, with that user's companies."
+      },
+      {
+        "q": "What happens if I uninstall it?",
+        "a": "The record rules you applied stay. They are ordinary record rules with no link back to this app. The drafts go with the app."
+      },
+      {
+        "q": "Does it need developer mode?",
+        "a": "No. The screenshots were taken in a normal session."
+      }
+    ],
+    "copyWords": 2751,
+    "hasVideo": true,
+    "youtubeId": "V5A-tt9Yk0o",
+    "externalPage": null
+  },
+  {
+    "tech": "mh_session_control",
+    "slug": "session-control",
+    "name": "Session Control",
+    "summary": "Logs out idle Odoo users by ending sessions after a set idle time per user group, and lists open sessions",
+    "tagline": "Log people out after they have really been idle, a different number of minutes for each group, and see every session that is open right now",
+    "intro": [
+      "Session Control is for the person who answers for who is signed in to an Odoo 19 database. It does two jobs and nothing else. First, it ends a session once its owner has made no request for as long as that person's group allows: ten minutes for the shared terminal on the loading dock, an hour for somebody at their own desk. Second, it lists the sessions that are open at this moment, with the user, when each began, when it was last used and how long it has been idle, and gives you one button to end any of them. Everything on this page was checked on an Odoo 19 database seeded with made-up users, including a live test in which a session was left alone until the app logged it out."
+    ],
+    "features": [
+      {
+        "heading": "Why an idle timeout has to end the session",
+        "body": [
+          "Odoo counts how long a session may live with one setting for the entire database, the sessions.max_inactivity_seconds system parameter. The warehouse terminal and the finance director therefore get the same number, and it is a long one. That is the wrong answer to an auditor who asks why a shared screen in a loading bay stayed signed in all weekend.",
+          "Odoo also ships a module called Auth Timeout. Reading its code, its inactivity timer asks the person to confirm their identity again rather than ending the session, and its other timer counts from the moment the session was created, regardless of what the person did since. Both are useful, and neither is a limit on idle time that logs somebody out.",
+          "Session Control adds one rule per group: after this many minutes without a request, that user is logged out. A rule belongs to a group, so the people who need a short leash and the people who do not each get their own number, and each rule carries a note saying why. A second screen lists the sessions open now so that you can see the policy working and end a session by hand when you need to.",
+          "It is a small app on purpose. It adds a Session Control menu with two entries, three models and a check on each request. It does not add a login history, does not look at IP addresses and does not change how people sign in.",
+          "The whole app is two menu entries under Settings.",
+          "Northfield Office Supply has a Warehouse Terminal group for the two shared screens on the dock, a Finance Team group, and everyone else as internal users. The administrator sets ten minutes for the terminals, fifteen for finance and sixty for everybody, and writes the reason on each line. From then on a screen left alone on the dock is signed out after ten minutes without a request, and the finance team is signed out after fifteen.",
+          "It does not change what Auth Timeout does and does not replace it: the two can run side by side. It also does nothing about people who are active, which is the point of an idle timeout."
+        ],
+        "use": "somebody asks why a shared terminal is still signed in at nine in the morning, or why the accountant and the warehouse have the same timeout.",
+        "mode": "Ends sessions, writes one rule per group",
+        "result": "an idle limit written down per group, with the reason beside it, that really logs the person out instead of only asking for a password.",
+        "images": [
+          "images/sc-1-menu.webp"
+        ]
+      },
+      {
+        "heading": "1 Idle rules: set the minutes for each group",
+        "body": [
+          "A single database-wide number cannot be right for everybody. Set it short and the finance team loses a half-typed journal entry at lunch. Set it long and the dock terminal stays signed in. The number has to belong to the people it is meant for, and in Odoo the people are the groups.",
+          "Idle Rules is a plain editable list with three columns: Group , Inactivity Minutes and Why . Add a line, choose the group, type the number, and that is the whole rule. A new rule starts at 30 minutes. The group picker only offers groups that exist: you cannot create a group from this field.",
+          "Each rule reads as a sentence wherever Odoo shows its name, for example Warehouse Terminal after 10 min . A rule can be archived from the Actions menu, which stops it applying without losing the line, and the rule list is the only place the policy lives.",
+          "Three rules, each with its minutes and its reason.",
+          "Select a rule and the Actions menu offers Archive, which switches it off without deleting it.",
+          "The administrator adds three lines. Warehouse Terminal , 10 minutes, Shared screens on the dock, IT audit finding . Finance Team , 15 minutes, Month-end close policy . Role / User , 60 minutes, Default for a desk with a screen lock . Three lines is the whole policy, and anybody who opens the list can read why each number was chosen.",
+          "It does not warn the person before logging them out, and it does not save what they were typing. The check runs when the next request arrives: the person finds out when they click."
+        ],
+        "use": "different groups need different leashes: a shared terminal ten minutes, a desk with a screen lock an hour.",
+        "mode": "Writes a rule when saved",
+        "warn": "Nothing is enforced for a user until a rule covers one of their groups. A user with no rule is never logged out by this app, and Odoo's own lifetime applies to them as before.",
+        "images": [
+          "images/sc-2-rules.webp",
+          "images/sc-8-archive.webp"
+        ]
+      },
+      {
+        "heading": "2 The shortest rule wins",
+        "body": [
+          "Real users sit in many groups at once. Priya Nair is a finance user and also an ordinary internal user. If the rules were read in an order and the first match won, a lenient rule could undo a strict one depending on nothing more than the sequence of the list. Anyone auditing the setting would then have to work out an order of precedence.",
+          "There is no precedence to learn. For each request the app looks at every group the user holds, picks the rules that name those groups and takes the smallest number of minutes. Priya is in Finance Team (15) and in Role / User (60): her limit is 15. Take her out of Finance and it becomes 60.",
+          "The lookup uses the complete set of groups a user holds, including groups they reach by implication. If Warehouse Terminal were implied by another group, a user who only has that other group is covered by the Warehouse Terminal rule too. A test covers this, because reading explicit membership alone would let a session outlive the policy that was meant to end it, which is the one direction an idle timeout must never fail in.",
+          "Priya is covered by both of these lines. The smaller number applies.",
+          "Tomas Novak works the dock terminal and also has a normal internal login for his email. He is in Warehouse Terminal (10) and Role / User (60). His limit is 10 minutes on every screen, because the rule is about the user, not about the terminal. Lena Fischer, who is only an internal user, gets 60.",
+          "The rule follows the user, not the machine. It cannot give the same person ten minutes on the dock and an hour at their desk, and it has no concept of a device."
+        ],
+        "use": "people belong to several groups and you want a short timeout to stay short.",
+        "mode": "Read-only: a decision, no data written",
+        "result": "one number per user, always the tightest of their rules, so belonging to a lenient group never buys a longer leash.",
+        "warn": "The rule has to match a group the user actually holds. A group that is only held through another group still counts, but a group the user does not have has no effect, whatever its rule says.",
+        "images": [
+          "images/sc-2b-two-rules.webp"
+        ]
+      },
+      {
+        "heading": "3 Idle means idle: what counts, and the one-minute cost",
+        "body": [
+          "Measuring idle time sounds simple until you decide what to measure. Time since login is a session lifetime, not idleness. Time since the last page load misses somebody who spends an hour in one form, saving as they go. The clock has to run from the last time the browser spoke to the server.",
+          "Before Odoo authenticates a request, the app reads a stamp stored in the session, mh_last_seen . If the user has a rule and the stamp is older than the limit, the session is ended and Odoo does the rest: the person lands on the login page, with the usual redirect back to where they were after signing in. Otherwise the stamp is renewed.",
+          "The stamp is not rewritten on every request. It is renewed only when it is more than 60 seconds old, because a session write on every request across a whole database, to save a timestamp, would cost more than the feature is worth. The consequence is stated plainly: a timeout can overrun by up to a minute. A ten minute rule ends a session between ten and eleven minutes after its last request.",
+          "A session that has no stamp yet, because it started before the rule existed, is stamped on its next request instead of being logged out. Treating a missing stamp as infinitely old would log everybody out the moment a rule was saved. The cost is that such a session gets its full allowance counted from that first request.",
+          "Where a person lands after the limit has passed: the ordinary Odoo login.",
+          "On the test database the Warehouse Terminal rule was set to the minimum, five minutes. Maya Chen and Tomas Novak, both on the rule, and Daniel Ortiz, who is not covered by it, each signed in and loaded the web client once. Maya and Daniel were then left alone. Tomas made a request every 45 seconds. After seven minutes Maya's next request was redirected to the login page. Tomas and Daniel were not.",
+          "It cannot tell a person from a script. A browser tab that polls the server on a timer, or a monitoring script holding a session open, counts as activity."
+        ],
+        "use": "you want to know exactly when somebody is logged out, and what keeps them from being.",
+        "mode": "Writes the session, at most once a minute",
+        "result": "a clock that runs from the last request, not from login. We left a session alone on a 5 minute rule and it was logged out; a session on the same rule that kept making requests was not.",
+        "warn": "Every request counts, including requests a page makes by itself. A screen that keeps calling the server on a timer keeps its user signed in. This app measures requests, not whether somebody is looking at the screen.",
+        "images": [
+          "images/sc-9-login.webp"
+        ]
+      },
+      {
+        "heading": "4 Rules that refuse bad numbers",
+        "body": [
+          "A timeout of two minutes is a mistake that looks like a policy. People are logged out in the middle of filling in a form, lose what they typed, and the software is blamed rather than whoever chose the number. Two rules on the same group are the other classic: nobody can say which one is in force.",
+          "A rule below five minutes is refused with a message saying so and why. A second rule on a group that already has one is refused too, with a message telling you to change the existing rule so that there is one number per group. Both checks run when the line is saved, in the database, and neither leaves a half-made rule behind.",
+          "Typing 2 minutes is refused.",
+          "A second rule for the same group is refused.",
+          "An administrator adds a line for Warehouse Terminal with 2 minutes, hoping to be strict. The save is refused with the five-minute message. They type 5, which works, and put Strictest the IT audit allowed in the Why column. A week later somebody else tries to add a second Warehouse Terminal line at 20 minutes and is told to edit the first one instead.",
+          "Five minutes is a fixed floor in the code, not a setting. It checks the number, not whether the number is wise for your people: ten minutes on a screen where people fill in long forms is permitted, and will cost somebody a form."
+        ],
+        "use": "you want a number nobody can set by accident, and one rule per group so there is one number to point at.",
+        "mode": "Refuses at save, writes nothing",
+        "result": "a clear message at the moment of saving, instead of a surprise on the shop floor a week later.",
+        "images": [
+          "images/sc-3-floor-refused.webp",
+          "images/sc-4-duplicate-refused.webp"
+        ]
+      },
+      {
+        "heading": "5 Open Sessions: who is signed in right now",
+        "body": [
+          "Odoo does not keep a table of logged-in users. Each session is a file on the server. A list built from login events would show sessions that ended long ago and miss the ones created another way, so a list of logins is a log, not an answer to the question who is signed in.",
+          "Open Sessions reads the session files where Odoo keeps them and shows what is open now: the user , when the session started , when it was last active , how many minutes it has been idle , and a ticked box on the row that is you . The most idle sessions are at the top. Above the list sit the number of open sessions and the time of the scan. A person with two browsers has two rows.",
+          "The session store belongs to the whole server, not to one database. Every other database on the server has its sessions in the same place, so the scan skips any session that belongs to another database. Without that, another database's sessions would show up here with user numbers resolved against the wrong database, and ending one would log out somebody else's user. A test covers it.",
+          "Last active is the time Odoo last wrote the session file, and idle is that time against the clock, in whole minutes.",
+          "Seven sessions open on the sample database, most idle first. The administrator's own row has no End button.",
+          "It is 4 p.m. and the administrator opens the list. Samuel Okafor has been idle for 125 minutes. His group's rule says 15, but nothing happens until he makes another request, so his session is still open, and this window is where you see it. Daniel Ortiz is at 38 minutes, inside the 60 minutes his rule allows. The administrator can tell at a glance which open sessions are already past their limit and just waiting for a click.",
+          "It does not show IP addresses, devices or locations, and it keeps no history: close the window and the list is gone. Only administrators can open it."
+        ],
+        "use": "you want the truth about who is signed in at this moment, not a log of logins.",
+        "mode": "Read-only scan of the session store",
+        "result": "a list of exactly the sessions that exist, most idle first, with your own session marked.",
+        "warn": "The list is a snapshot taken each time you press Refresh, and it reads the session files Odoo keeps on disk by default. If your installation keeps sessions somewhere else, the list will be empty.",
+        "images": [
+          "images/sc-5-open-sessions.webp"
+        ]
+      },
+      {
+        "heading": "6 End a session with one click",
+        "body": [
+          "Sometimes the answer to a security question is simply: sign that person out. Without a tool, that means finding the right file on the server, or changing somebody's password so their session no longer matches.",
+          "Every row except your own has an End button. It asks first: This logs that user out immediately. Anything they had typed and not saved is lost. On confirmation the app deletes that session, which is what being logged out means in Odoo, records in the server log who ended whose session, and rescans the list. The user's next request goes to the login page. We checked it on the test database: after Samuel Okafor's session was ended, his next request was redirected to login.",
+          "Your own row has no button at all. If an End were somehow triggered for it, the app refuses with a message saying it is the session you are using, so you cannot end the screen you are looking at by accident.",
+          "The confirmation before a session is ended.",
+          "After ending Samuel Okafor's session: six rows, his is gone.",
+          "Samuel Okafor's laptop was left open in a taxi. The administrator opens Open Sessions, sees Samuel's row at 125 minutes idle, presses End and confirms. The list now has six rows. When the laptop is next opened and clicked, it goes to the login page.",
+          "Ending a session does not disable the account or change the password: the user can sign in again. For that, change the user in Odoo as usual."
+        ],
+        "use": "a user has left a session open on a machine you cannot reach, or you want somebody off right now.",
+        "mode": "Deletes the session",
+        "result": "the user is signed out on their next click, and the list refreshes with that row gone.",
+        "warn": "Ending a session is immediate and loses what the person had typed and not saved. The button asks for confirmation for that reason.",
+        "images": [
+          "images/sc-6-end-confirm.webp",
+          "images/sc-7-after-end.webp"
+        ]
+      },
+      {
+        "heading": "7 Built to stay out of the way",
+        "body": [
+          "Any code on every request is code that can break every request. A timeout is not worth a database that will not answer. So the idle check runs inside a guard that catches everything it raises, writes it to the server log and carries on to Odoo's normal authentication. If the check itself ever fails, the worst case is that nobody is logged out for that request. (This comes from reading the code: we could not provoke it on a healthy database.)",
+          "The check sits before Odoo authenticates, so the logout takes the same path as any other: Odoo raises, redirects and saves the session itself.",
+          "The superuser is never logged out. Scheduled jobs and upgrade scripts run as that account and have no browser to log out. A user with no rule, an archived rule or no group named in any rule has no limit at all.",
+          "The guard hides failures from the user, so they exist only in the log. If you rely on the timeout for compliance, test it on your own database, as we did, rather than assuming it."
+        ],
+        "use": "you are being asked to put code on every request of a production database.",
+        "mode": "Failures are logged and ignored",
+        "images": []
+      },
+      {
+        "heading": "Who it is for",
+        "body": [
+          "The Odoo administrator who has been told that the shared terminals must sign out after ten minutes, and wants it enforced and written down in one place.",
+          "The IT lead or consultant who sets up several databases and wants the policy to be a list of three or four lines with reasons, not a code change.",
+          "Whoever answers the auditor : the rule list shows, per group, the number and the reason, and the Open Sessions window shows the policy at work.",
+          "It is not for end users, who never see it, and it is not a login history, an IP restriction or a two-factor tool."
+        ],
+        "images": []
+      },
+      {
+        "heading": "What this app does not do",
+        "body": [
+          "It ends a session after inactivity. It does not warn before it does, does not save the person's work and does not offer to stay signed in.",
+          "Every authenticated request counts as activity. Background requests made by a page keep its user signed in, so it measures requests, not attention.",
+          "The timeout can overrun by up to a minute, because the last-seen stamp is written at most once a minute per session.",
+          "A session started before a rule existed gets its full allowance counted from its first request after the rule, not from its real last activity.",
+          "The superuser is never logged out. Users with no rule are never logged out by this app.",
+          "The Open Sessions list reads the session files Odoo keeps on disk by default. It is a snapshot, it does not record history and it does not show IP addresses or devices. Last active is the time of the last session write, which is close to, but not exactly, the stamp the timeout uses.",
+          "Other internal users cannot open the menu, but they hold read access to the rule records themselves, so a user who queries the database through Odoo's API can read the minutes and the notes. Do not put anything in a note you would not show them."
+        ],
+        "images": []
+      }
+    ],
+    "scope": [],
+    "requires": [],
+    "price": 99.0,
+    "manifestPrice": 99.0,
+    "currency": "USD",
+    "category": "Tools",
+    "version": "19.0.1.0.22",
+    "license": "OPL-1",
+    "depends": [
+      "base"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_session_control",
+    "storeUrl19": "https://apps.odoo.com/apps/modules/19.0/mh_session_control",
+    "storeUrl20": "https://apps.odoo.com/apps/modules/20.0/mh_session_control",
+    "screenshots": [],
+    "shotDims": {
+      "images/sc-1-menu.webp": [
+        884,
+        284
+      ],
+      "images/sc-2-rules.webp": [
+        1000,
+        236
+      ],
+      "images/sc-8-archive.webp": [
+        1000,
+        371
+      ],
+      "images/sc-2b-two-rules.webp": [
+        1000,
+        109
+      ],
+      "images/sc-9-login.webp": [
+        592,
+        632
+      ],
+      "images/sc-3-floor-refused.webp": [
+        1000,
+        325
+      ],
+      "images/sc-4-duplicate-refused.webp": [
+        1000,
+        325
+      ],
+      "images/sc-5-open-sessions.webp": [
+        1000,
+        919
+      ],
+      "images/sc-6-end-confirm.webp": [
+        1000,
+        298
+      ],
+      "images/sc-7-after-end.webp": [
+        1000,
+        865
+      ]
+    },
+    "tiles": [
+      {
+        "n": "5 min",
+        "l": "the shortest idle limit it accepts"
+      },
+      {
+        "n": "1 min",
+        "l": "the most a timeout can overrun"
+      },
+      {
+        "n": "15",
+        "l": "automated tests, none failing"
+      },
+      {
+        "n": "0",
+        "l": "sessions of other databases in the list"
+      },
+      {
+        "n": "1",
+        "l": "click to end any session but your own"
+      },
+      {
+        "n": "base",
+        "l": "the only module it depends on"
+      }
+    ],
+    "faq": [
+      {
+        "q": "Is this the same as Odoo's Auth Timeout?",
+        "a": "No. Reading Odoo's Auth Timeout code, its inactivity timer asks the person to confirm their identity and the session stays valid. Session Control ends the session itself. They can run side by side."
+      },
+      {
+        "q": "When exactly is somebody logged out?",
+        "a": "On their first request after the limit has passed. The request goes to the login page. If the person has not touched the screen, nothing happens until they do."
+      },
+      {
+        "q": "Does a page that refreshes itself keep a user signed in?",
+        "a": "Yes. Any request counts as activity, whoever or whatever makes it."
+      },
+      {
+        "q": "What if a user is in several groups with different rules?",
+        "a": "The shortest limit applies."
+      },
+      {
+        "q": "Can I set a timeout under five minutes?",
+        "a": "No. Anything under five minutes is refused when you save."
+      },
+      {
+        "q": "Will it log out the administrator account that runs my scheduled jobs?",
+        "a": "No. The superuser is never logged out."
+      },
+      {
+        "q": "Does the list show sessions of my other databases?",
+        "a": "No. Only sessions belonging to the database you are in."
+      },
+      {
+        "q": "Can it slow down my server?",
+        "a": "It adds one small rule lookup to each request from a signed-in user and rewrites the session at most once a minute. It does not write on every request. If its check fails it is logged and ignored."
+      }
+    ],
+    "copyWords": 2880,
+    "hasVideo": true,
+    "youtubeId": "bjnw1R8BgUE",
     "externalPage": null
   },
   {
@@ -1802,7 +2733,7 @@ export const odooApps = [
     "manifestPrice": 99.0,
     "currency": "USD",
     "category": "Tools",
-    "version": "19.0.1.0.19",
+    "version": "19.0.1.0.20",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -2009,334 +2940,6 @@ export const odooApps = [
     "copyWords": 396,
     "hasVideo": true,
     "youtubeId": "7-tujViJGtA",
-    "externalPage": null
-  },
-  {
-    "tech": "mh_list_view_layouts",
-    "slug": "list-view-layouts",
-    "name": "List View Layouts",
-    "summary": "Sets the default list view columns (the optional ones) per model and per group so each team opens the same layout",
-    "tagline": "",
-    "intro": [
-      "Choose which columns each team opens a list with, once, from a screen. Odoo remembers column choices per person and per browser; this makes them a team decision, with a mode that keeps the layout in place",
-      "List View Layouts is for the administrator who keeps being asked to \"make everyone's quotation list look like this\" on an Odoo 19 database. Odoo hides or shows the optional columns of a list according to what is saved in each person's own browser, so the choice belongs to one person on one machine and is gone when the cache is cleared. You pick a model, tick the optional columns that should be visible, name the groups it is for and decide whether it is a starting point or is kept applied. This page walks through each step with screenshots of an Odoo 19 database seeded with made-up data, and says plainly where the limits are, including three that you should read before you buy.",
-      "Install it and a List View Layouts entry appears under Settings, for administrators only. It depends on Odoo's base and web modules and nothing else. The screenshots were taken in an Odoo 19 Community database with the Sales and Contacts apps installed for the examples: a fictitious office-supply company with one salesperson, one sales manager and an administrator. The data is synthetic, and every column name and number quoted beside a screenshot is read off that screenshot or off the test it came from."
-    ],
-    "features": [
-      {
-        "heading": "Why a team cannot share a column choice in standard Odoo",
-        "body": [
-          "Most Odoo lists carry a few columns that are optional. A small control at the right of the header opens a menu of ticks, one per optional column, and ticking a box shows the column. That is a useful feature for one person. It is not a team feature, because where the choice is stored is the person's own browser: it is per person, per browser, and it is lost when the browser cache is cleared or when the same person signs in from another machine.",
-          "The consequences are small each time and constant over a year. A new salesperson opens Quotations and sees whatever Odoo ships by default, then spends a few minutes finding the Customer Reference column that the whole team works from. A manager asks for the untaxed amount to be visible and is told to tick it, on every machine, for every person. Someone clears their browser data and the list is back to the default. There is no way to say \"everyone in Sales opens quotations with these columns\" in one place.",
-          "It is that one place. A layout is one record: a model, the optional columns that should be visible, the groups it is for and a sequence number. When a list of that model opens, the layout decides which optional columns start visible. It does this through the same method Odoo itself calls to decide which optional columns start visible, so there is nothing to redraw and no flicker, and a model without a layout behaves exactly as it does today.",
-          "You also decide how firm the layout is. A layout can be a starting point, which people can then adjust and which Odoo then remembers for them as usual, or it can be kept applied, which puts it back every time the list is drawn. The rest of this page shows both, with the screens."
-        ],
-        "use": "a new starter asks which columns the rest of the team looks at, and the honest answer is \"switch them on yourself\".",
-        "mode": "Explains the gap, changes nothing",
-        "images": []
-      },
-      {
-        "heading": "1 Write a layout: model, columns and groups",
-        "body": [
-          "A column decision is normally made verbally (\"we all use the customer reference\") and then lives in nobody's notes. When the auditor, the new starter or the next administrator asks why a list looks as it does, there is nothing to open.",
-          "The form is one short screen. The title holds the layout's name, with a hint such as \"e.g. Sales team quotation columns\". Under it come the Model , the Groups as tags, the Sequence and the Keep it applied tick, and then a Visible Columns area where each chosen column is a tag. A note at the foot says that optional columns not listed are hidden for the people the layout applies to, that columns the list always shows are unaffected, and that nobody gains access to a field they could not already read.",
-          "The list of layouts is ordered by sequence and shows the name, the model, the groups and whether the layout is kept applied. A drag handle sits at the left of every row, so reordering layouts is a drag, not a number you retype. The menu entry is under Settings and is for administrators only; every internal user can read layouts, which is what makes the lookup work, and only Settings administrators can create, change or delete one.",
-          "The form protects you from two mistakes. If you change the model, the columns picked for the old model are cleared, because they would never match anything on the new one. And if a column from another model reaches the record some other way, the save is refused with a message that names the columns, so a layout cannot be stored that silently never applies.",
-          "The layout list: name, model, groups and Keep it applied. The first row has the lowest sequence.",
-          "One layout: model, group, sequence, the Keep it applied tick and five visible columns.",
-          "Northfield Office Supply's salespeople all work from the customer's purchase order number. The administrator opens Settings > List View Layouts , presses New and calls it Sales team quotation columns . The model is Sales Order . For the columns she ticks Creation Date , Customer Reference , Expiration , Total and Status . She names the group Sales / User: Own Documents Only , leaves Keep it applied off and saves. Nobody has been told anything, and nothing has been installed on anyone's machine.",
-          "A layout does not add columns a list never had. It decides which of the list's own optional columns start visible, and it leaves the columns the list always shows alone."
-        ],
-        "use": "you know which columns a team should open a list with and who that team is.",
-        "mode": "Saves one layout record",
-        "result": "a layout written down with its model, columns, groups, sequence and mode, which applies from the next time a list of that model is opened.",
-        "warn": "The Visible Columns picker lists stored fields only. A column that Odoo computes on the fly, without storing it, cannot be chosen, and it is therefore hidden for everyone the layout applies to. Section 6 shows the visible effect and the Limits section lists it.",
-        "images": [
-          "images/lvl-1-layouts-list.webp",
-          "images/lvl-2-layout-form.webp"
-        ]
-      },
-      {
-        "heading": "2 The list opens with the team's columns",
-        "body": [
-          "Without a layout, a person who opens a list gets Odoo's defaults. The defaults are sensible for a company nobody knows, and they are wrong for yours in two or three columns, every time, for every starter.",
-          "With the layout above saved, Maya Chen, a salesperson, opens Sales > Orders > Quotations . Before the layout the list showed Number, Creation Date, Customer, Salesperson, Activities, Total and Status. After it, the list shows Number, Creation Date, Customer, Total, Status, Customer Reference and Expiration. Salesperson and Activities have gone from the default, and the two columns the team works from have come in.",
-          "Look at the two screenshots at the same row, S00009 for Ashgrove Studio at $ 400.00. It is the same record in the same list for the same person. Only the columns changed. Number and Customer are columns the list always shows, which is why they stay.",
-          "The layout reaches Maya although she is in the group Sales / User: All Documents and not in the one named in the layout. That is intended: the group in a layout also covers every group that includes it, so naming the basic Sales group covers the people with the wider rights too.",
-          "Before: Odoo's default optional columns for Quotations.",
-          "After: the same rows, with the columns the team chose.",
-          "A second salesperson starts on Monday. Nobody shows her which boxes to tick. She signs in, opens Quotations, and sees the Customer Reference and Expiration columns straight away, exactly as everyone on her team does. The next person to join does the same, from a different laptop, and sees the same list. Until now the only way to get that was to sit next to the new starter and click through the column menu with them.",
-          "It does not change which records a person sees, and it does not change the order or the width of the columns. Odoo does not give a list a per-user column order or width to set, so the app does not pretend to."
-        ],
-        "use": "a salesperson opens Quotations for the first time, or from a new browser.",
-        "mode": "Changes what is shown, not what exists",
-        "result": "every person the layout names opens the list with the same optional columns, on any browser, with nothing to set up on their side.",
-        "warn": "The layout is read once for each model each time the page loads and is then kept for that page. After you change a layout, people see the change the next time they reload the page or sign in again, not in a list that is already open.",
-        "images": [
-          "images/lvl-3-quotes-before.webp",
-          "images/lvl-4-quotes-after.webp"
-        ]
-      },
-      {
-        "heading": "3 Two layouts, one person: the lowest sequence wins",
-        "body": [
-          "Teams overlap. A sales manager is also a salesperson in every sense that matters to Odoo, so a layout written for the sales team reaches the manager too. If a layout could only be broad or narrow, you would have to choose between giving managers the team's list and writing an exception into every layout.",
-          "Layouts are tried in order of sequence, lowest first, and the first one that fits the person is the one they get. A layout with no groups fits everybody, so it works as the general default at the bottom; a layout for a smaller group sits above it with a lower number.",
-          "In the example there are two layouts for Sales Orders. Sales managers: team and untaxed view has sequence 1 and names Sales / Administrator . Sales team quotation columns has sequence 10 and names the basic Sales user group. Daniel Ortiz is a sales manager, so both fit him, and the lower number wins. His list shows Number, Customer, Salesperson, Sales Team, Untaxed Amount, Total and Status, and not the Creation Date, Customer Reference and Expiration that Maya's list shows. Each of them gets exactly one layout. The layouts are never merged.",
-          "The manager's list: the sequence 1 layout beats the sequence 10 team layout.",
-          "The column picker on Maya's list: the five ticks are the five columns the layout named.",
-          "Northfield also wants all staff to see the same columns on contacts, so the administrator adds a third layout for the Contact model with no groups and sequence 20: Email, Phone, City and Country. It reaches everybody who opens a list of contacts, because it names nobody in particular. If the finance team later needs its own contact columns, she adds a layout for that group with a lower sequence, and finance gets it while everybody else keeps the general one.",
-          "It does not combine two layouts into one, and it has no per-person exceptions: a layout is a model, some columns and some groups, and that is the whole language."
-        ],
-        "use": "managers need a different list from their team, for the same model.",
-        "mode": "Reads layouts, changes none",
-        "result": "one layout per person, chosen by order, so a specific team can have its own list without the general layout being rewritten.",
-        "warn": "Layouts are per model and not per list. A layout for Sales Order applies to every list of sales orders, such as Quotations and Orders, and not just the one you were looking at when you wrote it. There is no way to give two lists of the same model two layouts.",
-        "images": [
-          "images/lvl-6-manager-view.webp",
-          "images/lvl-5-column-picker.webp"
-        ]
-      },
-      {
-        "heading": "4 A starting point that people can still change",
-        "body": [
-          "Some people really do want one column fewer. If every layout overrode them for ever, the first person to be annoyed would ask for it to be removed, and the layout would not be worth keeping.",
-          "With Keep it applied off, which is the default, the layout is the starting point only. It applies the first time a person opens a list. As soon as that person ticks or unticks a column in the column picker, Odoo saves their choice in their browser, and from then on the layout leaves that list alone and their own choice is what they get.",
-          "In the screenshot Maya has unticked Total in the column picker and reloaded. Her list has no Total column, and the other four optional columns from the layout are still there. The layout did its job once and then stepped back. Odoo's own behaviour takes over, which is what a person who made a choice would expect.",
-          "After unticking Total and reloading, her choice is kept: no Total column, everything else as the layout set it.",
-          "Maya never looks at totals, because her customers pay by purchase order and she checks amounts in the order form. She unticks Total once. The layout does not bring it back the next time she signs in, and her team-mates, who never touched the picker, still see Total, because their browsers have no saved choice. One person's change stays one person's change.",
-          "It does not reset what people have already chosen, and it cannot see their saved choices: the choice lives in the browser, and the server is never told about it."
-        ],
-        "use": "you want a good first list, and you are happy for people to adjust it afterwards.",
-        "mode": "Their own choice is respected",
-        "result": "a good first list for everyone, and people who change it keep the change.",
-        "warn": "Once a person has made their own choice in a browser, a later change to the layout no longer reaches them in that browser. If you rewrite a layout and some people do not see the change, that is the reason. Switching on Keep it applied is the way to reach them.",
-        "images": [
-          "images/lvl-8-own-choice-kept.webp"
-        ]
-      },
-      {
-        "heading": "5 Keep it applied: the list does not drift",
-        "body": [
-          "A list that is projected in a meeting, or that a manager compares across people, is only useful when everyone's copy looks alike. Left alone, a list drifts one person at a time: somebody hides a column to make room, somebody else shows one for a task and forgets, and a month later nobody's list matches.",
-          "With Keep it applied ticked, the layout is reapplied each time Odoo draws the list. The column picker is still there and still opens, but it no longer changes anything that lasts: the layout is put back at once.",
-          "In the screenshot Daniel, whose layout is kept applied, has unticked Salesperson . The picker shows Salesperson ticked again and the column is still on the list. His click had no lasting effect. The only way a column leaves or enters his list is for an administrator to change the layout.",
-          "Kept applied: Daniel clicked Salesperson, and the picker shows it ticked and the column in place.",
-          "The sales managers review quotations together every Monday, with the list on a shared screen. Their layout is kept applied, so Salesperson, Sales Team, Untaxed Amount, Total and Status are on everyone's copy, and a manager who forgot what they had hidden last week does not hold the meeting up. When the meeting wants Creation Date as well, the administrator adds it to the layout, and it appears for every manager the next time they reload.",
-          "It does not lock the list against everything. People can still filter, sort, group and search as usual, and it does not stop a person from reading a column through an export or a record form. It decides which optional columns the list shows, and nothing else."
-        ],
-        "use": "a shared screen, a reporting list or a team standard has to look the same for everyone, every time.",
-        "mode": "Layout wins over the picker",
-        "result": "the same list for everyone the layout names, however many times they open it, and a column picker that cannot undo it.",
-        "warn": "While a layout is kept applied the column picker still lets a person click a column, and the click is undone straight away. The picker does not grey out or say why. Tell the people the layout covers, or leave Keep it applied off for them.",
-        "images": [
-          "images/lvl-7-enforced-toggle.webp"
-        ]
-      },
-      {
-        "heading": "6 Lists inside forms follow the layout too",
-        "body": [
-          "Documents carry lists of their own. A quotation has order lines, an invoice has invoice lines, and each of those lists has optional columns. Teams argue about the order lines at least as much as about the main list, and the column menu on a line list is just as personal as the one on Quotations.",
-          "The layout is looked up by model, whichever list asks. So a layout for Sales Order Line reaches the order lines inside a quotation form, because that list shows lines of that model. In the example the administrator adds a layout called Order lines: amounts first for the basic Sales group with three columns: Description, Taxes and Amount.",
-          "The two screenshots show the same quotation, the same two lines, Standing Desk and Office Chair. Before the layout the first column is Product. After it the first column is Description. Quantity and Unit Price are columns the list always shows and stay where they were.",
-          "Before: the order lines carry a Product column.",
-          "After: Description takes the place of Product.",
-          "Northfield wants the line description and the tax visible on every quotation, because customers query both. The administrator writes one layout for Sales Order Line. Every salesperson who opens a quotation after that has those columns on the lines, without ever opening the column menu.",
-          "It cannot show or hide a column that is not optional, and it cannot choose between two lists of the same model. If you do not want the layout to reach a list inside a form, do not write a layout for that model."
-        ],
-        "use": "you want a layout for the lines of a document, and not only for the main list.",
-        "mode": "Applies to every list of the model",
-        "result": "the same layouts for the lines of a document as for its main list, written in the same screen.",
-        "warn": "Look closely at the screenshot. The Product column went. Product on an order line is a computed column that Odoo does not store, so it cannot be ticked in the layout, and a layout hides every optional column that it does not list. Description was ticked, and is shown. Before you write a layout for a model, open the list as a test user and check that nothing you need has dropped out.",
-        "images": [
-          "images/lvl-9-lines-before.webp",
-          "images/lvl-10-lines-after.webp"
-        ]
-      },
-      {
-        "heading": "7 Layouts change columns, never access",
-        "body": [
-          "It is tempting to read \"hide a column\" as \"keep it private\". A hidden column is a column that is not drawn. The value is still in the database, and the field can still be exported, searched or read through the API by anyone who is allowed to read it.",
-          "This app deliberately does not pretend otherwise. A layout works on the optional columns that the list already has, and on nothing else: it never adds a field to a view, so it cannot show a person a field their access rights would keep from them. Access rights, record rules and field groups remain the way to decide who can read what, and a layout is never part of that decision.",
-          "The layout record has two permissions. Every internal user can read layouts, because the list reads them as that user when it opens, and only a Settings administrator can create, change or delete one. A test checks that an ordinary user can read the layouts and is refused when they try to create one. A person who is not allowed to open a list never has a layout applied to it, because the layout only runs when that list is drawn.",
-          "If the lookup fails for any reason, such as a lost network connection, the list opens with Odoo's own columns. A layout that cannot be read does not leave a person with an empty list.",
-          "The finance lead asks whether the layout for the sales team stops them from seeing the untaxed amount. It does not: the column is not on their list, but a record form or an export still shows the field, as it always did. To stop that, she would restrict the field itself, with a field-level access rule. The two jobs are different, and each is done in the place built for it: layouts decide what a list shows first, and access rights decide what a person may read."
-        ],
-        "use": "someone asks whether hiding a column here keeps the data private.",
-        "mode": "Shows or hides columns, nothing more",
-        "images": []
-      },
-      {
-        "heading": "Who it is for",
-        "body": [
-          "The Odoo administrator who is asked, again, to make everyone's list look the same. One layout, one group, and the question is answered for good rather than person by person.",
-          "The consultant who sets up several databases and wants a client's list conventions written down in a list of records, where the client's next administrator can read them, rather than in an email.",
-          "The team lead who runs a weekly review from a shared screen and needs every copy to look alike. Keep it applied is for exactly that.",
-          "It is not for end users: only administrators can open it. If your goal is for each person to save their own favourite columns, that is a different job, and the free List View Manager is for it."
-        ],
-        "use": "you are the person who gets asked to fix a list for somebody else.",
-        "mode": "A buying guide, not a feature",
-        "images": []
-      },
-      {
-        "heading": "What this app does not do",
-        "body": [
-          "It changes column visibility, never access. Nobody sees a field they could not already read, and hiding a column is not a security control. Use record rules, access rights and field-level rules for that.",
-          "It handles optional columns only. A column that the list always shows cannot be hidden by a layout, and a layout cannot add a column that a list does not have.",
-          "Only stored fields can be picked. Optional columns that Odoo computes without storing, such as Product on the order lines of a quotation or Expected Date on a quotation list, cannot be ticked in the layout. A layout can never show such a column, and one that Odoo would normally show is hidden for the people the layout covers. Check each list as a test user before you roll a layout out.",
-          "A layout covers every list of its model, including lists inside forms. It is not per menu, per action or per list.",
-          "A layout with no columns ticked hides every optional column, because a column that is not listed is hidden. An empty layout is rarely what you want.",
-          "With Keep it applied on, the column picker still accepts clicks and undoes them at once, with no message.",
-          "With Keep it applied off, people who have already made their own choice in a browser are not reached by later changes to the layout in that browser.",
-          "A change reaches a person when the page is reloaded, not in a list that is already open.",
-          "It does not set column order or column width. Odoo does not expose either per user, so the app leaves both alone.",
-          "It has no history of its own beyond Odoo's standard record tracking, and it does not report who has what layout."
-        ],
-        "use": "you want to know where the edges are before you buy.",
-        "mode": "Read this before you buy",
-        "images": []
-      },
-      {
-        "heading": "Odoo 19.0 and the other version",
-        "body": [
-          "This page is for the Odoo 19 build. The Odoo Apps store lists and sells each Odoo version separately; the Odoo 20 build has its own page and its own purchase. The layout form, the lookup, the two modes and the way the layout is applied to the list work the same way on both. The only difference is how each version of Odoo names its access-rights file: this build ships security/ir.model.access.csv."
-        ],
-        "use": "you run more than one Odoo version.",
-        "mode": "Each version is its own listing",
-        "images": []
-      }
-    ],
-    "scope": [],
-    "requires": [],
-    "price": 98.82,
-    "manifestPrice": 99.0,
-    "currency": "USD",
-    "category": "Productivity",
-    "version": "19.0.1.0.16",
-    "license": "OPL-1",
-    "depends": [
-      "base",
-      "web"
-    ],
-    "paidDepends": [],
-    "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_list_view_layouts",
-    "storeUrl19": "https://apps.odoo.com/apps/modules/19.0/mh_list_view_layouts",
-    "storeUrl20": "https://apps.odoo.com/apps/modules/20.0/mh_list_view_layouts",
-    "screenshots": [],
-    "shotDims": {
-      "images/lvl-1-layouts-list.webp": [
-        1000,
-        214
-      ],
-      "images/lvl-2-layout-form.webp": [
-        1000,
-        667
-      ],
-      "images/lvl-3-quotes-before.webp": [
-        1000,
-        219
-      ],
-      "images/lvl-4-quotes-after.webp": [
-        1000,
-        216
-      ],
-      "images/lvl-6-manager-view.webp": [
-        1000,
-        219
-      ],
-      "images/lvl-5-column-picker.webp": [
-        1000,
-        589
-      ],
-      "images/lvl-8-own-choice-kept.webp": [
-        1000,
-        216
-      ],
-      "images/lvl-7-enforced-toggle.webp": [
-        1000,
-        589
-      ],
-      "images/lvl-9-lines-before.webp": [
-        1000,
-        174
-      ],
-      "images/lvl-10-lines-after.webp": [
-        1000,
-        174
-      ]
-    },
-    "tiles": [
-      {
-        "n": "11",
-        "l": "automated tests, none failing"
-      },
-      {
-        "n": "2",
-        "l": "modes: a starting point, or kept applied"
-      },
-      {
-        "n": "1",
-        "l": "hook: the method Odoo uses for optional columns"
-      },
-      {
-        "n": "1",
-        "l": "model, no wizards, no scheduled jobs"
-      },
-      {
-        "n": "2",
-        "l": "modules it depends on: base and web"
-      },
-      {
-        "n": "19.0",
-        "l": "Odoo version of this build"
-      }
-    ],
-    "faq": [
-      {
-        "q": "Is this different from the column menu Odoo already has?",
-        "a": "Yes. The column menu changes what one person sees in one browser. A layout is written once, by an administrator, for a model and a set of groups, and it applies to everyone it names on any browser."
-      },
-      {
-        "q": "Where do the layouts live?",
-        "a": "In your Odoo database, as ordinary records under Settings. Nothing is sent anywhere, and the app calls no outside service."
-      },
-      {
-        "q": "Does a layout apply to every list of a model?",
-        "a": "Yes. It is looked up by model, so every list of that model is covered, including a list inside a form such as the lines of a quotation. It cannot be restricted to one menu or one action."
-      },
-      {
-        "q": "What happens to a model that has no layout?",
-        "a": "Nothing. The list behaves exactly as it did before the app was installed."
-      },
-      {
-        "q": "What if a person is in two of the groups?",
-        "a": "They get the layout with the lowest sequence number among those that fit them. The layouts are not merged."
-      },
-      {
-        "q": "Can people still change their columns?",
-        "a": "With Keep it applied off, yes, and Odoo remembers it for them. With it on, the picker still opens but the layout is put back at once."
-      },
-      {
-        "q": "Why did a column disappear that I did not untick?",
-        "a": "A layout hides every optional column it does not list. If the column is one that Odoo computes without storing, it cannot be listed, so it is hidden. Check the list as a test user."
-      },
-      {
-        "q": "Do I need to restart Odoo after changing a layout?",
-        "a": "No restart. People see the change when they reload the page."
-      },
-      {
-        "q": "Does it make a column private?",
-        "a": "No. A hidden column is only not drawn. Use access rights, record rules and field-level rules to keep data private."
-      },
-      {
-        "q": "What happens if I uninstall it?",
-        "a": "Every list goes back to Odoo's own defaults and to each person's own saved choices. Nothing in your records was changed."
-      }
-    ],
-    "copyWords": 3382,
-    "hasVideo": true,
-    "youtubeId": "_jn7KswDh-k",
     "externalPage": null
   },
   {
@@ -2737,609 +3340,6 @@ export const odooApps = [
     "externalPage": null
   },
   {
-    "tech": "mh_record_rule_preview",
-    "slug": "record-rule-preview",
-    "name": "Record Rule Preview",
-    "summary": "Counts how many records a chosen user can reach with a new rule in force, then rolls the rule back, before you apply it: write a record rule and see how many records it actually leaves a chosen user, counted for real before you save it",
-    "tagline": "Write a record rule and see how many records it actually leaves a chosen user, counted for real before you save it",
-    "intro": [
-      "Record Rule Preview is for whoever writes the domains that decide who sees which records in an Odoo 19 database. You name the model, the domain and a user, press Preview, and read a number: how many records that user can reach with the rule in force. The number is counted through Odoo itself, with every other rule on the model already in the count, and the rule is rolled back before you look at it. Only when the number is what you meant do you press Apply. This page walks through every step with screenshots of an Odoo 19 database seeded with made-up data.",
-      "Install it and a Record Rule Preview entry appears under Settings, for administrators only. It depends on Odoo's base module and nothing else. The screenshots were taken in an Odoo 19 Community database with the CRM app installed for the examples: a fictitious office-supply company, three salespeople and sixty customers. The data is synthetic, and every number quoted beside a screenshot is read off that screenshot."
-    ],
-    "features": [
-      {
-        "heading": "Why a rule needs a count first",
-        "body": [
-          "A record rule with a domain that is wrong by one operator raises nothing. The users it catches simply stop seeing records, and nobody reports that as a bug, because an empty list looks like an empty list. You find out weeks later, from a salesperson who assumed their pipeline had gone cold.",
-          "Global rules are worse. Global record rules are ANDed together, so a rule that is correct on its own can still take everything away once another global rule exists on the same model. Reading two domains and working out the intersection in your head is exactly the step that goes wrong.",
-          "It moves the question to before you save. You write the record rule as a draft, name a user it should affect, and the app creates it for real inside a database savepoint, counts the records that user can reach, and rolls the whole thing back. The count is measured, not predicted: it was taken with every other record rule in force, so the intersection is in the number rather than in your head.",
-          "Then it refuses the usual mistakes. Apply is blocked until the draft has been previewed, blocked again if you edit it afterwards, and blocked when the rule leaves the sample user with nothing unless you say in writing that you meant it. Applying creates an ordinary ir.rule, so Odoo enforces it exactly as it enforces any other."
-        ],
-        "use": "you write or change record rules and want to know what they leave before the people they catch find out.",
-        "mode": "Saves a draft, no rule yet",
-        "images": []
-      },
-      {
-        "heading": "1 Write the draft: model, groups, domain and who to count for",
-        "body": [
-          "A record rule is easy to type and hard to judge. In the standard form it takes effect the moment you save it, and the form does not tell you whom it catches. Nobody keeps a record of why it was written either.",
-          "Open Settings > Record Rule Preview and press New. The form asks for a Name , the Model , optional Groups , the permissions it covers (Read, Write, Create, Delete, all ticked to start) and a Domain , which starts as [] . The domain is a normal Odoo domain with user , company_id and company_ids available, the same names a record rule uses.",
-          "Count for is the user the rule is measured against. It lists internal users only. A Why note is for whoever reads the draft in a year. Leave Groups empty and a Global rule box appears ticked: with no groups the rule applies to every user, and the form says so.",
-          "The list shows every draft with its model, groups, user, the two counts and a state badge, and filters for Applied, Not applied yet and Global. It can be grouped by model or by state.",
-          "A new draft: model, groups, permissions and domain. With no groups it is marked as a global rule.",
-          "The draft list, every row with its two counts and its state.",
-          "Northfield Office Supply closed its Lyon branch. The administrator opens a draft called Hide the closed Lyon branch on Contact, leaves Groups empty, writes the domain [('city', '!=', 'Lyon')] , picks Priya Nair in Count for and adds the note Lyon office closed 30 Sep . Nothing is enforced yet: it is a row in the draft list, in the Draft state.",
-          "A draft is not a rule. Nothing it contains is enforced until Apply, and the form does not check that the model's records are the ones you meant: that is what Preview is for."
-        ],
-        "use": "a rule is still an idea and you want it written down, with its reason, before it can hurt anybody.",
-        "mode": "Saves a draft, no rule yet",
-        "result": "a saved draft with its model, domain, permissions, user and reason, visible in one list.",
-        "warn": "Only administrators (Settings) can see the menu or the drafts. A draft that names a model that is not loaded in the database is refused when you press Preview.",
-        "images": [
-          "images/rrp-2-draft-form.webp",
-          "images/rrp-1-drafts-list.webp"
-        ]
-      },
-      {
-        "heading": "2 Preview: the number is measured, not predicted",
-        "body": [
-          "The number you want is how many records a user ends up with. You cannot get it by reading the domain, because the user is also covered by every other rule on the model, and those combine in ways the domain alone does not show.",
-          "Press Preview . The app first counts what the sample user can read today. It then creates your rule for real inside a database savepoint, counts again as that user through Odoo's own search, deletes the rule and undoes the savepoint. The form fills in Count Before , Count After , and a sentence under What this does , and the draft moves to Previewed.",
-          "The sentence is one of four. The same count either way, with a reason. None of the records, with a warning that this is almost always a domain mistake. More records than before, with an explanation. Or fewer, with how many were taken away. Each names the user it measured.",
-          "The result of a preview: before, after, and the verdict in words.",
-          "Previewing Salespeople see their own customers for Daniel Ortiz reads Count Before 65, Count After 23. The sentence says Daniel Ortiz would see 23 of the 65 record(s) now reachable - 42 taken away . Twenty-three is the number of customers assigned to Daniel in the sample data. The rule was created and removed again: the rules list holds exactly what it held before, and nothing about anyone's access changed.",
-          "The count is what the user can read, counted with Odoo's normal search, so archived records are not in it. It measures one user at a time and it does not test write, create or delete."
-        ],
-        "use": "you need to know how many records a user ends up with, with every other record rule counted in.",
-        "mode": "Measures, then rolls back",
-        "result": "Count Before, Count After and a plain-words verdict naming the user, with nothing enforced and nothing left behind.",
-        "warn": "A user who is not in any of the groups you picked is not affected by a group rule, so the count will not change. The verdict then says the domain matches everything or another rule is narrower, which is not the real reason: check the user belongs to the group.",
-        "images": [
-          "images/rrp-3-result.webp"
-        ]
-      },
-      {
-        "heading": "3 Global rules: the other rules are already in the number",
-        "body": [
-          "A global rule has no groups, so it applies to every user, and it is ANDed with every other global rule on the model and with whatever group rules the user already has. Whether a new one is harmless depends on what is already there.",
-          "Preview a draft with no groups and the verdict gets a second paragraph: This is a global rule, so it applies to every user and ANDs with the other global rules on this model. The count above already includes them. The form shows the Global rule box ticked. The words matter because of what the count contains: it was taken with every other rule in force, so it is already the intersection.",
-          "A global rule previewed: the 18 already has the own-customers rule in it.",
-          "The own-customers rule from section 1 is applied. The Lyon branch has closed, and the administrator previews Hide the closed Lyon branch , [('city', '!=', 'Lyon')] , with no groups, for Priya Nair. Count Before is 18 , not 65: Priya is already limited to her own customers by the rule applied earlier. Count After is 15 : three of her eighteen customers are in Lyon. The verdict reads Priya Nair would see 15 of the 18 record(s) now reachable - 3 taken away , and adds the global-rule note.",
-          "A global rule applies to everybody, but the count is for one user. Preview it again with a different name in Count for to see another person, particularly the person most likely to be caught."
-        ],
-        "use": "the rule has no groups, so it applies to everyone and has to be judged against the rules already there.",
-        "mode": "Measures, then rolls back",
-        "result": "a count that already includes the rules in force, with the verdict saying the rule applies to every user.",
-        "warn": "Everyone is affected, not only the user you counted. Preview again for other people before you apply.",
-        "images": [
-          "images/rrp-7-global-result.webp"
-        ]
-      },
-      {
-        "heading": "4 The zero guard: a rule that leaves nobody anything",
-        "body": [
-          "A domain that matches nothing is the most common way these go wrong. The form saves, the rule applies, and the user's list is empty. Because an empty list is a valid result, nothing complains.",
-          "When Count After is zero, the draft shows a box: Yes, leave this user with nothing . It is the only way past. Press Apply without ticking it and Odoo refuses with This rule leaves Maya Chen with no records at all. Tick \"Yes, leave this user with nothing\" if that is deliberate. The verdict above already said it in other words: that is almost always a domain mistake rather than an intention.",
-          "The box stays hidden while the draft is a plain Draft and whenever the count is above zero, so it only appears in the one situation that needs it.",
-          "A rule that leaves the user nothing: the verdict and the box that has to be ticked.",
-          "Apply without ticking the box is refused.",
-          "A draft called Maya sees only her own region carries the domain [('user_id', '=', company_id)] . It looks plausible: it compares the salesperson on a contact with something the user has. But company_id is a company, not a user, and no contact has a salesperson with that id. Previewed for Maya Chen, Count Before is 14 and Count After is 0 . Applying it for real would have emptied her customer list; the preview shows it first and Apply refuses until someone says otherwise.",
-          "It only catches zero. A domain that is wrong in a way that leaves the user a few records, or the wrong ones, is not flagged: that is why the verdict names the count and the user, so you can compare it with what you expected."
-        ],
-        "use": "a domain might be wrong in the way that matches nothing, and you want it stopped before it empties a list.",
-        "mode": "Blocks Apply until ticked",
-        "result": "an empty result you cannot apply by accident: Apply refuses until the draft carries an explicit yes.",
-        "warn": "The tick is for rules that are meant to hide everything from this user. If that is not what you meant, change the domain and preview again.",
-        "images": [
-          "images/rrp-8-zero-result.webp",
-          "images/rrp-9-zero-refused.webp"
-        ]
-      },
-      {
-        "heading": "5 A stale preview cannot be applied",
-        "body": [
-          "A number on the screen is only worth anything while it describes the rule beside it. If somebody edits the domain after previewing and then presses Apply, the form still shows the old counts, and you would be applying one rule on the evidence of another.",
-          "The app records what each preview measured: the model, the domain, the groups, the permissions and the user to count for. Change any of those and Apply is refused with The draft changed since it was previewed, so the counts on screen describe a rule that no longer exists. Preview it again before applying. Changing the name, the note or the tick box does not invalidate it, because none of them changes what was measured.",
-          "Two other refusals follow the same idea. Apply is not offered on a draft that has not been previewed, and the action itself refuses if it is called anyway. And an applied draft cannot be applied twice: the message tells you to edit the rule it created, or copy the draft.",
-          "Apply after an edit is refused until the draft is previewed again.",
-          "The Lyon draft was previewed. Someone changes its domain to compare a different city and presses Apply without previewing again. The dialog above appears. They press Preview, the counts are measured for the new domain, and only then does Apply go through.",
-          "The form keeps showing the old counts after an edit until you press Preview again. The refusal comes when you press Apply, not as soon as you type, so read the counts only on a form you have just previewed."
-        ],
-        "use": "more than one person edits drafts, or you change a domain after looking at the numbers.",
-        "mode": "Blocks Apply",
-        "result": "Apply only ever creates the rule that was measured, or tells you to measure again.",
-        "warn": "Previewing again after every edit is the habit this builds. It costs one click and it is rolled back every time.",
-        "images": [
-          "images/rrp-10-stale-refused.webp"
-        ]
-      },
-      {
-        "heading": "6 Mistakes refused at the form: bad domains, empty permissions, the superuser",
-        "body": [
-          "Some mistakes should never reach a preview at all: a domain that is not a domain, a rule that restricts nothing, or a sample user who is exempt from every rule.",
-          "These are checked when you save the draft. A domain that does not parse is refused with This domain does not parse and the reason from the parser. A domain that parses but is not a list, such as a dictionary, is refused with A record rule domain has to be a list . A draft with all four permissions unticked is refused, because a rule that restricts nothing is not saved by Odoo either. And the superuser cannot be the user to count for: it bypasses every record rule, so it would report every rule as harmless.",
-          "A domain that parses but names a field the model does not have is saved. It is caught when you press Preview, where Odoo refuses to create the record rule with Invalid domain: Invalid field and the draft stays as it was.",
-          "A broken domain is refused at the form, with the parser's own reason.",
-          "Editing the Maya draft, someone deletes the closing bracket and saves. The dialog above appears at once and the draft keeps its previous domain. Nothing was previewed, applied or counted, and the mistake did not wait until the rule was running.",
-          "The parse check evaluates the expression with the names the record rule uses. It does not check that the fields exist or that the logic is what you meant: the field check comes at Preview, the logic is what the count is for."
-        ],
-        "use": "the draft itself is wrong, before any count is worth taking.",
-        "mode": "Refused on save",
-        "result": "four kinds of broken draft stopped on save, each with a message that says what to fix.",
-        "warn": "An unknown field in a domain is only caught at Preview, not at save.",
-        "images": [
-          "images/rrp-11-parse-error.webp"
-        ]
-      },
-      {
-        "heading": "7 Apply: an ordinary record rule, not a copy",
-        "body": [
-          "After the preview you still need the real thing, and you want it to be the real thing: not a copy that lives inside this app and stops working when the app is removed.",
-          "Apply asks for confirmation ( This creates a real record rule. Users lose access as soon as it is saved. ) and creates one ordinary ir.rule record with your name, model, domain, groups and permissions. The draft becomes Applied, its fields lock, and an Open the rule button takes you to the rule. Nothing is wrapped or intercepted, so Odoo enforces it as it enforces any other record rule.",
-          "Nothing in the rule points back at the app, so uninstalling the app leaves the rules you made where they are.",
-          "Apply asks first.",
-          "An applied draft: locked, with a button to the real rule.",
-          "What Apply created: an ordinary record rule, no mention of this app.",
-          "The own-customers draft was previewed at 65 to 23 for Daniel Ortiz. The administrator presses Apply and confirms. The rule appears in Odoo's own record rules as Salespeople see their own customers , on Contact, for the group Sales / User: Own Documents Only. Then Priya Nair's draft is previewed for the Lyon rule and reads 18 before, which is her own customer count: the rule that was just applied is already doing its job.",
-          "Once applied, the rule is yours: edit it in the standard form. The draft does not follow later changes, and if you delete the rule the draft still says Applied while its Open the rule button reports that there is nothing to open."
-        ],
-        "use": "the count is what you meant and you want the record rule live.",
-        "mode": "Writes one record rule",
-        "result": "one ordinary record rule that Odoo enforces like any other, found again from the draft with one click.",
-        "warn": "The effect is immediate once confirmed. The preview is your chance to be wrong cheaply; Apply is not.",
-        "images": [
-          "images/rrp-4-apply-confirm.webp",
-          "images/rrp-5-applied.webp",
-          "images/rrp-6-ordinary-rule.webp"
-        ]
-      },
-      {
-        "heading": "Who it is for",
-        "body": [
-          "The Odoo administrator who is asked to \"make salespeople see only their own\" and does not want to find out by phone call what that did. Preview gives the number first, on the account that matters.",
-          "The IT lead or consultant who writes record rules for several clients and wants every one kept as a draft with a reason, a user it was measured for and the counts it produced.",
-          "Whoever answers the auditor : the draft list shows, for each applied record rule, the name, the model, the reason, who it was measured for and what it removed on the day.",
-          "It is not for end users: only administrators can open it. It also pairs with the free Access Snapshot , which shows what one user can already do on one model, before you decide what to change."
-        ],
-        "images": []
-      },
-      {
-        "heading": "What this app does not do",
-        "body": [
-          "It restricts records, not fields. Which columns a user may read is field access, a different question: Field Access Rules covers it.",
-          "The count is the number of records the sample user can read, counted with Odoo's normal search. It does not test whether they can write, create or delete, even when those permissions are ticked, it does not count archived records, and it measures one user per preview.",
-          "A group rule is only measured for people who are in the group. If the user you pick is not, the count does not change and the verdict gives the wrong reason (it blames the domain, not the missing membership). Pick a member.",
-          "It does not edit or delete existing record rules: it makes new ones. And it does not watch the rules it made: once applied, the draft is a record of what was decided, not a live view of the record rule."
-        ],
-        "images": []
-      }
-    ],
-    "scope": [],
-    "requires": [],
-    "price": 98.82,
-    "manifestPrice": 99.0,
-    "currency": "USD",
-    "category": "Tools",
-    "version": "19.0.1.0.16",
-    "license": "OPL-1",
-    "depends": [
-      "base"
-    ],
-    "paidDepends": [],
-    "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_record_rule_preview",
-    "storeUrl19": "https://apps.odoo.com/apps/modules/19.0/mh_record_rule_preview",
-    "storeUrl20": "https://apps.odoo.com/apps/modules/20.0/mh_record_rule_preview",
-    "screenshots": [],
-    "shotDims": {
-      "images/rrp-2-draft-form.webp": [
-        1000,
-        942
-      ],
-      "images/rrp-1-drafts-list.webp": [
-        1000,
-        236
-      ],
-      "images/rrp-3-result.webp": [
-        1000,
-        529
-      ],
-      "images/rrp-7-global-result.webp": [
-        1000,
-        614
-      ],
-      "images/rrp-8-zero-result.webp": [
-        1000,
-        632
-      ],
-      "images/rrp-9-zero-refused.webp": [
-        1000,
-        325
-      ],
-      "images/rrp-10-stale-refused.webp": [
-        1000,
-        325
-      ],
-      "images/rrp-11-parse-error.webp": [
-        1000,
-        292
-      ],
-      "images/rrp-4-apply-confirm.webp": [
-        1000,
-        319
-      ],
-      "images/rrp-5-applied.webp": [
-        1000,
-        707
-      ],
-      "images/rrp-6-ordinary-rule.webp": [
-        1000,
-        1087
-      ]
-    },
-    "tiles": [
-      {
-        "n": "0",
-        "l": "rules left behind by a preview: it is rolled back"
-      },
-      {
-        "n": "7",
-        "l": "kinds of mistake refused before they cost you"
-      },
-      {
-        "n": "16",
-        "l": "automated tests, none failing"
-      },
-      {
-        "n": "1",
-        "l": "ordinary record rule created on Apply, nothing wrapped"
-      },
-      {
-        "n": "base",
-        "l": "the only module it depends on"
-      },
-      {
-        "n": "19.0",
-        "l": "Odoo version of this build"
-      }
-    ],
-    "faq": [
-      {
-        "q": "Does previewing change anything in my database?",
-        "a": "No. The record rule is created inside a database savepoint, the records are counted, and the rule is removed again. The tests check that the number of record rules is the same after a preview and that what the user sees is unchanged. Only the draft itself is saved."
-      },
-      {
-        "q": "Is the number a prediction?",
-        "a": "No. It is counted, as that user, through Odoo's own search, with the record rule in force. Reproducing what Odoo would do from the domain is the guess this app removes."
-      },
-      {
-        "q": "Why can't I pick the administrator to count for?",
-        "a": "The superuser bypasses every record rule, so counting against it would always say no change and every rule would look harmless. Pick a user the rule is meant to affect."
-      },
-      {
-        "q": "What if I edit the draft after previewing?",
-        "a": "Apply is refused until you preview again, because the count on screen would describe a rule that no longer exists."
-      },
-      {
-        "q": "Does it work with several companies?",
-        "a": "The domain can use company_id and company_ids , as record rules do. Counts are for the one user you pick, with that user's companies."
-      },
-      {
-        "q": "What happens if I uninstall it?",
-        "a": "The record rules you applied stay. They are ordinary record rules with no link back to this app. The drafts go with the app."
-      },
-      {
-        "q": "Does it need developer mode?",
-        "a": "No. The screenshots were taken in a normal session."
-      }
-    ],
-    "copyWords": 2751,
-    "hasVideo": true,
-    "youtubeId": "V5A-tt9Yk0o",
-    "externalPage": null
-  },
-  {
-    "tech": "mh_session_control",
-    "slug": "session-control",
-    "name": "Session Control",
-    "summary": "Logs out idle Odoo users by ending sessions after a set idle time per user group, and lists open sessions",
-    "tagline": "Log people out after they have really been idle, a different number of minutes for each group, and see every session that is open right now",
-    "intro": [
-      "Session Control is for the person who answers for who is signed in to an Odoo 19 database. It does two jobs and nothing else. First, it ends a session once its owner has made no request for as long as that person's group allows: ten minutes for the shared terminal on the loading dock, an hour for somebody at their own desk. Second, it lists the sessions that are open at this moment, with the user, when each began, when it was last used and how long it has been idle, and gives you one button to end any of them. Everything on this page was checked on an Odoo 19 database seeded with made-up users, including a live test in which a session was left alone until the app logged it out."
-    ],
-    "features": [
-      {
-        "heading": "Why an idle timeout has to end the session",
-        "body": [
-          "Odoo counts how long a session may live with one setting for the entire database, the sessions.max_inactivity_seconds system parameter. The warehouse terminal and the finance director therefore get the same number, and it is a long one. That is the wrong answer to an auditor who asks why a shared screen in a loading bay stayed signed in all weekend.",
-          "Odoo also ships a module called Auth Timeout. Reading its code, its inactivity timer asks the person to confirm their identity again rather than ending the session, and its other timer counts from the moment the session was created, regardless of what the person did since. Both are useful, and neither is a limit on idle time that logs somebody out.",
-          "Session Control adds one rule per group: after this many minutes without a request, that user is logged out. A rule belongs to a group, so the people who need a short leash and the people who do not each get their own number, and each rule carries a note saying why. A second screen lists the sessions open now so that you can see the policy working and end a session by hand when you need to.",
-          "It is a small app on purpose. It adds a Session Control menu with two entries, three models and a check on each request. It does not add a login history, does not look at IP addresses and does not change how people sign in.",
-          "The whole app is two menu entries under Settings.",
-          "Northfield Office Supply has a Warehouse Terminal group for the two shared screens on the dock, a Finance Team group, and everyone else as internal users. The administrator sets ten minutes for the terminals, fifteen for finance and sixty for everybody, and writes the reason on each line. From then on a screen left alone on the dock is signed out after ten minutes without a request, and the finance team is signed out after fifteen.",
-          "It does not change what Auth Timeout does and does not replace it: the two can run side by side. It also does nothing about people who are active, which is the point of an idle timeout."
-        ],
-        "use": "somebody asks why a shared terminal is still signed in at nine in the morning, or why the accountant and the warehouse have the same timeout.",
-        "mode": "Ends sessions, writes one rule per group",
-        "result": "an idle limit written down per group, with the reason beside it, that really logs the person out instead of only asking for a password.",
-        "images": [
-          "images/sc-1-menu.webp"
-        ]
-      },
-      {
-        "heading": "1 Idle rules: set the minutes for each group",
-        "body": [
-          "A single database-wide number cannot be right for everybody. Set it short and the finance team loses a half-typed journal entry at lunch. Set it long and the dock terminal stays signed in. The number has to belong to the people it is meant for, and in Odoo the people are the groups.",
-          "Idle Rules is a plain editable list with three columns: Group , Inactivity Minutes and Why . Add a line, choose the group, type the number, and that is the whole rule. A new rule starts at 30 minutes. The group picker only offers groups that exist: you cannot create a group from this field.",
-          "Each rule reads as a sentence wherever Odoo shows its name, for example Warehouse Terminal after 10 min . A rule can be archived from the Actions menu, which stops it applying without losing the line, and the rule list is the only place the policy lives.",
-          "Three rules, each with its minutes and its reason.",
-          "Select a rule and the Actions menu offers Archive, which switches it off without deleting it.",
-          "The administrator adds three lines. Warehouse Terminal , 10 minutes, Shared screens on the dock, IT audit finding . Finance Team , 15 minutes, Month-end close policy . Role / User , 60 minutes, Default for a desk with a screen lock . Three lines is the whole policy, and anybody who opens the list can read why each number was chosen.",
-          "It does not warn the person before logging them out, and it does not save what they were typing. The check runs when the next request arrives: the person finds out when they click."
-        ],
-        "use": "different groups need different leashes: a shared terminal ten minutes, a desk with a screen lock an hour.",
-        "mode": "Writes a rule when saved",
-        "warn": "Nothing is enforced for a user until a rule covers one of their groups. A user with no rule is never logged out by this app, and Odoo's own lifetime applies to them as before.",
-        "images": [
-          "images/sc-2-rules.webp",
-          "images/sc-8-archive.webp"
-        ]
-      },
-      {
-        "heading": "2 The shortest rule wins",
-        "body": [
-          "Real users sit in many groups at once. Priya Nair is a finance user and also an ordinary internal user. If the rules were read in an order and the first match won, a lenient rule could undo a strict one depending on nothing more than the sequence of the list. Anyone auditing the setting would then have to work out an order of precedence.",
-          "There is no precedence to learn. For each request the app looks at every group the user holds, picks the rules that name those groups and takes the smallest number of minutes. Priya is in Finance Team (15) and in Role / User (60): her limit is 15. Take her out of Finance and it becomes 60.",
-          "The lookup uses the complete set of groups a user holds, including groups they reach by implication. If Warehouse Terminal were implied by another group, a user who only has that other group is covered by the Warehouse Terminal rule too. A test covers this, because reading explicit membership alone would let a session outlive the policy that was meant to end it, which is the one direction an idle timeout must never fail in.",
-          "Priya is covered by both of these lines. The smaller number applies.",
-          "Tomas Novak works the dock terminal and also has a normal internal login for his email. He is in Warehouse Terminal (10) and Role / User (60). His limit is 10 minutes on every screen, because the rule is about the user, not about the terminal. Lena Fischer, who is only an internal user, gets 60.",
-          "The rule follows the user, not the machine. It cannot give the same person ten minutes on the dock and an hour at their desk, and it has no concept of a device."
-        ],
-        "use": "people belong to several groups and you want a short timeout to stay short.",
-        "mode": "Read-only: a decision, no data written",
-        "result": "one number per user, always the tightest of their rules, so belonging to a lenient group never buys a longer leash.",
-        "warn": "The rule has to match a group the user actually holds. A group that is only held through another group still counts, but a group the user does not have has no effect, whatever its rule says.",
-        "images": [
-          "images/sc-2b-two-rules.webp"
-        ]
-      },
-      {
-        "heading": "3 Idle means idle: what counts, and the one-minute cost",
-        "body": [
-          "Measuring idle time sounds simple until you decide what to measure. Time since login is a session lifetime, not idleness. Time since the last page load misses somebody who spends an hour in one form, saving as they go. The clock has to run from the last time the browser spoke to the server.",
-          "Before Odoo authenticates a request, the app reads a stamp stored in the session, mh_last_seen . If the user has a rule and the stamp is older than the limit, the session is ended and Odoo does the rest: the person lands on the login page, with the usual redirect back to where they were after signing in. Otherwise the stamp is renewed.",
-          "The stamp is not rewritten on every request. It is renewed only when it is more than 60 seconds old, because a session write on every request across a whole database, to save a timestamp, would cost more than the feature is worth. The consequence is stated plainly: a timeout can overrun by up to a minute. A ten minute rule ends a session between ten and eleven minutes after its last request.",
-          "A session that has no stamp yet, because it started before the rule existed, is stamped on its next request instead of being logged out. Treating a missing stamp as infinitely old would log everybody out the moment a rule was saved. The cost is that such a session gets its full allowance counted from that first request.",
-          "Where a person lands after the limit has passed: the ordinary Odoo login.",
-          "On the test database the Warehouse Terminal rule was set to the minimum, five minutes. Maya Chen and Tomas Novak, both on the rule, and Daniel Ortiz, who is not covered by it, each signed in and loaded the web client once. Maya and Daniel were then left alone. Tomas made a request every 45 seconds. After seven minutes Maya's next request was redirected to the login page. Tomas and Daniel were not.",
-          "It cannot tell a person from a script. A browser tab that polls the server on a timer, or a monitoring script holding a session open, counts as activity."
-        ],
-        "use": "you want to know exactly when somebody is logged out, and what keeps them from being.",
-        "mode": "Writes the session, at most once a minute",
-        "result": "a clock that runs from the last request, not from login. We left a session alone on a 5 minute rule and it was logged out; a session on the same rule that kept making requests was not.",
-        "warn": "Every request counts, including requests a page makes by itself. A screen that keeps calling the server on a timer keeps its user signed in. This app measures requests, not whether somebody is looking at the screen.",
-        "images": [
-          "images/sc-9-login.webp"
-        ]
-      },
-      {
-        "heading": "4 Rules that refuse bad numbers",
-        "body": [
-          "A timeout of two minutes is a mistake that looks like a policy. People are logged out in the middle of filling in a form, lose what they typed, and the software is blamed rather than whoever chose the number. Two rules on the same group are the other classic: nobody can say which one is in force.",
-          "A rule below five minutes is refused with a message saying so and why. A second rule on a group that already has one is refused too, with a message telling you to change the existing rule so that there is one number per group. Both checks run when the line is saved, in the database, and neither leaves a half-made rule behind.",
-          "Typing 2 minutes is refused.",
-          "A second rule for the same group is refused.",
-          "An administrator adds a line for Warehouse Terminal with 2 minutes, hoping to be strict. The save is refused with the five-minute message. They type 5, which works, and put Strictest the IT audit allowed in the Why column. A week later somebody else tries to add a second Warehouse Terminal line at 20 minutes and is told to edit the first one instead.",
-          "Five minutes is a fixed floor in the code, not a setting. It checks the number, not whether the number is wise for your people: ten minutes on a screen where people fill in long forms is permitted, and will cost somebody a form."
-        ],
-        "use": "you want a number nobody can set by accident, and one rule per group so there is one number to point at.",
-        "mode": "Refuses at save, writes nothing",
-        "result": "a clear message at the moment of saving, instead of a surprise on the shop floor a week later.",
-        "images": [
-          "images/sc-3-floor-refused.webp",
-          "images/sc-4-duplicate-refused.webp"
-        ]
-      },
-      {
-        "heading": "5 Open Sessions: who is signed in right now",
-        "body": [
-          "Odoo does not keep a table of logged-in users. Each session is a file on the server. A list built from login events would show sessions that ended long ago and miss the ones created another way, so a list of logins is a log, not an answer to the question who is signed in.",
-          "Open Sessions reads the session files where Odoo keeps them and shows what is open now: the user , when the session started , when it was last active , how many minutes it has been idle , and a ticked box on the row that is you . The most idle sessions are at the top. Above the list sit the number of open sessions and the time of the scan. A person with two browsers has two rows.",
-          "The session store belongs to the whole server, not to one database. Every other database on the server has its sessions in the same place, so the scan skips any session that belongs to another database. Without that, another database's sessions would show up here with user numbers resolved against the wrong database, and ending one would log out somebody else's user. A test covers it.",
-          "Last active is the time Odoo last wrote the session file, and idle is that time against the clock, in whole minutes.",
-          "Seven sessions open on the sample database, most idle first. The administrator's own row has no End button.",
-          "It is 4 p.m. and the administrator opens the list. Samuel Okafor has been idle for 125 minutes. His group's rule says 15, but nothing happens until he makes another request, so his session is still open, and this window is where you see it. Daniel Ortiz is at 38 minutes, inside the 60 minutes his rule allows. The administrator can tell at a glance which open sessions are already past their limit and just waiting for a click.",
-          "It does not show IP addresses, devices or locations, and it keeps no history: close the window and the list is gone. Only administrators can open it."
-        ],
-        "use": "you want the truth about who is signed in at this moment, not a log of logins.",
-        "mode": "Read-only scan of the session store",
-        "result": "a list of exactly the sessions that exist, most idle first, with your own session marked.",
-        "warn": "The list is a snapshot taken each time you press Refresh, and it reads the session files Odoo keeps on disk by default. If your installation keeps sessions somewhere else, the list will be empty.",
-        "images": [
-          "images/sc-5-open-sessions.webp"
-        ]
-      },
-      {
-        "heading": "6 End a session with one click",
-        "body": [
-          "Sometimes the answer to a security question is simply: sign that person out. Without a tool, that means finding the right file on the server, or changing somebody's password so their session no longer matches.",
-          "Every row except your own has an End button. It asks first: This logs that user out immediately. Anything they had typed and not saved is lost. On confirmation the app deletes that session, which is what being logged out means in Odoo, records in the server log who ended whose session, and rescans the list. The user's next request goes to the login page. We checked it on the test database: after Samuel Okafor's session was ended, his next request was redirected to login.",
-          "Your own row has no button at all. If an End were somehow triggered for it, the app refuses with a message saying it is the session you are using, so you cannot end the screen you are looking at by accident.",
-          "The confirmation before a session is ended.",
-          "After ending Samuel Okafor's session: six rows, his is gone.",
-          "Samuel Okafor's laptop was left open in a taxi. The administrator opens Open Sessions, sees Samuel's row at 125 minutes idle, presses End and confirms. The list now has six rows. When the laptop is next opened and clicked, it goes to the login page.",
-          "Ending a session does not disable the account or change the password: the user can sign in again. For that, change the user in Odoo as usual."
-        ],
-        "use": "a user has left a session open on a machine you cannot reach, or you want somebody off right now.",
-        "mode": "Deletes the session",
-        "result": "the user is signed out on their next click, and the list refreshes with that row gone.",
-        "warn": "Ending a session is immediate and loses what the person had typed and not saved. The button asks for confirmation for that reason.",
-        "images": [
-          "images/sc-6-end-confirm.webp",
-          "images/sc-7-after-end.webp"
-        ]
-      },
-      {
-        "heading": "7 Built to stay out of the way",
-        "body": [
-          "Any code on every request is code that can break every request. A timeout is not worth a database that will not answer. So the idle check runs inside a guard that catches everything it raises, writes it to the server log and carries on to Odoo's normal authentication. If the check itself ever fails, the worst case is that nobody is logged out for that request. (This comes from reading the code: we could not provoke it on a healthy database.)",
-          "The check sits before Odoo authenticates, so the logout takes the same path as any other: Odoo raises, redirects and saves the session itself.",
-          "The superuser is never logged out. Scheduled jobs and upgrade scripts run as that account and have no browser to log out. A user with no rule, an archived rule or no group named in any rule has no limit at all.",
-          "The guard hides failures from the user, so they exist only in the log. If you rely on the timeout for compliance, test it on your own database, as we did, rather than assuming it."
-        ],
-        "use": "you are being asked to put code on every request of a production database.",
-        "mode": "Failures are logged and ignored",
-        "images": []
-      },
-      {
-        "heading": "Who it is for",
-        "body": [
-          "The Odoo administrator who has been told that the shared terminals must sign out after ten minutes, and wants it enforced and written down in one place.",
-          "The IT lead or consultant who sets up several databases and wants the policy to be a list of three or four lines with reasons, not a code change.",
-          "Whoever answers the auditor : the rule list shows, per group, the number and the reason, and the Open Sessions window shows the policy at work.",
-          "It is not for end users, who never see it, and it is not a login history, an IP restriction or a two-factor tool."
-        ],
-        "images": []
-      },
-      {
-        "heading": "What this app does not do",
-        "body": [
-          "It ends a session after inactivity. It does not warn before it does, does not save the person's work and does not offer to stay signed in.",
-          "Every authenticated request counts as activity. Background requests made by a page keep its user signed in, so it measures requests, not attention.",
-          "The timeout can overrun by up to a minute, because the last-seen stamp is written at most once a minute per session.",
-          "A session started before a rule existed gets its full allowance counted from its first request after the rule, not from its real last activity.",
-          "The superuser is never logged out. Users with no rule are never logged out by this app.",
-          "The Open Sessions list reads the session files Odoo keeps on disk by default. It is a snapshot, it does not record history and it does not show IP addresses or devices. Last active is the time of the last session write, which is close to, but not exactly, the stamp the timeout uses.",
-          "Other internal users cannot open the menu, but they hold read access to the rule records themselves, so a user who queries the database through Odoo's API can read the minutes and the notes. Do not put anything in a note you would not show them."
-        ],
-        "images": []
-      }
-    ],
-    "scope": [],
-    "requires": [],
-    "price": 98.82,
-    "manifestPrice": 99.0,
-    "currency": "USD",
-    "category": "Tools",
-    "version": "19.0.1.0.21",
-    "license": "OPL-1",
-    "depends": [
-      "base"
-    ],
-    "paidDepends": [],
-    "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_session_control",
-    "storeUrl19": "https://apps.odoo.com/apps/modules/19.0/mh_session_control",
-    "storeUrl20": "https://apps.odoo.com/apps/modules/20.0/mh_session_control",
-    "screenshots": [],
-    "shotDims": {
-      "images/sc-1-menu.webp": [
-        884,
-        284
-      ],
-      "images/sc-2-rules.webp": [
-        1000,
-        236
-      ],
-      "images/sc-8-archive.webp": [
-        1000,
-        371
-      ],
-      "images/sc-2b-two-rules.webp": [
-        1000,
-        109
-      ],
-      "images/sc-9-login.webp": [
-        592,
-        632
-      ],
-      "images/sc-3-floor-refused.webp": [
-        1000,
-        325
-      ],
-      "images/sc-4-duplicate-refused.webp": [
-        1000,
-        325
-      ],
-      "images/sc-5-open-sessions.webp": [
-        1000,
-        919
-      ],
-      "images/sc-6-end-confirm.webp": [
-        1000,
-        298
-      ],
-      "images/sc-7-after-end.webp": [
-        1000,
-        865
-      ]
-    },
-    "tiles": [
-      {
-        "n": "5 min",
-        "l": "the shortest idle limit it accepts"
-      },
-      {
-        "n": "1 min",
-        "l": "the most a timeout can overrun"
-      },
-      {
-        "n": "15",
-        "l": "automated tests, none failing"
-      },
-      {
-        "n": "0",
-        "l": "sessions of other databases in the list"
-      },
-      {
-        "n": "1",
-        "l": "click to end any session but your own"
-      },
-      {
-        "n": "base",
-        "l": "the only module it depends on"
-      }
-    ],
-    "faq": [
-      {
-        "q": "Is this the same as Odoo's Auth Timeout?",
-        "a": "No. Reading Odoo's Auth Timeout code, its inactivity timer asks the person to confirm their identity and the session stays valid. Session Control ends the session itself. They can run side by side."
-      },
-      {
-        "q": "When exactly is somebody logged out?",
-        "a": "On their first request after the limit has passed. The request goes to the login page. If the person has not touched the screen, nothing happens until they do."
-      },
-      {
-        "q": "Does a page that refreshes itself keep a user signed in?",
-        "a": "Yes. Any request counts as activity, whoever or whatever makes it."
-      },
-      {
-        "q": "What if a user is in several groups with different rules?",
-        "a": "The shortest limit applies."
-      },
-      {
-        "q": "Can I set a timeout under five minutes?",
-        "a": "No. Anything under five minutes is refused when you save."
-      },
-      {
-        "q": "Will it log out the administrator account that runs my scheduled jobs?",
-        "a": "No. The superuser is never logged out."
-      },
-      {
-        "q": "Does the list show sessions of my other databases?",
-        "a": "No. Only sessions belonging to the database you are in."
-      },
-      {
-        "q": "Can it slow down my server?",
-        "a": "It adds one small rule lookup to each request from a signed-in user and rewrites the session at most once a minute. It does not write on every request. If its check fails it is logged and ignored."
-      }
-    ],
-    "copyWords": 2880,
-    "hasVideo": true,
-    "youtubeId": "bjnw1R8BgUE",
-    "externalPage": null
-  },
-  {
     "tech": "mh_snapchat_ads_launcher",
     "slug": "snapchat-ads-connector",
     "name": "Snapchat Ads Connector",
@@ -3703,11 +3703,11 @@ export const odooApps = [
     ],
     "scope": [],
     "requires": [],
-    "price": 88.83,
+    "price": 89.0,
     "manifestPrice": 89.0,
     "currency": "USD",
     "category": "Tools",
-    "version": "19.0.1.0.11",
+    "version": "19.0.1.0.12",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -3921,11 +3921,11 @@ export const odooApps = [
     ],
     "scope": [],
     "requires": [],
-    "price": 78.85,
+    "price": 79.0,
     "manifestPrice": 79.0,
     "currency": "USD",
     "category": "Human Resources",
-    "version": "19.0.1.0.8",
+    "version": "19.0.1.0.9",
     "license": "OPL-1",
     "depends": [
       "mail"
@@ -4214,11 +4214,11 @@ export const odooApps = [
       "Invoices posted before you install it earn nothing until you select them and run Recompute Commission. An invoice that groups several sales orders takes its salesperson and agents from the first order. A vendor credit note against a commission bill does not release its lines; cancel the bill instead. A rate is a percentage between 0 and 100: no fixed amounts."
     ],
     "requires": [],
-    "price": 78.85,
+    "price": 79.0,
     "manifestPrice": 79.0,
     "currency": "USD",
     "category": "Sales/Sales",
-    "version": "19.0.1.0.4",
+    "version": "19.0.1.0.5",
     "license": "OPL-1",
     "depends": [
       "sale"
@@ -4471,7 +4471,7 @@ export const odooApps = [
     "manifestPrice": 69.0,
     "currency": "USD",
     "category": "Accounting/Accounting",
-    "version": "19.0.1.0.7",
+    "version": "19.0.1.0.8",
     "license": "OPL-1",
     "depends": [
       "account"
@@ -4698,7 +4698,7 @@ export const odooApps = [
     "manifestPrice": 69.0,
     "currency": "USD",
     "category": "Website",
-    "version": "19.0.1.0.15",
+    "version": "19.0.1.0.16",
     "license": "OPL-1",
     "depends": [
       "website",
@@ -4914,7 +4914,7 @@ export const odooApps = [
     "manifestPrice": 69.0,
     "currency": "USD",
     "category": "Warehouse",
-    "version": "19.0.1.0.17",
+    "version": "19.0.1.0.18",
     "license": "OPL-1",
     "depends": [
       "stock",
@@ -5042,6 +5042,233 @@ export const odooApps = [
     "externalPage": null
   },
   {
+    "tech": "mh_menu_visibility",
+    "slug": "menu-visibility",
+    "name": "Menu Visibility",
+    "summary": "Hides many menus from many groups in one reviewed change, previews what one person would be left seeing, and puts every menu's previous groups back with one click: menu visibility, hide menus by group, bulk menu restriction",
+    "tagline": "Hide menus from the roles that do not need them, many at once, with a preview and a way back",
+    "intro": [
+      "Odoo restricts a menu one form at a time, in developer mode, and keeps no record of what was restricted. Menu Visibility lets you pick the menus, pick who keeps them, and read what it will do before anything is written. This page walks through one real change with screenshots of an Odoo 19 database seeded with made-up data, and says where the app stops."
+    ],
+    "features": [
+      {
+        "heading": "Why a plan comes before the change",
+        "body": [
+          "Hiding twenty menus by hand is twenty trips through Settings, and undoing it a year later means remembering which twenty. Menu Visibility turns it into one record you can read."
+        ],
+        "images": []
+      },
+      {
+        "heading": "1 Pick the menus and the groups",
+        "body": [
+          "A menu is restricted by giving it groups, one menu at a time. A role that should lose three apps and everything under them means opening dozens of menus.",
+          "Open Settings > Menu Visibility and create a change. Menus takes the menus to restrict, Visible only to takes the groups that keep them, and Include everything underneath (on by default) takes each menu's whole subtree along. Check against names a person to preview, and Why is a note for whoever reads it in a year.",
+          "The form shows Menu Visibility only to users in the Settings group.",
+          "A draft: three menus, two groups that keep them, Diego Ramos to check against."
+        ],
+        "use": "a role should stop seeing apps it has no business in, and you want to do it once, for all of them.",
+        "mode": "Writes nothing yet",
+        "images": [
+          "images/mv-form-draft.webp"
+        ]
+      },
+      {
+        "heading": "2 Work it out first",
+        "body": [
+          "Work out the change fills a plan: the number of menus it would change, the number already correct, one line per menu, how many came from the subtrees, and a warning when you picked a top-level menu, because that hides a whole app. In this run the three picked menus became 21 menus, 18 of them from the subtrees.",
+          "The plan: 21 menus to change, none already correct, then one line per menu.",
+          "The end of the plan: the subtree count, the top-level warning, and the count for the person named in Check against.",
+          "Restricting Calendar, Contacts and Dashboards to the Sales and Purchase groups changed 21 menus. The plan said Diego Ramos could see 122 menus now and would see 105 afterwards. That count is measured, not guessed: the app applies the change inside a database savepoint, counts what the person can see, and rolls it back.",
+          "If the last visible entry of a folder is restricted, the folder goes with it, and the plan reports those extra menus."
+        ],
+        "use": "you want to read the whole change, and one person's result, before anyone loses a menu.",
+        "mode": "Plan only, no writes",
+        "images": [
+          "images/mv-form-plan.webp",
+          "images/mv-plan-summary.webp"
+        ]
+      },
+      {
+        "heading": "3 See the result for two people",
+        "body": [
+          "Apply asks for confirmation, records the groups each menu carried, then writes the new groups. People outside the listed groups stop seeing the menus; people inside keep them. The app list below is the apps menu in the top bar, opened as each user.",
+          "Diego Ramos, a warehouse user, before the change.",
+          "Diego Ramos after Apply: Calendar, Contacts and Dashboards are gone.",
+          "Mia Chen is in a listed group and keeps every menu.",
+          "After Apply, Diego lost the three menus and Mia Chen, who holds Sales / User: All Documents, kept all of them. The same change gave two different answers, which is the point of naming groups."
+        ],
+        "use": "you need to know the right people kept their apps and the wrong ones lost them.",
+        "mode": "Apply writes menu groups",
+        "warn": "A menu a person keeps is decided by group membership, including groups that imply others. Check the person who matters before applying, and use Check against to do it.",
+        "images": [
+          "images/mv-menus-before.webp",
+          "images/mv-menus-after.webp",
+          "images/mv-menus-mia.webp"
+        ]
+      },
+      {
+        "heading": "4 Put it back",
+        "body": [
+          "An applied change shows Put it back . It restores the groups each menu carried before, and the record becomes Reverted. The list shows every change and its state.",
+          "Put it back writes the groups that were recorded when the change was applied. A group someone added to one of those menus afterwards is removed, and if two changes overlapped, reverting the earlier one restores the groups from before it, which undoes the later one while the later one still reads Applied. Revert changes in the reverse order of applying them.",
+          "An applied change, with Put it back available.",
+          "A change that was applied and then put back.",
+          "The list: Applied, Reverted and Draft changes with the number of menus each touches."
+        ],
+        "use": "the change was a trial, or the request was withdrawn.",
+        "mode": "Restores recorded groups",
+        "images": [
+          "images/mv-form-applied.webp",
+          "images/mv-form-reverted.webp",
+          "images/mv-list.webp"
+        ]
+      },
+      {
+        "heading": "5 Refusals that protect you",
+        "body": [
+          "Apply is refused when the selection changed after the plan was worked out, because the list on screen would describe a different change. The form also refuses to plan without a group, since a menu with no groups is visible to everyone and the change would publish menus instead of hiding them.",
+          "The plan step itself also raises \"Pick at least one group\" for a record that reaches it with no groups, for instance from an import; that message is covered by an automated test rather than a screenshot.",
+          "Removing a group after planning, then pressing Apply: refused.",
+          "A change with no group cannot be worked out: the form flags Visible only to."
+        ],
+        "use": "a change was edited after planning, or was started without a group.",
+        "mode": "Blocks the write",
+        "images": [
+          "images/mv-stale.webp",
+          "images/mv-invalid.webp"
+        ]
+      },
+      {
+        "heading": "6 Where it stops",
+        "body": [
+          "Menu Visibility removes menus from the interface. It does not change who can read the records.",
+          "Diego Ramos opening the Contacts list by its address, after Contacts was hidden from his menus."
+        ],
+        "use": "you are deciding whether this is enough on its own.",
+        "mode": "Hides, does not lock",
+        "warn": "A hidden menu is not a locked door. After the change, Diego Ramos still opened the Contacts list by its address, and an automated test confirms he can still read the records. Use access rights and record rules for real restrictions.",
+        "images": [
+          "images/mv-url-limit.webp"
+        ]
+      }
+    ],
+    "scope": [],
+    "requires": [],
+    "price": 69.0,
+    "manifestPrice": 69.0,
+    "currency": "USD",
+    "category": "Tools",
+    "version": "19.0.1.0.8",
+    "license": "OPL-1",
+    "depends": [
+      "base"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_menu_visibility",
+    "storeUrl19": "https://apps.odoo.com/apps/modules/19.0/mh_menu_visibility",
+    "storeUrl20": "https://apps.odoo.com/apps/modules/20.0/mh_menu_visibility",
+    "screenshots": [],
+    "shotDims": {
+      "images/mv-form-draft.webp": [
+        1000,
+        1029
+      ],
+      "images/mv-form-plan.webp": [
+        1000,
+        1882
+      ],
+      "images/mv-plan-summary.webp": [
+        1000,
+        756
+      ],
+      "images/mv-menus-before.webp": [
+        320,
+        360
+      ],
+      "images/mv-menus-after.webp": [
+        320,
+        198
+      ],
+      "images/mv-menus-mia.webp": [
+        320,
+        360
+      ],
+      "images/mv-form-applied.webp": [
+        1000,
+        1287
+      ],
+      "images/mv-form-reverted.webp": [
+        1000,
+        1233
+      ],
+      "images/mv-list.webp": [
+        1000,
+        887
+      ],
+      "images/mv-stale.webp": [
+        1000,
+        563
+      ],
+      "images/mv-invalid.webp": [
+        1000,
+        898
+      ],
+      "images/mv-url-limit.webp": [
+        1000,
+        1228
+      ]
+    },
+    "tiles": [
+      {
+        "n": "3 + 18",
+        "l": "menus: three picked, 18 more came from their subtrees, all in one change"
+      },
+      {
+        "n": "122 to 105",
+        "l": "menus the example user, Diego Ramos, could see before and after (read from the plan)"
+      },
+      {
+        "n": "15",
+        "l": "automated tests, none failing"
+      },
+      {
+        "n": "1 click",
+        "l": "puts back the groups every menu carried before"
+      },
+      {
+        "n": "0",
+        "l": "menus changed until you press Apply on a plan that still matches"
+      },
+      {
+        "n": "Hides",
+        "l": "a hidden menu is not a locked door: the data behind it stays readable"
+      }
+    ],
+    "faq": [
+      {
+        "q": "Does it hide menus from administrators too?",
+        "a": "It hides a menu from everyone who is not in one of the groups you list. An administrator who holds one of those groups, or a group that implies one, keeps the menu."
+      },
+      {
+        "q": "Is it a security feature?",
+        "a": "No. It hides menus; the pages and records behind them stay reachable by address and readable under the existing access rights."
+      },
+      {
+        "q": "Can I undo a change?",
+        "a": "Yes, with Put it back, which restores the groups recorded when the change was applied. Revert overlapping changes in the reverse order."
+      },
+      {
+        "q": "Does the plan change anything?",
+        "a": "No. Planning writes only the plan to the change record. The menu counts are measured inside a savepoint that is rolled back."
+      }
+    ],
+    "copyWords": 810,
+    "hasVideo": true,
+    "youtubeId": "lrrmIBO3GF4",
+    "externalPage": null
+  },
+  {
     "tech": "mh_1099_reporting",
     "slug": "us-1099-reporting",
     "name": "US 1099 Reporting",
@@ -5158,7 +5385,7 @@ export const odooApps = [
     "manifestPrice": 69.0,
     "currency": "USD",
     "category": "Accounting/Accounting",
-    "version": "19.0.1.0.11",
+    "version": "19.0.1.0.12",
     "license": "OPL-1",
     "depends": [
       "account",
@@ -5373,7 +5600,7 @@ export const odooApps = [
     "manifestPrice": 69.0,
     "currency": "USD",
     "category": "Project",
-    "version": "19.0.1.0.17",
+    "version": "19.0.1.0.18",
     "license": "OPL-1",
     "depends": [
       "sale_timesheet"
@@ -5461,842 +5688,6 @@ export const odooApps = [
     "copyWords": 978,
     "hasVideo": true,
     "youtubeId": "WdJ8bg27kqw",
-    "externalPage": null
-  },
-  {
-    "tech": "mh_api_key_inventory",
-    "slug": "api-key-inventory",
-    "name": "API Key Inventory",
-    "summary": "Lists every API key in the Odoo database with its owner, expiry date and last real use, and revokes a key on request: Every API key in the database in one list, with who owns it, when it expires and when it was last actually used, so the forgotten ones can be revoked",
-    "tagline": "",
-    "intro": [
-      "Every API key in the database in one list, with who owns it, when it expires and when it was last actually used, so the forgotten ones can be revoked",
-      "API Key Inventory is for the administrator of an Odoo 19 database who has been asked a simple question and could not answer it: which API keys are still in use? Integrations, scripts, a consultant's test and an AI agent each leave a key behind, and every key is a standing way into your data. Odoo shows a key's owner, name and creation date, but nothing about whether anything still uses it. This app adds the two facts that decide what to do: when the key was last used, and when it expires. It lists every key worst first, flags the ones worth a look, and lets you revoke a key with one click and one confirmation. Everything on this page was checked on an Odoo 19 database seeded with made-up users and keys, including a live call made with a real key."
-    ],
-    "features": [
-      {
-        "heading": "Why a key nobody uses is the dangerous one",
-        "body": [
-          "An API key is a password that never asks for a second factor. It is made once, pasted into a script or an integration, and forgotten. If the integration is working, nobody touches the key. If it was a trial, nobody touches it either. From the outside the two look identical, and the safe-looking choice, leaving it alone, is the one that keeps the forgotten key valid for years.",
-          "Odoo does give you something to work with. Each user can see their own keys in their preferences, and administrators have a plain listing of every key (a Manage API Keys button in Settings > General Settings) with its owner, description, scope and creation date, and a delete button. What that listing cannot tell you is whether a key is alive. It has no last-use column and no expiry column, so a key created two years ago for a one-day trial sits in it beside a key carrying thousands of calls a day, and you have to guess.",
-          "API Key Inventory records the moment each key is used, at the point where Odoo checks it, and keeps that next to the key's owner, description, scope, creation date and expiry date. A Settings menu entry shows all of it in one list, sorted so the keys that have been quiet longest come first, with four filters for the cases that matter. A Revoke button deletes a key you have decided is dead.",
-          "It is a small app on purpose. It adds one list, one form and one menu with two entries, plus a few lines that run when a key is verified. It does not create keys, does not rotate them and does not send alerts.",
-          "Northfield Office Supply runs Odoo with a Shopify sync, a dock scanner gateway, a bank feed import and a Power BI report, and over the years two consultants have each left a test key behind. The administrator installs the app, presses Refresh and sees eight keys. Three are carrying traffic. Two have never been used at all, two have been silent for 52 and 214 days, and one has already expired. That is the list she takes to the IT lead, instead of a guess.",
-          "It does not tell you what a key did, only when it was last used. It does not decide for you: a key that looks idle may belong to a quarterly job, and only you know that."
-        ],
-        "use": "an auditor, a departing contractor or a security review asks which integrations still have access, and nobody can say.",
-        "mode": "Reads keys, writes only a last-use stamp",
-        "images": []
-      },
-      {
-        "heading": "1 Refresh: read every key into the inventory",
-        "body": [
-          "Keys are made from each user's own preferences, so there is no event on the administrator's side to say that a new one now exists. An inventory that waited to be told would always be out of date.",
-          "The app adds an API Keys menu to Settings with two entries, Inventory and Refresh , visible to administrators only. Refresh goes and looks. It adds a row for each key it has not seen, removes the row of any key that no longer exists, and refreshes the details of the rest, so an expiry date changed since the last visit is picked up. Then it opens the list.",
-          "The inventory keeps a copy of each key's details (owner, description, scope, created and expiry dates), never the key itself. Pressing Refresh twice gives the same list, not duplicates. A key that has been used is also added to the list at that moment, even if nobody pressed Refresh, which is how a key made today shows up once it starts working.",
-          "Two entries under Settings, and nothing else added.",
-          "Before the first Refresh the list is empty, and says why.",
-          "Right after installing, the administrator opens Inventory and finds it empty. She opens Refresh and the list fills with eight rows: the keys of six users, made over the previous two years. Later a developer creates a ninth key in his preferences. It is not in the list until she presses Refresh again, or until the key is first used.",
-          "It does not refresh by itself on a schedule, and it does not watch for new keys. It also does not read the key values: Odoo itself only keeps a hashed form of them."
-        ],
-        "use": "you are opening the inventory for the first time, or want it to include keys made since you last looked.",
-        "mode": "Copies key details into the inventory",
-        "result": "a list that matches the keys that exist right now: new keys added, deleted keys dropped, changed expiry dates updated.",
-        "images": [
-          "images/api-keys-1-menu.webp",
-          "images/api-keys-2-empty.webp"
-        ]
-      },
-      {
-        "heading": "2 The inventory: every key, worst first",
-        "body": [
-          "A list of keys in the order they were made puts your newest, probably healthiest keys first and buries the old ones. The keys you need to see are the ones nobody has used for the longest time, and they should not need hunting for.",
-          "One row per key with the owner, the description, the scope, when it was created, when it was last used, the number of days since last use, the expiry date, a tick if the key never expires, and a coloured status badge. The use count is available in the column picker and hidden by default. The Scope column can be hidden the same way.",
-          "The list is sorted by the last activity, oldest first. For a key that has never been used, the creation date stands in for the last use, so a key made two years ago and never used ranks as old rather than as brand new. Rows are coloured to match: red for a key that has never been used or never expires, amber for an idle key, grey for an expired one. Days since last use is counted in whole days and never shows a negative number.",
-          "You can search by owner, description or scope, and group the list by owner. Opening a row shows the same facts in a form (see section 5). The full screen, with the status badges and Revoke buttons, is shown at full width in the Screenshots section at the end of this page.",
-          "The left half of the list: who owns each key, when it was made, when it was last used, and the days of silence.",
-          "On the Northfield database the first row is a key described as Zapier trial (March) , owned by Daniel Ortiz, created 600 days ago and never used. Below it sits Legacy payroll export , last used 214 days ago, then another never-used test key, then the expired reporting key, then a bank feed import that has been silent for 52 days. Everything that is actually working, the Shopify sync and the dock scanner, is at the bottom with a green badge.",
-          "The list is a snapshot taken at the last Refresh, with use recorded as it happens. Keys that were made after the last Refresh and have not been used yet are not on it. It does not export or email the list: use Odoo's standard export on the selected rows if you need a file."
-        ],
-        "use": "you want to see all keys at once and know which to look at first.",
-        "mode": "Read-only list",
-        "result": "the keys that have been quiet longest are the first rows you read, and each one carries its own colour.",
-        "images": [
-          "images/api-keys-3-inventory-left.webp"
-        ]
-      },
-      {
-        "heading": "3 Last use, stamped when Odoo verifies the key",
-        "body": [
-          "Odoo checks a key on every call an integration makes, and keeps no record that it did. The only way to learn that a key is alive is to switch it off and wait for somebody to complain, which is a poor way to find out.",
-          "It adds a few lines to Odoo's own key check. After Odoo has verified a key and accepted it, the app finds the key's row (creating it if the key was never listed), stamps Last Used with the current time and adds one to the Use Count . Because the stamp is made at the point of verification, it reflects real traffic. A wrong key records nothing, and neither does a key Odoo refuses.",
-          "The stamp is written at most once a minute per key. A key may be checked many times a second, and a write for each would cost more than the fact is worth. A second call inside the same minute changes nothing. The consequence is stated on the form too: the use count measures how many minutes a key was active in, not how many calls it made.",
-          "Each verified call costs two small lookups: one to find the key by its index and one to find its row. Writes are limited to once a minute.",
-          "Before: the Never used filter finds two keys, both created long ago and never called.",
-          "The two never-used keys are the Zapier trial and a Postman test owned by Priya Nair. To prove the recording works, a call was made over XML-RPC using the real Postman key. Odoo accepted it, and the Postman row moved to In use with Last Used set to that moment and zero days idle. Calls with the expired key and with a made-up key were both refused and recorded nothing. The after-picture is the full-width screen in the Screenshots section below.",
-          "Recording starts when the app is installed. A key that was last used yesterday, before you installed, shows as never used until its next call. After a week or two of running, the answer is far more useful than a guess, but on day one, treat Never used as never used since install."
-        ],
-        "use": "you need proof that a key is carrying real traffic, not somebody's belief that it is.",
-        "mode": "Writes a stamp when a key is used",
-        "images": [
-          "images/api-keys-5-never-used.webp"
-        ]
-      },
-      {
-        "heading": "4 Four flags: never used, idle, no expiry, expired",
-        "body": [
-          "Most of a key list is healthy. The risk is in four small groups, and they overlap, so reading the whole list row by row is slow and easy to get wrong.",
-          "The search panel has four filters. Never used shows keys that Odoo has never been seen to accept since the app was installed. Idle 30 days or more shows keys last used at least thirty days ago. No expiry date shows keys that nothing will ever retire. Expired shows keys whose expiry date has passed. Each is one click, and the status of a key is worked out when you open the list, so a key that went quiet yesterday appears in Idle today without anybody touching it.",
-          "A key has exactly one status badge, chosen in this order: Expired first, then Never used, then Idle, and In use for what is left. An expired key is therefore never shown as idle, whatever its history. The No expiry date filter is separate from the badge, because a key with no expiry can also be idle or never used, and the two flags together are the riskiest keys on the list.",
-          "The four filters, one click each.",
-          "Idle: two keys last used 214 and 52 days ago.",
-          "No expiry date: four keys that will never retire themselves.",
-          "The administrator opens Idle 30 days or more and gets two keys: the legacy payroll export, silent for 214 days, and the bank feed import, silent for 52. Both also have no expiry date, so both are on the No expiry list too. Four keys have no expiry. She now has a plan: ask the finance team about the bank feed, and revoke the payroll export.",
-          "The thirty-day threshold is fixed. It is not a setting. And an expired key does not stay in the list forever: Odoo's own scheduled clean-up deletes expired keys from its table, and the next Refresh then removes their rows here. Expired keys are visible for a while after they lapse, not permanently. Grouping by Status in the search panel currently raises an error on screen because status is worked out on the fly and cannot be grouped; group by Owner works, and the four filters above do the same job."
-        ],
-        "use": "you want the shortlist of keys that deserve a decision, without reading every row.",
-        "mode": "Read-only filters",
-        "result": "one click in the search panel gives the short list of keys that are never used, quiet for a month, without an expiry date or already expired.",
-        "images": [
-          "images/api-keys-4-filters.webp",
-          "images/api-keys-6-idle.webp",
-          "images/api-keys-7-no-expiry.webp"
-        ]
-      },
-      {
-        "heading": "5 One key in detail",
-        "body": [
-          "Before you revoke something that an integration may depend on, you want the whole story in one place, and you want to see which of its states the key is in.",
-          "Click a row to open its form. The title is the key's description. On the left you see the owner, the scope and the creation date. On the right you see the last use, the days since last use, the use count, the expiry date and whether the key never expires. A status bar at the top shows where the key stands: Never used, Idle or In use. The Revoke button sits next to it, in red. Nothing on the form is editable: the inventory records facts, and the keys themselves stay under Odoo's own screens.",
-          "Under the fields is a reminder that use is recorded at most once a minute, so the count measures minutes of activity rather than calls. The form can be paged through with the arrows, which lets you walk down the worst keys one after another.",
-          "The form of a key last used 52 days ago with no expiry date.",
-          "The bank feed import belongs to a user called Finance Bot, was created in September 2025, was last used on September 7 and has been called in 905 different minutes. It has no expiry date. That tells the administrator it was a real, busy integration that has stopped, which is a question for the finance team, not a key to delete blind.",
-          "It cannot change the scope or the expiry date. That is done in Odoo's own key screen, and this app does not get between you and it."
-        ],
-        "use": "you need the full picture of a single key before deciding about it.",
-        "mode": "Read-only form",
-        "images": [
-          "images/api-keys-9-key-form.webp"
-        ]
-      },
-      {
-        "heading": "6 Revoke: delete the key itself",
-        "body": [
-          "Finding a forgotten key is half of the job. Ending it normally means asking the owner to open their preferences and delete it, or going through the standard listing, away from the evidence you just gathered.",
-          "Every row has a Revoke button, and so does the form. Pressing it asks for confirmation in plain words: This deletes the key. Anything still using it stops working immediately, and the key cannot be restored - a new one has to be issued. Confirming deletes the key from Odoo through its own removal routine and removes the row from the inventory. The server log records which key, whose it was and who revoked it.",
-          "If the key has already been removed by someone else, the app says so and suggests pressing Refresh, instead of failing silently. Only administrators can reach the button.",
-          "The confirmation says what will happen before it does.",
-          "After confirming: the Zapier trial row is gone, seven keys remain.",
-          "The Zapier trial key was created 600 days ago and never used. The administrator presses Revoke on its row and confirms. The list drops to seven keys, and the key can no longer sign in to anything. The log line names the key, its owner Daniel Ortiz and the administrator who revoked it.",
-          "It does not ask the owner first, send a notification or keep a copy of the key. If you revoke the wrong key, the integration breaks until a new key is created and pasted in."
-        ],
-        "use": "you have decided a key is dead, or leaked, and it must stop working now.",
-        "mode": "Deletes the key, cannot be undone",
-        "result": "the key stops working at once, the row disappears from the list, and the log line records who did it.",
-        "warn": "Revoking deletes the key from Odoo. Anything still using it stops working immediately, and a new key has to be issued. There is no undo.",
-        "images": [
-          "images/api-keys-11-revoke-confirm.webp",
-          "images/api-keys-12-after-revoke.webp"
-        ]
-      },
-      {
-        "heading": "7 Built so that recording never refuses a key",
-        "body": [
-          "Code in the key check is code that can break every integration at once. The thing this app exists to look after must not be put at risk by it. So the recording step runs inside a guard that catches every error it raises, writes it to the server log and lets Odoo carry on with the verified key. In the worst case you lose a timestamp. You never lose a valid key.",
-          "The recording only happens after Odoo has accepted the key. Odoo's own checks, including its scope and expiry rules, run first and are not changed. Odoo decides whether a call is allowed; this app only notes that it was.",
-          "The app stores no secret. The inventory copies the key's description, owner, scope and dates, and the key's short index is used only to find the right row. The key value itself is never held by the app.",
-          "The guard hides failures from the user, so they show up only in the log. Because a lost stamp makes a key look idler than it is, check the log on first use if you plan to rely on the numbers, and test the Never used and In use badges with a key of your own, as we did."
-        ],
-        "use": "you are being asked to put code in the path that checks every API call.",
-        "mode": "A failure is logged and ignored",
-        "images": []
-      },
-      {
-        "heading": "Who it is for",
-        "body": [
-          "The Odoo administrator who has inherited a database full of integrations and wants to know which keys are alive before the next audit.",
-          "The consultant or IT lead who hands a system over, and wants the old test keys gone before they leave.",
-          "Whoever answers the security review : the list shows, per key, an owner, a last use and an expiry, which is what reviewers ask for.",
-          "It is not for end users, who never see it, and it is not a way to create keys, a secrets manager or an audit log of what each call did."
-        ],
-        "images": []
-      },
-      {
-        "heading": "What this app does not do",
-        "body": [
-          "Recording begins at install. A key used yesterday, before the app was installed, reads as never used until its next call.",
-          "The last-use stamp is written at most once a minute per key, so the use count is minutes of activity, not a count of calls.",
-          "The list is a copy taken when you press Refresh. A key created afterwards appears when you refresh or when it is first used.",
-          "An expired key is shown only until Odoo's own clean-up removes it from its table. After the next Refresh the row is gone, so this is not a permanent record of expired keys.",
-          "The idle threshold is thirty days and cannot be changed in a setting.",
-          "Grouping the list by Status shows an error, because status is worked out when you look and not stored. Group by Owner, or use the four filters.",
-          "It cannot create keys or change their scope or expiry. It sends no alerts and keeps no history of what each call did. For an AI agent connected over MCP, that is what AI Agent Guardrails is for.",
-          "Revoke asks nothing of the key's owner and cannot be undone. Only administrators can see the menu or the data."
-        ],
-        "images": []
-      }
-    ],
-    "scope": [],
-    "requires": [],
-    "price": 68.88,
-    "manifestPrice": 69.0,
-    "currency": "USD",
-    "category": "Tools",
-    "version": "19.0.1.0.16",
-    "license": "OPL-1",
-    "depends": [
-      "base"
-    ],
-    "paidDepends": [],
-    "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_api_key_inventory",
-    "storeUrl19": "https://apps.odoo.com/apps/modules/19.0/mh_api_key_inventory",
-    "storeUrl20": "https://apps.odoo.com/apps/modules/20.0/mh_api_key_inventory",
-    "screenshots": [
-      "images/api-keys-3-inventory.webp",
-      "images/api-keys-10-after-use.webp"
-    ],
-    "shotDims": {
-      "images/api-keys-1-menu.webp": [
-        1000,
-        208
-      ],
-      "images/api-keys-2-empty.webp": [
-        1000,
-        508
-      ],
-      "images/api-keys-3-inventory-left.webp": [
-        1000,
-        559
-      ],
-      "images/api-keys-5-never-used.webp": [
-        1000,
-        286
-      ],
-      "images/api-keys-4-filters.webp": [
-        900,
-        324
-      ],
-      "images/api-keys-6-idle.webp": [
-        1000,
-        286
-      ],
-      "images/api-keys-7-no-expiry.webp": [
-        1000,
-        404
-      ],
-      "images/api-keys-9-key-form.webp": [
-        1000,
-        734
-      ],
-      "images/api-keys-11-revoke-confirm.webp": [
-        1000,
-        332
-      ],
-      "images/api-keys-12-after-revoke.webp": [
-        1000,
-        500
-      ],
-      "images/api-keys-3-inventory.webp": [
-        1000,
-        342
-      ],
-      "images/api-keys-10-after-use.webp": [
-        1000,
-        342
-      ]
-    },
-    "tiles": [
-      {
-        "n": "30 days",
-        "l": "of silence before a key counts as idle"
-      },
-      {
-        "n": "1 min",
-        "l": "the finest grain of the last-use stamp"
-      },
-      {
-        "n": "4",
-        "l": "flags: never used, idle, no expiry, expired"
-      },
-      {
-        "n": "19",
-        "l": "automated tests, none failing"
-      },
-      {
-        "n": "1",
-        "l": "click and one confirmation to revoke a key"
-      },
-      {
-        "n": "base",
-        "l": "the only module it depends on"
-      }
-    ],
-    "faq": [
-      {
-        "q": "Does it show me the keys themselves?",
-        "a": "No. It shows each key's description, owner, scope and dates. The key value is never stored by the app, and Odoo itself only keeps a hashed form."
-      },
-      {
-        "q": "How does it know a key was used?",
-        "a": "It adds a few lines to Odoo's own key check. When Odoo accepts a key, the app stamps the time. A refused key records nothing."
-      },
-      {
-        "q": "A key I know is in use shows as never used. Why?",
-        "a": "Recording starts when the app is installed. Use the key once, or wait for its next scheduled call, and it moves to In use."
-      },
-      {
-        "q": "Does it slow down my integrations?",
-        "a": "Each verified call adds two small lookups. The stamp itself is written at most once a minute per key. If recording fails, the failure is logged and the call goes through."
-      },
-      {
-        "q": "What happens to expired keys?",
-        "a": "They show with an Expired badge until Odoo's own scheduled clean-up deletes them. After the next Refresh their rows are gone too."
-      },
-      {
-        "q": "Can I get a notification when a key goes idle?",
-        "a": "No. The app does not send alerts or emails. You open the list and use the filters."
-      },
-      {
-        "q": "Can it create or change keys?",
-        "a": "No. Keys are made in each user's own preferences. This app lists them, records their use and revokes them."
-      },
-      {
-        "q": "Who can see it?",
-        "a": "Only administrators: the menu and the data are both limited to the Settings administrator group."
-      },
-      {
-        "q": "Can I undo a Revoke?",
-        "a": "No. The key is deleted. Create a new one and give it to the integration."
-      },
-      {
-        "q": "Does it work with keys used by AI agents over MCP?",
-        "a": "It records any key that Odoo verifies through its key check, whatever sits on the other end. It does not record what the agent did with the access."
-      }
-    ],
-    "copyWords": 3111,
-    "hasVideo": true,
-    "youtubeId": "eVOB0xn39Lg",
-    "externalPage": null
-  },
-  {
-    "tech": "mh_menu_visibility",
-    "slug": "menu-visibility",
-    "name": "Menu Visibility",
-    "summary": "Hides many menus from many groups in one reviewed change, previews what one person would be left seeing, and puts every menu's previous groups back with one click: menu visibility, hide menus by group, bulk menu restriction",
-    "tagline": "Hide menus from the roles that do not need them, many at once, with a preview and a way back",
-    "intro": [
-      "Odoo restricts a menu one form at a time, in developer mode, and keeps no record of what was restricted. Menu Visibility lets you pick the menus, pick who keeps them, and read what it will do before anything is written. This page walks through one real change with screenshots of an Odoo 19 database seeded with made-up data, and says where the app stops."
-    ],
-    "features": [
-      {
-        "heading": "Why a plan comes before the change",
-        "body": [
-          "Hiding twenty menus by hand is twenty trips through Settings, and undoing it a year later means remembering which twenty. Menu Visibility turns it into one record you can read."
-        ],
-        "images": []
-      },
-      {
-        "heading": "1 Pick the menus and the groups",
-        "body": [
-          "A menu is restricted by giving it groups, one menu at a time. A role that should lose three apps and everything under them means opening dozens of menus.",
-          "Open Settings > Menu Visibility and create a change. Menus takes the menus to restrict, Visible only to takes the groups that keep them, and Include everything underneath (on by default) takes each menu's whole subtree along. Check against names a person to preview, and Why is a note for whoever reads it in a year.",
-          "The form shows Menu Visibility only to users in the Settings group.",
-          "A draft: three menus, two groups that keep them, Diego Ramos to check against."
-        ],
-        "use": "a role should stop seeing apps it has no business in, and you want to do it once, for all of them.",
-        "mode": "Writes nothing yet",
-        "images": [
-          "images/mv-form-draft.webp"
-        ]
-      },
-      {
-        "heading": "2 Work it out first",
-        "body": [
-          "Work out the change fills a plan: the number of menus it would change, the number already correct, one line per menu, how many came from the subtrees, and a warning when you picked a top-level menu, because that hides a whole app. In this run the three picked menus became 21 menus, 18 of them from the subtrees.",
-          "The plan: 21 menus to change, none already correct, then one line per menu.",
-          "The end of the plan: the subtree count, the top-level warning, and the count for the person named in Check against.",
-          "Restricting Calendar, Contacts and Dashboards to the Sales and Purchase groups changed 21 menus. The plan said Diego Ramos could see 122 menus now and would see 105 afterwards. That count is measured, not guessed: the app applies the change inside a database savepoint, counts what the person can see, and rolls it back.",
-          "If the last visible entry of a folder is restricted, the folder goes with it, and the plan reports those extra menus."
-        ],
-        "use": "you want to read the whole change, and one person's result, before anyone loses a menu.",
-        "mode": "Plan only, no writes",
-        "images": [
-          "images/mv-form-plan.webp",
-          "images/mv-plan-summary.webp"
-        ]
-      },
-      {
-        "heading": "3 See the result for two people",
-        "body": [
-          "Apply asks for confirmation, records the groups each menu carried, then writes the new groups. People outside the listed groups stop seeing the menus; people inside keep them. The app list below is the apps menu in the top bar, opened as each user.",
-          "Diego Ramos, a warehouse user, before the change.",
-          "Diego Ramos after Apply: Calendar, Contacts and Dashboards are gone.",
-          "Mia Chen is in a listed group and keeps every menu.",
-          "After Apply, Diego lost the three menus and Mia Chen, who holds Sales / User: All Documents, kept all of them. The same change gave two different answers, which is the point of naming groups."
-        ],
-        "use": "you need to know the right people kept their apps and the wrong ones lost them.",
-        "mode": "Apply writes menu groups",
-        "warn": "A menu a person keeps is decided by group membership, including groups that imply others. Check the person who matters before applying, and use Check against to do it.",
-        "images": [
-          "images/mv-menus-before.webp",
-          "images/mv-menus-after.webp",
-          "images/mv-menus-mia.webp"
-        ]
-      },
-      {
-        "heading": "4 Put it back",
-        "body": [
-          "An applied change shows Put it back . It restores the groups each menu carried before, and the record becomes Reverted. The list shows every change and its state.",
-          "Put it back writes the groups that were recorded when the change was applied. A group someone added to one of those menus afterwards is removed, and if two changes overlapped, reverting the earlier one restores the groups from before it, which undoes the later one while the later one still reads Applied. Revert changes in the reverse order of applying them.",
-          "An applied change, with Put it back available.",
-          "A change that was applied and then put back.",
-          "The list: Applied, Reverted and Draft changes with the number of menus each touches."
-        ],
-        "use": "the change was a trial, or the request was withdrawn.",
-        "mode": "Restores recorded groups",
-        "images": [
-          "images/mv-form-applied.webp",
-          "images/mv-form-reverted.webp",
-          "images/mv-list.webp"
-        ]
-      },
-      {
-        "heading": "5 Refusals that protect you",
-        "body": [
-          "Apply is refused when the selection changed after the plan was worked out, because the list on screen would describe a different change. The form also refuses to plan without a group, since a menu with no groups is visible to everyone and the change would publish menus instead of hiding them.",
-          "The plan step itself also raises \"Pick at least one group\" for a record that reaches it with no groups, for instance from an import; that message is covered by an automated test rather than a screenshot.",
-          "Removing a group after planning, then pressing Apply: refused.",
-          "A change with no group cannot be worked out: the form flags Visible only to."
-        ],
-        "use": "a change was edited after planning, or was started without a group.",
-        "mode": "Blocks the write",
-        "images": [
-          "images/mv-stale.webp",
-          "images/mv-invalid.webp"
-        ]
-      },
-      {
-        "heading": "6 Where it stops",
-        "body": [
-          "Menu Visibility removes menus from the interface. It does not change who can read the records.",
-          "Diego Ramos opening the Contacts list by its address, after Contacts was hidden from his menus."
-        ],
-        "use": "you are deciding whether this is enough on its own.",
-        "mode": "Hides, does not lock",
-        "warn": "A hidden menu is not a locked door. After the change, Diego Ramos still opened the Contacts list by its address, and an automated test confirms he can still read the records. Use access rights and record rules for real restrictions.",
-        "images": [
-          "images/mv-url-limit.webp"
-        ]
-      }
-    ],
-    "scope": [],
-    "requires": [],
-    "price": 68.88,
-    "manifestPrice": 69.0,
-    "currency": "USD",
-    "category": "Tools",
-    "version": "19.0.1.0.7",
-    "license": "OPL-1",
-    "depends": [
-      "base"
-    ],
-    "paidDepends": [],
-    "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_menu_visibility",
-    "storeUrl19": "https://apps.odoo.com/apps/modules/19.0/mh_menu_visibility",
-    "storeUrl20": "https://apps.odoo.com/apps/modules/20.0/mh_menu_visibility",
-    "screenshots": [],
-    "shotDims": {
-      "images/mv-form-draft.webp": [
-        1000,
-        1029
-      ],
-      "images/mv-form-plan.webp": [
-        1000,
-        1882
-      ],
-      "images/mv-plan-summary.webp": [
-        1000,
-        756
-      ],
-      "images/mv-menus-before.webp": [
-        320,
-        360
-      ],
-      "images/mv-menus-after.webp": [
-        320,
-        198
-      ],
-      "images/mv-menus-mia.webp": [
-        320,
-        360
-      ],
-      "images/mv-form-applied.webp": [
-        1000,
-        1287
-      ],
-      "images/mv-form-reverted.webp": [
-        1000,
-        1233
-      ],
-      "images/mv-list.webp": [
-        1000,
-        887
-      ],
-      "images/mv-stale.webp": [
-        1000,
-        563
-      ],
-      "images/mv-invalid.webp": [
-        1000,
-        898
-      ],
-      "images/mv-url-limit.webp": [
-        1000,
-        1228
-      ]
-    },
-    "tiles": [
-      {
-        "n": "3 + 18",
-        "l": "menus: three picked, 18 more came from their subtrees, all in one change"
-      },
-      {
-        "n": "122 to 105",
-        "l": "menus the example user, Diego Ramos, could see before and after (read from the plan)"
-      },
-      {
-        "n": "15",
-        "l": "automated tests, none failing"
-      },
-      {
-        "n": "1 click",
-        "l": "puts back the groups every menu carried before"
-      },
-      {
-        "n": "0",
-        "l": "menus changed until you press Apply on a plan that still matches"
-      },
-      {
-        "n": "Hides",
-        "l": "a hidden menu is not a locked door: the data behind it stays readable"
-      }
-    ],
-    "faq": [
-      {
-        "q": "Does it hide menus from administrators too?",
-        "a": "It hides a menu from everyone who is not in one of the groups you list. An administrator who holds one of those groups, or a group that implies one, keeps the menu."
-      },
-      {
-        "q": "Is it a security feature?",
-        "a": "No. It hides menus; the pages and records behind them stay reachable by address and readable under the existing access rights."
-      },
-      {
-        "q": "Can I undo a change?",
-        "a": "Yes, with Put it back, which restores the groups recorded when the change was applied. Revert overlapping changes in the reverse order."
-      },
-      {
-        "q": "Does the plan change anything?",
-        "a": "No. Planning writes only the plan to the change record. The menu counts are measured inside a savepoint that is rolled back."
-      }
-    ],
-    "copyWords": 810,
-    "hasVideo": true,
-    "youtubeId": "lrrmIBO3GF4",
-    "externalPage": null
-  },
-  {
-    "tech": "mh_stock_valuation_report",
-    "slug": "stock-valuation-report",
-    "name": "Stock Valuation Report",
-    "summary": "Shows each product's opening, received, issued, other and closing stock value for any period, in PDF and Excel: Inventory valuation report for any period: opening stock, receipts, issues and closing value per product, by warehouse and category, in PDF and Excel",
-    "tagline": "Inventory valuation for any period: opening stock, received, issued and closing value per product, by warehouse and category, in PDF and Excel",
-    "intro": [
-      "Stock Valuation Report is for the person who has to say what the stock was worth at the end of a period and why it changed. Pick a period and an optional warehouse, location or product category, press Run Report, and read one row per product: opening, received, issued, other and closing, with a summary in plain words. Opening and closing are Odoo’s own valuation, every row adds up, and the result prints to PDF or exports to Excel.",
-      "The screenshots were taken on Odoo 19 in a database seeded with made-up data: a fictitious industrial-supplies company with 18 products, two warehouses and about 700 stock moves backdated over a year, with three cost updates entered on the day of the run. The data is synthetic, and every number quoted beside a screenshot is read off that screenshot."
-    ],
-    "features": [
-      {
-        "heading": "The month-end question Odoo no longer answers in one place",
-        "body": [
-          "Odoo 19 no longer has the stock valuation layer, and with it the per-product Valuation view that used to sit under Inventory > Reporting. In a Community install, what is left in Reporting is Stock, Locations, Moves History and Moves Analysis, and the one valuation report in Odoo’s stock_account module is a single-date view by accounting account that no menu opens. Yet the question an accountant asks at every month end has not changed: what was the stock worth on the first, what came in, what went out, and what is it worth now, product by product?",
-          "Stock Valuation Report puts that answer back. You pick a period, press Run Report and get one row per product with five value columns that always add up. Then you print it or export it, and hand it over."
-        ],
-        "images": []
-      },
-      {
-        "heading": "1 One menu entry, one record: set the period and run",
-        "body": [
-          "Stock value is one of the numbers a company is most careful about, and the way to get it for a past period is usually a spreadsheet someone rebuilt last month. A report that is a record in the database, with a name and a period, can be reopened, rerun and compared.",
-          "It also needs a clear owner: not every warehouse user should see what the stock is worth.",
-          "The entry is under Inventory > Reporting > Stock Valuation . A report is a form with a name, a From and a To date, and an optional scope: Warehouses, Locations and Product Categories. There is one more tick box, Include products with no stock and no movement , off by default.",
-          "By default the period runs from the first of the current month through today. Run Report sits at the top of the form. After a run, Print PDF and Export to Excel appear beside it, and a Products button opens the rows.",
-          "A report belongs to one company, and a user of several companies sees only reports of the companies they have access to. The Company field shows only on a multi-company database.",
-          "The entry in Inventory > Reporting.",
-          "A new report: name, period and scope. Here the Bearings category is picked; Run Report is the only button until a run exists.",
-          "Dana is the warehouse manager at a made-up industrial supplier. On Oct 28 she opens the menu, presses New, names the report October to date , keeps the default period (Oct 1 to Oct 28) and presses Run Report. She changes nothing else, so it covers the whole company.",
-          "A second report, September month end with From Sep 1 and To Sep 30, takes the same four steps. Both stay in the list, so next month she can open them instead of starting over."
-        ],
-        "use": "you want a valuation for a period, in a minute, without building anything.",
-        "mode": "Read-only (Excel export saves a file)",
-        "result": "a saved report record with the period, the scope you chose and the date and time it was run.",
-        "warn": "Only Inventory Administrators see the menu and can run the report. That matches who may see stock value in Odoo.",
-        "images": [
-          "images/stock-valuation-menu.webp",
-          "images/stock-valuation-setup.webp"
-        ]
-      },
-      {
-        "heading": "2 The result: opening, received, issued, other and closing",
-        "body": [
-          "One closing figure answers what the stock is worth. It does not answer why it is different from last month, and it does not tell the person reading it where to look.",
-          "The usual way to explain the gap is to rebuild the movement by hand from receipts, deliveries and cost changes, and the pieces rarely add up the first time.",
-          "After a run the form shows the five totals, a block titled What stood out , and a Products tab. The Products button on the top right of the form opens the same rows as a list, grouped by product category, with a total at the foot of every value column.",
-          "Opening is the stock at the last second before your period starts, and Closing is the stock at the last second of its last day. Both come from Odoo’s own valuation at those two instants. Received is the quantity that entered stock during the period with the value Odoo recorded on each move, and Issued is the same for what left. The report shows issued as a positive number in both versions, so you subtract it.",
-          "What stood out gives the change between opening and closing, with a percentage, then the received, issued and other totals, and names up to three products with the largest changes that have no stock move behind them. If a product’s quantity does not add up, it says so and names up to five of them.",
-          "The list has Unit, quantity and value columns for every stage; the quantity columns can be switched off from the optional-columns menu to leave a values-only view.",
-          "After Run Report: the five totals and the summary, including which products changed with no move behind them.",
-          "Products grouped by category, Electrical expanded, quantity columns switched off. The footer carries the totals.",
-          "The sample covers 18 products from October 1 to October 28. Opening $34,708.00, plus received $5,280.00, minus issued $5,294.00, plus other $388.00, equals closing $35,082.00, a change of $374.00 or 1.1% as the summary puts it.",
-          "By category the closing values are Bearings $5,684.00, Electrical $8,188.00, Fasteners $11,480.00, Lubricants $5,830.00 and Safety $3,900.00, which add up to the same $35,082.00. Electrical is the only group that received and issued nothing, yet it changed value: it carries $268.00 of Other. The next section explains where that came from."
-        ],
-        "use": "finance asks what the stock was worth at the start and the end, and what moved in between.",
-        "mode": "Read-only",
-        "result": "one row per product with opening, received, issued and closing quantity and value, a total, and a summary in plain words.",
-        "warn": "The rows are a snapshot of the moment you pressed Run Report. A move backdated afterwards is not in them until you run the report again.",
-        "images": [
-          "images/stock-valuation-result.webp",
-          "images/stock-valuation-by-category.webp"
-        ]
-      },
-      {
-        "heading": "3 Other: the column that keeps every row honest",
-        "body": [
-          "Received and issued come from stock moves. But the value of stock can change with no move at all: someone updates a product’s cost, or a landed cost is added to a receipt. If those changes were not shown, opening plus received minus issued would not equal closing, and the person reading the report would have to hunt for the difference.",
-          "Showing the difference as a plug figure at the foot of the report would be no better, because it would not say which product it belongs to.",
-          "Other is calculated per product as closing value minus opening value, minus received value, plus issued value. It is therefore exactly the part of the change that no stock move in the period explains, and it makes every row add up by construction.",
-          "In practice it holds cost updates and landed costs. When the report is limited to a warehouse, it also holds the value effect of transfers between your own warehouses, which Odoo does not value (section 4 shows this).",
-          "The Products list has a filter, Changed with no move , that keeps only the products whose Other is not zero. The summary names the three largest by amount, whichever sign they have.",
-          "The filter Changed with no move leaves three products, and their Other adds up to the $388.00 in the totals.",
-          "On the day of the report the sample’s three cost updates were entered: Contactor 24V from $54 to $58, Motor 0.75kW from $240 to $252, and Gear Oil 20L from $95 to $99. Contactor held 40 units, so its value rose by 40 times $4, $160.00. Motor held 9 units, 9 times $12, $108.00. Gear Oil held 30 units at the end of the period, 30 times $4, $120.00.",
-          "None of the three has anything in Received, and Gear Oil’s Issued of $190.00 is its two units shipped at the old cost of $95. The three rows add up to the $388.00 of Other in the totals, and nothing else in the company contributes."
-        ],
-        "use": "closing minus opening does not match what came in and went out, and you need to know why.",
-        "mode": "Read-only",
-        "result": "every value change that no move explains lands in one column, and the filter Changed with no move lists exactly those products.",
-        "warn": "When the cost of a product changes, Odoo 19 books the change separately from the receiving move, so a receipt inside the period still shows under Received at its original value and the change shows under Other.",
-        "images": [
-          "images/stock-valuation-changed-no-move.webp"
-        ]
-      },
-      {
-        "heading": "4 Scope: one warehouse, a location or a category",
-        "body": [
-          "The company total is for the finance team. The manager of one warehouse wants to see only theirs, and a category owner wants only their products.",
-          "A filtered number must still be a number Odoo would produce. A filter that scales or guesses would give a figure nobody can reproduce.",
-          "Warehouses, Locations and Product Categories each take several values. Choosing a warehouse covers all valued locations under it. A location covers its sub-locations, and a category covers its sub-categories. A warehouse and a location together are added to each other.",
-          "Opening and closing for a scope are the company’s own value for each product shared out by quantity: the value in the chosen locations is the product’s company value times the quantity held there over the quantity held in all valued locations. That is how Odoo itself values a warehouse, so a filtered figure is never one Odoo would not produce.",
-          "Received and issued count a move only when exactly one end of it is inside the scope. A move between two bins of the same warehouse crosses nothing and is left out. Stock you hold for someone else, such as consignment, and moves of other companies are left out too.",
-          "Limited to Main Warehouse. The summary names the products behind a negative Other and the reason.",
-          "The rows behind it. Ball Bearing 6204, Motor and Gearbox issued quantity with no issued value; the value effect is in Other.",
-          "Limited to the Bearings category: four products, closing $5,684.00.",
-          "Twelve days before the run the sample moved stock from Main Warehouse to the East Depot: 30 Ball Bearing 6204, 2 Motor 0.75kW and 1 Legacy Gearbox GB-200. Limited to Main Warehouse, the report shows them as issued quantity, 81 for the bearing (51 delivered plus 30 moved), 2 and 1, but no issued value, because Odoo does not value a move between your own warehouses.",
-          "The value that left shows under Other: -$540.00 for the bearings (30 times $18), -$480.00 for the gearbox, and -$396.00 for the motor (2 times its $252 cost is -$504.00, less $108.00 of cost update). With the $388.00 of cost updates, the Other total is -$1,136.00, and the report still closes at $33,576.00. The company-wide report shows the same transfer as nothing at all, because the stock never left the company.",
-          "A Bearings-only run shows received $1,800.00 and issued $918.00 for the 4 bearing products, and an Other of $0.00."
-        ],
-        "use": "a branch manager, or a category owner, needs only their part of the stock.",
-        "mode": "Read-only",
-        "result": "the same five columns for a warehouse, any internal location with its sub-locations, or a category with its sub-categories.",
-        "warn": "A transfer to your other warehouse is not valued by Odoo. In a report limited to one warehouse it shows as quantity issued with no value, and its value effect lands under Other.",
-        "images": [
-          "images/stock-valuation-main-warehouse.webp",
-          "images/stock-valuation-transfer-rows.webp",
-          "images/stock-valuation-bearings-only.webp"
-        ]
-      },
-      {
-        "heading": "5 Any period, in your own time zone",
-        "body": [
-          "Month end is not the only date an auditor asks about. Quarter end, year end and the day a count was done are all periods, and the numbers have to be for the right instant.",
-          "A bare date is ambiguous. Odoo’s own valuation turns a date into the end of that day in UTC, which for anyone east or west of Greenwich moves a month end by hours and puts a late receipt in the wrong month.",
-          "From and To are dates. The report turns them into the start of the first day and the end of the last day in your time zone, as set on your user, and reads Odoo’s valuation at those two instants. A move exactly on the first second of the period counts once, as a movement, and not also as opening stock.",
-          "Reports for different periods are separate records and stay in the list view, with name, period, opening and closing value and the time of the run. The list is the place to compare them.",
-          "September month end: no receipts, issued $7,362.00.",
-          "Saved reports: September closes at $34,708.00, October opens at $34,708.00.",
-          "September month end opens at $42,070.00, receives nothing, issues $7,362.00 and closes at $34,708.00, which the summary reports as a change of $-7,362.00 or -17.5%. October to date opens at $34,708.00, the same figure.",
-          "Fasteners are the largest part of that fall. Their issues over September were Hex Bolt M8x40 $1,248.00, Hex Nut M8 $936.00, Self-Tapping Screw 4x30 $135.00 and Washer M8 $680.00, $2,999.00 in all, and the group closed September at $11,276.00."
-        ],
-        "use": "you need last quarter, last year or a single day, and a month end that falls on your midnight.",
-        "mode": "Read-only",
-        "result": "a report for any past period, whose closing value matches the next period’s opening value.",
-        "warn": "The period must not end before it starts. Saving a report with From later than To is refused with a message.",
-        "images": [
-          "images/stock-valuation-september.webp",
-          "images/stock-valuation-saved-reports.webp"
-        ]
-      },
-      {
-        "heading": "6 PDF and Excel, grouped by category",
-        "body": [
-          "A report that stays on the screen has not finished the job. The figures go into a month-end pack, are sent to the owner or are opened in a spreadsheet to be sliced differently.",
-          "A table with ten columns also does not fit a portrait page, so the PDF is set on a landscape A4 page.",
-          "Print PDF opens a landscape A4 report with your company header. It starts with the title, the period, the scope and the same summary you see on screen, so the conclusion comes before the detail. Then comes the table: for every category a heading, its products, a subtotal row, and at the end a grand total.",
-          "Export to Excel downloads a sheet named Valuation with the report name, company, period and scope at the top, then one row per product with Category, Product, Internal Reference, Unit and the nine figure columns, a total row per category and a grand total. The file is also attached to the report record.",
-          "Both buttons appear only after a run, and pressing them on a report that has not been run is refused with a message.",
-          "The PDF: summary first, then categories with subtotals. Page one of two.",
-          "The Excel file with the first columns shown; the sheet continues to Closing Value. Page set to landscape and fit to width for this picture.",
-          "The October report runs to two PDF pages. Page one shows the summary lines, then Bearings with a subtotal of $4,802.00 opening, $1,800.00 received, $918.00 issued and $5,684.00 closing, then Electrical with $7,920.00 opening and $268.00 Other, followed by the rest on page two and the grand total of $35,082.00.",
-          "In the Excel file the same three groups are totalled by Total Goods / Bearings, Total Goods / Electrical and so on, with the grand total on the last row."
-        ],
-        "use": "the numbers have to go into a month-end file, an audit folder or an email.",
-        "mode": "Excel export saves a file",
-        "result": "a PDF and an Excel file with the same rows, category subtotals and a grand total, available after a run.",
-        "warn": "The Excel file holds values, not formulas. Totals and subtotals are numbers written into the cells, not SUM formulas, so they do not change if you edit a cell.",
-        "images": [
-          "images/stock-valuation-pdf.webp",
-          "images/stock-valuation-excel.webp"
-        ]
-      }
-    ],
-    "scope": [],
-    "requires": [],
-    "price": 68.88,
-    "manifestPrice": 69.0,
-    "currency": "USD",
-    "category": "Warehouse",
-    "version": "19.0.1.0.7",
-    "license": "OPL-1",
-    "depends": [
-      "stock_account"
-    ],
-    "paidDepends": [],
-    "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_stock_valuation_report",
-    "storeUrl19": "https://apps.odoo.com/apps/modules/19.0/mh_stock_valuation_report",
-    "storeUrl20": "https://apps.odoo.com/apps/modules/20.0/mh_stock_valuation_report",
-    "screenshots": [],
-    "shotDims": {
-      "images/stock-valuation-menu.webp": [
-        620,
-        422
-      ],
-      "images/stock-valuation-setup.webp": [
-        1000,
-        395
-      ],
-      "images/stock-valuation-result.webp": [
-        1000,
-        589
-      ],
-      "images/stock-valuation-by-category.webp": [
-        1000,
-        366
-      ],
-      "images/stock-valuation-changed-no-move.webp": [
-        1000,
-        239
-      ],
-      "images/stock-valuation-main-warehouse.webp": [
-        1000,
-        589
-      ],
-      "images/stock-valuation-transfer-rows.webp": [
-        1000,
-        344
-      ],
-      "images/stock-valuation-bearings-only.webp": [
-        1000,
-        529
-      ],
-      "images/stock-valuation-september.webp": [
-        1000,
-        529
-      ],
-      "images/stock-valuation-saved-reports.webp": [
-        1000,
-        239
-      ],
-      "images/stock-valuation-pdf.webp": [
-        1000,
-        405
-      ],
-      "images/stock-valuation-excel.webp": [
-        1000,
-        435
-      ]
-    },
-    "tiles": [
-      {
-        "n": "5",
-        "l": "value columns that always add up"
-      },
-      {
-        "n": "20",
-        "l": "automated tests, none failing"
-      },
-      {
-        "n": "0",
-        "l": "journal entries posted or costs changed"
-      },
-      {
-        "n": "2",
-        "l": "outputs: PDF and Excel"
-      },
-      {
-        "n": "3",
-        "l": "scopes: warehouse, location, category"
-      },
-      {
-        "n": "$35,082",
-        "l": "closing value of the made-up stock in the screenshots"
-      }
-    ],
-    "faq": [
-      {
-        "q": "Does it post journal entries or change any cost?",
-        "a": "No. It only reads. Apart from its own report records, the only thing it writes is the Excel file you ask for."
-      },
-      {
-        "q": "Does it work with standard, average and FIFO costing?",
-        "a": "Opening and closing are Odoo’s own valuation, so whatever method each category uses is what you see. The automated tests cover average and standard costing; the screenshots use standard."
-      },
-      {
-        "q": "Why does a one-warehouse report show Other when nothing changed in cost?",
-        "a": "A transfer to another of your warehouses is not valued by Odoo, so a report on one warehouse shows it as quantity with no value, and the value that moved lands under Other. Section 4 shows an example."
-      },
-      {
-        "q": "Can I run it for a past month?",
-        "a": "Yes. Any From and To date works, and the closing value of one period matches the opening value of the next. The report uses your time zone for the day boundaries."
-      },
-      {
-        "q": "Are archived products included?",
-        "a": "Yes, if they still hold stock. Their stock is still on your balance sheet."
-      },
-      {
-        "q": "What about stock I hold on consignment for someone else?",
-        "a": "It is left out, the way Odoo leaves it out of your valuation."
-      },
-      {
-        "q": "Does it work with several companies?",
-        "a": "Yes. Each report belongs to one company, other companies’ stock and moves are ignored, and users only see reports of their own companies."
-      },
-      {
-        "q": "Is the report live?",
-        "a": "No. It is a snapshot taken when you press Run Report. Press it again to refresh the rows."
-      },
-      {
-        "q": "Can regular inventory users run it?",
-        "a": "No. Only Inventory Administrators, the same people Odoo lets see stock value."
-      },
-      {
-        "q": "Does it reconcile to my general ledger?",
-        "a": "No. It reports Odoo’s stock valuation per product. It does not compare it to accounting balances."
-      }
-    ],
-    "copyWords": 2363,
-    "hasVideo": true,
-    "youtubeId": "LLB1_ZdBRyg",
     "externalPage": null
   },
   {
@@ -6486,11 +5877,11 @@ export const odooApps = [
     ],
     "scope": [],
     "requires": [],
-    "price": 68.88,
+    "price": 69.0,
     "manifestPrice": 69.0,
     "currency": "USD",
     "category": "Tools",
-    "version": "19.0.1.0.20",
+    "version": "19.0.1.0.21",
     "license": "OPL-1",
     "depends": [
       "mail"
@@ -6609,165 +6000,612 @@ export const odooApps = [
     "externalPage": null
   },
   {
-    "tech": "mh_ro_saft_exporter",
-    "slug": "romania-saf-t-exporter",
-    "name": "Romania SAF-T Exporter",
-    "summary": "Writes a period's posted accounting from Odoo into a D406 SAF-T XML that passes ANAF's published schema and DUKIntegrator on our test data; not a filing",
-    "tagline": "A SAF-T XML for a period that passes ANAF's published schema and DUKIntegrator on our test data. Not a filing",
+    "tech": "mh_api_key_inventory",
+    "slug": "api-key-inventory",
+    "name": "API Key Inventory",
+    "summary": "Lists every API key in the Odoo database with its owner, expiry date and last real use, and revokes a key on request: Every API key in the database in one list, with who owns it, when it expires and when it was last actually used, so the forgotten ones can be revoked",
+    "tagline": "",
     "intro": [
-      "This app collects the posted accounting of a period into one XML file in ANAF's layout. The file from version 19.0.1.0.9 passes ANAF's published schema (version 2.4.9) and ANAF's DUKIntegrator validator on our test data (results below). That is a format check only: this is not a filing, the app sends nothing, and it says nothing about deadlines, obligations or whether your figures are right. Your accountant reviews the file and files through ANAF's own channel. This page shows an Odoo 19 database seeded with a made-up Romanian company."
+      "Every API key in the database in one list, with who owns it, when it expires and when it was last actually used, so the forgotten ones can be revoked",
+      "API Key Inventory is for the administrator of an Odoo 19 database who has been asked a simple question and could not answer it: which API keys are still in use? Integrations, scripts, a consultant's test and an AI agent each leave a key behind, and every key is a standing way into your data. Odoo shows a key's owner, name and creation date, but nothing about whether anything still uses it. This app adds the two facts that decide what to do: when the key was last used, and when it expires. It lists every key worst first, flags the ones worth a look, and lets you revoke a key with one click and one confirmation. Everything on this page was checked on an Odoo 19 database seeded with made-up users and keys, including a live call made with a real key."
     ],
     "features": [
       {
-        "heading": "What the ANAF checks say",
+        "heading": "Why a key nobody uses is the dangerous one",
         "body": [
-          "ANAF publishes a schema file and a validator kit on its SAF-T page. Both were downloaded on 2 November 2026 (schema version 2.4.9, validator kit dated 16 February 2026) and run on the files this app generated for the seeded company, next to a known-good control and the file the previous version produced.",
-          "Real output of the two ANAF tools. The ANAF schema column uses the schema file with only its namespace string changed from d406t to d406, which is what DUKIntegrator asks for."
+          "An API key is a password that never asks for a second factor. It is made once, pasted into a script or an integration, and forgotten. If the integration is working, nobody touches the key. If it was a trial, nobody touches it either. From the outside the two look identical, and the safe-looking choice, leaving it alone, is the one that keeps the forgotten key valid for years.",
+          "Odoo does give you something to work with. Each user can see their own keys in their preferences, and administrators have a plain listing of every key (a Manage API Keys button in Settings > General Settings) with its owner, description, scope and creation date, and a delete button. What that listing cannot tell you is whether a key is alive. It has no last-use column and no expiry column, so a key created two years ago for a one-day trial sits in it beside a key carrying thousands of calls a day, and you have to guess.",
+          "API Key Inventory records the moment each key is used, at the point where Odoo checks it, and keeps that next to the key's owner, description, scope, creation date and expiry date. A Settings menu entry shows all of it in one list, sorted so the keys that have been quiet longest come first, with four filters for the cases that matter. A Revoke button deletes a key you have decided is dead.",
+          "It is a small app on purpose. It adds one list, one form and one menu with two entries, plus a few lines that run when a key is verified. It does not create keys, does not rotate them and does not send alerts.",
+          "Northfield Office Supply runs Odoo with a Shopify sync, a dock scanner gateway, a bank feed import and a Power BI report, and over the years two consultants have each left a test key behind. The administrator installs the app, presses Refresh and sees eight keys. Three are carrying traffic. Two have never been used at all, two have been silent for 52 and 214 days, and one has already expired. That is the list she takes to the IT lead, instead of a guess.",
+          "It does not tell you what a key did, only when it was last used. It does not decide for you: a key that looks idle may belong to a quarterly job, and only you know that."
         ],
-        "warn": "The validator accepted the file on made-up data with valid-format CUIs. Your data can still be refused by the app (it stops and lists what is missing) or by ANAF's checks. Run the file through DUKIntegrator yourself before anyone files it.",
+        "use": "an auditor, a departing contractor or a security review asks which integrations still have access, and nobody can say.",
+        "mode": "Reads keys, writes only a last-use stamp",
+        "images": []
+      },
+      {
+        "heading": "1 Refresh: read every key into the inventory",
+        "body": [
+          "Keys are made from each user's own preferences, so there is no event on the administrator's side to say that a new one now exists. An inventory that waited to be told would always be out of date.",
+          "The app adds an API Keys menu to Settings with two entries, Inventory and Refresh , visible to administrators only. Refresh goes and looks. It adds a row for each key it has not seen, removes the row of any key that no longer exists, and refreshes the details of the rest, so an expiry date changed since the last visit is picked up. Then it opens the list.",
+          "The inventory keeps a copy of each key's details (owner, description, scope, created and expiry dates), never the key itself. Pressing Refresh twice gives the same list, not duplicates. A key that has been used is also added to the list at that moment, even if nobody pressed Refresh, which is how a key made today shows up once it starts working.",
+          "Two entries under Settings, and nothing else added.",
+          "Before the first Refresh the list is empty, and says why.",
+          "Right after installing, the administrator opens Inventory and finds it empty. She opens Refresh and the list fills with eight rows: the keys of six users, made over the previous two years. Later a developer creates a ninth key in his preferences. It is not in the list until she presses Refresh again, or until the key is first used.",
+          "It does not refresh by itself on a schedule, and it does not watch for new keys. It also does not read the key values: Odoo itself only keeps a hashed form of them."
+        ],
+        "use": "you are opening the inventory for the first time, or want it to include keys made since you last looked.",
+        "mode": "Copies key details into the inventory",
+        "result": "a list that matches the keys that exist right now: new keys added, deleted keys dropped, changed expiry dates updated.",
         "images": [
-          "images/ev-validation.webp"
+          "images/api-keys-1-menu.webp",
+          "images/api-keys-2-empty.webp"
         ]
       },
       {
-        "heading": "1 Declarations: one period, one file",
+        "heading": "2 The inventory: every key, worst first",
         "body": [
-          "A file for a period is easier to hand over when the period, the status and the file sit on one record.",
-          "Under SAF-T > Declarations (Accounting users and Accounting Administrators) each record has a start date, an end date, a Monthly or Quarterly label, a status (Draft or Generated) and the generation date. Generate XML builds the file, attaches it to the record, sets the status to Generated and starts the download. The label is written into the file header as L or T. The form carries a notice that this is a preparation tool and that the file should be validated with ANAF's DUKIntegrator.",
-          "Two declarations: one generated, one still a draft.",
-          "A draft declaration with the notice.",
-          "A generated declaration; the status and the generation date are the only trace on the form.",
-          "The seeded company, Carpatia Mobila SRL, has a quarterly declaration for 1 January to 31 March 2026 and a monthly one for January 2026. A second declaration with exactly the same dates is refused by a database constraint.",
-          "It does not submit anything and does not track whether a declaration was filed."
+          "A list of keys in the order they were made puts your newest, probably healthiest keys first and buries the old ones. The keys you need to see are the ones nobody has used for the longest time, and they should not need hunting for.",
+          "One row per key with the owner, the description, the scope, when it was created, when it was last used, the number of days since last use, the expiry date, a tick if the key never expires, and a coloured status badge. The use count is available in the column picker and hidden by default. The Scope column can be hidden the same way.",
+          "The list is sorted by the last activity, oldest first. For a key that has never been used, the creation date stands in for the last use, so a key made two years ago and never used ranks as old rather than as brand new. Rows are coloured to match: red for a key that has never been used or never expires, amber for an idle key, grey for an expired one. Days since last use is counted in whole days and never shows a negative number.",
+          "You can search by owner, description or scope, and group the list by owner. Opening a row shows the same facts in a form (see section 5). The full screen, with the status badges and Revoke buttons, is shown at full width in the Screenshots section at the end of this page.",
+          "The left half of the list: who owns each key, when it was made, when it was last used, and the days of silence.",
+          "On the Northfield database the first row is a key described as Zapier trial (March) , owned by Daniel Ortiz, created 600 days ago and never used. Below it sits Legacy payroll export , last used 214 days ago, then another never-used test key, then the expired reporting key, then a bank feed import that has been silent for 52 days. Everything that is actually working, the Shopify sync and the dock scanner, is at the bottom with a green badge.",
+          "The list is a snapshot taken at the last Refresh, with use recorded as it happens. Keys that were made after the last Refresh and have not been used yet are not on it. It does not export or email the list: use Odoo's standard export on the selected rows if you need a file."
         ],
-        "use": "you want one XML file per month or quarter, kept next to the period it covers.",
-        "mode": "Writes when saved",
-        "warn": "The period is the two dates, and they are not checked (an end date before the start date gives an empty file). Each press of Generate XML adds another attachment, the form has no list of them, and the status stays Generated if invoices change afterwards.",
+        "use": "you want to see all keys at once and know which to look at first.",
+        "mode": "Read-only list",
+        "result": "the keys that have been quiet longest are the first rows you read, and each one carries its own colour.",
         "images": [
-          "images/decl-list.webp",
-          "images/decl-form-draft.webp",
-          "images/decl-form-generated.webp"
+          "images/api-keys-3-inventory-left.webp"
         ]
       },
       {
-        "heading": "2 What goes into the file",
+        "heading": "3 Last use, stamped when Odoo verifies the key",
         "body": [
-          "A file is only useful if you know what it holds and what it leaves out.",
-          "Four sections under the root AuditFile , which carries ANAF's namespace. Header : the company (registration number, name, address, a contact telephone, a bank account), the period as months and years, the software, and the L or T return type. MasterFiles : the accounts that have a posting up to the period end, each with its opening and closing balance; the customers and suppliers that appear in the period, each with a code built by ANAF's rule and a balance; the VAT codes. GeneralLedgerEntries : posted journal entries dated in the period, grouped by journal, with a tax block on every line. SourceDocuments : posted customer invoices and credit notes, and vendor bills and refunds, dated in the period, with lines, tax codes and totals.",
-          "Counts read from the real files.",
-          "The Header and the first customer, from the real file.",
-          "A journal entry and an invoice, from the real file.",
-          "The seeded books have seven posted sales invoices, one draft and four posted vendor bills. The Q1 file holds six sales invoices and three bills: the draft, the April invoice and the May bill are absent. A credit note posted against an invoice appears as type 381 with the same amounts as the invoice and a minus sign.",
-          "It does not check the data for completeness beyond the points above, balance the entries or convert currencies. Foreign-currency invoices, Odoo.sh, Odoo Enterprise and multi-company databases were not tested."
+          "Odoo checks a key on every call an integration makes, and keeps no record that it did. The only way to learn that a key is alive is to switch it off and wait for somebody to complain, which is a poor way to find out.",
+          "It adds a few lines to Odoo's own key check. After Odoo has verified a key and accepted it, the app finds the key's row (creating it if the key was never listed), stamps Last Used with the current time and adds one to the Use Count . Because the stamp is made at the point of verification, it reflects real traffic. A wrong key records nothing, and neither does a key Odoo refuses.",
+          "The stamp is written at most once a minute per key. A key may be checked many times a second, and a write for each would cost more than the fact is worth. A second call inside the same minute changes nothing. The consequence is stated on the form too: the use count measures how many minutes a key was active in, not how many calls it made.",
+          "Each verified call costs two small lookups: one to find the key by its index and one to find its row. Writes are limited to once a minute.",
+          "Before: the Never used filter finds two keys, both created long ago and never called.",
+          "The two never-used keys are the Zapier trial and a Postman test owned by Priya Nair. To prove the recording works, a call was made over XML-RPC using the real Postman key. Odoo accepted it, and the Postman row moved to In use with Last Used set to that moment and zero days idle. Calls with the expired key and with a made-up key were both refused and recorded nothing. The after-picture is the full-width screen in the Screenshots section below.",
+          "Recording starts when the app is installed. A key that was last used yesterday, before you installed, shows as never used until its next call. After a week or two of running, the answer is far more useful than a guess, but on day one, treat Never used as never used since install."
         ],
-        "use": "you want to see which records land in the file, and what the app refuses to write, before anyone reads it.",
-        "mode": "Reads accounting data only",
-        "warn": "Not exported: payments, stock movements, assets and products (those sections are empty). Documents are reported in the company currency only. Account types Activ and Pasiv are derived from the Odoo account type, and the app cannot tell Romanian bifunctional accounts. A partner with no VAT number gets an own code of ANAF type 04, suppliers included. The contact person is the user who presses Generate.",
+        "use": "you need proof that a key is carrying real traffic, not somebody's belief that it is.",
+        "mode": "Writes a stamp when a key is used",
         "images": [
-          "images/ev-contents.webp",
-          "images/ev-xml.webp",
-          "images/ev-ledger.webp"
+          "images/api-keys-5-never-used.webp"
+        ]
+      },
+      {
+        "heading": "4 Four flags: never used, idle, no expiry, expired",
+        "body": [
+          "Most of a key list is healthy. The risk is in four small groups, and they overlap, so reading the whole list row by row is slow and easy to get wrong.",
+          "The search panel has four filters. Never used shows keys that Odoo has never been seen to accept since the app was installed. Idle 30 days or more shows keys last used at least thirty days ago. No expiry date shows keys that nothing will ever retire. Expired shows keys whose expiry date has passed. Each is one click, and the status of a key is worked out when you open the list, so a key that went quiet yesterday appears in Idle today without anybody touching it.",
+          "A key has exactly one status badge, chosen in this order: Expired first, then Never used, then Idle, and In use for what is left. An expired key is therefore never shown as idle, whatever its history. The No expiry date filter is separate from the badge, because a key with no expiry can also be idle or never used, and the two flags together are the riskiest keys on the list.",
+          "The four filters, one click each.",
+          "Idle: two keys last used 214 and 52 days ago.",
+          "No expiry date: four keys that will never retire themselves.",
+          "The administrator opens Idle 30 days or more and gets two keys: the legacy payroll export, silent for 214 days, and the bank feed import, silent for 52. Both also have no expiry date, so both are on the No expiry list too. Four keys have no expiry. She now has a plan: ask the finance team about the bank feed, and revoke the payroll export.",
+          "The thirty-day threshold is fixed. It is not a setting. And an expired key does not stay in the list forever: Odoo's own scheduled clean-up deletes expired keys from its table, and the next Refresh then removes their rows here. Expired keys are visible for a while after they lapse, not permanently. Grouping by Status in the search panel currently raises an error on screen because status is worked out on the fly and cannot be grouped; group by Owner works, and the four filters above do the same job."
+        ],
+        "use": "you want the shortlist of keys that deserve a decision, without reading every row.",
+        "mode": "Read-only filters",
+        "result": "one click in the search panel gives the short list of keys that are never used, quiet for a month, without an expiry date or already expired.",
+        "images": [
+          "images/api-keys-4-filters.webp",
+          "images/api-keys-6-idle.webp",
+          "images/api-keys-7-no-expiry.webp"
+        ]
+      },
+      {
+        "heading": "5 One key in detail",
+        "body": [
+          "Before you revoke something that an integration may depend on, you want the whole story in one place, and you want to see which of its states the key is in.",
+          "Click a row to open its form. The title is the key's description. On the left you see the owner, the scope and the creation date. On the right you see the last use, the days since last use, the use count, the expiry date and whether the key never expires. A status bar at the top shows where the key stands: Never used, Idle or In use. The Revoke button sits next to it, in red. Nothing on the form is editable: the inventory records facts, and the keys themselves stay under Odoo's own screens.",
+          "Under the fields is a reminder that use is recorded at most once a minute, so the count measures minutes of activity rather than calls. The form can be paged through with the arrows, which lets you walk down the worst keys one after another.",
+          "The form of a key last used 52 days ago with no expiry date.",
+          "The bank feed import belongs to a user called Finance Bot, was created in September 2025, was last used on September 7 and has been called in 905 different minutes. It has no expiry date. That tells the administrator it was a real, busy integration that has stopped, which is a question for the finance team, not a key to delete blind.",
+          "It cannot change the scope or the expiry date. That is done in Odoo's own key screen, and this app does not get between you and it."
+        ],
+        "use": "you need the full picture of a single key before deciding about it.",
+        "mode": "Read-only form",
+        "images": [
+          "images/api-keys-9-key-form.webp"
+        ]
+      },
+      {
+        "heading": "6 Revoke: delete the key itself",
+        "body": [
+          "Finding a forgotten key is half of the job. Ending it normally means asking the owner to open their preferences and delete it, or going through the standard listing, away from the evidence you just gathered.",
+          "Every row has a Revoke button, and so does the form. Pressing it asks for confirmation in plain words: This deletes the key. Anything still using it stops working immediately, and the key cannot be restored - a new one has to be issued. Confirming deletes the key from Odoo through its own removal routine and removes the row from the inventory. The server log records which key, whose it was and who revoked it.",
+          "If the key has already been removed by someone else, the app says so and suggests pressing Refresh, instead of failing silently. Only administrators can reach the button.",
+          "The confirmation says what will happen before it does.",
+          "After confirming: the Zapier trial row is gone, seven keys remain.",
+          "The Zapier trial key was created 600 days ago and never used. The administrator presses Revoke on its row and confirms. The list drops to seven keys, and the key can no longer sign in to anything. The log line names the key, its owner Daniel Ortiz and the administrator who revoked it.",
+          "It does not ask the owner first, send a notification or keep a copy of the key. If you revoke the wrong key, the integration breaks until a new key is created and pasted in."
+        ],
+        "use": "you have decided a key is dead, or leaked, and it must stop working now.",
+        "mode": "Deletes the key, cannot be undone",
+        "result": "the key stops working at once, the row disappears from the list, and the log line records who did it.",
+        "warn": "Revoking deletes the key from Odoo. Anything still using it stops working immediately, and a new key has to be issued. There is no undo.",
+        "images": [
+          "images/api-keys-11-revoke-confirm.webp",
+          "images/api-keys-12-after-revoke.webp"
+        ]
+      },
+      {
+        "heading": "7 Built so that recording never refuses a key",
+        "body": [
+          "Code in the key check is code that can break every integration at once. The thing this app exists to look after must not be put at risk by it. So the recording step runs inside a guard that catches every error it raises, writes it to the server log and lets Odoo carry on with the verified key. In the worst case you lose a timestamp. You never lose a valid key.",
+          "The recording only happens after Odoo has accepted the key. Odoo's own checks, including its scope and expiry rules, run first and are not changed. Odoo decides whether a call is allowed; this app only notes that it was.",
+          "The app stores no secret. The inventory copies the key's description, owner, scope and dates, and the key's short index is used only to find the right row. The key value itself is never held by the app.",
+          "The guard hides failures from the user, so they show up only in the log. Because a lost stamp makes a key look idler than it is, check the log on first use if you plan to rely on the numbers, and test the Never used and In use badges with a key of your own, as we did."
+        ],
+        "use": "you are being asked to put code in the path that checks every API call.",
+        "mode": "A failure is logged and ignored",
+        "images": []
+      },
+      {
+        "heading": "Who it is for",
+        "body": [
+          "The Odoo administrator who has inherited a database full of integrations and wants to know which keys are alive before the next audit.",
+          "The consultant or IT lead who hands a system over, and wants the old test keys gone before they leave.",
+          "Whoever answers the security review : the list shows, per key, an owner, a last use and an expiry, which is what reviewers ask for.",
+          "It is not for end users, who never see it, and it is not a way to create keys, a secrets manager or an audit log of what each call did."
+        ],
+        "images": []
+      },
+      {
+        "heading": "What this app does not do",
+        "body": [
+          "Recording begins at install. A key used yesterday, before the app was installed, reads as never used until its next call.",
+          "The last-use stamp is written at most once a minute per key, so the use count is minutes of activity, not a count of calls.",
+          "The list is a copy taken when you press Refresh. A key created afterwards appears when you refresh or when it is first used.",
+          "An expired key is shown only until Odoo's own clean-up removes it from its table. After the next Refresh the row is gone, so this is not a permanent record of expired keys.",
+          "The idle threshold is thirty days and cannot be changed in a setting.",
+          "Grouping the list by Status shows an error, because status is worked out when you look and not stored. Group by Owner, or use the four filters.",
+          "It cannot create keys or change their scope or expiry. It sends no alerts and keeps no history of what each call did. For an AI agent connected over MCP, that is what AI Agent Guardrails is for.",
+          "Revoke asks nothing of the key's owner and cannot be undone. Only administrators can see the menu or the data."
+        ],
+        "images": []
+      }
+    ],
+    "scope": [],
+    "requires": [],
+    "price": 68.88,
+    "manifestPrice": 69.0,
+    "currency": "USD",
+    "category": "Tools",
+    "version": "19.0.1.0.17",
+    "license": "OPL-1",
+    "depends": [
+      "base"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_api_key_inventory",
+    "storeUrl19": "https://apps.odoo.com/apps/modules/19.0/mh_api_key_inventory",
+    "storeUrl20": "https://apps.odoo.com/apps/modules/20.0/mh_api_key_inventory",
+    "screenshots": [
+      "images/api-keys-3-inventory.webp",
+      "images/api-keys-10-after-use.webp"
+    ],
+    "shotDims": {
+      "images/api-keys-1-menu.webp": [
+        1000,
+        208
+      ],
+      "images/api-keys-2-empty.webp": [
+        1000,
+        508
+      ],
+      "images/api-keys-3-inventory-left.webp": [
+        1000,
+        559
+      ],
+      "images/api-keys-5-never-used.webp": [
+        1000,
+        286
+      ],
+      "images/api-keys-4-filters.webp": [
+        900,
+        324
+      ],
+      "images/api-keys-6-idle.webp": [
+        1000,
+        286
+      ],
+      "images/api-keys-7-no-expiry.webp": [
+        1000,
+        404
+      ],
+      "images/api-keys-9-key-form.webp": [
+        1000,
+        734
+      ],
+      "images/api-keys-11-revoke-confirm.webp": [
+        1000,
+        332
+      ],
+      "images/api-keys-12-after-revoke.webp": [
+        1000,
+        500
+      ],
+      "images/api-keys-3-inventory.webp": [
+        1000,
+        342
+      ],
+      "images/api-keys-10-after-use.webp": [
+        1000,
+        342
+      ]
+    },
+    "tiles": [
+      {
+        "n": "30 days",
+        "l": "of silence before a key counts as idle"
+      },
+      {
+        "n": "1 min",
+        "l": "the finest grain of the last-use stamp"
+      },
+      {
+        "n": "4",
+        "l": "flags: never used, idle, no expiry, expired"
+      },
+      {
+        "n": "19",
+        "l": "automated tests, none failing"
+      },
+      {
+        "n": "1",
+        "l": "click and one confirmation to revoke a key"
+      },
+      {
+        "n": "base",
+        "l": "the only module it depends on"
+      }
+    ],
+    "faq": [
+      {
+        "q": "Does it show me the keys themselves?",
+        "a": "No. It shows each key's description, owner, scope and dates. The key value is never stored by the app, and Odoo itself only keeps a hashed form."
+      },
+      {
+        "q": "How does it know a key was used?",
+        "a": "It adds a few lines to Odoo's own key check. When Odoo accepts a key, the app stamps the time. A refused key records nothing."
+      },
+      {
+        "q": "A key I know is in use shows as never used. Why?",
+        "a": "Recording starts when the app is installed. Use the key once, or wait for its next scheduled call, and it moves to In use."
+      },
+      {
+        "q": "Does it slow down my integrations?",
+        "a": "Each verified call adds two small lookups. The stamp itself is written at most once a minute per key. If recording fails, the failure is logged and the call goes through."
+      },
+      {
+        "q": "What happens to expired keys?",
+        "a": "They show with an Expired badge until Odoo's own scheduled clean-up deletes them. After the next Refresh their rows are gone too."
+      },
+      {
+        "q": "Can I get a notification when a key goes idle?",
+        "a": "No. The app does not send alerts or emails. You open the list and use the filters."
+      },
+      {
+        "q": "Can it create or change keys?",
+        "a": "No. Keys are made in each user's own preferences. This app lists them, records their use and revokes them."
+      },
+      {
+        "q": "Who can see it?",
+        "a": "Only administrators: the menu and the data are both limited to the Settings administrator group."
+      },
+      {
+        "q": "Can I undo a Revoke?",
+        "a": "No. The key is deleted. Create a new one and give it to the integration."
+      },
+      {
+        "q": "Does it work with keys used by AI agents over MCP?",
+        "a": "It records any key that Odoo verifies through its key check, whatever sits on the other end. It does not record what the agent did with the access."
+      }
+    ],
+    "copyWords": 3111,
+    "hasVideo": true,
+    "youtubeId": "eVOB0xn39Lg",
+    "externalPage": null
+  },
+  {
+    "tech": "mh_stock_valuation_report",
+    "slug": "stock-valuation-report",
+    "name": "Stock Valuation Report",
+    "summary": "Shows each product's opening, received, issued, other and closing stock value for any period, in PDF and Excel: Inventory valuation report for any period: opening stock, receipts, issues and closing value per product, by warehouse and category, in PDF and Excel",
+    "tagline": "Inventory valuation for any period: opening stock, received, issued and closing value per product, by warehouse and category, in PDF and Excel",
+    "intro": [
+      "Stock Valuation Report is for the person who has to say what the stock was worth at the end of a period and why it changed. Pick a period and an optional warehouse, location or product category, press Run Report, and read one row per product: opening, received, issued, other and closing, with a summary in plain words. Opening and closing are Odoo’s own valuation, every row adds up, and the result prints to PDF or exports to Excel.",
+      "The screenshots were taken on Odoo 19 in a database seeded with made-up data: a fictitious industrial-supplies company with 18 products, two warehouses and about 700 stock moves backdated over a year, with three cost updates entered on the day of the run. The data is synthetic, and every number quoted beside a screenshot is read off that screenshot."
+    ],
+    "features": [
+      {
+        "heading": "The month-end question Odoo no longer answers in one place",
+        "body": [
+          "Odoo 19 no longer has the stock valuation layer, and with it the per-product Valuation view that used to sit under Inventory > Reporting. In a Community install, what is left in Reporting is Stock, Locations, Moves History and Moves Analysis, and the one valuation report in Odoo’s stock_account module is a single-date view by accounting account that no menu opens. Yet the question an accountant asks at every month end has not changed: what was the stock worth on the first, what came in, what went out, and what is it worth now, product by product?",
+          "Stock Valuation Report puts that answer back. You pick a period, press Run Report and get one row per product with five value columns that always add up. Then you print it or export it, and hand it over."
+        ],
+        "images": []
+      },
+      {
+        "heading": "1 One menu entry, one record: set the period and run",
+        "body": [
+          "Stock value is one of the numbers a company is most careful about, and the way to get it for a past period is usually a spreadsheet someone rebuilt last month. A report that is a record in the database, with a name and a period, can be reopened, rerun and compared.",
+          "It also needs a clear owner: not every warehouse user should see what the stock is worth.",
+          "The entry is under Inventory > Reporting > Stock Valuation . A report is a form with a name, a From and a To date, and an optional scope: Warehouses, Locations and Product Categories. There is one more tick box, Include products with no stock and no movement , off by default.",
+          "By default the period runs from the first of the current month through today. Run Report sits at the top of the form. After a run, Print PDF and Export to Excel appear beside it, and a Products button opens the rows.",
+          "A report belongs to one company, and a user of several companies sees only reports of the companies they have access to. The Company field shows only on a multi-company database.",
+          "The entry in Inventory > Reporting.",
+          "A new report: name, period and scope. Here the Bearings category is picked; Run Report is the only button until a run exists.",
+          "Dana is the warehouse manager at a made-up industrial supplier. On Oct 28 she opens the menu, presses New, names the report October to date , keeps the default period (Oct 1 to Oct 28) and presses Run Report. She changes nothing else, so it covers the whole company.",
+          "A second report, September month end with From Sep 1 and To Sep 30, takes the same four steps. Both stay in the list, so next month she can open them instead of starting over."
+        ],
+        "use": "you want a valuation for a period, in a minute, without building anything.",
+        "mode": "Read-only (Excel export saves a file)",
+        "result": "a saved report record with the period, the scope you chose and the date and time it was run.",
+        "warn": "Only Inventory Administrators see the menu and can run the report. That matches who may see stock value in Odoo.",
+        "images": [
+          "images/stock-valuation-menu.webp",
+          "images/stock-valuation-setup.webp"
+        ]
+      },
+      {
+        "heading": "2 The result: opening, received, issued, other and closing",
+        "body": [
+          "One closing figure answers what the stock is worth. It does not answer why it is different from last month, and it does not tell the person reading it where to look.",
+          "The usual way to explain the gap is to rebuild the movement by hand from receipts, deliveries and cost changes, and the pieces rarely add up the first time.",
+          "After a run the form shows the five totals, a block titled What stood out , and a Products tab. The Products button on the top right of the form opens the same rows as a list, grouped by product category, with a total at the foot of every value column.",
+          "Opening is the stock at the last second before your period starts, and Closing is the stock at the last second of its last day. Both come from Odoo’s own valuation at those two instants. Received is the quantity that entered stock during the period with the value Odoo recorded on each move, and Issued is the same for what left. The report shows issued as a positive number in both versions, so you subtract it.",
+          "What stood out gives the change between opening and closing, with a percentage, then the received, issued and other totals, and names up to three products with the largest changes that have no stock move behind them. If a product’s quantity does not add up, it says so and names up to five of them.",
+          "The list has Unit, quantity and value columns for every stage; the quantity columns can be switched off from the optional-columns menu to leave a values-only view.",
+          "After Run Report: the five totals and the summary, including which products changed with no move behind them.",
+          "Products grouped by category, Electrical expanded, quantity columns switched off. The footer carries the totals.",
+          "The sample covers 18 products from October 1 to October 28. Opening $34,708.00, plus received $5,280.00, minus issued $5,294.00, plus other $388.00, equals closing $35,082.00, a change of $374.00 or 1.1% as the summary puts it.",
+          "By category the closing values are Bearings $5,684.00, Electrical $8,188.00, Fasteners $11,480.00, Lubricants $5,830.00 and Safety $3,900.00, which add up to the same $35,082.00. Electrical is the only group that received and issued nothing, yet it changed value: it carries $268.00 of Other. The next section explains where that came from."
+        ],
+        "use": "finance asks what the stock was worth at the start and the end, and what moved in between.",
+        "mode": "Read-only",
+        "result": "one row per product with opening, received, issued and closing quantity and value, a total, and a summary in plain words.",
+        "warn": "The rows are a snapshot of the moment you pressed Run Report. A move backdated afterwards is not in them until you run the report again.",
+        "images": [
+          "images/stock-valuation-result.webp",
+          "images/stock-valuation-by-category.webp"
+        ]
+      },
+      {
+        "heading": "3 Other: the column that keeps every row honest",
+        "body": [
+          "Received and issued come from stock moves. But the value of stock can change with no move at all: someone updates a product’s cost, or a landed cost is added to a receipt. If those changes were not shown, opening plus received minus issued would not equal closing, and the person reading the report would have to hunt for the difference.",
+          "Showing the difference as a plug figure at the foot of the report would be no better, because it would not say which product it belongs to.",
+          "Other is calculated per product as closing value minus opening value, minus received value, plus issued value. It is therefore exactly the part of the change that no stock move in the period explains, and it makes every row add up by construction.",
+          "In practice it holds cost updates and landed costs. When the report is limited to a warehouse, it also holds the value effect of transfers between your own warehouses, which Odoo does not value (section 4 shows this).",
+          "The Products list has a filter, Changed with no move , that keeps only the products whose Other is not zero. The summary names the three largest by amount, whichever sign they have.",
+          "The filter Changed with no move leaves three products, and their Other adds up to the $388.00 in the totals.",
+          "On the day of the report the sample’s three cost updates were entered: Contactor 24V from $54 to $58, Motor 0.75kW from $240 to $252, and Gear Oil 20L from $95 to $99. Contactor held 40 units, so its value rose by 40 times $4, $160.00. Motor held 9 units, 9 times $12, $108.00. Gear Oil held 30 units at the end of the period, 30 times $4, $120.00.",
+          "None of the three has anything in Received, and Gear Oil’s Issued of $190.00 is its two units shipped at the old cost of $95. The three rows add up to the $388.00 of Other in the totals, and nothing else in the company contributes."
+        ],
+        "use": "closing minus opening does not match what came in and went out, and you need to know why.",
+        "mode": "Read-only",
+        "result": "every value change that no move explains lands in one column, and the filter Changed with no move lists exactly those products.",
+        "warn": "When the cost of a product changes, Odoo 19 books the change separately from the receiving move, so a receipt inside the period still shows under Received at its original value and the change shows under Other.",
+        "images": [
+          "images/stock-valuation-changed-no-move.webp"
+        ]
+      },
+      {
+        "heading": "4 Scope: one warehouse, a location or a category",
+        "body": [
+          "The company total is for the finance team. The manager of one warehouse wants to see only theirs, and a category owner wants only their products.",
+          "A filtered number must still be a number Odoo would produce. A filter that scales or guesses would give a figure nobody can reproduce.",
+          "Warehouses, Locations and Product Categories each take several values. Choosing a warehouse covers all valued locations under it. A location covers its sub-locations, and a category covers its sub-categories. A warehouse and a location together are added to each other.",
+          "Opening and closing for a scope are the company’s own value for each product shared out by quantity: the value in the chosen locations is the product’s company value times the quantity held there over the quantity held in all valued locations. That is how Odoo itself values a warehouse, so a filtered figure is never one Odoo would not produce.",
+          "Received and issued count a move only when exactly one end of it is inside the scope. A move between two bins of the same warehouse crosses nothing and is left out. Stock you hold for someone else, such as consignment, and moves of other companies are left out too.",
+          "Limited to Main Warehouse. The summary names the products behind a negative Other and the reason.",
+          "The rows behind it. Ball Bearing 6204, Motor and Gearbox issued quantity with no issued value; the value effect is in Other.",
+          "Limited to the Bearings category: four products, closing $5,684.00.",
+          "Twelve days before the run the sample moved stock from Main Warehouse to the East Depot: 30 Ball Bearing 6204, 2 Motor 0.75kW and 1 Legacy Gearbox GB-200. Limited to Main Warehouse, the report shows them as issued quantity, 81 for the bearing (51 delivered plus 30 moved), 2 and 1, but no issued value, because Odoo does not value a move between your own warehouses.",
+          "The value that left shows under Other: -$540.00 for the bearings (30 times $18), -$480.00 for the gearbox, and -$396.00 for the motor (2 times its $252 cost is -$504.00, less $108.00 of cost update). With the $388.00 of cost updates, the Other total is -$1,136.00, and the report still closes at $33,576.00. The company-wide report shows the same transfer as nothing at all, because the stock never left the company.",
+          "A Bearings-only run shows received $1,800.00 and issued $918.00 for the 4 bearing products, and an Other of $0.00."
+        ],
+        "use": "a branch manager, or a category owner, needs only their part of the stock.",
+        "mode": "Read-only",
+        "result": "the same five columns for a warehouse, any internal location with its sub-locations, or a category with its sub-categories.",
+        "warn": "A transfer to your other warehouse is not valued by Odoo. In a report limited to one warehouse it shows as quantity issued with no value, and its value effect lands under Other.",
+        "images": [
+          "images/stock-valuation-main-warehouse.webp",
+          "images/stock-valuation-transfer-rows.webp",
+          "images/stock-valuation-bearings-only.webp"
+        ]
+      },
+      {
+        "heading": "5 Any period, in your own time zone",
+        "body": [
+          "Month end is not the only date an auditor asks about. Quarter end, year end and the day a count was done are all periods, and the numbers have to be for the right instant.",
+          "A bare date is ambiguous. Odoo’s own valuation turns a date into the end of that day in UTC, which for anyone east or west of Greenwich moves a month end by hours and puts a late receipt in the wrong month.",
+          "From and To are dates. The report turns them into the start of the first day and the end of the last day in your time zone, as set on your user, and reads Odoo’s valuation at those two instants. A move exactly on the first second of the period counts once, as a movement, and not also as opening stock.",
+          "Reports for different periods are separate records and stay in the list view, with name, period, opening and closing value and the time of the run. The list is the place to compare them.",
+          "September month end: no receipts, issued $7,362.00.",
+          "Saved reports: September closes at $34,708.00, October opens at $34,708.00.",
+          "September month end opens at $42,070.00, receives nothing, issues $7,362.00 and closes at $34,708.00, which the summary reports as a change of $-7,362.00 or -17.5%. October to date opens at $34,708.00, the same figure.",
+          "Fasteners are the largest part of that fall. Their issues over September were Hex Bolt M8x40 $1,248.00, Hex Nut M8 $936.00, Self-Tapping Screw 4x30 $135.00 and Washer M8 $680.00, $2,999.00 in all, and the group closed September at $11,276.00."
+        ],
+        "use": "you need last quarter, last year or a single day, and a month end that falls on your midnight.",
+        "mode": "Read-only",
+        "result": "a report for any past period, whose closing value matches the next period’s opening value.",
+        "warn": "The period must not end before it starts. Saving a report with From later than To is refused with a message.",
+        "images": [
+          "images/stock-valuation-september.webp",
+          "images/stock-valuation-saved-reports.webp"
+        ]
+      },
+      {
+        "heading": "6 PDF and Excel, grouped by category",
+        "body": [
+          "A report that stays on the screen has not finished the job. The figures go into a month-end pack, are sent to the owner or are opened in a spreadsheet to be sliced differently.",
+          "A table with ten columns also does not fit a portrait page, so the PDF is set on a landscape A4 page.",
+          "Print PDF opens a landscape A4 report with your company header. It starts with the title, the period, the scope and the same summary you see on screen, so the conclusion comes before the detail. Then comes the table: for every category a heading, its products, a subtotal row, and at the end a grand total.",
+          "Export to Excel downloads a sheet named Valuation with the report name, company, period and scope at the top, then one row per product with Category, Product, Internal Reference, Unit and the nine figure columns, a total row per category and a grand total. The file is also attached to the report record.",
+          "Both buttons appear only after a run, and pressing them on a report that has not been run is refused with a message.",
+          "The PDF: summary first, then categories with subtotals. Page one of two.",
+          "The Excel file with the first columns shown; the sheet continues to Closing Value. Page set to landscape and fit to width for this picture.",
+          "The October report runs to two PDF pages. Page one shows the summary lines, then Bearings with a subtotal of $4,802.00 opening, $1,800.00 received, $918.00 issued and $5,684.00 closing, then Electrical with $7,920.00 opening and $268.00 Other, followed by the rest on page two and the grand total of $35,082.00.",
+          "In the Excel file the same three groups are totalled by Total Goods / Bearings, Total Goods / Electrical and so on, with the grand total on the last row."
+        ],
+        "use": "the numbers have to go into a month-end file, an audit folder or an email.",
+        "mode": "Excel export saves a file",
+        "result": "a PDF and an Excel file with the same rows, category subtotals and a grand total, available after a run.",
+        "warn": "The Excel file holds values, not formulas. Totals and subtotals are numbers written into the cells, not SUM formulas, so they do not change if you edit a cell.",
+        "images": [
+          "images/stock-valuation-pdf.webp",
+          "images/stock-valuation-excel.webp"
         ]
       }
     ],
     "scope": [],
     "requires": [],
-    "price": 59.0,
-    "manifestPrice": 59.0,
+    "price": 68.88,
+    "manifestPrice": 69.0,
     "currency": "USD",
-    "category": "Accounting/Localizations",
-    "version": "19.0.1.0.9",
+    "category": "Warehouse",
+    "version": "19.0.1.0.8",
     "license": "OPL-1",
     "depends": [
-      "l10n_ro"
+      "stock_account"
     ],
     "paidDepends": [],
     "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_ro_saft_exporter",
-    "storeUrl19": "https://apps.odoo.com/apps/modules/19.0/mh_ro_saft_exporter",
-    "storeUrl20": "https://apps.odoo.com/apps/modules/20.0/mh_ro_saft_exporter",
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_stock_valuation_report",
+    "storeUrl19": "https://apps.odoo.com/apps/modules/19.0/mh_stock_valuation_report",
+    "storeUrl20": "https://apps.odoo.com/apps/modules/20.0/mh_stock_valuation_report",
     "screenshots": [],
     "shotDims": {
-      "images/ev-validation.webp": [
-        1000,
-        1191
+      "images/stock-valuation-menu.webp": [
+        620,
+        422
       ],
-      "images/decl-list.webp": [
+      "images/stock-valuation-setup.webp": [
         1000,
-        525
+        395
       ],
-      "images/decl-form-draft.webp": [
+      "images/stock-valuation-result.webp": [
         1000,
-        754
+        589
       ],
-      "images/decl-form-generated.webp": [
+      "images/stock-valuation-by-category.webp": [
         1000,
-        754
+        366
       ],
-      "images/ev-contents.webp": [
+      "images/stock-valuation-changed-no-move.webp": [
         1000,
-        1234
+        239
       ],
-      "images/ev-xml.webp": [
+      "images/stock-valuation-main-warehouse.webp": [
         1000,
-        2984
+        589
       ],
-      "images/ev-ledger.webp": [
+      "images/stock-valuation-transfer-rows.webp": [
         1000,
-        2984
+        344
+      ],
+      "images/stock-valuation-bearings-only.webp": [
+        1000,
+        529
+      ],
+      "images/stock-valuation-september.webp": [
+        1000,
+        529
+      ],
+      "images/stock-valuation-saved-reports.webp": [
+        1000,
+        239
+      ],
+      "images/stock-valuation-pdf.webp": [
+        1000,
+        405
+      ],
+      "images/stock-valuation-excel.webp": [
+        1000,
+        435
       ]
     },
     "tiles": [
       {
-        "n": "2 of 2",
-        "l": "ANAF checks run on the seeded file (schema file and DUKIntegrator): both pass on our test data"
-      },
-      {
         "n": "5",
-        "l": "VAT rates mapped to ANAF tax codes: 21, 19, 11, 9 and 5 percent, plain domestic VAT only"
+        "l": "value columns that always add up"
       },
       {
-        "n": "381",
-        "l": "credit notes are written as ANAF invoice type 381 with a minus sign"
-      },
-      {
-        "n": "16",
-        "l": "automated tests in this app, none failing"
+        "n": "20",
+        "l": "automated tests, none failing"
       },
       {
         "n": "0",
-        "l": "things sent to ANAF or anyone else"
+        "l": "journal entries posted or costs changed"
       },
       {
-        "n": "XML",
-        "l": "the one export, attached to the declaration"
+        "n": "2",
+        "l": "outputs: PDF and Excel"
+      },
+      {
+        "n": "3",
+        "l": "scopes: warehouse, location, category"
+      },
+      {
+        "n": "$35,082",
+        "l": "closing value of the made-up stock in the screenshots"
       }
     ],
     "faq": [
       {
-        "q": "Will ANAF accept the file?",
-        "a": "The file passes ANAF's published schema and its DUKIntegrator validator on our test data. Nothing was submitted to ANAF, so no acceptance is claimed. Run it through DUKIntegrator yourself first."
+        "q": "Does it post journal entries or change any cost?",
+        "a": "No. It only reads. Apart from its own report records, the only thing it writes is the Excel file you ask for."
       },
       {
-        "q": "Does it file with ANAF?",
-        "a": "No. It transmits nothing. Your accountant reviews the figures and files through ANAF's own channel."
+        "q": "Does it work with standard, average and FIFO costing?",
+        "a": "Opening and closing are Odoo’s own valuation, so whatever method each category uses is what you see. The automated tests cover average and standard costing; the screenshots use standard."
       },
       {
-        "q": "What does it read?",
-        "a": "Accounts, partners, taxes, posted journal entries and posted invoices. Drafts and cancelled entries are left out."
+        "q": "Why does a one-warehouse report show Other when nothing changed in cost?",
+        "a": "A transfer to another of your warehouses is not valued by Odoo, so a report on one warehouse shows it as quantity with no value, and the value that moved lands under Other. Section 4 shows an example."
       },
       {
-        "q": "What if my taxes are not the plain ones?",
-        "a": "The app stops and names the document and the tax. It does not guess an ANAF code."
+        "q": "Can I run it for a past month?",
+        "a": "Yes. Any From and To date works, and the closing value of one period matches the opening value of the next. The report uses your time zone for the day boundaries."
       },
       {
-        "q": "Does Monthly or Quarterly change the file?",
-        "a": "Yes, only the return type in the header: L for monthly, T for quarterly. The period is the two dates."
+        "q": "Are archived products included?",
+        "a": "Yes, if they still hold stock. Their stock is still on your balance sheet."
+      },
+      {
+        "q": "What about stock I hold on consignment for someone else?",
+        "a": "It is left out, the way Odoo leaves it out of your valuation."
+      },
+      {
+        "q": "Does it work with several companies?",
+        "a": "Yes. Each report belongs to one company, other companies’ stock and moves are ignored, and users only see reports of their own companies."
+      },
+      {
+        "q": "Is the report live?",
+        "a": "No. It is a snapshot taken when you press Run Report. Press it again to refresh the rows."
+      },
+      {
+        "q": "Can regular inventory users run it?",
+        "a": "No. Only Inventory Administrators, the same people Odoo lets see stock value."
+      },
+      {
+        "q": "Does it reconcile to my general ledger?",
+        "a": "No. It reports Odoo’s stock valuation per product. It does not compare it to accounting balances."
       }
     ],
-    "copyWords": 652,
+    "copyWords": 2363,
     "hasVideo": true,
-    "youtubeId": "KTmlx96P0IA",
+    "youtubeId": "LLB1_ZdBRyg",
     "externalPage": null
   },
   {
@@ -6947,11 +6785,11 @@ export const odooApps = [
       "It was tested against a CUPS queue with a PDF-writer backend and against test servers that simulate failures. It has not been tested on physical printer models."
     ],
     "requires": [],
-    "price": 58.89,
+    "price": 59.0,
     "manifestPrice": 59.0,
     "currency": "USD",
     "category": "Productivity",
-    "version": "19.0.1.0.2",
+    "version": "19.0.1.0.3",
     "license": "OPL-1",
     "depends": [
       "base",
@@ -7076,6 +6914,168 @@ export const odooApps = [
     "copyWords": 2680,
     "hasVideo": false,
     "youtubeId": null,
+    "externalPage": null
+  },
+  {
+    "tech": "mh_ro_saft_exporter",
+    "slug": "romania-saf-t-exporter",
+    "name": "Romania SAF-T Exporter",
+    "summary": "Writes a period's posted accounting from Odoo into a D406 SAF-T XML that passes ANAF's published schema and DUKIntegrator on our test data; not a filing",
+    "tagline": "A SAF-T XML for a period that passes ANAF's published schema and DUKIntegrator on our test data. Not a filing",
+    "intro": [
+      "This app collects the posted accounting of a period into one XML file in ANAF's layout. The file from version 19.0.1.0.9 passes ANAF's published schema (version 2.4.9) and ANAF's DUKIntegrator validator on our test data (results below). That is a format check only: this is not a filing, the app sends nothing, and it says nothing about deadlines, obligations or whether your figures are right. Your accountant reviews the file and files through ANAF's own channel. This page shows an Odoo 19 database seeded with a made-up Romanian company."
+    ],
+    "features": [
+      {
+        "heading": "What the ANAF checks say",
+        "body": [
+          "ANAF publishes a schema file and a validator kit on its SAF-T page. Both were downloaded on 2 November 2026 (schema version 2.4.9, validator kit dated 16 February 2026) and run on the files this app generated for the seeded company, next to a known-good control and the file the previous version produced.",
+          "Real output of the two ANAF tools. The ANAF schema column uses the schema file with only its namespace string changed from d406t to d406, which is what DUKIntegrator asks for."
+        ],
+        "warn": "The validator accepted the file on made-up data with valid-format CUIs. Your data can still be refused by the app (it stops and lists what is missing) or by ANAF's checks. Run the file through DUKIntegrator yourself before anyone files it.",
+        "images": [
+          "images/ev-validation.webp"
+        ]
+      },
+      {
+        "heading": "1 Declarations: one period, one file",
+        "body": [
+          "A file for a period is easier to hand over when the period, the status and the file sit on one record.",
+          "Under SAF-T > Declarations (Accounting users and Accounting Administrators) each record has a start date, an end date, a Monthly or Quarterly label, a status (Draft or Generated) and the generation date. Generate XML builds the file, attaches it to the record, sets the status to Generated and starts the download. The label is written into the file header as L or T. The form carries a notice that this is a preparation tool and that the file should be validated with ANAF's DUKIntegrator.",
+          "Two declarations: one generated, one still a draft.",
+          "A draft declaration with the notice.",
+          "A generated declaration; the status and the generation date are the only trace on the form.",
+          "The seeded company, Carpatia Mobila SRL, has a quarterly declaration for 1 January to 31 March 2026 and a monthly one for January 2026. A second declaration with exactly the same dates is refused by a database constraint.",
+          "It does not submit anything and does not track whether a declaration was filed."
+        ],
+        "use": "you want one XML file per month or quarter, kept next to the period it covers.",
+        "mode": "Writes when saved",
+        "warn": "The period is the two dates, and they are not checked (an end date before the start date gives an empty file). Each press of Generate XML adds another attachment, the form has no list of them, and the status stays Generated if invoices change afterwards.",
+        "images": [
+          "images/decl-list.webp",
+          "images/decl-form-draft.webp",
+          "images/decl-form-generated.webp"
+        ]
+      },
+      {
+        "heading": "2 What goes into the file",
+        "body": [
+          "A file is only useful if you know what it holds and what it leaves out.",
+          "Four sections under the root AuditFile , which carries ANAF's namespace. Header : the company (registration number, name, address, a contact telephone, a bank account), the period as months and years, the software, and the L or T return type. MasterFiles : the accounts that have a posting up to the period end, each with its opening and closing balance; the customers and suppliers that appear in the period, each with a code built by ANAF's rule and a balance; the VAT codes. GeneralLedgerEntries : posted journal entries dated in the period, grouped by journal, with a tax block on every line. SourceDocuments : posted customer invoices and credit notes, and vendor bills and refunds, dated in the period, with lines, tax codes and totals.",
+          "Counts read from the real files.",
+          "The Header and the first customer, from the real file.",
+          "A journal entry and an invoice, from the real file.",
+          "The seeded books have seven posted sales invoices, one draft and four posted vendor bills. The Q1 file holds six sales invoices and three bills: the draft, the April invoice and the May bill are absent. A credit note posted against an invoice appears as type 381 with the same amounts as the invoice and a minus sign.",
+          "It does not check the data for completeness beyond the points above, balance the entries or convert currencies. Foreign-currency invoices, Odoo.sh, Odoo Enterprise and multi-company databases were not tested."
+        ],
+        "use": "you want to see which records land in the file, and what the app refuses to write, before anyone reads it.",
+        "mode": "Reads accounting data only",
+        "warn": "Not exported: payments, stock movements, assets and products (those sections are empty). Documents are reported in the company currency only. Account types Activ and Pasiv are derived from the Odoo account type, and the app cannot tell Romanian bifunctional accounts. A partner with no VAT number gets an own code of ANAF type 04, suppliers included. The contact person is the user who presses Generate.",
+        "images": [
+          "images/ev-contents.webp",
+          "images/ev-xml.webp",
+          "images/ev-ledger.webp"
+        ]
+      }
+    ],
+    "scope": [],
+    "requires": [],
+    "price": 59.0,
+    "manifestPrice": 59.0,
+    "currency": "USD",
+    "category": "Accounting/Localizations",
+    "version": "19.0.1.0.10",
+    "license": "OPL-1",
+    "depends": [
+      "l10n_ro"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_ro_saft_exporter",
+    "storeUrl19": "https://apps.odoo.com/apps/modules/19.0/mh_ro_saft_exporter",
+    "storeUrl20": "https://apps.odoo.com/apps/modules/20.0/mh_ro_saft_exporter",
+    "screenshots": [],
+    "shotDims": {
+      "images/ev-validation.webp": [
+        1000,
+        1191
+      ],
+      "images/decl-list.webp": [
+        1000,
+        525
+      ],
+      "images/decl-form-draft.webp": [
+        1000,
+        754
+      ],
+      "images/decl-form-generated.webp": [
+        1000,
+        754
+      ],
+      "images/ev-contents.webp": [
+        1000,
+        1234
+      ],
+      "images/ev-xml.webp": [
+        1000,
+        2984
+      ],
+      "images/ev-ledger.webp": [
+        1000,
+        2984
+      ]
+    },
+    "tiles": [
+      {
+        "n": "2 of 2",
+        "l": "ANAF checks run on the seeded file (schema file and DUKIntegrator): both pass on our test data"
+      },
+      {
+        "n": "5",
+        "l": "VAT rates mapped to ANAF tax codes: 21, 19, 11, 9 and 5 percent, plain domestic VAT only"
+      },
+      {
+        "n": "381",
+        "l": "credit notes are written as ANAF invoice type 381 with a minus sign"
+      },
+      {
+        "n": "16",
+        "l": "automated tests in this app, none failing"
+      },
+      {
+        "n": "0",
+        "l": "things sent to ANAF or anyone else"
+      },
+      {
+        "n": "XML",
+        "l": "the one export, attached to the declaration"
+      }
+    ],
+    "faq": [
+      {
+        "q": "Will ANAF accept the file?",
+        "a": "The file passes ANAF's published schema and its DUKIntegrator validator on our test data. Nothing was submitted to ANAF, so no acceptance is claimed. Run it through DUKIntegrator yourself first."
+      },
+      {
+        "q": "Does it file with ANAF?",
+        "a": "No. It transmits nothing. Your accountant reviews the figures and files through ANAF's own channel."
+      },
+      {
+        "q": "What does it read?",
+        "a": "Accounts, partners, taxes, posted journal entries and posted invoices. Drafts and cancelled entries are left out."
+      },
+      {
+        "q": "What if my taxes are not the plain ones?",
+        "a": "The app stops and names the document and the tax. It does not guess an ANAF code."
+      },
+      {
+        "q": "Does Monthly or Quarterly change the file?",
+        "a": "Yes, only the return type in the header: L for monthly, T for quarterly. The period is the two dates."
+      }
+    ],
+    "copyWords": 652,
+    "hasVideo": true,
+    "youtubeId": "KTmlx96P0IA",
     "externalPage": null
   },
   {
@@ -7218,7 +7218,7 @@ export const odooApps = [
     "manifestPrice": 49.0,
     "currency": "USD",
     "category": "Warehouse",
-    "version": "19.0.1.0.2",
+    "version": "19.0.1.0.3",
     "license": "OPL-1",
     "depends": [
       "stock_account"
@@ -7307,6 +7307,333 @@ export const odooApps = [
     "copyWords": 1390,
     "hasVideo": true,
     "youtubeId": "oYQ20R1TJ50",
+    "externalPage": null
+  },
+  {
+    "tech": "mh_access_change_log",
+    "slug": "access-change-log",
+    "name": "Access Change Log",
+    "summary": "Records every change to a user's groups, to groups, to access rights and to record rules, with who changed it, whose access it was, when, and what the value was before: access audit trail, who changed whose access",
+    "tagline": "An audit trail of who changed whose access, when, and what it was before",
+    "intro": [
+      "Odoo shows who has access today and keeps no usable record of how they got it. Access Change Log writes one read-only row for every change to users, groups, access rights and record rules, so the question who gave this access, to whom, and when can be answered later. This page walks through a real log from an Odoo 19 database seeded with made-up data, and says what the log leaves out."
+    ],
+    "features": [
+      {
+        "heading": "What the log is for",
+        "body": [
+          "Access questions are asked after the fact, when the current state cannot answer them. The log is written as the changes happen."
+        ],
+        "images": []
+      },
+      {
+        "heading": "1 The list",
+        "body": [
+          "Odoo has no single place that lists access changes. Finding who granted a group means opening records one by one, if the record still exists.",
+          "Open Settings > Access Changes . The list shows when, who made the change, what kind of record, the record, the operation and whose access it was. There is no New button: nobody creates, edits or deletes entries.",
+          "The log, newest first. Priya Nair made the changes; OdooBot appears for the users the seed script created.",
+          "Priya Nair added Omar Haddad to a stock group, removed Leo Park from a sales group, archived Ana Costa, and changed Leo Park's login. Each is a separate row, and the Whose access column names the person affected."
+        ],
+        "use": "an auditor asks what changed in access last week and who did it.",
+        "mode": "Read-only",
+        "images": [
+          "images/acl-list.webp"
+        ]
+      },
+      {
+        "heading": "2 Open one entry",
+        "body": [
+          "An entry shows who changed it, when, whose access, the kind of record, its id and the operation, then a Before and after text. A change to a user's groups keeps the group list as it was and as it became.",
+          "Priya Nair adds Omar Haddad to a group. The before and after text lists group ids.",
+          "Archiving a user is an access change: active goes from True to False."
+        ],
+        "use": "you need the evidence for one change: before, after, who, when.",
+        "mode": "Before and after",
+        "warn": "Group lists are stored as ids, for example [1] -> [1, 37], not as names. Look the ids up in Settings; the id of a deleted group means nothing later.",
+        "images": [
+          "images/acl-entry-grant.webp",
+          "images/acl-entry-archive.webp"
+        ]
+      },
+      {
+        "heading": "3 Rights and rules",
+        "body": [
+          "A changed access right shows the permission that moved, and a changed record rule keeps the old domain. Deleting a record keeps its name in the log, because the id resolves to nothing afterwards.",
+          "A change to the record rule's domain, with the old and new values.",
+          "A deleted record: the entry keeps its name."
+        ],
+        "use": "someone changed a permission or a record filter and you need the old value.",
+        "mode": "Keeps the old value",
+        "images": [
+          "images/acl-entry-rule.webp",
+          "images/acl-entry-deleted.webp"
+        ]
+      },
+      {
+        "heading": "Find the one you want",
+        "body": [
+          "Search by person, record or text in the before and after. Filters narrow the list to users, groups, access rights, record rules or deletions, and the list groups by who changed it, whose access, what changed, or day."
+        ],
+        "images": []
+      }
+    ],
+    "scope": [],
+    "requires": [],
+    "price": 49.0,
+    "manifestPrice": 49.0,
+    "currency": "USD",
+    "category": "Tools",
+    "version": "19.0.1.0.14",
+    "license": "OPL-1",
+    "depends": [
+      "base"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_access_change_log",
+    "storeUrl19": "https://apps.odoo.com/apps/modules/19.0/mh_access_change_log",
+    "storeUrl20": "https://apps.odoo.com/apps/modules/20.0/mh_access_change_log",
+    "screenshots": [],
+    "shotDims": {
+      "images/acl-list.webp": [
+        1000,
+        1652
+      ],
+      "images/acl-entry-grant.webp": [
+        1000,
+        1275
+      ],
+      "images/acl-entry-archive.webp": [
+        1000,
+        1275
+      ],
+      "images/acl-entry-rule.webp": [
+        1000,
+        1493
+      ],
+      "images/acl-entry-deleted.webp": [
+        1000,
+        1344
+      ]
+    },
+    "tiles": [
+      {
+        "n": "4",
+        "l": "kinds of record watched: users, groups, access rights and record rules"
+      },
+      {
+        "n": "Who + whom",
+        "l": "each entry names the person who changed it and, for users, whose access changed"
+      },
+      {
+        "n": "13",
+        "l": "automated tests, none failing"
+      },
+      {
+        "n": "Before",
+        "l": "every change keeps what the value was before"
+      },
+      {
+        "n": "0",
+        "l": "ways to edit or delete an entry: the log is read-only, administrators included"
+      },
+      {
+        "n": "200",
+        "l": "records of one write are logged at most; group lists are stored as ids"
+      }
+    ],
+    "faq": [
+      {
+        "q": "Can an administrator edit or delete the log?",
+        "a": "Not through the interface or as a normal user: the views are read-only and the Settings group has read-only access rows. In testing, an Administrator's write, unlink and create each raised an access error."
+      },
+      {
+        "q": "Does it log everything a user edits?",
+        "a": "No. Only access fields: groups, active, share and login on a user, and the watched access records. A signature edit leaves no entry."
+      },
+      {
+        "q": "Does it show what happened before I installed it?",
+        "a": "No. It records changes from the moment it is installed."
+      },
+      {
+        "q": "Can it slow down or block a change?",
+        "a": "Recording is wrapped so that its own errors are written to the server log and never raised at the person making the change."
+      }
+    ],
+    "copyWords": 411,
+    "hasVideo": true,
+    "youtubeId": "1TeQUJ4XMuU",
+    "externalPage": null
+  },
+  {
+    "tech": "mh_access_rights_bulk",
+    "slug": "access-rights-bulk-edit",
+    "name": "Access Rights Bulk Edit",
+    "summary": "Grants or revokes model access rights for many groups and many models in one change, listing the rows it would create and change before anything is saved: bulk access rights, grant or revoke permissions, preview",
+    "tagline": "Grant or revoke access rights for many groups and models at once, after reading the plan",
+    "intro": [
+      "Odoo keeps access rights in a flat list thousands of rows long. Granting one group read on twelve models means finding twelve rows, and a missing row looks like a row that grants nothing. Access Rights Bulk Edit takes the groups, the models and the permissions, and lists what it would create and change before it writes anything. This page walks through one real change in an Odoo 19 database seeded with made-up data, and says where the app stops."
+    ],
+    "features": [
+      {
+        "heading": "Why a plan comes first",
+        "body": [
+          "One bad row in a flat list of thousands is easy to miss. The plan turns the change into numbers and lines you can read."
+        ],
+        "images": []
+      },
+      {
+        "heading": "1 Pick groups, models and permissions",
+        "body": [
+          "Open Settings > Access Rights Bulk Edit and create a change: Groups , Models , an operation (Grant or Revoke) and the permissions Read, Write, Create and Delete. Why is a note for whoever reads it later.",
+          "A draft change: two groups, three models, Grant Read."
+        ],
+        "use": "a group needs the same permission on a dozen models.",
+        "mode": "Writes nothing yet",
+        "images": [
+          "images/bulk-form-draft.webp"
+        ]
+      },
+      {
+        "heading": "2 Read the plan",
+        "body": [
+          "Work out the change counts what it would create, change and leave alone, and lists each one. In this run it would create 4 rows and change 0; 2 were already the way the change asks.",
+          "Planning writes nothing. Apply is refused until the change has been worked out, and refused again if the groups, models or permissions moved afterwards.",
+          "The plan: counts first, then one line per row.",
+          "Removing a group after planning, then pressing Apply: refused."
+        ],
+        "use": "you want the exact list of rows before anyone gains or loses access.",
+        "mode": "Plan only, no writes",
+        "images": [
+          "images/bulk-form-plan.webp",
+          "images/bulk-stale.webp"
+        ]
+      },
+      {
+        "heading": "3 The mistake the row count hides",
+        "body": [
+          "Revoking the last group that holds a permission on a model leaves only the superuser able to do it. Every row looks reasonable on its own; the plan adds a line naming the models, shows a box to tick, and Apply is refused until it is ticked.",
+          "Revoking Delete on Inventory Location and Scrap from Inventory / Administrator: the plan warns and shows the box.",
+          "Apply without the tick: refused."
+        ],
+        "use": "you revoke a permission and want to be told when nobody else holds it.",
+        "mode": "Needs a tick",
+        "warn": "The warning counts only rows that name a group. A row with no group, which grants everyone, is not counted, so the warning can appear when everyone still holds the permission.",
+        "images": [
+          "images/bulk-form-orphan.webp",
+          "images/bulk-orphan-refused.webp"
+        ]
+      },
+      {
+        "heading": "4 Apply and check the rows",
+        "body": [
+          "Apply asks for confirmation and writes the ir.model.access rows. Open the rows opens the list of rows for those groups and models. A granted permission works for the group's users at once, and a revoked one stops working; both were checked in a test run.",
+          "In Odoo 19, a revoke that unticks a row's last permission leaves the row in place with nothing ticked; it is not deleted.",
+          "The change after Apply.",
+          "The list of changes, each with its state."
+        ],
+        "use": "the plan reads right and you want the rows written.",
+        "mode": "Writes access rows",
+        "images": [
+          "images/bulk-form-applied.webp",
+          "images/bulk-list.webp"
+        ]
+      }
+    ],
+    "scope": [],
+    "requires": [],
+    "price": 49.0,
+    "manifestPrice": 49.0,
+    "currency": "USD",
+    "category": "Tools",
+    "version": "19.0.1.0.15",
+    "license": "OPL-1",
+    "depends": [
+      "base"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_access_rights_bulk",
+    "storeUrl19": "https://apps.odoo.com/apps/modules/19.0/mh_access_rights_bulk",
+    "storeUrl20": "https://apps.odoo.com/apps/modules/20.0/mh_access_rights_bulk",
+    "screenshots": [],
+    "shotDims": {
+      "images/bulk-form-draft.webp": [
+        1000,
+        1490
+      ],
+      "images/bulk-form-plan.webp": [
+        1000,
+        2288
+      ],
+      "images/bulk-stale.webp": [
+        1000,
+        563
+      ],
+      "images/bulk-form-orphan.webp": [
+        1000,
+        2513
+      ],
+      "images/bulk-orphan-refused.webp": [
+        1000,
+        563
+      ],
+      "images/bulk-form-applied.webp": [
+        1000,
+        1774
+      ],
+      "images/bulk-list.webp": [
+        1000,
+        946
+      ]
+    },
+    "tiles": [
+      {
+        "n": "4 + 0",
+        "l": "rows the example change would create and change, with 2 already correct, shown before anything is saved"
+      },
+      {
+        "n": "Grant",
+        "l": "or revoke: a permission you did not tick is left alone"
+      },
+      {
+        "n": "18",
+        "l": "automated tests, none failing"
+      },
+      {
+        "n": "1 box",
+        "l": "to tick before the last holder of a permission can be removed"
+      },
+      {
+        "n": "0",
+        "l": "rows written by planning; Apply refuses a plan that no longer matches"
+      },
+      {
+        "n": "Rows",
+        "l": "it writes ordinary access rows; nothing is wrapped, so uninstalling keeps them"
+      }
+    ],
+    "faq": [
+      {
+        "q": "Does Grant remove a permission someone already had?",
+        "a": "No. Grant turns on the permissions you ticked and leaves the others alone; Revoke does the reverse."
+      },
+      {
+        "q": "Can I undo an applied change?",
+        "a": "There is no undo button. Make a Revoke change for the same groups, models and permissions, and read its plan."
+      },
+      {
+        "q": "What does uninstalling do?",
+        "a": "The rows it wrote are ordinary access rows and stay where they are."
+      },
+      {
+        "q": "Who can use it?",
+        "a": "Users in the Settings group."
+      }
+    ],
+    "copyWords": 423,
+    "hasVideo": true,
+    "youtubeId": "WpsWa8j1PGI",
     "externalPage": null
   },
   {
@@ -7420,7 +7747,7 @@ export const odooApps = [
     "manifestPrice": 49.0,
     "currency": "USD",
     "category": "Extra Tools",
-    "version": "19.0.1.0.2",
+    "version": "19.0.1.0.3",
     "license": "OPL-1",
     "depends": [
       "mail"
@@ -7520,6 +7847,207 @@ export const odooApps = [
     "copyWords": 944,
     "hasVideo": true,
     "youtubeId": "gkC2dMWDym0",
+    "externalPage": null
+  },
+  {
+    "tech": "mh_combined_calendar",
+    "slug": "combined-calendar",
+    "name": "Combined Calendar",
+    "summary": "Shows task deadlines, time off, meetings, activities, orders and transfers on one calendar built from sources you choose",
+    "tagline": "Task deadlines, time off, meetings, activities, orders and transfers on one calendar: pick a model and its date fields, and each entry opens its source record",
+    "intro": [
+      "Odoo's Calendar app lists meetings. Task deadlines live in Project, leave in Time Off, expected closings in CRM, delivery dates in Sales and Inventory. Combined Calendar builds a calendar from sources you choose, with no code, and shows only the entries each person is allowed to read. This page walks through it with screenshots of an Odoo 19 database seeded with made-up data, and says where it stops."
+    ],
+    "features": [
+      {
+        "heading": "Why one calendar",
+        "body": [
+          "The app keeps four things in one place, so \"what is on next week\" is one screen instead of five apps."
+        ],
+        "images": []
+      },
+      {
+        "heading": "1 Sources: which records go on the calendar",
+        "body": [
+          "Every app keeps its own dates. Seeing them together means opening each app and comparing in your head.",
+          "Under Calendar > Combined Calendar Setup a manager opens a calendar and lists its sources. Add Standard Sources adds one source for each of these that is installed: Meetings, Task deadlines, Time off, Opportunity closings, Delivery dates, Transfers and Activities. A source has a model, a filter, a start field, an optional end field, an optional title and users field, an always-all-day switch and a Days Back window (365 days by default).",
+          "A calendar and its sources. The info box says what the calendar shows and when it refreshes.",
+          "A standard source: Task deadlines uses the task's Deadline and shows tasks that are not closed.",
+          "A source added by hand for a model the standard set does not cover.",
+          "The seeded Company Calendar has a source of its own on top of the standard ones. Project end dates reads the date on projects (Odoo labels that field Expiration Date), uses the project name as the title and the project manager as the user.",
+          "A source needs a stored date or date and time field; computed dates are not offered. Each source shows its newest 5000 records inside its Days Back window."
+        ],
+        "use": "tasks, leave, deals and deliveries each carry a date you want side by side.",
+        "mode": "Combined Calendar managers only",
+        "warn": "After you install another app, press Add Standard Sources on the calendar. The default Company Calendar created at install holds standard sources only for apps that were already installed. In the test database it got Meetings and Activities and nothing else.",
+        "images": [
+          "images/calendar-form.webp",
+          "images/source-preset.webp",
+          "images/source-custom.webp"
+        ]
+      },
+      {
+        "heading": "2 The entries: what the calendar holds",
+        "body": [
+          "A planner wants one answer to \"what is due on the 11th\", across apps.",
+          "Under Calendar > Combined Calendars a card per calendar. Opening one refreshes it and shows Odoo's own calendar view, with a filter per source (each in its own colour) and per user, and a list view of the same entries. A date field gives an all-day entry from 08:00 to 18:00; a date and time field keeps its time and lasts as long as the end field says, or one hour without one.",
+          "The administrator sees both calendars.",
+          "The entries of the Company Calendar in list view, with their sources and start times.",
+          "On the 11th of the seeded month the calendar holds an opportunity closing (Northwind renewal), a to-do, a client call, a delivery transfer, a task deadline (Checkout QA) and an order delivery date, from six different sources.",
+          "The Activities source shows the name of the record a to-do sits on, not the activity summary. The Transfers source lists every open transfer, including the ones a confirmed sale creates."
+        ],
+        "use": "you want the dates of many apps in one list or on Odoo's calendar grid.",
+        "mode": "Entries are written by the refresh, never by users",
+        "warn": "The screenshots show the list view and the setup screens, not the month grid. The headless browser used to take them draws Odoo's calendar grid empty, so the grid is not pictured here; the demo video in this listing shows it.",
+        "images": [
+          "images/calendars-kanban.webp",
+          "images/entries-admin.webp"
+        ]
+      },
+      {
+        "heading": "3 Permissions: each person sees only what they can read",
+        "body": [
+          "A shared calendar must not leak the titles and dates of records a person cannot open.",
+          "The calendar holds titles and dates, so what a person sees is decided at read time. An entry shows only if the person can read its source record, record rules included, and its title is read as that person. A calendar can also be limited to groups and to one company.",
+          "Asha Menon sees one calendar. Managers only is limited to project managers.",
+          "The same calendar for a plain internal user: no opportunities, delivery dates or transfers, and a colleague's private meeting reads Busy.",
+          "Asha Menon has no sales, CRM or stock access, so none of those sources appear for her. Rohit Kapoor's private meeting on the 10th shows as Busy because she is not an attendee, exactly as in Odoo's own calendar. On Odoo 19 she also sees her own leave.",
+          "Multi-company use in a browser was not tested; a company rule on calendars, sources and entries is tested in code."
+        ],
+        "use": "one calendar is shared with a team but opportunities and orders are not for everyone.",
+        "mode": "Follows each user's own access rights",
+        "images": [
+          "images/calendars-asha.webp",
+          "images/entries-asha.webp"
+        ]
+      },
+      {
+        "heading": "4 Open the record behind an entry",
+        "body": [
+          "A date on a combined view is only useful if you can jump to its record.",
+          "An entry's form shows its source, the document, the people it belongs to and its dates. Open Document opens Odoo's own form of that record. Click an entry on the calendar, then View, then Open Document.",
+          "An entry: where it comes from, who it belongs to, and the Open Document button.",
+          "Design review is a meeting of Meera Iyer on the 5th. Open Document leads to the meeting itself, where it can be changed.",
+          "Entries cannot be edited or dragged; the calendar view has no create, edit or delete. To change a date, open the record."
+        ],
+        "use": "you spot a date and need the task, order or leave request itself.",
+        "mode": "Nothing is written back",
+        "images": [
+          "images/entry-form.webp"
+        ]
+      },
+      {
+        "heading": "5 Freshness: not live, refreshed on open and every hour",
+        "body": [
+          "A copy of dates can go stale.",
+          "Opening a calendar refreshes it, and a scheduled action refreshes every calendar every hour. Deleted, archived and no-longer-matching records drop out at the next refresh; a source switched off or deleted leaves nothing behind. The calendar form shows when it was last refreshed.",
+          "A task deadline was moved two days. The entry kept the old date until the calendar was opened, then showed the new one.",
+          "No reminders, emails or invitations, and no Gantt or timeline view. It sends no data to any third party."
+        ],
+        "use": "you want to know how current the calendar is.",
+        "mode": "Scheduled action every hour",
+        "warn": "The calendar is not live. A change to a record shows up the next time the calendar is opened or at the next hourly refresh.",
+        "images": []
+      }
+    ],
+    "scope": [],
+    "requires": [],
+    "price": 49.0,
+    "manifestPrice": 49.0,
+    "currency": "USD",
+    "category": "Productivity/Calendar",
+    "version": "19.0.1.0.3",
+    "license": "OPL-1",
+    "depends": [
+      "calendar"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_combined_calendar",
+    "storeUrl19": "https://apps.odoo.com/apps/modules/19.0/mh_combined_calendar",
+    "storeUrl20": "https://apps.odoo.com/apps/modules/20.0/mh_combined_calendar",
+    "screenshots": [],
+    "shotDims": {
+      "images/calendar-form.webp": [
+        1000,
+        1886
+      ],
+      "images/source-preset.webp": [
+        1000,
+        1463
+      ],
+      "images/source-custom.webp": [
+        1000,
+        1463
+      ],
+      "images/calendars-kanban.webp": [
+        1000,
+        607
+      ],
+      "images/entries-admin.webp": [
+        1000,
+        1490
+      ],
+      "images/calendars-asha.webp": [
+        1000,
+        607
+      ],
+      "images/entries-asha.webp": [
+        1000,
+        1989
+      ],
+      "images/entry-form.webp": [
+        1000,
+        841
+      ]
+    },
+    "tiles": [
+      {
+        "n": "7",
+        "l": "standard sources: meetings, tasks, time off, opportunities, orders, transfers, activities"
+      },
+      {
+        "n": "1 hour",
+        "l": "between automatic refreshes; opening a calendar refreshes it too"
+      },
+      {
+        "n": "30",
+        "l": "automated tests, none failing"
+      },
+      {
+        "n": "5000",
+        "l": "newest records shown per source"
+      },
+      {
+        "n": "calendar",
+        "l": "the only Odoo module it depends on"
+      },
+      {
+        "n": "Read only",
+        "l": "entries never change the record behind them"
+      }
+    ],
+    "faq": [
+      {
+        "q": "Can people see records they are not allowed to read?",
+        "a": "No. An entry shows only if the person can read its record, and the title is read as that person."
+      },
+      {
+        "q": "Does it change my records when I drag an entry?",
+        "a": "No. The calendar view cannot create, edit or delete, and nothing is written back."
+      },
+      {
+        "q": "Is it live?",
+        "a": "No. It refreshes when a calendar is opened and every hour."
+      },
+      {
+        "q": "Can I add my own model?",
+        "a": "Yes, any model with a stored date or date and time field, using Odoo's domain editor for the filter."
+      }
+    ],
+    "copyWords": 916,
+    "hasVideo": true,
+    "youtubeId": "HnlLQ2XnAb8",
     "externalPage": null
   },
   {
@@ -7645,7 +8173,7 @@ export const odooApps = [
     "manifestPrice": 49.0,
     "currency": "USD",
     "category": "Tools",
-    "version": "19.0.1.0.7",
+    "version": "19.0.1.0.8",
     "license": "OPL-1",
     "depends": [
       "base",
@@ -7922,7 +8450,7 @@ export const odooApps = [
     "manifestPrice": 49.0,
     "currency": "USD",
     "category": "Sales/Point of Sale",
-    "version": "19.0.1.0.3",
+    "version": "19.0.1.0.4",
     "license": "OPL-1",
     "depends": [
       "point_of_sale",
@@ -8200,7 +8728,7 @@ export const odooApps = [
     "manifestPrice": 49.0,
     "currency": "USD",
     "category": "Sales/Point of Sale",
-    "version": "19.0.1.0.2",
+    "version": "19.0.1.0.3",
     "license": "OPL-1",
     "depends": [
       "point_of_sale"
@@ -8463,7 +8991,7 @@ export const odooApps = [
     "manifestPrice": 49.0,
     "currency": "USD",
     "category": "Sales/Point of Sale",
-    "version": "19.0.1.0.2",
+    "version": "19.0.1.0.3",
     "license": "OPL-1",
     "depends": [
       "point_of_sale",
@@ -8703,7 +9231,7 @@ export const odooApps = [
     "manifestPrice": 49.0,
     "currency": "USD",
     "category": "Sales/Sales",
-    "version": "19.0.1.0.2",
+    "version": "19.0.1.0.3",
     "license": "OPL-1",
     "depends": [
       "account",
@@ -8966,7 +9494,7 @@ export const odooApps = [
     "manifestPrice": 49.0,
     "currency": "USD",
     "category": "Website/Website",
-    "version": "19.0.1.0.3",
+    "version": "19.0.1.0.4",
     "license": "OPL-1",
     "depends": [
       "website_sale"
@@ -9261,7 +9789,7 @@ export const odooApps = [
     "manifestPrice": 49.0,
     "currency": "USD",
     "category": "Manufacturing",
-    "version": "19.0.1.0.14",
+    "version": "19.0.1.0.15",
     "license": "OPL-1",
     "depends": [
       "quality"
@@ -9534,7 +10062,7 @@ export const odooApps = [
     "manifestPrice": 49.0,
     "currency": "USD",
     "category": "Website/Website",
-    "version": "19.0.1.0.2",
+    "version": "19.0.1.0.3",
     "license": "OPL-1",
     "depends": [
       "website",
@@ -9784,333 +10312,6 @@ export const odooApps = [
     "externalPage": null
   },
   {
-    "tech": "mh_access_change_log",
-    "slug": "access-change-log",
-    "name": "Access Change Log",
-    "summary": "Records every change to a user's groups, to groups, to access rights and to record rules, with who changed it, whose access it was, when, and what the value was before: access audit trail, who changed whose access",
-    "tagline": "An audit trail of who changed whose access, when, and what it was before",
-    "intro": [
-      "Odoo shows who has access today and keeps no usable record of how they got it. Access Change Log writes one read-only row for every change to users, groups, access rights and record rules, so the question who gave this access, to whom, and when can be answered later. This page walks through a real log from an Odoo 19 database seeded with made-up data, and says what the log leaves out."
-    ],
-    "features": [
-      {
-        "heading": "What the log is for",
-        "body": [
-          "Access questions are asked after the fact, when the current state cannot answer them. The log is written as the changes happen."
-        ],
-        "images": []
-      },
-      {
-        "heading": "1 The list",
-        "body": [
-          "Odoo has no single place that lists access changes. Finding who granted a group means opening records one by one, if the record still exists.",
-          "Open Settings > Access Changes . The list shows when, who made the change, what kind of record, the record, the operation and whose access it was. There is no New button: nobody creates, edits or deletes entries.",
-          "The log, newest first. Priya Nair made the changes; OdooBot appears for the users the seed script created.",
-          "Priya Nair added Omar Haddad to a stock group, removed Leo Park from a sales group, archived Ana Costa, and changed Leo Park's login. Each is a separate row, and the Whose access column names the person affected."
-        ],
-        "use": "an auditor asks what changed in access last week and who did it.",
-        "mode": "Read-only",
-        "images": [
-          "images/acl-list.webp"
-        ]
-      },
-      {
-        "heading": "2 Open one entry",
-        "body": [
-          "An entry shows who changed it, when, whose access, the kind of record, its id and the operation, then a Before and after text. A change to a user's groups keeps the group list as it was and as it became.",
-          "Priya Nair adds Omar Haddad to a group. The before and after text lists group ids.",
-          "Archiving a user is an access change: active goes from True to False."
-        ],
-        "use": "you need the evidence for one change: before, after, who, when.",
-        "mode": "Before and after",
-        "warn": "Group lists are stored as ids, for example [1] -> [1, 37], not as names. Look the ids up in Settings; the id of a deleted group means nothing later.",
-        "images": [
-          "images/acl-entry-grant.webp",
-          "images/acl-entry-archive.webp"
-        ]
-      },
-      {
-        "heading": "3 Rights and rules",
-        "body": [
-          "A changed access right shows the permission that moved, and a changed record rule keeps the old domain. Deleting a record keeps its name in the log, because the id resolves to nothing afterwards.",
-          "A change to the record rule's domain, with the old and new values.",
-          "A deleted record: the entry keeps its name."
-        ],
-        "use": "someone changed a permission or a record filter and you need the old value.",
-        "mode": "Keeps the old value",
-        "images": [
-          "images/acl-entry-rule.webp",
-          "images/acl-entry-deleted.webp"
-        ]
-      },
-      {
-        "heading": "Find the one you want",
-        "body": [
-          "Search by person, record or text in the before and after. Filters narrow the list to users, groups, access rights, record rules or deletions, and the list groups by who changed it, whose access, what changed, or day."
-        ],
-        "images": []
-      }
-    ],
-    "scope": [],
-    "requires": [],
-    "price": 48.91,
-    "manifestPrice": 49.0,
-    "currency": "USD",
-    "category": "Tools",
-    "version": "19.0.1.0.13",
-    "license": "OPL-1",
-    "depends": [
-      "base"
-    ],
-    "paidDepends": [],
-    "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_access_change_log",
-    "storeUrl19": "https://apps.odoo.com/apps/modules/19.0/mh_access_change_log",
-    "storeUrl20": "https://apps.odoo.com/apps/modules/20.0/mh_access_change_log",
-    "screenshots": [],
-    "shotDims": {
-      "images/acl-list.webp": [
-        1000,
-        1652
-      ],
-      "images/acl-entry-grant.webp": [
-        1000,
-        1275
-      ],
-      "images/acl-entry-archive.webp": [
-        1000,
-        1275
-      ],
-      "images/acl-entry-rule.webp": [
-        1000,
-        1493
-      ],
-      "images/acl-entry-deleted.webp": [
-        1000,
-        1344
-      ]
-    },
-    "tiles": [
-      {
-        "n": "4",
-        "l": "kinds of record watched: users, groups, access rights and record rules"
-      },
-      {
-        "n": "Who + whom",
-        "l": "each entry names the person who changed it and, for users, whose access changed"
-      },
-      {
-        "n": "13",
-        "l": "automated tests, none failing"
-      },
-      {
-        "n": "Before",
-        "l": "every change keeps what the value was before"
-      },
-      {
-        "n": "0",
-        "l": "ways to edit or delete an entry: the log is read-only, administrators included"
-      },
-      {
-        "n": "200",
-        "l": "records of one write are logged at most; group lists are stored as ids"
-      }
-    ],
-    "faq": [
-      {
-        "q": "Can an administrator edit or delete the log?",
-        "a": "Not through the interface or as a normal user: the views are read-only and the Settings group has read-only access rows. In testing, an Administrator's write, unlink and create each raised an access error."
-      },
-      {
-        "q": "Does it log everything a user edits?",
-        "a": "No. Only access fields: groups, active, share and login on a user, and the watched access records. A signature edit leaves no entry."
-      },
-      {
-        "q": "Does it show what happened before I installed it?",
-        "a": "No. It records changes from the moment it is installed."
-      },
-      {
-        "q": "Can it slow down or block a change?",
-        "a": "Recording is wrapped so that its own errors are written to the server log and never raised at the person making the change."
-      }
-    ],
-    "copyWords": 411,
-    "hasVideo": true,
-    "youtubeId": "1TeQUJ4XMuU",
-    "externalPage": null
-  },
-  {
-    "tech": "mh_access_rights_bulk",
-    "slug": "access-rights-bulk-edit",
-    "name": "Access Rights Bulk Edit",
-    "summary": "Grants or revokes model access rights for many groups and many models in one change, listing the rows it would create and change before anything is saved: bulk access rights, grant or revoke permissions, preview",
-    "tagline": "Grant or revoke access rights for many groups and models at once, after reading the plan",
-    "intro": [
-      "Odoo keeps access rights in a flat list thousands of rows long. Granting one group read on twelve models means finding twelve rows, and a missing row looks like a row that grants nothing. Access Rights Bulk Edit takes the groups, the models and the permissions, and lists what it would create and change before it writes anything. This page walks through one real change in an Odoo 19 database seeded with made-up data, and says where the app stops."
-    ],
-    "features": [
-      {
-        "heading": "Why a plan comes first",
-        "body": [
-          "One bad row in a flat list of thousands is easy to miss. The plan turns the change into numbers and lines you can read."
-        ],
-        "images": []
-      },
-      {
-        "heading": "1 Pick groups, models and permissions",
-        "body": [
-          "Open Settings > Access Rights Bulk Edit and create a change: Groups , Models , an operation (Grant or Revoke) and the permissions Read, Write, Create and Delete. Why is a note for whoever reads it later.",
-          "A draft change: two groups, three models, Grant Read."
-        ],
-        "use": "a group needs the same permission on a dozen models.",
-        "mode": "Writes nothing yet",
-        "images": [
-          "images/bulk-form-draft.webp"
-        ]
-      },
-      {
-        "heading": "2 Read the plan",
-        "body": [
-          "Work out the change counts what it would create, change and leave alone, and lists each one. In this run it would create 4 rows and change 0; 2 were already the way the change asks.",
-          "Planning writes nothing. Apply is refused until the change has been worked out, and refused again if the groups, models or permissions moved afterwards.",
-          "The plan: counts first, then one line per row.",
-          "Removing a group after planning, then pressing Apply: refused."
-        ],
-        "use": "you want the exact list of rows before anyone gains or loses access.",
-        "mode": "Plan only, no writes",
-        "images": [
-          "images/bulk-form-plan.webp",
-          "images/bulk-stale.webp"
-        ]
-      },
-      {
-        "heading": "3 The mistake the row count hides",
-        "body": [
-          "Revoking the last group that holds a permission on a model leaves only the superuser able to do it. Every row looks reasonable on its own; the plan adds a line naming the models, shows a box to tick, and Apply is refused until it is ticked.",
-          "Revoking Delete on Inventory Location and Scrap from Inventory / Administrator: the plan warns and shows the box.",
-          "Apply without the tick: refused."
-        ],
-        "use": "you revoke a permission and want to be told when nobody else holds it.",
-        "mode": "Needs a tick",
-        "warn": "The warning counts only rows that name a group. A row with no group, which grants everyone, is not counted, so the warning can appear when everyone still holds the permission.",
-        "images": [
-          "images/bulk-form-orphan.webp",
-          "images/bulk-orphan-refused.webp"
-        ]
-      },
-      {
-        "heading": "4 Apply and check the rows",
-        "body": [
-          "Apply asks for confirmation and writes the ir.model.access rows. Open the rows opens the list of rows for those groups and models. A granted permission works for the group's users at once, and a revoked one stops working; both were checked in a test run.",
-          "In Odoo 19, a revoke that unticks a row's last permission leaves the row in place with nothing ticked; it is not deleted.",
-          "The change after Apply.",
-          "The list of changes, each with its state."
-        ],
-        "use": "the plan reads right and you want the rows written.",
-        "mode": "Writes access rows",
-        "images": [
-          "images/bulk-form-applied.webp",
-          "images/bulk-list.webp"
-        ]
-      }
-    ],
-    "scope": [],
-    "requires": [],
-    "price": 48.91,
-    "manifestPrice": 49.0,
-    "currency": "USD",
-    "category": "Tools",
-    "version": "19.0.1.0.14",
-    "license": "OPL-1",
-    "depends": [
-      "base"
-    ],
-    "paidDepends": [],
-    "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_access_rights_bulk",
-    "storeUrl19": "https://apps.odoo.com/apps/modules/19.0/mh_access_rights_bulk",
-    "storeUrl20": "https://apps.odoo.com/apps/modules/20.0/mh_access_rights_bulk",
-    "screenshots": [],
-    "shotDims": {
-      "images/bulk-form-draft.webp": [
-        1000,
-        1490
-      ],
-      "images/bulk-form-plan.webp": [
-        1000,
-        2288
-      ],
-      "images/bulk-stale.webp": [
-        1000,
-        563
-      ],
-      "images/bulk-form-orphan.webp": [
-        1000,
-        2513
-      ],
-      "images/bulk-orphan-refused.webp": [
-        1000,
-        563
-      ],
-      "images/bulk-form-applied.webp": [
-        1000,
-        1774
-      ],
-      "images/bulk-list.webp": [
-        1000,
-        946
-      ]
-    },
-    "tiles": [
-      {
-        "n": "4 + 0",
-        "l": "rows the example change would create and change, with 2 already correct, shown before anything is saved"
-      },
-      {
-        "n": "Grant",
-        "l": "or revoke: a permission you did not tick is left alone"
-      },
-      {
-        "n": "18",
-        "l": "automated tests, none failing"
-      },
-      {
-        "n": "1 box",
-        "l": "to tick before the last holder of a permission can be removed"
-      },
-      {
-        "n": "0",
-        "l": "rows written by planning; Apply refuses a plan that no longer matches"
-      },
-      {
-        "n": "Rows",
-        "l": "it writes ordinary access rows; nothing is wrapped, so uninstalling keeps them"
-      }
-    ],
-    "faq": [
-      {
-        "q": "Does Grant remove a permission someone already had?",
-        "a": "No. Grant turns on the permissions you ticked and leaves the others alone; Revoke does the reverse."
-      },
-      {
-        "q": "Can I undo an applied change?",
-        "a": "There is no undo button. Make a Revoke change for the same groups, models and permissions, and read its plan."
-      },
-      {
-        "q": "What does uninstalling do?",
-        "a": "The rows it wrote are ordinary access rows and stay where they are."
-      },
-      {
-        "q": "Who can use it?",
-        "a": "Users in the Settings group."
-      }
-    ],
-    "copyWords": 423,
-    "hasVideo": true,
-    "youtubeId": "WpsWa8j1PGI",
-    "externalPage": null
-  },
-  {
     "tech": "mh_a11y_auditor",
     "slug": "accessibility-auditor",
     "name": "Accessibility Auditor",
@@ -10206,7 +10407,7 @@ export const odooApps = [
     "manifestPrice": 49.0,
     "currency": "USD",
     "category": "Extra Tools",
-    "version": "19.0.1.0.10",
+    "version": "19.0.1.0.11",
     "license": "OPL-1",
     "depends": [
       "website"
@@ -10302,207 +10503,6 @@ export const odooApps = [
     "copyWords": 982,
     "hasVideo": true,
     "youtubeId": "Oq8yKSnLZIc",
-    "externalPage": null
-  },
-  {
-    "tech": "mh_combined_calendar",
-    "slug": "combined-calendar",
-    "name": "Combined Calendar",
-    "summary": "Shows task deadlines, time off, meetings, activities, orders and transfers on one calendar built from sources you choose",
-    "tagline": "Task deadlines, time off, meetings, activities, orders and transfers on one calendar: pick a model and its date fields, and each entry opens its source record",
-    "intro": [
-      "Odoo's Calendar app lists meetings. Task deadlines live in Project, leave in Time Off, expected closings in CRM, delivery dates in Sales and Inventory. Combined Calendar builds a calendar from sources you choose, with no code, and shows only the entries each person is allowed to read. This page walks through it with screenshots of an Odoo 19 database seeded with made-up data, and says where it stops."
-    ],
-    "features": [
-      {
-        "heading": "Why one calendar",
-        "body": [
-          "The app keeps four things in one place, so \"what is on next week\" is one screen instead of five apps."
-        ],
-        "images": []
-      },
-      {
-        "heading": "1 Sources: which records go on the calendar",
-        "body": [
-          "Every app keeps its own dates. Seeing them together means opening each app and comparing in your head.",
-          "Under Calendar > Combined Calendar Setup a manager opens a calendar and lists its sources. Add Standard Sources adds one source for each of these that is installed: Meetings, Task deadlines, Time off, Opportunity closings, Delivery dates, Transfers and Activities. A source has a model, a filter, a start field, an optional end field, an optional title and users field, an always-all-day switch and a Days Back window (365 days by default).",
-          "A calendar and its sources. The info box says what the calendar shows and when it refreshes.",
-          "A standard source: Task deadlines uses the task's Deadline and shows tasks that are not closed.",
-          "A source added by hand for a model the standard set does not cover.",
-          "The seeded Company Calendar has a source of its own on top of the standard ones. Project end dates reads the date on projects (Odoo labels that field Expiration Date), uses the project name as the title and the project manager as the user.",
-          "A source needs a stored date or date and time field; computed dates are not offered. Each source shows its newest 5000 records inside its Days Back window."
-        ],
-        "use": "tasks, leave, deals and deliveries each carry a date you want side by side.",
-        "mode": "Combined Calendar managers only",
-        "warn": "After you install another app, press Add Standard Sources on the calendar. The default Company Calendar created at install holds standard sources only for apps that were already installed. In the test database it got Meetings and Activities and nothing else.",
-        "images": [
-          "images/calendar-form.webp",
-          "images/source-preset.webp",
-          "images/source-custom.webp"
-        ]
-      },
-      {
-        "heading": "2 The entries: what the calendar holds",
-        "body": [
-          "A planner wants one answer to \"what is due on the 11th\", across apps.",
-          "Under Calendar > Combined Calendars a card per calendar. Opening one refreshes it and shows Odoo's own calendar view, with a filter per source (each in its own colour) and per user, and a list view of the same entries. A date field gives an all-day entry from 08:00 to 18:00; a date and time field keeps its time and lasts as long as the end field says, or one hour without one.",
-          "The administrator sees both calendars.",
-          "The entries of the Company Calendar in list view, with their sources and start times.",
-          "On the 11th of the seeded month the calendar holds an opportunity closing (Northwind renewal), a to-do, a client call, a delivery transfer, a task deadline (Checkout QA) and an order delivery date, from six different sources.",
-          "The Activities source shows the name of the record a to-do sits on, not the activity summary. The Transfers source lists every open transfer, including the ones a confirmed sale creates."
-        ],
-        "use": "you want the dates of many apps in one list or on Odoo's calendar grid.",
-        "mode": "Entries are written by the refresh, never by users",
-        "warn": "The screenshots show the list view and the setup screens, not the month grid. The headless browser used to take them draws Odoo's calendar grid empty, so the grid is not pictured here; the demo video in this listing shows it.",
-        "images": [
-          "images/calendars-kanban.webp",
-          "images/entries-admin.webp"
-        ]
-      },
-      {
-        "heading": "3 Permissions: each person sees only what they can read",
-        "body": [
-          "A shared calendar must not leak the titles and dates of records a person cannot open.",
-          "The calendar holds titles and dates, so what a person sees is decided at read time. An entry shows only if the person can read its source record, record rules included, and its title is read as that person. A calendar can also be limited to groups and to one company.",
-          "Asha Menon sees one calendar. Managers only is limited to project managers.",
-          "The same calendar for a plain internal user: no opportunities, delivery dates or transfers, and a colleague's private meeting reads Busy.",
-          "Asha Menon has no sales, CRM or stock access, so none of those sources appear for her. Rohit Kapoor's private meeting on the 10th shows as Busy because she is not an attendee, exactly as in Odoo's own calendar. On Odoo 19 she also sees her own leave.",
-          "Multi-company use in a browser was not tested; a company rule on calendars, sources and entries is tested in code."
-        ],
-        "use": "one calendar is shared with a team but opportunities and orders are not for everyone.",
-        "mode": "Follows each user's own access rights",
-        "images": [
-          "images/calendars-asha.webp",
-          "images/entries-asha.webp"
-        ]
-      },
-      {
-        "heading": "4 Open the record behind an entry",
-        "body": [
-          "A date on a combined view is only useful if you can jump to its record.",
-          "An entry's form shows its source, the document, the people it belongs to and its dates. Open Document opens Odoo's own form of that record. Click an entry on the calendar, then View, then Open Document.",
-          "An entry: where it comes from, who it belongs to, and the Open Document button.",
-          "Design review is a meeting of Meera Iyer on the 5th. Open Document leads to the meeting itself, where it can be changed.",
-          "Entries cannot be edited or dragged; the calendar view has no create, edit or delete. To change a date, open the record."
-        ],
-        "use": "you spot a date and need the task, order or leave request itself.",
-        "mode": "Nothing is written back",
-        "images": [
-          "images/entry-form.webp"
-        ]
-      },
-      {
-        "heading": "5 Freshness: not live, refreshed on open and every hour",
-        "body": [
-          "A copy of dates can go stale.",
-          "Opening a calendar refreshes it, and a scheduled action refreshes every calendar every hour. Deleted, archived and no-longer-matching records drop out at the next refresh; a source switched off or deleted leaves nothing behind. The calendar form shows when it was last refreshed.",
-          "A task deadline was moved two days. The entry kept the old date until the calendar was opened, then showed the new one.",
-          "No reminders, emails or invitations, and no Gantt or timeline view. It sends no data to any third party."
-        ],
-        "use": "you want to know how current the calendar is.",
-        "mode": "Scheduled action every hour",
-        "warn": "The calendar is not live. A change to a record shows up the next time the calendar is opened or at the next hourly refresh.",
-        "images": []
-      }
-    ],
-    "scope": [],
-    "requires": [],
-    "price": 48.91,
-    "manifestPrice": 49.0,
-    "currency": "USD",
-    "category": "Productivity/Calendar",
-    "version": "19.0.1.0.2",
-    "license": "OPL-1",
-    "depends": [
-      "calendar"
-    ],
-    "paidDepends": [],
-    "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_combined_calendar",
-    "storeUrl19": "https://apps.odoo.com/apps/modules/19.0/mh_combined_calendar",
-    "storeUrl20": "https://apps.odoo.com/apps/modules/20.0/mh_combined_calendar",
-    "screenshots": [],
-    "shotDims": {
-      "images/calendar-form.webp": [
-        1000,
-        1886
-      ],
-      "images/source-preset.webp": [
-        1000,
-        1463
-      ],
-      "images/source-custom.webp": [
-        1000,
-        1463
-      ],
-      "images/calendars-kanban.webp": [
-        1000,
-        607
-      ],
-      "images/entries-admin.webp": [
-        1000,
-        1490
-      ],
-      "images/calendars-asha.webp": [
-        1000,
-        607
-      ],
-      "images/entries-asha.webp": [
-        1000,
-        1989
-      ],
-      "images/entry-form.webp": [
-        1000,
-        841
-      ]
-    },
-    "tiles": [
-      {
-        "n": "7",
-        "l": "standard sources: meetings, tasks, time off, opportunities, orders, transfers, activities"
-      },
-      {
-        "n": "1 hour",
-        "l": "between automatic refreshes; opening a calendar refreshes it too"
-      },
-      {
-        "n": "30",
-        "l": "automated tests, none failing"
-      },
-      {
-        "n": "5000",
-        "l": "newest records shown per source"
-      },
-      {
-        "n": "calendar",
-        "l": "the only Odoo module it depends on"
-      },
-      {
-        "n": "Read only",
-        "l": "entries never change the record behind them"
-      }
-    ],
-    "faq": [
-      {
-        "q": "Can people see records they are not allowed to read?",
-        "a": "No. An entry shows only if the person can read its record, and the title is read as that person."
-      },
-      {
-        "q": "Does it change my records when I drag an entry?",
-        "a": "No. The calendar view cannot create, edit or delete, and nothing is written back."
-      },
-      {
-        "q": "Is it live?",
-        "a": "No. It refreshes when a calendar is opened and every hour."
-      },
-      {
-        "q": "Can I add my own model?",
-        "a": "Yes, any model with a stored date or date and time field, using Odoo's domain editor for the filter."
-      }
-    ],
-    "copyWords": 916,
-    "hasVideo": true,
-    "youtubeId": "HnlLQ2XnAb8",
     "externalPage": null
   },
   {
@@ -10784,6 +10784,184 @@ export const odooApps = [
     "externalPage": "/apps/byok-gateway"
   },
   {
+    "tech": "mh_access_migration",
+    "slug": "access-config-migration",
+    "name": "Access Config Migration",
+    "summary": "Exports groups, model access rights and record rules from one database and imports them into another, listing what it would create and change before anything is written: move access rights between databases, staging to production",
+    "tagline": "Move groups and access rights between Odoo databases, after reading the list of what would change",
+    "intro": [
+      "Access rights get built on staging and then rebuilt by hand on production, which is where the two start to differ. A database restore would copy the data too. Access Config Migration exports groups, model access rights and record rules into one file and, on the other database, turns the file into a plan: what would be created, what would change, what already matches and what cannot be matched. Nothing is written until you have read it and pressed Apply. This page walks through one real import in an Odoo 19 database seeded with made-up data, and says where the app stops."
+    ],
+    "features": [
+      {
+        "heading": "Why the plan comes first",
+        "body": [
+          "A wrong guess about which record is which grants somebody access nobody intended, and nothing on screen shows it. The app reads the file against the database and shows the arithmetic first."
+        ],
+        "images": []
+      },
+      {
+        "heading": "1 Export from the database that is right",
+        "body": [
+          "Open Settings > Access Config Migration , create a record, choose the Groups to export and press Export . The file carries the groups, their model access rows and the record rules that name them. Here the staging database exported Warehouse Auditors and Inventory / User.",
+          "Export: two groups chosen, one file to download."
+        ],
+        "use": "staging has the access setup you want on production.",
+        "mode": "Writes a file only",
+        "images": [
+          "images/mig-export.webp"
+        ]
+      },
+      {
+        "heading": "2 Read the plan on the other database",
+        "body": [
+          "On the target database, attach the file in File to import and press Build the plan . That is where it stops.",
+          "The plan counts four things. In this run, with the production database lacking Purchase: 1 record would be created, 2 changed, 37 already identical and 5 cannot be matched.",
+          "Under the counts is one line per record, ordered by what needs a decision: changes first, then creations, then what cannot be matched, then what is identical. The real plan here has 45 lines; the screenshot shows the first ten.",
+          "The file is attached; nothing has been read against the database yet.",
+          "The counts and the findings. Applying never deletes anything.",
+          "Changes, a creation, then the five that cannot be matched."
+        ],
+        "use": "you want the exact list before production changes.",
+        "mode": "Plan only, no writes",
+        "images": [
+          "images/mig-form-draft.webp",
+          "images/mig-plan-top.webp",
+          "images/mig-plan-lines.webp"
+        ]
+      },
+      {
+        "heading": "3 What cannot be matched, and what is refused",
+        "body": [
+          "A line is Cannot be matched when the entry has no XML id (made by hand) or is for a model that is not installed on the target. Here four lines are for Purchase models, which production does not have, and one was made by hand. They are named in the plan and left alone.",
+          "A file that is not an export from this app is refused with a readable message.",
+          "A text file attached instead of an export: refused."
+        ],
+        "use": "the file and the database do not line up everywhere.",
+        "mode": "Skipped, never guessed",
+        "images": [
+          "images/mig-refused-file.webp"
+        ]
+      },
+      {
+        "heading": "4 Apply, then read the plan again",
+        "body": [
+          "Apply asks for confirmation, then writes the created and changed records, and gives each new record its XML id so the next import matches it. In a test run a user in Warehouse Auditors could read transfers afterwards and a user outside the group could not.",
+          "Planning the same file again reads 0 to create, 0 to change, 40 identical and 5 that cannot be matched.",
+          "The import after Apply.",
+          "The same file planned again: nothing would change.",
+          "The list of imports, each with its state."
+        ],
+        "use": "the plan reads right and you want it written.",
+        "mode": "Writes groups and rows",
+        "images": [
+          "images/mig-form-applied.webp",
+          "images/mig-replan.webp",
+          "images/mig-list.webp"
+        ]
+      }
+    ],
+    "scope": [],
+    "requires": [],
+    "price": 39.0,
+    "manifestPrice": 39.0,
+    "currency": "USD",
+    "category": "Tools",
+    "version": "19.0.1.0.13",
+    "license": "OPL-1",
+    "depends": [
+      "base"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_access_migration",
+    "storeUrl19": "https://apps.odoo.com/apps/modules/19.0/mh_access_migration",
+    "storeUrl20": "https://apps.odoo.com/apps/modules/20.0/mh_access_migration",
+    "screenshots": [],
+    "shotDims": {
+      "images/mig-export.webp": [
+        1000,
+        1128
+      ],
+      "images/mig-form-draft.webp": [
+        1000,
+        940
+      ],
+      "images/mig-plan-top.webp": [
+        1000,
+        1939
+      ],
+      "images/mig-plan-lines.webp": [
+        1000,
+        2527
+      ],
+      "images/mig-refused-file.webp": [
+        1000,
+        512
+      ],
+      "images/mig-form-applied.webp": [
+        1000,
+        1847
+      ],
+      "images/mig-replan.webp": [
+        1000,
+        1939
+      ],
+      "images/mig-list.webp": [
+        1000,
+        608
+      ]
+    },
+    "tiles": [
+      {
+        "n": "1 + 2",
+        "l": "records the example import would create and change, with 37 already identical and 5 it cannot match, shown before anything is written"
+      },
+      {
+        "n": "XML id",
+        "l": "the only thing records are matched on; a record without one is reported, never guessed at"
+      },
+      {
+        "n": "19",
+        "l": "automated tests, none failing"
+      },
+      {
+        "n": "0",
+        "l": "records deleted by an import; what the file does not mention stays"
+      },
+      {
+        "n": "2 steps",
+        "l": "Build the plan writes nothing; Apply asks for confirmation before it writes"
+      },
+      {
+        "n": "1 file",
+        "l": "a plain JSON export per run, one for the groups you choose"
+      }
+    ],
+    "faq": [
+      {
+        "q": "Does it move users or which users are in a group?",
+        "a": "No. Group membership belongs to each database; your staging logins are not your production ones."
+      },
+      {
+        "q": "Will it delete access on production that is not in the file?",
+        "a": "No. Applying never deletes anything."
+      },
+      {
+        "q": "How do I go back?",
+        "a": "There is no undo button. Take an export on the target before you press Apply, and keep it."
+      },
+      {
+        "q": "Who can use it?",
+        "a": "Users in the Settings group."
+      }
+    ],
+    "copyWords": 529,
+    "hasVideo": true,
+    "youtubeId": "jIFMc1kTjuU",
+    "externalPage": null
+  },
+  {
     "tech": "mh_email_cc_bcc",
     "slug": "email-bcc-rules",
     "name": "Email Bcc Rules",
@@ -10886,7 +11064,7 @@ export const odooApps = [
     "manifestPrice": 39.0,
     "currency": "USD",
     "category": "Productivity/Discuss",
-    "version": "19.0.1.0.9",
+    "version": "19.0.1.0.10",
     "license": "OPL-1",
     "depends": [
       "mail"
@@ -11154,7 +11332,7 @@ export const odooApps = [
     "manifestPrice": 39.0,
     "currency": "USD",
     "category": "Warehouse",
-    "version": "19.0.1.0.2",
+    "version": "19.0.1.0.3",
     "license": "OPL-1",
     "depends": [
       "stock"
@@ -11255,6 +11433,163 @@ export const odooApps = [
     "copyWords": 1456,
     "hasVideo": true,
     "youtubeId": "zo4t_aW68ss",
+    "externalPage": null
+  },
+  {
+    "tech": "mh_field_change_log",
+    "slug": "field-change-log",
+    "name": "Field Change Log",
+    "summary": "Records who changed which field on which record, with the old value and the new one, for the models and fields you name: field change history, who changed this field, audit log",
+    "tagline": "Who changed which field on which record, with the value before and after, for the models and fields you name",
+    "intro": [
+      "Odoo notes a change on a record's chatter only for the fields a developer marked as tracked, and each note sits on its own record. Field Change Log lets an administrator name a model and the fields on it, and records every change to those fields in one list: who, when, which record, what it was and what it became. A log of the few fields somebody has to answer for stays readable. This page walks through a real log in an Odoo 19 database seeded with made-up data, and says what it does not record."
+    ],
+    "features": [
+      {
+        "heading": "Why you name the fields",
+        "body": [
+          "A log of every field grows until nobody can find the one row that matters. This one records nothing until you say what to watch."
+        ],
+        "images": []
+      },
+      {
+        "heading": "1 Name the model and its fields",
+        "body": [
+          "Open Settings > Field Changes > Watched Fields and create a watch: a Model and the Fields recorded . The Changes button on the watch opens its entries. Here Contact records Credit Limit, Email and Salesperson.",
+          "The list of watches shows each model with its fields and how many changes it holds.",
+          "A watch: one model, three fields.",
+          "Two watches, each with its fields and change count."
+        ],
+        "use": "a handful of values need an answer to who changed them.",
+        "mode": "Settings group only",
+        "images": [
+          "images/fcl-watch-form.webp",
+          "images/fcl-watches.webp"
+        ]
+      },
+      {
+        "heading": "2 Read the log",
+        "body": [
+          "Settings > Field Changes > Change Log lists one row per field changed on one record, newest first: the user, the time, the model, the record, the field, Was and Became . It can be grouped by user, model, field or day. In this run, a salesperson changed from Omar Haddad to Priya Raman, a product type from Goods to Service and a credit limit from 0.0 to 2500.0. The screenshot shows the first seven of eight entries without the date and model columns.",
+          "The log: user, record, field, Was and Became."
+        ],
+        "use": "somebody asks who changed a credit limit or a price.",
+        "mode": "Read-only list",
+        "images": [
+          "images/fcl-log.webp"
+        ]
+      },
+      {
+        "heading": "3 When the record is gone",
+        "body": [
+          "Deleting a record keeps its entries and the name it had. Open on such an entry says so instead of failing.",
+          "Open on an entry whose record was deleted."
+        ],
+        "use": "a record was deleted and you still need its history.",
+        "mode": "Entries are kept",
+        "images": [
+          "images/fcl-open-deleted.webp"
+        ]
+      },
+      {
+        "heading": "4 Keep it from growing forever",
+        "body": [
+          "Settings > General Settings has Keep field changes for (days) in the Companies block: 730 by default. A nightly job deletes older entries. Zero keeps everything. With several companies the longest period asked for wins, and a zero anywhere keeps everything; multi-company use was not tested in a real database.",
+          "The retention setting."
+        ],
+        "use": "you want old entries to go on their own.",
+        "mode": "Nightly job",
+        "images": [
+          "images/fcl-settings.webp"
+        ]
+      }
+    ],
+    "scope": [],
+    "requires": [],
+    "price": 39.0,
+    "manifestPrice": 39.0,
+    "currency": "USD",
+    "category": "Tools",
+    "version": "19.0.1.0.13",
+    "license": "OPL-1",
+    "depends": [
+      "base_setup"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_field_change_log",
+    "storeUrl19": "https://apps.odoo.com/apps/modules/19.0/mh_field_change_log",
+    "storeUrl20": "https://apps.odoo.com/apps/modules/20.0/mh_field_change_log",
+    "screenshots": [],
+    "shotDims": {
+      "images/fcl-watch-form.webp": [
+        1000,
+        815
+      ],
+      "images/fcl-watches.webp": [
+        1000,
+        547
+      ],
+      "images/fcl-log.webp": [
+        1000,
+        1326
+      ],
+      "images/fcl-open-deleted.webp": [
+        1000,
+        512
+      ],
+      "images/fcl-settings.webp": [
+        1000,
+        894
+      ]
+    },
+    "tiles": [
+      {
+        "n": "2 models",
+        "l": "named in the example, with the three fields recorded on each; nothing else is logged"
+      },
+      {
+        "n": "Was / Became",
+        "l": "a linked record by its name and a selection by its label, as the screen showed them"
+      },
+      {
+        "n": "22",
+        "l": "automated tests, none failing"
+      },
+      {
+        "n": "730 days",
+        "l": "kept by default, set per company; zero keeps everything"
+      },
+      {
+        "n": "0",
+        "l": "entries for a write that sets a field to the value it already holds"
+      },
+      {
+        "n": "Settings",
+        "l": "the menus and the rows are for the Settings group only"
+      }
+    ],
+    "faq": [
+      {
+        "q": "Does it record everything?",
+        "a": "No. Only the models and fields you name."
+      },
+      {
+        "q": "Can users edit or delete the log?",
+        "a": "The views are read-only. Users in the Settings group have write and delete rights on the rows, which is how the retention job deletes; tamper-proofing is not claimed."
+      },
+      {
+        "q": "Does it slow writes down?",
+        "a": "It reads the watched fields before a write on a watched model. No timing was measured."
+      },
+      {
+        "q": "Who can use it?",
+        "a": "Users in the Settings group."
+      }
+    ],
+    "copyWords": 410,
+    "hasVideo": true,
+    "youtubeId": "K03FvPDZSiE",
     "externalPage": null
   },
   {
@@ -11399,7 +11734,7 @@ export const odooApps = [
     "manifestPrice": 39.0,
     "currency": "USD",
     "category": "Extra Tools",
-    "version": "19.0.1.0.10",
+    "version": "19.0.1.0.11",
     "license": "OPL-1",
     "depends": [
       "mail"
@@ -11493,2244 +11828,6 @@ export const odooApps = [
     "copyWords": 1440,
     "hasVideo": true,
     "youtubeId": "3hRUlkg_vwo",
-    "externalPage": null
-  },
-  {
-    "tech": "mh_label_sheet_layouts",
-    "slug": "label-sheet-layouts",
-    "name": "Label Sheet Layouts",
-    "summary": "Print Labels with a custom label size - product labels on a custom label sheet you describe in millimetres: rows, columns, margins, start position on a used sheet, one label per page for rolls, barcode or QR code",
-    "tagline": "Print product labels on the sheet you actually have: rows, columns and margins in millimetres, a start position on a used sheet, one label per page for rolls",
-    "intro": [
-      "Label stock comes in sizes Odoo's built-in layouts do not match, and a label that lands across the cut line is a wasted sheet. This app adds a Custom sheet format to Odoo's own Print Labels window: you describe the sheet once in millimetres, print a numbered test sheet on plain paper to check it, and then print product labels on it. This page walks through it with screenshots of an Odoo 19 database holding a made-up garden and gift shop, crops of the real PDFs the app produced, and tables rendered from real readings of the same runs; each picture says which it is.",
-      "It reads products and prices and writes only its own sheet records. This page also says where it stays silent: a barcode left out of a small label, a name cut after two lines, padding that leaves no room.",
-      "Install it and a menu appears under Inventory, Configuration, Products: Label Sheets. It needs only Inventory. Inventory managers define sheets; every internal user can print on them."
-    ],
-    "features": [
-      {
-        "heading": "What it keeps, what it changes, what it does not",
-        "body": [
-          "Each line was tested or read in the code."
-        ],
-        "images": []
-      },
-      {
-        "heading": "1 Describe the sheet in millimetres",
-        "body": [
-          "Label stock comes in many sizes, and the only fix without an app is a developer and a new report.",
-          "A sheet is a record: the paper (A4, US Letter or a custom size), columns and rows, label width and height, top and left margin, the gap between columns and rows, inner padding, font size and what a label shows. The form works out the number of labels per sheet and what is left over at the right and at the bottom, so you can compare it with the maker's data sheet. These are screenshots from Odoo 19 of the sheet made for this page, split in two to stay readable. The table lists the demo database's sheets.",
-          "The Odoo list of sheets is not shown as a screenshot. Sheets have no company: every company sees every sheet.",
-          "The page and label size part of the form, with a Print Test Sheet button. Real Odoo screen.",
-          "Position on the page and the content switches. Real Odoo screen.",
-          "The sheets of the demo database. Evidence table (the Odoo list was too narrow to shoot readably)."
-        ],
-        "use": "your label stock is not one of the built-in sizes.",
-        "mode": "Writes the sheet",
-        "images": [
-          "images/ls-sheet-form-top.webp",
-          "images/ls-sheet-form-position.webp",
-          "images/ls-ev_sheets.webp"
-        ]
-      },
-      {
-        "heading": "2 What the form refuses",
-        "body": [
-          "A layout that runs off the page prints labels cut in half.",
-          "A layout whose labels do not fit on the page is refused with the size it needs against the size of the page; rows and columns must be at least 1, sizes and font above zero, margins, gaps and padding not negative. In the window, Start at Label must lie between 1 and the labels on one sheet. The table lists real answers. It also shows what is let through: padding larger than the label, and absurd sizes.",
-          "It does not check that padding leaves room inside a label, or that a label is big enough for its content.",
-          "What the app refuses and what it lets through. Evidence table."
-        ],
-        "use": "you want a wrong measurement caught before a sheet is wasted.",
-        "mode": "Refuses on save",
-        "images": [
-          "images/ls-ev_checks.webp"
-        ]
-      },
-      {
-        "heading": "3 Print a test sheet and hold it against the stock",
-        "body": [
-          "The numbers on a label sheet's data sheet are not always the numbers of the sheet in your hand.",
-          "Print Test Sheet makes a page with every slot outlined and numbered, with the label size, using the page size of the sheet (A4 comes out as 210.3 mm wide, a whole number of PDF points). The first picture is a crop of that real PDF. To check it independently, test sheets of seven layouts were printed, turned into pictures at 10 pixels per mm and measured with a separate script: the outer edges of the grid were within 0.4 mm of the form's numbers on both Odoo versions. Nothing was held against paper: that depends on your printer.",
-          "A printer's own margins and scaling are not part of the check; print at 100% with no page scaling.",
-          "Crop of the real test sheet PDF (first two columns, 14.4 px text at display width). Real PDF.",
-          "Measured against the form's numbers. Evidence table."
-        ],
-        "use": "you want to check the layout on plain paper before using real labels.",
-        "mode": "Prints a PDF",
-        "images": [
-          "images/ls-pdf-test.webp",
-          "images/ls-ev_geom.webp"
-        ]
-      },
-      {
-        "heading": "4 Choose Custom sheet when you print",
-        "body": [
-          "People already know the Print Labels window; a second place to print would be one more thing to learn.",
-          "The Custom sheet format sits in Odoo's own Print Labels window with a Label Sheet field and Start at Label. On a product it is reached from the Action menu. Start at Label skips the slots already used on a part-used sheet, counted left to right then top to bottom; the offset applies to the first page only. The picture shows a print of six products from slot 5: the first four slots are left empty. Odoo 19 screenshot, then a crop of the real PDF.",
-          "A long product name is cut after two lines with no ellipsis, as the Beeswax Candle shows.",
-          "The Print Labels window with Custom sheet. Real Odoo screen (Odoo 19).",
-          "Six products from slot 5. Crop of the real PDF (first two columns)."
-        ],
-        "use": "you print labels from a product or a list of products.",
-        "mode": "Opens the window",
-        "images": [
-          "images/ls-print-window.webp",
-          "images/ls-pdf-main.webp"
-        ]
-      },
-      {
-        "heading": "5 What a label shows",
-        "body": [
-          "A shelf label, a stockroom label and a gift tag need different content.",
-          "Each sheet has switches: product name, internal reference, price, barcode, barcode digits, plus the Extra Content typed in the window, a font size and optional outlines. The price comes from the pricelist chosen in the window, else the sales price. The code can be a barcode or a QR code: with auto, Odoo's engine draws EAN-13 or EAN-8 for 13 or 8 digits and Code 128 otherwise. On a wide label the QR code sits left of the text. The first table lists the text of a real label for each switch; the second the code type handed to Odoo's barcode engine for each value. Nothing was scanned.",
-          "It does not scan-test anything and it does not warn when a code cannot be drawn.",
-          "Label text per switch. Evidence table.",
-          "Code type per value. Evidence table.",
-          "QR sheet, 90 x 50 mm labels. Crop of the real PDF."
-        ],
-        "use": "you want the name, reference, price and code your way.",
-        "mode": "Per sheet",
-        "images": [
-          "images/ls-ev_switches.webp",
-          "images/ls-ev_codes.webp",
-          "images/ls-pdf-qr.webp"
-        ]
-      },
-      {
-        "heading": "6 Roll labels: one label per page",
-        "body": [
-          "A roll printer wants a page the size of one label.",
-          "A sheet of one row and one column on a custom page size prints one label per page. Three copies on the 50 x 25 mm starter sheet gave a 3 page PDF of 50 x 25 mm pages (the three pages are stacked below, with the Extra Content line 'Keep dry'). The PDF goes through your browser and the printer driver like any Odoo PDF; the app does not talk to a printer and makes no ZPL.",
-          "Three pages of the roll sheet. Crop of the real PDF (24.7 px text at display width)."
-        ],
-        "use": "your printer takes a roll through its normal driver.",
-        "mode": "Prints a PDF",
-        "images": [
-          "images/ls-pdf-roll.webp"
-        ]
-      },
-      {
-        "heading": "7 Print from a receipt: quantities and lots",
-        "body": [
-          "A receipt of 12 items in two lots should give 12 labels, with the lot as the barcode.",
-          "From a receipt, Action, Print, Labels opens the same window with Quantity to print set to Operation Quantities. Each product gets one label per whole unit and a lot-tracked product one label per lot unit with the lot as the barcode. The demo receipt (4 hand cream, 3 candles, 5 seed packets in lots A and B) gave 12 labels. The order of labels follows Odoo's data: on Odoo 19 the last receipt line first and the lots in reverse, as in the picture. Quantities are Odoo's whole numbers: a line of 2.5 units printed 2 labels, 0.4 units none, 2 dozen 2 labels.",
-          "Lot/SN labels, location, package and packaging labels keep Odoo's own formats; the Custom sheet is not tested with them.",
-          "The window opened from a receipt. Real Odoo screen (Odoo 19).",
-          "The first labels of the receipt print. Crop of the real PDF."
-        ],
-        "use": "you label what has just come in.",
-        "mode": "Opens the window",
-        "images": [
-          "images/ls-print-window-receipt.webp",
-          "images/ls-pdf-receipt.webp"
-        ]
-      },
-      {
-        "heading": "8 Who can use it",
-        "body": [
-          "A sheet that anyone can edit is a sheet that changes under you.",
-          "Inventory managers create, edit and delete sheets. Every internal user can read them. A user with the Inventory User group and an employee without any Inventory group both printed through the window and opened the test sheet, and both were refused when creating or editing a sheet. The table is from three users created for the check.",
-          "Sheets are not per company, and the menu entry is hidden from non-managers by its group (not tested in a browser).",
-          "Who can do what. Evidence table."
-        ],
-        "use": "you want to know who can change a sheet and who can print.",
-        "mode": "Read-only",
-        "images": [
-          "images/ls-ev_access.webp"
-        ]
-      }
-    ],
-    "scope": [
-      "Each of these was reproduced in a run of the app on Odoo 19. Seven are covered by tests that pass; none is changed in this version.",
-      "Readings from real runs. Evidence table.",
-      "A value Code 128 cannot draw prints as text with no bars. Crop of the real PDF.",
-      "30 x 12 mm labels at 7 pt: text only, no barcode. Crop of the real PDF."
-    ],
-    "requires": [],
-    "price": 39.0,
-    "manifestPrice": 39.0,
-    "currency": "USD",
-    "category": "Warehouse",
-    "version": "19.0.1.0.2",
-    "license": "OPL-1",
-    "depends": [
-      "stock"
-    ],
-    "paidDepends": [],
-    "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_label_sheet_layouts",
-    "storeUrl19": "https://apps.odoo.com/apps/modules/19.0/mh_label_sheet_layouts",
-    "storeUrl20": "https://apps.odoo.com/apps/modules/20.0/mh_label_sheet_layouts",
-    "screenshots": [
-      "images/ls-ev_limits.webp",
-      "images/ls-pdf-limits-accent.webp",
-      "images/ls-pdf-limits-tiny.webp"
-    ],
-    "shotDims": {
-      "images/ls-sheet-form-top.webp": [
-        1000,
-        1480
-      ],
-      "images/ls-sheet-form-position.webp": [
-        1000,
-        2045
-      ],
-      "images/ls-ev_sheets.webp": [
-        1000,
-        895
-      ],
-      "images/ls-ev_checks.webp": [
-        1000,
-        1612
-      ],
-      "images/ls-pdf-test.webp": [
-        1000,
-        614
-      ],
-      "images/ls-ev_geom.webp": [
-        1000,
-        929
-      ],
-      "images/ls-print-window.webp": [
-        1000,
-        1506
-      ],
-      "images/ls-pdf-main.webp": [
-        1000,
-        592
-      ],
-      "images/ls-ev_switches.webp": [
-        1000,
-        1252
-      ],
-      "images/ls-ev_codes.webp": [
-        1000,
-        1295
-      ],
-      "images/ls-pdf-qr.webp": [
-        1000,
-        1158
-      ],
-      "images/ls-pdf-roll.webp": [
-        1000,
-        1568
-      ],
-      "images/ls-print-window-receipt.webp": [
-        1000,
-        1506
-      ],
-      "images/ls-pdf-receipt.webp": [
-        1000,
-        614
-      ],
-      "images/ls-ev_access.webp": [
-        1000,
-        532
-      ],
-      "images/ls-ev_limits.webp": [
-        1000,
-        1632
-      ],
-      "images/ls-pdf-limits-accent.webp": [
-        1000,
-        318
-      ],
-      "images/ls-pdf-limits-tiny.webp": [
-        1000,
-        254
-      ]
-    },
-    "tiles": [
-      {
-        "n": "0.4 mm",
-        "l": "the largest gap between the printed label grid and the numbers on the form, measured on real PDFs of 7 layouts with a separate script"
-      },
-      {
-        "n": "5 + 2",
-        "l": "sheets in the made-up shop database: four starter layouts, one of ours, a QR sheet and a very small one; a layout that does not fit the page is refused"
-      },
-      {
-        "n": "30",
-        "l": "automated tests in the app, none failing; 7 were added to pin the limits stated on this page"
-      },
-      {
-        "n": "1,000",
-        "l": "labels with barcodes to a 48 page PDF in 31.9 s on Odoo 19 and 3.8 s on Odoo 20 on the test machine; larger prints not tested"
-      },
-      {
-        "n": "0",
-        "l": "products, prices or stock changed: it writes only its own sheet records and makes no network call"
-      },
-      {
-        "n": "No",
-        "l": "warning when a name, a barcode or the padding does not fit inside a label (see the known limits)"
-      }
-    ],
-    "faq": [],
-    "copyWords": 1482,
-    "hasVideo": true,
-    "youtubeId": "jw2miIwXGC0",
-    "externalPage": null
-  },
-  {
-    "tech": "mh_pos_sales_reports",
-    "slug": "pos-sales-reports",
-    "name": "POS Sales Reports",
-    "summary": "Report point of sale sales by cashier, payment method and session, with profit and loss by product and category, for a period or chosen sessions, in PDF and Excel",
-    "tagline": "Who sold what, how it was paid, how each session closed and what it earned - for a period or for chosen sessions, in PDF and Excel",
-    "intro": [
-      "At the end of a month a shop owner wants one answer to four questions: what did each cashier take and how was it paid, did every till balance, and which products and categories earned the margin. POS Sales Reports builds one report of a period or of chosen sessions that answers all four from what Odoo recorded, and prints it to PDF or exports it to Excel. This page walks through it with screenshots of an Odoo 19 database holding a made-up coffee roaster with two tills, and with tables rendered from real readings of the same run; each picture says which it is.",
-      "It reads orders, payments, sessions and the cost stored on each order line, and writes only its own report records. This page also says where its definitions bite: refunds on a later day, sessions that cross midnight, negative orders and the cashier name.",
-      "Install it and a menu appears under Point of Sale, Reporting: Sales Reports, and a Sales Report button on every session. It needs only Point of Sale. Only Point of Sale Administrators can use it, because it shows costs and margins."
-    ],
-    "features": [
-      {
-        "heading": "What it keeps, what it changes, what it does not",
-        "body": [
-          "Each line was tested or read in the code."
-        ],
-        "images": []
-      },
-      {
-        "heading": "1 Set the period and the scope",
-        "body": [
-          "A month of takings spread over screens, sessions and exports has to be added up by hand, and each till and each cashier adds another sheet.",
-          "Create a report: a name, From and To (the first of the month to today by default), and if you want one or more Points of Sale; leave them empty for every till of the company. Or choose sessions: then the report covers exactly those sessions and ignores the dates and tills. Days follow your time zone. The picture is an Odoo 19 screen of a draft that has not been run: only Run Report is offered.",
-          "Only paid and posted orders count. Draft and cancelled orders do not.",
-          "A draft report before it is run. Real Odoo screen."
-        ],
-        "use": "you want the figures of one month, one till or a few sessions.",
-        "mode": "Writes when saved",
-        "images": [
-          "images/sr-settings-draft.webp"
-        ]
-      },
-      {
-        "heading": "2 Run it and read what stood out",
-        "body": [
-          "A table of numbers hides what a manager needs to notice: a till that did not balance, products with no cost, a session still open.",
-          "Press Run Report . The form shows orders, refunds, gross sales, discounts, refunded, net sales and payments (tax included), revenue, cost and margin (tax excluded), and a short What stood out text. In the demo run of October, 38 orders and 2 refunds came to $1,055.30 net; discounts were $20.83, revenue excluding tax $959.36, cost $408.20 and margin $525.16 (56.3%) on the part that has a cost. Run again and the lines are replaced with a fresh result.",
-          "Net sales are the totals of the orders, tax included; revenue is tax excluded, so the two do not match by design.",
-          "The totals after the run. Real Odoo screen (Odoo 19).",
-          "The findings text of the same run. Real Odoo screen."
-        ],
-        "use": "you want the answer in a few sentences before the tables.",
-        "mode": "Writes the lines",
-        "images": [
-          "images/sr-result-top.webp",
-          "images/sr-result-findings.webp"
-        ]
-      },
-      {
-        "heading": "3 By cashier and by payment method",
-        "body": [
-          "Orders Analysis files an order under one payment method and one user; the owner wants cashiers side by side with cash and card apart.",
-          "One row per cashier: orders, refunds, gross sales, discounts, refunded and net sales, and what each cashier took by payment method. An order paid half cash and half card is split as it was paid, and change given back is a negative cash line, so cash is what stayed in the till. The cashier is the user who made the order, or the employee when Point of Sale employee login is used. The two sheets are rendered from the real lines of the October run on Odoo 19; they are tables, not screenshots of the Odoo list, because that list is too wide to show at a readable size.",
-          "Orders do not include refunds; refunds are counted apart. Everyone who rings orders under one shared Odoo user is one cashier.",
-          "By cashier. Evidence table.",
-          "By payment method. Evidence table."
-        ],
-        "use": "you want to see what each cashier took and how it was paid.",
-        "mode": "Read-only",
-        "images": [
-          "images/sr-ev_cashiers.webp",
-          "images/sr-ev_payments.webp"
-        ]
-      },
-      {
-        "heading": "4 By session, and the cash count",
-        "body": [
-          "A till that is a few dollars short is a small number in a long list, and a month has many sessions.",
-          "One row per session in the report: who opened it, its orders and net sales and, for a closed session with cash, the expected cash, the counted cash and the difference as Odoo recorded them at closing. A session that is still open has no count, because before closing the difference would be the whole expected cash. In the demo, three of six closed sessions did not balance: 4.50 short, 1.20 short and 2.00 over. The float counted in at opening is part of the expected cash. The second table runs five more drawer cases as separate steps: a till with only card sales, no sales at all, and cash taken out and put in during the day.",
-          "Cash is counted per session, not per cashier, so cash differences are reported by session.",
-          "By session. Evidence table.",
-          "The cash count at closing. Evidence table.",
-          "Five more drawer cases. Evidence table."
-        ],
-        "use": "you want to know which tills balanced and which did not.",
-        "mode": "Read-only",
-        "images": [
-          "images/sr-ev_sessions.webp",
-          "images/sr-ev_cash.webp",
-          "images/sr-ev_cases.webp"
-        ]
-      },
-      {
-        "heading": "5 Profit and loss by product and category",
-        "body": [
-          "Revenue says what sold; the owner needs to know what it earned, and a product with no cost must not look like pure profit.",
-          "Each product has quantity, revenue excluding tax, the cost Odoo stored on the order lines, margin and margin percent, ranked by revenue. A line that carries no cost is not counted as profit: its revenue is shown in its own column and left out of the margin, and the findings say how many lines. In the demo, 3 lines of Tasting Sample (26.00) have no cost. The cost on a sold line does not change when a product's cost changes later. A combo is reported through its components. A till in another currency is converted at the rate Odoo stored on each order.",
-          "Margin is the Odoo cost on the line, not a re-valuation. A zero-cost product has no margin shown.",
-          "By product. Evidence table.",
-          "By category. Evidence table."
-        ],
-        "use": "you want to know which products and categories earn the margin.",
-        "mode": "Read-only",
-        "images": [
-          "images/sr-ev_products.webp",
-          "images/sr-ev_categories.webp"
-        ]
-      },
-      {
-        "heading": "6 From a session, in one click",
-        "body": [
-          "Printing the closing report of one session should not mean creating a report, choosing dates and running it.",
-          "The session form has a Sales Report button; select several sessions in the list and use Actions, Print Sales Report to get one report per session. Each click also files a saved report, so repeated clicks pile up in the list of reports. The first picture is the real session form (Odoo 19); the second is the list of saved reports.",
-          "It adds nothing to the Point of Sale screen itself.",
-          "The Sales Report button. Real Odoo screen.",
-          "The saved reports. Real Odoo screen."
-        ],
-        "use": "you want the report of one session right after closing it.",
-        "mode": "Writes a report",
-        "images": [
-          "images/sr-session-form.webp",
-          "images/sr-reports-list.webp"
-        ]
-      },
-      {
-        "heading": "7 PDF and Excel",
-        "body": [
-          "A result that stays in the database does not reach the person who files it.",
-          "Print PDF gives a landscape report with the findings, the cashier table with a column per payment method, the sessions, the categories and the products: three pages for the October demo. The picture is a crop of the real PDF page (Odoo 19); no document layout was chosen, so there is no logo. Export to Excel gives four sheets: Cashiers, Sessions, Categories and Products, each with a title block, a header row and a total where there is one. The second table is the real file read back. The Opened and Closed times on the Sessions sheet are UTC.",
-          "A report that has not been run cannot be printed or exported. A name that looks like a formula or a link is written as text (a fix in this version).",
-          "The cashier table on the PDF. Real PDF page, smallest text about 13.6 px.",
-          "The real .xlsx read back. Evidence table."
-        ],
-        "use": "you want to hand the result to an accountant or keep it outside Odoo.",
-        "mode": "Excel writes an attachment",
-        "images": [
-          "images/sr-pdf-summary.webp",
-          "images/sr-ev_excel.webp"
-        ]
-      },
-      {
-        "heading": "8 Checked against Odoo's own figures",
-        "body": [
-          "A report is only as good as the numbers it prints.",
-          "For each of the six closed sessions of the demo, a report of that session was compared with Odoo's Sales Details, the report in the session's Print menu: orders, net sales, discounts and payments per method. All six matched on both Odoo 19 and Odoo 20. A separate script also recomputed the October report from the raw orders with its own arithmetic: 20 rows, no difference.",
-          "Six sessions, each matched. Evidence table."
-        ],
-        "use": "you want to know the arithmetic is right before you rely on it.",
-        "mode": "Read-only",
-        "images": [
-          "images/sr-ev_check.webp"
-        ]
-      },
-      {
-        "heading": "What changed in this version",
-        "body": [
-          "Version 1.0.2 writes every text cell of the Excel file as text. Before, a product named =1+1, a cashier named https://example.com/x and a report named =SUM(1+1) test were written as formulas or a link and the names were lost.",
-          "Old and new reading. Evidence table."
-        ],
-        "images": [
-          "images/sr-ev_fix.webp"
-        ]
-      }
-    ],
-    "scope": [
-      "Each of these was reproduced in a run of the app on Odoo 19. Six are covered by tests that pass; none is changed in this version except the fixes below.",
-      "Eight readings from real runs. Evidence table.",
-      "Time zones and a session across midnight. Evidence table."
-    ],
-    "requires": [],
-    "price": 39.0,
-    "manifestPrice": 39.0,
-    "currency": "USD",
-    "category": "Sales/Point of Sale",
-    "version": "19.0.1.0.2",
-    "license": "OPL-1",
-    "depends": [
-      "point_of_sale"
-    ],
-    "paidDepends": [],
-    "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_pos_sales_reports",
-    "storeUrl19": "https://apps.odoo.com/apps/modules/19.0/mh_pos_sales_reports",
-    "storeUrl20": "https://apps.odoo.com/apps/modules/20.0/mh_pos_sales_reports",
-    "screenshots": [
-      "images/sr-ev_limits.webp",
-      "images/sr-ev_tz.webp"
-    ],
-    "shotDims": {
-      "images/sr-settings-draft.webp": [
-        1000,
-        1089
-      ],
-      "images/sr-result-top.webp": [
-        1000,
-        2158
-      ],
-      "images/sr-result-findings.webp": [
-        1000,
-        1463
-      ],
-      "images/sr-ev_cashiers.webp": [
-        1000,
-        688
-      ],
-      "images/sr-ev_payments.webp": [
-        1000,
-        517
-      ],
-      "images/sr-ev_sessions.webp": [
-        1000,
-        729
-      ],
-      "images/sr-ev_cash.webp": [
-        1000,
-        642
-      ],
-      "images/sr-ev_cases.webp": [
-        1000,
-        703
-      ],
-      "images/sr-ev_products.webp": [
-        1000,
-        851
-      ],
-      "images/sr-ev_categories.webp": [
-        1000,
-        602
-      ],
-      "images/sr-session-form.webp": [
-        1000,
-        467
-      ],
-      "images/sr-reports-list.webp": [
-        1000,
-        718
-      ],
-      "images/sr-pdf-summary.webp": [
-        1000,
-        232
-      ],
-      "images/sr-ev_excel.webp": [
-        1000,
-        1198
-      ],
-      "images/sr-ev_check.webp": [
-        1000,
-        752
-      ],
-      "images/sr-ev_limits.webp": [
-        1000,
-        1488
-      ],
-      "images/sr-ev_tz.webp": [
-        1000,
-        664
-      ],
-      "images/sr-ev_fix.webp": [
-        1000,
-        583
-      ]
-    },
-    "tiles": [
-      {
-        "n": "6 of 6",
-        "l": "closed sessions of the made-up demo matched Odoo's own Sales Details: orders, net sales, discounts and payments per method"
-      },
-      {
-        "n": "20 / 20",
-        "l": "figures of the October run matched a recompute from the raw orders with separate arithmetic"
-      },
-      {
-        "n": "32",
-        "l": "automated tests in the app, none failing; 7 were added for the limits stated on this page and for the fixes"
-      },
-      {
-        "n": "0.5 s",
-        "l": "to run a month of 4,000 orders and 12,000 lines in the test run; larger months not tested"
-      },
-      {
-        "n": "0",
-        "l": "orders, sessions, costs or products changed: it writes only its own report records and the Excel file you ask for"
-      },
-      {
-        "n": "Per day",
-        "l": "a refund is reported on the day it is made, not on the day of the sale (see the known limits)"
-      }
-    ],
-    "faq": [],
-    "copyWords": 1495,
-    "hasVideo": true,
-    "youtubeId": "fr1m0C2n6yE",
-    "externalPage": null
-  },
-  {
-    "tech": "mh_office_preview",
-    "slug": "private-office-preview",
-    "name": "Private Office Preview",
-    "summary": "Preview Word (DOCX) and Excel (XLSX) attachments inside Odoo's own file viewer, drawn in the browser from your Odoo server with no outside service",
-    "tagline": "Open Word and Excel attachments in Odoo's own file viewer, drawn in the browser from your Odoo server, with no file sent to Microsoft or Google",
-    "intro": [
-      "Odoo's file viewer shows pictures and PDFs. A Word or Excel attachment in the chatter is only a download: people save it, open it in another program and come back. Private Office Preview makes the same viewer open DOCX and XLSX files. This page walks through it with screenshots of an Odoo 19 database holding a made-up freight customer, and with readings from a real browser run, including what it does not do well.",
-      "The app stores nothing. It reads the file from your Odoo server, draws it in the browser tab and sends it nowhere else.",
-      "Install it and nothing changes in the menus: Word and Excel tiles in the chatter now open in the viewer. There are no settings. It needs the Discuss and chatter module (mail) and Odoo's Spreadsheet module (spreadsheet), both in Odoo Community."
-    ],
-    "features": [
-      {
-        "heading": "What it changes, what it keeps, what it does not do",
-        "body": [
-          "Each line was tested or read in the code."
-        ],
-        "images": []
-      },
-      {
-        "heading": "1 Open a Word file",
-        "body": [
-          "Opening a Word attachment means downloading it, finding it, opening another program and coming back.",
-          "Click the Word file in the chatter. It opens in the same viewer that shows pictures and PDFs, with the same Download button and Close button, and with next and previous arrows when the record holds more than one viewable file. In the run behind this page a Word file with a heading, a table, bold and italic text, a link and a picture was shown in under a third of a second.",
-          "The document is drawn inside a sandboxed frame that runs no script and blocks every network request. Embedded HTML parts of a DOCX are not rendered, and links other than http, https and mailto are removed. A picture that points at another server is not loaded and is not requested.",
-          "It is not Word. Fonts, page breaks, bullet markers, headers and footers can look different, and tracked changes appear as plain text: the inserted text is shown and the deleted text is left out.",
-          "A made-up transport agreement in the viewer. The terms list shows no bullet markers in this run: the layout is approximate."
-        ],
-        "use": "a contract or letter arrives as a DOCX and you want to read it without leaving Odoo.",
-        "mode": "Read-only",
-        "images": [
-          "images/op-docx-viewer.webp"
-        ]
-      },
-      {
-        "heading": "2 Open an Excel file",
-        "body": [
-          "A spreadsheet attachment is also download only, even when you want to check one number.",
-          "Click the Excel file. It opens in a read-only spreadsheet drawn by the engine that Odoo's Spreadsheet module already includes, with sheet tabs, frozen rows, formatting and formulas calculated in the browser. In the run, the Total row of a budget showed $136,300, $135,790 and -$510, and a workbook of 40,000 rows (a 1 MB file) opened in 3.6 seconds on the test server. Files made by tools other than Excel (openpyxl, pandas) are adjusted so Odoo's reader accepts them. An arrow key pressed inside the sheet moves in the sheet and does not switch to the next file.",
-          "Nothing can be edited or saved back. Hidden sheets are not offered. Functions that Odoo's spreadsheet engine does not know show #NAME? even if Excel stored a result: XLOOKUP and SUM were calculated, LET and STOCKHISTORY were not.",
-          "A made-up budget. Sheet tabs sit below the grid; the top bar says Readonly Access. The toolbar and column letters are Odoo's own and small at this size."
-        ],
-        "use": "a budget or price list arrives as an XLSX and you want to read the numbers.",
-        "mode": "Read-only",
-        "images": [
-          "images/op-xlsx-viewer.webp"
-        ]
-      },
-      {
-        "heading": "3 Where the preview opens",
-        "body": [
-          "Odoo shows files in several places and only some of them have a viewer.",
-          "It opens from a file in a chatter, from a file you have attached in the composer but not sent yet, from the thumbnails of an attachment field such as the attachments of an email template (Word and Excel open the viewer, PowerPoint keeps its download link), and from a Preview button next to Download on a binary file field when the record is saved and the file is Word, Excel, PDF or an image by its file name. The Preview button is hidden while the record has unsaved changes, because the file on the server may not be the one on screen.",
-          "Discuss channels and the full-screen email composer were not tested.",
-          "A Word file in the chatter. Without the app, this tile is not viewable and only downloads.",
-          "A file field with the Preview button.",
-          "The places checked, read from a real browser run."
-        ],
-        "use": "files sit in the chatter, in a composer, behind attachment thumbnails or in file fields.",
-        "mode": "Read-only",
-        "images": [
-          "images/op-chatter-office-tiles.webp",
-          "images/op-binary-eye-button.webp",
-          "images/op-ev-where.webp"
-        ]
-      },
-      {
-        "heading": "4 The file goes nowhere else",
-        "body": [
-          "Online viewers hand each document to a third party and need a server that can be reached from the internet.",
-          "The two document libraries, docx-preview (Apache-2.0) and JSZip (MIT), ship inside the module and load only when a preview opens. Excel is drawn by Odoo's own spreadsheet engine. In the run behind this page, every request the browser made while a file was open went to the Odoo server (plus data: pictures made in the page), and none to any other host. The table lists them file by file.",
-          "This was tested on a local test server; an intranet or VPN setup was not tested.",
-          "Requests read from the browser's network log while each file was open."
-        ],
-        "use": "documents are confidential, or the server is on an intranet.",
-        "mode": "Read-only",
-        "images": [
-          "images/op-ev-network.webp"
-        ]
-      },
-      {
-        "heading": "5 Who can open a preview",
-        "body": [
-          "A preview must not show a file that the Download button would refuse.",
-          "The viewer fetches the file from the same address as the Download button, so access is the same. In the run, an internal user got the file for an attachment on a contact he can read, and got a 404 with no file for an attachment on a record he cannot read.",
-          "Status answers read from a browser logged in as each user."
-        ],
-        "use": "some records must stay private to some users.",
-        "mode": "Read-only",
-        "images": [
-          "images/op-ev-access.webp"
-        ]
-      },
-      {
-        "heading": "6 Big, broken and unsupported files",
-        "body": [
-          "A huge or broken file must not freeze the tab or show an empty page.",
-          "Over 10 MB, the viewer shows a short message and points to Download. A Word file of exactly 10 MB (10,485,760 bytes) was shown and one of 10,485,761 bytes was refused. A zip that is not a real workbook, or a file that is not a zip at all (the container of a password-protected Office file), shows \"This file could not be previewed.\" PowerPoint (PPTX), the old .doc and .xls formats and OpenDocument files are not previewed: their tiles stay download-only. The size is checked after the whole file has been downloaded, so a very large file is fetched before it is refused.",
-          "The message for a file over 10 MB.",
-          "The message for a file that is not a real Office file.",
-          "PowerPoint and old .doc tiles stay download-only.",
-          "What the viewer did with each test file."
-        ],
-        "use": "somebody attaches a very large file, a damaged one or a PowerPoint.",
-        "mode": "Read-only",
-        "images": [
-          "images/op-error-too-large.webp",
-          "images/op-error-encrypted.webp",
-          "images/op-chatter-other-tiles.webp",
-          "images/op-ev-limits.webp"
-        ]
-      },
-      {
-        "heading": "7 The layout is approximate",
-        "body": [
-          "A preview that looks slightly different from the original can be mistaken for the original.",
-          "Two differences were seen. In a Word list the bullet markers were not drawn (the terms list in section 1; the markers are Symbol-font characters, and whether the viewer or the fonts of the test machine caused it was not isolated). In an Excel file written with an 18 pt font and no stored row heights, the rows were not made taller to fit, so the text was clipped; a file saved by Excel stores its row heights. A column chart and a picture in an Excel file were drawn; neither was compared with Excel.",
-          "Pictures and charts were looked at once each; no comparison with Excel or Word was made.",
-          "An 18 pt Excel file with no stored row heights: the text is clipped.",
-          "A column chart and a picture in an Excel file, drawn by the spreadsheet engine."
-        ],
-        "use": "you compare the preview with the original and see a difference.",
-        "mode": "Read-only",
-        "images": [
-          "images/op-xlsx-rowheight.webp",
-          "images/op-xlsx-chart.webp"
-        ]
-      }
-    ],
-    "scope": [
-      "These were measured in the test run or read from the code. None is fixed in this version."
-    ],
-    "requires": [],
-    "price": 39.0,
-    "manifestPrice": 39.0,
-    "currency": "USD",
-    "category": "Extra Tools",
-    "version": "19.0.1.0.2",
-    "license": "OPL-1",
-    "depends": [
-      "mail",
-      "spreadsheet"
-    ],
-    "paidDepends": [],
-    "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_office_preview",
-    "storeUrl19": "https://apps.odoo.com/apps/modules/19.0/mh_office_preview",
-    "storeUrl20": "https://apps.odoo.com/apps/modules/20.0/mh_office_preview",
-    "screenshots": [],
-    "shotDims": {
-      "images/op-docx-viewer.webp": [
-        1000,
-        1160
-      ],
-      "images/op-xlsx-viewer.webp": [
-        1000,
-        472
-      ],
-      "images/op-chatter-office-tiles.webp": [
-        1000,
-        488
-      ],
-      "images/op-binary-eye-button.webp": [
-        1000,
-        464
-      ],
-      "images/op-ev-where.webp": [
-        1000,
-        1068
-      ],
-      "images/op-ev-network.webp": [
-        1000,
-        1073
-      ],
-      "images/op-ev-access.webp": [
-        1000,
-        455
-      ],
-      "images/op-error-too-large.webp": [
-        1000,
-        205
-      ],
-      "images/op-error-encrypted.webp": [
-        1000,
-        208
-      ],
-      "images/op-chatter-other-tiles.webp": [
-        1000,
-        858
-      ],
-      "images/op-ev-limits.webp": [
-        1000,
-        1333
-      ],
-      "images/op-xlsx-rowheight.webp": [
-        1000,
-        472
-      ],
-      "images/op-xlsx-chart.webp": [
-        1000,
-        833
-      ]
-    },
-    "tiles": [
-      {
-        "n": "2",
-        "l": "file types opened in the viewer: Word (DOCX) and Excel (XLSX)"
-      },
-      {
-        "n": "1",
-        "l": "host contacted while files were open in a real browser: your own Odoo server"
-      },
-      {
-        "n": "6",
-        "l": "automated browser tests in the app, none failing (one added to pin the limits on this page)"
-      },
-      {
-        "n": "10 MB",
-        "l": "the size line: a file of exactly 10 MB was previewed, one byte more was refused"
-      },
-      {
-        "n": "0",
-        "l": "database tables, columns or settings added; the app writes nothing"
-      },
-      {
-        "n": "#NAME?",
-        "l": "what an Excel function Odoo's spreadsheet engine does not know shows (LET and STOCKHISTORY were tested)"
-      }
-    ],
-    "faq": [
-      {
-        "q": "Does it send my files to Microsoft or Google?",
-        "a": "No. In a real browser run every request went to the Odoo host only. The libraries ship inside the module and Excel is drawn by Odoo's own spreadsheet engine."
-      },
-      {
-        "q": "Which files can it preview?",
-        "a": "Word (.docx) and Excel (.xlsx), up to 10 MB. PowerPoint, .doc, .xls and OpenDocument files are not previewed."
-      },
-      {
-        "q": "Can it edit the file?",
-        "a": "No. The preview is read-only and nothing is saved back."
-      },
-      {
-        "q": "Who can see a preview?",
-        "a": "Anyone who can download the file: it is fetched from the same address as the Download button."
-      },
-      {
-        "q": "Does it look exactly like Word or Excel?",
-        "a": "No. Bullet markers and Excel row heights were seen to differ, tracked changes appear as plain text, and unknown Excel functions show #NAME?."
-      },
-      {
-        "q": "What is stored in my database?",
-        "a": "Nothing. The app adds no model, column or setting."
-      },
-      {
-        "q": "Does it work for files in fields, not only the chatter?",
-        "a": "Yes: the thumbnails of attachment fields and a Preview button on file fields were tested. Discuss channels and the full-screen email composer were not."
-      },
-      {
-        "q": "What happens if I uninstall it?",
-        "a": "The app wrote nothing, so no data changes and Word and Excel files go back to download only. Uninstalling itself was not tested."
-      }
-    ],
-    "copyWords": 1274,
-    "hasVideo": true,
-    "youtubeId": "5_0rhoetNKI",
-    "externalPage": null
-  },
-  {
-    "tech": "mh_project_cost_exposure",
-    "slug": "project-cost-exposure",
-    "name": "Project Cost Exposure",
-    "summary": "Shows project profitability with committed purchase orders: invoiced, spent and unbilled PO exposure per project",
-    "tagline": "What each project has cost, what you have already promised on open purchase orders, and which projects only look profitable because the bills have not landed yet",
-    "intro": [
-      "Analytic accounting tells you what a project has cost. A purchase order confirmed last week is a real obligation that appears in no analytic report until the supplier invoices it. Project Cost Exposure adds that unbilled part to what has been posted, per project, and lists the projects that are in profit today and would not be once those orders are billed. This page walks through it with screenshots of an Odoo 19 database holding a made-up fit-out contractor, and with tables rendered from real readings of the same run; each picture says which it is.",
-      "It reads analytic lines, purchase order lines and projects and writes only its own analysis records. This page also says where its definitions bite: draft and missing bills, credit notes, shared analytic accounts, projects with nothing posted yet, and who can see the amounts.",
-      "Install it and a menu appears under Project, Configuration: Cost Exposure. It needs Project and Purchase. Users of the Project Administrator group can use it."
-    ],
-    "features": [
-      {
-        "heading": "What it keeps, what it changes, what it does not",
-        "body": [
-          "Each line was tested or read in the code."
-        ],
-        "images": []
-      },
-      {
-        "heading": "1 Choose the projects",
-        "body": [
-          "A cost report that lists everything buries the three jobs somebody has to act on this week.",
-          "Create an analysis and, if you want, pick projects; leave the field empty for every project that has an analytic account. Tick Include closed projects to add archived ones (off by default). A project with no analytic account is skipped, because there is nothing to cost against. This is a screenshot from Odoo 19 of a draft that has not been run: only Run is offered.",
-          "Closed means archived. A project in a finished stage that is not archived is always included, and the run has no date filter.",
-          "A draft analysis before it is run. Real Odoo screen."
-        ],
-        "use": "you want to look at a few jobs, or at every project with an analytic account.",
-        "mode": "Writes when saved",
-        "images": [
-          "images/pe-settings-draft.webp"
-        ]
-      },
-      {
-        "heading": "2 Run it and read what stood out",
-        "body": [
-          "A table of eight projects tells you nothing until you have worked out which ones are about to change colour.",
-          "Press Run . The form shows how many projects were covered, the total committed and how many turn negative, with a short What stood out text. In the demo run, 8 projects were covered, $141,500.00 was committed on confirmed orders that had not been billed, across 6 projects, and 2 projects were in profit today and would not be once those orders are billed: Maple Court Lobby and Harbour Street Office Fit-Out. Run again and the lines are replaced with a fresh result; until then the analysis stays as it was.",
-          "It does not forecast, and it does not say whether committing the money was wise.",
-          "The analysis after the run. Real Odoo screen (Odoo 19).",
-          "The totals and the findings text from the same run. Real Odoo screen."
-        ],
-        "use": "you want the answer in a few sentences before the table.",
-        "mode": "Writes the lines",
-        "images": [
-          "images/pe-result-scope.webp",
-          "images/pe-result-findings.webp"
-        ]
-      },
-      {
-        "heading": "3 What counts as committed",
-        "body": [
-          "A commitment figure is only as honest as the definition of the order that counts.",
-          "Committed is the part of a confirmed purchase order that has not been billed: the ordered quantity minus Odoo's billed quantity, times the untaxed price after the order line discount, split by the analytic percentages. The table is a real run on Odoo 19: one order or bill of 1,000 per row on a throwaway copy of the data. A quotation, a sent quotation, an order waiting for approval and a cancelled order are not committed; a confirmed and a locked order are; billing 400 of 1,000 leaves 600. A bill saved as a draft already counts as billed, so that order is committed for nothing and spent for nothing until the bill is posted.",
-          "Tax is left out, and an order in another currency is converted at its order date (a fix in this version).",
-          "Nine kinds of order and bill and what the run showed. Evidence table."
-        ],
-        "use": "you want to know exactly which orders and bills move the number.",
-        "mode": "Read-only",
-        "images": [
-          "images/pe-ev_kinds.webp"
-        ]
-      },
-      {
-        "heading": "4 Project by project",
-        "body": [
-          "Total committed hides which job it belongs to.",
-          "The Projects tab lists every project of the run with Invoiced, Spent, Committed, Margin today and Margin once billed, worst margin once billed first. Rows of projects that turn negative are red; rows that are below zero once billed but were already below zero today are orange. The Odoo list is too wide to shoot at a readable size in one piece, so the first two pictures are real Odoo screens with four columns each and the third is a table with all seven columns from the same run on Odoo 19. Harbour Street Office Fit-Out: invoiced $120,000, spent $71,360 (bills and timesheet cost), $56,000 committed, so $48,640 of margin today becomes -$7,360. Oak Lane Showroom is already at -$5,940 today and is not listed as a surprise.",
-          "Costs and revenue are added up separately, never netted: a project with heavy spending and heavy billing is not shown as quiet.",
-          "Invoiced, spent and committed. Real Odoo screen.",
-          "The two margins, red rows turn negative. Real Odoo screen.",
-          "All seven columns of the run. Evidence table."
-        ],
-        "use": "you want to see invoiced, spent, committed and both margins for each project.",
-        "mode": "Read-only",
-        "images": [
-          "images/pe-lines-money.webp",
-          "images/pe-lines-margin.webp",
-          "images/pe-ev_lines.webp"
-        ]
-      },
-      {
-        "heading": "5 Only the ones that turn negative",
-        "body": [
-          "The point of the report is the handful of projects about to change colour, not the whole list.",
-          "The button Only the ones that turn negative opens just the projects that are in profit today and below zero once the open orders are billed. In the demo run these are Maple Court Lobby ($33,100 today, -$7,900 once billed) and Harbour Street Office Fit-Out ($48,640 today, -$7,360). A project with nothing invoiced or spent and one open order is also listed, because a margin of zero today is not below zero.",
-          "A project already below zero today is not on this list.",
-          "The two projects that turn negative. Real Odoo screen (Odoo 19)."
-        ],
-        "use": "you want the short list of jobs that need a decision this week.",
-        "mode": "Read-only",
-        "images": [
-          "images/pe-at-risk.webp"
-        ]
-      },
-      {
-        "heading": "6 Other scopes and the list of analyses",
-        "body": [
-          "One scope rarely answers every question, and a finished job still has numbers.",
-          "Each analysis keeps its own scope and result. The second below picks three large fit-outs: 3 projects, $115,500 committed, 2 turning negative. The third includes closed projects and shows the archived Pine Row Extension with $20,000 invoiced and $15,000 spent, which the Include closed projects box did not do before this version. The list shows the analyses of the demo with their counts and totals.",
-          "An analysis is a snapshot: a bill posted after the run does not change it until you press Run again.",
-          "An analysis of three picked projects. Real Odoo screen (Odoo 19).",
-          "The run with closed projects included. Real Odoo screen.",
-          "The analyses side by side. Real Odoo screen."
-        ],
-        "use": "you want to keep several views of the same data, for example live projects and finished ones.",
-        "mode": "Writes the lines",
-        "images": [
-          "images/pe-result-second.webp",
-          "images/pe-lines-closed.webp",
-          "images/pe-analyses-list.webp"
-        ]
-      },
-      {
-        "heading": "7 Checked against the raw rows",
-        "body": [
-          "A flag on a project is only as good as the sums behind it.",
-          "A separate script read the analytic lines and the purchase order lines straight from the database, worked out the billed quantity from the posted bill lines itself and recomputed invoiced, spent and committed for every project, with no module code. All 8 projects matched, with no difference, on both Odoo 19 and Odoo 20.",
-          "Eight of eight projects, each matched. Evidence table."
-        ],
-        "use": "you want to know the arithmetic is right before you rely on it.",
-        "mode": "Read-only",
-        "images": [
-          "images/pe-ev_check.webp"
-        ]
-      },
-      {
-        "heading": "The two fixes in this version",
-        "body": [
-          "Version 1.0.15 makes the Include closed projects box work (archived projects were always hidden) and converts an order in another currency to the company currency at its order date. Before, 10,000 euros was committed as 10,000 dollars while a bill of the same 10,000 euros posts 12,500 dollars of cost. Companies whose orders are all in the company currency see no change. The table shows the old and the new reading.",
-          "Old and new reading of the same two cases. Evidence table."
-        ],
-        "images": [
-          "images/pe-ev_fix.webp"
-        ]
-      }
-    ],
-    "scope": [
-      "Each of these was reproduced in a run of the app on Odoo 19. Seven are covered by tests that pass; none is changed in this version except the two fixes below.",
-      "Twelve readings from real runs. Evidence table."
-    ],
-    "requires": [],
-    "price": 39.0,
-    "manifestPrice": 39.0,
-    "currency": "USD",
-    "category": "Project",
-    "version": "19.0.1.0.15",
-    "license": "OPL-1",
-    "depends": [
-      "project",
-      "purchase"
-    ],
-    "paidDepends": [],
-    "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_project_cost_exposure",
-    "storeUrl19": "https://apps.odoo.com/apps/modules/19.0/mh_project_cost_exposure",
-    "storeUrl20": "https://apps.odoo.com/apps/modules/20.0/mh_project_cost_exposure",
-    "screenshots": [
-      "images/pe-ev_limits.webp"
-    ],
-    "shotDims": {
-      "images/pe-settings-draft.webp": [
-        1000,
-        1678
-      ],
-      "images/pe-result-scope.webp": [
-        1000,
-        926
-      ],
-      "images/pe-result-findings.webp": [
-        1000,
-        1142
-      ],
-      "images/pe-ev_kinds.webp": [
-        1000,
-        911
-      ],
-      "images/pe-lines-money.webp": [
-        1000,
-        1253
-      ],
-      "images/pe-lines-margin.webp": [
-        1000,
-        1374
-      ],
-      "images/pe-ev_lines.webp": [
-        1000,
-        1358
-      ],
-      "images/pe-at-risk.webp": [
-        1000,
-        382
-      ],
-      "images/pe-result-second.webp": [
-        1000,
-        1098
-      ],
-      "images/pe-lines-closed.webp": [
-        1000,
-        1614
-      ],
-      "images/pe-analyses-list.webp": [
-        1000,
-        758
-      ],
-      "images/pe-ev_check.webp": [
-        1000,
-        915
-      ],
-      "images/pe-ev_limits.webp": [
-        1000,
-        1866
-      ],
-      "images/pe-ev_fix.webp": [
-        1000,
-        521
-      ]
-    },
-    "tiles": [
-      {
-        "n": "8 of 8",
-        "l": "projects matched an independent recompute of invoiced, spent and committed from the raw database rows"
-      },
-      {
-        "n": "2 of 8",
-        "l": "projects in the made-up demo are in profit today and below zero once their open orders are billed, with $141,500 committed in all"
-      },
-      {
-        "n": "23",
-        "l": "automated tests in the app, none failing; 9 were added for two fixes and for the limits stated on this page"
-      },
-      {
-        "n": "1.9 s",
-        "l": "to run an analysis of 400 projects, 12,000 order lines and 30,000 analytic lines in the test run; larger databases not tested"
-      },
-      {
-        "n": "0",
-        "l": "journal entries, analytic lines or orders changed: it writes only its own analysis records"
-      },
-      {
-        "n": "Not",
-        "l": "a forecast: it reports what is committed, not whether committing it was wise"
-      }
-    ],
-    "faq": [],
-    "copyWords": 1306,
-    "hasVideo": true,
-    "youtubeId": "mZFuv-o5q6w",
-    "externalPage": null
-  },
-  {
-    "tech": "mh_reorder_rule_audit",
-    "slug": "reordering-rule-audit",
-    "name": "Reordering Rule Audit",
-    "summary": "Audits Odoo reordering rules against past demand: minimum too low, maximum too high, no lead time, no demand",
-    "tagline": "Check every reordering rule against the demand it has actually seen: which minimums reorder too late over the vendor lead time, and which maximums tie up cash",
-    "intro": [
-      "A reordering rule is a guess made once and rarely revisited. Demand moves; the minimum does not, and the stock-out that follows gets blamed on the supplier. Reordering Rule Audit takes each rule, measures what the product shipped in the last 90 days (or the window you choose), and gives it one verdict: minimum too low, maximum too high, no lead time set, no demand, or looks right. This page walks through it with screenshots of an Odoo 19 database holding a made-up bike-parts wholesaler, and with tables rendered from real readings of the same run; each picture says which it is.",
-      "It reads stock moves, locations and your rules and writes only its own audit records. It changes no rule and orders nothing. This page also says where it is blunt: demand is per product rather than per warehouse rule, returns are not netted, and a missing lead time is reported, not guessed.",
-      "Install it and a menu appears under Inventory, Configuration: Reordering Rule Audit. It needs only Inventory. Only Inventory Administrators can use it."
-    ],
-    "features": [
-      {
-        "heading": "What it keeps, what it changes, what it does not",
-        "body": [
-          "Each line was tested or read in the code."
-        ],
-        "images": []
-      },
-      {
-        "heading": "1 Choose the window and the scope",
-        "body": [
-          "A rule set for the whole company says nothing about how one warehouse or one season behaves.",
-          "Create an audit and set how many days of shipments to measure (the default is 90), pick one or more warehouses (empty means all), and, if you want, a lead time to assume where Odoo reports none. Only Run is offered before it is run. This is a screenshot from Odoo 19 of a draft for the Main Warehouse over 60 days.",
-          "A window of 0 days or less is accepted and reads every rule as No demand. Archived rules and rules of other companies are not audited; manual-trigger rules are.",
-          "A draft audit before it is run. Real Odoo screen."
-        ],
-        "use": "you want to audit one warehouse or a shorter window.",
-        "mode": "Writes when run",
-        "images": [
-          "images/ro-draft-settings.webp"
-        ]
-      },
-      {
-        "heading": "2 Run it and read what stood out",
-        "body": [
-          "A table of 17 rules tells you nothing until you have worked out which ones matter.",
-          "Press Run . The form shows when it ran, how many rules were checked, how many reorder too late, the value held by maximums that are too high, and a short What stood out text. In the demo run 4 of 17 rules reorder too late, 3 hold $2,722.50 above what a quarter of demand needs, 2 have no lead time and 1 is on a product that did not ship. Run again and the lines are replaced with a fresh result.",
-          "It does not forecast: it compares each rule with shipments that already happened. The text names only the five minimums furthest off.",
-          "The audit after the run. Real Odoo screen (Odoo 19).",
-          "The findings text from the same run. Real Odoo screen."
-        ],
-        "use": "you want the answer in a few sentences before the table.",
-        "mode": "Writes the lines",
-        "images": [
-          "images/ro-result-scope.webp",
-          "images/ro-result-findings.webp"
-        ]
-      },
-      {
-        "heading": "3 Rule by rule",
-        "body": [
-          "A verdict with no figures behind it cannot be argued with or checked.",
-          "Open the Rules tab: each rule has its minimum and maximum, the lead days Odoo reports, what the product shipped in the period, what it needs over the lead time (shipped per day x lead days), the value held and the verdict. The verdicts are exclusive and are tested in this order: no demand, minimum too low, maximum too high, no lead time, looks right. The sheet is rendered from the real lines of the demo run on Odoo 19; it is a table, not a screenshot of the Odoo list, because that list is too wide to show at a readable size.",
-          "A rule that is both too low and too high is reported as too low only: its line still shows the value above a quarter, and the audit's hoarded total leaves it out.",
-          "All 17 lines of the demo run, read from the app. Evidence table."
-        ],
-        "use": "you want to see the figures behind each verdict.",
-        "mode": "Read-only",
-        "images": [
-          "images/ro-ev_rules.webp"
-        ]
-      },
-      {
-        "heading": "4 Minimums that reorder too late",
-        "body": [
-          "Inner tubes ship four a day and take 14 days to arrive; a minimum of 25 fires at a point where 56 are needed.",
-          "The button Only the ones that reorder too late opens the lines whose minimum is below shipped-per-day times lead days. In the demo run those are the chain (needs 16.8, minimum 8), the helmet (12.4 against 4), the inner tube (56 against 25) and the front light (16.8 against 10).",
-          "It does not raise the minimum or order anything. A rule with no lead time is never called too low unless you enter an assumed lead time.",
-          "The four rules the button lists. Real Odoo screen (Odoo 19)."
-        ],
-        "use": "you want the rules that will stock out however well they are followed.",
-        "mode": "Read-only",
-        "images": [
-          "images/ro-stockouts-only.webp"
-        ]
-      },
-      {
-        "heading": "5 Maximums that tie up cash",
-        "body": [
-          "A maximum of 120 saddles when the shop sells nine a quarter is cash sitting in a rack.",
-          "A maximum is too high when it is more than 90 days of demand above the minimum. The value is (maximum - minimum - 90 days of demand) x the product's standard cost. This is judged even when no lead time is set. In the demo run: the sport saddle holds $1,818.00 above a quarter, the flat pedals $462.00 and the bottle cage $442.50, $2,722.50 in all.",
-          "The cost is the product's current standard cost, not the cost of what is in the rack. A quarter is always 90 days of demand, whatever window you chose.",
-          "The three lines and their total, read from the app. Evidence table."
-        ],
-        "use": "you want to know which top-ups are far above what is needed.",
-        "mode": "Read-only",
-        "images": [
-          "images/ro-ev_hoarding.webp"
-        ]
-      },
-      {
-        "heading": "6 When Odoo has no lead time",
-        "body": [
-          "A default Odoo has no supplier delays, so a report that assumed one would agree with everything.",
-          "A rule with no lead time is reported as No lead time set , not as sound. To see what a lead time would mean, enter one in Assume lead time of and run again: it is used only where Odoo reports none, and those lines are marked as assumed. With 14 days entered in the demo, the chain lube and the cable set (no vendor delay) became Minimum too low , and the rules that already had a lead time kept their own.",
-          "An assumed figure is a what-if, not a measurement of your suppliers.",
-          "The second audit of the same rules, with 14 days assumed. Real Odoo screen.",
-          "Its findings text: 6 instead of 4. Real Odoo screen.",
-          "Verdict counts and five rules before and after. Evidence table."
-        ],
-        "use": "your rules report no supplier delay.",
-        "mode": "Writes the lines",
-        "images": [
-          "images/ro-assumed-scope.webp",
-          "images/ro-assumed-findings.webp",
-          "images/ro-ev_assumed.webp"
-        ]
-      },
-      {
-        "heading": "7 Checked against the raw moves",
-        "body": [
-          "A verdict on a rule is only as good as the sum behind it.",
-          "A separate script read every done move line leaving an internal location for a customer, production or transit in the same 90 days, in the product's own unit, and recomputed shipped, needed, verdict and value held with plain SQL and its own arithmetic. All 17 rules matched with no difference, on both Odoo 19 and Odoo 20.",
-          "All 17 rules, each matched. Evidence table."
-        ],
-        "use": "you want to know the arithmetic is right before you act on it.",
-        "mode": "Read-only",
-        "images": [
-          "images/ro-ev_check.webp"
-        ]
-      },
-      {
-        "heading": "8 Past audits",
-        "body": [
-          "A single run is a photograph; you may want to see how the picture changed.",
-          "Each audit stays as a record with its counts. The list shows the rules checked, how many reorder too late and the value held. Run an audit again and its lines are replaced; keep the old result by making a new audit. This is a screenshot from Odoo 19.",
-          "The audit list. Real Odoo screen."
-        ],
-        "use": "you want to compare runs.",
-        "mode": "Read-only",
-        "images": [
-          "images/ro-analyses-list.webp"
-        ]
-      },
-      {
-        "heading": "What changed in this version",
-        "body": [
-          "Two small fixes. Shipments entered in another unit of measure were summed as written, so 6 dozen read as 6 shipped; they are now summed in the product's own unit (72). And Assume lead time of is now on the form; before, the findings told you to fill it in and the screen did not show it. Each fix has a test that fails on the old code.",
-          "Old and new reading of the same shipment. Evidence table."
-        ],
-        "images": [
-          "images/ro-ev_fix.webp"
-        ]
-      }
-    ],
-    "scope": [
-      "Each of these was reproduced in a run of the app on Odoo 19. Seven are covered by tests that pass; none is changed in this version.",
-      "Thirteen readings from real runs. Evidence table."
-    ],
-    "requires": [],
-    "price": 39.0,
-    "manifestPrice": 39.0,
-    "currency": "USD",
-    "category": "Warehouse",
-    "version": "19.0.1.0.16",
-    "license": "OPL-1",
-    "depends": [
-      "stock"
-    ],
-    "paidDepends": [],
-    "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_reorder_rule_audit",
-    "storeUrl19": "https://apps.odoo.com/apps/modules/19.0/mh_reorder_rule_audit",
-    "storeUrl20": "https://apps.odoo.com/apps/modules/20.0/mh_reorder_rule_audit",
-    "screenshots": [
-      "images/ro-ev_limits.webp"
-    ],
-    "shotDims": {
-      "images/ro-draft-settings.webp": [
-        1000,
-        1169
-      ],
-      "images/ro-result-scope.webp": [
-        1000,
-        1114
-      ],
-      "images/ro-result-findings.webp": [
-        1000,
-        1063
-      ],
-      "images/ro-ev_rules.webp": [
-        1000,
-        1582
-      ],
-      "images/ro-stockouts-only.webp": [
-        1000,
-        882
-      ],
-      "images/ro-ev_hoarding.webp": [
-        1000,
-        598
-      ],
-      "images/ro-assumed-scope.webp": [
-        1000,
-        1114
-      ],
-      "images/ro-assumed-findings.webp": [
-        1000,
-        818
-      ],
-      "images/ro-ev_assumed.webp": [
-        1000,
-        1221
-      ],
-      "images/ro-ev_check.webp": [
-        1000,
-        1418
-      ],
-      "images/ro-analyses-list.webp": [
-        1000,
-        618
-      ],
-      "images/ro-ev_limits.webp": [
-        1000,
-        1876
-      ],
-      "images/ro-ev_fix.webp": [
-        1000,
-        633
-      ]
-    },
-    "tiles": [
-      {
-        "n": "17 of 17",
-        "l": "rules in the made-up demo database matched an independent recompute from the raw stock moves (shipped, needed, verdict and value held)"
-      },
-      {
-        "n": "4 of 17",
-        "l": "rules had a minimum below what the product consumed while a replenishment was on its way: they reorder too late"
-      },
-      {
-        "n": "$2,722.50",
-        "l": "held by 3 maximums above a quarter of a year's demand in the demo run, valued at cost"
-      },
-      {
-        "n": "28",
-        "l": "automated tests in the app, none failing; 9 were added in this version, 2 of them for fixes"
-      },
-      {
-        "n": "0",
-        "l": "rules changed and no order created: it writes only its own audit records"
-      },
-      {
-        "n": "Not",
-        "l": "split by warehouse: a product with rules in two warehouses gives each the whole demand (see the known limits)"
-      }
-    ],
-    "faq": [],
-    "copyWords": 1339,
-    "hasVideo": true,
-    "youtubeId": "03nAYmHkGQ4",
-    "externalPage": null
-  },
-  {
-    "tech": "mh_breach_deadline_calc",
-    "slug": "us-breach-deadlines",
-    "name": "US Breach Deadlines",
-    "summary": "A multi-state breach incident tracker: one incident, one line per affected US state, the notification deadline from an editable rule table in calendar days, the earliest deadline and an hourly reminder. Log an incident once and see which state clock expires first",
-    "tagline": "One incident, every affected US state, and which notification date comes first - from a rule table you keep",
-    "intro": [
-      "When one incident touches residents of several US states, each state can have its own notification deadline. US Breach Deadlines lets you log the incident once, tick the affected states, and shows a deadline per state, the earliest one, and an hourly reminder as a date gets close. The deadlines come from a plain table of rules, one row per state, that you edit yourself: days to notify, and an Attorney General threshold and days. This page walks through it with screenshots of an Odoo 19 database holding a made-up company (Harbor Lane Analytics) and three made-up incidents, and with tables rendered from real readings of the same run; each picture says which it is.",
-      "This is a date calculator, not legal advice. It adds a number of calendar days to the date and time you enter. It ships rules for five states only, it was not checked against statute text in this version, and it does not know public holidays. What a law requires, when discovery happens and who must be told are questions for your counsel.",
-      "Install it and a Breach Deadlines menu appears with Incidents and State Deadline Rules. It needs only the Discuss (mail) module."
-    ],
-    "features": [
-      {
-        "heading": "What it keeps, what it changes, what it does not",
-        "body": [
-          "Each line was tested or read in the code."
-        ],
-        "images": []
-      },
-      {
-        "heading": "1 Log the incident once and pick the states",
-        "body": [
-          "Several states can each have their own clock, and a spreadsheet of them goes out of date the day someone edits one cell.",
-          "Open Breach Deadlines, Incidents and create an incident: a description, the discovered date and time (now by default), the Total Affected Individuals and the Affected States. Saving makes one line per state. The incident has an Open and a Closed status and a chatter. The first picture is the incident header for the made-up incident BREACH-0001 (640 people, five states); the second lists the open incidents.",
-          "The incident number is drawn when the New form opens, so opening New without saving leaves a gap in the numbering.",
-          "The incident header. Real Odoo screen (Odoo 19).",
-          "Open incidents with their states and earliest deadline (the Odoo list has more columns; this shows three). Real Odoo screen."
-        ],
-        "use": "an incident touches customers or staff in several US states and you want one record.",
-        "mode": "Writes the incident",
-        "images": [
-          "images/bd-incident-top.webp",
-          "images/bd-incidents.webp"
-        ]
-      },
-      {
-        "heading": "2 A rule table you edit",
-        "body": [
-          "Deadlines change, and a number buried in code is wrong the day a statute is amended.",
-          "Breach Deadlines, State Deadline Rules is an editable list with one row per state: Notification Deadline Days, the Attorney General threshold (people) and days, and a free-text source note for you to record where a figure came from. Five rows ship with the app; the table below shows them exactly as stored, including the note written at build time. 0 days means no fixed deadline. Editing a rule moves the deadline of every line that already uses it, including lines of closed incidents. A rule added later is not attached to lines that already exist; taking the state off the incident and putting it back attaches it.",
-          "It does not check any figure against any law. A state that is not in the table has no deadline, and the table holds 5 of the 62 US states and territories Odoo lists.",
-          "The rules list (the Odoo list has more columns; this shows two). Real Odoo screen (Odoo 19).",
-          "The five shipped rules as stored. Evidence table."
-        ],
-        "use": "you want the numbers in a list you control, not in code.",
-        "mode": "Writes when saved",
-        "images": [
-          "images/bd-rules.webp",
-          "images/bd-ev_rules.webp"
-        ]
-      },
-      {
-        "heading": "3 What the calculation does",
-        "body": [
-          "A date on a screen is only useful if you know the rule behind it.",
-          "The deadline of a line is the incident's discovered date and time plus the rule's days, counted as calendar days and kept at the same time of day. The app stores it in UTC and shows it in your time zone, so across a daylight-saving change the local clock time moves by an hour (discovered 12:00 in Los Angeles on 1 March 2026 shows 13:00 on 31 March for 30 days). Weekends and public holidays count: a discovery on 25 November with 30 days gives 25 December, a Friday and a public holiday, and the app says nothing about it. The table is real readings for one made-up incident with six states.",
-          "It has no calendar of public holidays and no business-day rule, and it does not decide when discovery happened: the date is what you type.",
-          "One incident, six states. Evidence table."
-        ],
-        "use": "you want to see exactly how a date was reached before you rely on it.",
-        "mode": "Read-only",
-        "images": [
-          "images/bd-ev_calc.webp"
-        ]
-      },
-      {
-        "heading": "4 The Attorney General notice",
-        "body": [
-          "Some rules add a second duty above a size threshold, and the threshold is easy to miss in a crowded incident.",
-          "If a rule has an Attorney General threshold above 0 and the incident's Total Affected Individuals reaches it (at or above), the line is flagged as required and gets a date: the discovered date plus the rule's Attorney General days. The comparison uses the one total on the incident for every state; it is not a count of that state's residents. The Attorney General date appears on the line only: it is not part of the Earliest Deadline, has no Notified box and is not read by the reminder.",
-          "A threshold above 0 with 0 Attorney General days reads required with no date.",
-          "The threshold edges, California at 500 and Texas at 250. Evidence table."
-        ],
-        "use": "a state's rule asks for a regulator to be told above a number of people.",
-        "mode": "Read-only",
-        "images": [
-          "images/bd-ev_ag.webp"
-        ]
-      },
-      {
-        "heading": "5 Earliest deadline and Mark Notified",
-        "body": [
-          "With several clocks running, the question is which one ends first and which are already done.",
-          "The Earliest Deadline on the incident is the smallest notification deadline among the lines that have one and are not marked notified. Each line has a Mark Notified button that records the date and time and drops the line from the earliest deadline and from the reminders. The first picture lists the deadlines of BREACH-0001 (Florida is marked notified, New York has no rule and so no date); the second lists the Attorney General dates. A closed incident keeps its lines and its earliest deadline (third picture, a closed incident with its state notified).",
-          "Ticking the Notified box by hand drops the line from the earliest deadline but leaves the notified date empty; only the button sets the date. A state taken off the incident takes its line and Notified flag with it.",
-          "The lines of the incident (the Odoo list has more columns; this shows three). Real Odoo screen.",
-          "The same lines, Attorney General dates. Real Odoo screen.",
-          "A closed incident. Real Odoo screen."
-        ],
-        "use": "you want to see which state is due first and record that you have notified one.",
-        "mode": "Writes the notified flag",
-        "images": [
-          "images/bd-lines-a.webp",
-          "images/bd-lines-b.webp",
-          "images/bd-closed.webp"
-        ]
-      },
-      {
-        "heading": "6 An hourly reminder as a date gets close",
-        "body": [
-          "A deadline you only see when you open the incident is easy to miss.",
-          "A scheduled action runs every hour. For each open incident it looks at each line that has a deadline and is not marked notified; when the deadline is within the next 48 hours, or already past, it creates one To Do activity on the incident, titled Breach deadline with the state name, unless one already exists. The text says under 48 hours left or OVERDUE as of that moment. We ran Odoo's scheduled action itself; the first picture shows the two reminders it made for BREACH-0001 and the table the other cases.",
-          "The reminders are assigned to OdooBot, not to a person, so they do not appear in anyone's own To Do list; they show on the incident. A reminder marked Done is made again at the next hourly run until the line is marked Notified. A closed incident and the Attorney General date get no reminder.",
-          "Two reminders made by the scheduled action. Real Odoo screen (Odoo 19).",
-          "What the scheduled action did in each case. Evidence table."
-        ],
-        "use": "a deadline is within two days or already past and nobody has marked it notified.",
-        "mode": "Creates To Do activities",
-        "images": [
-          "images/bd-activities.webp",
-          "images/bd-ev_cron.webp"
-        ]
-      },
-      {
-        "heading": "7 Checked against the raw tables",
-        "body": [
-          "A date is only as good as the sum behind it.",
-          "A separate script read the stored lines, their rules and the incident dates straight from the database with SQL and recomputed every deadline, every Attorney General flag and date and every earliest deadline with its own arithmetic and no module code, including discovered times such as 03:25:10 and 23:59:59. All 12 lines and 3 earliest deadlines matched, on Odoo 19 and Odoo 20. As a control the same check with every expected date moved by one hour flagged the 10 lines that have a date.",
-          "What was checked. Evidence table."
-        ],
-        "use": "you want to know the arithmetic is right before you rely on it.",
-        "mode": "Read-only",
-        "images": [
-          "images/bd-ev_check.webp"
-        ]
-      },
-      {
-        "heading": "What changed in this version",
-        "body": [
-          "Version 1.0.10 makes one change to behaviour: the five shipped rules are marked noupdate, so a module upgrade no longer puts them back to the shipped numbers after you have edited them (on 1.0.9 California edited to 25 days read 30 again after an upgrade). The consequence is that a later release cannot change those rows in a database that already has them. It adds 16 automated tests that pin the limits above, replaces the screenshots, the icon and the banner, and rewords the description: the earlier text said a state without a rule shows as verify manually, which the app does not do, and it made statements about US law that this version does not make. The demo video and the YouTube card are those of an earlier version and were not re-recorded or checked against the new text."
-        ],
-        "images": []
-      }
-    ],
-    "scope": [
-      "Each of these was reproduced in a run of the app on Odoo 19 and is pinned by a test that passes. Only the first item of the next section was changed in this version.",
-      "Ten readings from real runs. Evidence table.",
-      "More readings from real runs. Evidence table."
-    ],
-    "requires": [],
-    "price": 39.0,
-    "manifestPrice": 39.0,
-    "currency": "USD",
-    "category": "Extra Tools",
-    "version": "19.0.1.0.10",
-    "license": "OPL-1",
-    "depends": [
-      "mail"
-    ],
-    "paidDepends": [],
-    "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_breach_deadline_calc",
-    "storeUrl19": "https://apps.odoo.com/apps/modules/19.0/mh_breach_deadline_calc",
-    "storeUrl20": "https://apps.odoo.com/apps/modules/20.0/mh_breach_deadline_calc",
-    "screenshots": [
-      "images/bd-ev_limits_a.webp",
-      "images/bd-ev_limits_b.webp"
-    ],
-    "shotDims": {
-      "images/bd-incident-top.webp": [
-        1000,
-        932
-      ],
-      "images/bd-incidents.webp": [
-        1000,
-        661
-      ],
-      "images/bd-rules.webp": [
-        1000,
-        548
-      ],
-      "images/bd-ev_rules.webp": [
-        1000,
-        1128
-      ],
-      "images/bd-ev_calc.webp": [
-        1000,
-        972
-      ],
-      "images/bd-ev_ag.webp": [
-        1000,
-        811
-      ],
-      "images/bd-lines-a.webp": [
-        1000,
-        895
-      ],
-      "images/bd-lines-b.webp": [
-        1000,
-        772
-      ],
-      "images/bd-closed.webp": [
-        1000,
-        759
-      ],
-      "images/bd-activities.webp": [
-        1000,
-        695
-      ],
-      "images/bd-ev_cron.webp": [
-        1000,
-        1055
-      ],
-      "images/bd-ev_check.webp": [
-        1000,
-        698
-      ],
-      "images/bd-ev_limits_a.webp": [
-        1000,
-        1555
-      ],
-      "images/bd-ev_limits_b.webp": [
-        1000,
-        1502
-      ]
-    },
-    "tiles": [
-      {
-        "n": "12 of 12",
-        "l": "state lines (3 incidents) matched an independent recompute of every deadline, Attorney General flag and earliest deadline from the raw tables"
-      },
-      {
-        "n": "5",
-        "l": "state rules ship in the table (California, Colorado, Florida, Texas, Washington); the other 57 US states and territories have none until you add them"
-      },
-      {
-        "n": "33",
-        "l": "automated tests in the app, none failing; 16 were added for the limits stated on this page"
-      },
-      {
-        "n": "Calendar",
-        "l": "days only: no public-holiday or weekend calendar; a deadline can land on a Sunday or on 25 December"
-      },
-      {
-        "n": "0",
-        "l": "legal advice or compliance assurance: it adds days to a date from a table you control, and no figure was checked against statute text in this version"
-      },
-      {
-        "n": "Not",
-        "l": "a person's To Do list: the hourly reminders are assigned to OdooBot and come back after Done (see the known limits)"
-      }
-    ],
-    "faq": [],
-    "copyWords": 1556,
-    "hasVideo": true,
-    "youtubeId": "f7lF6tp7uvw",
-    "externalPage": null
-  },
-  {
-    "tech": "mh_vendor_evaluation",
-    "slug": "vendor-evaluation",
-    "name": "Vendor Evaluation",
-    "summary": "Vendor rating and supplier evaluation: a weighted vendor score from star ratings on each receipt plus measured on-time rate, days late, price drift and returns, shown on the vendor, RFQ and PO",
-    "tagline": "Which vendors deliver on time, at the agreed price and in good condition - one score per vendor, from your own data",
-    "intro": [
-      "Choosing between vendors usually rests on memory: who was late last quarter, who raised the price, who sent damaged goods. Vendor Evaluation measures on-time delivery, days late, price drift and returns from your confirmed purchase orders, receipts, backorders and returns, adds the star ratings your storekeepers give each receipt, and combines them with weights you set into one score from 0 to 100 per vendor. This page walks through it with screenshots of an Odoo 19 database holding a made-up joinery and six made-up vendors, and with tables rendered from real readings of the same run; each picture says which it is.",
-      "It reads orders, receipts and vendor price lines and writes only its own records. This page also says where its definitions bite: cancelled backorders, price lists that change, new vendors with little data, who may rate and when the score refreshes.",
-      "Install it and a Vendor Scores menu appears under Purchase, Orders, a Vendor Evaluation settings page under Purchase, Configuration, and a Vendor rating tab on done receipts. It needs only Purchase with Inventory (the purchase_stock module)."
-    ],
-    "features": [
-      {
-        "heading": "What it keeps, what it changes, what it does not",
-        "body": [
-          "Each line was tested or read in the code."
-        ],
-        "images": []
-      },
-      {
-        "heading": "1 Set the weights, the zero points and the rated criteria",
-        "body": [
-          "A fixed formula treats a one-day delay and a bad batch alike, and nobody agrees on how much each should cost a vendor.",
-          "Open Purchase, Configuration, Vendor Evaluation (one page per company). Set the look-back in days, the weight of each measured number (on-time delivery 3, days late 1, price drift 2, returns 2 by default) and the point at which each scores 0 (7 days late, 10% over the vendor price, 10% of the quantity returned). Below are the rated criteria: Quality of goods (weight 3), Packaging and Communication (weight 1 each); rename, add, reorder, reweight or archive them. A weight of 0 leaves a number out; weights cannot be negative. This is a screenshot from Odoo 19.",
-          "Changing a weight does not change the stored scores until the next recompute (see the known limits).",
-          "The settings page for the made-up company. Real Odoo screen."
-        ],
-        "use": "you want the score to reflect what matters to your purchasing, not a fixed formula.",
-        "mode": "Writes when saved",
-        "images": [
-          "images/ve-settings.webp"
-        ]
-      },
-      {
-        "heading": "2 Rate each receipt with stars",
-        "body": [
-          "The people who open the boxes know whether the goods were as ordered, and that rarely reaches the person who chooses the vendor.",
-          "On a done receipt from a vendor, the Vendor rating tab shows a Rate this receipt button. It adds one line per criterion, all Not scored; you click the stars (1 to 5) you want to give and leave the others. A line left at Not scored does not count. The first picture is a receipt before rating, the second a rated receipt. Ratings are entered by users of the Inventory (Stock) group; a user with Purchase rights only gets an access error. Saving a rating refreshes that vendor's score at once.",
-          "Only a done receipt from a vendor can be rated, once per criterion. Nothing records who rated except the record's creator and last writer, and another Inventory user can change the stars.",
-          "A done receipt before rating. Real Odoo screen (Odoo 19).",
-          "The same tab on a rated receipt. Real Odoo screen."
-        ],
-        "use": "a storekeeper has just received goods and can judge quality, packaging and communication.",
-        "mode": "Writes the ratings",
-        "images": [
-          "images/ve-receipt-empty.webp",
-          "images/ve-receipt-rated.webp"
-        ]
-      },
-      {
-        "heading": "3 Four numbers measured from your own data",
-        "body": [
-          "Ratings alone are opinions; the orders, backorders and returns already hold the facts.",
-          "On-time delivery is the share of the quantity due that arrived on or before its date (the line's Expected Arrival on Odoo 19, the Promised Date on Odoo 20); quantity still owed past its date counts as late, quantity not yet due is not counted. Days late is the average per unit received. Price drift compares the order line price with the vendor price line of the product, by value in company currency, and skips lines with no vendor price, a price of 0 or a price-included tax. Returns is the share of the received quantity sent back through the Return button. Each becomes a 0 to 100 score, and a criterion with no data is left out for that vendor. The table is real readings of the six demo vendors; it stands in for the pivot, which is too wide to show readably.",
-          "It does not read vendor bills, only stock products with receipts are measured, and dates are compared by calendar day in UTC.",
-          "Score by criterion for six vendors. Evidence table."
-        ],
-        "use": "you want delivery, price and returns judged from what happened, not from what people remember.",
-        "mode": "Read-only",
-        "images": [
-          "images/ve-ev_vendors.webp"
-        ]
-      },
-      {
-        "heading": "4 One score per vendor, and how it is made",
-        "body": [
-          "A single number is only useful if someone can see what is behind it.",
-          "Purchase, Orders, Vendor Scores lists every scored vendor by score with stars, the number of orders measured and the receipts rated; opening one shows each criterion with its measured value, its weight and its 0 to 100 score. The score is the weighted average of the criteria that have data, and the stars are the score divided by 20, rounded to the nearest star. The made-up Kestrel Packaging is always about a week late: 0%% on time, 6.96 days late on average, 51.6 and three stars. Fenwick Finishing Oils is new, has one open order at the list price and nothing else to measure, and scores 100: one of the limits below.",
-          "A weight of 0 still shows the line in the breakdown, with its weight, but it does not count.",
-          "The ranking of the six demo vendors. Real Odoo screen (Odoo 19).",
-          "One vendor opened: every criterion with its measured value, weight and score. Real Odoo screen.",
-          "The arithmetic for the same vendor. Evidence table."
-        ],
-        "use": "you want a ranking you can open up and argue with.",
-        "mode": "Read-only",
-        "images": [
-          "images/ve-ranking.webp",
-          "images/ve-breakdown.webp",
-          "images/ve-ev_formula.webp"
-        ]
-      },
-      {
-        "heading": "5 Where you see it",
-        "body": [
-          "A score on a report nobody opens changes nothing; it has to be on the screens where the vendor is chosen.",
-          "The vendor form gets a Vendor score button (score out of 100) beside Odoo's own On-time Rate, which is a different figure. RFQ and purchase order forms show the vendor's stars and score under the vendor, and the order lists have a Vendor score column of stars. Purchase users see these; users outside Purchase do not even get the fields.",
-          "The score is not shown on product vendor lines or in replenishment and blocks nothing.",
-          "The vendor form's button box. Real Odoo screen.",
-          "The vendor's score on a purchase order. Real Odoo screen.",
-          "The order list with the stars column (first rows). Real Odoo screen."
-        ],
-        "use": "a buyer is choosing a vendor or confirming an order.",
-        "mode": "Read-only",
-        "images": [
-          "images/ve-vendor.webp",
-          "images/ve-order.webp",
-          "images/ve-order-list.webp"
-        ]
-      },
-      {
-        "heading": "6 Checked against the raw tables",
-        "body": [
-          "A score is only as good as the counts behind it.",
-          "A separate script read the purchase order lines, stock moves, vendor price lines and ratings straight from the database and recomputed every measured number, every criterion score, the weighted total and the stars with its own arithmetic and no module code. All six vendors matched, with no difference, on Odoo 19 and Odoo 20. As a control the same check run against a module reading shifted by 0.5 flagged all six.",
-          "Six of six vendors, each matched. Evidence table."
-        ],
-        "use": "you want to know the arithmetic is right before you rely on it.",
-        "mode": "Read-only",
-        "images": [
-          "images/ve-ev_check.webp"
-        ]
-      },
-      {
-        "heading": "What changed in this version",
-        "body": [
-          "Version 1.0.2 changes no behaviour of the app. It adds eight automated tests that pin the limits above, replaces the screenshots and the demo-free page text with checked ones, and takes nothing out. The demo video of an earlier version is kept as it was and was not re-recorded."
-        ],
-        "images": []
-      }
-    ],
-    "scope": [
-      "Each of these was reproduced in a run of the app on Odoo 19 and is pinned by a test that passes; none is changed in this version.",
-      "Nine readings from real runs. Evidence table.",
-      "Seven more readings from real runs. Evidence table."
-    ],
-    "requires": [],
-    "price": 39.0,
-    "manifestPrice": 39.0,
-    "currency": "USD",
-    "category": "Inventory/Purchase",
-    "version": "19.0.1.0.2",
-    "license": "OPL-1",
-    "depends": [
-      "purchase_stock"
-    ],
-    "paidDepends": [],
-    "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_vendor_evaluation",
-    "storeUrl19": "https://apps.odoo.com/apps/modules/19.0/mh_vendor_evaluation",
-    "storeUrl20": "https://apps.odoo.com/apps/modules/20.0/mh_vendor_evaluation",
-    "screenshots": [
-      "images/ve-ev_limits_a.webp",
-      "images/ve-ev_limits_b.webp"
-    ],
-    "shotDims": {
-      "images/ve-settings.webp": [
-        1000,
-        2449
-      ],
-      "images/ve-receipt-empty.webp": [
-        1000,
-        1731
-      ],
-      "images/ve-receipt-rated.webp": [
-        1000,
-        1747
-      ],
-      "images/ve-ev_vendors.webp": [
-        1000,
-        1020
-      ],
-      "images/ve-ranking.webp": [
-        1000,
-        988
-      ],
-      "images/ve-breakdown.webp": [
-        1000,
-        2308
-      ],
-      "images/ve-ev_formula.webp": [
-        1000,
-        802
-      ],
-      "images/ve-vendor.webp": [
-        640,
-        664
-      ],
-      "images/ve-order.webp": [
-        1000,
-        746
-      ],
-      "images/ve-order-list.webp": [
-        1000,
-        1127
-      ],
-      "images/ve-ev_check.webp": [
-        1000,
-        768
-      ],
-      "images/ve-ev_limits_a.webp": [
-        1000,
-        1389
-      ],
-      "images/ve-ev_limits_b.webp": [
-        1000,
-        1237
-      ]
-    },
-    "tiles": [
-      {
-        "n": "6 of 6",
-        "l": "vendors matched an independent recompute from the raw purchase, stock and rating tables (every measured number, criterion score, total and star)"
-      },
-      {
-        "n": "4 + 3",
-        "l": "four numbers measured from your own orders and receipts plus three rated criteria (Quality, Packaging, Communication) that you can rename and reweight"
-      },
-      {
-        "n": "30",
-        "l": "automated tests in the app, none failing; 8 were added for the limits stated on this page"
-      },
-      {
-        "n": "1.3 s",
-        "l": "to recompute 126 vendor scores from 720 order lines and 1,228 stock moves in the test run; larger data not tested"
-      },
-      {
-        "n": "0",
-        "l": "products, prices, orders or receipts changed: it writes only its own records and sends nothing over the network"
-      },
-      {
-        "n": "Not",
-        "l": "refreshed by a receipt or a weight change: daily, by ratings and on demand (see the known limits)"
-      }
-    ],
-    "faq": [],
-    "copyWords": 1259,
-    "hasVideo": true,
-    "youtubeId": "jmTyo96t1i8",
-    "externalPage": null
-  },
-  {
-    "tech": "mh_access_migration",
-    "slug": "access-config-migration",
-    "name": "Access Config Migration",
-    "summary": "Exports groups, model access rights and record rules from one database and imports them into another, listing what it would create and change before anything is written: move access rights between databases, staging to production",
-    "tagline": "Move groups and access rights between Odoo databases, after reading the list of what would change",
-    "intro": [
-      "Access rights get built on staging and then rebuilt by hand on production, which is where the two start to differ. A database restore would copy the data too. Access Config Migration exports groups, model access rights and record rules into one file and, on the other database, turns the file into a plan: what would be created, what would change, what already matches and what cannot be matched. Nothing is written until you have read it and pressed Apply. This page walks through one real import in an Odoo 19 database seeded with made-up data, and says where the app stops."
-    ],
-    "features": [
-      {
-        "heading": "Why the plan comes first",
-        "body": [
-          "A wrong guess about which record is which grants somebody access nobody intended, and nothing on screen shows it. The app reads the file against the database and shows the arithmetic first."
-        ],
-        "images": []
-      },
-      {
-        "heading": "1 Export from the database that is right",
-        "body": [
-          "Open Settings > Access Config Migration , create a record, choose the Groups to export and press Export . The file carries the groups, their model access rows and the record rules that name them. Here the staging database exported Warehouse Auditors and Inventory / User.",
-          "Export: two groups chosen, one file to download."
-        ],
-        "use": "staging has the access setup you want on production.",
-        "mode": "Writes a file only",
-        "images": [
-          "images/mig-export.webp"
-        ]
-      },
-      {
-        "heading": "2 Read the plan on the other database",
-        "body": [
-          "On the target database, attach the file in File to import and press Build the plan . That is where it stops.",
-          "The plan counts four things. In this run, with the production database lacking Purchase: 1 record would be created, 2 changed, 37 already identical and 5 cannot be matched.",
-          "Under the counts is one line per record, ordered by what needs a decision: changes first, then creations, then what cannot be matched, then what is identical. The real plan here has 45 lines; the screenshot shows the first ten.",
-          "The file is attached; nothing has been read against the database yet.",
-          "The counts and the findings. Applying never deletes anything.",
-          "Changes, a creation, then the five that cannot be matched."
-        ],
-        "use": "you want the exact list before production changes.",
-        "mode": "Plan only, no writes",
-        "images": [
-          "images/mig-form-draft.webp",
-          "images/mig-plan-top.webp",
-          "images/mig-plan-lines.webp"
-        ]
-      },
-      {
-        "heading": "3 What cannot be matched, and what is refused",
-        "body": [
-          "A line is Cannot be matched when the entry has no XML id (made by hand) or is for a model that is not installed on the target. Here four lines are for Purchase models, which production does not have, and one was made by hand. They are named in the plan and left alone.",
-          "A file that is not an export from this app is refused with a readable message.",
-          "A text file attached instead of an export: refused."
-        ],
-        "use": "the file and the database do not line up everywhere.",
-        "mode": "Skipped, never guessed",
-        "images": [
-          "images/mig-refused-file.webp"
-        ]
-      },
-      {
-        "heading": "4 Apply, then read the plan again",
-        "body": [
-          "Apply asks for confirmation, then writes the created and changed records, and gives each new record its XML id so the next import matches it. In a test run a user in Warehouse Auditors could read transfers afterwards and a user outside the group could not.",
-          "Planning the same file again reads 0 to create, 0 to change, 40 identical and 5 that cannot be matched.",
-          "The import after Apply.",
-          "The same file planned again: nothing would change.",
-          "The list of imports, each with its state."
-        ],
-        "use": "the plan reads right and you want it written.",
-        "mode": "Writes groups and rows",
-        "images": [
-          "images/mig-form-applied.webp",
-          "images/mig-replan.webp",
-          "images/mig-list.webp"
-        ]
-      }
-    ],
-    "scope": [],
-    "requires": [],
-    "price": 38.92,
-    "manifestPrice": 39.0,
-    "currency": "USD",
-    "category": "Tools",
-    "version": "19.0.1.0.12",
-    "license": "OPL-1",
-    "depends": [
-      "base"
-    ],
-    "paidDepends": [],
-    "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_access_migration",
-    "storeUrl19": "https://apps.odoo.com/apps/modules/19.0/mh_access_migration",
-    "storeUrl20": "https://apps.odoo.com/apps/modules/20.0/mh_access_migration",
-    "screenshots": [],
-    "shotDims": {
-      "images/mig-export.webp": [
-        1000,
-        1128
-      ],
-      "images/mig-form-draft.webp": [
-        1000,
-        940
-      ],
-      "images/mig-plan-top.webp": [
-        1000,
-        1939
-      ],
-      "images/mig-plan-lines.webp": [
-        1000,
-        2527
-      ],
-      "images/mig-refused-file.webp": [
-        1000,
-        512
-      ],
-      "images/mig-form-applied.webp": [
-        1000,
-        1847
-      ],
-      "images/mig-replan.webp": [
-        1000,
-        1939
-      ],
-      "images/mig-list.webp": [
-        1000,
-        608
-      ]
-    },
-    "tiles": [
-      {
-        "n": "1 + 2",
-        "l": "records the example import would create and change, with 37 already identical and 5 it cannot match, shown before anything is written"
-      },
-      {
-        "n": "XML id",
-        "l": "the only thing records are matched on; a record without one is reported, never guessed at"
-      },
-      {
-        "n": "19",
-        "l": "automated tests, none failing"
-      },
-      {
-        "n": "0",
-        "l": "records deleted by an import; what the file does not mention stays"
-      },
-      {
-        "n": "2 steps",
-        "l": "Build the plan writes nothing; Apply asks for confirmation before it writes"
-      },
-      {
-        "n": "1 file",
-        "l": "a plain JSON export per run, one for the groups you choose"
-      }
-    ],
-    "faq": [
-      {
-        "q": "Does it move users or which users are in a group?",
-        "a": "No. Group membership belongs to each database; your staging logins are not your production ones."
-      },
-      {
-        "q": "Will it delete access on production that is not in the file?",
-        "a": "No. Applying never deletes anything."
-      },
-      {
-        "q": "How do I go back?",
-        "a": "There is no undo button. Take an export on the target before you press Apply, and keep it."
-      },
-      {
-        "q": "Who can use it?",
-        "a": "Users in the Settings group."
-      }
-    ],
-    "copyWords": 529,
-    "hasVideo": true,
-    "youtubeId": "jIFMc1kTjuU",
-    "externalPage": null
-  },
-  {
-    "tech": "mh_field_change_log",
-    "slug": "field-change-log",
-    "name": "Field Change Log",
-    "summary": "Records who changed which field on which record, with the old value and the new one, for the models and fields you name: field change history, who changed this field, audit log",
-    "tagline": "Who changed which field on which record, with the value before and after, for the models and fields you name",
-    "intro": [
-      "Odoo notes a change on a record's chatter only for the fields a developer marked as tracked, and each note sits on its own record. Field Change Log lets an administrator name a model and the fields on it, and records every change to those fields in one list: who, when, which record, what it was and what it became. A log of the few fields somebody has to answer for stays readable. This page walks through a real log in an Odoo 19 database seeded with made-up data, and says what it does not record."
-    ],
-    "features": [
-      {
-        "heading": "Why you name the fields",
-        "body": [
-          "A log of every field grows until nobody can find the one row that matters. This one records nothing until you say what to watch."
-        ],
-        "images": []
-      },
-      {
-        "heading": "1 Name the model and its fields",
-        "body": [
-          "Open Settings > Field Changes > Watched Fields and create a watch: a Model and the Fields recorded . The Changes button on the watch opens its entries. Here Contact records Credit Limit, Email and Salesperson.",
-          "The list of watches shows each model with its fields and how many changes it holds.",
-          "A watch: one model, three fields.",
-          "Two watches, each with its fields and change count."
-        ],
-        "use": "a handful of values need an answer to who changed them.",
-        "mode": "Settings group only",
-        "images": [
-          "images/fcl-watch-form.webp",
-          "images/fcl-watches.webp"
-        ]
-      },
-      {
-        "heading": "2 Read the log",
-        "body": [
-          "Settings > Field Changes > Change Log lists one row per field changed on one record, newest first: the user, the time, the model, the record, the field, Was and Became . It can be grouped by user, model, field or day. In this run, a salesperson changed from Omar Haddad to Priya Raman, a product type from Goods to Service and a credit limit from 0.0 to 2500.0. The screenshot shows the first seven of eight entries without the date and model columns.",
-          "The log: user, record, field, Was and Became."
-        ],
-        "use": "somebody asks who changed a credit limit or a price.",
-        "mode": "Read-only list",
-        "images": [
-          "images/fcl-log.webp"
-        ]
-      },
-      {
-        "heading": "3 When the record is gone",
-        "body": [
-          "Deleting a record keeps its entries and the name it had. Open on such an entry says so instead of failing.",
-          "Open on an entry whose record was deleted."
-        ],
-        "use": "a record was deleted and you still need its history.",
-        "mode": "Entries are kept",
-        "images": [
-          "images/fcl-open-deleted.webp"
-        ]
-      },
-      {
-        "heading": "4 Keep it from growing forever",
-        "body": [
-          "Settings > General Settings has Keep field changes for (days) in the Companies block: 730 by default. A nightly job deletes older entries. Zero keeps everything. With several companies the longest period asked for wins, and a zero anywhere keeps everything; multi-company use was not tested in a real database.",
-          "The retention setting."
-        ],
-        "use": "you want old entries to go on their own.",
-        "mode": "Nightly job",
-        "images": [
-          "images/fcl-settings.webp"
-        ]
-      }
-    ],
-    "scope": [],
-    "requires": [],
-    "price": 38.92,
-    "manifestPrice": 39.0,
-    "currency": "USD",
-    "category": "Tools",
-    "version": "19.0.1.0.12",
-    "license": "OPL-1",
-    "depends": [
-      "base_setup"
-    ],
-    "paidDepends": [],
-    "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_field_change_log",
-    "storeUrl19": "https://apps.odoo.com/apps/modules/19.0/mh_field_change_log",
-    "storeUrl20": "https://apps.odoo.com/apps/modules/20.0/mh_field_change_log",
-    "screenshots": [],
-    "shotDims": {
-      "images/fcl-watch-form.webp": [
-        1000,
-        815
-      ],
-      "images/fcl-watches.webp": [
-        1000,
-        547
-      ],
-      "images/fcl-log.webp": [
-        1000,
-        1326
-      ],
-      "images/fcl-open-deleted.webp": [
-        1000,
-        512
-      ],
-      "images/fcl-settings.webp": [
-        1000,
-        894
-      ]
-    },
-    "tiles": [
-      {
-        "n": "2 models",
-        "l": "named in the example, with the three fields recorded on each; nothing else is logged"
-      },
-      {
-        "n": "Was / Became",
-        "l": "a linked record by its name and a selection by its label, as the screen showed them"
-      },
-      {
-        "n": "22",
-        "l": "automated tests, none failing"
-      },
-      {
-        "n": "730 days",
-        "l": "kept by default, set per company; zero keeps everything"
-      },
-      {
-        "n": "0",
-        "l": "entries for a write that sets a field to the value it already holds"
-      },
-      {
-        "n": "Settings",
-        "l": "the menus and the rows are for the Settings group only"
-      }
-    ],
-    "faq": [
-      {
-        "q": "Does it record everything?",
-        "a": "No. Only the models and fields you name."
-      },
-      {
-        "q": "Can users edit or delete the log?",
-        "a": "The views are read-only. Users in the Settings group have write and delete rights on the rows, which is how the retention job deletes; tamper-proofing is not claimed."
-      },
-      {
-        "q": "Does it slow writes down?",
-        "a": "It reads the watched fields before a write on a watched model. No timing was measured."
-      },
-      {
-        "q": "Who can use it?",
-        "a": "Users in the Settings group."
-      }
-    ],
-    "copyWords": 410,
-    "hasVideo": true,
-    "youtubeId": "K03FvPDZSiE",
-    "externalPage": null
-  },
-  {
-    "tech": "mh_google_ads_conversions",
-    "slug": "google-ads-conversions",
-    "name": "Google Ads Conversions",
-    "summary": "Google Ads conversion tracking for the Odoo shop: purchases with order value and lead form submissions, sent only after cookie consent",
-    "tagline": "",
-    "intro": [
-      "Google Ads conversion tracking for the Odoo shop: purchases with order value and lead form submissions, sent only after cookie consent",
-      "Smart Bidding can only optimise for sales if Google Ads is told which clicks became orders and what they were worth. Paste your Google Ads conversion ID and conversion labels into Website settings and your shop reports every completed order to Google Ads with its value, currency and order reference, and, if you set a lead label, every submitted website form as a lead conversion. No Google Analytics app is needed, and this app requests nothing from Google until the visitor accepts marketing cookies.",
-      "Sends conversions to Google Ads only after the visitor accepts marketing cookies."
-    ],
-    "features": [
-      {
-        "heading": "What is sent to Google",
-        "body": [
-          "The Google tag's page view for your conversion ID on each page, which Google Ads also uses for its remarketing audiences. On a completed order, a purchase conversion with the order value excluding tax and shipping, the currency, and the order reference (such as S00042) as transaction_id. On a website form submission, a lead conversion whose transaction_id is the form's record type and number (such as mail.mail-12), with no value. Names, emails, phone numbers and addresses are never sent, and there are no enhanced conversions. The tag runs in the visitor's browser, so Google also receives what any tag receives from a browser, such as the page address and the visitor's IP address. A short version of this is shown next to the settings."
-        ],
-        "images": []
-      },
-      {
-        "heading": "Purchase and lead conversions",
-        "body": [
-          "The purchase conversion fires on the order confirmation page, once per order in each browser: a reload is not counted again, and the transaction_id lets Google drop a repeat. The lead conversion fires when the server accepts an Odoo website form (Contact Us, or any form built in the website editor), whatever the form does next, including Odoo's default redirect to a thank-you page. If the redirect leaves before Google confirms the hit, the next page sends it once more under the same transaction_id, so Google still counts it once. A form the server refuses is not counted."
-        ],
-        "images": []
-      },
-      {
-        "heading": "Works next to Odoo's Google tag",
-        "body": [
-          "If Odoo's own Google Analytics setting already loads Google's gtag.js on the page (a G- measurement ID), the app reuses it and adds your conversion ID to the same dataLayer, so gtag.js is not loaded twice. Your conversion ID sits in its own gtag group, so the shop events Odoo sends to Google Analytics (add to cart, purchase, virtual page views) never reach Google Ads: Google Ads receives only the page view and the conversions this app sends. With a GTM- container on Odoo 20, which loads Google Tag Manager rather than gtag.js, the app loads gtag.js once itself on the same dataLayer."
-        ],
-        "images": []
-      },
-      {
-        "heading": "Consent and Consent Mode v2",
-        "body": [
-          "Built on our free Website Tracking Base, which is installed with it. The tag waits for marketing consent from Odoo's Cookies Bar (\"Allow all\") or from our free Cookie Consent Banner (the Marketing box). Analytics consent alone does not load it. With neither banner switched on it never loads. It never loads for internal users, so your own visits and the website editor are not tracked. When it loads it sets the Consent Mode v2 signals ad_storage, ad_user_data and ad_personalization to granted, and back to denied if the visitor withdraws marketing consent on the page."
-        ],
-        "images": []
-      },
-      {
-        "heading": "Settings, per website",
-        "body": [
-          "In Website settings: the conversion ID (AW-...), the purchase conversion label and an optional lead conversion label. Each website keeps its own. A pasted tag snippet or a wrong ID is refused with a message saying what to paste instead."
-        ],
-        "images": []
-      },
-      {
-        "heading": "Who it is for",
-        "body": [
-          "Odoo shops and lead-generation sites that advertise on Google Ads and want purchase conversions with order value, and form leads, reported to Google Ads without a Google Analytics 4 app, without adding code to the website by hand, and without loading anything before consent."
-        ],
-        "images": []
-      }
-    ],
-    "scope": [
-      "No enhanced conversions: it sends no email, phone or address, hashed or not. It is a browser tag, not the Google Ads API: it cannot report orders from visitors who decline cookies or block the tag, it does not upload offline conversions, and it does not connect to your Google Ads account, create conversion actions or manage campaigns. You create the purchase and lead conversion actions in Google Ads and copy the ID and labels. It sends no add-to-cart, checkout or dynamic remarketing item events: only the page view, purchase and lead, and Odoo's own Google Analytics events are kept off your conversion ID. The value always excludes tax and shipping. Only orders that reach the eCommerce confirmation page are reported, not orders confirmed in the backend, at the Point of Sale or from a portal quotation. Leads come only from Odoo website forms, not from newsletter sign-ups, live chat or third-party forms. One conversion ID per website. If you also use Odoo's own Google Analytics setting, Odoo itself loads Google's tag (gtag.js, or Tag Manager for a GTM- key on Odoo 20) before consent, with the consent signals denied; that is Odoo's behaviour and this app does not change it. Tested with a G- key on Odoo 19 and 20 and a GTM- key on Odoo 20. It is a technical control, not legal advice: what your policy says remains yours to decide."
-    ],
-    "requires": [
-      "Odoo 19 and 20, Community or Enterprise, with the Website and eCommerce apps. Also requires Website Tracking Base (free), installed automatically. Third-party apps install on Odoo.sh or On-Premise only - they cannot be installed on Odoo Online (SaaS)."
-    ],
-    "price": 38.92,
-    "manifestPrice": 39.0,
-    "currency": "USD",
-    "category": "Website/Website",
-    "version": "19.0.1.0.1",
-    "license": "OPL-1",
-    "depends": [
-      "mh_website_tracking_base"
-    ],
-    "paidDepends": [],
-    "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_google_ads_conversions",
-    "storeUrl19": "https://apps.odoo.com/apps/modules/19.0/mh_google_ads_conversions",
-    "storeUrl20": "https://apps.odoo.com/apps/modules/20.0/mh_google_ads_conversions",
-    "screenshots": [
-      "screenshot_settings.webp"
-    ],
-    "shotDims": {
-      "screenshot_settings.webp": [
-        1000,
-        725
-      ]
-    },
-    "tiles": [],
-    "faq": [],
-    "copyWords": 882,
-    "hasVideo": true,
-    "youtubeId": "HFUaSDLOg9w",
     "externalPage": null
   },
   {
@@ -13905,11 +12002,11 @@ export const odooApps = [
       "Each of these was reproduced in a run of the app on Odoo 19; none is fixed in this version. The ones that can be pinned are pinned by a test that passes."
     ],
     "requires": [],
-    "price": 38.92,
+    "price": 39.0,
     "manifestPrice": 39.0,
     "currency": "USD",
     "category": "Website/Website",
-    "version": "19.0.1.0.2",
+    "version": "19.0.1.0.3",
     "license": "OPL-1",
     "depends": [
       "website_sale"
@@ -14023,280 +12120,6 @@ export const odooApps = [
     "externalPage": null
   },
   {
-    "tech": "mh_stock_aging_report",
-    "slug": "stock-aging-report",
-    "name": "Inventory Aging Report",
-    "summary": "Shows how long each product with stock on hand has sat since it last left the building, in age buckets valued at cost: stock aging report (stock ageing, inventory ageing), per warehouse and category",
-    "tagline": "Age your inventory into six buckets by how long it has sat unsold, with the money tied up in each, per warehouse and product category",
-    "intro": [
-      "Inventory Aging Report is for the person who has to answer a simple question and cannot with the tools Odoo gives you: which of our stock is not selling, and how much money is sitting in it? Press Run Report and every product with stock on hand is placed in an age bucket by the last time it actually left the warehouse to a customer, to production or in transit, with quantity and value at cost next to it. A short summary in plain words names the largest offenders, and one button opens just the lines older than six months. Nothing is written back to your inventory.",
-      "The screenshots were taken on Odoo 19 in a database seeded with made-up data: a fictitious outdoor-gear company called Larkfield Outdoor Supply with 18 products in four categories, a Main Warehouse and an East Depot, and shipments backdated up to 520 days. The data is synthetic, and every number quoted beside a screenshot is read off that screenshot."
-    ],
-    "features": [
-      {
-        "heading": "The question quantity on hand cannot answer",
-        "body": [
-          "A quantity on hand tells you nothing about whether stock is a problem. The same 500 units are healthy in a fast-moving line and dead capital in a slow one. What separates them is the date something last left the building, and that date is not stored on the stock record. Odoo's stock list shows you what you hold; to learn how long it has been held you would have to open the move history product by product and read it yourself.",
-          "Inventory Aging Report does that reading for the whole warehouse at once. It takes each product with stock on hand, finds the last time it genuinely shipped, counts the days since, and drops it into one of six buckets that match how stock is actually written down: a quarter, half a year, a year. Next to each line sits the money held there."
-        ],
-        "images": []
-      },
-      {
-        "heading": "1 One menu entry, one record: pick a scope and run",
-        "body": [
-          "Dead stock is easy to suspect and hard to prove. The proof lives in thousands of stock moves, and the usual way to get at it is an export and a pivot table that someone rebuilds every quarter. A report that is a saved record, with a name and a scope, can be reopened, rerun and compared with last quarter's.",
-          "The entry is Inventory > Reporting > Inventory Aging . A report is a form with a name, two optional scope fields, Warehouses and Product Categories , and one tick box, Include products with no stock , off by default. Leave both scope fields empty and the report covers every warehouse of the company and every category. Run Report sits at the top of the form.",
-          "The form carries a short note on how age is measured, so the person reading a saved report months later does not have to guess. A report belongs to one company; the Company field appears only on a multi-company database.",
-          "The entry sits in Inventory > Reporting, beside Odoo's own stock reports.",
-          "A new report before it is run: a name, a warehouse and two categories picked. Run Report is the only button until a run exists.",
-          "Priya is the purchasing manager at a made-up outdoor-gear company. At the start of the quarter she presses New, names the report Q4 stock review , leaves both scope fields empty and presses Run Report. A second report, Main Warehouse only , differs in one thing: she picks Main Warehouse. Both stay in the list, so next quarter she can open them instead of starting again."
-        ],
-        "use": "you want an aged view of your stock in a minute, without building a spreadsheet.",
-        "mode": "Read-only (writes its own report record)",
-        "result": "a saved report record with the scope you chose and the date and time it was run, ready to reopen or rerun.",
-        "warn": "Inventory Users and Inventory Administrators can open the menu and run the report. The menu is not restricted to administrators.",
-        "images": [
-          "images/stock-aging-menu.webp",
-          "images/stock-aging-setup.webp"
-        ]
-      },
-      {
-        "heading": "2 Six buckets: where every product on hand ends up",
-        "body": [
-          "Evenly sliced age bands, say every 30 days up to 360, line up with nothing. Nobody writes stock down at day 270. Finance reviews stock by the quarter, the half year and the year, so the buckets here follow those lines.",
-          "After a run the Products tab lists one row per product: Product , Quantity , Value , Last shipped , Days sitting and Bucket , largest value first. The buckets are 0-30 days , 31-90 days , 91-180 days , 181-365 days , Over a year and Never moved .",
-          "Colour does the first read for you. A row in the 181-365 bucket is amber. A row that is over a year old, or never moved, is red. Younger rows stay plain. A product that has never shipped shows no date and no day count, because nothing has sat there for no days; it simply says Never moved. The value column carries a total at the foot.",
-          "The top rows of the sample run, largest value first. Winter Boot Pro is red at 410 days; Rain Shell is amber at 200; the Thermal Gloves have never shipped.",
-          "In the sample run of 18 products, six products are in 0-30 days holding $21,200, one is in 31-90 days holding $2,560, three are in 91-180 days holding $6,840, three are in 181-365 days holding $6,310, two are over a year holding $7,990 and three have never moved, holding $4,260. The six values add up to the $49,160 total shown on the form.",
-          "Winter Boot Pro is the top line: 68 pairs, $5,780, last shipped on Sep 14, 2025, 410 days ago. It is both the most expensive line on the sheet and one of the oldest, which is the combination the report exists to find."
-        ],
-        "use": "you need to see how much of your stock is fresh and how much has gone cold.",
-        "mode": "Read-only",
-        "result": "every product with stock on hand in exactly one bucket, with its quantity, its value at cost, its last shipping date and its days sitting.",
-        "warn": "The buckets are fixed at those six. You cannot move the boundaries, add a bucket or change the colours.",
-        "images": [
-          "images/stock-aging-rows.webp"
-        ]
-      },
-      {
-        "heading": "3 Only real shipments reset the clock",
-        "body": [
-          "The easy way to find a product's last movement is its most recent stock move of any kind. That is also the wrong way. A pallet that is shelved, relocated to another bay, counted and written down is touched four times in a year and sold zero times. Every one of those touches would reset a naive clock to today, and the product would sit in the youngest bucket while its cash stays locked up.",
-          "The report looks only at completed moves that leave an internal location for a customer , for production or in transit , and takes the latest one per product. Everything else is ignored: transfers between your own locations, stock-count adjustments, scrap and loss write-offs.",
-          "Two more rules keep the clock tied to the question you asked. Moves in another company are ignored. And when the report is scoped to warehouses, only shipments out of those warehouses count, so a product that ships freely from a sister site still shows as idle in the one you are reviewing. Section 6 shows that case.",
-          "Odoo's own Moves History for Winter Boot Pro. The two recent moves, a write-off and a transfer inside the warehouse, are ignored; the Sep 14, 2025 delivery sets the date.",
-          "In the sample, Winter Boot Pro had 10 pairs moved to another bay of the Main Warehouse four days ago, and 2 pairs written off to inventory loss three days ago. Both are the kind of touch that would make a product look alive. The report ignores both: Winter Boot Pro still reads Sep 14, 2025, 410 days, Over a year, and its 68 pairs remain red in the Products list."
-        ],
-        "use": "dead stock keeps being moved around the warehouse and looks busy in other reports.",
-        "mode": "Read-only",
-        "result": "a last-shipped date that only moves when the product really leaves, so shuffled stock cannot look busy.",
-        "warn": "A return from a customer does not reduce the age, and a production order that consumes a component counts as a shipment of that component. Only the leaving move is read.",
-        "images": [
-          "images/stock-aging-clock.webp"
-        ]
-      },
-      {
-        "heading": "4 The money: value at cost, with a stale total",
-        "body": [
-          "Quantity multiplies out to nothing useful across products. A thousand screws and ten tents are not comparable. The comparable thing is money, and the honest money figure for stock you cannot sell is what you paid, not what you hoped to get.",
-          "Each line's Value is its quantity on hand multiplied by the product's Cost field. The form header shows Run On , Product Count , Total Value and Stale Value , and a button on the top left, Sitting 6m+ , repeats the stale figure.",
-          "Stale Value is the capital held in products that have not shipped for more than 180 days: the 181-365 days, Over a year and Never moved buckets together. Quantity counts everything on hand in the scope, including stock already reserved for orders.",
-          "After Run Report: the stat button, the four totals and the What stood out summary, all on the same form.",
-          "The sample company holds $49,160 of stock across 18 products. $18,560 of it, 37.8%, has not shipped in over six months. The cheapest way to read the risk: a little over a third of the cash in this warehouse is in products that did not leave in the last half year."
-        ],
-        "use": "you need the capital tied up in slow stock as a number you can put in front of finance.",
-        "mode": "Read-only",
-        "result": "one total, one stale total and the percentage you can work out from them, all at cost.",
-        "warn": "The value uses the product's current Cost field, not an accounting valuation. If your costing method is average or FIFO, that field is the product's current cost, which may differ from the layered value on your balance sheet.",
-        "images": [
-          "images/stock-aging-result.webp"
-        ]
-      },
-      {
-        "heading": "5 What stood out: the summary and the six-month list",
-        "body": [
-          "A table of every product is complete and nobody reads it twice. People act on a short list of the worst lines, so the report produces one.",
-          "Under the totals a block titled What stood out says in plain words how many products have not shipped in over six months and how much they hold, and names the five largest by value. If some of them have never shipped at all, it says how many, and notes that this is either new stock or a buying mistake and that the receipt date will tell which. If nothing is older than six months, it says that instead.",
-          "The Sitting 6m+ button opens a list with only those lines (the 181-365 days, Over a year and Never moved buckets), largest value first, with the total at the foot. It is a standard Odoo list.",
-          "The Sitting 6m+ list: eight products, $18,560.00 in total. Red lines are over a year or never moved, amber lines are 181 to 365 days.",
-          "The sample report says that 8 products have not shipped in over six months, holding $18,560.00, and that the largest are Winter Boot Pro, Rain Shell, Thermal Gloves, Water Filter Straw and Titanium Pot Set. It adds that 3 of those have never shipped at all. Priya presses Sitting 6m+ and sees all eight: the three never-moved lines (Thermal Gloves, Inflatable Pillow and Compass Pro) are the ones she checks against purchase receipts first."
-        ],
-        "use": "you want the report to tell you where to look before you read 18 rows, or 1,800.",
-        "mode": "Read-only",
-        "result": "a short written verdict and a one-click list of exactly the lines that matter.",
-        "warn": "The summary names at most five products, however many are stale. Press the button for the full list.",
-        "images": [
-          "images/stock-aging-stale.webp"
-        ]
-      },
-      {
-        "heading": "6 Scope it: by category and by warehouse",
-        "body": [
-          "A buyer owns a range; a site manager owns a building. A single company-wide list answers neither, and a shipment from one site must not hide idle stock in another.",
-          "Product Categories match down the tree: pick a parent category and everything beneath it is included. Warehouses cover every location below the warehouse, so bays and shelves are included. You can pick several of each. With neither set the report covers the whole company.",
-          "When you scope by warehouse, the stock is counted in those warehouses and the last-shipped date is read from shipments out of those warehouses only. The second screenshot below is the same company, scoped to the Main Warehouse, and the table under it shows what changes: Fleece Jacket is 5 days in the company-wide run because the East Depot shipped some, but 70 days when Main Warehouse is judged on its own shipments.",
-          "A Footwear review: one category, three products, $11,270.00, of which $6,590.00 is stale.",
-          "Main Warehouse only: the same 18 products, but $44,510.00 and $20,770.00 stale, because East Depot's shipments no longer count.",
-          "Priya's footwear buyer gets the Footwear review: three products worth $11,270.00, of which Winter Boot Pro and Alpine Gaiters hold $6,590.00 that has sat since September 2025 and January 2026. The Main Warehouse manager gets the Main Warehouse only report and sees nine stale products worth $20,770.00 instead of eight worth $18,560.00, because Trekking Poles last shipped from the East Depot 150 days ago but from Main 520 days ago."
-        ],
-        "use": "the question is about one range or one site, not the whole company.",
-        "mode": "Read-only",
-        "result": "a report you can hand to one buyer or one site manager, whose last-shipped dates are judged only on that scope.",
-        "warn": "A category or warehouse scope changes which stock is counted and which shipments reset the clock. Compare a scoped report with a company-wide one only knowing that.",
-        "images": [
-          "images/stock-aging-footwear.webp",
-          "images/stock-aging-main-top.webp"
-        ]
-      },
-      {
-        "heading": "Who it is for",
-        "body": [
-          "If you do not hold physical stock, or you only need a single count of dead products, the free Dead Stock Check may be all you need."
-        ],
-        "images": []
-      }
-    ],
-    "scope": [],
-    "requires": [],
-    "price": 38.92,
-    "manifestPrice": 39.0,
-    "currency": "USD",
-    "category": "Warehouse",
-    "version": "19.0.1.0.22",
-    "license": "OPL-1",
-    "depends": [
-      "stock"
-    ],
-    "paidDepends": [],
-    "downloads": 0,
-    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_stock_aging_report",
-    "storeUrl19": "https://apps.odoo.com/apps/modules/19.0/mh_stock_aging_report",
-    "storeUrl20": "https://apps.odoo.com/apps/modules/20.0/mh_stock_aging_report",
-    "screenshots": [],
-    "shotDims": {
-      "images/stock-aging-menu.webp": [
-        1000,
-        361
-      ],
-      "images/stock-aging-setup.webp": [
-        1000,
-        430
-      ],
-      "images/stock-aging-rows.webp": [
-        1000,
-        673
-      ],
-      "images/stock-aging-clock.webp": [
-        1000,
-        258
-      ],
-      "images/stock-aging-result.webp": [
-        1000,
-        837
-      ],
-      "images/stock-aging-stale.webp": [
-        1000,
-        500
-      ],
-      "images/stock-aging-footwear.webp": [
-        1000,
-        980
-      ],
-      "images/stock-aging-main-top.webp": [
-        1000,
-        837
-      ]
-    },
-    "tiles": [
-      {
-        "n": "6",
-        "l": "age buckets, from 0-30 days to never moved"
-      },
-      {
-        "n": "14",
-        "l": "automated tests, none failing"
-      },
-      {
-        "n": "0",
-        "l": "stock moves, costs or journal entries written"
-      },
-      {
-        "n": "3",
-        "l": "kinds of move that reset the clock: customer, production, transit"
-      },
-      {
-        "n": "$18,560",
-        "l": "stale value found in the made-up stock in the screenshots"
-      },
-      {
-        "n": "37.8%",
-        "l": "of that stock's $49,160 value sitting six months or more"
-      }
-    ],
-    "faq": [
-      {
-        "q": "Does it change my stock, costs or accounting?",
-        "a": "No. It only reads. Apart from its own report records, it writes nothing."
-      },
-      {
-        "q": "What counts as a product shipping?",
-        "a": "A completed move out of an internal location to a customer, to production or in transit. Transfers between your own locations, stock-count adjustments and scrap do not."
-      },
-      {
-        "q": "Why valued at cost?",
-        "a": "Because this is capital tied up. Sale price would overstate the exposure on exactly the stock that is not selling."
-      },
-      {
-        "q": "Which cost is used?",
-        "a": "The product's Cost field at the moment you press Run Report, multiplied by the quantity on hand."
-      },
-      {
-        "q": "What does Never moved mean?",
-        "a": "The product has stock on hand but no completed shipment in your scope. It is either new stock or a buying mistake, and the report cannot tell which; the receipt date will."
-      },
-      {
-        "q": "Are my reports saved?",
-        "a": "Yes. Every report is a record with its name, scope and run date, listed newest first with product count, total value and stale value. Running one again replaces its rows, so create a new report to keep a baseline."
-      },
-      {
-        "q": "Can I run it for one warehouse or one category?",
-        "a": "Yes, both, and several of each. Categories match down the tree, and warehouses include the locations below them."
-      },
-      {
-        "q": "Why does a product look younger in the company-wide report than in a warehouse report?",
-        "a": "Because a shipment from another warehouse counts in the company-wide run and not when you scope to one warehouse. Section 6 shows an example."
-      },
-      {
-        "q": "Can I change the buckets or the six-month line?",
-        "a": "No. The buckets are fixed at 0-30, 31-90, 91-180, 181-365, over a year and never moved, and the stale line is 180 days."
-      },
-      {
-        "q": "Does it work with several companies?",
-        "a": "Each report counts one company's stock and shipments. The saved reports themselves are not hidden between companies in this version; see Security and data."
-      },
-      {
-        "q": "What does the report say when nothing is stale, or nothing matches?",
-        "a": "When no product is older than six months the summary reads Nothing has been sitting longer than six months and Stale Value is 0.00. When the scope matches no stock on hand, such as a warehouse that holds nothing, it says No stock on hand matched this report and lists no products."
-      },
-      {
-        "q": "Is the report live?",
-        "a": "No. It is a snapshot taken when you press Run Report. Press it again to refresh."
-      },
-      {
-        "q": "Does it export to PDF or Excel?",
-        "a": "No. It is an Odoo form and list, with no file output of its own."
-      },
-      {
-        "q": "Does it need the free Dead Stock Check?",
-        "a": "No. It works on its own. Dead Stock Check is a separate free app that gives a single headline number."
-      }
-    ],
-    "copyWords": 1959,
-    "hasVideo": true,
-    "youtubeId": "5gZIX1k6XNo",
-    "externalPage": null
-  },
-  {
     "tech": "mh_accounting_journal_control",
     "slug": "journal-control",
     "name": "Journal Control",
@@ -14374,11 +12197,11 @@ export const odooApps = [
     ],
     "scope": [],
     "requires": [],
-    "price": 38.92,
+    "price": 39.0,
     "manifestPrice": 39.0,
     "currency": "USD",
     "category": "Accounting/Accounting",
-    "version": "19.0.1.0.10",
+    "version": "19.0.1.0.11",
     "license": "OPL-1",
     "depends": [
       "account"
@@ -14473,6 +12296,283 @@ export const odooApps = [
     "externalPage": null
   },
   {
+    "tech": "mh_label_sheet_layouts",
+    "slug": "label-sheet-layouts",
+    "name": "Label Sheet Layouts",
+    "summary": "Print Labels with a custom label size - product labels on a custom label sheet you describe in millimetres: rows, columns, margins, start position on a used sheet, one label per page for rolls, barcode or QR code",
+    "tagline": "Print product labels on the sheet you actually have: rows, columns and margins in millimetres, a start position on a used sheet, one label per page for rolls",
+    "intro": [
+      "Label stock comes in sizes Odoo's built-in layouts do not match, and a label that lands across the cut line is a wasted sheet. This app adds a Custom sheet format to Odoo's own Print Labels window: you describe the sheet once in millimetres, print a numbered test sheet on plain paper to check it, and then print product labels on it. This page walks through it with screenshots of an Odoo 19 database holding a made-up garden and gift shop, crops of the real PDFs the app produced, and tables rendered from real readings of the same runs; each picture says which it is.",
+      "It reads products and prices and writes only its own sheet records. This page also says where it stays silent: a barcode left out of a small label, a name cut after two lines, padding that leaves no room.",
+      "Install it and a menu appears under Inventory, Configuration, Products: Label Sheets. It needs only Inventory. Inventory managers define sheets; every internal user can print on them."
+    ],
+    "features": [
+      {
+        "heading": "What it keeps, what it changes, what it does not",
+        "body": [
+          "Each line was tested or read in the code."
+        ],
+        "images": []
+      },
+      {
+        "heading": "1 Describe the sheet in millimetres",
+        "body": [
+          "Label stock comes in many sizes, and the only fix without an app is a developer and a new report.",
+          "A sheet is a record: the paper (A4, US Letter or a custom size), columns and rows, label width and height, top and left margin, the gap between columns and rows, inner padding, font size and what a label shows. The form works out the number of labels per sheet and what is left over at the right and at the bottom, so you can compare it with the maker's data sheet. These are screenshots from Odoo 19 of the sheet made for this page, split in two to stay readable. The table lists the demo database's sheets.",
+          "The Odoo list of sheets is not shown as a screenshot. Sheets have no company: every company sees every sheet.",
+          "The page and label size part of the form, with a Print Test Sheet button. Real Odoo screen.",
+          "Position on the page and the content switches. Real Odoo screen.",
+          "The sheets of the demo database. Evidence table (the Odoo list was too narrow to shoot readably)."
+        ],
+        "use": "your label stock is not one of the built-in sizes.",
+        "mode": "Writes the sheet",
+        "images": [
+          "images/ls-sheet-form-top.webp",
+          "images/ls-sheet-form-position.webp",
+          "images/ls-ev_sheets.webp"
+        ]
+      },
+      {
+        "heading": "2 What the form refuses",
+        "body": [
+          "A layout that runs off the page prints labels cut in half.",
+          "A layout whose labels do not fit on the page is refused with the size it needs against the size of the page; rows and columns must be at least 1, sizes and font above zero, margins, gaps and padding not negative. In the window, Start at Label must lie between 1 and the labels on one sheet. The table lists real answers. It also shows what is let through: padding larger than the label, and absurd sizes.",
+          "It does not check that padding leaves room inside a label, or that a label is big enough for its content.",
+          "What the app refuses and what it lets through. Evidence table."
+        ],
+        "use": "you want a wrong measurement caught before a sheet is wasted.",
+        "mode": "Refuses on save",
+        "images": [
+          "images/ls-ev_checks.webp"
+        ]
+      },
+      {
+        "heading": "3 Print a test sheet and hold it against the stock",
+        "body": [
+          "The numbers on a label sheet's data sheet are not always the numbers of the sheet in your hand.",
+          "Print Test Sheet makes a page with every slot outlined and numbered, with the label size, using the page size of the sheet (A4 comes out as 210.3 mm wide, a whole number of PDF points). The first picture is a crop of that real PDF. To check it independently, test sheets of seven layouts were printed, turned into pictures at 10 pixels per mm and measured with a separate script: the outer edges of the grid were within 0.4 mm of the form's numbers on both Odoo versions. Nothing was held against paper: that depends on your printer.",
+          "A printer's own margins and scaling are not part of the check; print at 100% with no page scaling.",
+          "Crop of the real test sheet PDF (first two columns, 14.4 px text at display width). Real PDF.",
+          "Measured against the form's numbers. Evidence table."
+        ],
+        "use": "you want to check the layout on plain paper before using real labels.",
+        "mode": "Prints a PDF",
+        "images": [
+          "images/ls-pdf-test.webp",
+          "images/ls-ev_geom.webp"
+        ]
+      },
+      {
+        "heading": "4 Choose Custom sheet when you print",
+        "body": [
+          "People already know the Print Labels window; a second place to print would be one more thing to learn.",
+          "The Custom sheet format sits in Odoo's own Print Labels window with a Label Sheet field and Start at Label. On a product it is reached from the Action menu. Start at Label skips the slots already used on a part-used sheet, counted left to right then top to bottom; the offset applies to the first page only. The picture shows a print of six products from slot 5: the first four slots are left empty. Odoo 19 screenshot, then a crop of the real PDF.",
+          "A long product name is cut after two lines with no ellipsis, as the Beeswax Candle shows.",
+          "The Print Labels window with Custom sheet. Real Odoo screen (Odoo 19).",
+          "Six products from slot 5. Crop of the real PDF (first two columns)."
+        ],
+        "use": "you print labels from a product or a list of products.",
+        "mode": "Opens the window",
+        "images": [
+          "images/ls-print-window.webp",
+          "images/ls-pdf-main.webp"
+        ]
+      },
+      {
+        "heading": "5 What a label shows",
+        "body": [
+          "A shelf label, a stockroom label and a gift tag need different content.",
+          "Each sheet has switches: product name, internal reference, price, barcode, barcode digits, plus the Extra Content typed in the window, a font size and optional outlines. The price comes from the pricelist chosen in the window, else the sales price. The code can be a barcode or a QR code: with auto, Odoo's engine draws EAN-13 or EAN-8 for 13 or 8 digits and Code 128 otherwise. On a wide label the QR code sits left of the text. The first table lists the text of a real label for each switch; the second the code type handed to Odoo's barcode engine for each value. Nothing was scanned.",
+          "It does not scan-test anything and it does not warn when a code cannot be drawn.",
+          "Label text per switch. Evidence table.",
+          "Code type per value. Evidence table.",
+          "QR sheet, 90 x 50 mm labels. Crop of the real PDF."
+        ],
+        "use": "you want the name, reference, price and code your way.",
+        "mode": "Per sheet",
+        "images": [
+          "images/ls-ev_switches.webp",
+          "images/ls-ev_codes.webp",
+          "images/ls-pdf-qr.webp"
+        ]
+      },
+      {
+        "heading": "6 Roll labels: one label per page",
+        "body": [
+          "A roll printer wants a page the size of one label.",
+          "A sheet of one row and one column on a custom page size prints one label per page. Three copies on the 50 x 25 mm starter sheet gave a 3 page PDF of 50 x 25 mm pages (the three pages are stacked below, with the Extra Content line 'Keep dry'). The PDF goes through your browser and the printer driver like any Odoo PDF; the app does not talk to a printer and makes no ZPL.",
+          "Three pages of the roll sheet. Crop of the real PDF (24.7 px text at display width)."
+        ],
+        "use": "your printer takes a roll through its normal driver.",
+        "mode": "Prints a PDF",
+        "images": [
+          "images/ls-pdf-roll.webp"
+        ]
+      },
+      {
+        "heading": "7 Print from a receipt: quantities and lots",
+        "body": [
+          "A receipt of 12 items in two lots should give 12 labels, with the lot as the barcode.",
+          "From a receipt, Action, Print, Labels opens the same window with Quantity to print set to Operation Quantities. Each product gets one label per whole unit and a lot-tracked product one label per lot unit with the lot as the barcode. The demo receipt (4 hand cream, 3 candles, 5 seed packets in lots A and B) gave 12 labels. The order of labels follows Odoo's data: on Odoo 19 the last receipt line first and the lots in reverse, as in the picture. Quantities are Odoo's whole numbers: a line of 2.5 units printed 2 labels, 0.4 units none, 2 dozen 2 labels.",
+          "Lot/SN labels, location, package and packaging labels keep Odoo's own formats; the Custom sheet is not tested with them.",
+          "The window opened from a receipt. Real Odoo screen (Odoo 19).",
+          "The first labels of the receipt print. Crop of the real PDF."
+        ],
+        "use": "you label what has just come in.",
+        "mode": "Opens the window",
+        "images": [
+          "images/ls-print-window-receipt.webp",
+          "images/ls-pdf-receipt.webp"
+        ]
+      },
+      {
+        "heading": "8 Who can use it",
+        "body": [
+          "A sheet that anyone can edit is a sheet that changes under you.",
+          "Inventory managers create, edit and delete sheets. Every internal user can read them. A user with the Inventory User group and an employee without any Inventory group both printed through the window and opened the test sheet, and both were refused when creating or editing a sheet. The table is from three users created for the check.",
+          "Sheets are not per company, and the menu entry is hidden from non-managers by its group (not tested in a browser).",
+          "Who can do what. Evidence table."
+        ],
+        "use": "you want to know who can change a sheet and who can print.",
+        "mode": "Read-only",
+        "images": [
+          "images/ls-ev_access.webp"
+        ]
+      }
+    ],
+    "scope": [
+      "Each of these was reproduced in a run of the app on Odoo 19. Seven are covered by tests that pass; none is changed in this version.",
+      "Readings from real runs. Evidence table.",
+      "A value Code 128 cannot draw prints as text with no bars. Crop of the real PDF.",
+      "30 x 12 mm labels at 7 pt: text only, no barcode. Crop of the real PDF."
+    ],
+    "requires": [],
+    "price": 39.0,
+    "manifestPrice": 39.0,
+    "currency": "USD",
+    "category": "Warehouse",
+    "version": "19.0.1.0.3",
+    "license": "OPL-1",
+    "depends": [
+      "stock"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_label_sheet_layouts",
+    "storeUrl19": "https://apps.odoo.com/apps/modules/19.0/mh_label_sheet_layouts",
+    "storeUrl20": "https://apps.odoo.com/apps/modules/20.0/mh_label_sheet_layouts",
+    "screenshots": [
+      "images/ls-ev_limits.webp",
+      "images/ls-pdf-limits-accent.webp",
+      "images/ls-pdf-limits-tiny.webp"
+    ],
+    "shotDims": {
+      "images/ls-sheet-form-top.webp": [
+        1000,
+        1480
+      ],
+      "images/ls-sheet-form-position.webp": [
+        1000,
+        2045
+      ],
+      "images/ls-ev_sheets.webp": [
+        1000,
+        895
+      ],
+      "images/ls-ev_checks.webp": [
+        1000,
+        1612
+      ],
+      "images/ls-pdf-test.webp": [
+        1000,
+        614
+      ],
+      "images/ls-ev_geom.webp": [
+        1000,
+        929
+      ],
+      "images/ls-print-window.webp": [
+        1000,
+        1506
+      ],
+      "images/ls-pdf-main.webp": [
+        1000,
+        592
+      ],
+      "images/ls-ev_switches.webp": [
+        1000,
+        1252
+      ],
+      "images/ls-ev_codes.webp": [
+        1000,
+        1295
+      ],
+      "images/ls-pdf-qr.webp": [
+        1000,
+        1158
+      ],
+      "images/ls-pdf-roll.webp": [
+        1000,
+        1568
+      ],
+      "images/ls-print-window-receipt.webp": [
+        1000,
+        1506
+      ],
+      "images/ls-pdf-receipt.webp": [
+        1000,
+        614
+      ],
+      "images/ls-ev_access.webp": [
+        1000,
+        532
+      ],
+      "images/ls-ev_limits.webp": [
+        1000,
+        1632
+      ],
+      "images/ls-pdf-limits-accent.webp": [
+        1000,
+        318
+      ],
+      "images/ls-pdf-limits-tiny.webp": [
+        1000,
+        254
+      ]
+    },
+    "tiles": [
+      {
+        "n": "0.4 mm",
+        "l": "the largest gap between the printed label grid and the numbers on the form, measured on real PDFs of 7 layouts with a separate script"
+      },
+      {
+        "n": "5 + 2",
+        "l": "sheets in the made-up shop database: four starter layouts, one of ours, a QR sheet and a very small one; a layout that does not fit the page is refused"
+      },
+      {
+        "n": "30",
+        "l": "automated tests in the app, none failing; 7 were added to pin the limits stated on this page"
+      },
+      {
+        "n": "1,000",
+        "l": "labels with barcodes to a 48 page PDF in 31.9 s on Odoo 19 and 3.8 s on Odoo 20 on the test machine; larger prints not tested"
+      },
+      {
+        "n": "0",
+        "l": "products, prices or stock changed: it writes only its own sheet records and makes no network call"
+      },
+      {
+        "n": "No",
+        "l": "warning when a name, a barcode or the padding does not fit inside a label (see the known limits)"
+      }
+    ],
+    "faq": [],
+    "copyWords": 1482,
+    "hasVideo": true,
+    "youtubeId": "jw2miIwXGC0",
+    "externalPage": null
+  },
+  {
     "tech": "mh_mail_template_company",
     "slug": "mail-template-companies",
     "name": "Mail Template Companies",
@@ -14558,11 +12658,11 @@ export const odooApps = [
     ],
     "scope": [],
     "requires": [],
-    "price": 38.92,
+    "price": 39.0,
     "manifestPrice": 39.0,
     "currency": "USD",
     "category": "Productivity/Discuss",
-    "version": "19.0.1.0.2",
+    "version": "19.0.1.0.3",
     "license": "OPL-1",
     "depends": [
       "mail"
@@ -14650,6 +12750,291 @@ export const odooApps = [
     "copyWords": 724,
     "hasVideo": true,
     "youtubeId": "eea2xz2VgLk",
+    "externalPage": null
+  },
+  {
+    "tech": "mh_pos_sales_reports",
+    "slug": "pos-sales-reports",
+    "name": "POS Sales Reports",
+    "summary": "Report point of sale sales by cashier, payment method and session, with profit and loss by product and category, for a period or chosen sessions, in PDF and Excel",
+    "tagline": "Who sold what, how it was paid, how each session closed and what it earned - for a period or for chosen sessions, in PDF and Excel",
+    "intro": [
+      "At the end of a month a shop owner wants one answer to four questions: what did each cashier take and how was it paid, did every till balance, and which products and categories earned the margin. POS Sales Reports builds one report of a period or of chosen sessions that answers all four from what Odoo recorded, and prints it to PDF or exports it to Excel. This page walks through it with screenshots of an Odoo 19 database holding a made-up coffee roaster with two tills, and with tables rendered from real readings of the same run; each picture says which it is.",
+      "It reads orders, payments, sessions and the cost stored on each order line, and writes only its own report records. This page also says where its definitions bite: refunds on a later day, sessions that cross midnight, negative orders and the cashier name.",
+      "Install it and a menu appears under Point of Sale, Reporting: Sales Reports, and a Sales Report button on every session. It needs only Point of Sale. Only Point of Sale Administrators can use it, because it shows costs and margins."
+    ],
+    "features": [
+      {
+        "heading": "What it keeps, what it changes, what it does not",
+        "body": [
+          "Each line was tested or read in the code."
+        ],
+        "images": []
+      },
+      {
+        "heading": "1 Set the period and the scope",
+        "body": [
+          "A month of takings spread over screens, sessions and exports has to be added up by hand, and each till and each cashier adds another sheet.",
+          "Create a report: a name, From and To (the first of the month to today by default), and if you want one or more Points of Sale; leave them empty for every till of the company. Or choose sessions: then the report covers exactly those sessions and ignores the dates and tills. Days follow your time zone. The picture is an Odoo 19 screen of a draft that has not been run: only Run Report is offered.",
+          "Only paid and posted orders count. Draft and cancelled orders do not.",
+          "A draft report before it is run. Real Odoo screen."
+        ],
+        "use": "you want the figures of one month, one till or a few sessions.",
+        "mode": "Writes when saved",
+        "images": [
+          "images/sr-settings-draft.webp"
+        ]
+      },
+      {
+        "heading": "2 Run it and read what stood out",
+        "body": [
+          "A table of numbers hides what a manager needs to notice: a till that did not balance, products with no cost, a session still open.",
+          "Press Run Report . The form shows orders, refunds, gross sales, discounts, refunded, net sales and payments (tax included), revenue, cost and margin (tax excluded), and a short What stood out text. In the demo run of October, 38 orders and 2 refunds came to $1,055.30 net; discounts were $20.83, revenue excluding tax $959.36, cost $408.20 and margin $525.16 (56.3%) on the part that has a cost. Run again and the lines are replaced with a fresh result.",
+          "Net sales are the totals of the orders, tax included; revenue is tax excluded, so the two do not match by design.",
+          "The totals after the run. Real Odoo screen (Odoo 19).",
+          "The findings text of the same run. Real Odoo screen."
+        ],
+        "use": "you want the answer in a few sentences before the tables.",
+        "mode": "Writes the lines",
+        "images": [
+          "images/sr-result-top.webp",
+          "images/sr-result-findings.webp"
+        ]
+      },
+      {
+        "heading": "3 By cashier and by payment method",
+        "body": [
+          "Orders Analysis files an order under one payment method and one user; the owner wants cashiers side by side with cash and card apart.",
+          "One row per cashier: orders, refunds, gross sales, discounts, refunded and net sales, and what each cashier took by payment method. An order paid half cash and half card is split as it was paid, and change given back is a negative cash line, so cash is what stayed in the till. The cashier is the user who made the order, or the employee when Point of Sale employee login is used. The two sheets are rendered from the real lines of the October run on Odoo 19; they are tables, not screenshots of the Odoo list, because that list is too wide to show at a readable size.",
+          "Orders do not include refunds; refunds are counted apart. Everyone who rings orders under one shared Odoo user is one cashier.",
+          "By cashier. Evidence table.",
+          "By payment method. Evidence table."
+        ],
+        "use": "you want to see what each cashier took and how it was paid.",
+        "mode": "Read-only",
+        "images": [
+          "images/sr-ev_cashiers.webp",
+          "images/sr-ev_payments.webp"
+        ]
+      },
+      {
+        "heading": "4 By session, and the cash count",
+        "body": [
+          "A till that is a few dollars short is a small number in a long list, and a month has many sessions.",
+          "One row per session in the report: who opened it, its orders and net sales and, for a closed session with cash, the expected cash, the counted cash and the difference as Odoo recorded them at closing. A session that is still open has no count, because before closing the difference would be the whole expected cash. In the demo, three of six closed sessions did not balance: 4.50 short, 1.20 short and 2.00 over. The float counted in at opening is part of the expected cash. The second table runs five more drawer cases as separate steps: a till with only card sales, no sales at all, and cash taken out and put in during the day.",
+          "Cash is counted per session, not per cashier, so cash differences are reported by session.",
+          "By session. Evidence table.",
+          "The cash count at closing. Evidence table.",
+          "Five more drawer cases. Evidence table."
+        ],
+        "use": "you want to know which tills balanced and which did not.",
+        "mode": "Read-only",
+        "images": [
+          "images/sr-ev_sessions.webp",
+          "images/sr-ev_cash.webp",
+          "images/sr-ev_cases.webp"
+        ]
+      },
+      {
+        "heading": "5 Profit and loss by product and category",
+        "body": [
+          "Revenue says what sold; the owner needs to know what it earned, and a product with no cost must not look like pure profit.",
+          "Each product has quantity, revenue excluding tax, the cost Odoo stored on the order lines, margin and margin percent, ranked by revenue. A line that carries no cost is not counted as profit: its revenue is shown in its own column and left out of the margin, and the findings say how many lines. In the demo, 3 lines of Tasting Sample (26.00) have no cost. The cost on a sold line does not change when a product's cost changes later. A combo is reported through its components. A till in another currency is converted at the rate Odoo stored on each order.",
+          "Margin is the Odoo cost on the line, not a re-valuation. A zero-cost product has no margin shown.",
+          "By product. Evidence table.",
+          "By category. Evidence table."
+        ],
+        "use": "you want to know which products and categories earn the margin.",
+        "mode": "Read-only",
+        "images": [
+          "images/sr-ev_products.webp",
+          "images/sr-ev_categories.webp"
+        ]
+      },
+      {
+        "heading": "6 From a session, in one click",
+        "body": [
+          "Printing the closing report of one session should not mean creating a report, choosing dates and running it.",
+          "The session form has a Sales Report button; select several sessions in the list and use Actions, Print Sales Report to get one report per session. Each click also files a saved report, so repeated clicks pile up in the list of reports. The first picture is the real session form (Odoo 19); the second is the list of saved reports.",
+          "It adds nothing to the Point of Sale screen itself.",
+          "The Sales Report button. Real Odoo screen.",
+          "The saved reports. Real Odoo screen."
+        ],
+        "use": "you want the report of one session right after closing it.",
+        "mode": "Writes a report",
+        "images": [
+          "images/sr-session-form.webp",
+          "images/sr-reports-list.webp"
+        ]
+      },
+      {
+        "heading": "7 PDF and Excel",
+        "body": [
+          "A result that stays in the database does not reach the person who files it.",
+          "Print PDF gives a landscape report with the findings, the cashier table with a column per payment method, the sessions, the categories and the products: three pages for the October demo. The picture is a crop of the real PDF page (Odoo 19); no document layout was chosen, so there is no logo. Export to Excel gives four sheets: Cashiers, Sessions, Categories and Products, each with a title block, a header row and a total where there is one. The second table is the real file read back. The Opened and Closed times on the Sessions sheet are UTC.",
+          "A report that has not been run cannot be printed or exported. A name that looks like a formula or a link is written as text (a fix in this version).",
+          "The cashier table on the PDF. Real PDF page, smallest text about 13.6 px.",
+          "The real .xlsx read back. Evidence table."
+        ],
+        "use": "you want to hand the result to an accountant or keep it outside Odoo.",
+        "mode": "Excel writes an attachment",
+        "images": [
+          "images/sr-pdf-summary.webp",
+          "images/sr-ev_excel.webp"
+        ]
+      },
+      {
+        "heading": "8 Checked against Odoo's own figures",
+        "body": [
+          "A report is only as good as the numbers it prints.",
+          "For each of the six closed sessions of the demo, a report of that session was compared with Odoo's Sales Details, the report in the session's Print menu: orders, net sales, discounts and payments per method. All six matched on both Odoo 19 and Odoo 20. A separate script also recomputed the October report from the raw orders with its own arithmetic: 20 rows, no difference.",
+          "Six sessions, each matched. Evidence table."
+        ],
+        "use": "you want to know the arithmetic is right before you rely on it.",
+        "mode": "Read-only",
+        "images": [
+          "images/sr-ev_check.webp"
+        ]
+      },
+      {
+        "heading": "What changed in this version",
+        "body": [
+          "Version 1.0.2 writes every text cell of the Excel file as text. Before, a product named =1+1, a cashier named https://example.com/x and a report named =SUM(1+1) test were written as formulas or a link and the names were lost.",
+          "Old and new reading. Evidence table."
+        ],
+        "images": [
+          "images/sr-ev_fix.webp"
+        ]
+      }
+    ],
+    "scope": [
+      "Each of these was reproduced in a run of the app on Odoo 19. Six are covered by tests that pass; none is changed in this version except the fixes below.",
+      "Eight readings from real runs. Evidence table.",
+      "Time zones and a session across midnight. Evidence table."
+    ],
+    "requires": [],
+    "price": 39.0,
+    "manifestPrice": 39.0,
+    "currency": "USD",
+    "category": "Sales/Point of Sale",
+    "version": "19.0.1.0.3",
+    "license": "OPL-1",
+    "depends": [
+      "point_of_sale"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_pos_sales_reports",
+    "storeUrl19": "https://apps.odoo.com/apps/modules/19.0/mh_pos_sales_reports",
+    "storeUrl20": "https://apps.odoo.com/apps/modules/20.0/mh_pos_sales_reports",
+    "screenshots": [
+      "images/sr-ev_limits.webp",
+      "images/sr-ev_tz.webp"
+    ],
+    "shotDims": {
+      "images/sr-settings-draft.webp": [
+        1000,
+        1089
+      ],
+      "images/sr-result-top.webp": [
+        1000,
+        2158
+      ],
+      "images/sr-result-findings.webp": [
+        1000,
+        1463
+      ],
+      "images/sr-ev_cashiers.webp": [
+        1000,
+        688
+      ],
+      "images/sr-ev_payments.webp": [
+        1000,
+        517
+      ],
+      "images/sr-ev_sessions.webp": [
+        1000,
+        729
+      ],
+      "images/sr-ev_cash.webp": [
+        1000,
+        642
+      ],
+      "images/sr-ev_cases.webp": [
+        1000,
+        703
+      ],
+      "images/sr-ev_products.webp": [
+        1000,
+        851
+      ],
+      "images/sr-ev_categories.webp": [
+        1000,
+        602
+      ],
+      "images/sr-session-form.webp": [
+        1000,
+        467
+      ],
+      "images/sr-reports-list.webp": [
+        1000,
+        718
+      ],
+      "images/sr-pdf-summary.webp": [
+        1000,
+        232
+      ],
+      "images/sr-ev_excel.webp": [
+        1000,
+        1198
+      ],
+      "images/sr-ev_check.webp": [
+        1000,
+        752
+      ],
+      "images/sr-ev_limits.webp": [
+        1000,
+        1488
+      ],
+      "images/sr-ev_tz.webp": [
+        1000,
+        664
+      ],
+      "images/sr-ev_fix.webp": [
+        1000,
+        583
+      ]
+    },
+    "tiles": [
+      {
+        "n": "6 of 6",
+        "l": "closed sessions of the made-up demo matched Odoo's own Sales Details: orders, net sales, discounts and payments per method"
+      },
+      {
+        "n": "20 / 20",
+        "l": "figures of the October run matched a recompute from the raw orders with separate arithmetic"
+      },
+      {
+        "n": "32",
+        "l": "automated tests in the app, none failing; 7 were added for the limits stated on this page and for the fixes"
+      },
+      {
+        "n": "0.5 s",
+        "l": "to run a month of 4,000 orders and 12,000 lines in the test run; larger months not tested"
+      },
+      {
+        "n": "0",
+        "l": "orders, sessions, costs or products changed: it writes only its own report records and the Excel file you ask for"
+      },
+      {
+        "n": "Per day",
+        "l": "a refund is reported on the day it is made, not on the day of the sale (see the known limits)"
+      }
+    ],
+    "faq": [],
+    "copyWords": 1495,
+    "hasVideo": true,
+    "youtubeId": "fr1m0C2n6yE",
     "externalPage": null
   },
   {
@@ -14823,11 +13208,11 @@ export const odooApps = [
       "Readings from real runs. Evidence table."
     ],
     "requires": [],
-    "price": 38.92,
+    "price": 39.0,
     "manifestPrice": 39.0,
     "currency": "USD",
     "category": "Accounting/Accounting",
-    "version": "19.0.1.0.2",
+    "version": "19.0.1.0.3",
     "license": "OPL-1",
     "depends": [
       "account"
@@ -15115,11 +13500,11 @@ export const odooApps = [
       "More readings from real runs. Evidence table."
     ],
     "requires": [],
-    "price": 38.92,
+    "price": 39.0,
     "manifestPrice": 39.0,
     "currency": "USD",
     "category": "Website/Website",
-    "version": "19.0.1.0.2",
+    "version": "19.0.1.0.3",
     "license": "OPL-1",
     "depends": [
       "website_sale"
@@ -15402,11 +13787,11 @@ export const odooApps = [
       "Limits with the reading behind each. Evidence table."
     ],
     "requires": [],
-    "price": 38.92,
+    "price": 39.0,
     "manifestPrice": 39.0,
     "currency": "USD",
     "category": "Accounting/Accounting",
-    "version": "19.0.1.0.2",
+    "version": "19.0.1.0.3",
     "license": "OPL-1",
     "depends": [
       "account_payment"
@@ -15511,6 +13896,524 @@ export const odooApps = [
     "copyWords": 1713,
     "hasVideo": true,
     "youtubeId": "r9glfIUTCKE",
+    "externalPage": null
+  },
+  {
+    "tech": "mh_office_preview",
+    "slug": "private-office-preview",
+    "name": "Private Office Preview",
+    "summary": "Preview Word (DOCX) and Excel (XLSX) attachments inside Odoo's own file viewer, drawn in the browser from your Odoo server with no outside service",
+    "tagline": "Open Word and Excel attachments in Odoo's own file viewer, drawn in the browser from your Odoo server, with no file sent to Microsoft or Google",
+    "intro": [
+      "Odoo's file viewer shows pictures and PDFs. A Word or Excel attachment in the chatter is only a download: people save it, open it in another program and come back. Private Office Preview makes the same viewer open DOCX and XLSX files. This page walks through it with screenshots of an Odoo 19 database holding a made-up freight customer, and with readings from a real browser run, including what it does not do well.",
+      "The app stores nothing. It reads the file from your Odoo server, draws it in the browser tab and sends it nowhere else.",
+      "Install it and nothing changes in the menus: Word and Excel tiles in the chatter now open in the viewer. There are no settings. It needs the Discuss and chatter module (mail) and Odoo's Spreadsheet module (spreadsheet), both in Odoo Community."
+    ],
+    "features": [
+      {
+        "heading": "What it changes, what it keeps, what it does not do",
+        "body": [
+          "Each line was tested or read in the code."
+        ],
+        "images": []
+      },
+      {
+        "heading": "1 Open a Word file",
+        "body": [
+          "Opening a Word attachment means downloading it, finding it, opening another program and coming back.",
+          "Click the Word file in the chatter. It opens in the same viewer that shows pictures and PDFs, with the same Download button and Close button, and with next and previous arrows when the record holds more than one viewable file. In the run behind this page a Word file with a heading, a table, bold and italic text, a link and a picture was shown in under a third of a second.",
+          "The document is drawn inside a sandboxed frame that runs no script and blocks every network request. Embedded HTML parts of a DOCX are not rendered, and links other than http, https and mailto are removed. A picture that points at another server is not loaded and is not requested.",
+          "It is not Word. Fonts, page breaks, bullet markers, headers and footers can look different, and tracked changes appear as plain text: the inserted text is shown and the deleted text is left out.",
+          "A made-up transport agreement in the viewer. The terms list shows no bullet markers in this run: the layout is approximate."
+        ],
+        "use": "a contract or letter arrives as a DOCX and you want to read it without leaving Odoo.",
+        "mode": "Read-only",
+        "images": [
+          "images/op-docx-viewer.webp"
+        ]
+      },
+      {
+        "heading": "2 Open an Excel file",
+        "body": [
+          "A spreadsheet attachment is also download only, even when you want to check one number.",
+          "Click the Excel file. It opens in a read-only spreadsheet drawn by the engine that Odoo's Spreadsheet module already includes, with sheet tabs, frozen rows, formatting and formulas calculated in the browser. In the run, the Total row of a budget showed $136,300, $135,790 and -$510, and a workbook of 40,000 rows (a 1 MB file) opened in 3.6 seconds on the test server. Files made by tools other than Excel (openpyxl, pandas) are adjusted so Odoo's reader accepts them. An arrow key pressed inside the sheet moves in the sheet and does not switch to the next file.",
+          "Nothing can be edited or saved back. Hidden sheets are not offered. Functions that Odoo's spreadsheet engine does not know show #NAME? even if Excel stored a result: XLOOKUP and SUM were calculated, LET and STOCKHISTORY were not.",
+          "A made-up budget. Sheet tabs sit below the grid; the top bar says Readonly Access. The toolbar and column letters are Odoo's own and small at this size."
+        ],
+        "use": "a budget or price list arrives as an XLSX and you want to read the numbers.",
+        "mode": "Read-only",
+        "images": [
+          "images/op-xlsx-viewer.webp"
+        ]
+      },
+      {
+        "heading": "3 Where the preview opens",
+        "body": [
+          "Odoo shows files in several places and only some of them have a viewer.",
+          "It opens from a file in a chatter, from a file you have attached in the composer but not sent yet, from the thumbnails of an attachment field such as the attachments of an email template (Word and Excel open the viewer, PowerPoint keeps its download link), and from a Preview button next to Download on a binary file field when the record is saved and the file is Word, Excel, PDF or an image by its file name. The Preview button is hidden while the record has unsaved changes, because the file on the server may not be the one on screen.",
+          "Discuss channels and the full-screen email composer were not tested.",
+          "A Word file in the chatter. Without the app, this tile is not viewable and only downloads.",
+          "A file field with the Preview button.",
+          "The places checked, read from a real browser run."
+        ],
+        "use": "files sit in the chatter, in a composer, behind attachment thumbnails or in file fields.",
+        "mode": "Read-only",
+        "images": [
+          "images/op-chatter-office-tiles.webp",
+          "images/op-binary-eye-button.webp",
+          "images/op-ev-where.webp"
+        ]
+      },
+      {
+        "heading": "4 The file goes nowhere else",
+        "body": [
+          "Online viewers hand each document to a third party and need a server that can be reached from the internet.",
+          "The two document libraries, docx-preview (Apache-2.0) and JSZip (MIT), ship inside the module and load only when a preview opens. Excel is drawn by Odoo's own spreadsheet engine. In the run behind this page, every request the browser made while a file was open went to the Odoo server (plus data: pictures made in the page), and none to any other host. The table lists them file by file.",
+          "This was tested on a local test server; an intranet or VPN setup was not tested.",
+          "Requests read from the browser's network log while each file was open."
+        ],
+        "use": "documents are confidential, or the server is on an intranet.",
+        "mode": "Read-only",
+        "images": [
+          "images/op-ev-network.webp"
+        ]
+      },
+      {
+        "heading": "5 Who can open a preview",
+        "body": [
+          "A preview must not show a file that the Download button would refuse.",
+          "The viewer fetches the file from the same address as the Download button, so access is the same. In the run, an internal user got the file for an attachment on a contact he can read, and got a 404 with no file for an attachment on a record he cannot read.",
+          "Status answers read from a browser logged in as each user."
+        ],
+        "use": "some records must stay private to some users.",
+        "mode": "Read-only",
+        "images": [
+          "images/op-ev-access.webp"
+        ]
+      },
+      {
+        "heading": "6 Big, broken and unsupported files",
+        "body": [
+          "A huge or broken file must not freeze the tab or show an empty page.",
+          "Over 10 MB, the viewer shows a short message and points to Download. A Word file of exactly 10 MB (10,485,760 bytes) was shown and one of 10,485,761 bytes was refused. A zip that is not a real workbook, or a file that is not a zip at all (the container of a password-protected Office file), shows \"This file could not be previewed.\" PowerPoint (PPTX), the old .doc and .xls formats and OpenDocument files are not previewed: their tiles stay download-only. The size is checked after the whole file has been downloaded, so a very large file is fetched before it is refused.",
+          "The message for a file over 10 MB.",
+          "The message for a file that is not a real Office file.",
+          "PowerPoint and old .doc tiles stay download-only.",
+          "What the viewer did with each test file."
+        ],
+        "use": "somebody attaches a very large file, a damaged one or a PowerPoint.",
+        "mode": "Read-only",
+        "images": [
+          "images/op-error-too-large.webp",
+          "images/op-error-encrypted.webp",
+          "images/op-chatter-other-tiles.webp",
+          "images/op-ev-limits.webp"
+        ]
+      },
+      {
+        "heading": "7 The layout is approximate",
+        "body": [
+          "A preview that looks slightly different from the original can be mistaken for the original.",
+          "Two differences were seen. In a Word list the bullet markers were not drawn (the terms list in section 1; the markers are Symbol-font characters, and whether the viewer or the fonts of the test machine caused it was not isolated). In an Excel file written with an 18 pt font and no stored row heights, the rows were not made taller to fit, so the text was clipped; a file saved by Excel stores its row heights. A column chart and a picture in an Excel file were drawn; neither was compared with Excel.",
+          "Pictures and charts were looked at once each; no comparison with Excel or Word was made.",
+          "An 18 pt Excel file with no stored row heights: the text is clipped.",
+          "A column chart and a picture in an Excel file, drawn by the spreadsheet engine."
+        ],
+        "use": "you compare the preview with the original and see a difference.",
+        "mode": "Read-only",
+        "images": [
+          "images/op-xlsx-rowheight.webp",
+          "images/op-xlsx-chart.webp"
+        ]
+      }
+    ],
+    "scope": [
+      "These were measured in the test run or read from the code. None is fixed in this version."
+    ],
+    "requires": [],
+    "price": 39.0,
+    "manifestPrice": 39.0,
+    "currency": "USD",
+    "category": "Extra Tools",
+    "version": "19.0.1.0.3",
+    "license": "OPL-1",
+    "depends": [
+      "mail",
+      "spreadsheet"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_office_preview",
+    "storeUrl19": "https://apps.odoo.com/apps/modules/19.0/mh_office_preview",
+    "storeUrl20": "https://apps.odoo.com/apps/modules/20.0/mh_office_preview",
+    "screenshots": [],
+    "shotDims": {
+      "images/op-docx-viewer.webp": [
+        1000,
+        1160
+      ],
+      "images/op-xlsx-viewer.webp": [
+        1000,
+        472
+      ],
+      "images/op-chatter-office-tiles.webp": [
+        1000,
+        488
+      ],
+      "images/op-binary-eye-button.webp": [
+        1000,
+        464
+      ],
+      "images/op-ev-where.webp": [
+        1000,
+        1068
+      ],
+      "images/op-ev-network.webp": [
+        1000,
+        1073
+      ],
+      "images/op-ev-access.webp": [
+        1000,
+        455
+      ],
+      "images/op-error-too-large.webp": [
+        1000,
+        205
+      ],
+      "images/op-error-encrypted.webp": [
+        1000,
+        208
+      ],
+      "images/op-chatter-other-tiles.webp": [
+        1000,
+        858
+      ],
+      "images/op-ev-limits.webp": [
+        1000,
+        1333
+      ],
+      "images/op-xlsx-rowheight.webp": [
+        1000,
+        472
+      ],
+      "images/op-xlsx-chart.webp": [
+        1000,
+        833
+      ]
+    },
+    "tiles": [
+      {
+        "n": "2",
+        "l": "file types opened in the viewer: Word (DOCX) and Excel (XLSX)"
+      },
+      {
+        "n": "1",
+        "l": "host contacted while files were open in a real browser: your own Odoo server"
+      },
+      {
+        "n": "6",
+        "l": "automated browser tests in the app, none failing (one added to pin the limits on this page)"
+      },
+      {
+        "n": "10 MB",
+        "l": "the size line: a file of exactly 10 MB was previewed, one byte more was refused"
+      },
+      {
+        "n": "0",
+        "l": "database tables, columns or settings added; the app writes nothing"
+      },
+      {
+        "n": "#NAME?",
+        "l": "what an Excel function Odoo's spreadsheet engine does not know shows (LET and STOCKHISTORY were tested)"
+      }
+    ],
+    "faq": [
+      {
+        "q": "Does it send my files to Microsoft or Google?",
+        "a": "No. In a real browser run every request went to the Odoo host only. The libraries ship inside the module and Excel is drawn by Odoo's own spreadsheet engine."
+      },
+      {
+        "q": "Which files can it preview?",
+        "a": "Word (.docx) and Excel (.xlsx), up to 10 MB. PowerPoint, .doc, .xls and OpenDocument files are not previewed."
+      },
+      {
+        "q": "Can it edit the file?",
+        "a": "No. The preview is read-only and nothing is saved back."
+      },
+      {
+        "q": "Who can see a preview?",
+        "a": "Anyone who can download the file: it is fetched from the same address as the Download button."
+      },
+      {
+        "q": "Does it look exactly like Word or Excel?",
+        "a": "No. Bullet markers and Excel row heights were seen to differ, tracked changes appear as plain text, and unknown Excel functions show #NAME?."
+      },
+      {
+        "q": "What is stored in my database?",
+        "a": "Nothing. The app adds no model, column or setting."
+      },
+      {
+        "q": "Does it work for files in fields, not only the chatter?",
+        "a": "Yes: the thumbnails of attachment fields and a Preview button on file fields were tested. Discuss channels and the full-screen email composer were not."
+      },
+      {
+        "q": "What happens if I uninstall it?",
+        "a": "The app wrote nothing, so no data changes and Word and Excel files go back to download only. Uninstalling itself was not tested."
+      }
+    ],
+    "copyWords": 1274,
+    "hasVideo": true,
+    "youtubeId": "5_0rhoetNKI",
+    "externalPage": null
+  },
+  {
+    "tech": "mh_project_cost_exposure",
+    "slug": "project-cost-exposure",
+    "name": "Project Cost Exposure",
+    "summary": "Shows project profitability with committed purchase orders: invoiced, spent and unbilled PO exposure per project",
+    "tagline": "What each project has cost, what you have already promised on open purchase orders, and which projects only look profitable because the bills have not landed yet",
+    "intro": [
+      "Analytic accounting tells you what a project has cost. A purchase order confirmed last week is a real obligation that appears in no analytic report until the supplier invoices it. Project Cost Exposure adds that unbilled part to what has been posted, per project, and lists the projects that are in profit today and would not be once those orders are billed. This page walks through it with screenshots of an Odoo 19 database holding a made-up fit-out contractor, and with tables rendered from real readings of the same run; each picture says which it is.",
+      "It reads analytic lines, purchase order lines and projects and writes only its own analysis records. This page also says where its definitions bite: draft and missing bills, credit notes, shared analytic accounts, projects with nothing posted yet, and who can see the amounts.",
+      "Install it and a menu appears under Project, Configuration: Cost Exposure. It needs Project and Purchase. Users of the Project Administrator group can use it."
+    ],
+    "features": [
+      {
+        "heading": "What it keeps, what it changes, what it does not",
+        "body": [
+          "Each line was tested or read in the code."
+        ],
+        "images": []
+      },
+      {
+        "heading": "1 Choose the projects",
+        "body": [
+          "A cost report that lists everything buries the three jobs somebody has to act on this week.",
+          "Create an analysis and, if you want, pick projects; leave the field empty for every project that has an analytic account. Tick Include closed projects to add archived ones (off by default). A project with no analytic account is skipped, because there is nothing to cost against. This is a screenshot from Odoo 19 of a draft that has not been run: only Run is offered.",
+          "Closed means archived. A project in a finished stage that is not archived is always included, and the run has no date filter.",
+          "A draft analysis before it is run. Real Odoo screen."
+        ],
+        "use": "you want to look at a few jobs, or at every project with an analytic account.",
+        "mode": "Writes when saved",
+        "images": [
+          "images/pe-settings-draft.webp"
+        ]
+      },
+      {
+        "heading": "2 Run it and read what stood out",
+        "body": [
+          "A table of eight projects tells you nothing until you have worked out which ones are about to change colour.",
+          "Press Run . The form shows how many projects were covered, the total committed and how many turn negative, with a short What stood out text. In the demo run, 8 projects were covered, $141,500.00 was committed on confirmed orders that had not been billed, across 6 projects, and 2 projects were in profit today and would not be once those orders are billed: Maple Court Lobby and Harbour Street Office Fit-Out. Run again and the lines are replaced with a fresh result; until then the analysis stays as it was.",
+          "It does not forecast, and it does not say whether committing the money was wise.",
+          "The analysis after the run. Real Odoo screen (Odoo 19).",
+          "The totals and the findings text from the same run. Real Odoo screen."
+        ],
+        "use": "you want the answer in a few sentences before the table.",
+        "mode": "Writes the lines",
+        "images": [
+          "images/pe-result-scope.webp",
+          "images/pe-result-findings.webp"
+        ]
+      },
+      {
+        "heading": "3 What counts as committed",
+        "body": [
+          "A commitment figure is only as honest as the definition of the order that counts.",
+          "Committed is the part of a confirmed purchase order that has not been billed: the ordered quantity minus Odoo's billed quantity, times the untaxed price after the order line discount, split by the analytic percentages. The table is a real run on Odoo 19: one order or bill of 1,000 per row on a throwaway copy of the data. A quotation, a sent quotation, an order waiting for approval and a cancelled order are not committed; a confirmed and a locked order are; billing 400 of 1,000 leaves 600. A bill saved as a draft already counts as billed, so that order is committed for nothing and spent for nothing until the bill is posted.",
+          "Tax is left out, and an order in another currency is converted at its order date (a fix in this version).",
+          "Nine kinds of order and bill and what the run showed. Evidence table."
+        ],
+        "use": "you want to know exactly which orders and bills move the number.",
+        "mode": "Read-only",
+        "images": [
+          "images/pe-ev_kinds.webp"
+        ]
+      },
+      {
+        "heading": "4 Project by project",
+        "body": [
+          "Total committed hides which job it belongs to.",
+          "The Projects tab lists every project of the run with Invoiced, Spent, Committed, Margin today and Margin once billed, worst margin once billed first. Rows of projects that turn negative are red; rows that are below zero once billed but were already below zero today are orange. The Odoo list is too wide to shoot at a readable size in one piece, so the first two pictures are real Odoo screens with four columns each and the third is a table with all seven columns from the same run on Odoo 19. Harbour Street Office Fit-Out: invoiced $120,000, spent $71,360 (bills and timesheet cost), $56,000 committed, so $48,640 of margin today becomes -$7,360. Oak Lane Showroom is already at -$5,940 today and is not listed as a surprise.",
+          "Costs and revenue are added up separately, never netted: a project with heavy spending and heavy billing is not shown as quiet.",
+          "Invoiced, spent and committed. Real Odoo screen.",
+          "The two margins, red rows turn negative. Real Odoo screen.",
+          "All seven columns of the run. Evidence table."
+        ],
+        "use": "you want to see invoiced, spent, committed and both margins for each project.",
+        "mode": "Read-only",
+        "images": [
+          "images/pe-lines-money.webp",
+          "images/pe-lines-margin.webp",
+          "images/pe-ev_lines.webp"
+        ]
+      },
+      {
+        "heading": "5 Only the ones that turn negative",
+        "body": [
+          "The point of the report is the handful of projects about to change colour, not the whole list.",
+          "The button Only the ones that turn negative opens just the projects that are in profit today and below zero once the open orders are billed. In the demo run these are Maple Court Lobby ($33,100 today, -$7,900 once billed) and Harbour Street Office Fit-Out ($48,640 today, -$7,360). A project with nothing invoiced or spent and one open order is also listed, because a margin of zero today is not below zero.",
+          "A project already below zero today is not on this list.",
+          "The two projects that turn negative. Real Odoo screen (Odoo 19)."
+        ],
+        "use": "you want the short list of jobs that need a decision this week.",
+        "mode": "Read-only",
+        "images": [
+          "images/pe-at-risk.webp"
+        ]
+      },
+      {
+        "heading": "6 Other scopes and the list of analyses",
+        "body": [
+          "One scope rarely answers every question, and a finished job still has numbers.",
+          "Each analysis keeps its own scope and result. The second below picks three large fit-outs: 3 projects, $115,500 committed, 2 turning negative. The third includes closed projects and shows the archived Pine Row Extension with $20,000 invoiced and $15,000 spent, which the Include closed projects box did not do before this version. The list shows the analyses of the demo with their counts and totals.",
+          "An analysis is a snapshot: a bill posted after the run does not change it until you press Run again.",
+          "An analysis of three picked projects. Real Odoo screen (Odoo 19).",
+          "The run with closed projects included. Real Odoo screen.",
+          "The analyses side by side. Real Odoo screen."
+        ],
+        "use": "you want to keep several views of the same data, for example live projects and finished ones.",
+        "mode": "Writes the lines",
+        "images": [
+          "images/pe-result-second.webp",
+          "images/pe-lines-closed.webp",
+          "images/pe-analyses-list.webp"
+        ]
+      },
+      {
+        "heading": "7 Checked against the raw rows",
+        "body": [
+          "A flag on a project is only as good as the sums behind it.",
+          "A separate script read the analytic lines and the purchase order lines straight from the database, worked out the billed quantity from the posted bill lines itself and recomputed invoiced, spent and committed for every project, with no module code. All 8 projects matched, with no difference, on both Odoo 19 and Odoo 20.",
+          "Eight of eight projects, each matched. Evidence table."
+        ],
+        "use": "you want to know the arithmetic is right before you rely on it.",
+        "mode": "Read-only",
+        "images": [
+          "images/pe-ev_check.webp"
+        ]
+      },
+      {
+        "heading": "The two fixes in this version",
+        "body": [
+          "Version 1.0.15 makes the Include closed projects box work (archived projects were always hidden) and converts an order in another currency to the company currency at its order date. Before, 10,000 euros was committed as 10,000 dollars while a bill of the same 10,000 euros posts 12,500 dollars of cost. Companies whose orders are all in the company currency see no change. The table shows the old and the new reading.",
+          "Old and new reading of the same two cases. Evidence table."
+        ],
+        "images": [
+          "images/pe-ev_fix.webp"
+        ]
+      }
+    ],
+    "scope": [
+      "Each of these was reproduced in a run of the app on Odoo 19. Seven are covered by tests that pass; none is changed in this version except the two fixes below.",
+      "Twelve readings from real runs. Evidence table."
+    ],
+    "requires": [],
+    "price": 39.0,
+    "manifestPrice": 39.0,
+    "currency": "USD",
+    "category": "Project",
+    "version": "19.0.1.0.16",
+    "license": "OPL-1",
+    "depends": [
+      "project",
+      "purchase"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_project_cost_exposure",
+    "storeUrl19": "https://apps.odoo.com/apps/modules/19.0/mh_project_cost_exposure",
+    "storeUrl20": "https://apps.odoo.com/apps/modules/20.0/mh_project_cost_exposure",
+    "screenshots": [
+      "images/pe-ev_limits.webp"
+    ],
+    "shotDims": {
+      "images/pe-settings-draft.webp": [
+        1000,
+        1678
+      ],
+      "images/pe-result-scope.webp": [
+        1000,
+        926
+      ],
+      "images/pe-result-findings.webp": [
+        1000,
+        1142
+      ],
+      "images/pe-ev_kinds.webp": [
+        1000,
+        911
+      ],
+      "images/pe-lines-money.webp": [
+        1000,
+        1253
+      ],
+      "images/pe-lines-margin.webp": [
+        1000,
+        1374
+      ],
+      "images/pe-ev_lines.webp": [
+        1000,
+        1358
+      ],
+      "images/pe-at-risk.webp": [
+        1000,
+        382
+      ],
+      "images/pe-result-second.webp": [
+        1000,
+        1098
+      ],
+      "images/pe-lines-closed.webp": [
+        1000,
+        1614
+      ],
+      "images/pe-analyses-list.webp": [
+        1000,
+        758
+      ],
+      "images/pe-ev_check.webp": [
+        1000,
+        915
+      ],
+      "images/pe-ev_limits.webp": [
+        1000,
+        1866
+      ],
+      "images/pe-ev_fix.webp": [
+        1000,
+        521
+      ]
+    },
+    "tiles": [
+      {
+        "n": "8 of 8",
+        "l": "projects matched an independent recompute of invoiced, spent and committed from the raw database rows"
+      },
+      {
+        "n": "2 of 8",
+        "l": "projects in the made-up demo are in profit today and below zero once their open orders are billed, with $141,500 committed in all"
+      },
+      {
+        "n": "23",
+        "l": "automated tests in the app, none failing; 9 were added for two fixes and for the limits stated on this page"
+      },
+      {
+        "n": "1.9 s",
+        "l": "to run an analysis of 400 projects, 12,000 order lines and 30,000 analytic lines in the test run; larger databases not tested"
+      },
+      {
+        "n": "0",
+        "l": "journal entries, analytic lines or orders changed: it writes only its own analysis records"
+      },
+      {
+        "n": "Not",
+        "l": "a forecast: it reports what is committed, not whether committing it was wise"
+      }
+    ],
+    "faq": [],
+    "copyWords": 1306,
+    "hasVideo": true,
+    "youtubeId": "mZFuv-o5q6w",
     "externalPage": null
   },
   {
@@ -15627,11 +14530,11 @@ export const odooApps = [
       "Nine more readings. Evidence table."
     ],
     "requires": [],
-    "price": 38.92,
+    "price": 39.0,
     "manifestPrice": 39.0,
     "currency": "USD",
     "category": "Purchases",
-    "version": "19.0.1.0.8",
+    "version": "19.0.1.0.9",
     "license": "OPL-1",
     "depends": [
       "purchase"
@@ -15871,11 +14774,11 @@ export const odooApps = [
       "Rights and timings. Evidence table."
     ],
     "requires": [],
-    "price": 38.92,
+    "price": 39.0,
     "manifestPrice": 39.0,
     "currency": "USD",
     "category": "Purchases",
-    "version": "19.0.1.0.2",
+    "version": "19.0.1.0.3",
     "license": "OPL-1",
     "depends": [
       "purchase"
@@ -15977,6 +14880,260 @@ export const odooApps = [
     "copyWords": 1477,
     "hasVideo": true,
     "youtubeId": "noZDeUoHcW4",
+    "externalPage": null
+  },
+  {
+    "tech": "mh_reorder_rule_audit",
+    "slug": "reordering-rule-audit",
+    "name": "Reordering Rule Audit",
+    "summary": "Audits Odoo reordering rules against past demand: minimum too low, maximum too high, no lead time, no demand",
+    "tagline": "Check every reordering rule against the demand it has actually seen: which minimums reorder too late over the vendor lead time, and which maximums tie up cash",
+    "intro": [
+      "A reordering rule is a guess made once and rarely revisited. Demand moves; the minimum does not, and the stock-out that follows gets blamed on the supplier. Reordering Rule Audit takes each rule, measures what the product shipped in the last 90 days (or the window you choose), and gives it one verdict: minimum too low, maximum too high, no lead time set, no demand, or looks right. This page walks through it with screenshots of an Odoo 19 database holding a made-up bike-parts wholesaler, and with tables rendered from real readings of the same run; each picture says which it is.",
+      "It reads stock moves, locations and your rules and writes only its own audit records. It changes no rule and orders nothing. This page also says where it is blunt: demand is per product rather than per warehouse rule, returns are not netted, and a missing lead time is reported, not guessed.",
+      "Install it and a menu appears under Inventory, Configuration: Reordering Rule Audit. It needs only Inventory. Only Inventory Administrators can use it."
+    ],
+    "features": [
+      {
+        "heading": "What it keeps, what it changes, what it does not",
+        "body": [
+          "Each line was tested or read in the code."
+        ],
+        "images": []
+      },
+      {
+        "heading": "1 Choose the window and the scope",
+        "body": [
+          "A rule set for the whole company says nothing about how one warehouse or one season behaves.",
+          "Create an audit and set how many days of shipments to measure (the default is 90), pick one or more warehouses (empty means all), and, if you want, a lead time to assume where Odoo reports none. Only Run is offered before it is run. This is a screenshot from Odoo 19 of a draft for the Main Warehouse over 60 days.",
+          "A window of 0 days or less is accepted and reads every rule as No demand. Archived rules and rules of other companies are not audited; manual-trigger rules are.",
+          "A draft audit before it is run. Real Odoo screen."
+        ],
+        "use": "you want to audit one warehouse or a shorter window.",
+        "mode": "Writes when run",
+        "images": [
+          "images/ro-draft-settings.webp"
+        ]
+      },
+      {
+        "heading": "2 Run it and read what stood out",
+        "body": [
+          "A table of 17 rules tells you nothing until you have worked out which ones matter.",
+          "Press Run . The form shows when it ran, how many rules were checked, how many reorder too late, the value held by maximums that are too high, and a short What stood out text. In the demo run 4 of 17 rules reorder too late, 3 hold $2,722.50 above what a quarter of demand needs, 2 have no lead time and 1 is on a product that did not ship. Run again and the lines are replaced with a fresh result.",
+          "It does not forecast: it compares each rule with shipments that already happened. The text names only the five minimums furthest off.",
+          "The audit after the run. Real Odoo screen (Odoo 19).",
+          "The findings text from the same run. Real Odoo screen."
+        ],
+        "use": "you want the answer in a few sentences before the table.",
+        "mode": "Writes the lines",
+        "images": [
+          "images/ro-result-scope.webp",
+          "images/ro-result-findings.webp"
+        ]
+      },
+      {
+        "heading": "3 Rule by rule",
+        "body": [
+          "A verdict with no figures behind it cannot be argued with or checked.",
+          "Open the Rules tab: each rule has its minimum and maximum, the lead days Odoo reports, what the product shipped in the period, what it needs over the lead time (shipped per day x lead days), the value held and the verdict. The verdicts are exclusive and are tested in this order: no demand, minimum too low, maximum too high, no lead time, looks right. The sheet is rendered from the real lines of the demo run on Odoo 19; it is a table, not a screenshot of the Odoo list, because that list is too wide to show at a readable size.",
+          "A rule that is both too low and too high is reported as too low only: its line still shows the value above a quarter, and the audit's hoarded total leaves it out.",
+          "All 17 lines of the demo run, read from the app. Evidence table."
+        ],
+        "use": "you want to see the figures behind each verdict.",
+        "mode": "Read-only",
+        "images": [
+          "images/ro-ev_rules.webp"
+        ]
+      },
+      {
+        "heading": "4 Minimums that reorder too late",
+        "body": [
+          "Inner tubes ship four a day and take 14 days to arrive; a minimum of 25 fires at a point where 56 are needed.",
+          "The button Only the ones that reorder too late opens the lines whose minimum is below shipped-per-day times lead days. In the demo run those are the chain (needs 16.8, minimum 8), the helmet (12.4 against 4), the inner tube (56 against 25) and the front light (16.8 against 10).",
+          "It does not raise the minimum or order anything. A rule with no lead time is never called too low unless you enter an assumed lead time.",
+          "The four rules the button lists. Real Odoo screen (Odoo 19)."
+        ],
+        "use": "you want the rules that will stock out however well they are followed.",
+        "mode": "Read-only",
+        "images": [
+          "images/ro-stockouts-only.webp"
+        ]
+      },
+      {
+        "heading": "5 Maximums that tie up cash",
+        "body": [
+          "A maximum of 120 saddles when the shop sells nine a quarter is cash sitting in a rack.",
+          "A maximum is too high when it is more than 90 days of demand above the minimum. The value is (maximum - minimum - 90 days of demand) x the product's standard cost. This is judged even when no lead time is set. In the demo run: the sport saddle holds $1,818.00 above a quarter, the flat pedals $462.00 and the bottle cage $442.50, $2,722.50 in all.",
+          "The cost is the product's current standard cost, not the cost of what is in the rack. A quarter is always 90 days of demand, whatever window you chose.",
+          "The three lines and their total, read from the app. Evidence table."
+        ],
+        "use": "you want to know which top-ups are far above what is needed.",
+        "mode": "Read-only",
+        "images": [
+          "images/ro-ev_hoarding.webp"
+        ]
+      },
+      {
+        "heading": "6 When Odoo has no lead time",
+        "body": [
+          "A default Odoo has no supplier delays, so a report that assumed one would agree with everything.",
+          "A rule with no lead time is reported as No lead time set , not as sound. To see what a lead time would mean, enter one in Assume lead time of and run again: it is used only where Odoo reports none, and those lines are marked as assumed. With 14 days entered in the demo, the chain lube and the cable set (no vendor delay) became Minimum too low , and the rules that already had a lead time kept their own.",
+          "An assumed figure is a what-if, not a measurement of your suppliers.",
+          "The second audit of the same rules, with 14 days assumed. Real Odoo screen.",
+          "Its findings text: 6 instead of 4. Real Odoo screen.",
+          "Verdict counts and five rules before and after. Evidence table."
+        ],
+        "use": "your rules report no supplier delay.",
+        "mode": "Writes the lines",
+        "images": [
+          "images/ro-assumed-scope.webp",
+          "images/ro-assumed-findings.webp",
+          "images/ro-ev_assumed.webp"
+        ]
+      },
+      {
+        "heading": "7 Checked against the raw moves",
+        "body": [
+          "A verdict on a rule is only as good as the sum behind it.",
+          "A separate script read every done move line leaving an internal location for a customer, production or transit in the same 90 days, in the product's own unit, and recomputed shipped, needed, verdict and value held with plain SQL and its own arithmetic. All 17 rules matched with no difference, on both Odoo 19 and Odoo 20.",
+          "All 17 rules, each matched. Evidence table."
+        ],
+        "use": "you want to know the arithmetic is right before you act on it.",
+        "mode": "Read-only",
+        "images": [
+          "images/ro-ev_check.webp"
+        ]
+      },
+      {
+        "heading": "8 Past audits",
+        "body": [
+          "A single run is a photograph; you may want to see how the picture changed.",
+          "Each audit stays as a record with its counts. The list shows the rules checked, how many reorder too late and the value held. Run an audit again and its lines are replaced; keep the old result by making a new audit. This is a screenshot from Odoo 19.",
+          "The audit list. Real Odoo screen."
+        ],
+        "use": "you want to compare runs.",
+        "mode": "Read-only",
+        "images": [
+          "images/ro-analyses-list.webp"
+        ]
+      },
+      {
+        "heading": "What changed in this version",
+        "body": [
+          "Two small fixes. Shipments entered in another unit of measure were summed as written, so 6 dozen read as 6 shipped; they are now summed in the product's own unit (72). And Assume lead time of is now on the form; before, the findings told you to fill it in and the screen did not show it. Each fix has a test that fails on the old code.",
+          "Old and new reading of the same shipment. Evidence table."
+        ],
+        "images": [
+          "images/ro-ev_fix.webp"
+        ]
+      }
+    ],
+    "scope": [
+      "Each of these was reproduced in a run of the app on Odoo 19. Seven are covered by tests that pass; none is changed in this version.",
+      "Thirteen readings from real runs. Evidence table."
+    ],
+    "requires": [],
+    "price": 39.0,
+    "manifestPrice": 39.0,
+    "currency": "USD",
+    "category": "Warehouse",
+    "version": "19.0.1.0.17",
+    "license": "OPL-1",
+    "depends": [
+      "stock"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_reorder_rule_audit",
+    "storeUrl19": "https://apps.odoo.com/apps/modules/19.0/mh_reorder_rule_audit",
+    "storeUrl20": "https://apps.odoo.com/apps/modules/20.0/mh_reorder_rule_audit",
+    "screenshots": [
+      "images/ro-ev_limits.webp"
+    ],
+    "shotDims": {
+      "images/ro-draft-settings.webp": [
+        1000,
+        1169
+      ],
+      "images/ro-result-scope.webp": [
+        1000,
+        1114
+      ],
+      "images/ro-result-findings.webp": [
+        1000,
+        1063
+      ],
+      "images/ro-ev_rules.webp": [
+        1000,
+        1582
+      ],
+      "images/ro-stockouts-only.webp": [
+        1000,
+        882
+      ],
+      "images/ro-ev_hoarding.webp": [
+        1000,
+        598
+      ],
+      "images/ro-assumed-scope.webp": [
+        1000,
+        1114
+      ],
+      "images/ro-assumed-findings.webp": [
+        1000,
+        818
+      ],
+      "images/ro-ev_assumed.webp": [
+        1000,
+        1221
+      ],
+      "images/ro-ev_check.webp": [
+        1000,
+        1418
+      ],
+      "images/ro-analyses-list.webp": [
+        1000,
+        618
+      ],
+      "images/ro-ev_limits.webp": [
+        1000,
+        1876
+      ],
+      "images/ro-ev_fix.webp": [
+        1000,
+        633
+      ]
+    },
+    "tiles": [
+      {
+        "n": "17 of 17",
+        "l": "rules in the made-up demo database matched an independent recompute from the raw stock moves (shipped, needed, verdict and value held)"
+      },
+      {
+        "n": "4 of 17",
+        "l": "rules had a minimum below what the product consumed while a replenishment was on its way: they reorder too late"
+      },
+      {
+        "n": "$2,722.50",
+        "l": "held by 3 maximums above a quarter of a year's demand in the demo run, valued at cost"
+      },
+      {
+        "n": "28",
+        "l": "automated tests in the app, none failing; 9 were added in this version, 2 of them for fixes"
+      },
+      {
+        "n": "0",
+        "l": "rules changed and no order created: it writes only its own audit records"
+      },
+      {
+        "n": "Not",
+        "l": "split by warehouse: a product with rules in two warehouses gives each the whole demand (see the known limits)"
+      }
+    ],
+    "faq": [],
+    "copyWords": 1339,
+    "hasVideo": true,
+    "youtubeId": "03nAYmHkGQ4",
     "externalPage": null
   },
   {
@@ -16112,11 +15269,11 @@ export const odooApps = [
       "Each of these was reproduced in a run of the app on Odoo 19; four are pinned by a test that passes. None is changed in this version."
     ],
     "requires": [],
-    "price": 38.92,
+    "price": 39.0,
     "manifestPrice": 39.0,
     "currency": "USD",
     "category": "Sales/Sales",
-    "version": "19.0.1.0.8",
+    "version": "19.0.1.0.9",
     "license": "OPL-1",
     "depends": [
       "sale_management"
@@ -16412,11 +15569,11 @@ export const odooApps = [
       "Limits with the reading behind each. Evidence table."
     ],
     "requires": [],
-    "price": 38.92,
+    "price": 39.0,
     "manifestPrice": 39.0,
     "currency": "USD",
     "category": "Sales/CRM",
-    "version": "19.0.1.0.2",
+    "version": "19.0.1.0.3",
     "license": "OPL-1",
     "depends": [
       "crm",
@@ -16647,11 +15804,11 @@ export const odooApps = [
       "Limits and timings. Evidence table."
     ],
     "requires": [],
-    "price": 38.92,
+    "price": 39.0,
     "manifestPrice": 39.0,
     "currency": "USD",
     "category": "Services/Timesheets",
-    "version": "19.0.1.0.1",
+    "version": "19.0.1.0.2",
     "license": "OPL-1",
     "depends": [
       "hr_timesheet"
@@ -16748,6 +15905,849 @@ export const odooApps = [
     "copyWords": 1170,
     "hasVideo": true,
     "youtubeId": "b5hsyHCdEyY",
+    "externalPage": null
+  },
+  {
+    "tech": "mh_breach_deadline_calc",
+    "slug": "us-breach-deadlines",
+    "name": "US Breach Deadlines",
+    "summary": "A multi-state breach incident tracker: one incident, one line per affected US state, the notification deadline from an editable rule table in calendar days, the earliest deadline and an hourly reminder. Log an incident once and see which state clock expires first",
+    "tagline": "One incident, every affected US state, and which notification date comes first - from a rule table you keep",
+    "intro": [
+      "When one incident touches residents of several US states, each state can have its own notification deadline. US Breach Deadlines lets you log the incident once, tick the affected states, and shows a deadline per state, the earliest one, and an hourly reminder as a date gets close. The deadlines come from a plain table of rules, one row per state, that you edit yourself: days to notify, and an Attorney General threshold and days. This page walks through it with screenshots of an Odoo 19 database holding a made-up company (Harbor Lane Analytics) and three made-up incidents, and with tables rendered from real readings of the same run; each picture says which it is.",
+      "This is a date calculator, not legal advice. It adds a number of calendar days to the date and time you enter. It ships rules for five states only, it was not checked against statute text in this version, and it does not know public holidays. What a law requires, when discovery happens and who must be told are questions for your counsel.",
+      "Install it and a Breach Deadlines menu appears with Incidents and State Deadline Rules. It needs only the Discuss (mail) module."
+    ],
+    "features": [
+      {
+        "heading": "What it keeps, what it changes, what it does not",
+        "body": [
+          "Each line was tested or read in the code."
+        ],
+        "images": []
+      },
+      {
+        "heading": "1 Log the incident once and pick the states",
+        "body": [
+          "Several states can each have their own clock, and a spreadsheet of them goes out of date the day someone edits one cell.",
+          "Open Breach Deadlines, Incidents and create an incident: a description, the discovered date and time (now by default), the Total Affected Individuals and the Affected States. Saving makes one line per state. The incident has an Open and a Closed status and a chatter. The first picture is the incident header for the made-up incident BREACH-0001 (640 people, five states); the second lists the open incidents.",
+          "The incident number is drawn when the New form opens, so opening New without saving leaves a gap in the numbering.",
+          "The incident header. Real Odoo screen (Odoo 19).",
+          "Open incidents with their states and earliest deadline (the Odoo list has more columns; this shows three). Real Odoo screen."
+        ],
+        "use": "an incident touches customers or staff in several US states and you want one record.",
+        "mode": "Writes the incident",
+        "images": [
+          "images/bd-incident-top.webp",
+          "images/bd-incidents.webp"
+        ]
+      },
+      {
+        "heading": "2 A rule table you edit",
+        "body": [
+          "Deadlines change, and a number buried in code is wrong the day a statute is amended.",
+          "Breach Deadlines, State Deadline Rules is an editable list with one row per state: Notification Deadline Days, the Attorney General threshold (people) and days, and a free-text source note for you to record where a figure came from. Five rows ship with the app; the table below shows them exactly as stored, including the note written at build time. 0 days means no fixed deadline. Editing a rule moves the deadline of every line that already uses it, including lines of closed incidents. A rule added later is not attached to lines that already exist; taking the state off the incident and putting it back attaches it.",
+          "It does not check any figure against any law. A state that is not in the table has no deadline, and the table holds 5 of the 62 US states and territories Odoo lists.",
+          "The rules list (the Odoo list has more columns; this shows two). Real Odoo screen (Odoo 19).",
+          "The five shipped rules as stored. Evidence table."
+        ],
+        "use": "you want the numbers in a list you control, not in code.",
+        "mode": "Writes when saved",
+        "images": [
+          "images/bd-rules.webp",
+          "images/bd-ev_rules.webp"
+        ]
+      },
+      {
+        "heading": "3 What the calculation does",
+        "body": [
+          "A date on a screen is only useful if you know the rule behind it.",
+          "The deadline of a line is the incident's discovered date and time plus the rule's days, counted as calendar days and kept at the same time of day. The app stores it in UTC and shows it in your time zone, so across a daylight-saving change the local clock time moves by an hour (discovered 12:00 in Los Angeles on 1 March 2026 shows 13:00 on 31 March for 30 days). Weekends and public holidays count: a discovery on 25 November with 30 days gives 25 December, a Friday and a public holiday, and the app says nothing about it. The table is real readings for one made-up incident with six states.",
+          "It has no calendar of public holidays and no business-day rule, and it does not decide when discovery happened: the date is what you type.",
+          "One incident, six states. Evidence table."
+        ],
+        "use": "you want to see exactly how a date was reached before you rely on it.",
+        "mode": "Read-only",
+        "images": [
+          "images/bd-ev_calc.webp"
+        ]
+      },
+      {
+        "heading": "4 The Attorney General notice",
+        "body": [
+          "Some rules add a second duty above a size threshold, and the threshold is easy to miss in a crowded incident.",
+          "If a rule has an Attorney General threshold above 0 and the incident's Total Affected Individuals reaches it (at or above), the line is flagged as required and gets a date: the discovered date plus the rule's Attorney General days. The comparison uses the one total on the incident for every state; it is not a count of that state's residents. The Attorney General date appears on the line only: it is not part of the Earliest Deadline, has no Notified box and is not read by the reminder.",
+          "A threshold above 0 with 0 Attorney General days reads required with no date.",
+          "The threshold edges, California at 500 and Texas at 250. Evidence table."
+        ],
+        "use": "a state's rule asks for a regulator to be told above a number of people.",
+        "mode": "Read-only",
+        "images": [
+          "images/bd-ev_ag.webp"
+        ]
+      },
+      {
+        "heading": "5 Earliest deadline and Mark Notified",
+        "body": [
+          "With several clocks running, the question is which one ends first and which are already done.",
+          "The Earliest Deadline on the incident is the smallest notification deadline among the lines that have one and are not marked notified. Each line has a Mark Notified button that records the date and time and drops the line from the earliest deadline and from the reminders. The first picture lists the deadlines of BREACH-0001 (Florida is marked notified, New York has no rule and so no date); the second lists the Attorney General dates. A closed incident keeps its lines and its earliest deadline (third picture, a closed incident with its state notified).",
+          "Ticking the Notified box by hand drops the line from the earliest deadline but leaves the notified date empty; only the button sets the date. A state taken off the incident takes its line and Notified flag with it.",
+          "The lines of the incident (the Odoo list has more columns; this shows three). Real Odoo screen.",
+          "The same lines, Attorney General dates. Real Odoo screen.",
+          "A closed incident. Real Odoo screen."
+        ],
+        "use": "you want to see which state is due first and record that you have notified one.",
+        "mode": "Writes the notified flag",
+        "images": [
+          "images/bd-lines-a.webp",
+          "images/bd-lines-b.webp",
+          "images/bd-closed.webp"
+        ]
+      },
+      {
+        "heading": "6 An hourly reminder as a date gets close",
+        "body": [
+          "A deadline you only see when you open the incident is easy to miss.",
+          "A scheduled action runs every hour. For each open incident it looks at each line that has a deadline and is not marked notified; when the deadline is within the next 48 hours, or already past, it creates one To Do activity on the incident, titled Breach deadline with the state name, unless one already exists. The text says under 48 hours left or OVERDUE as of that moment. We ran Odoo's scheduled action itself; the first picture shows the two reminders it made for BREACH-0001 and the table the other cases.",
+          "The reminders are assigned to OdooBot, not to a person, so they do not appear in anyone's own To Do list; they show on the incident. A reminder marked Done is made again at the next hourly run until the line is marked Notified. A closed incident and the Attorney General date get no reminder.",
+          "Two reminders made by the scheduled action. Real Odoo screen (Odoo 19).",
+          "What the scheduled action did in each case. Evidence table."
+        ],
+        "use": "a deadline is within two days or already past and nobody has marked it notified.",
+        "mode": "Creates To Do activities",
+        "images": [
+          "images/bd-activities.webp",
+          "images/bd-ev_cron.webp"
+        ]
+      },
+      {
+        "heading": "7 Checked against the raw tables",
+        "body": [
+          "A date is only as good as the sum behind it.",
+          "A separate script read the stored lines, their rules and the incident dates straight from the database with SQL and recomputed every deadline, every Attorney General flag and date and every earliest deadline with its own arithmetic and no module code, including discovered times such as 03:25:10 and 23:59:59. All 12 lines and 3 earliest deadlines matched, on Odoo 19 and Odoo 20. As a control the same check with every expected date moved by one hour flagged the 10 lines that have a date.",
+          "What was checked. Evidence table."
+        ],
+        "use": "you want to know the arithmetic is right before you rely on it.",
+        "mode": "Read-only",
+        "images": [
+          "images/bd-ev_check.webp"
+        ]
+      },
+      {
+        "heading": "What changed in this version",
+        "body": [
+          "Version 1.0.10 makes one change to behaviour: the five shipped rules are marked noupdate, so a module upgrade no longer puts them back to the shipped numbers after you have edited them (on 1.0.9 California edited to 25 days read 30 again after an upgrade). The consequence is that a later release cannot change those rows in a database that already has them. It adds 16 automated tests that pin the limits above, replaces the screenshots, the icon and the banner, and rewords the description: the earlier text said a state without a rule shows as verify manually, which the app does not do, and it made statements about US law that this version does not make. The demo video and the YouTube card are those of an earlier version and were not re-recorded or checked against the new text."
+        ],
+        "images": []
+      }
+    ],
+    "scope": [
+      "Each of these was reproduced in a run of the app on Odoo 19 and is pinned by a test that passes. Only the first item of the next section was changed in this version.",
+      "Ten readings from real runs. Evidence table.",
+      "More readings from real runs. Evidence table."
+    ],
+    "requires": [],
+    "price": 39.0,
+    "manifestPrice": 39.0,
+    "currency": "USD",
+    "category": "Extra Tools",
+    "version": "19.0.1.0.11",
+    "license": "OPL-1",
+    "depends": [
+      "mail"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_breach_deadline_calc",
+    "storeUrl19": "https://apps.odoo.com/apps/modules/19.0/mh_breach_deadline_calc",
+    "storeUrl20": "https://apps.odoo.com/apps/modules/20.0/mh_breach_deadline_calc",
+    "screenshots": [
+      "images/bd-ev_limits_a.webp",
+      "images/bd-ev_limits_b.webp"
+    ],
+    "shotDims": {
+      "images/bd-incident-top.webp": [
+        1000,
+        932
+      ],
+      "images/bd-incidents.webp": [
+        1000,
+        661
+      ],
+      "images/bd-rules.webp": [
+        1000,
+        548
+      ],
+      "images/bd-ev_rules.webp": [
+        1000,
+        1128
+      ],
+      "images/bd-ev_calc.webp": [
+        1000,
+        972
+      ],
+      "images/bd-ev_ag.webp": [
+        1000,
+        811
+      ],
+      "images/bd-lines-a.webp": [
+        1000,
+        895
+      ],
+      "images/bd-lines-b.webp": [
+        1000,
+        772
+      ],
+      "images/bd-closed.webp": [
+        1000,
+        759
+      ],
+      "images/bd-activities.webp": [
+        1000,
+        695
+      ],
+      "images/bd-ev_cron.webp": [
+        1000,
+        1055
+      ],
+      "images/bd-ev_check.webp": [
+        1000,
+        698
+      ],
+      "images/bd-ev_limits_a.webp": [
+        1000,
+        1555
+      ],
+      "images/bd-ev_limits_b.webp": [
+        1000,
+        1502
+      ]
+    },
+    "tiles": [
+      {
+        "n": "12 of 12",
+        "l": "state lines (3 incidents) matched an independent recompute of every deadline, Attorney General flag and earliest deadline from the raw tables"
+      },
+      {
+        "n": "5",
+        "l": "state rules ship in the table (California, Colorado, Florida, Texas, Washington); the other 57 US states and territories have none until you add them"
+      },
+      {
+        "n": "33",
+        "l": "automated tests in the app, none failing; 16 were added for the limits stated on this page"
+      },
+      {
+        "n": "Calendar",
+        "l": "days only: no public-holiday or weekend calendar; a deadline can land on a Sunday or on 25 December"
+      },
+      {
+        "n": "0",
+        "l": "legal advice or compliance assurance: it adds days to a date from a table you control, and no figure was checked against statute text in this version"
+      },
+      {
+        "n": "Not",
+        "l": "a person's To Do list: the hourly reminders are assigned to OdooBot and come back after Done (see the known limits)"
+      }
+    ],
+    "faq": [],
+    "copyWords": 1556,
+    "hasVideo": true,
+    "youtubeId": "f7lF6tp7uvw",
+    "externalPage": null
+  },
+  {
+    "tech": "mh_vendor_evaluation",
+    "slug": "vendor-evaluation",
+    "name": "Vendor Evaluation",
+    "summary": "Vendor rating and supplier evaluation: a weighted vendor score from star ratings on each receipt plus measured on-time rate, days late, price drift and returns, shown on the vendor, RFQ and PO",
+    "tagline": "Which vendors deliver on time, at the agreed price and in good condition - one score per vendor, from your own data",
+    "intro": [
+      "Choosing between vendors usually rests on memory: who was late last quarter, who raised the price, who sent damaged goods. Vendor Evaluation measures on-time delivery, days late, price drift and returns from your confirmed purchase orders, receipts, backorders and returns, adds the star ratings your storekeepers give each receipt, and combines them with weights you set into one score from 0 to 100 per vendor. This page walks through it with screenshots of an Odoo 19 database holding a made-up joinery and six made-up vendors, and with tables rendered from real readings of the same run; each picture says which it is.",
+      "It reads orders, receipts and vendor price lines and writes only its own records. This page also says where its definitions bite: cancelled backorders, price lists that change, new vendors with little data, who may rate and when the score refreshes.",
+      "Install it and a Vendor Scores menu appears under Purchase, Orders, a Vendor Evaluation settings page under Purchase, Configuration, and a Vendor rating tab on done receipts. It needs only Purchase with Inventory (the purchase_stock module)."
+    ],
+    "features": [
+      {
+        "heading": "What it keeps, what it changes, what it does not",
+        "body": [
+          "Each line was tested or read in the code."
+        ],
+        "images": []
+      },
+      {
+        "heading": "1 Set the weights, the zero points and the rated criteria",
+        "body": [
+          "A fixed formula treats a one-day delay and a bad batch alike, and nobody agrees on how much each should cost a vendor.",
+          "Open Purchase, Configuration, Vendor Evaluation (one page per company). Set the look-back in days, the weight of each measured number (on-time delivery 3, days late 1, price drift 2, returns 2 by default) and the point at which each scores 0 (7 days late, 10% over the vendor price, 10% of the quantity returned). Below are the rated criteria: Quality of goods (weight 3), Packaging and Communication (weight 1 each); rename, add, reorder, reweight or archive them. A weight of 0 leaves a number out; weights cannot be negative. This is a screenshot from Odoo 19.",
+          "Changing a weight does not change the stored scores until the next recompute (see the known limits).",
+          "The settings page for the made-up company. Real Odoo screen."
+        ],
+        "use": "you want the score to reflect what matters to your purchasing, not a fixed formula.",
+        "mode": "Writes when saved",
+        "images": [
+          "images/ve-settings.webp"
+        ]
+      },
+      {
+        "heading": "2 Rate each receipt with stars",
+        "body": [
+          "The people who open the boxes know whether the goods were as ordered, and that rarely reaches the person who chooses the vendor.",
+          "On a done receipt from a vendor, the Vendor rating tab shows a Rate this receipt button. It adds one line per criterion, all Not scored; you click the stars (1 to 5) you want to give and leave the others. A line left at Not scored does not count. The first picture is a receipt before rating, the second a rated receipt. Ratings are entered by users of the Inventory (Stock) group; a user with Purchase rights only gets an access error. Saving a rating refreshes that vendor's score at once.",
+          "Only a done receipt from a vendor can be rated, once per criterion. Nothing records who rated except the record's creator and last writer, and another Inventory user can change the stars.",
+          "A done receipt before rating. Real Odoo screen (Odoo 19).",
+          "The same tab on a rated receipt. Real Odoo screen."
+        ],
+        "use": "a storekeeper has just received goods and can judge quality, packaging and communication.",
+        "mode": "Writes the ratings",
+        "images": [
+          "images/ve-receipt-empty.webp",
+          "images/ve-receipt-rated.webp"
+        ]
+      },
+      {
+        "heading": "3 Four numbers measured from your own data",
+        "body": [
+          "Ratings alone are opinions; the orders, backorders and returns already hold the facts.",
+          "On-time delivery is the share of the quantity due that arrived on or before its date (the line's Expected Arrival on Odoo 19, the Promised Date on Odoo 20); quantity still owed past its date counts as late, quantity not yet due is not counted. Days late is the average per unit received. Price drift compares the order line price with the vendor price line of the product, by value in company currency, and skips lines with no vendor price, a price of 0 or a price-included tax. Returns is the share of the received quantity sent back through the Return button. Each becomes a 0 to 100 score, and a criterion with no data is left out for that vendor. The table is real readings of the six demo vendors; it stands in for the pivot, which is too wide to show readably.",
+          "It does not read vendor bills, only stock products with receipts are measured, and dates are compared by calendar day in UTC.",
+          "Score by criterion for six vendors. Evidence table."
+        ],
+        "use": "you want delivery, price and returns judged from what happened, not from what people remember.",
+        "mode": "Read-only",
+        "images": [
+          "images/ve-ev_vendors.webp"
+        ]
+      },
+      {
+        "heading": "4 One score per vendor, and how it is made",
+        "body": [
+          "A single number is only useful if someone can see what is behind it.",
+          "Purchase, Orders, Vendor Scores lists every scored vendor by score with stars, the number of orders measured and the receipts rated; opening one shows each criterion with its measured value, its weight and its 0 to 100 score. The score is the weighted average of the criteria that have data, and the stars are the score divided by 20, rounded to the nearest star. The made-up Kestrel Packaging is always about a week late: 0%% on time, 6.96 days late on average, 51.6 and three stars. Fenwick Finishing Oils is new, has one open order at the list price and nothing else to measure, and scores 100: one of the limits below.",
+          "A weight of 0 still shows the line in the breakdown, with its weight, but it does not count.",
+          "The ranking of the six demo vendors. Real Odoo screen (Odoo 19).",
+          "One vendor opened: every criterion with its measured value, weight and score. Real Odoo screen.",
+          "The arithmetic for the same vendor. Evidence table."
+        ],
+        "use": "you want a ranking you can open up and argue with.",
+        "mode": "Read-only",
+        "images": [
+          "images/ve-ranking.webp",
+          "images/ve-breakdown.webp",
+          "images/ve-ev_formula.webp"
+        ]
+      },
+      {
+        "heading": "5 Where you see it",
+        "body": [
+          "A score on a report nobody opens changes nothing; it has to be on the screens where the vendor is chosen.",
+          "The vendor form gets a Vendor score button (score out of 100) beside Odoo's own On-time Rate, which is a different figure. RFQ and purchase order forms show the vendor's stars and score under the vendor, and the order lists have a Vendor score column of stars. Purchase users see these; users outside Purchase do not even get the fields.",
+          "The score is not shown on product vendor lines or in replenishment and blocks nothing.",
+          "The vendor form's button box. Real Odoo screen.",
+          "The vendor's score on a purchase order. Real Odoo screen.",
+          "The order list with the stars column (first rows). Real Odoo screen."
+        ],
+        "use": "a buyer is choosing a vendor or confirming an order.",
+        "mode": "Read-only",
+        "images": [
+          "images/ve-vendor.webp",
+          "images/ve-order.webp",
+          "images/ve-order-list.webp"
+        ]
+      },
+      {
+        "heading": "6 Checked against the raw tables",
+        "body": [
+          "A score is only as good as the counts behind it.",
+          "A separate script read the purchase order lines, stock moves, vendor price lines and ratings straight from the database and recomputed every measured number, every criterion score, the weighted total and the stars with its own arithmetic and no module code. All six vendors matched, with no difference, on Odoo 19 and Odoo 20. As a control the same check run against a module reading shifted by 0.5 flagged all six.",
+          "Six of six vendors, each matched. Evidence table."
+        ],
+        "use": "you want to know the arithmetic is right before you rely on it.",
+        "mode": "Read-only",
+        "images": [
+          "images/ve-ev_check.webp"
+        ]
+      },
+      {
+        "heading": "What changed in this version",
+        "body": [
+          "Version 1.0.2 changes no behaviour of the app. It adds eight automated tests that pin the limits above, replaces the screenshots and the demo-free page text with checked ones, and takes nothing out. The demo video of an earlier version is kept as it was and was not re-recorded."
+        ],
+        "images": []
+      }
+    ],
+    "scope": [
+      "Each of these was reproduced in a run of the app on Odoo 19 and is pinned by a test that passes; none is changed in this version.",
+      "Nine readings from real runs. Evidence table.",
+      "Seven more readings from real runs. Evidence table."
+    ],
+    "requires": [],
+    "price": 39.0,
+    "manifestPrice": 39.0,
+    "currency": "USD",
+    "category": "Inventory/Purchase",
+    "version": "19.0.1.0.3",
+    "license": "OPL-1",
+    "depends": [
+      "purchase_stock"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_vendor_evaluation",
+    "storeUrl19": "https://apps.odoo.com/apps/modules/19.0/mh_vendor_evaluation",
+    "storeUrl20": "https://apps.odoo.com/apps/modules/20.0/mh_vendor_evaluation",
+    "screenshots": [
+      "images/ve-ev_limits_a.webp",
+      "images/ve-ev_limits_b.webp"
+    ],
+    "shotDims": {
+      "images/ve-settings.webp": [
+        1000,
+        2449
+      ],
+      "images/ve-receipt-empty.webp": [
+        1000,
+        1731
+      ],
+      "images/ve-receipt-rated.webp": [
+        1000,
+        1747
+      ],
+      "images/ve-ev_vendors.webp": [
+        1000,
+        1020
+      ],
+      "images/ve-ranking.webp": [
+        1000,
+        988
+      ],
+      "images/ve-breakdown.webp": [
+        1000,
+        2308
+      ],
+      "images/ve-ev_formula.webp": [
+        1000,
+        802
+      ],
+      "images/ve-vendor.webp": [
+        640,
+        664
+      ],
+      "images/ve-order.webp": [
+        1000,
+        746
+      ],
+      "images/ve-order-list.webp": [
+        1000,
+        1127
+      ],
+      "images/ve-ev_check.webp": [
+        1000,
+        768
+      ],
+      "images/ve-ev_limits_a.webp": [
+        1000,
+        1389
+      ],
+      "images/ve-ev_limits_b.webp": [
+        1000,
+        1237
+      ]
+    },
+    "tiles": [
+      {
+        "n": "6 of 6",
+        "l": "vendors matched an independent recompute from the raw purchase, stock and rating tables (every measured number, criterion score, total and star)"
+      },
+      {
+        "n": "4 + 3",
+        "l": "four numbers measured from your own orders and receipts plus three rated criteria (Quality, Packaging, Communication) that you can rename and reweight"
+      },
+      {
+        "n": "30",
+        "l": "automated tests in the app, none failing; 8 were added for the limits stated on this page"
+      },
+      {
+        "n": "1.3 s",
+        "l": "to recompute 126 vendor scores from 720 order lines and 1,228 stock moves in the test run; larger data not tested"
+      },
+      {
+        "n": "0",
+        "l": "products, prices, orders or receipts changed: it writes only its own records and sends nothing over the network"
+      },
+      {
+        "n": "Not",
+        "l": "refreshed by a receipt or a weight change: daily, by ratings and on demand (see the known limits)"
+      }
+    ],
+    "faq": [],
+    "copyWords": 1259,
+    "hasVideo": true,
+    "youtubeId": "jmTyo96t1i8",
+    "externalPage": null
+  },
+  {
+    "tech": "mh_google_ads_conversions",
+    "slug": "google-ads-conversions",
+    "name": "Google Ads Conversions",
+    "summary": "Google Ads conversion tracking for the Odoo shop: purchases with order value and lead form submissions, sent only after cookie consent",
+    "tagline": "",
+    "intro": [
+      "Google Ads conversion tracking for the Odoo shop: purchases with order value and lead form submissions, sent only after cookie consent",
+      "Smart Bidding can only optimise for sales if Google Ads is told which clicks became orders and what they were worth. Paste your Google Ads conversion ID and conversion labels into Website settings and your shop reports every completed order to Google Ads with its value, currency and order reference, and, if you set a lead label, every submitted website form as a lead conversion. No Google Analytics app is needed, and this app requests nothing from Google until the visitor accepts marketing cookies.",
+      "Sends conversions to Google Ads only after the visitor accepts marketing cookies."
+    ],
+    "features": [
+      {
+        "heading": "What is sent to Google",
+        "body": [
+          "The Google tag's page view for your conversion ID on each page, which Google Ads also uses for its remarketing audiences. On a completed order, a purchase conversion with the order value excluding tax and shipping, the currency, and the order reference (such as S00042) as transaction_id. On a website form submission, a lead conversion whose transaction_id is the form's record type and number (such as mail.mail-12), with no value. Names, emails, phone numbers and addresses are never sent, and there are no enhanced conversions. The tag runs in the visitor's browser, so Google also receives what any tag receives from a browser, such as the page address and the visitor's IP address. A short version of this is shown next to the settings."
+        ],
+        "images": []
+      },
+      {
+        "heading": "Purchase and lead conversions",
+        "body": [
+          "The purchase conversion fires on the order confirmation page, once per order in each browser: a reload is not counted again, and the transaction_id lets Google drop a repeat. The lead conversion fires when the server accepts an Odoo website form (Contact Us, or any form built in the website editor), whatever the form does next, including Odoo's default redirect to a thank-you page. If the redirect leaves before Google confirms the hit, the next page sends it once more under the same transaction_id, so Google still counts it once. A form the server refuses is not counted."
+        ],
+        "images": []
+      },
+      {
+        "heading": "Works next to Odoo's Google tag",
+        "body": [
+          "If Odoo's own Google Analytics setting already loads Google's gtag.js on the page (a G- measurement ID), the app reuses it and adds your conversion ID to the same dataLayer, so gtag.js is not loaded twice. Your conversion ID sits in its own gtag group, so the shop events Odoo sends to Google Analytics (add to cart, purchase, virtual page views) never reach Google Ads: Google Ads receives only the page view and the conversions this app sends. With a GTM- container on Odoo 20, which loads Google Tag Manager rather than gtag.js, the app loads gtag.js once itself on the same dataLayer."
+        ],
+        "images": []
+      },
+      {
+        "heading": "Consent and Consent Mode v2",
+        "body": [
+          "Built on our free Website Tracking Base, which is installed with it. The tag waits for marketing consent from Odoo's Cookies Bar (\"Allow all\") or from our free Cookie Consent Banner (the Marketing box). Analytics consent alone does not load it. With neither banner switched on it never loads. It never loads for internal users, so your own visits and the website editor are not tracked. When it loads it sets the Consent Mode v2 signals ad_storage, ad_user_data and ad_personalization to granted, and back to denied if the visitor withdraws marketing consent on the page."
+        ],
+        "images": []
+      },
+      {
+        "heading": "Settings, per website",
+        "body": [
+          "In Website settings: the conversion ID (AW-...), the purchase conversion label and an optional lead conversion label. Each website keeps its own. A pasted tag snippet or a wrong ID is refused with a message saying what to paste instead."
+        ],
+        "images": []
+      },
+      {
+        "heading": "Who it is for",
+        "body": [
+          "Odoo shops and lead-generation sites that advertise on Google Ads and want purchase conversions with order value, and form leads, reported to Google Ads without a Google Analytics 4 app, without adding code to the website by hand, and without loading anything before consent."
+        ],
+        "images": []
+      }
+    ],
+    "scope": [
+      "No enhanced conversions: it sends no email, phone or address, hashed or not. It is a browser tag, not the Google Ads API: it cannot report orders from visitors who decline cookies or block the tag, it does not upload offline conversions, and it does not connect to your Google Ads account, create conversion actions or manage campaigns. You create the purchase and lead conversion actions in Google Ads and copy the ID and labels. It sends no add-to-cart, checkout or dynamic remarketing item events: only the page view, purchase and lead, and Odoo's own Google Analytics events are kept off your conversion ID. The value always excludes tax and shipping. Only orders that reach the eCommerce confirmation page are reported, not orders confirmed in the backend, at the Point of Sale or from a portal quotation. Leads come only from Odoo website forms, not from newsletter sign-ups, live chat or third-party forms. One conversion ID per website. If you also use Odoo's own Google Analytics setting, Odoo itself loads Google's tag (gtag.js, or Tag Manager for a GTM- key on Odoo 20) before consent, with the consent signals denied; that is Odoo's behaviour and this app does not change it. Tested with a G- key on Odoo 19 and 20 and a GTM- key on Odoo 20. It is a technical control, not legal advice: what your policy says remains yours to decide."
+    ],
+    "requires": [
+      "Odoo 19 and 20, Community or Enterprise, with the Website and eCommerce apps. Also requires Website Tracking Base (free), installed automatically. Third-party apps install on Odoo.sh or On-Premise only - they cannot be installed on Odoo Online (SaaS)."
+    ],
+    "price": 38.92,
+    "manifestPrice": 39.0,
+    "currency": "USD",
+    "category": "Website/Website",
+    "version": "19.0.1.0.1",
+    "license": "OPL-1",
+    "depends": [
+      "mh_website_tracking_base"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_google_ads_conversions",
+    "storeUrl19": "https://apps.odoo.com/apps/modules/19.0/mh_google_ads_conversions",
+    "storeUrl20": "https://apps.odoo.com/apps/modules/20.0/mh_google_ads_conversions",
+    "screenshots": [
+      "screenshot_settings.webp"
+    ],
+    "shotDims": {
+      "screenshot_settings.webp": [
+        1000,
+        725
+      ]
+    },
+    "tiles": [],
+    "faq": [],
+    "copyWords": 882,
+    "hasVideo": true,
+    "youtubeId": "HFUaSDLOg9w",
+    "externalPage": null
+  },
+  {
+    "tech": "mh_stock_aging_report",
+    "slug": "stock-aging-report",
+    "name": "Inventory Aging Report",
+    "summary": "Shows how long each product with stock on hand has sat since it last left the building, in age buckets valued at cost: stock aging report (stock ageing, inventory ageing), per warehouse and category",
+    "tagline": "Age your inventory into six buckets by how long it has sat unsold, with the money tied up in each, per warehouse and product category",
+    "intro": [
+      "Inventory Aging Report is for the person who has to answer a simple question and cannot with the tools Odoo gives you: which of our stock is not selling, and how much money is sitting in it? Press Run Report and every product with stock on hand is placed in an age bucket by the last time it actually left the warehouse to a customer, to production or in transit, with quantity and value at cost next to it. A short summary in plain words names the largest offenders, and one button opens just the lines older than six months. Nothing is written back to your inventory.",
+      "The screenshots were taken on Odoo 19 in a database seeded with made-up data: a fictitious outdoor-gear company called Larkfield Outdoor Supply with 18 products in four categories, a Main Warehouse and an East Depot, and shipments backdated up to 520 days. The data is synthetic, and every number quoted beside a screenshot is read off that screenshot."
+    ],
+    "features": [
+      {
+        "heading": "The question quantity on hand cannot answer",
+        "body": [
+          "A quantity on hand tells you nothing about whether stock is a problem. The same 500 units are healthy in a fast-moving line and dead capital in a slow one. What separates them is the date something last left the building, and that date is not stored on the stock record. Odoo's stock list shows you what you hold; to learn how long it has been held you would have to open the move history product by product and read it yourself.",
+          "Inventory Aging Report does that reading for the whole warehouse at once. It takes each product with stock on hand, finds the last time it genuinely shipped, counts the days since, and drops it into one of six buckets that match how stock is actually written down: a quarter, half a year, a year. Next to each line sits the money held there."
+        ],
+        "images": []
+      },
+      {
+        "heading": "1 One menu entry, one record: pick a scope and run",
+        "body": [
+          "Dead stock is easy to suspect and hard to prove. The proof lives in thousands of stock moves, and the usual way to get at it is an export and a pivot table that someone rebuilds every quarter. A report that is a saved record, with a name and a scope, can be reopened, rerun and compared with last quarter's.",
+          "The entry is Inventory > Reporting > Inventory Aging . A report is a form with a name, two optional scope fields, Warehouses and Product Categories , and one tick box, Include products with no stock , off by default. Leave both scope fields empty and the report covers every warehouse of the company and every category. Run Report sits at the top of the form.",
+          "The form carries a short note on how age is measured, so the person reading a saved report months later does not have to guess. A report belongs to one company; the Company field appears only on a multi-company database.",
+          "The entry sits in Inventory > Reporting, beside Odoo's own stock reports.",
+          "A new report before it is run: a name, a warehouse and two categories picked. Run Report is the only button until a run exists.",
+          "Priya is the purchasing manager at a made-up outdoor-gear company. At the start of the quarter she presses New, names the report Q4 stock review , leaves both scope fields empty and presses Run Report. A second report, Main Warehouse only , differs in one thing: she picks Main Warehouse. Both stay in the list, so next quarter she can open them instead of starting again."
+        ],
+        "use": "you want an aged view of your stock in a minute, without building a spreadsheet.",
+        "mode": "Read-only (writes its own report record)",
+        "result": "a saved report record with the scope you chose and the date and time it was run, ready to reopen or rerun.",
+        "warn": "Inventory Users and Inventory Administrators can open the menu and run the report. The menu is not restricted to administrators.",
+        "images": [
+          "images/stock-aging-menu.webp",
+          "images/stock-aging-setup.webp"
+        ]
+      },
+      {
+        "heading": "2 Six buckets: where every product on hand ends up",
+        "body": [
+          "Evenly sliced age bands, say every 30 days up to 360, line up with nothing. Nobody writes stock down at day 270. Finance reviews stock by the quarter, the half year and the year, so the buckets here follow those lines.",
+          "After a run the Products tab lists one row per product: Product , Quantity , Value , Last shipped , Days sitting and Bucket , largest value first. The buckets are 0-30 days , 31-90 days , 91-180 days , 181-365 days , Over a year and Never moved .",
+          "Colour does the first read for you. A row in the 181-365 bucket is amber. A row that is over a year old, or never moved, is red. Younger rows stay plain. A product that has never shipped shows no date and no day count, because nothing has sat there for no days; it simply says Never moved. The value column carries a total at the foot.",
+          "The top rows of the sample run, largest value first. Winter Boot Pro is red at 410 days; Rain Shell is amber at 200; the Thermal Gloves have never shipped.",
+          "In the sample run of 18 products, six products are in 0-30 days holding $21,200, one is in 31-90 days holding $2,560, three are in 91-180 days holding $6,840, three are in 181-365 days holding $6,310, two are over a year holding $7,990 and three have never moved, holding $4,260. The six values add up to the $49,160 total shown on the form.",
+          "Winter Boot Pro is the top line: 68 pairs, $5,780, last shipped on Sep 14, 2025, 410 days ago. It is both the most expensive line on the sheet and one of the oldest, which is the combination the report exists to find."
+        ],
+        "use": "you need to see how much of your stock is fresh and how much has gone cold.",
+        "mode": "Read-only",
+        "result": "every product with stock on hand in exactly one bucket, with its quantity, its value at cost, its last shipping date and its days sitting.",
+        "warn": "The buckets are fixed at those six. You cannot move the boundaries, add a bucket or change the colours.",
+        "images": [
+          "images/stock-aging-rows.webp"
+        ]
+      },
+      {
+        "heading": "3 Only real shipments reset the clock",
+        "body": [
+          "The easy way to find a product's last movement is its most recent stock move of any kind. That is also the wrong way. A pallet that is shelved, relocated to another bay, counted and written down is touched four times in a year and sold zero times. Every one of those touches would reset a naive clock to today, and the product would sit in the youngest bucket while its cash stays locked up.",
+          "The report looks only at completed moves that leave an internal location for a customer , for production or in transit , and takes the latest one per product. Everything else is ignored: transfers between your own locations, stock-count adjustments, scrap and loss write-offs.",
+          "Two more rules keep the clock tied to the question you asked. Moves in another company are ignored. And when the report is scoped to warehouses, only shipments out of those warehouses count, so a product that ships freely from a sister site still shows as idle in the one you are reviewing. Section 6 shows that case.",
+          "Odoo's own Moves History for Winter Boot Pro. The two recent moves, a write-off and a transfer inside the warehouse, are ignored; the Sep 14, 2025 delivery sets the date.",
+          "In the sample, Winter Boot Pro had 10 pairs moved to another bay of the Main Warehouse four days ago, and 2 pairs written off to inventory loss three days ago. Both are the kind of touch that would make a product look alive. The report ignores both: Winter Boot Pro still reads Sep 14, 2025, 410 days, Over a year, and its 68 pairs remain red in the Products list."
+        ],
+        "use": "dead stock keeps being moved around the warehouse and looks busy in other reports.",
+        "mode": "Read-only",
+        "result": "a last-shipped date that only moves when the product really leaves, so shuffled stock cannot look busy.",
+        "warn": "A return from a customer does not reduce the age, and a production order that consumes a component counts as a shipment of that component. Only the leaving move is read.",
+        "images": [
+          "images/stock-aging-clock.webp"
+        ]
+      },
+      {
+        "heading": "4 The money: value at cost, with a stale total",
+        "body": [
+          "Quantity multiplies out to nothing useful across products. A thousand screws and ten tents are not comparable. The comparable thing is money, and the honest money figure for stock you cannot sell is what you paid, not what you hoped to get.",
+          "Each line's Value is its quantity on hand multiplied by the product's Cost field. The form header shows Run On , Product Count , Total Value and Stale Value , and a button on the top left, Sitting 6m+ , repeats the stale figure.",
+          "Stale Value is the capital held in products that have not shipped for more than 180 days: the 181-365 days, Over a year and Never moved buckets together. Quantity counts everything on hand in the scope, including stock already reserved for orders.",
+          "After Run Report: the stat button, the four totals and the What stood out summary, all on the same form.",
+          "The sample company holds $49,160 of stock across 18 products. $18,560 of it, 37.8%, has not shipped in over six months. The cheapest way to read the risk: a little over a third of the cash in this warehouse is in products that did not leave in the last half year."
+        ],
+        "use": "you need the capital tied up in slow stock as a number you can put in front of finance.",
+        "mode": "Read-only",
+        "result": "one total, one stale total and the percentage you can work out from them, all at cost.",
+        "warn": "The value uses the product's current Cost field, not an accounting valuation. If your costing method is average or FIFO, that field is the product's current cost, which may differ from the layered value on your balance sheet.",
+        "images": [
+          "images/stock-aging-result.webp"
+        ]
+      },
+      {
+        "heading": "5 What stood out: the summary and the six-month list",
+        "body": [
+          "A table of every product is complete and nobody reads it twice. People act on a short list of the worst lines, so the report produces one.",
+          "Under the totals a block titled What stood out says in plain words how many products have not shipped in over six months and how much they hold, and names the five largest by value. If some of them have never shipped at all, it says how many, and notes that this is either new stock or a buying mistake and that the receipt date will tell which. If nothing is older than six months, it says that instead.",
+          "The Sitting 6m+ button opens a list with only those lines (the 181-365 days, Over a year and Never moved buckets), largest value first, with the total at the foot. It is a standard Odoo list.",
+          "The Sitting 6m+ list: eight products, $18,560.00 in total. Red lines are over a year or never moved, amber lines are 181 to 365 days.",
+          "The sample report says that 8 products have not shipped in over six months, holding $18,560.00, and that the largest are Winter Boot Pro, Rain Shell, Thermal Gloves, Water Filter Straw and Titanium Pot Set. It adds that 3 of those have never shipped at all. Priya presses Sitting 6m+ and sees all eight: the three never-moved lines (Thermal Gloves, Inflatable Pillow and Compass Pro) are the ones she checks against purchase receipts first."
+        ],
+        "use": "you want the report to tell you where to look before you read 18 rows, or 1,800.",
+        "mode": "Read-only",
+        "result": "a short written verdict and a one-click list of exactly the lines that matter.",
+        "warn": "The summary names at most five products, however many are stale. Press the button for the full list.",
+        "images": [
+          "images/stock-aging-stale.webp"
+        ]
+      },
+      {
+        "heading": "6 Scope it: by category and by warehouse",
+        "body": [
+          "A buyer owns a range; a site manager owns a building. A single company-wide list answers neither, and a shipment from one site must not hide idle stock in another.",
+          "Product Categories match down the tree: pick a parent category and everything beneath it is included. Warehouses cover every location below the warehouse, so bays and shelves are included. You can pick several of each. With neither set the report covers the whole company.",
+          "When you scope by warehouse, the stock is counted in those warehouses and the last-shipped date is read from shipments out of those warehouses only. The second screenshot below is the same company, scoped to the Main Warehouse, and the table under it shows what changes: Fleece Jacket is 5 days in the company-wide run because the East Depot shipped some, but 70 days when Main Warehouse is judged on its own shipments.",
+          "A Footwear review: one category, three products, $11,270.00, of which $6,590.00 is stale.",
+          "Main Warehouse only: the same 18 products, but $44,510.00 and $20,770.00 stale, because East Depot's shipments no longer count.",
+          "Priya's footwear buyer gets the Footwear review: three products worth $11,270.00, of which Winter Boot Pro and Alpine Gaiters hold $6,590.00 that has sat since September 2025 and January 2026. The Main Warehouse manager gets the Main Warehouse only report and sees nine stale products worth $20,770.00 instead of eight worth $18,560.00, because Trekking Poles last shipped from the East Depot 150 days ago but from Main 520 days ago."
+        ],
+        "use": "the question is about one range or one site, not the whole company.",
+        "mode": "Read-only",
+        "result": "a report you can hand to one buyer or one site manager, whose last-shipped dates are judged only on that scope.",
+        "warn": "A category or warehouse scope changes which stock is counted and which shipments reset the clock. Compare a scoped report with a company-wide one only knowing that.",
+        "images": [
+          "images/stock-aging-footwear.webp",
+          "images/stock-aging-main-top.webp"
+        ]
+      },
+      {
+        "heading": "Who it is for",
+        "body": [
+          "If you do not hold physical stock, or you only need a single count of dead products, the free Dead Stock Check may be all you need."
+        ],
+        "images": []
+      }
+    ],
+    "scope": [],
+    "requires": [],
+    "price": 38.92,
+    "manifestPrice": 39.0,
+    "currency": "USD",
+    "category": "Warehouse",
+    "version": "19.0.1.0.23",
+    "license": "OPL-1",
+    "depends": [
+      "stock"
+    ],
+    "paidDepends": [],
+    "downloads": 0,
+    "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_stock_aging_report",
+    "storeUrl19": "https://apps.odoo.com/apps/modules/19.0/mh_stock_aging_report",
+    "storeUrl20": "https://apps.odoo.com/apps/modules/20.0/mh_stock_aging_report",
+    "screenshots": [],
+    "shotDims": {
+      "images/stock-aging-menu.webp": [
+        1000,
+        361
+      ],
+      "images/stock-aging-setup.webp": [
+        1000,
+        430
+      ],
+      "images/stock-aging-rows.webp": [
+        1000,
+        673
+      ],
+      "images/stock-aging-clock.webp": [
+        1000,
+        258
+      ],
+      "images/stock-aging-result.webp": [
+        1000,
+        837
+      ],
+      "images/stock-aging-stale.webp": [
+        1000,
+        500
+      ],
+      "images/stock-aging-footwear.webp": [
+        1000,
+        980
+      ],
+      "images/stock-aging-main-top.webp": [
+        1000,
+        837
+      ]
+    },
+    "tiles": [
+      {
+        "n": "6",
+        "l": "age buckets, from 0-30 days to never moved"
+      },
+      {
+        "n": "14",
+        "l": "automated tests, none failing"
+      },
+      {
+        "n": "0",
+        "l": "stock moves, costs or journal entries written"
+      },
+      {
+        "n": "3",
+        "l": "kinds of move that reset the clock: customer, production, transit"
+      },
+      {
+        "n": "$18,560",
+        "l": "stale value found in the made-up stock in the screenshots"
+      },
+      {
+        "n": "37.8%",
+        "l": "of that stock's $49,160 value sitting six months or more"
+      }
+    ],
+    "faq": [
+      {
+        "q": "Does it change my stock, costs or accounting?",
+        "a": "No. It only reads. Apart from its own report records, it writes nothing."
+      },
+      {
+        "q": "What counts as a product shipping?",
+        "a": "A completed move out of an internal location to a customer, to production or in transit. Transfers between your own locations, stock-count adjustments and scrap do not."
+      },
+      {
+        "q": "Why valued at cost?",
+        "a": "Because this is capital tied up. Sale price would overstate the exposure on exactly the stock that is not selling."
+      },
+      {
+        "q": "Which cost is used?",
+        "a": "The product's Cost field at the moment you press Run Report, multiplied by the quantity on hand."
+      },
+      {
+        "q": "What does Never moved mean?",
+        "a": "The product has stock on hand but no completed shipment in your scope. It is either new stock or a buying mistake, and the report cannot tell which; the receipt date will."
+      },
+      {
+        "q": "Are my reports saved?",
+        "a": "Yes. Every report is a record with its name, scope and run date, listed newest first with product count, total value and stale value. Running one again replaces its rows, so create a new report to keep a baseline."
+      },
+      {
+        "q": "Can I run it for one warehouse or one category?",
+        "a": "Yes, both, and several of each. Categories match down the tree, and warehouses include the locations below them."
+      },
+      {
+        "q": "Why does a product look younger in the company-wide report than in a warehouse report?",
+        "a": "Because a shipment from another warehouse counts in the company-wide run and not when you scope to one warehouse. Section 6 shows an example."
+      },
+      {
+        "q": "Can I change the buckets or the six-month line?",
+        "a": "No. The buckets are fixed at 0-30, 31-90, 91-180, 181-365, over a year and never moved, and the stale line is 180 days."
+      },
+      {
+        "q": "Does it work with several companies?",
+        "a": "Each report counts one company's stock and shipments. The saved reports themselves are not hidden between companies in this version; see Security and data."
+      },
+      {
+        "q": "What does the report say when nothing is stale, or nothing matches?",
+        "a": "When no product is older than six months the summary reads Nothing has been sitting longer than six months and Stale Value is 0.00. When the scope matches no stock on hand, such as a warehouse that holds nothing, it says No stock on hand matched this report and lists no products."
+      },
+      {
+        "q": "Is the report live?",
+        "a": "No. It is a snapshot taken when you press Run Report. Press it again to refresh."
+      },
+      {
+        "q": "Does it export to PDF or Excel?",
+        "a": "No. It is an Odoo form and list, with no file output of its own."
+      },
+      {
+        "q": "Does it need the free Dead Stock Check?",
+        "a": "No. It works on its own. Dead Stock Check is a separate free app that gives a single headline number."
+      }
+    ],
+    "copyWords": 1959,
+    "hasVideo": true,
+    "youtubeId": "5gZIX1k6XNo",
     "externalPage": null
   },
   {
@@ -16877,7 +16877,7 @@ export const odooApps = [
     "manifestPrice": 39.0,
     "currency": "USD",
     "category": "Sales/Sales",
-    "version": "19.0.1.0.1",
+    "version": "19.0.1.0.2",
     "license": "OPL-1",
     "depends": [
       "sale"
@@ -16982,53 +16982,136 @@ export const odooApps = [
     "slug": "warehouse-access-rules",
     "name": "Warehouse Access Rules",
     "summary": "Warehouse access rules: restricts users to the warehouses they work in and counts what each user will stop seeing before the restriction is switched on (transfers and quants)",
-    "tagline": "Restrict users to the warehouses they work in, and see exactly how many transfers and quants each of them will stop seeing before you switch it on",
+    "tagline": "Restrict users to the warehouses they work in, and see how many transfers and stock lines each of them will stop seeing before you switch it on",
     "intro": [
-      "Restricting somebody to their own site is easy to switch on and hard to predict. It hides records, and hidden records look exactly like there being none - so the complaint that follows is never \"the rule is wrong\", it is \"the system is broken\", and it arrives from the warehouse floor on a Monday.",
-      "Two people, their warehouses, and what each one stops seeing.",
-      "Counted before anything is applied, with a button to go and look at the transfers in question."
+      "Restricting somebody to their own site is easy to switch on and hard to predict: hidden records look exactly like there being none, and the complaint arrives from the warehouse floor. Warehouse Access Rules counts first. Pick the user and their warehouses, press Count what they lose, and it tells you how many transfers and stock lines that person will stop seeing, with a button that opens those very transfers. People you have not named keep seeing everything. This page walks through it with screenshots of an Odoo 19 database holding a made-up distributor, three warehouses and four users, each logged in separately, and with tables rendered from real readings of the same run; each picture says which it is.",
+      "It narrows three things: transfers, stock on hand and the warehouse list. It is not a complete lock: other screens still show other warehouses, and this page says which.",
+      "Install it and a Warehouse Access menu appears under Inventory, Configuration. It needs only the Inventory app (stock)."
     ],
     "features": [
       {
-        "heading": "It counts before it hides",
+        "heading": "What it keeps, what it changes, what it does not",
         "body": [
-          "How many transfers and how many stock lines that person will stop seeing, with one button to open those very transfers and check they are the ones you meant."
+          "Each line was tested or read in the code."
         ],
         "images": []
       },
       {
-        "heading": "Nobody you did not name is affected",
+        "heading": "1 Count before you hide",
         "body": [
-          "Anybody without a restriction keeps seeing everything, so you can add people one at a time and check each as you go - instead of switching on a rule that quietly narrows the whole company at once."
+          "Hiding records looks exactly like there being none, so nobody can tell a wrong rule from a broken system until it is too late.",
+          "Open Inventory, Configuration, Warehouse Access. The first picture is the list of restrictions: one row per user, the warehouses they may see, and how many transfers they stop seeing (the form also shows stock lines). The second is a restriction opened and counted with a real click on Count what they lose: Priya Nair, restricted to Harbor Cold Store, stops seeing 15 transfers and 9 stock lines. Show those transfers opens the transfers in question (third picture, Maya Chen: 12 transfers, in three states). The figures count the whole database as the superuser, so they are what exists, not what the person can reach today. The table compares the count with what the restricted user then actually lost: 12 and 12, 10 and 10.",
+          "The numbers are a snapshot taken when you press the button; they are not refreshed when warehouses or transfers change.",
+          "The list of restrictions. Real Odoo screen.",
+          "A restriction after a real click on Count what they lose. Real Odoo screen.",
+          "Show those transfers, for Maya Chen. Real Odoo screen.",
+          "The count against what the user then loses. Evidence table."
         ],
-        "images": []
+        "use": "you want to know what a restriction will cost a user before you switch it on.",
+        "mode": "Reads only",
+        "images": [
+          "images/wa-access-list.webp",
+          "images/wa-access-form-count.webp",
+          "images/wa-hidden-transfers.webp",
+          "images/wa-ev_count.webp"
+        ]
       },
       {
-        "heading": "The three places people mean",
+        "heading": "2 What a restricted user sees",
         "body": [
-          "Transfers, stock on hand, and the warehouse list itself. Records with no warehouse at all stay visible to everybody, because hiding those breaks the parts of Odoo that use warehouse-less transfers and explains nothing to the user."
+          "A picker at one site has no use for another site's transfers, and sees them in every list.",
+          "Maya Chen is restricted to Riverside Distribution Centre. Her Transfers list holds the ten Riverside transfers and none of the other twelve (first picture); her warehouse list holds one warehouse (second). Opening a transfer of another warehouse by its address, or trying to cancel, change or create one, is refused with an access error (third picture and table). Odoo's own product on-hand and forecast figures follow the warehouses she can see: 490 on hand for an unrestricted user, 340 for her. Anybody without a restriction is untouched: in the same run the unrestricted users still saw all 22 transfers.",
+          "It does not change which operations a user may perform on the transfers they can see.",
+          "Maya Chen's transfers. Real Odoo screen.",
+          "Her warehouse list. Real Odoo screen.",
+          "A transfer of another warehouse opened by its address. Real Odoo screen.",
+          "A restricted user touching the other warehouse. Evidence table."
         ],
-        "images": []
+        "use": "a person should only see the site they work in.",
+        "mode": "Changes records",
+        "images": [
+          "images/wa-maya-transfers.webp",
+          "images/wa-maya-warehouses.webp",
+          "images/wa-maya-denied.webp",
+          "images/wa-ev_touch.webp"
+        ]
       },
       {
-        "heading": "It refuses two things",
+        "heading": "3 What it does not narrow",
         "body": [
-          "A restriction with no warehouses, which would hide every transfer and stock line from that person - archiving is how you turn one off. And a restriction on the superuser, which bypasses record rules by design and would do nothing while looking as though it did something."
+          "A restriction that quietly leaves a screen open is worse than none, because you stop checking.",
+          "Only transfers, stock on hand and the warehouse list are narrowed. The first picture is Moves History as Maya sees it: the done moves of Northfield and Harbor are in her list, with references, products and quantities. The table counts every stock model for an unrestricted and a restricted user: stock moves, move lines, locations, operation types, reordering rules, lots and routes are not narrowed. Reading the display name of another warehouse's operation type directly is refused for her (an access error).",
+          "It does not restrict by location inside a warehouse, and it is not a substitute for access rights.",
+          "Moves History as a Riverside-only user sees it. Real Odoo screen.",
+          "What a restriction narrows, and what it does not. Evidence table."
+        ],
+        "use": "you need to know which screens still show other warehouses.",
+        "mode": "Read-only",
+        "images": [
+          "images/wa-maya-moves.webp",
+          "images/wa-ev_models.webp"
+        ]
+      },
+      {
+        "heading": "4 Who can set it, and what it refuses",
+        "body": [
+          "A restriction that anybody can edit, or that can be saved empty, is no restriction.",
+          "Restrictions are created, changed and deleted by Inventory administrators; the other internal users cannot, but they can read the list, notes included. A restriction with no warehouse is refused (an empty list would hide everything), and so is a restriction on the superuser. A second restriction for the same user is refused by the database, and an archived restriction keeps the slot. An Inventory administrator who is restricted can still archive their own restriction. The two tables are real readings.",
+          "A portal user can be given a restriction through the API; the form does not offer one.",
+          "What the app refuses. Evidence table.",
+          "Who can do what with the restrictions. Evidence table."
+        ],
+        "use": "you need to know who can change a restriction and what cannot be saved.",
+        "mode": "Read-only",
+        "images": [
+          "images/wa-ev_refused.webp",
+          "images/wa-ev_rights.webp"
+        ]
+      },
+      {
+        "heading": "5 A change takes effect at once",
+        "body": [
+          "Odoo keeps the evaluated record rules between requests. Until this version, a restriction that was added, changed, archived or deleted did not reach a user who had already opened a screen, and a new warehouse stayed invisible to everybody who had; on Odoo 20 the administrator could not even create a warehouse.",
+          "The table is a real reading through the web client's own call with real logins, in a server that had already served each user, before and after this version: Maya had searched, was restricted to Riverside, changed to Harbor and unrestricted again; the old version kept answering 22 transfers each time. A warehouse added later is now found by the administrator and its transfers seen by users nobody restricted.",
+          "A restriction takes effect on the next request; it does not end a session or an open screen.",
+          "Before and after. Evidence table."
+        ],
+        "use": "you change somebody's warehouses and expect them to notice on their next click.",
+        "mode": "Changes records",
+        "images": [
+          "images/wa-ev_stale.webp"
+        ]
+      },
+      {
+        "heading": "6 Archiving, transfers between warehouses, speed",
+        "body": [
+          "Edge cases are where a visibility rule quietly goes wrong.",
+          "Archiving a warehouse that has history no longer hides its transfers from people nobody restricted (until this version it did), and a user who was given it keeps seeing them. A transfer follows its operation type: a transfer from Riverside stock into Harbor stock is a Riverside transfer, visible to the Riverside user and not to the Harbor user. The restriction applies to the Administrator user too, which can still open the list of restrictions. With 3,000 extra transfers a restricted user's count plus a page of 80 took under 3 ms, about the same as an unrestricted user (best of five).",
+          "Archiving, transfers between warehouses and speed. Evidence table."
+        ],
+        "use": "your warehouses close, and goods move between them.",
+        "mode": "Read-only",
+        "images": [
+          "images/wa-ev_archive.webp"
+        ]
+      },
+      {
+        "heading": "What changed in this version",
+        "body": [
+          "Version 1.0.14 fixes two defects. First, Odoo keeps the evaluated record rules between requests, and the app's rules were baked into that cache: a restriction that was added, changed, archived or deleted, and a warehouse that was added, did not reach a user who had already opened a screen until the server was restarted (on Odoo 20 an Inventory administrator could not create a warehouse at all). The cache is now emptied whenever a restriction changes and before a new warehouse is checked. Second, archiving a warehouse hid its transfers from people nobody restricted, against the promise that unnamed people keep seeing everything; archived warehouses now count. 14 automated tests were added, 7 of them fail on the old code and pass now. The screenshots and text were rewritten; the demo video of an earlier version is kept as it was and was not re-recorded."
         ],
         "images": []
       }
     ],
     "scope": [
-      "It counts across the whole database rather than as that user, so the figure is what exists and would be hidden. Counting as the user would report zero the moment the rule was on, which is exactly the wrong reassurance."
+      "Each of these was reproduced in a run of the app on Odoo 19 and is pinned by a test that passes."
     ],
-    "requires": [
-      "Odoo 19 Community or Enterprise with Inventory. It restricts what people see, not what they may do - which operations they can perform is access rights . It does not restrict by location within a warehouse, and it writes nothing to your stock."
-    ],
+    "requires": [],
     "price": 28.98,
     "manifestPrice": 29.0,
     "currency": "USD",
     "category": "Warehouse",
-    "version": "19.0.1.0.13",
+    "version": "19.0.1.0.14",
     "license": "OPL-1",
     "depends": [
       "stock"
@@ -17038,23 +17121,93 @@ export const odooApps = [
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_warehouse_access",
     "storeUrl19": "https://apps.odoo.com/apps/modules/19.0/mh_warehouse_access",
     "storeUrl20": "https://apps.odoo.com/apps/modules/20.0/mh_warehouse_access",
-    "screenshots": [
-      "screenshot_access.webp",
-      "screenshot_count.webp"
-    ],
+    "screenshots": [],
     "shotDims": {
-      "screenshot_access.webp": [
+      "images/wa-access-list.webp": [
         1000,
-        206
+        457
       ],
-      "screenshot_count.webp": [
+      "images/wa-access-form-count.webp": [
         1000,
-        350
+        1408
+      ],
+      "images/wa-hidden-transfers.webp": [
+        1000,
+        2126
+      ],
+      "images/wa-ev_count.webp": [
+        1000,
+        872
+      ],
+      "images/wa-maya-transfers.webp": [
+        1000,
+        1548
+      ],
+      "images/wa-maya-warehouses.webp": [
+        1000,
+        239
+      ],
+      "images/wa-maya-denied.webp": [
+        1000,
+        858
+      ],
+      "images/wa-ev_touch.webp": [
+        1000,
+        872
+      ],
+      "images/wa-maya-moves.webp": [
+        1000,
+        1127
+      ],
+      "images/wa-ev_models.webp": [
+        1000,
+        1258
+      ],
+      "images/wa-ev_refused.webp": [
+        1000,
+        919
+      ],
+      "images/wa-ev_rights.webp": [
+        1000,
+        742
+      ],
+      "images/wa-ev_stale.webp": [
+        1000,
+        822
+      ],
+      "images/wa-ev_archive.webp": [
+        1000,
+        822
       ]
     },
-    "tiles": [],
+    "tiles": [
+      {
+        "n": "12 = 12",
+        "l": "transfers the count announced for a Riverside-only user, and transfers that user then actually lost (10 = 10 stock lines); made-up data, three warehouses"
+      },
+      {
+        "n": "3",
+        "l": "things it narrows: transfers, stock on hand and the warehouse list. Stock moves, Moves History, locations and operation types are not narrowed"
+      },
+      {
+        "n": "26",
+        "l": "automated tests of the app on this version, none failing; 14 were added for what this page states (12 before)"
+      },
+      {
+        "n": "< 3 ms",
+        "l": "for a restricted user to count and list a page of 80 transfers among 3,000, about the same as an unrestricted user (best of five); larger data not tested"
+      },
+      {
+        "n": "Fixed",
+        "l": "in this version: a new, changed or archived restriction, and a new warehouse, did not reach a user who had already opened a screen until the server was restarted"
+      },
+      {
+        "n": "Not",
+        "l": "a security boundary on its own: it stops what people see in transfers, stock on hand and the warehouse list, not what they may do, and not other screens that show other warehouses"
+      }
+    ],
     "faq": [],
-    "copyWords": 320,
+    "copyWords": 1327,
     "hasVideo": true,
     "youtubeId": "j1kBnmIzSno",
     "externalPage": null
@@ -17063,79 +17216,153 @@ export const odooApps = [
     "tech": "mh_delivery_per_customer",
     "slug": "delivery-by-customer",
     "name": "Delivery by Customer",
-    "summary": "Delivery method restriction per customer: customer wise shipping at website checkout and on sales orders, shown only to chosen customers or customer tags",
-    "tagline": "Show a delivery method at website checkout and on sales orders only to the customers or customer tags you choose.",
+    "summary": "Delivery method restriction per customer, customer wise shipping for Odoo eCommerce: shows a delivery method at the website checkout and on sales orders only to the customers or customer tags you choose. Both lists empty means everyone, as in standard Odoo",
+    "tagline": "Show a delivery method at the website checkout and on sales orders only to the customers or customer tags you choose",
     "intro": [
-      "Odoo decides which delivery methods a customer can pick from the delivery address, the product tags, the weight and the volume. It never asks who the customer is. So the trade courier you negotiated for your B2B accounts, or the free pickup meant for your staff, is offered to every shopper who can reach the checkout.",
-      "Delivery by Customer adds a Customers tab to each delivery method. List the customers, or the customer tags, that may use it. Customers who are not listed never see the method at checkout, cannot select it by sending its id to the checkout, and cannot add it to a sales order. A method with nothing listed behaves exactly as in standard Odoo."
+      "Odoo decides which delivery methods a customer may pick from the delivery address, the product tags, the weight and the volume. It never asks who the customer is. So the trade courier you agreed for your wholesale accounts, or the free pickup meant for your staff, is offered to every shopper who reaches the checkout. Delivery by Customer adds a Customers page to each delivery method, with two lists: Allowed Customers and Allowed Customer Tags. A method with both lists empty behaves as in standard Odoo. A method with anything listed is offered only to those customers, to customers carrying a listed tag, and to the contacts of such a customer. This page walks through it with screenshots of an Odoo 19 database holding a made-up hardware shop, and with tables rendered from real readings of the same run; each picture says which it is.",
+      "The page also says where the app stops: it is an allow-list (there is no block-list), the rule reads the customer of the order and not the delivery address, deleting the only listed customer makes the method open to everyone again, and writing the delivery method field directly (an import, code) is not checked.",
+      "Install it and a Customers page appears on the delivery method form. It needs only the Website Sales app (website_sale) and adds no menu, setting or data."
     ],
     "features": [
       {
-        "heading": "Allowed customers and tags",
+        "heading": "What it keeps, what it changes, what it does not",
         "body": [
-          "On the delivery method form, the new Customers tab has two lists: Allowed Customers and Allowed Customer Tags. Leave both empty and the method is offered to everyone, as before. Fill either and it becomes a restricted method."
+          "Each line was tested or read in the code or on the running shop."
         ],
         "images": []
       },
       {
-        "heading": "Allow-list: listed OR tagged",
+        "heading": "1 Say who may use each delivery method",
         "body": [
-          "A restricted method is offered to a customer who is listed, or who carries one of the listed tags. It is an allow-list: there is no block-list. To keep a method from one customer, restrict it to the others, for instance with a tag."
+          "Odoo has no field for who a delivery method is for. A method set for your wholesale accounts looks the same to every shopper.",
+          "Open Website, Configuration, eCommerce, Delivery Methods (or Sales, Configuration, Sales Orders, Delivery Methods) (the app adds no menu of its own), open a method and click the Customers page, next to Availability. Allowed Customers takes customers or companies, Allowed Customer Tags takes customer tags. The first picture is Trade Courier: Brightwell Builders and the tag B2B are listed. The second is Standard Post with nothing listed, which is offered to everyone. Pictures are real Odoo 19 screens, cropped to the title and the page.",
+          "Both lists are allow-lists. There is no list of customers to exclude.",
+          "Trade Courier, restricted: one customer and one tag. Real Odoo screen.",
+          "Standard Post, both lists empty: offered to everyone. Real Odoo screen."
         ],
-        "images": []
+        "use": "you have a method that is not for everyone.",
+        "mode": "Writes when saved",
+        "images": [
+          "images/dpc-form-trade.webp",
+          "images/dpc-form-post.webp"
+        ]
       },
       {
-        "heading": "Contacts follow their company",
+        "heading": "2 What each customer sees at the checkout",
         "body": [
-          "A contact of a company counts as that company: when the company is listed or tagged, its contacts can use the method. A contact with a listed tag of its own is allowed too. The rule reads the order's customer, not the delivery address contact."
+          "A restricted method must not appear to customers who are not on its list, and must appear to the ones who are.",
+          "Five shoppers with the same cart of four fence panels, each in their own browser session. Marcus Hale works for Brightwell Builders, which is listed: he gets Standard Post and Trade Courier. Priya Raman works for Coastline Contractors, which carries the tag B2B: the same two. Tom Whitaker has neither: Standard Post only. Dana Okafor carries the Staff tag, so she gets Standard Post and Staff Pickup, which only the Staff tag may use. A guest who has not signed in sees Standard Post only. Pictures are real Odoo 19 screens as each shopper, cropped to the Delivery method block of the checkout page; the page says so because the rest of the checkout is cut away.",
+          "It does not change the price of any method, and it adds nothing to the checkout page itself: the list is only shorter.",
+          "Marcus Hale (contact of the listed company Brightwell Builders): Standard Post and Trade Courier. Real Odoo screen.",
+          "Priya Raman (contact of Coastline Contractors, tagged B2B): the same two. Real Odoo screen.",
+          "Tom Whitaker (not listed, no tag): Standard Post only. Real Odoo screen.",
+          "Dana Okafor (tag Staff): Standard Post and Staff Pickup. Real Odoo screen.",
+          "A guest after filling in the address form: Standard Post only. Real Odoo screen.",
+          "Who is offered which method, website and shipping dialog. Evidence table."
         ],
-        "images": []
+        "use": "you want to know what a shopper is offered.",
+        "mode": "Read-only for customers",
+        "images": [
+          "images/dpc-co-marcus.webp",
+          "images/dpc-co-priya.webp",
+          "images/dpc-co-tom.webp",
+          "images/dpc-co-dana.webp",
+          "images/dpc-co-guest.webp",
+          "images/dpc-ev_matrix.webp"
+        ]
       },
       {
-        "heading": "Website checkout",
+        "heading": "3 Shipping on a sales order",
         "body": [
-          "On the shop's delivery step, a customer who is not allowed sees only the methods they may use. Guests are never in a list, so they do not see restricted methods either. Odoo's other rules (country, state, zip, product tags, weight, volume) still apply on top."
+          "A salesperson should not be able to give a customer a method that customer is not entitled to.",
+          "On a quotation, the ('Add shipping', 'Shipping Method') button opens a dialog whose 19 list holds only the methods the order's customer may use. For Tom Whitaker the list is Standard Post; for Marcus Hale it is Standard Post and Trade Courier. If a restricted method is forced onto an order of a customer who is not allowed (the call the dialog's button makes), the app refuses it with the message \"The delivery method Trade Courier is not available to Tom Whitaker.\" Refreshing the price of the method already on the order still works. Pictures are real Odoo 19 screens; the list was dropped down over the dialog and the page is cropped to the dialog.",
+          "Methods already on an order are not re-checked when the customer on the order is changed afterwards.",
+          "Tom Whitaker's quotation: Standard Post only. Real Odoo screen.",
+          "Marcus Hale's quotation: Standard Post and Trade Courier. Real Odoo screen."
         ],
-        "images": []
+        "use": "your team adds the shipping line to quotations.",
+        "mode": "Writes when confirmed",
+        "images": [
+          "images/dpc-wiz-tom.webp",
+          "images/dpc-wiz-marcus.webp"
+        ]
       },
       {
-        "heading": "The checkout cannot be tricked",
+        "heading": "4 The checkout cannot be tricked",
         "body": [
-          "Posting a hidden method's id to the checkout (the set-delivery-method and delivery-rate calls) changes nothing and returns an error, and a method chosen earlier that the customer may no longer use blocks the payment step through Odoo's own check."
+          "A shopper's browser can send any delivery method number. The list on the page is not enough.",
+          "The table shows three logged-in sessions calling the shop's routes the way the checkout page does. Asking for Trade Courier as Tom or Dana is answered with a success message but the cart keeps its Standard Post (that is Odoo's route: the answer is always a success message, so the table reads the cart back). The price of Trade Courier is refused for them with Odoo's \"not compatible with your address\" message. For Marcus the same calls work. A second table covers the payment step: a method chosen earlier that the customer may no longer use is refused when the shopper goes to pay (the payment page answers HTTP 422).",
+          "Odoo's own checks (address, product tags, weight, volume) still run first; the app adds the customer check to them.",
+          "What the checkout routes do. Evidence table.",
+          "The payment step after the list changes. Evidence table."
         ],
-        "images": []
+        "use": "you want to know whether a hidden method can still be picked.",
+        "mode": "Read-only",
+        "images": [
+          "images/dpc-ev_routes.webp",
+          "images/dpc-ev_pay.webp"
+        ]
       },
       {
-        "heading": "Sales orders in the backend",
+        "heading": "5 The rule in detail",
         "body": [
-          "The Add shipping wizard lists only the methods the order's customer may use, and refuses to add a restricted method for a customer who is not allowed. Refreshing the price of the method already on the order still works."
+          "An allow-list has edge cases: companies and their contacts, people listed one by one, tags and their parents, archived and deleted customers.",
+          "A customer is allowed when they, or the company they belong to, are listed, or carry a listed tag themselves or through the company. Listing a company therefore covers all its contacts; listing one person covers that person only (a colleague is not covered, the company itself is not covered). Tags match exactly: a customer with the child tag Trade / Roofing is not covered by a method listing the parent tag Trade. The second table below lists the odd cases with what actually happened, including the two that matter most: deleting the only listed customer or tag leaves an empty list, and an empty list means everyone.",
+          "A deleted customer or tag is gone from the list; the method is open again if nothing else is listed. Archive a customer instead of deleting.",
+          "Odd cases and limits. Evidence table."
         ],
-        "images": []
+        "use": "you want to know exactly who counts as allowed.",
+        "mode": "Read-only",
+        "images": [
+          "images/dpc-ev_odd.webp"
+        ]
       },
       {
-        "heading": "Websites and companies",
+        "heading": "6 Who can change it",
         "body": [
-          "A method keeps its own Website and Company settings. The customer rule is added to them, so a restricted method on website B is offered only to allowed customers on website B, and a method of another company is not offered at all."
+          "The lists decide who may use a method, so who may change them matters.",
+          "The lists are on the delivery method form, so they follow Odoo's own rights on it: a Sales administrator can change them, a salesperson can read the form but not change it, a Website designer cannot read delivery methods at all. The app adds no group and no access rule. Customers see only the method names at the checkout.",
+          "Who can change the lists. Evidence table.",
+          "Time to work out the list. Evidence table."
         ],
-        "images": []
+        "use": "you want to know who edits the lists.",
+        "mode": "Read-only",
+        "images": [
+          "images/dpc-ev_rights.webp",
+          "images/dpc-ev_time.webp"
+        ]
       },
       {
-        "heading": "Who it is for",
+        "heading": "7 One defect fixed in this version",
         "body": [
-          "Shops on Odoo eCommerce with B2B and B2C customers on the same site: a trade courier or pallet freight for wholesale accounts, local pickup for staff or members, a white-glove method for VIP customers, a free-delivery method for one account."
+          "One defect was found while checking this page against the code, and fixed in both versions.",
+          "The app read the two lists as the user who asked. Odoo hides from a user the records its rules do not let them see, and the default read also leaves out archived records. A listed customer that belongs to another company (a salesperson working in the main company cannot see it), or an archived listed customer, therefore dropped out of the list. When it was the only one listed, the list looked empty, and an empty list means everyone: the method was offered to customers who are not allowed, and a salesperson could add it to their order. Now the lists are read with full rights and with archived customers included. The effect on a shop: a method listed for one customer who is later archived becomes a method nobody can use (it used to become public). Two tests fail on the old code, both through the real routes (the shipping dialog calls as a salesperson, and the checkout's method list), and pass now.",
+          "The defect, before and after. Evidence table."
+        ],
+        "use": "you want to know what changed in behaviour.",
+        "mode": "Read-only",
+        "images": [
+          "images/dpc-ev_fix.webp"
+        ]
+      },
+      {
+        "heading": "What changed in this version",
+        "body": [
+          "Version 19.1.0.2 fixes one defect (see section 7) and adds 11 automated tests (24 before, 35 now), 2 for the fix, 7 that pin the limits above, 1 for the payment step over HTTP and 1 for rights. It removes a leftover debug test and a second, dead copy of two test classes from the test file, replaces the screenshots and the page text with checked ones, rewrites the manifest summary and adds the new limits to the manifest description, and takes no feature out. The demo video of an earlier version is kept as it was and was not re-recorded."
         ],
         "images": []
       }
     ],
-    "scope": [],
-    "requires": [
-      "Odoo 19 or Odoo 20, Community or Enterprise. Also requires eCommerce (website_sale), which brings Delivery with it. Third-party apps install on Odoo.sh or On-Premise only - they cannot be installed on Odoo Online (SaaS)."
+    "scope": [
+      "Each of these was reproduced on a running Odoo 19 shop and is pinned by a test that passes; none is changed in this version. The odd-cases table above shows the readings, the one below the tests and controls.",
+      "Tests and controls. Evidence table."
     ],
+    "requires": [],
     "price": 28.95,
     "manifestPrice": 29.0,
     "currency": "USD",
     "category": "Website/Website",
-    "version": "19.0.1.0.1",
+    "version": "19.0.1.0.2",
     "license": "OPL-1",
     "depends": [
       "website_sale"
@@ -17146,22 +17373,106 @@ export const odooApps = [
     "storeUrl19": "https://apps.odoo.com/apps/modules/19.0/mh_delivery_per_customer",
     "storeUrl20": "https://apps.odoo.com/apps/modules/20.0/mh_delivery_per_customer",
     "screenshots": [
-      "screenshot_form.webp",
-      "screenshot_checkout.webp"
+      "images/dpc-ev_tests.webp"
     ],
     "shotDims": {
-      "screenshot_form.webp": [
+      "images/dpc-form-trade.webp": [
         1000,
-        443
+        1022
       ],
-      "screenshot_checkout.webp": [
+      "images/dpc-form-post.webp": [
         1000,
-        571
+        962
+      ],
+      "images/dpc-co-marcus.webp": [
+        1000,
+        519
+      ],
+      "images/dpc-co-priya.webp": [
+        1000,
+        519
+      ],
+      "images/dpc-co-tom.webp": [
+        1000,
+        361
+      ],
+      "images/dpc-co-dana.webp": [
+        1000,
+        519
+      ],
+      "images/dpc-co-guest.webp": [
+        1000,
+        196
+      ],
+      "images/dpc-ev_matrix.webp": [
+        1000,
+        1041
+      ],
+      "images/dpc-wiz-tom.webp": [
+        880,
+        820
+      ],
+      "images/dpc-wiz-marcus.webp": [
+        880,
+        820
+      ],
+      "images/dpc-ev_routes.webp": [
+        1000,
+        671
+      ],
+      "images/dpc-ev_pay.webp": [
+        1000,
+        452
+      ],
+      "images/dpc-ev_odd.webp": [
+        1000,
+        1427
+      ],
+      "images/dpc-ev_rights.webp": [
+        1000,
+        582
+      ],
+      "images/dpc-ev_time.webp": [
+        1000,
+        477
+      ],
+      "images/dpc-ev_fix.webp": [
+        1000,
+        758
+      ],
+      "images/dpc-ev_tests.webp": [
+        1000,
+        1010
       ]
     },
-    "tiles": [],
+    "tiles": [
+      {
+        "n": "2 lists",
+        "l": "on each delivery method: Allowed Customers and Allowed Customer Tags; both empty means everyone, as in standard Odoo"
+      },
+      {
+        "n": "35",
+        "l": "automated tests in the app, none failing, including browser tests on the real checkout; 11 were added in this version"
+      },
+      {
+        "n": "10 of 10",
+        "l": "deliberate breaks of the code were caught by the tests (each one made at least one test fail; the real code: 0 failed)"
+      },
+      {
+        "n": "1",
+        "l": "defect found and fixed in this version (a listed customer the user cannot see, or an archived one, made a restriction look empty), disclosed below"
+      },
+      {
+        "n": "0",
+        "l": "settings or menus added: one page on the delivery method form"
+      },
+      {
+        "n": "Not",
+        "l": "a block-list, a rule per product or country, or a payment-method rule (see the known limits)"
+      }
+    ],
     "faq": [],
-    "copyWords": 503,
+    "copyWords": 1621,
     "hasVideo": true,
     "youtubeId": "eHjayebFQfI",
     "externalPage": null
@@ -17305,7 +17616,7 @@ export const odooApps = [
     "manifestPrice": 29.0,
     "currency": "USD",
     "category": "Tools",
-    "version": "19.0.1.0.14",
+    "version": "19.0.1.0.15",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -17429,49 +17740,144 @@ export const odooApps = [
     "tech": "mh_hr_employee_compliance",
     "slug": "hr-employee-compliance",
     "name": "HR Employee Compliance",
-    "summary": "Track visa, licence and certification expiry dates with reminders before they lapse. Log grievances and disciplinary penalties against the employee record.",
-    "tagline": "",
+    "summary": "Tracks employee document expiry dates with a reminder before they lapse and logs complaints and disciplinary penalties on the employee record. Visa, licence and certification expiry reminders.",
+    "tagline": "Expiry dates with a reminder before they lapse, plus a log of complaints and disciplinary penalties, on the employee record",
     "intro": [
-      "HR Employee Compliance bundles three HR record-keeping utilities: expiry tracking for any employee document (licenses, certifications, background checks - not just the Passport/Work Permit fields Odoo already tracks), a complaint/grievance log through to resolution, and a disciplinary penalty record."
+      "Odoo tracks passport, visa and work-permit expiry and nothing else. HR Employee Compliance adds a document with an expiry date and a notice period for anything else (a driving licence, a first aid certificate, a background check), a daily to-do for the HR Responsible before it lapses, and two logs: complaints that move from New to Closed, and disciplinary penalties (verbal or written warning, suspension, termination notice). This page walks through it with screenshots of an Odoo 19 database holding a made-up freight company, one HR Officer and eight employees, and with tables rendered from real readings of the same run; each picture says which it is.",
+      "It is a record keeper for HR officers. This page also says where that bites: nobody but HR sees a record, there is no file field and no e-mail, a record can be deleted without a trace, and the state cannot be filtered on.",
+      "Install it and three menus appear under Employees: Employee Documents, Complaints and Disciplinary Penalties. It needs only the Employees app (hr)."
     ],
     "features": [
       {
-        "heading": "Document Expiry Tracker",
+        "heading": "What it keeps, what it changes, what it does not",
         "body": [
-          "Add any document type with an expiry date and a notice period. Odoo already tracks Passport and Work Permit expiry natively with its own reminder - this covers every other document those two fields don't."
+          "Each line was tested or read in the code."
         ],
         "images": []
       },
       {
-        "heading": "Automatic reminders, not a spreadsheet",
+        "heading": "1 Documents that expire",
         "body": [
-          "A document approaching its notice period gets a real Odoo activity scheduled automatically - the same reminder mechanism Odoo's own contract/work-permit expiry uses, reused here for every other document type."
+          "A spreadsheet of licence dates does not tell anyone a date is close; Odoo's own fields cover only a passport, a visa and a work permit.",
+          "Open Employees, Employee Documents and add a document: a name, the employee, the expiry date and the notice period in days (30 unless you change it). The list shows each document with a coloured state: Valid, Expiring Soon from the notice period until the expiry date (the expiry day itself counts as Expiring Soon), and Expired the day after. The first picture is the list of a made-up freight company on 5 November 2026; the second is a document form. The first table shows the state for twelve combinations of expiry date and notice period, including a notice period of 0 and a negative one.",
+          "The state is worked out when the screen is read, so it can be seen but not searched, filtered or grouped on; the search box finds a document by name only. There is no field for the scan of the document: files go in the chatter.",
+          "The documents list. Real Odoo screen.",
+          "A document. Real Odoo screen.",
+          "Which state a document gets. Evidence table."
         ],
-        "images": []
+        "use": "you track licences and certificates that lapse and want to see at a glance which are close.",
+        "mode": "Changes records",
+        "images": [
+          "images/hec-documents.webp",
+          "images/hec-document.webp",
+          "images/hec-ev_states.webp"
+        ]
       },
       {
-        "heading": "Employee Complaints",
+        "heading": "2 The reminder",
         "body": [
-          "Log a complaint or grievance and move it through draft, investigating, resolved, and closed - something Community's HR has no equivalent for at all."
+          "A date nobody is reminded of lapses unnoticed.",
+          "A scheduled action runs once a day. For each document that has not expired and is inside its notice period it adds one to-do, '<document> for <employee> is expiring soon.', due on the expiry date, for the employee's HR Responsible (the first picture, the to-do on the document). If that user is OdooBot, which happens for employees created by a script or import, or is archived, the to-do goes to the user who entered the document. A document is reminded once for each expiry date: running the action again adds nothing, marking the to-do done does not bring it back, and moving the expiry date to a new one gives a new reminder. The first table says who was given the to-do in each case and what 1.0.8 did, the second follows one document through nine steps.",
+          "It sends no e-mail or inbox message, reminds nothing that has already expired (also a document entered after its date), and a to-do left open when a document is renewed stays open with the old date.",
+          "The to-do on the document. Real Odoo screen.",
+          "Who gets the reminder. Evidence table.",
+          "One document, step by step. Evidence table."
         ],
-        "images": []
+        "use": "you want the person responsible told before a date, not after.",
+        "mode": "Changes records",
+        "images": [
+          "images/hec-reminder.webp",
+          "images/hec-ev_reminders.webp",
+          "images/hec-ev_repeat.webp"
+        ]
       },
       {
-        "heading": "Disciplinary Penalties",
+        "heading": "3 Complaints",
         "body": [
-          "Record a verbal warning, written warning, suspension, or termination notice against an employee's file, with a reason and who issued it."
+          "A complaint kept in e-mail threads has no state and no date anyone can list.",
+          "Employees, Complaints, New: who it is about, who raised it (optional), the date and the description. The buttons Start Investigating, Mark Resolved and Close move it from New through Investigating and Resolved to Closed (the second picture shows a complaint under investigation); the resolution notes appear from Resolved on. The state, the employee and the person who raised it are tracked in the chatter. The list shows the employee, the date and the state.",
+          "The buttons are on screen only: through the API a new complaint can be closed at once or set back to New, and a complaint can be resolved without notes. The description and the notes are not tracked in the chatter.",
+          "The complaints list. Real Odoo screen.",
+          "A complaint under investigation. Real Odoo screen."
         ],
-        "images": []
+        "use": "you need a dated record of a complaint from the first report to the outcome.",
+        "mode": "Changes records",
+        "images": [
+          "images/hec-complaints.webp",
+          "images/hec-complaint.webp"
+        ]
       },
       {
-        "heading": "Who this is for",
+        "heading": "4 Disciplinary penalties",
         "body": [
-          "HR teams tracking licenses and certifications beyond passports and work permits, and anyone who needs a real, dated record of complaints and disciplinary actions instead of scattered emails or a spreadsheet."
+          "A warning that is not written down on the file is a warning that did not happen.",
+          "Employees, Disciplinary Penalties, New: the employee, the type (Verbal Warning, Written Warning, Suspension, Termination Notice), the date, the reason and who issued it (the current user unless changed). The list shows the employee, type, date and issuer (first picture); the form carries the reason (second picture). The type and the employee are tracked in the chatter; the reason, the date and the issuer are not, so a changed reason leaves no history.",
+          "It does not issue a letter, notify the employee or lock a penalty: any HR Officer can change or delete it, and a penalty may be dated in the future.",
+          "The penalties list. Real Odoo screen.",
+          "A penalty. Real Odoo screen."
+        ],
+        "use": "you need to show what was issued, to whom, when and by whom.",
+        "mode": "Changes records",
+        "images": [
+          "images/hec-penalties.webp",
+          "images/hec-penalty.webp"
+        ]
+      },
+      {
+        "heading": "5 Who can see it, and which company",
+        "body": [
+          "A complaint or a warning is among the most private things on a file.",
+          "HR Officers and HR Managers (Odoo's Employees group Officer: Manage all employees, and Administrator) can read, create, change and delete all three kinds, and see the three menus. An internal user without an HR group sees no menu and is refused when asking for a record, including one about himself or herself (first table). In a database with several companies the records now follow the employee's company: in 1.0.8 an HR Officer allowed only in company A listed, read and changed the records of employees of company B (second table, 1.0.8 on the left).",
+          "A person cannot see what the file says about him or her, and the rule looks at the employee's company only, not at the company of the person who raised a complaint.",
+          "Who may open the three kinds of record. Evidence table.",
+          "An officer of company A and the records of company B. Evidence table."
+        ],
+        "use": "the records are about people and only HR should see them.",
+        "mode": "Read-only",
+        "images": [
+          "images/hec-ev_rights.webp",
+          "images/hec-ev_companies.webp"
+        ]
+      },
+      {
+        "heading": "6 What the file does and does not remember",
+        "body": [
+          "A file that can be edited or emptied without a trace is a weak record.",
+          "Each record has a chatter. The first table lists each field written once through the API and whether the chatter logged it: the expiry date of a document, the state, employee and Raised By of a complaint and the type and employee of a penalty are logged; names, notice periods, reasons, dates, descriptions and notes are not. Deleting a penalty removes the record and its chatter. The second table lists what was tried at the edges: the state cannot be searched, archiving an employee keeps the records and deleting one deletes them, and the odd cases the screens would not allow but the API does.",
+          "What the chatter records. Evidence table.",
+          "Odd cases and limits. Evidence table."
+        ],
+        "use": "you need to know what leaves a trace before you rely on it.",
+        "mode": "Read-only",
+        "images": [
+          "images/hec-ev_chatter.webp",
+          "images/hec-ev_odd.webp"
+        ]
+      },
+      {
+        "heading": "7 Checked against the raw rows",
+        "body": [
+          "A reminder one day late is a reminder after the licence lapsed.",
+          "A separate script read the database rows and worked out, with its own arithmetic and no module code, the state of each of 496 made-up documents (random dates and notice periods, 96 of them exactly on the edge of their notice period or on the day) and whether each should have a reminder after the daily action: 0 differences, on Odoo 19 and Odoo 20. As a control, a rule one day short differs in 25 of them. The table also lists the timings on 2000 documents.",
+          "The independent check and timings. Evidence table."
+        ],
+        "use": "you want to know the dates are counted right before you rely on a reminder.",
+        "mode": "Read-only",
+        "images": [
+          "images/hec-ev_check.webp"
+        ]
+      },
+      {
+        "heading": "What changed in this version",
+        "body": [
+          "Version 1.0.9 fixes four defects that were reproduced on 1.0.8: (1) the daily to-do went to OdooBot for an employee whose HR Responsible is OdooBot, where nobody reads it, and now goes to the user who entered the document; (2) a to-do marked done came back on the next daily run until the expiry date, and a document renamed while its to-do was open got a second one; a new read-only field Reminder Scheduled For records the expiry date already reminded, so a reminder is sent once per expiry date; (3) archived employees were still reminded; (4) the three kinds of record had no company rule, so an HR Officer allowed only in one company could list, read and change the records of another company's employees. The last is a security change: in a database with one company nothing changes. It also adds 16 automated tests for what this page states, rewrites the screenshots and the text, and removes the claim that the reminder works 'the same way' as Odoo's own work-permit reminder (the assignee fallback was the same; the rest was not checked). The demo video of an earlier version is kept as it was and was not re-recorded."
         ],
         "images": []
       }
     ],
-    "scope": [],
+    "scope": [
+      "Each of these was reproduced in a run of the app on Odoo 19 and is pinned by a test that passes; the four before the list were changed in this version."
+    ],
     "requires": [],
     "price": 28.95,
     "manifestPrice": 29.0,
@@ -17487,18 +17893,97 @@ export const odooApps = [
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_hr_employee_compliance",
     "storeUrl19": "https://apps.odoo.com/apps/modules/19.0/mh_hr_employee_compliance",
     "storeUrl20": "https://apps.odoo.com/apps/modules/20.0/mh_hr_employee_compliance",
-    "screenshots": [
-      "screenshot_documents.webp"
-    ],
+    "screenshots": [],
     "shotDims": {
-      "screenshot_documents.webp": [
+      "images/hec-documents.webp": [
         1000,
-        174
+        1059
+      ],
+      "images/hec-document.webp": [
+        1000,
+        693
+      ],
+      "images/hec-ev_states.webp": [
+        1000,
+        1231
+      ],
+      "images/hec-reminder.webp": [
+        1000,
+        261
+      ],
+      "images/hec-ev_reminders.webp": [
+        1000,
+        1383
+      ],
+      "images/hec-ev_repeat.webp": [
+        1000,
+        963
+      ],
+      "images/hec-complaints.webp": [
+        1000,
+        399
+      ],
+      "images/hec-complaint.webp": [
+        1000,
+        709
+      ],
+      "images/hec-penalties.webp": [
+        1000,
+        399
+      ],
+      "images/hec-penalty.webp": [
+        1000,
+        607
+      ],
+      "images/hec-ev_rights.webp": [
+        1000,
+        799
+      ],
+      "images/hec-ev_companies.webp": [
+        1000,
+        538
+      ],
+      "images/hec-ev_chatter.webp": [
+        1000,
+        1088
+      ],
+      "images/hec-ev_odd.webp": [
+        1000,
+        1387
+      ],
+      "images/hec-ev_check.webp": [
+        1000,
+        738
       ]
     },
-    "tiles": [],
+    "tiles": [
+      {
+        "n": "0 of 496",
+        "l": "made-up documents had a state or a reminder different from what a separate script computed from the raw database rows (96 of them exactly on the edge of their notice period; control: a rule one day short differs in 25)"
+      },
+      {
+        "n": "3 kinds",
+        "l": "of record on the employee file: documents that expire, complaints and disciplinary penalties, each with its own chatter"
+      },
+      {
+        "n": "23",
+        "l": "automated tests counted on this version, none failing; 16 were added (7 before)"
+      },
+      {
+        "n": "4 fixed",
+        "l": "in this version: reminders to OdooBot, reminders that came back after Mark Done, reminders for archived employees, and records of other companies visible to an HR Officer"
+      },
+      {
+        "n": "0.3 s",
+        "l": "for the daily action over 2000 documents (131 of them inside their notice); larger data not tested"
+      },
+      {
+        "n": "Not",
+        "l": "a legal or compliance control: no file field, no e-mail, no history of edits to a penalty's reason, and any HR Officer can delete a record (see the known limits)"
+      }
+    ],
     "faq": [],
-    "copyWords": 196,
+    "copyWords": 1554,
     "hasVideo": true,
     "youtubeId": "ffxuNTsuKeU",
     "externalPage": null
@@ -17507,62 +17992,149 @@ export const odooApps = [
     "tech": "mh_invoice_split",
     "slug": "invoice-split",
     "name": "Invoice Split",
-    "summary": "Split invoice and split bill into two drafts by lines, part quantities or a percentage; invoice splitting keeps sales and purchase order links and totals intact",
-    "tagline": "Cut a draft customer invoice, vendor bill or credit note in two: move chosen lines, part of a quantity or a percentage to a new draft.",
+    "summary": "Cuts a draft customer invoice, vendor bill or credit note in two by chosen lines, part quantities or a percentage, keeping order links and totals unchanged: split invoice, split vendor bill, partial invoice",
+    "tagline": "Cut a draft customer invoice, vendor bill or credit note in two: chosen lines, part quantities or a percentage",
     "intro": [
-      "A customer wants one invoice for the furniture and another for the installation. Half of a vendor bill belongs to a different cost centre. Odoo has no way to cut a draft in two: you delete lines, retype them on a new invoice, and the sales or purchase order can lose track of what was invoiced.",
-      "Invoice Split adds a Split button on draft invoices, bills and credit notes. You say what moves, and the app builds the second draft from the first, with the same customer or vendor, journal, currency and terms, and the same links back to the order."
+      "A customer wants the furniture on one invoice and the installation on another, or half of a vendor bill belongs to a different cost centre. Odoo has no way to cut an existing draft in two: you delete lines and retype them, and the sales or purchase order can lose track of what was invoiced. Invoice Split adds a Split button to the draft, builds the second draft from the first, and checks that the two add up before it keeps anything. This page walks through one real split in an Odoo 19 database seeded with made-up data, says what the new draft carries over, and lists the defects found and fixed while checking it."
     ],
     "features": [
       {
-        "heading": "Two ways to split",
+        "heading": "Why a split keeps the order in step",
         "body": [
-          "Move chosen lines or part quantities: the wizard lists the product lines with a To move column. Type the quantity to move on each line, all of it or only part of it; 0 keeps the line where it is. Or move a percentage of every line: enter a share above 0 and below 100 and each line's quantity is cut by that share."
+          "Invoicing part of an order is easy to do by hand and easy to get wrong: the quantity invoiced on the order drifts, a tax is lost, the totals no longer match. The app does the cut from the invoice itself."
         ],
         "images": []
       },
       {
-        "heading": "Order links stay right",
+        "heading": "1 Open the draft and press Split",
         "body": [
-          "When Sales or Purchase is installed, a moved line keeps its sales order line or purchase order line. The quantity invoiced on the order is the same before and after the split, and the order lists both drafts. If you later cancel one draft, Odoo reopens exactly the quantity that draft carried."
+          "On a draft customer invoice, vendor bill or credit note the form header gets a Split button next to Confirm and Cancel. The example is a customer invoice made from a sales order: 12 standing desks, 12 chairs, 12 cable trays and 1 installation, 11,040.00 with 15% tax.",
+          "The draft, with the Split button in the header."
         ],
-        "images": []
+        "use": "a draft invoice, bill or credit note has to become two.",
+        "mode": "Nothing written yet",
+        "images": [
+          "images/is-invoice-draft.webp"
+        ]
       },
       {
-        "heading": "The two drafts add up",
+        "heading": "2 Choose quantities",
         "body": [
-          "After the split the app checks untaxed amount, tax and total of the two drafts against the original, in the invoice currency. If they would not add up, for example because a part quantity rounds differently on each side, it stops with the difference and changes nothing."
+          "The dialog lists each product line with its quantity and a To move column. Type the quantity that goes to the new draft; 0 keeps the line where it is. Here 4 cable trays and the installation move.",
+          "A line can move whole or in part. A line shows its product name when its description is empty (fixed in this version, section 8).",
+          "The dialog with quantities typed."
         ],
-        "images": []
+        "use": "one customer needs part of the invoice on a separate document.",
+        "mode": "Per line",
+        "images": [
+          "images/is-wizard-lines.webp"
+        ]
       },
       {
-        "heading": "What the new draft copies",
+        "heading": "3 Or choose a percentage",
         "body": [
-          "Partner, journal, currency and its rate, payment terms, fiscal position, invoice date, due date, reference, origin, salesperson and the rest of the header Odoo copies on a duplicate. Moved lines keep their product, account, taxes, discount and analytic distribution. Sections and notes follow their lines: a section goes to the new draft when any line under it moves, and leaves the original when nothing under it stays."
+          "Switch to Move a percentage of every line and type a share above 0 and below 100. Each line is cut by it. The share is rounded to the unit precision and the original keeps the exact remainder, so the two never drift apart.",
+          "Percentage mode, 40."
         ],
-        "images": []
+        "use": "every line goes in the same share, for example a 40% invoice.",
+        "mode": "Whole invoice",
+        "warn": "A line of quantity 1 (a fee, a down payment) is cut into fractions at the same unit price: 40% of a 3,000.00 line gives quantity 0.4 and 0.6. Use chosen quantities if you want whole lines.",
+        "images": [
+          "images/is-wizard-percent.webp"
+        ]
       },
       {
-        "heading": "Draft only",
+        "heading": "4 The new draft and the original",
         "body": [
-          "Posted and cancelled documents are refused, and so are drafts set to post automatically. Reset to draft first if you must. The new draft has no number until it is posted; the original keeps its own number. Both drafts, the original and the new one, are linked with a note in the chatter."
+          "The new draft opens with the moved lines. Its chatter says it was split from the original. The Furniture section came along because part of its lines moved; the Services section moved with its only line.",
+          "The original keeps its own number and the rest of the lines. 9,844.00 plus 1,196.00 is 11,040.00, tax included.",
+          "What the second draft carries over, from a draft with every header field set, compared field by field:",
+          "The new draft: 1,196.00.",
+          "The original: 9,844.00.",
+          "Header and line fields, real readings."
         ],
-        "images": []
+        "use": "you want to see what the split produced.",
+        "mode": "Two drafts",
+        "images": [
+          "images/is-new-draft.webp",
+          "images/is-original-draft.webp",
+          "images/is-ev-copy.webp"
+        ]
       },
       {
-        "heading": "Who it is for",
+        "heading": "5 The order stays right",
         "body": [
-          "Accountants and billing teams who invoice part of an order to one customer and part to another, bill in stages, or re-allocate part of a vendor bill. Works with several companies: the new draft stays in the original's company."
+          "A moved line keeps its sales order line or purchase order line, so the quantity invoiced on the order is the same before and after the split and the order lists both drafts. Cancel one draft later and Odoo reopens exactly the quantity it carried. The table is a real reading of a sales order and a purchase order.",
+          "Order lines before and after."
         ],
-        "images": []
+        "use": "the invoice comes from a sales or purchase order.",
+        "mode": "Links kept",
+        "images": [
+          "images/is-ev-orders.webp"
+        ]
+      },
+      {
+        "heading": "6 When it says no",
+        "body": [
+          "If the two drafts would not add up, it stops with the difference and keeps nothing, not even a half-made draft. This invoice has 3 clips at 0.33 and 2 labels at 1.00; half of each rounds to 3.00 on one side and 2.99 in total.",
+          "The other refusals, and a list of splits tried with what happened:",
+          "A split refused: 2.99 against 3.0.",
+          "Refusal messages.",
+          "Percentages, rounding, currencies and taxes."
+        ],
+        "use": "you want to know what the app refuses and why.",
+        "mode": "Nothing is changed",
+        "images": [
+          "images/is-refused-rounding.webp",
+          "images/is-ev-refuse.webp",
+          "images/is-ev-cases.webp"
+        ]
+      },
+      {
+        "heading": "7 Vendor bills",
+        "body": [
+          "The same button and dialog work on vendor bills and on both kinds of credit note. Here 40% of a bill for banner stands, printed panels and delivery moves. Both drafts keep the bill reference, so Odoo shows its own duplicate warning on them; both post normally.",
+          "The new bill: Odoo's duplicate banner shows, because the reference is copied."
+        ],
+        "use": "part of a supplier bill belongs to another cost centre.",
+        "mode": "Same dialog",
+        "images": [
+          "images/is-bill-split.webp"
+        ]
+      },
+      {
+        "heading": "8 Defects found, and where it stops",
+        "body": [
+          "Before and after, same steps.",
+          "Odd cases with real readings."
+        ],
+        "use": "you are deciding whether this covers your invoicing.",
+        "mode": "Tested limits",
+        "images": [
+          "images/is-ev-fixes.webp",
+          "images/is-ev-limits.webp"
+        ]
+      },
+      {
+        "heading": "Who can use it",
+        "body": [
+          "The Split button and the dialog need the Invoicing Billing group or above. A Billing user can split an invoice from a sales order and a bill from a purchase order without any Sales or Purchase rights.",
+          "Six test users, one group each."
+        ],
+        "images": [
+          "images/is-ev-rights.webp"
+        ]
       }
     ],
     "scope": [
-      "It does not split posted invoices. It does not split by unit price or by amount: only by quantity or by percentage. One split gives two drafts; split again for more. It does not merge invoices and it does not split many invoices at once. It handles customer invoices, vendor bills and their credit notes, not receipts or journal entries. It does not copy attachments or chatter history to the new draft, and it does not move links added by other apps, such as timesheets, expenses or e-invoicing data. In a foreign currency the two drafts add up in the invoice currency; each posts to the books in your company currency on its own, so a one-cent difference there is possible. It sends no data anywhere."
+      "The draft you split: moved quantities come off its lines, and a section or note that has no lines left under it goes too. It creates one new draft invoice and a note in each chatter. It adds a button to the invoice form and two dialog models; it adds no fields to invoices.",
+      "The original number, the order links, taxes, accounts, analytic distribution and the header fields listed in section 4. Posted invoices are never touched.",
+      "Both drafts, as ordinary invoices.",
+      "Section 8, with real readings: cash rounding, rounding that does not add up, quantity-1 lines, lines added while the dialog is open, vendor bill duplicates, attachments, and 300 lines in one split (about 2.4 seconds on a small test server).",
+      "Odoo.sh, Odoo Enterprise, several companies in real use, invoices with lines linked by other apps (timesheets, expenses, subscriptions), e-invoicing data, other languages.",
+      "Tests, fix tests on the old code and mutation controls."
     ],
-    "requires": [
-      "Odoo 19 and 20, Community or Enterprise, with Invoicing (the account module). Sales and Purchase are optional: with them installed the order links are kept, without them the app still splits. Third-party apps install on Odoo.sh or On-Premise only - they cannot be installed on Odoo Online (SaaS)."
-    ],
+    "requires": [],
     "price": 28.95,
     "manifestPrice": 29.0,
     "currency": "USD",
@@ -17578,17 +18150,115 @@ export const odooApps = [
     "storeUrl19": "https://apps.odoo.com/apps/modules/19.0/mh_invoice_split",
     "storeUrl20": "https://apps.odoo.com/apps/modules/20.0/mh_invoice_split",
     "screenshots": [
-      "screenshot_split_wizard.webp"
+      "images/is-ev-tests.webp"
     ],
     "shotDims": {
-      "screenshot_split_wizard.webp": [
+      "images/is-invoice-draft.webp": [
         1000,
-        562
+        2325
+      ],
+      "images/is-wizard-lines.webp": [
+        1000,
+        1359
+      ],
+      "images/is-wizard-percent.webp": [
+        1000,
+        690
+      ],
+      "images/is-new-draft.webp": [
+        1000,
+        2416
+      ],
+      "images/is-original-draft.webp": [
+        1000,
+        2420
+      ],
+      "images/is-ev-copy.webp": [
+        1000,
+        1449
+      ],
+      "images/is-ev-orders.webp": [
+        1000,
+        1364
+      ],
+      "images/is-refused-rounding.webp": [
+        1000,
+        632
+      ],
+      "images/is-ev-refuse.webp": [
+        1000,
+        1405
+      ],
+      "images/is-ev-cases.webp": [
+        1000,
+        1545
+      ],
+      "images/is-bill-split.webp": [
+        1000,
+        2822
+      ],
+      "images/is-ev-fixes.webp": [
+        1000,
+        888
+      ],
+      "images/is-ev-limits.webp": [
+        1000,
+        1405
+      ],
+      "images/is-ev-rights.webp": [
+        1000,
+        940
+      ],
+      "images/is-ev-tests.webp": [
+        1000,
+        957
       ]
     },
-    "tiles": [],
-    "faq": [],
-    "copyWords": 599,
+    "tiles": [
+      {
+        "n": "11,040.00",
+        "l": "example invoice cut into 9,844.00 and 1,196.00; the sales order still shows every line invoiced"
+      },
+      {
+        "n": "2 ways",
+        "l": "to split: a quantity per line, or a percentage of every line"
+      },
+      {
+        "n": "59",
+        "l": "automated tests, none failing; 13 of them new in this version"
+      },
+      {
+        "n": "1 check",
+        "l": "that the two drafts add up in untaxed, tax and total, or nothing changes"
+      },
+      {
+        "n": "300",
+        "l": "lines cut and checked in 2.4 seconds in the largest run"
+      },
+      {
+        "n": "3",
+        "l": "defects found while building this page, fixed in this version and listed below"
+      }
+    ],
+    "faq": [
+      {
+        "q": "Does the sales order still show what was invoiced?",
+        "a": "Yes. Moved lines keep their order lines."
+      },
+      {
+        "q": "Can I split a posted invoice?",
+        "a": "No. Reset it to draft first."
+      },
+      {
+        "q": "What does uninstalling do?",
+        "a": "Both drafts stay as ordinary invoices."
+      },
+      {
+        "q": "Who can use it?",
+        "a": "The Invoicing Billing group and above."
+      }
+    ],
+    "copyWords": 888,
     "hasVideo": true,
     "youtubeId": "6e-n7si3cVY",
     "externalPage": null
@@ -17597,77 +18267,151 @@ export const odooApps = [
     "tech": "mh_letters_certificates",
     "slug": "letters-and-certificates",
     "name": "Letters and Certificates",
-    "summary": "Letter template and certificate template: business letter, offer letter or certificate filled in from a contact or employee, printed as PDF on your letterhead",
-    "tagline": "",
+    "summary": "Letter template and certificate template for Odoo: fills in a letter or certificate from a contact or employee and prints it as a PDF saved on the record's chatter, on your letterhead. Placeholders are fields, never code",
+    "tagline": "Fill in a letter or certificate from a contact or employee and print it as a PDF saved on the record's chatter",
     "intro": [
-      "Business letters, offer letters and certificates filled in from the contact or employee, printed on your company layout and saved to their chatter.",
-      "Odoo prints quotations, invoices and delivery slips, but not a plain letter to a contact or an employee. So offer letters, experience certificates and certificates of appreciation get typed in a word processor, with the name and address pasted in by hand for every letter.",
-      "This app keeps the text once, as a template, and fills in the fields of each record you choose."
+      "Odoo prints quotations, invoices and delivery slips, but not a plain letter to a contact or an employee. Business letters, employment letters and certificates of appreciation end up in a word processor with the name and address typed in by hand. Letters and Certificates adds templates: write the text once, put in fields of the record, select one or more contacts or employees and use Action, Print Letter. The dialog shows the first letter, then one PDF per record is saved on that record's chatter and the same letters download as one PDF. This page walks through it with screenshots of an Odoo 19 database holding a made-up consulting firm, with the real PDFs the app saved (rendered to pictures), and with tables rendered from real readings of the same run; each picture says which it is.",
+      "The page also says where the app stops: placeholders fill in the text and not in link addresses, a certificate is one page and long text is cut, printing takes about two seconds per record, every print saves another PDF with no register, and the logo of the letterhead was not verified in the PDF.",
+      "Install it and a Letters menu appears. It needs only the Discuss base (mail) and works on contacts out of the box; with the Employees app installed it works on employees too. It sends no data anywhere."
     ],
     "features": [
       {
-        "heading": "Write the template once",
+        "heading": "What it keeps, what it changes, what it does not",
         "body": [
-          "Letters > Letter Templates holds the text. Type /field in the editor to pick a field of the contact or employee, or type placeholders such as {{ object.name }}, {{ object.country_id.name }}, {{ user.name }} or {{ today }}. A template can be a letter or a certificate."
+          "Each line was tested or read in the code or on the running database."
         ],
         "images": []
       },
       {
-        "heading": "Print from the record",
+        "heading": "1 Write a letter or certificate once",
         "body": [
-          "Select one or many contacts, open Action > Print Letter, choose the template and check the preview of the first letter. The wizard prints one PDF per record."
+          "A template is plain text with the fields you want filled in. Nothing in Odoo does this for a letter that is not a quotation or an invoice.",
+          "Open Letters (a menu of its own). The list holds the templates: the two starters (Business Letter, Certificate of Appreciation) and three made for this page. A template has a name, Applies to (contact, employee or any record with a chatter), a layout (letter on the company letterhead, or certificate in landscape with a background image) and the text. Fields are inserted with the editor's /field command, which shows in the text as a highlighted field name, or typed as {{ object.name }} , {{ user.name }} or {{ today }} . Pictures are real Odoo 19 screens: the list, the Business Letter and the certificate Employee of the Quarter.",
+          "A placeholder prints one field: no conditions, no loops, no filters.",
+          "The Letters list. Real Odoo screen.",
+          "Business Letter: the fields show as highlighted names in the text. Real Odoo screen.",
+          "Employee of the Quarter: a certificate with a background image. Real Odoo screen.",
+          "What a placeholder prints. Evidence table."
         ],
-        "images": []
+        "use": "you send the same kind of letter again and again.",
+        "mode": "Writes when saved",
+        "images": [
+          "images/lcx-tpl-list.webp",
+          "images/lcx-tpl-form-letter.webp",
+          "images/lcx-tpl-form-cert.webp",
+          "images/lcx-ev_placeholders.webp"
+        ]
       },
       {
-        "heading": "Saved on the chatter",
+        "heading": "2 Print one letter or a hundred from a list",
         "body": [
-          "Each PDF is posted as an internal note with the file attached on the record it was written for, so the letter stays with that contact or employee and follows their access rights."
+          "Selecting people and typing their details into a document is the slow part.",
+          "Select records in a list (or open one) and choose Action, Print Letter . The dialog names the template, says how many letters will be printed and previews the first record . A placeholder the app cannot read is shown in the preview as a message and nothing is printed. The templates offered are the ones for that kind of record. The template picked first is the first by name: for employees that is Employee of the Quarter, a certificate, so check the name before you print. Pictures are real Odoo 19 screens: three contacts with Business Letter, and one employee with Employee of the Quarter.",
+          "The entry appears in the Action menu only for kinds of record that have a template; a template for another kind of record than the selection is refused.",
+          "Three contacts selected; the preview is the first one. Real Odoo screen.",
+          "One employee, a certificate template. Real Odoo screen."
         ],
-        "images": []
+        "use": "you need the letter for several people at once.",
+        "mode": "Writes when printed",
+        "images": [
+          "images/lcx-wizard.webp",
+          "images/lcx-emp-wizard.webp"
+        ]
       },
       {
-        "heading": "Your letterhead",
+        "heading": "3 Each PDF stays with its record",
         "body": [
-          "Letters print in portrait on the company's own document layout, with the logo, header and footer you set in Settings. With several companies, each letter uses the layout of the company its record belongs to."
+          "A letter in a folder on someone's disk is not with the contact or employee it was sent to.",
+          "Print and save makes one PDF per record and posts it on that record's chatter as an internal note, named Template - Record name . Each record gets only its own letter. The same letters then download as one PDF with one letter per page (five contacts gave five attachments and a five page download). Printing the same letter again saves another PDF: both notes stay. Letters print in portrait on the company's document layout, certificates on A4 landscape with the background over the whole page. The first picture is a real Odoo 19 chatter; the four after it are the real PDFs the app saved, rendered with pdftoppm and cropped to the printed part. The company footer line and page number print; the logo of the letterhead did not show in the PDFs of this test server, also not for a plain Odoo report with the same layout, so it is not verified.",
+          "No electronic signature and no numbered register of issued letters; the app does not send letters by email.",
+          "Two prints of the same letter: two notes, two PDFs. Real Odoo screen.",
+          "The letter as saved on the chatter. Real PDF, rendered to a picture.",
+          "An employee letter from the Employees fields. Real PDF, rendered to a picture.",
+          "The starter certificate. Real PDF, rendered to a picture.",
+          "An employee certificate. Real PDF, rendered to a picture."
         ],
-        "images": []
+        "use": "you want the letter on file with the person it was written for.",
+        "mode": "Writes when printed",
+        "images": [
+          "images/lcx-chatter.webp",
+          "images/lcx-pdf-letter.webp",
+          "images/lcx-pdf-offer.webp",
+          "images/lcx-pdf-cert.webp",
+          "images/lcx-pdf-award.webp"
+        ]
       },
       {
-        "heading": "Certificates",
+        "heading": "4 A template cannot run code",
         "body": [
-          "A certificate prints on A4 landscape with no margins and an optional full-page background image. A bordered starter certificate comes with the app."
+          "A letter template is text that ordinary users write and that prints other people's data. If a placeholder were run as code, a template could change or read anything.",
+          "A placeholder is looked up as a path of field names and read as text; the template text is never evaluated. The first table typed ten expressions that would write, delete or read data, each in two forms, and every one was refused with a message; the contact, its name and the number of contacts were unchanged afterwards. The second table lists odd typing: a letter with a placeholder it cannot read is refused whole in the preview, so you fix it before anything is saved.",
+          "A placeholder with a filter or an operation (a bar, a plus) is refused, not run.",
+          "Ten expressions, all refused. Evidence table.",
+          "Typing odd placeholders. Evidence table."
         ],
-        "images": []
+        "use": "people other than administrators write templates.",
+        "mode": "Read-only",
+        "images": [
+          "images/lcx-ev_refused.webp",
+          "images/lcx-ev_typing.webp"
+        ]
       },
       {
-        "heading": "Contacts or employees",
+        "heading": "5 Who can print what",
         "body": [
-          "A template applies to contacts, or to any other kind of record that has a chatter. Install Odoo's Employees app and choose Employee, and the same wizard prints employee letters. The app needs only Discuss (mail), so it does not install the Employees app for you."
+          "A letter can pull in any field of the record. The user who prints must not be able to print a field they may not read.",
+          "Placeholders are read with the rights of the user who prints. The table shows three users, each holding one group: a plain internal user, a Contacts administrator and an Employees officer. A plain user's employee placeholder is refused, an officer's prints. Reading templates is open to every internal user; creating or changing one needs the Mail Template Editor group, and a portal user cannot print at all. Who may print a contact letter follows Odoo's own rights on the contact: see the table for this version.",
+          "The app adds no group; it uses Odoo's own rights.",
+          "Who can print what. Evidence table."
         ],
-        "images": []
+        "use": "you want to know what a printer can reach.",
+        "mode": "Read-only",
+        "images": [
+          "images/lcx-ev_rights.webp"
+        ]
       },
       {
-        "heading": "No code in templates",
+        "heading": "6 How far it goes",
         "body": [
-          "A placeholder is a field name and nothing else. It is looked up in the record's fields and read as the user who prints, with that user's access rights. A template that tries anything else, such as a method call, is refused with a message, and a field that user may not read is not printed."
+          "Letters and certificates have different shapes, and printing a lot takes time.",
+          "A letter runs on to more pages (24 paragraphs gave 3 pages). A certificate is one page: with 16 centred lines the last line lands on the bottom border of the frame, as the picture shows. Printing takes about two seconds per record on the test server: 10 records 21 seconds, 50 records about 100 seconds on Odoo 19; this is close to the default time limit of an Odoo web request when workers are used, so print very large lots in several steps. A record with a slash and quotes in its name, and one with a 200 character name, were saved with that name.",
+          "It does not shrink the text to fit a certificate page.",
+          "Printing at scale, and odd cases. Evidence table.",
+          "A certificate with too much text. Real PDF, rendered to a picture."
         ],
-        "images": []
+        "use": "you print many letters, or long ones.",
+        "mode": "Read-only",
+        "images": [
+          "images/lcx-ev_scale.webp",
+          "images/lcx-pdf-longcert.webp"
+        ]
       },
       {
-        "heading": "Who it is for",
+        "heading": "7 One defect fixed in this version",
         "body": [
-          "Small and medium businesses that send the same few letters again and again: offer and confirmation letters, reference letters, experience certificates, course or partner certificates."
+          "One defect was found while checking this page against the code, and fixed in both versions.",
+          "A typed placeholder inside a link address, (an href) that holds {{ object.name }} , was wrapped in a tag inside the address. The saved letter had a broken link and the stray characters \"> showed in the text next to the link text, on every print. Now a tag is left alone: the placeholder stays as typed in the address and the placeholders in the text of the same letter still fill. The link address itself is not filled in: placeholders work in the text only. The test goes through the wizard's Print and save and fails on the old code and passes now; breaking the fix again on a scratch copy makes it fail again.",
+          "The defect, before and after. Evidence table."
+        ],
+        "use": "you put a placeholder in a link.",
+        "mode": "Read-only",
+        "images": [
+          "images/lcx-ev_fix.webp"
+        ]
+      },
+      {
+        "heading": "What changed in this version",
+        "body": [
+          "Version 19.1.0.2 fixes one defect (see section 7) and adds 7 automated tests (19 before, 26 now), 1 for the fix and 6 that pin the limits above. It replaces the screenshots, the icon, the banner and the page text with checked ones, adds the known limits to the manifest description, and takes no feature out. The demo video of an earlier version is kept as it was and was not re-recorded."
         ],
         "images": []
       }
     ],
     "scope": [
-      "No electronic signature and no numbered register of issued certificates. Output is PDF, not Word files. Templates have no conditions or loops: a placeholder prints one field. Text is not translated per recipient; dates and numbers follow the language of the user who prints. It does not send letters by email. It sends no data anywhere."
+      "Each of these was reproduced on a running Odoo 19 and is pinned by a test that passes where a test can pin it; none is changed in this version except the link defect above.",
+      "Tests and controls. Evidence table."
     ],
-    "requires": [
-      "Odoo 19 and 20 Community or Enterprise; depends on Discuss (mail). Third-party apps install on Odoo.sh or On-Premise only - they cannot be installed on Odoo Online (SaaS)."
-    ],
+    "requires": [],
     "price": 28.95,
     "manifestPrice": 29.0,
     "currency": "USD",
@@ -17683,22 +18427,110 @@ export const odooApps = [
     "storeUrl19": "https://apps.odoo.com/apps/modules/19.0/mh_letters_certificates",
     "storeUrl20": "https://apps.odoo.com/apps/modules/20.0/mh_letters_certificates",
     "screenshots": [
-      "screenshot_template_form.webp",
-      "screenshot_letter_pdf.webp"
+      "images/lcx-ev_tests.webp"
     ],
     "shotDims": {
-      "screenshot_template_form.webp": [
+      "images/lcx-tpl-list.webp": [
         1000,
-        562
+        1254
       ],
-      "screenshot_letter_pdf.webp": [
-        910,
-        760
+      "images/lcx-tpl-form-letter.webp": [
+        1000,
+        2408
+      ],
+      "images/lcx-tpl-form-cert.webp": [
+        1000,
+        2408
+      ],
+      "images/lcx-ev_placeholders.webp": [
+        1000,
+        1736
+      ],
+      "images/lcx-wizard.webp": [
+        1000,
+        1933
+      ],
+      "images/lcx-emp-wizard.webp": [
+        1000,
+        1866
+      ],
+      "images/lcx-chatter.webp": [
+        1000,
+        1283
+      ],
+      "images/lcx-pdf-letter.webp": [
+        1000,
+        973
+      ],
+      "images/lcx-pdf-offer.webp": [
+        1000,
+        1025
+      ],
+      "images/lcx-pdf-cert.webp": [
+        1000,
+        689
+      ],
+      "images/lcx-pdf-award.webp": [
+        1000,
+        689
+      ],
+      "images/lcx-ev_refused.webp": [
+        1000,
+        1333
+      ],
+      "images/lcx-ev_typing.webp": [
+        1000,
+        903
+      ],
+      "images/lcx-ev_rights.webp": [
+        1000,
+        834
+      ],
+      "images/lcx-ev_scale.webp": [
+        1000,
+        1292
+      ],
+      "images/lcx-pdf-longcert.webp": [
+        1000,
+        689
+      ],
+      "images/lcx-ev_fix.webp": [
+        1000,
+        861
+      ],
+      "images/lcx-ev_tests.webp": [
+        1000,
+        607
       ]
     },
-    "tiles": [],
+    "tiles": [
+      {
+        "n": "1 text",
+        "l": "per letter or certificate: write it once with fields of a contact or employee, print one filled-in PDF for each record you select"
+      },
+      {
+        "n": "26",
+        "l": "automated tests in the app, none failing; 7 were added in this version"
+      },
+      {
+        "n": "20 of 20",
+        "l": "deliberate breaks of the code were caught by the tests (the real code: 0 failed)"
+      },
+      {
+        "n": "1",
+        "l": "defect found and fixed in this version (a placeholder typed in a link broke the link), disclosed below"
+      },
+      {
+        "n": "0",
+        "l": "code runs from a template: a placeholder is a field name and nothing else"
+      },
+      {
+        "n": "Not",
+        "l": "a signature, a numbered register, Word files, or a certificate of more than one page (see the known limits)"
+      }
+    ],
     "faq": [],
-    "copyWords": 463,
+    "copyWords": 1601,
     "hasVideo": true,
     "youtubeId": "UhapTNFqxgc",
     "externalPage": null
@@ -17853,7 +18685,7 @@ export const odooApps = [
     "manifestPrice": 29.0,
     "currency": "USD",
     "category": "Productivity/Discuss",
-    "version": "19.0.1.0.13",
+    "version": "19.0.1.0.14",
     "license": "OPL-1",
     "depends": [
       "mail",
@@ -17976,55 +18808,142 @@ export const odooApps = [
     "tech": "mh_pos_brand_theme",
     "slug": "pos-brand-theme",
     "name": "POS Brand Theme",
-    "summary": "POS theme with your brand colours: primary and accent colour, dark mode and touch-friendly density per point of sale, applied at the till without rebuilding assets",
-    "tagline": "Your brand colours, a dark mode and a touch-friendly density for each point of sale, applied when the till opens.",
+    "summary": "Give each point of sale its own brand colours, a dark mode and a touch-friendly density at the till, with button text and coloured text kept readable",
+    "tagline": "Give each point of sale its own brand colours, a dark mode and a touch-friendly density at the till, with button text and coloured text kept readable",
     "intro": [
-      "Odoo's Point of Sale ships in one purple and one light look for every shop and counter. There is no setting to change the colour of the Payment button, give a bar a dark till for the evening, or make the buttons bigger for a tablet, and the colours are compiled into the stylesheet, so changing them means editing code and rebuilding assets.",
-      "This app adds a Brand Theme block to each point of sale's settings: a primary colour, an accent colour, a colour mode (Light, Dark or Follow device) and a density (Compact, Normal or Large touch). The till reads the choice when it opens and applies it with CSS variables. Nothing is compiled, and only the points of sale that tick Brand Theme change."
+      "Odoo's Point of Sale ships in one purple and one light look. With this app each point of sale can have its own primary and accent colour, a Light, Dark or Follow device mode and a Compact, Normal or Large touch density, applied when the till opens with CSS variables, so nothing is compiled. The part that is easy to get wrong is readability: a pale brand colour makes white button text unreadable and a dark one disappears in a dark till. This page shows what the app does about that, with screenshots of a real cashier session on an Odoo 19 database holding a made-up neighbourhood coffee shop, readings taken from the real till, and the defects found when it was tested.",
+      "A theme changes how the till looks, so this page also says what is left as Odoo draws it and what was not tested.",
+      "Install it and the point of sale's Settings (Point of Sale, Interface) gain a Brand Theme block: a tick, two colours, a mode and a density. It needs Odoo's own Point of Sale and nothing else."
     ],
     "features": [
       {
-        "heading": "Colours that stay readable",
+        "heading": "1 Switch it on per point of sale",
         "body": [
-          "The primary colour fills the main buttons exactly as you chose it, and the text on it turns black or white, whichever reads better (always at least 4.5:1). Where the colour would be used as text or as a button outline on the till's grey or dark surface, it is darkened (lightened in dark mode) only as far as needed to reach 4.5:1, so a pale yellow or a near-white brand still gives readable buttons and links. The settings tell you which text colour a button will have and its contrast as soon as you type the colour."
+          "Odoo gives every shop and counter the same purple, light till, and there is no setting for the colour of the Payment button.",
+          "Open Point of Sale > Configuration > Settings, pick the point of sale and, under Interface, tick Brand Theme . Then choose a primary colour, an accent colour, a colour mode and a density. The defaults are Odoo's purple #714b67, a teal accent #017e84, Light and Normal. Under the colours the screen says what colour the button text will be and its contrast, for example white at 4.7:1 for the rose used here. Only points of sale that tick Brand Theme change; each keeps its own values, and a copy of a point of sale keeps the theme of the original.",
+          "The note under the colours was read from the settings model, not by typing in a browser; typing a colour and pressing Save on the screen was not driven.",
+          "The settings block for one point of sale (rose and teal, Follow device, Compact).",
+          "What the colour field accepts: only #rrggbb. A colour ending in a line break was accepted in 1.0.1 and is refused now (section 4). From the real JSON-RPC write."
         ],
-        "images": []
+        "use": "each shop or counter has its own look.",
+        "mode": "Writes settings",
+        "images": [
+          "images/pbt-settings.webp",
+          "images/pbt-ev-input.webp"
+        ]
       },
       {
-        "heading": "Primary and accent colour",
+        "heading": "2 Your colours at the till",
         "body": [
-          "The primary colour recolours the Payment, Validate and other primary buttons, outline buttons, primary text and the pressed state of buttons. The accent colour is used for the selected order line, payment line, customer and order in the list, and for the keyboard focus ring. Focus outlines are never removed."
+          "A till in Odoo's purple does not look like your shop, and a primary colour changed by hand in the stylesheet breaks on every update.",
+          "The primary colour fills the Payment button as you chose it (rose reads as rgb(225, 29, 72)), and the same for Validate and the other main buttons; the active Register tab and the order number are tinted with it. The accent colour tints the selected order line and, by the same rule, selected payment lines, customers and orders in the list, and is the colour of the 3px keyboard focus ring, which is never removed. The first picture is the same till as Odoo ships it; the next two are the order screen and the payment screen with rose and teal.",
+          "The colours of product categories and of the pastel numpad keys are Odoo's and stay as they are (section 7).",
+          "Before: the till as Odoo ships it.",
+          "Rose primary, teal accent, Light mode: the order screen.",
+          "The payment screen in the same theme.",
+          "Eight brand colours read from the real till: what the button text became and how each colour reads as text and as a focus ring. Generated from the readings, not a live screen."
         ],
-        "images": []
+        "use": "the till looks like your shop.",
+        "mode": "Writes the look",
+        "images": [
+          "images/pbt-odoo-default.webp",
+          "images/pbt-light-order.webp",
+          "images/pbt-light-pay.webp",
+          "images/pbt-ev-colours.webp"
+        ]
       },
       {
-        "heading": "Dark mode",
+        "heading": "3 Readable, whatever colour you pick",
         "body": [
-          "Dark turns the product screen, order panel, product cards, navbar, payment screen, order list, customer list, dialogs and inputs dark, with the main text above 7:1 on every dark surface. Follow device uses the device's own light or dark setting and switches with it while the till is open."
+          "A pale yellow brand makes white button text unreadable, a navy one vanishes as text on a dark till, and a focus ring in a light colour disappears.",
+          "The brand colour fills a button exactly as chosen; only the text on it turns black or white, whichever reads better (pale yellow gets black text at 17.2:1, rose white at 4.7:1). Where the colour would be text, an outline or the focus ring on the till's grey or dark surface, it is moved towards black (light mode) or white (dark mode) only as far as needed: 4.5:1 for text and outlines, 3:1 for the ring. In a sweep of 5,832 colours across the colour range, in both modes, the worst button text was 4.58:1, the worst coloured text 4.5:1 and the worst focus ring 3.0:1. Rose as text read 4.9:1 on the light till and 6.0:1 on the dark till; the same sweep runs in the module's tests.",
+          "It does not judge whether a colour is a good brand colour, only whether text on it and text in it can be read. Odoo's own status badges are not recoloured (section 4).",
+          "A pale yellow primary with a navy accent in dark mode: black text on the yellow button.",
+          "The sweep and the Settings notes. Generated from the test run, not a live screen."
         ],
-        "images": []
+        "use": "a pale or dark brand colour still works.",
+        "mode": "Reads colours",
+        "images": [
+          "images/pbt-yellow-order.webp",
+          "images/pbt-ev-sweep.webp"
+        ]
       },
       {
-        "heading": "Touch density",
+        "heading": "4 Dark mode",
         "body": [
-          "Compact fits more product cards and sets buttons to about 44px, the smallest touch target this app will make. Normal leaves Odoo's own sizes alone. Large touch makes buttons at least 64px and product cards wider."
+          "A bright till in a dim bar or at night is hard on the eyes, and a dark mode that misses a dialog leaves white panels with light text.",
+          "Dark mode turns the till, the order panel, product cards, navbar, dialogs and inputs dark: the page reads rgb(22, 24, 28), the order panel rgb(31, 35, 40) and the text rgb(232, 234, 237) at 7:1 or better. Every text on the product screen, the payment screen, the note dialog, the customer list and the new-customer form was checked against the colour really behind it.",
+          "Defect found and fixed in 1.0.2. The customer create and edit form (Customer, then Create) kept a white sheet under light text in dark mode: Person, Company and the open tab Contacts read 1.2:1 and 1.0:1, and Add Contact 3:1. The sheet, tabs, labels, help marks and the Add Contact card now follow the dark surface. The test that catches it opens that form in the real till and failed on the old code.",
+          "What is left: Odoo's own status badge in the order list (white on a blue that reaches 3:1) is not recoloured, in light or dark. The pastel category and numpad colours keep dark text.",
+          "It was checked on the screens named here, the note and opening dialogs and the closing dialog; a screen added by another app can stay light until that app's colours are themed, and none was tested.",
+          "Rose primary, teal accent, Dark mode: the order screen.",
+          "The payment screen in dark mode.",
+          "Before (version 1.0.1): the form sheet is white.",
+          "After (version 1.0.2): the same form.",
+          "The order list in dark mode; the status badge is Odoo's own.",
+          "Text below 4.5:1 on each dark screen, before and after. Generated from the readings, not a live screen.",
+          "The receipt shown after payment keeps Odoo's own black on white, also in a dark till. Printed receipts were not tested."
         ],
-        "images": []
+        "use": "evening shifts and low light.",
+        "mode": "Writes the look",
+        "images": [
+          "images/pbt-dark-order.webp",
+          "images/pbt-dark-pay.webp",
+          "images/pbt-dark-form-before.webp",
+          "images/pbt-dark-form.webp",
+          "images/pbt-dark-orders.webp",
+          "images/pbt-ev-dark.webp",
+          "images/pbt-dark-receipt.webp"
+        ]
       },
       {
-        "heading": "Who it is for",
+        "heading": "5 Density for touch screens",
         "body": [
-          "Shops, cafes and franchises that want the till to look like their brand, bars that want a dark till, and anyone running tablets at the counter who wants bigger buttons on one point of sale and Odoo's standard look on the others."
+          "The same buttons suit a mouse at a desk and a finger at a counter badly.",
+          "Compact sets buttons to about 44px (the smallest button read 44px) and fits more product cards; Large makes buttons at least 64px (the smallest read 64px) and cards wider. Normal adds no rule of its own: the smallest button read 38px, and three of Odoo's own buttons, the new-order plus (40px), the order number (40px) and the cashier name (38px), are under 44px; the app does not enlarge them in Normal. The Payment button keeps Odoo's own 70px. Cards per row at a 1000, 1366 and 1920px window: Normal 5, 7 and 10, Compact 5, 8 and 10 (more only at 1366px), Large 2, 4 and 7. Large shows two cards per row at 1000px.",
+          "It sets button height and card size only; it does not change fonts or spacing elsewhere.",
+          "Compact: more, smaller product cards.",
+          "Large touch: fewer, larger cards and taller buttons.",
+          "Button heights and cards per row, read from the real till. Generated from the readings, not a live screen."
         ],
+        "use": "a tablet at the counter needs bigger buttons.",
+        "mode": "Writes the look",
+        "images": [
+          "images/pbt-density-compact.webp",
+          "images/pbt-density-large.webp",
+          "images/pbt-ev-density.webp"
+        ]
+      },
+      {
+        "heading": "6 When a change shows, and who can make it",
+        "body": [
+          "A theme that does not show after you save looks like a bug, and a setting any cashier can change is worth knowing about.",
+          "Follow device starts from the browser's setting and switches live: in a real browser the till went light, then dark with no reload when the browser's colour scheme changed, then light again.",
+          "When a change shows. A till that is already open keeps its look: in the real browser the open till kept the old theme after the change, and a plain browser reload kept it too, because Odoo keeps its cached copy of an open session. It showed the change after the till was opened again from the back office (Point of Sale dashboard, Continue Selling). The settings text used to say reload; it now says to open the till again from the back office (fixed in 1.0.2).",
+          "Who can change it. The theme is a field of the point of sale. A Point of Sale user (cashier) wrote the primary colour through the ORM and it was accepted; this is Odoo's own access on the point of sale and the app adds no rule of its own.",
+          "Real browser readings. Generated from the readings, not a live screen."
+        ],
+        "use": "you know why the till has not changed yet.",
+        "mode": "Nothing written",
+        "images": [
+          "images/pbt-ev-live.webp"
+        ]
+      },
+      {
+        "heading": "7 What stays as Odoo draws it",
+        "body": [
+          "A theme that quietly restyles the back office or the receipt would be a surprise."
+        ],
+        "use": "you know what the theme does not touch.",
+        "mode": "Nothing written",
         "images": []
       }
     ],
     "scope": [
-      "No custom fonts, logos or background images, no ready-made theme styles to pick from and no grid or list switch for products. The theme belongs to the point of sale, not to a user. The receipt, the customer display and the Self-Order kiosk keep Odoo's own look, and nothing in the back office is changed. Product category colours and the pastel colours Odoo gives the numpad stay as they are. A change in the settings shows when the till is next opened or reloaded; a session that is already open keeps its look until then. Dark mode covers Odoo's own Point of Sale screens; a screen added by another app can stay light until that app is themed."
+      "This is the part to read before buying. Each line was tested on a throwaway Odoo 19 Community database.",
+      "The test run, the fail-first runs on version 1.0.1 and the mutation control, rendered as a table. Generated from the test logs, not a live screen."
     ],
-    "requires": [
-      "Odoo 19 and 20, Community or Enterprise; installs Odoo's own Point of Sale app (point_of_sale). Third-party apps install on Odoo.sh or On-Premise only - they cannot be installed on Odoo Online (SaaS)."
-    ],
+    "requires": [],
     "price": 28.95,
     "manifestPrice": 29.0,
     "currency": "USD",
@@ -18040,22 +18959,151 @@ export const odooApps = [
     "storeUrl19": "https://apps.odoo.com/apps/modules/19.0/mh_pos_brand_theme",
     "storeUrl20": "https://apps.odoo.com/apps/modules/20.0/mh_pos_brand_theme",
     "screenshots": [
-      "screenshot_themed_till.webp",
-      "screenshot_dark_till.webp"
+      "images/pbt-ev-tests.webp"
     ],
     "shotDims": {
-      "screenshot_themed_till.webp": [
+      "images/pbt-ev-tests.webp": [
         1000,
-        562
+        2120
       ],
-      "screenshot_dark_till.webp": [
+      "images/pbt-settings.webp": [
         1000,
-        562
+        1151
+      ],
+      "images/pbt-ev-input.webp": [
+        1000,
+        1165
+      ],
+      "images/pbt-odoo-default.webp": [
+        1000,
+        1895
+      ],
+      "images/pbt-light-order.webp": [
+        1000,
+        1895
+      ],
+      "images/pbt-light-pay.webp": [
+        1000,
+        1895
+      ],
+      "images/pbt-ev-colours.webp": [
+        1000,
+        1112
+      ],
+      "images/pbt-yellow-order.webp": [
+        1000,
+        1895
+      ],
+      "images/pbt-ev-sweep.webp": [
+        1000,
+        897
+      ],
+      "images/pbt-dark-order.webp": [
+        1000,
+        1895
+      ],
+      "images/pbt-dark-pay.webp": [
+        1000,
+        1895
+      ],
+      "images/pbt-dark-form-before.webp": [
+        1000,
+        978
+      ],
+      "images/pbt-dark-form.webp": [
+        1000,
+        978
+      ],
+      "images/pbt-dark-orders.webp": [
+        1000,
+        682
+      ],
+      "images/pbt-ev-dark.webp": [
+        1000,
+        836
+      ],
+      "images/pbt-dark-receipt.webp": [
+        720,
+        1272
+      ],
+      "images/pbt-density-compact.webp": [
+        1000,
+        1000
+      ],
+      "images/pbt-density-large.webp": [
+        1000,
+        1000
+      ],
+      "images/pbt-ev-density.webp": [
+        1000,
+        840
+      ],
+      "images/pbt-ev-live.webp": [
+        1000,
+        996
       ]
     },
-    "tiles": [],
-    "faq": [],
-    "copyWords": 555,
+    "tiles": [
+      {
+        "n": "3",
+        "l": "settings per point of sale besides the two colours: colour mode (Light, Dark, Follow device), density, and an on/off tick"
+      },
+      {
+        "n": "5,832",
+        "l": "colours tried across the whole colour range, in light and dark: button text never below 4.58:1, coloured text never below 4.5:1, focus ring never below 3:1"
+      },
+      {
+        "n": "27",
+        "l": "tests in the run, none failing, including browser tests of the real till (8 added in this release)"
+      },
+      {
+        "n": "0",
+        "l": "network calls, scheduled actions, or changes to the back office, prices, taxes or payments"
+      },
+      {
+        "n": "3",
+        "l": "defects fixed in this release, each with a test that failed on the old code (section 4 and the Before you install list)"
+      },
+      {
+        "n": "Not",
+        "l": "checked: Enterprise, Odoo.sh, other apps' screens, printed receipts, real touch hardware (see Before you install)"
+      }
+    ],
+    "faq": [
+      {
+        "q": "Does it change the back office, prices, taxes or payments?",
+        "a": "No. The theme files are in the till bundle only; orders, prices, taxes and payments are Odoo's own."
+      },
+      {
+        "q": "What if my brand colour is pale or dark?",
+        "a": "The button keeps the colour you chose and its text turns black or white, always at least 4.5:1. Where the colour is used as text or an outline it is darkened or lightened only as far as needed (4.5:1 for text, 3:1 for the focus ring); a sweep of 5,832 colours stayed within those limits."
+      },
+      {
+        "q": "Can each point of sale have its own theme?",
+        "a": "Yes. Each point of sale keeps its own colours, mode and density, and a point of sale that does not tick Brand Theme looks exactly as Odoo makes it."
+      },
+      {
+        "q": "Why does my till not change after I save?",
+        "a": "A till that is already open keeps its look, also after a browser reload on Odoo 19. Open it again from the back office (Point of Sale dashboard, Continue Selling)."
+      },
+      {
+        "q": "Does dark mode cover every screen?",
+        "a": "It was checked on the product screen, payment screen, order list, customer list and form, the note, opening and closing dialogs. Odoo's own status badge stays at 3:1, and a screen added by another app can stay light; none was tested."
+      },
+      {
+        "q": "Who can change the theme?",
+        "a": "Anyone who may edit the point of sale, a cashier included: a Point of Sale user wrote the colour through the ORM. The app adds no access rule of its own."
+      },
+      {
+        "q": "Does it work on Odoo Online or Enterprise?",
+        "a": "Not on Odoo Online (SaaS): third-party apps cannot be installed there. Enterprise and Odoo.sh were not tested."
+      },
+      {
+        "q": "Is anything sent outside Odoo?",
+        "a": "No. The app makes no network call and has no scheduled action."
+      }
+    ],
+    "copyWords": 1635,
     "hasVideo": true,
     "youtubeId": "j2CtTDIFhyE",
     "externalPage": null
@@ -18064,49 +19112,138 @@ export const odooApps = [
     "tech": "mh_pos_card_charges",
     "slug": "pos-card-charges",
     "name": "POS Card Charges",
-    "summary": "Credit card surcharge or POS fee by payment method: percentage or fixed transaction charge added as an order line when the card payment is added, on the receipt",
-    "tagline": "A percentage or fixed card charge per payment method, added to the order as its own line when the card payment is added.",
+    "summary": "Add a credit card surcharge or POS fee by payment method: a percentage, a fixed amount or both, added as an order line when the card payment is added at the till",
+    "tagline": "Credit card surcharge or POS fee by payment method: a percentage, a fixed amount or both, added as an order line when the card payment is added, on the receipt",
     "intro": [
-      "Taking cards costs you a percentage of every sale, and the till has nowhere to pass it on: Odoo's Point of Sale has no charge per payment method, so the fee is either swallowed, or keyed in by hand as a product line that nobody remembers to remove when the customer pays another way.",
-      "This app adds three fields to a payment method: a percentage, a fixed amount and the product the charge is posted with. When the cashier adds a payment line of that method, one charge line of that product is added to the order, worked out on the part of the bill that payment line pays, and the payment line is raised by the charge. 2% + 0.50 on a 100.00 bill: the card line becomes 102.50 and the order gets a Card Charge line of 2.50.",
-      "Check that card surcharging is allowed where you trade. Some countries and card schemes restrict or ban it, and that is your responsibility as the merchant; this app only adds the line you configure."
+      "Odoo's point of sale takes a card payment for the bill and has no place to say that paying by card costs the shop something. With this app a payment method gets a percentage and a fixed amount. When the cashier adds a payment line of that method, the app works out the charge on the part of the bill the line pays, adds one Card Charge line to the order and raises the payment line by the charge. This page walks through it with screenshots of a real cashier session on an Odoo 19 database holding a made-up homeware shop, with readings taken from the database afterwards, and with the limits found when it was tested.",
+      "A charge is money taken from a customer, so this page also says what the app changes, what it keeps, and what it does not check. The merchant is responsible for checking that card surcharging is allowed where they trade.",
+      "Install it and a payment method gains Charge (%) , Charge (fixed) and Charge Product , and the payment screen shows incl. charge on the card line. It needs Odoo's own Point of Sale and nothing else."
     ],
     "features": [
       {
-        "heading": "The charge follows the payment line",
+        "heading": "1 Set the charge on a payment method",
         "body": [
-          "Typing a different amount on the card line recomputes its charge from that amount: 50.00 typed gives a 1.50 charge, a card line of 51.50 and 50.00 left to pay. Deleting the payment line deletes its charge. Every payment line has its own charge line, so a bill split over two cards is charged on each card's share, and a cash line is never charged."
+          "Odoo's payment methods have no field for what a payment costs.",
+          "Open Point of Sale > Configuration > Payment Methods. A non-cash method has a Card Charge block: a percentage, a fixed amount in the currency of the point of sale, and the product the charge is posted with (it posts to that product's income account and carries that product's taxes). A new method gets the default Card Charge product with both rates at 0, and a copy keeps rates and product. The server refuses a negative charge, a charge on a cash method, and a charge with no product. A percent above 100 and a percent with more than two decimals were accepted.",
+          "No rate per card brand: one rate per payment method. Check that surcharging is allowed where you trade.",
+          "The Card method: 1.5% + 0.25.",
+          "The list shows the percentage column.",
+          "What was refused and what was accepted, from ORM readings. Generated, not a live screen."
         ],
-        "images": []
+        "use": "you decide what a card payment costs the customer.",
+        "mode": "Writes settings",
+        "images": [
+          "images/pcc-method-form.webp",
+          "images/pcc-method-list.webp",
+          "images/pcc-ev-server.webp"
+        ]
       },
       {
-        "heading": "An ordinary line, posted to its own account",
+        "heading": "2 The charge when the card line is added",
         "body": [
-          "The charge is an order line of the charge product you choose, so it is printed on the receipt, invoiced with the order, and posted at session closing to that product's income account with that product's taxes. The Card Charge product that comes with the app has no taxes; set the taxes and income account that fit your books on it, or pick a different service product for each payment method. When the product carries a tax, the payment line is raised by the charge including that tax."
+          "A card fee added by hand is forgotten, mistyped or argued about.",
+          "On the payment screen the cashier taps Card. The bill is 49.68 (two mugs and a spoon set with 8% tax); 1.5% of 49.68 plus 0.25 is 1.00, so the card line reads 50.68 and shows incl. charge $1.00 . The percentage applies to the part of the bill the line pays, taxes of the goods included. Typing a different amount on the line works out its own charge: 20 typed gave 0.55 and a line of 20.55 with 29.68 left to pay. The numpad edits the part of the bill the card pays, not the charged total. Deleting the payment line deletes its charge. A very small amount still gets the fixed part (0.10 gave 0.35).",
+          "The charge is not recomputed when the order changes after the card line (section 7).",
+          "Card for the whole bill: 49.68 plus a charge of 1.00.",
+          "20 typed on the card line: its own charge of 0.55.",
+          "Real till readings for five amounts. Generated from the readings, not a live screen."
         ],
-        "images": []
+        "use": "the customer sees the real total before paying.",
+        "mode": "Writes on the order",
+        "images": [
+          "images/pcc-pay-full.webp",
+          "images/pcc-pay-typed.webp",
+          "images/pcc-ev-amounts.webp"
+        ]
       },
       {
-        "heading": "Refunds reverse it",
+        "heading": "3 Split payments and several cards",
         "body": [
-          "Refund the charge line together with the goods and the refund reverses the charge at the same account and tax. The app never adds a charge to a refund. The charge product is kept off the product screen, so it cannot be rung up by mistake."
+          "Charging the whole bill when only part is paid by card would overcharge.",
+          "Each payment line has its own charge line. A skillet bill of 69.12 paid with 20.00 in cash and the rest by card charged only the card's 49.12: charge 0.99, line 50.11, total 70.11. Card 40.00 then Amex for the rest gave charges of 0.85 and 1.65 on one order. Cash lines are never charged (a charge on a cash method is refused by the server). The same method used twice charges its fixed part twice.",
+          "No charge on cash and none on refunds.",
+          "Cash 20.00, then card for the rest.",
+          "Two cards, two charges.",
+          "Cash only: no charge."
         ],
-        "images": []
+        "use": "a bill paid with cash and card, or two cards, is charged line by line.",
+        "mode": "Writes on the order",
+        "images": [
+          "images/pcc-pay-split.webp",
+          "images/pcc-pay-two-cards.webp",
+          "images/pcc-pay-cash.webp"
+        ]
       },
       {
-        "heading": "Who it is for",
+        "heading": "4 On the order, the receipt and the invoice",
         "body": [
-          "Shops, cafes and counters that pay a percentage on card takings and are allowed to pass it on, and that would rather the till worked it out than the cashier."
+          "A fee that lives only in the payment amount cannot be reported or invoiced.",
+          "The charge is an ordinary order line of the charge product, so it is on the order form, the printed receipt, the customer invoice (Card Charge 1.00 posted to its own account), Orders Analysis (3.50 over 3 units in the demo: four charges, one refunded) and Sales Details. The charge product is kept off the product screen and cannot be archived while a method uses it.",
+          "The charge line is not meant to be edited or deleted by hand (section 7).",
+          "The order with its Card Charge line.",
+          "The receipt prints the charge as a line.",
+          "The order form in the back office.",
+          "The invoice of the first order."
         ],
-        "images": []
+        "use": "the charge is a normal line wherever the order goes.",
+        "mode": "Reads orders",
+        "images": [
+          "images/pcc-order-lines.webp",
+          "images/pcc-receipt.webp",
+          "images/pcc-order-form.webp",
+          "images/pcc-invoice.webp"
+        ]
+      },
+      {
+        "heading": "5 Taxes on the charge",
+        "body": [
+          "A surcharge is taxed differently in different places and the app must not guess.",
+          "The default Card Charge product has no taxes. Set the taxes and income account that fit where you trade on it, or pick another service product per method. With 8% sales tax excluded from the price a charge of 1.29 became 1.39 and the card line 70.51; with the tax included in the price the line was 70.41; on an order set to a tax-exempt fiscal position before paying the charge was untaxed. The charge is not split by the taxes of the goods.",
+          "Whether a surcharge may be taxed, and how, was not examined.",
+          "Real till readings. Generated from the readings, not a live screen."
+        ],
+        "use": "the charge follows the charge product's tax settings.",
+        "mode": "Writes on the order",
+        "images": [
+          "images/pcc-ev-tax.webp"
+        ]
+      },
+      {
+        "heading": "6 Refunds and closing the session",
+        "body": [
+          "A fee that cannot be reversed or reported at closing is a liability.",
+          "A refund that includes the charge line reverses it and adds no new charge: refunding 70.11 to the card read 70.11 with no hint. At closing the charge posts to the charge product's income account: 490100 was credited 3.49 and the refund's closing debited it back 0.99 (an invoiced order's charge sits on its invoice). On Odoo 19 both sessions closed.",
+          "A partial refund that leaves the charge line out was not run.",
+          "Refund to the card: no new charge.",
+          "Where the charge landed, read from the database. Generated, not a live screen.",
+          "Closing readings. Generated, not a live screen."
+        ],
+        "use": "end of day books the charge where you chose.",
+        "mode": "Reads sessions",
+        "images": [
+          "images/pcc-pay-refund.webp",
+          "images/pcc-ev-books.webp",
+          "images/pcc-ev-close.webp"
+        ]
+      },
+      {
+        "heading": "7 Odd cases and limits",
+        "body": [
+          "A feature that adds money to a bill should state where it stops.",
+          "Real till readings. Generated from the readings, not a live screen."
+        ],
+        "use": "you know what the app leaves alone.",
+        "mode": "Nothing written",
+        "images": [
+          "images/pcc-ev-limits.webp"
+        ]
       }
     ],
     "scope": [
-      "No charge on cash payment methods or on refunds. One rate per payment method, not per card brand. The charge carries the charge product's own taxes; it is not split across the taxes of the goods sold. A tip added after the card line is not charged until that line is edited. If the cashier deletes a charge line from the order by hand, the card line stays raised; delete the payment line instead. Not tested with integrated payment terminals. It does not tell you whether surcharging is allowed where you trade."
+      "This is the part to read before buying. Each line was tested on a throwaway Odoo 19 Community database.",
+      "The test run and the mutation control, rendered as a table. Generated from the test logs, not a live screen."
     ],
-    "requires": [
-      "Odoo 19 and 20, Community or Enterprise; installs Odoo's own Point of Sale app (point_of_sale). Third-party apps install on Odoo.sh or On-Premise only - they cannot be installed on Odoo Online (SaaS)."
-    ],
+    "requires": [],
     "price": 28.95,
     "manifestPrice": 29.0,
     "currency": "USD",
@@ -18122,17 +19259,147 @@ export const odooApps = [
     "storeUrl19": "https://apps.odoo.com/apps/modules/19.0/mh_pos_card_charges",
     "storeUrl20": "https://apps.odoo.com/apps/modules/20.0/mh_pos_card_charges",
     "screenshots": [
-      "screenshot_order_with_charge.webp"
+      "images/pcc-ev-tests.webp"
     ],
     "shotDims": {
-      "screenshot_order_with_charge.webp": [
+      "images/pcc-ev-tests.webp": [
         1000,
-        562
+        608
+      ],
+      "images/pcc-method-form.webp": [
+        962,
+        334
+      ],
+      "images/pcc-method-list.webp": [
+        1000,
+        456
+      ],
+      "images/pcc-ev-server.webp": [
+        1000,
+        1326
+      ],
+      "images/pcc-pay-full.webp": [
+        1000,
+        807
+      ],
+      "images/pcc-pay-typed.webp": [
+        1000,
+        807
+      ],
+      "images/pcc-ev-amounts.webp": [
+        1000,
+        975
+      ],
+      "images/pcc-pay-split.webp": [
+        1000,
+        1013
+      ],
+      "images/pcc-pay-two-cards.webp": [
+        1000,
+        987
+      ],
+      "images/pcc-pay-cash.webp": [
+        918,
+        1074
+      ],
+      "images/pcc-order-lines.webp": [
+        1000,
+        421
+      ],
+      "images/pcc-receipt.webp": [
+        786,
+        1395
+      ],
+      "images/pcc-order-form.webp": [
+        1000,
+        426
+      ],
+      "images/pcc-invoice.webp": [
+        1000,
+        333
+      ],
+      "images/pcc-ev-tax.webp": [
+        1000,
+        804
+      ],
+      "images/pcc-pay-refund.webp": [
+        930,
+        1074
+      ],
+      "images/pcc-ev-books.webp": [
+        1000,
+        748
+      ],
+      "images/pcc-ev-close.webp": [
+        1000,
+        361
+      ],
+      "images/pcc-ev-limits.webp": [
+        1000,
+        862
       ]
     },
-    "tiles": [],
-    "faq": [],
-    "copyWords": 539,
+    "tiles": [
+      {
+        "n": "50.68",
+        "l": "card line for a 49.68 bill at 1.5% + 0.25: the charge (1.00) is worked out on the part the card pays and added as its own order line"
+      },
+      {
+        "n": "10",
+        "l": "tests in the run, none failing, including browser tests of the till (5 added in this release)"
+      },
+      {
+        "n": "490100",
+        "l": "the charge posts to the charge product's own income account: on the invoice, in Orders Analysis and at session closing"
+      },
+      {
+        "n": "0",
+        "l": "network calls, scheduled actions or access rules added"
+      },
+      {
+        "n": "1",
+        "l": "display defect fixed in this release: the charge hint touched the method name on narrow lines (section 7)"
+      },
+      {
+        "n": "Not",
+        "l": "checked: Enterprise, Odoo.sh, several companies, terminals, restaurant, cash rounding, loyalty, and any legal question (see Before you install)"
+      }
+    ],
+    "faq": [
+      {
+        "q": "Does it charge cash payments or refunds?",
+        "a": "No. A charge on a cash method is refused and a refund's payment line gets none."
+      },
+      {
+        "q": "On what amount is the percentage worked out?",
+        "a": "On the part of the bill the payment line pays, taxes of the goods included. A split payment charges only the card's share."
+      },
+      {
+        "q": "Is the charge on the receipt and the invoice?",
+        "a": "Yes. It is an ordinary order line of the charge product, so it is on the receipt, the invoice, Orders Analysis and the session closing."
+      },
+      {
+        "q": "Can I waive the charge on one order?",
+        "a": "Not by deleting the charge line: that leaves the card line overpaid. Use a payment method without a charge."
+      },
+      {
+        "q": "What if the order changes after I added the card line?",
+        "a": "The line and its charge are not recomputed. Delete the payment line and add it again."
+      },
+      {
+        "q": "Are tips charged?",
+        "a": "A tip added before the card line is charged with the rest; a tip added after it is not."
+      },
+      {
+        "q": "Is card surcharging allowed where I trade?",
+        "a": "That is for you to check. The app states this and claims nothing about legality."
+      },
+      {
+        "q": "Does it work on Odoo Online or Enterprise?",
+        "a": "Not on Odoo Online (SaaS): third-party apps cannot be installed there. Enterprise and Odoo.sh were not tested."
+      }
+    ],
+    "copyWords": 1142,
     "hasVideo": true,
     "youtubeId": "9xZU-tqh1oQ",
     "externalPage": null
@@ -18141,69 +19408,139 @@ export const odooApps = [
     "tech": "mh_pos_invoice_journal",
     "slug": "pos-invoice-journal",
     "name": "POS Invoice Journal",
-    "summary": "Choose the invoice journal for each POS order: multiple invoice journals per point of sale, journal selection on the POS payment screen, separate invoice numbering per journal",
-    "tagline": "Choose the invoice journal for each POS order: one point of sale, several invoice journals, picked on the payment screen.",
+    "summary": "Let a point of sale offer several sales journals, a journal selector on the payment screen, and a separate invoice number series for each journal",
+    "tagline": "Choose the invoice journal for each POS order: several sales journals per point of sale, a selector on the payment screen, and a separate invoice number series for each journal",
     "intro": [
-      "Odoo invoices every order of a point of sale in a single journal. If you keep B2B and B2C invoices, or tax invoices and simplified invoices, in separate numbering series, the cashier cannot choose: everything lands in the one series.",
-      "This app lets a point of sale offer more than one sales journal. When the cashier ticks Invoice on the payment screen, a selector shows the point of sale's own journal first, and the cashier can pick another. The invoice is created in that journal and takes that journal's next number."
+      "Odoo invoices every order of a point of sale in one journal, so business and private customers, or tax invoices and simplified invoices, share one numbering series. With this app a point of sale lists more sales journals, the cashier picks one on the payment screen when the order is invoiced, and the invoice is created in that journal with that journal's next number. This page walks through it with screenshots of a real cashier session on an Odoo 19 database holding a made-up office-supply shop, with readings taken from the database afterwards, and with the limits found when it was tested.",
+      "Invoice numbers are accounting records, so this page also says what the app changes, what it keeps, and what it does not check.",
+      "Install it and the point of sale's Settings gain Other invoice journals , the payment screen gains an Invoice journal selector, and the order gains an Invoice Journal field, list column, search field and group-by. It needs Odoo's own Point of Sale and nothing else."
     ],
     "features": [
       {
-        "heading": "Several invoice journals per point of sale",
+        "heading": "1 List the journals a point of sale may use",
         "body": [
-          "In Settings, under Point of Sale, Default Journals, add Other invoice journals next to the point of sale's own journal. Only sales journals are accepted, and a journal that has its own currency must match the point of sale's currency."
+          "Odoo gives a point of sale one journal for its invoices, so every invoice shares one number series.",
+          "Open Point of Sale > Configuration > Settings and pick the point of sale. Under Default Journals, next to the point of sale's own Invoices, a new line Other invoice journals takes more sales journals. Only sales journals of the same company are offered, and a journal with its own currency must match the point of sale's currency; a bank journal or a sales journal in another currency was refused. The point of sale's own journal stays the default. The list is a plain field of the point of sale, so whoever may write the point of sale may change it (section 6).",
+          "The list is only enforced by the till's selector and the order form: a sales journal of the same company and currency that is not on the list was accepted from a till sync (section 6).",
+          "The shop's settings: the default plus two other journals.",
+          "What was refused and what was accepted, from the test run. Generated from the test's readings, not a live screen."
         ],
-        "images": []
+        "use": "you keep more than one invoice series.",
+        "mode": "Writes settings",
+        "images": [
+          "images/pij-settings.webp",
+          "images/pij-ev-checks.webp"
+        ]
       },
       {
-        "heading": "A selector on the payment screen",
+        "heading": "2 The selector on the payment screen",
         "body": [
-          "The Invoice journal selector appears when Invoice is ticked and the point of sale has more than one journal. It starts on the point of sale's own journal, so a cashier who does nothing gets exactly what Odoo does today. Unticking Invoice clears the pick."
+          "A cashier cannot choose between a tax invoice and a simplified invoice when there is only one series.",
+          "On the payment screen the selector appears when Invoice is ticked and the point of sale has more than one journal. It shows the point of sale's own journal first and selected, so a cashier who does nothing gets what Odoo does today. Unticking Invoice clears the pick, and ticking it again starts from the default. In the real session three orders were taken: the clinic on B2B Invoices, a private buyer on the default, and a reseller on Wholesale Invoices. The choice is saved on the order like any other order field, so an order paid while the till is offline keeps it until it syncs (the browser test checks one offline order).",
+          "The list of choices opens as the browser's own drop-down, which a headless screenshot cannot show, so the three states are shown instead. The app does not pick for the cashier.",
+          "Invoice not ticked: no selector.",
+          "Invoice ticked: the selector starts on the point of sale's own journal.",
+          "The cashier picked B2B Invoices.",
+          "A third order, picked Wholesale Invoices."
         ],
-        "images": []
+        "use": "the cashier knows which invoice the customer needs.",
+        "mode": "Writes on the order",
+        "images": [
+          "images/pij-pay-noinvoice.webp",
+          "images/pij-pay-default.webp",
+          "images/pij-pay-b2b.webp",
+          "images/pij-pay-wholesale.webp"
+        ]
       },
       {
-        "heading": "The chosen journal is the one used",
+        "heading": "3 The invoice gets that journal's number",
         "body": [
-          "The invoice is created in the chosen journal and gets the next number of that journal's sequence. The journal is saved on the order, so invoicing later from the backend, from the order form or with Create Invoices, uses it too."
+          "A shared series cannot say which invoices went to business customers.",
+          "The invoice is created in the chosen journal and takes the next number of that journal's own sequence: the first two B2B orders read B2B/2026/00001 and B2B/2026/00002, the wholesale order WHS/2026/00001, and an order with no pick INV/2026/00001. The journal actually used is written back to the order, so the order list can filter on it. An order that is never invoiced keeps the field empty.",
+          "The app does not create journals, sequences or numbering rules; a localization that requires its own numbering was not tested.",
+          "Read from the database after the real session. Generated from the readings, not a live screen.",
+          "The back-office invoice list after the session (columns hidden to fit)."
         ],
-        "images": []
+        "use": "each series counts on its own.",
+        "mode": "Writes invoices",
+        "images": [
+          "images/pij-ev-numbers.webp",
+          "images/pij-invoices.webp"
+        ]
       },
       {
-        "heading": "Safe when the till is offline",
+        "heading": "4 In the back office",
         "body": [
-          "The choice is stored on the order like any other order field. An order paid while the till is offline keeps its journal in the browser's browser storage and sends it with the order when it syncs."
+          "Which journal an order went to is invisible in the order list.",
+          "The journal is on the order form (read-only once the order has an invoice, and while it is a draft or cancelled), as a list column, a search field and a group-by Invoice Journal . Invoicing later from the order form's Invoice button, or with Create Invoices, uses the order's journal. One Create Invoices run that mixes journals gives one invoice per journal when billing is consolidated: four orders in three journals made three invoices.",
+          "An order that already has an invoice is not moved: changing the field through the ORM afterwards changes the order, not the invoice (section 6).",
+          "The order list; the walk-in order was not invoiced, so its journal is empty.",
+          "Grouped by Invoice Journal.",
+          "The order form of an invoiced order: the field is read-only.",
+          "Every way of invoicing, from the test run. Generated from the test's readings, not a live screen."
         ],
-        "images": []
+        "use": "you check, filter and invoice later.",
+        "mode": "Reads orders",
+        "images": [
+          "images/pij-orders.webp",
+          "images/pij-orders-grouped.webp",
+          "images/pij-order-form.webp",
+          "images/pij-ev-paths.webp"
+        ]
       },
       {
-        "heading": "Backend view and filter",
+        "heading": "5 Refunds stay in the series",
         "body": [
-          "The journal shows on the order form, which stays editable until the order is invoiced, as a list column, a search field and a group-by. When one Create Invoices run mixes journals, you get one invoice per journal instead of one mixed invoice."
+          "A credit note in the default series is hard to match with the invoice it cancels.",
+          "A refund keeps the journal of the order it refunds, and the credit note numbers in the same series (RB2B/2026/00001, RINV/2026/00001 from the order form). At the till a refund of an invoiced order is invoiced too, and the selector opens on the original's journal: in the real session the credit note for the clinic's B2B order went to RB2B/2026/00001.",
+          "Defect found and fixed in 1.0.2. When the original order's journal was no longer one of the point of sale's choices (the reseller's order was Wholesale, and Wholesale was taken off the list), the selector on the credit note showed the first choice, Retail Invoices, while the credit note went to the original journal (RWHS/2026/00001). Money did not change, only what the cashier saw. The selector now lists the order's own journal and shows it. The test that catches it drives the real till in a browser and failed on the old code.",
+          "A credit note made with its journal field emptied goes to the point of sale's own journal (section 6).",
+          "The refund of the clinic's order opens on B2B Invoices.",
+          "Before (version 1.0.1): Wholesale was off the list and the selector read Retail Invoices.",
+          "After (version 1.0.2): the same refund reads Wholesale Invoices.",
+          "Credit notes from the real sessions, read back from the database."
         ],
-        "images": []
+        "use": "a credit note belongs with the invoice it reverses.",
+        "mode": "Writes credit notes",
+        "images": [
+          "images/pij-pay-refund.webp",
+          "images/pij-pay-refund-unlisted-before.webp",
+          "images/pij-pay-refund-unlisted-after.webp",
+          "images/pij-ev-refund.webp"
+        ]
       },
       {
-        "heading": "Refunds stay in the series",
+        "heading": "6 Odd cases and limits",
         "body": [
-          "A refund of an order keeps the journal of that order, so the credit note lands in the same series as the invoice it reverses."
+          "A feature that touches invoice numbers should state where it stops.",
+          "Eight readings from the test run. Generated from the test's readings, not a live screen."
         ],
-        "images": []
+        "use": "you know what the app leaves alone.",
+        "mode": "Nothing written",
+        "images": [
+          "images/pij-ev-limits.webp"
+        ]
       },
       {
-        "heading": "Who it is for",
+        "heading": "7 Closing the session, and size",
         "body": [
-          "Shops and restaurants that issue invoices at the till and must keep separate invoice series, for example business customers against private customers, or full tax invoices against simplified ones."
+          "A feature on the invoicing path must not get in the way of closing the till or of volume.",
+          "The real session was closed after orders in B2B, Wholesale and the default journal and one credit note: the session closed, the invoices stayed posted and paid, and the credit notes were posted. In the size run, 150 orders were synced one by one from the till (50 per journal) in about 30 seconds, and Create Invoices on 150 uninvoiced orders with consolidated billing made 3 invoices in 7 to 12 seconds. One run, one machine, made-up data.",
+          "The app does not change the session closing entry of orders that are not invoiced.",
+          "From the real session and the size run. Generated from the readings, not a live screen."
         ],
-        "images": []
+        "use": "end of day and a busy day.",
+        "mode": "Nothing written",
+        "images": [
+          "images/pij-ev-close.webp"
+        ]
       }
     ],
     "scope": [
-      "It does not create journals or numbering sequences; set them up in Accounting. It does not decide the journal for the cashier, and it does not limit which cashier may use which journal. It does not change the session closing entry of orders that are not invoiced. It does not move an invoice that already exists to another journal. The selector is hidden when a point of sale has only one journal. An order paid offline and then reloaded in the browser before it syncs is a limit of Odoo's own Point of Sale, with or without this app."
+      "This is the part to read before buying. Each line was tested on a throwaway Odoo 19 Community database.",
+      "The test run and the mutation control, rendered as a table. Generated from the test logs, not a live screen."
     ],
-    "requires": [
-      "Odoo 19 and 20, Community or Enterprise, with Point of Sale (it depends on point_of_sale). You create the sales journals and their sequences yourself in Accounting. Third-party apps install on Odoo.sh or On-Premise only - they cannot be installed on Odoo Online (SaaS)."
-    ],
+    "requires": [],
     "price": 28.95,
     "manifestPrice": 29.0,
     "currency": "USD",
@@ -18219,17 +19556,147 @@ export const odooApps = [
     "storeUrl19": "https://apps.odoo.com/apps/modules/19.0/mh_pos_invoice_journal",
     "storeUrl20": "https://apps.odoo.com/apps/modules/20.0/mh_pos_invoice_journal",
     "screenshots": [
-      "screenshot_payment_screen.webp"
+      "images/pij-ev-tests.webp"
     ],
     "shotDims": {
-      "screenshot_payment_screen.webp": [
+      "images/pij-ev-tests.webp": [
         1000,
-        562
+        1980
+      ],
+      "images/pij-settings.webp": [
+        1000,
+        520
+      ],
+      "images/pij-ev-checks.webp": [
+        1000,
+        1294
+      ],
+      "images/pij-pay-noinvoice.webp": [
+        1000,
+        990
+      ],
+      "images/pij-pay-default.webp": [
+        1000,
+        990
+      ],
+      "images/pij-pay-b2b.webp": [
+        1000,
+        990
+      ],
+      "images/pij-pay-wholesale.webp": [
+        1000,
+        990
+      ],
+      "images/pij-ev-numbers.webp": [
+        1000,
+        1000
+      ],
+      "images/pij-invoices.webp": [
+        1000,
+        975
+      ],
+      "images/pij-orders.webp": [
+        1000,
+        1000
+      ],
+      "images/pij-orders-grouped.webp": [
+        1000,
+        1271
+      ],
+      "images/pij-order-form.webp": [
+        1000,
+        554
+      ],
+      "images/pij-ev-paths.webp": [
+        1000,
+        1302
+      ],
+      "images/pij-pay-refund.webp": [
+        1000,
+        990
+      ],
+      "images/pij-pay-refund-unlisted-before.webp": [
+        1000,
+        990
+      ],
+      "images/pij-pay-refund-unlisted-after.webp": [
+        1000,
+        990
+      ],
+      "images/pij-ev-refund.webp": [
+        1000,
+        544
+      ],
+      "images/pij-ev-limits.webp": [
+        1000,
+        1076
+      ],
+      "images/pij-ev-close.webp": [
+        1000,
+        706
       ]
     },
-    "tiles": [],
-    "faq": [],
-    "copyWords": 509,
+    "tiles": [
+      {
+        "n": "3",
+        "l": "invoice number series from one till in the demo: Retail, B2B and Wholesale, each counting on its own (INV/, B2B/, WHS/)"
+      },
+      {
+        "n": "19",
+        "l": "tests in the run, none failing, including browser tests of the till (11 added in this release)"
+      },
+      {
+        "n": "150",
+        "l": "orders synced from the till into 3 journals in about 30 seconds, and 150 uninvoiced orders turned into 3 invoices in under 12 seconds (one run, made-up data)"
+      },
+      {
+        "n": "0",
+        "l": "network calls, scheduled actions, or changes to prices, taxes and payments"
+      },
+      {
+        "n": "1",
+        "l": "display defect fixed in this release: the credit-note selector showed the wrong journal (section 5)"
+      },
+      {
+        "n": "Not",
+        "l": "checked: Enterprise, Odoo.sh, several companies in real use, localization numbering rules, restaurant and kiosk (see Before you install)"
+      }
+    ],
+    "faq": [
+      {
+        "q": "Does it change prices, taxes or payments?",
+        "a": "No. The order is created by Odoo; only the journal of its invoice is chosen."
+      },
+      {
+        "q": "What does the cashier see?",
+        "a": "Once Invoice is ticked and the point of sale has more than one journal, a selector under the customer and Invoice buttons, on the point of sale's own journal."
+      },
+      {
+        "q": "Does each journal keep its own numbers?",
+        "a": "Yes: the invoice takes the next number of the chosen journal's own sequence. Creating journals and sequences is done in Accounting."
+      },
+      {
+        "q": "What happens on a refund?",
+        "a": "The credit note keeps the original order's journal. A display defect on this (fixed in 1.0.2) showed the wrong journal in the selector when the original's journal was no longer on the list."
+      },
+      {
+        "q": "Can a cashier use a journal that is not on the list?",
+        "a": "The selector does not offer it, but the server does not check the list: a till sync with another sales journal of the same company and currency was accepted."
+      },
+      {
+        "q": "Can I move an existing invoice to another journal?",
+        "a": "No. Changing the order's journal after the invoice exists does not move the invoice."
+      },
+      {
+        "q": "Does it work on Odoo Online or Enterprise?",
+        "a": "Not on Odoo Online (SaaS): third-party apps cannot be installed there. Enterprise and Odoo.sh were not tested."
+      },
+      {
+        "q": "Is anything sent outside Odoo?",
+        "a": "No. The app makes no network call and has no scheduled action."
+      }
+    ],
+    "copyWords": 1330,
     "hasVideo": true,
     "youtubeId": "QqLscNfyeoo",
     "externalPage": null
@@ -18238,76 +19705,152 @@ export const odooApps = [
     "tech": "mh_pos_line_pricelist",
     "slug": "pos-line-pricelist",
     "name": "POS Line Pricelist",
-    "summary": "Set a different pricelist for the POS order line: change the pricelist on one cart line and its price changes according to the selected pricelist",
-    "tagline": "Set a different pricelist for one line of the POS cart: pick it on the line and that line is priced from it, with the pricelist's name on the screen and the receipt.",
+    "summary": "Let the cashier price one order line from a different pricelist, with the line's price read from that pricelist and its name shown on the line and the receipt",
+    "tagline": "Set a different pricelist for one POS order line: its price is read from that pricelist and its name shows on the line and the receipt",
     "intro": [
-      "A counter that sells trade and retail in one basket has no way to say so. Odoo's Point of Sale applies one pricelist to the whole order, so the trade prices are typed by hand, line by line, and every typed price is a chance to give margin away.",
-      "This app adds a Line Pricelist button to the Actions of the product screen. Select a line, press it and choose one of the pricelists allowed for that Point of Sale: the line's unit price is read from that pricelist for the line's product and quantity, and the line shows the pricelist's name."
+      "In Odoo's Point of Sale the pricelist belongs to the whole order, so a counter that sells trade and retail prices in one basket types the trade prices by hand. With this app the cashier selects a line, presses Line Pricelist and picks one of the pricelists allowed for that point of sale; the line is priced from it and says so. This page walks through it with screenshots of a real cashier session on an Odoo 19 database holding a made-up building-supply trade counter, with readings from the till and the database, and with the limits found when it was tested.",
+      "A price is money, so this page also says what the app changes, what it keeps, and what it does not check.",
+      "Install it and Settings gain Line Pricelists (Allowed and Managers only), the Actions dialog of the product screen gains a Line Pricelist button, the line shows the pricelist's name, and Point of Sale > Reporting gains Line Pricelists . It needs Odoo's own Point of Sale and nothing else."
     ],
     "features": [
       {
-        "heading": "Priced by the pricelist's own rules",
+        "heading": "1. Allow pricelists on a point of sale",
         "body": [
-          "The price comes from Odoo's own pricelist calculation in the till, so a rule that depends on quantity applies as soon as the line reaches it: change the quantity and the line is priced again from the same pricelist. The tests use fixed-price rules and a quantity break."
+          "Odoo has no way to say which pricelists a cashier may use on a single line.",
+          "Open Point of Sale > Configuration > Settings, pick the point of sale and, under Pricing, the new block Line Pricelists shows when Pricelists are on. Allowed takes the pricelists a cashier may apply to one line; they must be among the pricelists available in that point of sale (a pricelist of another currency cannot be made available at all, Odoo's own check). Managers only offers the button to cashiers with the manager role only. With Allowed empty the button is not offered. In the demo Trade and Contractor Gold are allowed; Staff is available for whole orders but not on a line.",
+          "The list is a plain field of the point of sale, so whoever may write the point of sale may change it (section 8). Taking a pricelist off the available list is refused while it is an allowed line pricelist.",
+          "The block under Pricing: two allowed pricelists, Managers only off.",
+          "The button sits in the Actions dialog next to the order's own pricelist button."
         ],
-        "images": []
+        "use": "you run a trade counter next to retail.",
+        "mode": "Writes settings",
+        "images": [
+          "images/plp-settings.webp",
+          "images/plp-actions.webp"
+        ]
       },
       {
-        "heading": "The order keeps its own pricelist",
+        "heading": "2. Pick a pricelist for one line",
         "body": [
-          "Changing the pricelist of the whole order reprices the other lines but never a line that has its own pricelist, and a new line of the same product does not merge into it. Choose Order pricelist on the line to hand it back."
+          "Typing trade prices by hand is slow and every typed price is a chance to give margin away.",
+          "In the real session the order started with five lines at the order's own pricelist, Retail. Select the cement line, open Actions, press Line Pricelist: the choices are the allowed pricelists and Order pricelist (Retail) , the current one marked. Staff is not offered. Picking Trade priced the 4 bags at 7.20 each, and the line says Trade underneath. The price is Odoo's own pricelist calculation: all 18 readings of 6 products under Retail, Trade and Contractor Gold taken at the till equal the server's price, and so did all 8 lines of the session. A pricelist with no rule for a product gives its list price and the line still carries the name (gloves and cable ties on Trade read 6.00 and 4.50).",
+          "It does not create pricelists or rules and does not pick one for the cashier.",
+          "Before: everything on the order's pricelist.",
+          "The choices on a line. Staff, which is available for orders only, is not in the list.",
+          "After: 4 bags at 7.20 under Trade.",
+          "Real till readings of each product under each pricelist, next to the server's price. Generated from the readings, not a live screen."
         ],
-        "images": []
+        "use": "one basket holds trade and retail prices.",
+        "mode": "Writes on the order line",
+        "images": [
+          "images/plp-cart-retail.webp",
+          "images/plp-popup.webp",
+          "images/plp-cart-trade.webp",
+          "images/plp-ev-matrix.webp"
+        ]
       },
       {
-        "heading": "Allowed pricelists, per Point of Sale",
+        "heading": "3. Quantity breaks follow the line",
         "body": [
-          "Each Point of Sale has its own list of line pricelists (Settings > Point of Sale > Pricing). They must be among the pricelists available in that Point of Sale. With the list empty the button is not offered. A Managers only setting offers it to cashiers with the manager role only."
+          "A rule that depends on quantity should apply as soon as the line reaches it.",
+          "Changing the quantity prices the line again from the same pricelist. On Trade, cement is 7.20 each and 6.40 from 10 bags: typed at the till, 9 bags read 64.80, 10 read 64.00 and 12 read 76.80, matching the server. The break is read from the quantity of that one line.",
+          "It does not add up two lines of the same product to reach a break: a new line of a product does not merge into a line that has its own pricelist.",
+          "Typing 10 on the Trade line: 6.40 each.",
+          "Three quantities against the server. Generated from the readings, not a live screen."
         ],
-        "images": []
+        "use": "the trade price drops with the quantity.",
+        "mode": "Writes on the order line",
+        "images": [
+          "images/plp-cart-break.webp",
+          "images/plp-ev-break.webp"
+        ]
       },
       {
-        "heading": "On the line, the receipt and the order",
+        "heading": "4. The order and the customer leave the line alone",
         "body": [
-          "The line shows the pricelist's name under it and the receipt prints it. The pricelist is stored on the order line: it is a column in the order's Products tab, and Point of Sale > Reporting > Line Pricelists lists and groups the lines that were priced this way."
+          "Changing the order's pricelist usually reprices every line.",
+          "After the lines were priced the order was moved to Staff (50%). The gloves, still on the order's pricelist, dropped from 6.00 to 3.00 each; the Trade and Contractor Gold lines kept their prices. The same holds when a customer with a pricelist of their own is chosen (browser test). Picking Order pricelist on a line hands it back: all six products returned to their Retail price in the readings.",
+          "A line given a pricelist stays on it until the cashier changes it.",
+          "Four lines on a line pricelist, one on the order's.",
+          "After the order moves to Staff: only the gloves line changed."
         ],
-        "images": []
+        "use": "the customer or the order changes after a line was priced.",
+        "mode": "Writes on the order line",
+        "images": [
+          "images/plp-cart-lines.webp",
+          "images/plp-cart-staff.webp"
+        ]
       },
       {
-        "heading": "A typed price wins",
+        "heading": "5. A typed price wins; some lines are refused",
         "body": [
-          "A price typed on the line replaces its line pricelist: the name disappears and the typed price stays. Choosing a pricelist again replaces the typed price."
+          "A one-off price has to be possible, and some lines must not take a pricelist.",
+          "A price typed on the line replaces its line pricelist: the name disappears and the typed price stays (hand saw 17.60 on Contractor Gold, then 15.00 typed). Choosing a pricelist again replaces the typed price. The button is disabled for a refund line (negative quantity), a line with a negative price, a tip, a reward line and a combo parent or child; the tip, refund and negative price were driven through the till, the reward and combo cases were made by setting the till's flags in code.",
+          "It does not refuse a typed price; whether a cashier may type one is Odoo's Price Control.",
+          "After typing 15 on the saw line: the Contractor Gold label is gone."
         ],
-        "images": []
+        "use": "the cashier needs a one-off price.",
+        "mode": "Writes on the order line",
+        "images": [
+          "images/plp-cart-typed.webp"
+        ]
       },
       {
-        "heading": "Who it is for",
+        "heading": "6. On the receipt",
         "body": [
-          "Shops and trade counters that serve trade and walk-in customers at one till, and that would rather the till read the trade price than the cashier type it."
+          "A trade price on a receipt with no explanation raises questions.",
+          "The receipt names the pricelist under each line that has one and only there. In the real session the cement, copper pipe and paint lines read Trade and the gloves line has no name.",
+          "The kitchen printer and the customer display were not looked at.",
+          "The receipt of the real session."
         ],
-        "images": []
+        "use": "the customer should see which price list applied.",
+        "mode": "Writes nothing",
+        "images": [
+          "images/plp-receipt.webp"
+        ]
       },
       {
-        "heading": "The button",
+        "heading": "7. In the back office",
         "body": [
-          "The Line Pricelist popup for Office Lamp: the pricelists allowed for this Point of Sale, here Wholesale, and the order's own pricelist, Retail, which is the one the line has now."
+          "Which lines were priced from a line pricelist is invisible afterwards.",
+          "The order form's Products tab has a Line Pricelist column, and Point of Sale > Reporting > Line Pricelists lists and groups the lines that were priced this way (list and pivot, grouped by pricelist). The menu is for the Point of Sale Administrator group. The order keeps its own pricelist: order 1 of the session is on Staff with its lines on Trade.",
+          "The report counts lines, not rules: the line does not record which rule gave its price.",
+          "The order form's lines.",
+          "The report, grouped by Line Pricelist.",
+          "The pivot: quantity and total per pricelist.",
+          "Read from the database after the session. Generated from the readings, not a live screen.",
+          "The 8 lines, stored price against Odoo's own calculation. Generated from the readings, not a live screen."
         ],
-        "images": []
+        "use": "you check which lines were priced this way.",
+        "mode": "Reads orders",
+        "images": [
+          "images/plp-order-form.webp",
+          "images/plp-report-list.webp",
+          "images/plp-report-pivot.webp",
+          "images/plp-ev-session.webp",
+          "images/plp-ev-check.webp"
+        ]
       },
       {
-        "heading": "The settings",
+        "heading": "8. Odd cases and limits",
         "body": [
-          "Settings > Point of Sale > Pricing: the pricelists allowed on a single line and the Managers only setting, for the selected Point of Sale."
+          "A feature that touches a price should state where it stops.",
+          "Eight cases from the test run. Generated from the readings, not a live screen.",
+          "Eight readings from the test run. Generated from the readings, not a live screen."
         ],
-        "images": []
+        "use": "you know what the app leaves alone.",
+        "mode": "Nothing written",
+        "images": [
+          "images/plp-ev-server.webp",
+          "images/plp-ev-limits.webp"
+        ]
       }
     ],
     "scope": [
-      "Managers only decides who is offered the button in the till, as Odoo's own Price Control does; it is not checked on the server. Refund, tip, reward, discount and combo lines cannot be given a line pricelist. A line pricelist must be one of the pricelists available in the Point of Sale. The app does not create pricelists or rules, and changes only the unit price of the line: invoicing and session posting are Odoo's own. Tested on a retail Point of Sale, not on restaurant floors or self-order kiosks."
+      "This is the part to read before buying. Each line was tested on a throwaway Odoo 19 Community database.",
+      "The test run and the mutation control, rendered as a table. Generated from the readings, not a live screen."
     ],
-    "requires": [
-      "Odoo 19 and 20, Community or Enterprise; installs Odoo's own Point of Sale app (point_of_sale). The Point of Sale must use pricelists (Settings > Point of Sale > Pricing). Third-party apps install on Odoo.sh or On-Premise only - they cannot be installed on Odoo Online (SaaS)."
-    ],
+    "requires": [],
     "price": 28.95,
     "manifestPrice": 29.0,
     "currency": "USD",
@@ -18323,27 +19866,151 @@ export const odooApps = [
     "storeUrl19": "https://apps.odoo.com/apps/modules/19.0/mh_pos_line_pricelist",
     "storeUrl20": "https://apps.odoo.com/apps/modules/20.0/mh_pos_line_pricelist",
     "screenshots": [
-      "screenshot_line_pricelist.webp",
-      "screenshot_line_pricelist_popup.webp",
-      "screenshot_settings.webp"
+      "images/plp-ev-tests.webp"
     ],
     "shotDims": {
-      "screenshot_line_pricelist.webp": [
+      "images/plp-ev-tests.webp": [
+        1000,
+        1527
+      ],
+      "images/plp-settings.webp": [
+        1000,
+        617
+      ],
+      "images/plp-actions.webp": [
+        660,
+        288
+      ],
+      "images/plp-cart-retail.webp": [
+        822,
+        458
+      ],
+      "images/plp-popup.webp": [
         1000,
         562
       ],
-      "screenshot_line_pricelist_popup.webp": [
-        1000,
-        562
+      "images/plp-cart-trade.webp": [
+        822,
+        492
       ],
-      "screenshot_settings.webp": [
+      "images/plp-ev-matrix.webp": [
         1000,
-        562
+        799
+      ],
+      "images/plp-cart-break.webp": [
+        822,
+        492
+      ],
+      "images/plp-ev-break.webp": [
+        1000,
+        426
+      ],
+      "images/plp-cart-lines.webp": [
+        822,
+        598
+      ],
+      "images/plp-cart-staff.webp": [
+        822,
+        598
+      ],
+      "images/plp-cart-typed.webp": [
+        822,
+        598
+      ],
+      "images/plp-receipt.webp": [
+        456,
+        1094
+      ],
+      "images/plp-order-form.webp": [
+        1000,
+        561
+      ],
+      "images/plp-report-list.webp": [
+        1000,
+        972
+      ],
+      "images/plp-report-pivot.webp": [
+        1000,
+        592
+      ],
+      "images/plp-ev-session.webp": [
+        1000,
+        1431
+      ],
+      "images/plp-ev-check.webp": [
+        1000,
+        875
+      ],
+      "images/plp-ev-server.webp": [
+        1000,
+        996
+      ],
+      "images/plp-ev-limits.webp": [
+        1000,
+        1116
       ]
     },
-    "tiles": [],
-    "faq": [],
-    "copyWords": 565,
+    "tiles": [
+      {
+        "n": "8 of 8",
+        "l": "lines of a real till session priced from a line pricelist equal Odoo's own pricelist price for that product, pricelist and quantity (made-up data)"
+      },
+      {
+        "n": "18",
+        "l": "readings of 6 products under 3 pricelists, taken at the till and checked against the server (section 2)"
+      },
+      {
+        "n": "22",
+        "l": "tests in the run, none failing, including browser tests of the till (11 added in this release)"
+      },
+      {
+        "n": "0",
+        "l": "network calls, scheduled actions, or changes to taxes, payments and the order's own pricelist"
+      },
+      {
+        "n": "3",
+        "l": "server-side limits recorded and pinned by tests, not fixed (section 8)"
+      },
+      {
+        "n": "Not",
+        "l": "checked: Enterprise, Odoo.sh, taxes, lot products, real combos and loyalty rewards, restaurant and kiosk (see Before you install)"
+      }
+    ],
+    "faq": [
+      {
+        "q": "Does it change taxes, payments or the order's pricelist?",
+        "a": "No. Only the unit price of a line that was given its own pricelist follows that pricelist."
+      },
+      {
+        "q": "What does the cashier see?",
+        "a": "A Line Pricelist button in the Actions dialog. Pressing it lists the allowed pricelists and the order's own pricelist; the line then shows the pricelist's name."
+      },
+      {
+        "q": "Is the price the pricelist's own price?",
+        "a": "Yes: it is read with the till's own pricelist calculation. All 8 lines of the real session equal Odoo's server-side price for that product, pricelist and quantity."
+      },
+      {
+        "q": "What happens when the quantity changes?",
+        "a": "The line is priced again from the same pricelist, so a quantity break applies."
+      },
+      {
+        "q": "Can a cashier use a pricelist that is not on the allowed list?",
+        "a": "The till does not offer it, but the server does not check: a sync with another pricelist and another price was accepted from a plain cashier."
+      },
+      {
+        "q": "Does it work on refunds, tips, rewards, discounts and combos?",
+        "a": "The button is disabled for those lines at the till. The reward and combo cases were tested by setting flags in code, not with a real loyalty program or combo product."
+      },
+      {
+        "q": "Does it work on Odoo Online or Enterprise?",
+        "a": "Not on Odoo Online (SaaS): third-party apps cannot be installed there. Enterprise and Odoo.sh were not tested."
+      },
+      {
+        "q": "Is anything sent outside Odoo?",
+        "a": "No. The app makes no network call and has no scheduled action."
+      }
+    ],
+    "copyWords": 1287,
     "hasVideo": true,
     "youtubeId": "JcTHNh7ReVs",
     "externalPage": null
@@ -18352,69 +20019,170 @@ export const odooApps = [
     "tech": "mh_pos_table_lock",
     "slug": "pos-waiter-table-lock",
     "name": "POS Waiter Table Lock",
-    "summary": "Lock table to the waiter who opened it: other waiters cannot take that table's order, a manager can override and transfer the table",
-    "tagline": "Lock each restaurant table to the waiter who opened it. Other employees are stopped at the table; a manager can open it and transfer it.",
+    "summary": "Lock a restaurant table to the waiter who opened it, with a manager PIN override and table transfer",
+    "tagline": "Lock a restaurant table to the waiter who opened it: other waiters cannot take that table's order, a manager can override with a PIN and transfer the table",
     "intro": [
-      "In Odoo's restaurant Point of Sale any employee at any till can open any table, ring items on it and take its payment. Orders record who is at the till, but nothing stops a second waiter walking up to a table that is not theirs, so items end up on the wrong bill and nobody is sure whose table it was.",
-      "This app adds a setting to each Point of Sale, Lock Tables to Waiter. The waiter whose order for a table is saved first (Odoo saves it when the waiter leaves the table) owns that table. Other employees cannot open it; a manager can, and can hand it to someone else."
+      "In Odoo's restaurant point of sale any employee at any till can open any table, add to its order and take its payment. With this app the waiter whose till first saves an item on a table owns it: the floor plan shows the waiter's name on the table, another waiter who taps the table, picks its order from the Orders list, moves an order onto it or deletes its order is stopped, a manager can open it with a PIN or hand it to another waiter, and the server checks every save as well. This page walks through it with screenshots of real cashier sessions on an Odoo 19 database holding a made-up restaurant, with readings taken from the server, and with the limits found when it was tested.",
+      "A table lock decides who may touch an open bill, so this page also says what the app changes, what it keeps, what it does not do, and where it is a control on the shop floor rather than a security boundary.",
+      "Install it and the point of sale's Settings gain Lock Tables to Waiter (restaurant section), the floor plan shows the waiter on each open table, a manager gets a Transfer Table button, and the order gains a Table Waiter field, search field and group-by. It needs Odoo's own Point of Sale, Restaurant and Employees login (pos_hr), and nothing else."
     ],
     "features": [
       {
-        "heading": "The floor plan shows the waiter",
+        "heading": "1 Switch it on for one point of sale",
         "body": [
-          "Every table that has an owner shows the waiter's first name and last initial, with a lock mark. The other tills get the owner together with the order, so a second till sees it as soon as it reads the order from the server."
+          "Any employee can open any table, so the bill of a table can be changed by someone who did not serve it.",
+          "Open Point of Sale > Configuration > Settings and pick the point of sale. In the restaurant section a new line Lock Tables to Waiter appears once Restaurant and Employee login are both on. It is a plain tick box of the point of sale: with it off, or with employee login off, the till behaves as Odoo does and no waiter is recorded.",
+          "It does not lock tables on a point of sale that has no employee login: without it the till does not know who is serving.",
+          "The switch in the restaurant section of the settings."
         ],
-        "images": []
+        "use": "you run a restaurant register with employee login.",
+        "mode": "Writes settings",
+        "images": [
+          "images/ptl-settings.webp"
+        ]
       },
       {
-        "heading": "Other waiters are stopped",
+        "heading": "2 The floor plan shows who has each table",
         "body": [
-          "An employee who taps a table that belongs to someone else, picks its order from the Orders list, or moves an order onto it with Transfer / Merge gets a message and stays where they are. The check asks the server first, so it uses what the other tills have already saved. Managers are not stopped."
+          "A waiter cannot tell from the floor plan whose table is whose.",
+          "The waiter is the employee whose till first saves an order with at least one item on the table (Odoo saves the order when the waiter leaves the table). From then on the floor plan shows a lock and the name as the first name and the initial of the last word (Anna L.), with the full name as the tooltip. An empty order does not claim the table, and the till cannot name a waiter: the server sets it. In the demo three waiters each opened tables; the screenshot is the floor plan of the next waiter to come on.",
+          "The floor plan editor is Odoo's own. Linking tables there is not locked.",
+          "The floor plan: four tables with a waiter, four free.",
+          "Eight tables held by waiters with awkward names, read from the real till.",
+          "What the label shows for hyphenated, three-word, one-word, accented and very long names, and for a name with a space after it, before and after the fix. Generated from the till's readings, not a live screen."
         ],
-        "images": []
+        "use": "everyone sees at a glance whose table it is.",
+        "mode": "Writes the waiter",
+        "images": [
+          "images/ptl-floor.webp",
+          "images/ptl-floor-names.webp",
+          "images/ptl-ev-labels.webp"
+        ]
       },
       {
-        "heading": "A manager PIN takes the table over",
+        "heading": "3 Another waiter is stopped at the till",
         "body": [
-          "If the owner has gone home, the waiter at the till can ask a manager to enter their PIN. The table then belongs to the waiter at the till, and the order's chatter records who took it, from whom, and which manager authorised it. A wrong PIN, or the PIN of an employee who is not a manager, opens nothing. Managers need a PIN code on their employee record."
+          "Waiters tap the wrong table, pick someone's order from the list, or delete it.",
+          "A waiter who is not the table's waiter and not a manager and who taps the table gets a dialog saying whose table it is, with Manager PIN and Close . Closing keeps them on the floor plan. The same stop applies to picking the table's order from the Orders list, to moving an order onto the table with Transfer / Merge (the destination is not opened afterwards), and to deleting the order from the Orders list or the cart: a notification says the table is locked and the order stays. Before this release the delete was not stopped (section 7).",
+          "A server call that cancels an order carries no employee, so the guard on deleting is at the till only (section 8).",
+          "Carla taps Anna's table 1.",
+          "The Orders list shows every open table order, with a bin on each.",
+          "Carla presses the bin on Anna's order (version 1.0.2)."
         ],
-        "images": []
+        "use": "nobody takes over a table by accident.",
+        "mode": "Reads the order",
+        "images": [
+          "images/ptl-locked.webp",
+          "images/ptl-orders-list.webp",
+          "images/ptl-delete-blocked.webp"
+        ]
       },
       {
-        "heading": "Managers transfer a table",
+        "heading": "4 A manager can open it, and hand it over",
         "body": [
-          "A manager sees a Transfer Table button in the actions of a table's order and picks the employee the table goes to. The other tills are told, and the chatter records the transfer."
+          "Someone has to be able to take a table over when the waiter is off, busy or gone.",
+          "Manager PIN. In the dialog a manager's PIN, typed by the waiter at the till, gives the table to the waiter at the till: the table then belongs to that waiter and its order opens. A wrong PIN, or a waiter's own PIN, does not open it. The PIN is compared at the till, with the hash Odoo's employee login already loaded; the server does not see it (section 8).",
+          "Transfer Table. A manager at the till sees a Transfer Table button in the actions of a table's order, picks another employee (the current waiter is not offered), and the table is handed over. The other tills are told. A waiter has no such button, and an order that is not on a table has none. The manager working on the table does not take it from the waiter.",
+          "A manager is an employee listed as a manager of the point of sale (advanced_employee_ids) or whose user holds the Point of Sale Manager group, including through another group that implies it. The group-based case was tested on the server; at the till the listed manager was tested.",
+          "The PIN pad, after four digits.",
+          "A wrong PIN does not open the table.",
+          "Mona's PIN gave table 1 to Carla.",
+          "The manager's Transfer Table button, next to Odoo's Transfer / Merge.",
+          "The manager picks the new waiter.",
+          "The result.",
+          "Table 2 now shows Ben O."
         ],
-        "images": []
+        "use": "the busy manager can fix a table in seconds.",
+        "mode": "Writes the waiter",
+        "images": [
+          "images/ptl-pin.webp",
+          "images/ptl-wrongpin.webp",
+          "images/ptl-floor-takeover.webp",
+          "images/ptl-transfer-button.webp",
+          "images/ptl-transfer-pick.webp",
+          "images/ptl-transferred.webp",
+          "images/ptl-floor-transfer.webp"
+        ]
       },
       {
-        "heading": "Checked on the server too",
+        "heading": "5 The server checks every save",
         "body": [
-          "Every time a till saves an order, the server compares the employee at the till with the table's waiter. An employee who is neither the waiter nor a manager cannot save changes to that table's order, whatever the screen showed. A till that is refused says so on screen, and its changes are not saved."
+          "A check in the browser alone would miss a second till, a stale screen or a call that does not come from the screen.",
+          "Every save the till sends carries the employee at the till. If the order's table has a waiter and that employee is neither the waiter nor a manager, the server refuses with Table 5 is locked to Anna Waiter. Ask a manager to open or transfer it. This covers adding to the order, starting a second order on the table (Odoo merges it into the open order) and, because a payment is a save of the same order, taking payment (not run as a separate case). Saves from the back office or a self-order screen carry no employee and are not checked.",
+          "Two tills, one free table. Two waiters can open the same free table before either has sent an item. The till that reaches the server first gets the table; the other is told on its next save with a notification that stays until closed, and its items are not saved. In the real session Anna's till was refused for table 7 and its item was never saved.",
+          "A cancel or a delete is not a save and is not checked on the server (section 8).",
+          "Each save tried from each seat, from the test run. Generated from the test's readings, not a live screen.",
+          "Who owns the table after each case. Generated from the test's readings, not a live screen.",
+          "The second till is told, and the notification stays until closed."
         ],
-        "images": []
+        "use": "a stale till or a second till cannot get round the lock.",
+        "mode": "Refuses saves",
+        "images": [
+          "images/ptl-ev-matrix.webp",
+          "images/ptl-ev-claims.webp",
+          "images/ptl-refused.webp"
+        ]
       },
       {
-        "heading": "It outlasts the login",
+        "heading": "6 In the back office",
         "body": [
-          "The lock belongs to the order, not to the login. Switching the employee at the till, or the waiter going home, leaves the table locked to them until a manager transfers it. Odoo does not let a session be closed while a table order is open, so a locked table never ends up in a closed session. In the back office the order shows its Table Waiter, and Orders can be searched and grouped by it."
+          "Afterwards nobody can say who served a table, or who gave it away.",
+          "The order form shows Table Waiter (read-only, shown once set), and the order list has a search field and a group-by Table Waiter . A transfer writes a line in the order's chatter: who it went from and to and which manager authorised it. A cancelled order still names its waiter.",
+          "The waiter is not copied when an order is duplicated, and switching the lock off does not clear it.",
+          "The order form.",
+          "The chatter line left by the transfer.",
+          "Orders grouped by Table Waiter.",
+          "Each transfer tried, from the test run. Generated from the test's readings, not a live screen."
         ],
-        "images": []
+        "use": "you check who served what.",
+        "mode": "Reads orders",
+        "images": [
+          "images/ptl-order-form.webp",
+          "images/ptl-chatter.webp",
+          "images/ptl-orders-grouped.webp",
+          "images/ptl-ev-transfer.webp"
+        ]
       },
       {
-        "heading": "Who it is for",
+        "heading": "7 Three defects found and fixed in this release",
         "body": [
-          "Restaurants and bars where several waiters share tills and tables, and the owner wants a table to stay with the waiter who opened it until a manager says otherwise."
+          "All three were found by driving the real till in a browser against version 1.0.1.",
+          "1. Deleting another waiter's table order. A waiter could open the Orders list, press the bin on another waiter's table order, answer Ok to the usual question, and the order was cancelled on the server. The lock only covered opening and saving, not deleting. Now a waiter who is not the table's waiter and not a manager is told the table is locked and the order stays; the waiter and managers delete as before. Money did not change; an open bill was lost.",
+          "2. An archived waiter's table. The till does not load an archived employee, so for such a table the till saw no waiter: no label on the floor plan, and any waiter could open the table, add items and only on leaving the table be told they were not sent. Now the till asks the server who the waiter is when it does not have the employee, and shows the locked dialog. The floor plan still shows no name for that table.",
+          "3. A name ending in a space. The label on the floor plan is built from the name's words. An employee name typed with a space at the end (\"Rosa \") read Rosa undefined. on the table. The label now ignores spaces at the ends and between words (section 2 shows eight awkward names before and after).",
+          "All three tests drive the real till and failed on 1.0.1 at the step where the fix shows. The server did not change.",
+          "Before (1.0.1) and after (1.0.2), read from the real till and the server. Generated from the readings, not a live screen.",
+          "Before: the till asks for a confirmation and deletes Anna's order.",
+          "Before: the archived waiter's table opens for another waiter.",
+          "After: the table is locked."
         ],
-        "images": []
+        "use": "you can see what was wrong and what changed.",
+        "mode": "Till code only",
+        "images": [
+          "images/ptl-ev-defects.webp",
+          "images/ptl-delete-before.webp",
+          "images/ptl-archived-before.webp",
+          "images/ptl-archived-after.webp"
+        ]
+      },
+      {
+        "heading": "8 Odd cases and limits",
+        "body": [
+          "A lock on open bills should say where it stops.",
+          "Readings from the test run. Generated from the test's readings, not a live screen."
+        ],
+        "use": "you know what the app leaves alone.",
+        "mode": "Nothing written",
+        "images": [
+          "images/ptl-ev-limits.webp"
+        ]
       }
     ],
     "scope": [
-      "It is a control on the shop floor, not a security boundary: Odoo identifies employees in the browser (PIN or barcode at the till) and this app trusts that identity. It locks whole tables, not single items, split bills or kitchen tickets. Linking tables in the floor plan editor is not locked. A cashier who takes payment for a table they did not open needs a manager or a transfer. A table that was already open when the lock is switched on belongs to the waiter whose till next saves an order with an item on it. If two waiters open the same free table on two tills before either till has saved an order for it, the table goes to the till that saves first; the other till is told and its items are not saved. An offline till can only check the tables it already has; the server checks again when it saves. Orders placed by customers on their own phone have no waiter until a waiter saves an item on that table."
+      "This is the part to read before buying. Each line was tested on a throwaway Odoo 19 Community database.",
+      "The test run and the deliberate breaks, rendered as a table. Generated from the test logs, not a live screen."
     ],
-    "requires": [
-      "Odoo 19 and 20, Community or Enterprise. Installs Odoo's own restaurant Point of Sale (pos_restaurant) and employee login (pos_hr, which needs the Employees app). Turn on Log in with Employees for the Point of Sale, then Lock Tables to Waiter. Managers are the employees pos_hr already treats as managers of that Point of Sale. Third-party apps install on Odoo.sh or On-Premise only - they cannot be installed on Odoo Online (SaaS)."
-    ],
+    "requires": [],
     "price": 28.95,
     "manifestPrice": 29.0,
     "currency": "USD",
@@ -18431,17 +20199,179 @@ export const odooApps = [
     "storeUrl19": "https://apps.odoo.com/apps/modules/19.0/mh_pos_table_lock",
     "storeUrl20": "https://apps.odoo.com/apps/modules/20.0/mh_pos_table_lock",
     "screenshots": [
-      "screenshot_table_locked.webp"
+      "images/ptl-ev-tests.webp"
     ],
     "shotDims": {
-      "screenshot_table_locked.webp": [
+      "images/ptl-ev-tests.webp": [
         1000,
-        562
+        2232
+      ],
+      "images/ptl-settings.webp": [
+        1000,
+        311
+      ],
+      "images/ptl-floor.webp": [
+        1000,
+        922
+      ],
+      "images/ptl-floor-names.webp": [
+        1000,
+        922
+      ],
+      "images/ptl-ev-labels.webp": [
+        1000,
+        875
+      ],
+      "images/ptl-locked.webp": [
+        1000,
+        572
+      ],
+      "images/ptl-orders-list.webp": [
+        1000,
+        920
+      ],
+      "images/ptl-delete-blocked.webp": [
+        1000,
+        162
+      ],
+      "images/ptl-pin.webp": [
+        1000,
+        1443
+      ],
+      "images/ptl-wrongpin.webp": [
+        1000,
+        111
+      ],
+      "images/ptl-floor-takeover.webp": [
+        1000,
+        922
+      ],
+      "images/ptl-transfer-button.webp": [
+        1000,
+        256
+      ],
+      "images/ptl-transfer-pick.webp": [
+        1000,
+        969
+      ],
+      "images/ptl-transferred.webp": [
+        1000,
+        111
+      ],
+      "images/ptl-floor-transfer.webp": [
+        1000,
+        922
+      ],
+      "images/ptl-ev-matrix.webp": [
+        1000,
+        979
+      ],
+      "images/ptl-ev-claims.webp": [
+        1000,
+        894
+      ],
+      "images/ptl-refused.webp": [
+        1000,
+        162
+      ],
+      "images/ptl-order-form.webp": [
+        1000,
+        833
+      ],
+      "images/ptl-chatter.webp": [
+        1000,
+        138
+      ],
+      "images/ptl-orders-grouped.webp": [
+        1000,
+        760
+      ],
+      "images/ptl-ev-transfer.webp": [
+        1000,
+        1351
+      ],
+      "images/ptl-ev-defects.webp": [
+        1000,
+        1142
+      ],
+      "images/ptl-delete-before.webp": [
+        1000,
+        523
+      ],
+      "images/ptl-archived-before.webp": [
+        1000,
+        195
+      ],
+      "images/ptl-archived-after.webp": [
+        1000,
+        572
+      ],
+      "images/ptl-ev-limits.webp": [
+        1000,
+        1076
       ]
     },
-    "tiles": [],
-    "faq": [],
-    "copyWords": 708,
+    "tiles": [
+      {
+        "n": "4",
+        "l": "waiters and managers on one made-up restaurant register in the real till sessions shown here: three waiters, one manager, two tills"
+      },
+      {
+        "n": "28",
+        "l": "tests in the run, none failing, including browser tests of the till (10 added in this release)"
+      },
+      {
+        "n": "0",
+        "l": "deliberate breaks of the code, each caught by a failing test"
+      },
+      {
+        "n": "0",
+        "l": "network calls, scheduled actions, or changes to prices, taxes, payments and the floor plan layout"
+      },
+      {
+        "n": "3",
+        "l": "defects fixed in this release: a waiter could delete another waiter's table order, an archived waiter's table was not locked at the till, and a name ending in a space showed as undefined on the floor plan (section 7)"
+      },
+      {
+        "n": "Not",
+        "l": "checked: Enterprise, Odoo.sh, several companies in real use, kitchen displays and printers, QR self-order, split bills (see Before you install)"
+      }
+    ],
+    "faq": [
+      {
+        "q": "Does it change prices, taxes or payments?",
+        "a": "No. Orders and payments are Odoo's own. The app adds a waiter to the order and checks who may save it."
+      },
+      {
+        "q": "Who owns a table?",
+        "a": "The employee whose till first saves an order with at least one item on it. A transfer by a manager changes it."
+      },
+      {
+        "q": "Can a manager override the lock?",
+        "a": "Yes. A manager can open any table, a waiter can take a table over by having a manager type a PIN at the till, and a manager can transfer a table with the Transfer Table button."
+      },
+      {
+        "q": "Is it a security boundary?",
+        "a": "No. Odoo identifies the employee in the browser and the app trusts that identity; a transfer is authorised by the manager id in the call and the server never sees a PIN."
+      },
+      {
+        "q": "Can a waiter delete another waiter's order?",
+        "a": "Not at the till (fixed in 1.0.2). A server call that cancels an order carries no employee and was not checked."
+      },
+      {
+        "q": "What if two waiters open the same free table?",
+        "a": "The till that reaches the server first gets the table. The other is told with a notification and its items are not saved."
+      },
+      {
+        "q": "Does it work on Odoo Online or Enterprise?",
+        "a": "Not on Odoo Online (SaaS): third-party apps cannot be installed there. Enterprise and Odoo.sh were not tested."
+      },
+      {
+        "q": "Is anything sent outside Odoo?",
+        "a": "No. The app makes no network call and has no scheduled action."
+      }
+    ],
+    "copyWords": 1780,
     "hasVideo": true,
     "youtubeId": "Q2_mN2vA108",
     "externalPage": null
@@ -18450,46 +20380,139 @@ export const odooApps = [
     "tech": "mh_partner_org_chart",
     "slug": "partner-org-chart",
     "name": "Partner Org Chart",
-    "summary": "Partner org chart and contact org chart: an Org Chart tab on every company and contact form that draws the contacts under a company as a tree",
-    "tagline": "",
+    "summary": "Partner org chart: an Org Chart tab on the partner form that draws a company and the contacts under it as a tree with job titles, emails and address types",
+    "tagline": "An Org Chart tab on every company and contact form that draws the contacts under a company as a tree",
     "intro": [
-      "Partner org chart and contact org chart: an Org Chart tab on every company and contact form that draws the contacts under a company as a tree."
+      "A company in Odoo can have dozens of contacts, invoice addresses and delivery addresses, and the partner form shows them as a flat list of cards. Partner Org Chart adds a tab that draws the top company and everything under it as an indented tree, with the job title, the email and the address type on each line. Click a name to open that contact. This page walks through it with screenshots of an Odoo 19 database holding made-up accounts, and with tables rendered from real readings of the same run; each picture says which it is.",
+      "It draws the structure Odoo already stores. It is not a reporting-line chart and not the HR employee chart. This page also says where that bites: archived contacts, the 200 contact limit, what a restricted user sees, and what the tab costs every time a form is read.",
+      "Install it and the Org Chart tab appears on the partner form, after Internal Notes. It needs only Odoo's base module."
     ],
     "features": [
       {
-        "heading": "What it does",
+        "heading": "What it keeps, what it changes, what it does not",
         "body": [
-          "A company in Odoo can have dozens of contacts, invoice addresses and delivery addresses, and the partner form shows them as a flat list of cards. Nobody can see at a glance who sits under whom, or who is the right person to call.",
-          "Partner Org Chart adds an Org Chart tab to the partner form. It draws the top company and everything under it as an indented tree, nested as deep as your data goes. Each line shows the name, with badges for the job title, the email and the address type (invoice, delivery and so on). Click a name to open that contact."
+          "Each line was tested or read in the code."
         ],
         "images": []
       },
       {
-        "heading": "Works from any contact",
+        "heading": "1 The whole account as a tree",
         "body": [
-          "Open the tab on the company, or on any contact. The tree always starts at the top company you are allowed to see, so every contact of a company shows the same chart, and the contact you are on is underlined."
+          "Odoo shows the contacts of a company as a flat list of cards. Nobody can see at a glance which contacts belong to a sub-company, which are invoice or delivery addresses, or who the right person is.",
+          "Open any company and choose the Org Chart tab. The first picture is a made-up logistics account: the company at the top, a sub-company with two contacts, an invoice address, three contacts with the people under them, and a delivery address. Each line has the name, a grey badge with the job title, an orange badge with the address type (Invoice, Delivery or Other) and an outlined badge with the email. Contacts are in Odoo's own name order, not by job title (a sub-company is listed first on Odoo 19 and among the others on Odoo 20). The second picture is Odoo's own Contacts & Addresses tab of the same company for comparison: direct contacts only, as flat cards.",
+          "The tree shows the structure Odoo stores. It does not show who reports to whom.",
+          "The Org Chart tab of a company. Real Odoo screen.",
+          "Odoo's own Contacts & Addresses tab of the same company. Real Odoo screen."
         ],
-        "images": []
+        "use": "you want to see who sits under whom before you pick up the phone.",
+        "mode": "Read-only",
+        "images": [
+          "images/poc-org-company.webp",
+          "images/poc-org-stock-tab.webp"
+        ]
       },
       {
-        "heading": "Respects access rights",
+        "heading": "2 From any contact",
         "body": [
-          "The chart is built with your own access rights. Contacts of another company that you cannot see in a multi-company database are not drawn, and neither is a parent company you cannot see. Archived contacts are left out."
+          "A contact form on its own says little about the account around it.",
+          "Open the tab on any contact: the chart still starts at the top company you may read, so every contact of a company shows the same tree, and the contact you are on is underlined. In this picture the user clicked Daniel Osei's name in the company's chart (a real click in the browser) and opened the tab there. A click on a name opens that contact in the same tab without reloading the page; the breadcrumb then restarts at that contact.",
+          "Contacts under a contact and companies under a company come from imports, the API or code: Odoo 19's standard form lets a contact's Company field take companies only.",
+          "The tab on a contact, reached by clicking his name. Real Odoo screen."
         ],
-        "images": []
+        "use": "you are on a contact's form and want to see where this person sits.",
+        "mode": "Read-only",
+        "images": [
+          "images/poc-org-contact.webp"
+        ]
       },
       {
-        "heading": "Who it is for",
+        "heading": "3 Who sees which contacts",
         "body": [
-          "Account managers and sales teams in B2B, who need to know the people around a customer before they pick up the phone."
+          "A chart that ignored access rights would leak the contacts of another company.",
+          "The chart is built with the logged-in user's own record rules. In a made-up two-company group, the administrator (allowed in both companies) sees the group parent, the sub-company, two contacts of company A and one contact of company B only. Ellen, a user of company A only, sees the same account starting at the highest company she may read, with no group parent and no company-B contact; opening the group parent is refused by Odoo itself. The first picture is the administrator's, the second Ellen's, then the readings.",
+          "Several companies in real use were not verified; one two-company case was tested.",
+          "The administrator's chart. Real Odoo screen.",
+          "Ellen's chart for the same contact. Real Odoo screen, Ellen logged in separately.",
+          "Who sees which contacts. Evidence table."
+        ],
+        "use": "several companies share a database and a user must not see the others' contacts.",
+        "mode": "Read-only",
+        "images": [
+          "images/poc-org-group-admin.webp",
+          "images/poc-org-group-ellen.webp",
+          "images/poc-ev_rights.webp"
+        ]
+      },
+      {
+        "heading": "4 The limit of 200",
+        "body": [
+          "A chart with thousands of lines would slow the form and nobody could read it.",
+          "At most 200 contacts are drawn below the top company, one level after the other, in name order; when more exist a note at the end says Only the first 200 contacts are shown. The first picture is a made-up distribution company with 232 contacts under 8 regional managers; rows in the middle are hidden in the picture, the end of the chart and the note are real. The table is a real before and after: until version 1.0.2 the company itself counted against the limit, so 199 contacts were drawn and the note appeared for a company with exactly 200 contacts. Now 200 are drawn and the note appears from 201.",
+          "A contact beyond the limit is not drawn, and opening its own form underlines nothing: the chart is cut by name order, not around the contact you are on.",
+          "The end of a 232-contact chart and the note. Real Odoo screen, rows in the middle hidden for the picture.",
+          "The limit before and after. Evidence table."
+        ],
+        "use": "your account has hundreds of contacts and the form must stay fast.",
+        "mode": "Changed in 1.0.3",
+        "images": [
+          "images/poc-org-cap.webp",
+          "images/poc-ev_cap.webp"
+        ]
+      },
+      {
+        "heading": "5 What is drawn, case by case",
+        "body": [
+          "A chart you cannot predict is a chart you cannot trust.",
+          "The first picture is a company with no contacts: it shows itself and the line No other contacts are linked to this partner. The table lists eleven cases read from the app: the same tree from every contact, badges, nesting, order, an archived contact with active contacts under her (they disappear with her), an archived top company, the form of an archived contact, an unnamed invoice address, HTML typed into names, a 120 letter name, a parent loop forced with SQL, and a new unsaved partner.",
+          "Archived contacts take the active contacts under them out of the chart, and the chart of an archived contact does not underline it.",
+          "A company with no contacts. Real Odoo screen.",
+          "What the chart draws, case by case. Evidence table."
+        ],
+        "use": "you need to know what happens to archived contacts, odd names and bad data.",
+        "mode": "Read-only",
+        "images": [
+          "images/poc-org-lone.webp",
+          "images/poc-ev_cases.webp"
+        ]
+      },
+      {
+        "heading": "6 What it costs, and when it updates",
+        "body": [
+          "A tab you do not open should not slow anything down.",
+          "The chart is computed whenever the partner form is read, whether or not the tab is open: 11 database queries for a contact in a 14-contact account, 6 for a company with 232 contacts, 93 for a chain 30 levels deep, against 1 query without the field. No time figure is claimed. The chart follows saved changes only: with the tab open, a job title typed into the form shows in the chart after Save, not before. The table also has two readings from a real Chrome: that typing and the click on a name.",
+          "Cost, and what the form does. Evidence table."
+        ],
+        "use": "you want to know what the tab adds to every form you open.",
+        "mode": "Read-only",
+        "images": [
+          "images/poc-ev_cost.webp"
+        ]
+      },
+      {
+        "heading": "7 Tests and controls",
+        "body": [
+          "A page that says it was tested should show what the tests would catch.",
+          "23 tests are counted on this version and none fail. The new tests read the chart the way the web client does: logged in as a user, calling the partner form's read over JSON-RPC, and one browser tour clicks the tab and a name. For the fixed limit, the tests were run on the 1.0.2 code first and failed there. The table breaks the module code in 13 different ways on a scratch copy, one at a time; every break makes at least one test fail.",
+          "Tests and mutation controls. Evidence table."
+        ],
+        "use": "you want to know how the page's statements were checked.",
+        "mode": "Read-only",
+        "images": [
+          "images/poc-ev_tests.webp"
+        ]
+      },
+      {
+        "heading": "What changed in this version",
+        "body": [
+          "Version 1.0.3 fixes one defect: the limit of 200 counted the top company, so a company with 200 contacts drew 199 and showed a note that said 200. It now draws 200 contacts below the company, as this app always said, and the note appears from 201. It also adds 13 automated tests that read the chart over the web client's own calls, rewrites the screenshots and the text, and states the limits above that the old page did not. The demo video of an earlier version is kept as it was and was not re-recorded."
         ],
         "images": []
       }
     ],
-    "scope": [],
-    "requires": [
-      "Odoo 19 and 20, Community or Enterprise. No dependencies beyond the base Contacts data, no third-party service, and no data leaves your database. Third-party apps install on Odoo.sh or On-Premise only - they cannot be installed on Odoo Online (SaaS)."
+    "scope": [
+      "Each of these was reproduced in a run of the app on Odoo 19 and is pinned by a test that passes."
     ],
+    "requires": [],
     "price": 28.95,
     "manifestPrice": 29.0,
     "currency": "USD",
@@ -18504,18 +20527,85 @@ export const odooApps = [
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_partner_org_chart",
     "storeUrl19": "https://apps.odoo.com/apps/modules/19.0/mh_partner_org_chart",
     "storeUrl20": "https://apps.odoo.com/apps/modules/20.0/mh_partner_org_chart",
-    "screenshots": [
-      "screenshot_org_chart.webp"
-    ],
+    "screenshots": [],
     "shotDims": {
-      "screenshot_org_chart.webp": [
+      "images/poc-org-company.webp": [
         1000,
-        512
+        1286
+      ],
+      "images/poc-org-stock-tab.webp": [
+        1000,
+        1712
+      ],
+      "images/poc-org-contact.webp": [
+        1000,
+        1286
+      ],
+      "images/poc-org-group-admin.webp": [
+        1000,
+        572
+      ],
+      "images/poc-org-group-ellen.webp": [
+        1000,
+        572
+      ],
+      "images/poc-ev_rights.webp": [
+        1000,
+        750
+      ],
+      "images/poc-org-cap.webp": [
+        1000,
+        1081
+      ],
+      "images/poc-ev_cap.webp": [
+        1000,
+        888
+      ],
+      "images/poc-org-lone.webp": [
+        1000,
+        535
+      ],
+      "images/poc-ev_cases.webp": [
+        1000,
+        1802
+      ],
+      "images/poc-ev_cost.webp": [
+        1000,
+        1062
+      ],
+      "images/poc-ev_tests.webp": [
+        1000,
+        1113
       ]
     },
-    "tiles": [],
+    "tiles": [
+      {
+        "n": "200",
+        "l": "contacts are drawn below the top company (a company with exactly 200 now shows all of them; version 1.0.2 drew 199 and said 200)"
+      },
+      {
+        "n": "0 of 1",
+        "l": "contact of another company was drawn for a user of company A only: the chart is built with the logged-in user's own record rules"
+      },
+      {
+        "n": "23",
+        "l": "automated tests counted on this version, none failing; 13 were added for what this page states (10 counted before)"
+      },
+      {
+        "n": "6-11",
+        "l": "database queries to draw the chart of a contact or of a company with 232 contacts, read whenever the partner form is read; 93 for a 30-level chain, about 3 per level in a deep chain"
+      },
+      {
+        "n": "Fixed",
+        "l": "in this version: the limit counted the company itself, so one contact too few was drawn"
+      },
+      {
+        "n": "Not",
+        "l": "a reporting-line chart: Odoo has no boss field between contacts, so the tree shows the company and its contacts, A to Z"
+      }
+    ],
     "faq": [],
-    "copyWords": 247,
+    "copyWords": 1377,
     "hasVideo": true,
     "youtubeId": "nNuPF0r_S48",
     "externalPage": null
@@ -18696,7 +20786,7 @@ export const odooApps = [
     "manifestPrice": 29.0,
     "currency": "USD",
     "category": "Website/Website",
-    "version": "19.0.1.0.1",
+    "version": "19.0.1.0.2",
     "license": "OPL-1",
     "depends": [
       "website_sale"
@@ -18813,47 +20903,110 @@ export const odooApps = [
     "tech": "mh_purchase_product_docs",
     "slug": "purchase-product-docs",
     "name": "Purchase Product Docs",
-    "summary": "Product documents on purchase orders: brochures, drawings or datasheets attached to RFQ emails automatically and appended to the purchase order PDF",
-    "tagline": "Product documents on purchase orders: brochures, drawings or datasheets attached to RFQ emails automatically and appended to the purchase order PDF.",
+    "summary": "Product documents on purchase orders: a drawing or datasheet flagged on the product is attached to the RFQ or purchase order email, or its pages are appended to the order PDF",
+    "tagline": "Product documents on purchase orders: a drawing or datasheet flagged on the product is attached to the RFQ email, or its pages are appended to the order PDF",
     "intro": [
-      "Odoo's Sales app can attach a product's documents to a quotation. The Purchase app cannot, so the drawing or datasheet that belongs with a part has to be found and attached to every request for quotation by hand. This app adds the same switch to Purchase."
+      "Odoo's Sales app can attach a product's documents to a quotation; the Purchase app cannot, so the drawing or datasheet that belongs with a part has to be found and attached to every request for quotation by hand. Purchase Product Docs adds the same switch to Purchase: on a product's document you choose when it goes out with an order, and the Send by Email dialog then already holds it. Ticking Append to PO PDF adds the pages of an uploaded PDF to the end of the order's own PDF. This page walks through it with screenshots of an Odoo 19 database holding a made-up machine shop buying bearings, shafts and seal kits, with the real PDF that Print returns and with tables rendered from real readings of the same run; each picture says which it is.",
+      "It is a per-document switch, not a document manager: it attaches the files of the ordered products and nothing else. This page also says where that bites: who may set the flag, which sending paths bring the files and which do not, and what happens to the e-invoicing XML.",
+      "Install it and each document of a product gets a Purchase setting (kanban card, list and form). It needs only the Purchase app."
     ],
     "features": [
       {
-        "heading": "What it does",
+        "heading": "1 Flag a document",
         "body": [
-          "On any document in a product's Documents, choose when it goes out with an order: On RFQ and PO (attached to the RFQ email and still attached when the confirmed order is sent), On confirmed PO only, or Hidden, which is the default, so nothing changes until you choose. Click Send by Email on an RFQ or a purchase order and the flagged documents of the ordered products are already in the email's attachments. You can remove any of them before sending, as with any attachment."
+          "Nobody remembers which file belongs with which part, so each RFQ is sent without it or with the wrong revision.",
+          "Open a product, Documents, and every card shows a Purchase setting (first picture): Hidden, On RFQ and PO, or On confirmed PO only. The list view (second picture) adds Append to PO PDF; it appears only once the setting is not Hidden. Documents belong to the product or to one variant of it: a document on the product goes with every variant, a document on a variant only with that variant. A document used by several order lines is sent once. The first table shows which file is offered in which order state; the second shows odd cases: web links, variants, archived and empty documents, and the order of the files.",
+          "A web link is skipped because it has no file. An archived document is not sent. A confirmed order that is still waiting for approval counts as not confirmed, so it gets only the On RFQ and PO files.",
+          "The product's documents with the Purchase setting. Real Odoo screen.",
+          "The same documents as a list, with the Append to PO PDF column. Real Odoo screen.",
+          "Which file is offered in which state. Evidence table.",
+          "Odd cases. Evidence table."
         ],
-        "images": []
+        "use": "the drawing or datasheet of a part should travel with every order for it.",
+        "mode": "Changes records",
+        "images": [
+          "images/pp-docs-kanban.webp",
+          "images/pp-docs-list.webp",
+          "images/pp-ev_states.webp",
+          "images/pp-ev_cases.webp"
+        ]
       },
       {
-        "heading": "Append to the PDF",
+        "heading": "2 Send by Email",
         "body": [
-          "Tick Append to PO PDF on a document that is an uploaded PDF and its pages are added to the end of the order's own PDF, both when you print the RFQ or purchase order and in the PDF Odoo attaches to the email. A document that is appended is not also sent as a separate file."
+          "The attachment step is manual, so it is the step that gets forgotten.",
+          "Click Send by Email on an RFQ and the flagged files of the ordered products are already in the dialog next to the order PDF (first picture: two drawings; the datasheet is appended inside the PDF instead, so it is not a separate chip). You can remove any of them before sending. On a confirmed order, Send by Email brings the On confirmed PO only files as well (second picture, with the message text cut from the picture). Choosing another e-mail template keeps the files; a file you removed by hand is offered again after a template change. The files are copies: when the email is sent they become attachments of the order, so replacing or deleting the product document later does not change that email. The table lists the sending paths.",
+          "A message written in the chatter, a mass send of several orders and the automatic receipt reminder bring no separate files. The Receipt reminder dialog does.",
+          "The Send dialog of an RFQ. Real Odoo screen, message text cut from the picture.",
+          "The dialog on a confirmed order. Real Odoo screen, message text cut from the picture.",
+          "Where the files come along. Evidence table."
         ],
-        "images": []
+        "use": "the vendor should get the drawing with the request without anyone attaching it.",
+        "mode": "Changes records",
+        "images": [
+          "images/pp-composer.webp",
+          "images/pp-composer-po.webp",
+          "images/pp-ev_paths.webp"
+        ]
       },
       {
-        "heading": "Per product, once",
+        "heading": "3 Append pages to the PDF",
         "body": [
-          "Documents belong to the product, or to one variant of it. A document used by several order lines is sent once, and documents of products that are not on the order are never sent."
+          "A vendor can ignore a separate attachment; pages inside the order PDF are harder to miss.",
+          "Tick Append to PO PDF on a document that is an uploaded PDF and its pages follow the order's own pages, both when you print the RFQ or purchase order and in the PDF attached to the email (the picture is the real RFQ PDF of this run, cropped: the order's own page, then the first appended page; it has four pages). Appended documents follow the document order (sequence), pages of other sizes keep their size, and an appended document is not also sent as a separate file. The table lists what 11 cases print.",
+          "Only PDFs are appended; images, Word and Excel files go as separate attachments even when ticked. A password-protected or unreadable PDF is skipped and logged, and the order still prints.",
+          "The PDF the Print button returns, rendered from the file and cropped. Real output, not a screen.",
+          "Pages of the printed order. Evidence table."
         ],
-        "images": []
+        "use": "terms, a datasheet or a drawing should be part of the order document itself.",
+        "mode": "Changes the PDF",
+        "images": [
+          "images/pp-pdf-print.webp",
+          "images/pp-ev_pdf.webp"
+        ]
       },
       {
-        "heading": "Who it is for",
+        "heading": "4 Who can set it, who gets the files",
         "body": [
-          "Procurement teams in manufacturing and trading who send the same drawing, specification or datasheet with every request for quotation for a part."
+          "A flag nobody can change, or a file a buyer cannot see, defeats the point.",
+          "The flag is a field of Odoo's product document, so changing it needs Odoo's Products: Create right (the product manager group). A Purchase user and even a Purchase administrator can read it but not change it; the table shows each user logged in separately. A Purchase user who opens the Send dialog gets the files. Nobody without Purchase rights can open the dialog on an order.",
+          "It adds no groups of its own.",
+          "Who can set the flag. Evidence table."
+        ],
+        "use": "you need to know who maintains the flags and that buyers receive the files.",
+        "mode": "Read-only",
+        "images": [
+          "images/pp-ev_rights.webp"
+        ]
+      },
+      {
+        "heading": "5 Checked against the raw tables",
+        "body": [
+          "A file missing from an RFQ, or one sent that should not be, is only noticed by the vendor.",
+          "A separate script read the database tables (order lines, product documents, attachments) with its own arithmetic and no module code, and worked out which separate files and how many pages each of 40 made-up orders must give, with 40 documents (PDFs, images and web links, on products and on variants, some archived, random settings). Each order was then opened in the Send dialog and printed over HTTP. 0 differences on Odoo 19. As a control, ignoring documents on variants would have given 20 differences.",
+          "The independent check. Evidence table."
+        ],
+        "use": "you want to know the right files and pages come out before you rely on it.",
+        "mode": "Read-only",
+        "images": [
+          "images/pp-ev_check.webp"
+        ]
+      },
+      {
+        "heading": "What changed in this version",
+        "body": [
+          "Version 1.0.2 fixes one defect: until 1.0.1 the Send dialog attached the product document's own file, so replacing the document with a new revision changed the file shown on the email already sent, and deleting the document removed it from that email. The dialog now attaches a copy that becomes an attachment of the order when the email is sent. Nothing else about flags, the PDF or the dialog changed. It also adds 13 automated tests (the sent-email tests go through the same RPC calls the web client makes, as a Purchase user, and the pinned limits above), rewrites the screenshots and the text, and removes two claims that were not checked (Odoo Enterprise, and that the e-invoicing XML is optional: it is installed with Purchase). The demo video of an earlier version is kept as it was and was not re-recorded."
         ],
         "images": []
       }
     ],
     "scope": [
-      "It does not show the documents to vendors in the portal, and it does not touch Odoo's own Sales documents. Only an uploaded file is attached: a document that is a web link has no file and is skipped. Only PDFs can be appended; images, Word and Excel files are sent as separate attachments even when Append to PO PDF is ticked. An appended PDF that cannot be read is skipped and logged, and the order still prints. If Odoo's optional purchase e-invoicing XML is embedded in the order PDF, it is not carried into the merged file."
+      "Each line was tested or read in the code.",
+      "Each of these was reproduced in a run of the app on Odoo 19 and is pinned by a test that passes; the first row of the table was changed in this version.",
+      "A sent email after the document changes. Evidence table.",
+      "Limits and timings. Evidence table."
     ],
-    "requires": [
-      "Odoo 19 and Odoo 20, Community or Enterprise, with the Purchase app. Third-party apps install on Odoo.sh or On-Premise only - they cannot be installed on Odoo Online (SaaS)."
-    ],
+    "requires": [],
     "price": 28.95,
     "manifestPrice": 29.0,
     "currency": "USD",
@@ -18869,17 +21022,91 @@ export const odooApps = [
     "storeUrl19": "https://apps.odoo.com/apps/modules/19.0/mh_purchase_product_docs",
     "storeUrl20": "https://apps.odoo.com/apps/modules/20.0/mh_purchase_product_docs",
     "screenshots": [
-      "screenshot_docs.webp"
+      "images/pp-ev_history.webp",
+      "images/pp-ev_limits.webp"
     ],
     "shotDims": {
-      "screenshot_docs.webp": [
+      "images/pp-docs-kanban.webp": [
         1000,
-        709
+        706
+      ],
+      "images/pp-docs-list.webp": [
+        1000,
+        468
+      ],
+      "images/pp-ev_states.webp": [
+        1000,
+        757
+      ],
+      "images/pp-ev_cases.webp": [
+        1000,
+        982
+      ],
+      "images/pp-composer.webp": [
+        1000,
+        859
+      ],
+      "images/pp-composer-po.webp": [
+        1000,
+        859
+      ],
+      "images/pp-ev_paths.webp": [
+        1000,
+        892
+      ],
+      "images/pp-pdf-print.webp": [
+        1000,
+        1155
+      ],
+      "images/pp-ev_pdf.webp": [
+        1000,
+        1066
+      ],
+      "images/pp-ev_rights.webp": [
+        1000,
+        840
+      ],
+      "images/pp-ev_check.webp": [
+        1000,
+        766
+      ],
+      "images/pp-ev_history.webp": [
+        1000,
+        571
+      ],
+      "images/pp-ev_limits.webp": [
+        1000,
+        691
       ]
     },
-    "tiles": [],
+    "tiles": [
+      {
+        "n": "0 of 40",
+        "l": "made-up orders where the files in the Send dialog or the pages of the printed PDF differed from what a separate script worked out from the raw database tables (control: ignoring documents on variants would give 20 differences)"
+      },
+      {
+        "n": "3 settings",
+        "l": "per document: Hidden (the default, so nothing changes until you choose), On RFQ and PO, On confirmed PO only; an extra tick appends an uploaded PDF to the order PDF"
+      },
+      {
+        "n": "28",
+        "l": "automated tests counted on this version, none failing; 13 were added for what this page states (15 before)"
+      },
+      {
+        "n": "2.2 s",
+        "l": "to print an order with a 200-page PDF appended (2.1 s without it); larger data not tested"
+      },
+      {
+        "n": "Fixed",
+        "l": "in this version: an email already sent changed or lost its file when the product document was replaced or deleted later; it now carries its own copy"
+      },
+      {
+        "n": "Not",
+        "l": "shown to vendors in the portal, no change to Odoo's Sales documents, and the e-invoicing XML inside the order PDF is dropped when a PDF is appended (see the known limits)"
+      }
+    ],
     "faq": [],
-    "copyWords": 378,
+    "copyWords": 1254,
     "hasVideo": true,
     "youtubeId": "19hj4HO-6gg",
     "externalPage": null
@@ -18888,58 +21115,147 @@ export const odooApps = [
     "tech": "mh_shop_quantity",
     "slug": "shop-quantity-selector",
     "name": "Shop Quantity Selector",
-    "summary": "Quantity selector for the shop page: a quantity box beside add to cart on products in the shop grid, so customers can order 12 of an item without opening each product page.",
-    "tagline": "A quantity box next to Add to Cart on the products in the shop grid, so customers can order 12 of an item without opening each product page.",
-    "intro": [],
+    "summary": "Quantity selector for the Odoo eCommerce shop grid: a quantity box beside Add to Cart on the products in the shop grid, so customers can order several of an item without opening each product page. Products that open Odoo's configurator keep Odoo's button",
+    "tagline": "A shopper who wants 12 of an item should not have to open its page first",
+    "intro": [
+      "Odoo's shop grid has a one-click Add to Cart that always adds one. To order twelve of the same item a customer opens the product page, types 12 and adds from there. Shop Quantity Selector puts a quantity box beside Add to Cart on the grid tiles where Odoo adds straight to the cart. The number typed is what goes into the cart, through Odoo's own add to cart, so the cart icon, the added-to-cart message, stock warnings and price-list quantity breaks behave as they do from the product page. This page walks through it with screenshots of an Odoo 19 database holding a made-up homeware shop, and with tables rendered from real readings of the same run; each picture says which it is.",
+      "The page also says where the app stops: it puts no box on products that open Odoo's configuration dialog, it has no maximum and no per-product rules, and it adds nothing to the product page or the cart.",
+      "Install it and the shop grid shows the box. It needs only the Website Sales app (website_sale) and adds one on/off setting under Website > Settings > eCommerce."
+    ],
     "features": [
       {
-        "heading": "What it does",
+        "heading": "What it keeps, what it changes, what it does not",
         "body": [
-          "Odoo's shop grid has a one-click Add to Cart button, and it always adds one. A customer who wants twelve of the same item has to open the product page first, set the quantity there and add it. This app puts a quantity box beside the Add to Cart button on the grid: type a number, press Add to Cart, and that many go into the cart.",
-          "The number goes through Odoo's own add to cart, so the cart icon count, the added-to-cart message, stock warnings and pricelist quantity prices work exactly as they do from the product page."
+          "Each line was tested or read in the code or on the running shop."
         ],
         "images": []
       },
       {
-        "heading": "Which products get the box",
+        "heading": "1 A quantity box beside Add to Cart",
         "body": [
-          "The box appears on the products where Odoo's Add to Cart button adds straight to the cart: a product with a single variant, no optional products and one unit of measure, that is not a combo, and where Odoo shows its Add to Cart button (so not a sold-out product that cannot be sold past zero stock, and not a product whose price is zero when Odoo is set to show Contact Us instead). Products with variants to choose, optional products, several units of measure or a combo keep Odoo's button and its dialog, with no box."
+          "In Odoo's shop grid Add to Cart adds one unit. A shopper who wants 12 has to open the product, change the number and add. The first picture shows the grid with the app switched off, which is what Odoo does without it.",
+          "With the app on, the tile under the mouse shows a number box before the Add to Cart button. The second picture has 12 typed in the Ceramic Pour-Over Dripper's box. Pressing Add to Cart, or Enter in the box, puts 12 in the cart. Pictures are real Odoo 19 screens as an anonymous visitor, cropped to two tiles; the number was entered in the second picture by script, the key presses themselves are in the tables.",
+          "It does not replace Odoo's button: that button stays and adds the typed number, or 1.",
+          "Before: setting switched off, as stock Odoo. Real Odoo screen.",
+          "With the app: 12 typed in the box. Real Odoo screen."
         ],
-        "images": []
+        "use": "your shoppers buy more than one of an item.",
+        "mode": "Read-only for visitors",
+        "images": [
+          "images/sq-before-grid.webp",
+          "images/sq-after-typed.webp"
+        ]
       },
       {
-        "heading": "Whole numbers, never a broken cart",
+        "heading": "2 What reaches the cart",
         "body": [
-          "The box takes whole numbers of 1 or more. An empty box, 0 or a negative number becomes 1, and a decimal is cut to a whole number, before it is sent. Pressing Enter inside the box adds to the cart instead of submitting anything."
+          "A number that only looks right on the grid would be worse than none.",
+          "The number goes through Odoo's own add to cart, so everything downstream is Odoo's. In the pictures: 12 Stoneware Mugs were added from the grid and the price list's break for 10 or more applied (12 at 9.60 is 115.20); the Copper Kettle has 5 in stock and 12 were typed, so Odoo added 5 and said so (You ask for 12 products but only 5 is available.). The tables have the readings, including the cart icon.",
+          "It adds no stock check, price rule or message of its own.",
+          "12 typed, 5 in stock: Odoo's own message. Real Odoo screen.",
+          "The cart after both adds. Real Odoo screen.",
+          "What reaches the cart. Evidence table."
         ],
-        "images": []
+        "use": "you want to know that the number is a real cart quantity.",
+        "mode": "Read-only",
+        "images": [
+          "images/sq-stock.webp",
+          "images/sq-cart.webp",
+          "images/sq-ev_cart.webp"
+        ]
       },
       {
-        "heading": "Stock and prices stay Odoo's",
+        "heading": "3 Which products get a box",
         "body": [
-          "If stock is limited and a customer types more than is available, Odoo's own stock check decides what is added and shows its usual message. If a pricelist has a price for a minimum quantity, typing that quantity gets that price, as on the product page."
+          "Odoo opens a configuration dialog for products with options, optional products, several units of measure or a combo. A box beside a button that opens a dialog would be misleading.",
+          "The box appears where Odoo's button adds straight to the cart, and nowhere Odoo opens its dialog. This was checked by pressing the real button on all 16 published products of the demo shop: a product with one option value, sold by the kilogram or a service gets a box (they add directly), while a product with a choice of options, a custom value, a no-variant option, a dynamic option, optional products or a pack unit keeps Odoo's button and its Configure dialog. A combo never gets a box , even though Odoo adds the demo combo (one item) straight to the cart with 1 unit; that is a limit. In the two pictures the hovered tile shows Odoo's button and no box.",
+          "There is no per-product switch: the box follows Odoo's own rule.",
+          "Products with options or optional products: no box. Real Odoo screen.",
+          "A pack unit and a combo: no box. Real Odoo screen.",
+          "Which products get the box. Evidence table."
         ],
-        "images": []
+        "use": "your catalogue mixes plain products and products with options.",
+        "mode": "Read-only",
+        "images": [
+          "images/sq-nobox-a.webp",
+          "images/sq-nobox-b.webp",
+          "images/sq-ev_boxes.webp"
+        ]
       },
       {
-        "heading": "On or off for each website",
+        "heading": "4 What the number does",
         "body": [
-          "Website > Settings > eCommerce has a Quantity Box on Shop Grid setting, on by default, saved for each website. Switched off, the shop grid is exactly Odoo's own."
+          "A box that accepts 0, -7 or 4.8 could put nonsense in the cart.",
+          "The box takes whole numbers of 1 or more. When it loses focus a 0, a negative number or an empty box becomes 1, and a fraction is cut (4.8 becomes 4). The table lists 14 values typed with real key presses and what the cart received. Enter in the box adds to the cart without leaving the page, and Tab then Enter on Odoo's button works too. There is no upper limit : a number with ten digits was added to the cart, a 20 digit number was added as 100000000000000081920 (a decimal rounding in the browser) and 1e308 added nothing and showed no message. They are limits, not changed in this version.",
+          "It has no minimum above 1, no maximum and no sold-in-multiples rule.",
+          "What the number does. Evidence table."
         ],
-        "images": []
+        "use": "shoppers will type all sorts of things in a number box.",
+        "mode": "Read-only",
+        "images": [
+          "images/sq-ev_number.webp"
+        ]
       },
       {
-        "heading": "Who it is for",
+        "heading": "5 Where it shows",
         "body": [
-          "Shops that sell items customers buy in bulk, such as consumables, spare parts, trade supplies or party goods, where opening a product page for every line slows the order down."
+          "Odoo's shop has several grid designs and the box has to fit each.",
+          "The box follows Odoo's button. In the default design (buttons appear when a tile is hovered), in the design with buttons always shown and in the list layout the box is on the tile and the typed number reaches the cart. In the list layout the box now sits on the same row as Add to Cart (section 7). A design that turns Add to Cart off shows no box. On a phone Odoo shows no button on the grid in the default design, so there is no box either. The shop search result page shows the box too. Enter, the keyboard route and adding twice were read in the same real browser.",
+          "It does not change the grid's design options.",
+          "Where the box shows. Evidence table."
+        ],
+        "use": "your shop does not use the default design.",
+        "mode": "Read-only",
+        "images": [
+          "images/sq-ev_where.webp"
+        ]
+      },
+      {
+        "heading": "6 Switch it off, and who can",
+        "body": [
+          "Some shops will want the plain grid on one website and the box on another.",
+          "Under Website > Settings > eCommerce the setting Quantity Box on Shop Grid turns the box on or off for the website you are editing; it is on after install. With it off the tiles are Odoo's own. Settings administrators change it on that screen and Website designers can write it; a Sales administrator, a salesperson, a product manager and a restricted editor cannot. The check that decides whether a tile gets a box costs under one query per product on a cold cache and none after.",
+          "There is no setting per category or per product.",
+          "The setting. Real Odoo screen (cropped to the setting).",
+          "Who can switch it, and the cost. Evidence table."
+        ],
+        "use": "you want the stock grid back on one website.",
+        "mode": "Writes when saved",
+        "images": [
+          "images/sq-settings.webp",
+          "images/sq-ev_rights.webp"
+        ]
+      },
+      {
+        "heading": "7 Two defects fixed in this version",
+        "body": [
+          "Two small defects were found while checking this page against a running shop, and fixed.",
+          "(1) In the shop's list layout Odoo stacks its buttons in a column, so the box sat above Add to Cart and the wishlist heart covered the button on every tile with a box (8 of 8 in the shop here). The box and the button now sit on one row and the heart no longer covers them. (2) The box was named just Quantity on every tile, so every tile announced the same name and nothing told the tiles apart; it is now Quantity: followed by the product name. The pictures show the list layout before and after; the table has the readings. Both are CSS and markup only; no data or price behaviour changed. Two tests fail on the old code and pass now.",
+          "Before (version 1.0.1): the heart covers Add to Cart and the box is under it. Real Odoo screen.",
+          "After (this version): one row, nothing covered. Real Odoo screen.",
+          "Before and after the two fixes. Evidence table."
+        ],
+        "use": "you want to know what changed in behaviour.",
+        "mode": "Read-only",
+        "images": [
+          "images/sq-list-before.webp",
+          "images/sq-list-after.webp",
+          "images/sq-ev_fixed.webp"
+        ]
+      },
+      {
+        "heading": "What changed in this version",
+        "body": [
+          "Version 19.1.0.2 fixes two small defects (the list layout, the box's accessible name) and adds 9 automated tests (12 before, 21 now): 2 for the fixes and 7 that pin the limits above. It replaces the screenshots and the page text with checked ones, adds a real-browser check of each claim, and takes no feature out. The stock tests now also skip cleanly when the stock module is not installed. The demo video of an earlier version is kept as it was and was not re-recorded."
         ],
         "images": []
       }
     ],
-    "scope": [],
-    "requires": [
-      "Odoo 19 or 20, Community or Enterprise, with the eCommerce app (website_sale). Third-party apps install on Odoo.sh or On-Premise only - they cannot be installed on Odoo Online."
+    "scope": [
+      "Each of these was reproduced on a running Odoo 19 shop or read in the code; none is changed in this version. The table below has the tests and controls.",
+      "Tests and controls. Evidence table."
     ],
+    "requires": [],
     "price": 28.95,
     "manifestPrice": 29.0,
     "currency": "USD",
@@ -18955,17 +21271,102 @@ export const odooApps = [
     "storeUrl19": "https://apps.odoo.com/apps/modules/19.0/mh_shop_quantity",
     "storeUrl20": "https://apps.odoo.com/apps/modules/20.0/mh_shop_quantity",
     "screenshots": [
-      "screenshot_shop_grid.webp"
+      "images/sq-ev_tests.webp"
     ],
     "shotDims": {
-      "screenshot_shop_grid.webp": [
+      "images/sq-before-grid.webp": [
+        940,
+        600
+      ],
+      "images/sq-after-typed.webp": [
+        940,
+        600
+      ],
+      "images/sq-stock.webp": [
+        724,
+        572
+      ],
+      "images/sq-cart.webp": [
         1000,
-        543
+        414
+      ],
+      "images/sq-ev_cart.webp": [
+        1000,
+        582
+      ],
+      "images/sq-nobox-a.webp": [
+        940,
+        600
+      ],
+      "images/sq-nobox-b.webp": [
+        940,
+        600
+      ],
+      "images/sq-ev_boxes.webp": [
+        1000,
+        1938
+      ],
+      "images/sq-ev_number.webp": [
+        1000,
+        1122
+      ],
+      "images/sq-ev_where.webp": [
+        1000,
+        1347
+      ],
+      "images/sq-settings.webp": [
+        828,
+        280
+      ],
+      "images/sq-ev_rights.webp": [
+        1000,
+        962
+      ],
+      "images/sq-list-before.webp": [
+        702,
+        540
+      ],
+      "images/sq-list-after.webp": [
+        702,
+        540
+      ],
+      "images/sq-ev_fixed.webp": [
+        1000,
+        734
+      ],
+      "images/sq-ev_tests.webp": [
+        1000,
+        1307
       ]
     },
-    "tiles": [],
+    "tiles": [
+      {
+        "n": "1 box",
+        "l": "per product tile on the shop grid, beside Odoo's own Add to Cart: type 12, press Add to Cart, 12 are in the cart"
+      },
+      {
+        "n": "21",
+        "l": "automated tests in the app, none failing, including browser tests on the real shop page; 9 were added in this version"
+      },
+      {
+        "n": "9 of 9",
+        "l": "deliberate breaks of the code were caught by the tests (the unchanged copy: 0 failed)"
+      },
+      {
+        "n": "2",
+        "l": "small defects found and fixed in this version (the shop's list layout, and a box that every screen reader heard as just Quantity), disclosed below"
+      },
+      {
+        "n": "0",
+        "l": "data sent anywhere, tables added or prices changed: one on/off setting per website"
+      },
+      {
+        "n": "No",
+        "l": "minimum, maximum or sold-in-multiples rule: whole numbers of 1 or more, with no upper limit (see the known limits)"
+      }
+    ],
     "faq": [],
-    "copyWords": 403,
+    "copyWords": 1468,
     "hasVideo": true,
     "youtubeId": "beDViPlxphI",
     "externalPage": null
@@ -19083,7 +21484,7 @@ export const odooApps = [
     "manifestPrice": 29.0,
     "currency": "USD",
     "category": "Warehouse",
-    "version": "19.0.1.0.13",
+    "version": "19.0.1.0.14",
     "license": "OPL-1",
     "depends": [
       "stock"
@@ -19174,48 +21575,148 @@ export const odooApps = [
     "tech": "mh_supplier_credit_limit",
     "slug": "supplier-credit-limit",
     "name": "Supplier Credit Limit",
-    "summary": "Purchase credit limit per vendor: what you owe plus open purchase orders. Orders over the vendor credit limit wait in To Approve for a purchase manager",
-    "tagline": "Set a credit limit per vendor on what you owe plus open purchase orders. An order that would take the vendor over the limit waits in To Approve for a purchase manager.",
-    "intro": [],
+    "summary": "A credit limit per vendor on what you owe plus open purchase orders, checked whenever an order is confirmed; an order that would take the vendor over the limit waits in To Approve for a purchase manager",
+    "tagline": "A credit limit per vendor on what you owe plus open purchase orders; an order that would go over waits for a purchase manager",
+    "intro": [
+      "Odoo's purchase app approves an order by its own amount against one threshold, the same for every vendor, and it does not know what you already owe. Five orders of 8,000 each pass a 10,000 threshold one at a time, and a vendor you agreed to owe at most 30,000 is owed 40,000. Supplier Credit Limit puts the limit on the vendor and checks it whenever an order is confirmed. This page walks through one vendor in an Odoo 19 database seeded with made-up data, each user logged in separately, says what is counted and what is not, and lists the defects found and fixed while checking it."
+    ],
     "features": [
       {
-        "heading": "What it does",
+        "heading": "Why a limit on the vendor",
         "body": [
-          "Odoo's purchase app approves by the size of one order: a single amount, the same for every vendor, and it has no idea what you already owe. Five orders of 8,000 each pass a 10,000 threshold one at a time, and a vendor you have agreed to owe at most 30,000 is suddenly owed 40,000. Supplier Credit Limit puts the limit on the vendor instead. Switch it on for a vendor, enter the amount, and every order for that vendor is checked against the total of what you owe them and what you have already ordered from them."
+          "An amount threshold looks at one order. What a vendor can be owed is the sum of everything you have not paid and everything you have ordered and not yet been billed for."
         ],
         "images": []
       },
       {
-        "heading": "Where the block holds",
+        "heading": "1 Set the limit on the vendor",
         "body": [
-          "The check does not sit on one button. It runs wherever an order becomes a Purchase Order: the Confirm Order button, a server action that confirms or writes the status (including one run on a selection in a list), an import with a Status column, and an API write or create of the status. For a user who is not a purchase manager these all stop at the limit (the button sends the order to To Approve; a direct write of the status is refused with a message naming the order and the numbers). This is proved by tests on Odoo 19 and Odoo 20 for every route above, and by a browser test that confirms an over-limit order as a buyer and releases it as a manager."
+          "On the vendor, Sales & Purchase , section Purchase : a Credit Limit switch and the Limit , in the company currency, set per company. Below them three figures that cannot be edited: Owed on Bills , Open Orders and Exposure , so you can read the numbers before you set a limit. Northgate Steel Supply is limited to 60,000 and sits at 50,300.",
+          "Only purchase managers see or set these fields. A buyer opens the same form and the Purchase section carries none of them.",
+          "The limit belongs to the vendor company. On a contact under a company the switch is not offered (this version, see section 7); the vendor's figures still are.",
+          "The vendor form for a purchase manager. Real Odoo screen.",
+          "The same vendor for a buyer. Real Odoo screen."
         ],
-        "images": []
+        "use": "you agree credit terms with a vendor and want one number to hold them to.",
+        "mode": "Per company",
+        "images": [
+          "images/scl-vendor.webp",
+          "images/scl-vendor-buyer.webp"
+        ]
+      },
+      {
+        "heading": "2 What counts",
+        "body": [
+          "Owed on bills is the amount still due on posted vendor bills, minus posted credit notes still open, never below zero. Draft and cancelled bills, and paid bills, count nothing. Open orders are confirmed purchase orders for the part not yet billed, tax included; RFQs, sent RFQs, orders waiting in To Approve and cancelled orders count nothing, and received but not billed still counts. Only posted bills take quantity off an order, so a posted bill replaces its order and nothing is counted twice, and a draft bill does not make an order disappear.",
+          "Contacts under a vendor company count with it. Only the current company counts. Amounts in another currency are converted at today's rate, not the rate of the bill or order date.",
+          "Nineteen cases, one at a time. Evidence table from real readings.",
+          "Currency, tax, contacts and what is not read. Evidence table from real readings."
+        ],
+        "use": "you want to know exactly which bills and orders make up the exposure.",
+        "mode": "Read only",
+        "images": [
+          "images/scl-ev-counts.webp",
+          "images/scl-ev-money.webp"
+        ]
+      },
+      {
+        "heading": "3 An order that would go over",
+        "body": [
+          "The order form shows the vendor's limit and the exposure with this order. Under the limit the order confirms as usual.",
+          "An order that would take the total over the limit shows a warning, and pressing Confirm Order sends it to To Approve instead of Purchase Order.",
+          "A total equal to the limit passes; one cent above does not. With the switch off there is no check; with the switch on and a limit of 0 every order waits.",
+          "A small order: 51,500 against 60,000. Real Odoo screen.",
+          "The order of 11,200: 61,500 against 60,000. Real Odoo screen.",
+          "After Confirm Order: the status and the numbers. Real Odoo screen.",
+          "Edges. Evidence table from real readings."
+        ],
+        "use": "a buyer confirms an order that takes the vendor past the limit.",
+        "mode": "Waits in To Approve",
+        "images": [
+          "images/scl-rfq-small.webp",
+          "images/scl-rfq-over.webp",
+          "images/scl-waiting.webp",
+          "images/scl-ev-edge.webp"
+        ]
+      },
+      {
+        "heading": "4 A purchase manager decides",
+        "body": [
+          "A purchase manager sees the order in the list with the status To Approve and releases it with Odoo's own Approve Order button. The chatter records who released it and the numbers at that moment. A purchase manager can also confirm an over-limit order directly; the note is the same.",
+          "The released order now counts as an open order, so the vendor's exposure is 61,500 and the next order is checked against that.",
+          "The order list: the 11,200 order waits, the others are Purchase Orders. Real Odoo screen.",
+          "After Approve Order. Real Odoo screen.",
+          "The vendor after the approval. Real Odoo screen."
+        ],
+        "use": "an order is waiting and somebody with authority has to release or refuse it.",
+        "mode": "Noted in the chatter",
+        "images": [
+          "images/scl-list.webp",
+          "images/scl-approved.webp",
+          "images/scl-vendor-after.webp"
+        ]
+      },
+      {
+        "heading": "5 Every way an order is confirmed",
+        "body": [
+          "The check runs wherever an order becomes a Purchase Order. For a user who is not a purchase manager the Confirm Order button and a server action that confirms send the order to To Approve; a server action or API write of the status, an import with a Status column and a create straight in the Purchase Order state are refused with a message that names the order and the numbers, and nothing is written. A mass action on a list selection checks each order in turn. A purchase manager passes them all, and so does the OdooBot user; sudo() on a buyer does not lift the limit.",
+          "Seven routes, three users. Evidence table from real readings."
+        ],
+        "use": "you need to know the limit does not depend on which button somebody presses.",
+        "mode": "Tested as buyer and manager",
+        "warn": "Anyone you make a purchase manager is not stopped by the limit, and neither is code that runs as the OdooBot user (scheduled actions, some automations). The limit is a control for buyers, not a lock.",
+        "images": [
+          "images/scl-ev-routes.webp"
+        ]
+      },
+      {
+        "heading": "6 Defects found, and where it stops",
+        "body": [
+          "A contact under Northgate, before: the switch is offered. Real Odoo screen.",
+          "The same contact, after: the figures only. Real Odoo screen.",
+          "Before and after, same steps. Evidence table from real readings.",
+          "Limits and timings. Evidence table from real readings."
+        ],
+        "use": "you are deciding whether this limit is enough for your purchasing.",
+        "mode": "Tested limits",
+        "images": [
+          "images/scl-contact-before.webp",
+          "images/scl-contact-after.webp",
+          "images/scl-ev-fixes.webp",
+          "images/scl-ev-limits.webp"
+        ]
+      },
+      {
+        "heading": "Who can use it",
+        "body": [
+          "Purchase managers set the limit, see the figures on the vendor and release orders. Buyers (Purchase: User) create and confirm orders and are stopped by the limit.",
+          "Buyer and manager side by side. Evidence table from real readings."
+        ],
+        "images": [
+          "images/scl-ev-rights.webp"
+        ]
       },
       {
         "heading": "How it differs from Purchase Approvals",
         "body": [
-          "Purchase Approvals (a separate paid app by us) routes an order through approval tiers by the order's own amount, each tier with its own approver group. Supplier Credit Limit does not look at the size of one order alone: it looks at the money owed to one vendor. It needs no other app and does not use Purchase Approvals. If you install both, an order must pass both: a tier approver who is not a purchase manager cannot release an order that is over a vendor's credit limit. Approval Exposure (free) reports what approval your confirmed orders actually cleared; it does not set limits."
-        ],
-        "images": []
-      },
-      {
-        "heading": "Who it is for",
-        "body": [
-          "Purchasing and finance teams who agree credit terms with vendors and need a hard stop when new orders would take what they owe past what was agreed."
+          "Purchase Approvals (a separate paid app by us) routes an order through approval tiers by the order's own amount, each with an approver group. Supplier Credit Limit looks at the money owed to one vendor and needs no other app. Installed together, an order must pass both: a tier approver who is not a purchase manager cannot release an order over a vendor's credit limit (tested with both apps installed)."
         ],
         "images": []
       }
     ],
-    "scope": [],
-    "requires": [
-      "Odoo 19 or Odoo 20, Community or Enterprise. Also requires Purchase (purchase) and Invoicing (account). Third-party apps install on Odoo.sh or On-Premise only - they cannot be installed on Odoo Online (SaaS)."
+    "scope": [
+      "The partner form (a switch, a limit and three figures for purchase managers), the purchase order form (a warning and two figures) and the way an order becomes a Purchase Order: for a user who is not a purchase manager an over-limit order cannot get there. It stores a switch and an amount per vendor and company, and a chatter note on each decision.",
+      "Odoo's own Confirm Order and Approve Order buttons, its amount-based approval (the two work side by side), and every bill and order as they are. It adds no menu, no model, no report, no e-mail and makes no network call.",
+      "Section 6, with real readings: a currency with no rate, an unlinked bill, an advance payment, waiting orders, editing after confirmation, two people at once, the OdooBot user, and 1,000 orders (3,000 lines) for one vendor.",
+      "Odoo.sh, Odoo Enterprise, uninstall, other languages, the vendor portal, dropshipping and purchase agreements, more than 1,000 orders for one vendor, several companies in real use (two companies are covered by tests, not by screens).",
+      "Tests, fix tests on the old code and mutation controls. Evidence table."
     ],
+    "requires": [],
     "price": 28.95,
     "manifestPrice": 29.0,
     "currency": "USD",
     "category": "Purchases",
-    "version": "19.0.1.0.1",
+    "version": "19.0.1.0.2",
     "license": "OPL-1",
     "depends": [
       "purchase",
@@ -19227,22 +21728,110 @@ export const odooApps = [
     "storeUrl19": "https://apps.odoo.com/apps/modules/19.0/mh_supplier_credit_limit",
     "storeUrl20": "https://apps.odoo.com/apps/modules/20.0/mh_supplier_credit_limit",
     "screenshots": [
-      "screenshot_over_limit.webp",
-      "screenshot_vendor.webp"
+      "images/scl-ev-tests.webp"
     ],
     "shotDims": {
-      "screenshot_over_limit.webp": [
+      "images/scl-vendor.webp": [
         1000,
-        512
+        672
       ],
-      "screenshot_vendor.webp": [
+      "images/scl-vendor-buyer.webp": [
         1000,
-        562
+        677
+      ],
+      "images/scl-ev-counts.webp": [
+        1000,
+        1514
+      ],
+      "images/scl-ev-money.webp": [
+        1000,
+        1062
+      ],
+      "images/scl-rfq-small.webp": [
+        1000,
+        615
+      ],
+      "images/scl-rfq-over.webp": [
+        1000,
+        838
+      ],
+      "images/scl-waiting.webp": [
+        1000,
+        621
+      ],
+      "images/scl-ev-edge.webp": [
+        1000,
+        1081
+      ],
+      "images/scl-list.webp": [
+        1000,
+        1329
+      ],
+      "images/scl-approved.webp": [
+        1000,
+        973
+      ],
+      "images/scl-vendor-after.webp": [
+        1000,
+        672
+      ],
+      "images/scl-ev-routes.webp": [
+        1000,
+        1719
+      ],
+      "images/scl-contact-before.webp": [
+        1000,
+        568
+      ],
+      "images/scl-contact-after.webp": [
+        1000,
+        471
+      ],
+      "images/scl-ev-fixes.webp": [
+        1000,
+        914
+      ],
+      "images/scl-ev-limits.webp": [
+        1000,
+        990
+      ],
+      "images/scl-ev-rights.webp": [
+        1000,
+        1022
+      ],
+      "images/scl-ev-tests.webp": [
+        1000,
+        862
       ]
     },
-    "tiles": [],
+    "tiles": [
+      {
+        "n": "9,700.01",
+        "l": "an order one cent over a 60,000 limit goes to To Approve; 9,700.00, exactly at it, goes through"
+      },
+      {
+        "n": "6 routes",
+        "l": "tried as a buyer and all stopped: Confirm button, server action, mass action, import, API write and API create"
+      },
+      {
+        "n": "72",
+        "l": "automated tests, none failing; 15 of them new in this version"
+      },
+      {
+        "n": "13 of 13",
+        "l": "deliberate breaks of the code each made at least one test fail"
+      },
+      {
+        "n": "0.08 s",
+        "l": "to read a vendor's figures with 3,000 open order lines and 300 bills; larger data not tested"
+      },
+      {
+        "n": "2",
+        "l": "display defects found while building this page, fixed in this version and listed below"
+      }
+    ],
     "faq": [],
-    "copyWords": 406,
+    "copyWords": 1167,
     "hasVideo": true,
     "youtubeId": "S4leaWFntkk",
     "externalPage": null
@@ -19251,30 +21840,146 @@ export const odooApps = [
     "tech": "mh_survey_file_upload",
     "slug": "survey-file-upload",
     "name": "Survey File Upload",
-    "summary": "Survey attachment question: respondents upload a file (PDF, image, document) to a survey answer, with size and type limits, and you download it from the results",
-    "tagline": "Add a file upload question to Odoo Surveys: respondents attach a PDF, image or document to their answer, and you download it from the results.",
-    "intro": [],
+    "summary": "Survey file upload for Odoo Surveys: a File Upload question type for Odoo Surveys, so respondents can attach a PDF, image or document to their answer and you download it from the results. Size, type and number of files are limited per question and checked on the server",
+    "tagline": "A survey that can ask for the document, not only describe it",
+    "intro": [
+      "Odoo Surveys cannot ask for a file. A job application, an insurance claim or a school form has to send the CV, the photo or the scan by email on the side, and nobody can tell afterwards which file belongs to which answer. Survey File Upload adds one question type, File Upload. The respondent picks one or more files on the survey page; the server checks each against the size, type and number you set on the question and stores it as an attachment on that participation. This page walks through it with screenshots of an Odoo 19 database holding a made-up recruiter's application form, and with tables rendered from real readings of the same run; each picture says which it is.",
+      "The page also says where the app stops: the type is read from the file name only, nothing scans a file, two uploads at the same moment for one question can pass the file limit, and live sessions are not what it was built for.",
+      "Install it and File Upload is one more choice in the question type list. It needs only the Surveys app (survey) and adds three settings to a question and nothing else to configure."
+    ],
     "features": [
       {
-        "heading": "What it does",
+        "heading": "What it keeps, what it changes, what it does not",
         "body": [
-          "Odoo Surveys cannot ask for a document. Its question types are text, numbers, dates, choices, scales and matrices, so a job application, an insurance claim or an intake form has to send the CV or the photo by email on the side. This app adds one more question type, File Upload, so the document comes back with the answer.",
-          "On the survey page the respondent picks one or more files. The server checks each file against the limits you set on the question and stores it as an attachment on the answer, next to the other answers of that participation."
+          "Each line was tested or read in the code or on the running survey."
         ],
         "images": []
       },
       {
-        "heading": "Who it is for",
+        "heading": "1 A file question on the survey page",
         "body": [
-          "HR and recruitment teams collecting CVs, insurance and service firms collecting claim documents, schools collecting forms, and anyone whose Odoo survey needs a document or a photo back with the answers."
+          "A survey has no way to ask for a CV, a photo or a signed scan, so it goes by email and nobody can tell which file belongs to which answer.",
+          "The first picture is the application form of a made-up recruiter, Brightwater Staffing: name, email, a required CV (one file, pdf or docx, 5 MB) and an optional question for certificates and references (up to three files, pdf, png or jpg, 2 MB each). The second has files attached: they are listed under the picker with a Remove link, and the CV question shows its file. Pictures are real Odoo 19 screens as an anonymous visitor, cropped to the two file questions; the files were attached through the page's own file picker.",
+          "It does not preview or convert files, and it does not save a draft of the other answers: only the files are saved when they are picked.",
+          "The two file questions before anything is attached. Real Odoo screen.",
+          "Files attached: listed, each with Remove. Real Odoo screen."
+        ],
+        "use": "your survey needs a document back with the answers.",
+        "mode": "Read-only for visitors",
+        "images": [
+          "images/sfu-page-empty.webp",
+          "images/sfu-page-attached.webp"
+        ]
+      },
+      {
+        "heading": "2 Limits you set on the question",
+        "body": [
+          "An upload box with no limits fills the database with whatever people send.",
+          "Choose File Upload as the question type and open the Options tab: Max file size (MB) (default 10), Max files (default 1) and Allowed extensions (for example pdf, docx, png; empty means any type). With 1 file a new upload replaces the old one. All three are enforced by the server. The table shows the real answers to 17 file names and to sizes, counts and extensions.",
+          "It does not read the content: a program renamed .pdf passes. There is no total size limit, only one per file.",
+          "File Upload is one more question type. Real Odoo screen (cropped to the type list).",
+          "The three settings. Real Odoo screen (cropped to the Options tab).",
+          "Sizes, counts and extensions. Evidence table.",
+          "File names against the list. Evidence table."
+        ],
+        "use": "you need to keep uploads to the sizes and types you can handle.",
+        "mode": "Read-only",
+        "images": [
+          "images/sfu-qtype.webp",
+          "images/sfu-qopts.webp",
+          "images/sfu-ev_sizes.webp",
+          "images/sfu-ev_names.webp"
+        ]
+      },
+      {
+        "heading": "3 What the respondent sees when something is wrong",
+        "body": [
+          "A silent refusal makes people send the file by email after all.",
+          "The page checks size and type before sending, and the server checks again. The picture shows a program (notes.exe) refused on the CV question and a 3 MB scan refused on the certificates question, each with the message under its picker; nothing was stored for either, and the CV that was attached before stays. A required file question refuses to submit without a file, in the browser and again on the server; a client cannot fake it by sending a number.",
+          "It does not say how to fix the file: it names the file and the limit.",
+          "Two refused files, each with its message. Real Odoo screen."
+        ],
+        "use": "you want people to learn at once why a file was not taken.",
+        "mode": "Read-only",
+        "images": [
+          "images/sfu-page-errors.webp"
+        ]
+      },
+      {
+        "heading": "4 Where the files end up",
+        "body": [
+          "Files that live only in an email thread are lost to the survey.",
+          "On the survey's Results page the File Upload question lists each response with its files as download links. The participation's answer line in the back office lists them too, and the review page the respondent gets after submitting shows them read-only with no picker and no Remove. A participation left unfinished keeps its files until you delete it, and an in-progress participation appears in Results. The pictures are real Odoo 19 screens; names and files are made up.",
+          "It does not download all files of a survey as one archive and does not email you when a file arrives.",
+          "Results: each response with its file. Real Odoo screen (cropped to the question).",
+          "The answer line in the back office. Real Odoo screen.",
+          "The review page: read-only. Real Odoo screen."
+        ],
+        "use": "you want to open the files without asking anyone.",
+        "mode": "Read-only",
+        "images": [
+          "images/sfu-results.webp",
+          "images/sfu-line.webp",
+          "images/sfu-review.webp"
+        ]
+      },
+      {
+        "heading": "5 Who can open the files",
+        "body": [
+          "CVs, claim photos and scans are personal data and must stay with the right people.",
+          "The token in a respondent's link is their credential: whoever holds it can act as that respondent until they submit, and nobody else can. Upload, remove and download refuse a wrong survey token, a wrong answer token, another survey's question and a question that is not a file question, and the download or removal of another respondent's file; after submit, upload and remove are refused but the respondent can still download their own file. In the back office any survey user (not only the creator) and administrators can open a file; an internal user without a survey group, a portal user and a visitor cannot. The download route always sends the file as an attachment, as plain text for html and svg, with nosniff, so an uploaded page with a script is never run on your site. The tables hold the readings.",
+          "It adds no groups or access rules of its own: access follows Odoo's attachment and survey rules.",
+          "Upload, remove and download with right and wrong tokens. Evidence table.",
+          "Who can open a stored file. Evidence table."
+        ],
+        "use": "the documents are personal and must not leak.",
+        "mode": "Read-only",
+        "images": [
+          "images/sfu-ev_guards.webp",
+          "images/sfu-ev_access.webp"
+        ]
+      },
+      {
+        "heading": "6 Surveys that behave differently",
+        "body": [
+          "A new question type is only useful if it works inside the survey features people already use.",
+          "Tried on real surveys: a required file question that only shows after an answer (hidden: not asked; a file sent before the answer changed is deleted), one question per page with Back (the file is still listed), a quiz (finishes, the file question scores 0), a duplicated survey (limits are copied), and a started live session (the attendee sees the picker and an upload is stored, but the host's live results screen lists no file; the files are in Results afterwards). The last row is a limit.",
+          "It was not built for live sessions: no file is listed on the host's live screen.",
+          "Other cases. Evidence table."
+        ],
+        "use": "your survey uses conditions, pages or scoring.",
+        "mode": "Read-only",
+        "images": [
+          "images/sfu-ev_cases.webp"
+        ]
+      },
+      {
+        "heading": "7 One defect fixed in this version",
+        "body": [
+          "One small defect was found while checking this page against a running survey, and fixed.",
+          "When a survey had a required file question and another required question both empty, a click on Submit showed only the other question's error; the file question's error appeared on the next click. The file check ran only when Odoo's own check had passed. Both errors now show together. It is script only; no data or server behaviour changed. One test fails on the old code and passes now.",
+          "Before and after the fix. Evidence table."
+        ],
+        "use": "you want to know what changed in behaviour.",
+        "mode": "Read-only",
+        "images": [
+          "images/sfu-ev_fixed.webp"
+        ]
+      },
+      {
+        "heading": "What changed in this version",
+        "body": [
+          "Version 19.1.0.2 fixes one small defect (a missing file was reported a round later than other missing answers) and adds 15 automated tests (29 before, 44 now): 1 for the fix and 14 that pin the limits above. It replaces the screenshots and the page text with checked ones, corrects the manifest text about live sessions (it said not available; an attendee can upload, the host's live screen lists no file), makes the browser tour wait for Odoo 19's submit dialog only when there is one, and takes no feature out. All 44 ran on Odoo 19. The demo video of an earlier version is kept as it was and was not re-recorded."
         ],
         "images": []
       }
     ],
-    "scope": [],
-    "requires": [
-      "Odoo 19 and 20, Community or Enterprise. Needs the Surveys app (survey). Third-party apps install on Odoo.sh or On-Premise only - they cannot be installed on Odoo Online."
+    "scope": [
+      "Each of these was reproduced on a running Odoo 19 survey or read in the code; none is changed in this version except the one above. The tables hold the tests and controls.",
+      "Two uploads at the same moment. Evidence table.",
+      "Tests and controls. Evidence table."
     ],
+    "requires": [],
     "price": 28.95,
     "manifestPrice": 29.0,
     "currency": "USD",
@@ -19290,27 +21995,103 @@ export const odooApps = [
     "storeUrl19": "https://apps.odoo.com/apps/modules/19.0/mh_survey_file_upload",
     "storeUrl20": "https://apps.odoo.com/apps/modules/20.0/mh_survey_file_upload",
     "screenshots": [
-      "screenshot_question.webp",
-      "screenshot_survey.webp",
-      "screenshot_results.webp"
+      "images/sfu-ev_race.webp",
+      "images/sfu-ev_tests.webp"
     ],
     "shotDims": {
-      "screenshot_question.webp": [
+      "images/sfu-page-empty.webp": [
         1000,
-        700
+        794
       ],
-      "screenshot_survey.webp": [
+      "images/sfu-page-attached.webp": [
         1000,
-        633
+        1110
       ],
-      "screenshot_results.webp": [
+      "images/sfu-qtype.webp": [
+        948,
+        1404
+      ],
+      "images/sfu-qopts.webp": [
         1000,
-        714
+        1448
+      ],
+      "images/sfu-ev_sizes.webp": [
+        1000,
+        1359
+      ],
+      "images/sfu-ev_names.webp": [
+        1000,
+        1527
+      ],
+      "images/sfu-page-errors.webp": [
+        1000,
+        1235
+      ],
+      "images/sfu-results.webp": [
+        1000,
+        719
+      ],
+      "images/sfu-line.webp": [
+        1000,
+        640
+      ],
+      "images/sfu-review.webp": [
+        1000,
+        1718
+      ],
+      "images/sfu-ev_guards.webp": [
+        1000,
+        1294
+      ],
+      "images/sfu-ev_access.webp": [
+        1000,
+        894
+      ],
+      "images/sfu-ev_cases.webp": [
+        1000,
+        1120
+      ],
+      "images/sfu-ev_fixed.webp": [
+        1000,
+        441
+      ],
+      "images/sfu-ev_race.webp": [
+        1000,
+        773
+      ],
+      "images/sfu-ev_tests.webp": [
+        1000,
+        787
       ]
     },
-    "tiles": [],
+    "tiles": [
+      {
+        "n": "1 type",
+        "l": "new question type, File Upload, for Odoo Surveys: the respondent attaches a PDF, image or document to the answer"
+      },
+      {
+        "n": "44",
+        "l": "automated tests in the app, none failing, including browser tests on the real survey page; 15 were added in this version"
+      },
+      {
+        "n": "15 of 15",
+        "l": "deliberate breaks of the code were caught by the tests (the unchanged copy: 0 failed)"
+      },
+      {
+        "n": "1",
+        "l": "defect found and fixed in this version (a missing file was reported a round later than other missing answers), disclosed below"
+      },
+      {
+        "n": "0",
+        "l": "data sent anywhere: files stay in your Odoo attachment store and nothing goes to a third party"
+      },
+      {
+        "n": "Name",
+        "l": "the file type is read from the file name, not the content, and no virus scan runs (see the known limits)"
+      }
+    ],
     "faq": [],
-    "copyWords": 163,
+    "copyWords": 1427,
     "hasVideo": true,
     "youtubeId": "r16A5qR2ZcA",
     "externalPage": null
@@ -19455,7 +22236,7 @@ export const odooApps = [
     "manifestPrice": 29.0,
     "currency": "USD",
     "category": "Website/Website",
-    "version": "19.0.1.0.1",
+    "version": "19.0.1.0.2",
     "license": "OPL-1",
     "depends": [
       "website_sale"
@@ -19713,7 +22494,7 @@ export const odooApps = [
     "manifestPrice": 29.0,
     "currency": "USD",
     "category": "Website/Website",
-    "version": "19.0.1.0.1",
+    "version": "19.0.1.0.2",
     "license": "OPL-1",
     "depends": [
       "website_sale"
@@ -19837,59 +22618,136 @@ export const odooApps = [
     "tech": "mh_company_audit",
     "slug": "company-audit",
     "name": "Company Audit",
-    "summary": "Find the records whose company conflicts with the records they point at, before Odoo refuses the transaction",
-    "tagline": "Find the records whose company conflicts with the records they point at, before Odoo refuses the transaction",
+    "summary": "A report of the records in your multi-company database whose company conflicts with the records they point at, of the records with no company, and of the users who can switch between companies",
+    "tagline": "Find the records whose company conflicts with the records they point at, before Odoo refuses the save",
     "intro": [
-      "A multi-company database drifts. Records get imported, migrated, or written before a module declared its company checks, and they sit there contradicting themselves until somebody opens one and the save fails.",
-      "This checks the whole database and tells you what is inconsistent.",
-      "One cross-company link, and two users who can switch between companies."
+      "Odoo checks that a record and the records it links to belong to the same company when it saves the record. It does not look at data that is already in the database, so records that were imported, migrated or written before a check existed stay inconsistent until somebody saves one and gets an error. Company Audit reads the whole database and lists them, lists the records that have no company at all, and lists the users who can switch between companies. This page walks through it with screenshots of an Odoo 19 database holding a made-up food group with three companies, and with tables rendered from real readings of the same run; each picture says which it is.",
+      "It reports and never repairs. This page also says where it is not a finding list you can take at face value: records without a company, records past the first 20,000 of a model, archived records.",
+      "Install it and a Company Audit menu appears in Settings, for Settings administrators only. It needs only the base module."
     ],
     "features": [
       {
-        "heading": "Records pointing at another company",
+        "heading": "What it keeps, what it changes, what it does not",
         "body": [
-          "A record in one company linked to a record owned by another. Odoo will refuse the next write on each of them, which is how most people find out - at the worst possible moment. The report names the record, the field, and the company on both sides."
+          "Each line was tested or read in the code."
         ],
         "images": []
       },
       {
-        "heading": "Records with no company at all",
+        "heading": "1 Run an audit",
         "body": [
-          "On a model where every other record has one, a blank company means every company in the database can see it. Technical models are left out, because they legitimately have none and reporting them would bury what matters."
+          "There is no screen in Odoo that lists records whose companies conflict; you find one when its save fails.",
+          "Open Settings, Company Audit, create an audit, give it a name, optionally choose companies (empty means all) and press Run Audit. The first picture is a new audit before it is run. The second is the result for the whole database: how many models were scanned, the three counters and a short text. Running the same audit again replaces its lines; several audits can sit side by side and do not influence each other.",
+          "It does not run by itself and does not repair anything.",
+          "A new audit before it is run. Real Odoo screen.",
+          "The result of a run over the whole database. Real Odoo screen, the run date is stamped for the made-up history."
         ],
-        "images": []
+        "use": "you want a list of what is inconsistent across your companies before somebody hits the error.",
+        "mode": "Writes its own tables",
+        "images": [
+          "images/ca-audit-new.webp",
+          "images/ca-audit-form.webp"
+        ]
       },
       {
-        "heading": "Users who can switch companies",
+        "heading": "2 Records that point at another company",
         "body": [
-          "Often entirely correct - a finance lead may need all of them. It is also the setting that turns one careless record into a cross-company leak, and it is the one nobody reviews."
+          "Imported or migrated records can link across companies, and Odoo refuses to save them later.",
+          "The Findings tab lists, for each record, the first link that Odoo's own company rule would refuse, the record it points at and the company that owns it (the real list below: orders for customers owned by another company, order lines with a product of another company, a department, a receipt type; the picture shows the 11 mismatch lines of the made-up database, hidden rows of other kinds). The audit asks Odoo's own rule: a user is accepted if the record's company is among the companies the user may work in, and a branch company may use a partner of its parent company. Checked against Odoo's own company check on every row, 11 findings were also refused by Odoo, 0 were accepted and 0 were missed; the first table is that comparison and shows what changed in this version. The second table is each case.",
+          "A write of another field on a flagged record is accepted by Odoo; it refuses once the link or the company is written. It shows one line per record even when several links are bad.",
+          "The mismatch lines of the made-up database. Real Odoo screen; lines of the other two kinds hidden for the picture, only the columns Model, Record and Detail shown.",
+          "Findings against Odoo's own check. Evidence table.",
+          "Which records are reported. Evidence table."
         ],
-        "images": []
+        "use": "a record of one company uses a customer, product or location owned by another.",
+        "mode": "Read-only",
+        "images": [
+          "images/ca-findings-mismatch.webp",
+          "images/ca-ev_vs.webp",
+          "images/ca-ev_cases.webp"
+        ]
       },
       {
-        "heading": "Why this data exists at all",
+        "heading": "3 Records with no company",
         "body": [
-          "Odoo enforces company consistency at write time, on the fields that declare the check. That says nothing about records imported, migrated, or written before the flag existed. Those are already in your database, and you cannot create one through the interface to go looking for it."
+          "A record without a company is visible to every company in the database, which is sometimes meant and sometimes a leftover.",
+          "Records with an empty company on models that are not shared by design (partners, users, products, currencies, countries and technical ir.* models are left out) are listed whatever companies you chose. On the made-up database it lists 26 rows; the first picture shows the first nine. Almost all are records Odoo's own apps create without a company (payment terms, project stages, stock locations); two were created for the demo. The table counts them by model.",
+          "It cannot tell a meant-to-be-shared record from a leftover; you decide.",
+          "The first nine 'No company' lines. Real Odoo screen; the other rows and columns hidden for the picture.",
+          "What 'No company' lists on a database with five apps. Evidence table."
         ],
-        "images": []
+        "use": "you want to know which records every company can see.",
+        "mode": "Read-only",
+        "images": [
+          "images/ca-findings-nocompany.webp",
+          "images/ca-ev_noise.webp"
+        ]
       },
       {
-        "heading": "It reports, it never repairs",
+        "heading": "4 Users who can switch companies",
         "body": [
-          "No reassignment, no cleanup, no scheduled monitoring. Moving a record between companies is a decision about your business, not something a report should make on your behalf."
+          "A user in several companies is often right, and it is also how one careless record becomes visible across companies.",
+          "Active internal users who may work in more than one of the chosen companies are listed with the number and the first six company names. Archived users and portal users are not listed; with one company chosen there are none. The picture is the last page of the Findings tab (Odoo shows 40 lines to a page, mismatch lines first, user lines last).",
+          "It does not say whether the reach is right for the person.",
+          "The user lines. Real Odoo screen, the other rows hidden for the picture."
+        ],
+        "use": "you want to review who can work in several companies.",
+        "mode": "Read-only",
+        "images": [
+          "images/ca-findings-users.webp"
+        ]
+      },
+      {
+        "heading": "5 Choose companies and keep the history",
+        "body": [
+          "Different people care about different companies, and a one-off check is easy to forget.",
+          "The Companies field narrows the check to records whose own company is chosen (the company of the record they point at does not have to be chosen) and to the users counted against those companies; records without a company are listed whatever is chosen. The audit list shows the counters of every audit kept. The second table runs the audit with five different choices; the third shows that four audits in a row, none deleted, give the same 'No company' number on this version (before they grew every time).",
+          "It does not run on a schedule.",
+          "The audit list. Real Odoo screen; the column titles are shortened and two columns hidden for the picture.",
+          "An audit limited to one company. Real Odoo screen.",
+          "What the Companies field changes. Evidence table.",
+          "Four audits in a row. Evidence table."
+        ],
+        "use": "you want to audit one company, or compare today with last month's audit.",
+        "mode": "Read-only",
+        "images": [
+          "images/ca-audit-list.webp",
+          "images/ca-audit-scoped.webp",
+          "images/ca-ev_scope.webp",
+          "images/ca-ev_self.webp"
+        ]
+      },
+      {
+        "heading": "6 Who can run it and what it writes",
+        "body": [
+          "A tool that reads every company's records has to be restricted and must not change them.",
+          "Only Settings administrators can see or run it; an employee gets an access error on both. It reads as superuser, so a Settings administrator who is not allowed in a company still gets the names of that company's records in the findings, and can choose that company. During a run 367 tables with a write date were compared before and after: none changed. The table has these readings and the timing.",
+          "Who can run it, and what it writes. Evidence table."
+        ],
+        "use": "you need to know what the audit can see and touch.",
+        "mode": "Read-only",
+        "images": [
+          "images/ca-ev_rights.webp"
+        ]
+      },
+      {
+        "heading": "What changed in this version",
+        "body": [
+          "Version 1.0.12 fixes two defects. First, the audit scanned its own finding lines, which have no company, so each later audit counted the earlier audits' lines as records without a company (27, 58, 120 and 244 on four runs in a row on the made-up database); it no longer scans its own tables. Second, any link to a record of another company counted, on any field; Odoo only enforces fields declared with check_company, accepts a user whose allowed companies include the record's company and a parent company's partner for a branch, so 17 of 28 findings on the made-up database were accepted by Odoo. The audit now asks Odoo's own rule. The wording that Odoo refuses \"the next write\" is corrected: it refuses when the link or the record's company is written. It also adds 16 automated tests, rewrites the screenshots and the text, and removes the claim of Enterprise support, which was never tested. The demo video of an earlier version is kept as it was and was not re-recorded."
         ],
         "images": []
       }
     ],
-    "scope": [],
-    "requires": [
-      "Odoo 19 Community or Enterprise. Depends only on base, nothing leaves your server, and it is restricted to Settings administrators."
+    "scope": [
+      "Each of these was reproduced in a run of the app on Odoo 19 and, where a test is possible, pinned by a test that passes.",
+      "The 20,000 rows per model limit. Evidence table."
     ],
+    "requires": [],
     "price": 28.2,
     "manifestPrice": 29.0,
     "currency": "USD",
     "category": "Accounting/Accounting",
-    "version": "19.0.1.0.11",
+    "version": "19.0.1.0.12",
     "license": "OPL-1",
     "depends": [
       "base"
@@ -19900,17 +22758,94 @@ export const odooApps = [
     "storeUrl19": "https://apps.odoo.com/apps/modules/19.0/mh_company_audit",
     "storeUrl20": "https://apps.odoo.com/apps/modules/20.0/mh_company_audit",
     "screenshots": [
-      "screenshot_audit.webp"
+      "images/ca-ev_cap.webp"
     ],
     "shotDims": {
-      "screenshot_audit.webp": [
+      "images/ca-audit-new.webp": [
         1000,
-        509
+        928
+      ],
+      "images/ca-audit-form.webp": [
+        1000,
+        1643
+      ],
+      "images/ca-findings-mismatch.webp": [
+        1000,
+        2850
+      ],
+      "images/ca-ev_vs.webp": [
+        1000,
+        1480
+      ],
+      "images/ca-ev_cases.webp": [
+        1000,
+        1159
+      ],
+      "images/ca-findings-nocompany.webp": [
+        1000,
+        1256
+      ],
+      "images/ca-ev_noise.webp": [
+        1000,
+        775
+      ],
+      "images/ca-findings-users.webp": [
+        1000,
+        398
+      ],
+      "images/ca-audit-list.webp": [
+        1000,
+        608
+      ],
+      "images/ca-audit-scoped.webp": [
+        1000,
+        1437
+      ],
+      "images/ca-ev_scope.webp": [
+        1000,
+        912
+      ],
+      "images/ca-ev_self.webp": [
+        1000,
+        790
+      ],
+      "images/ca-ev_rights.webp": [
+        1000,
+        1096
+      ],
+      "images/ca-ev_cap.webp": [
+        1000,
+        726
       ]
     },
-    "tiles": [],
+    "tiles": [
+      {
+        "n": "11 of 11",
+        "l": "mismatch findings were also refused by Odoo's own company check, with 0 findings that Odoo accepts and 0 refused but not shown (made-up database, 729 rows read; before this version 17 of 28 findings were accepted by Odoo)"
+      },
+      {
+        "n": "0 of 367",
+        "l": "tables that have a write date changed during a run: the audit only reports and writes its own two tables"
+      },
+      {
+        "n": "24",
+        "l": "automated tests ran on this version, none failing; 16 were added and 1 weak test replaced (9 before), and the tests for the two fixes failed on the old code first"
+      },
+      {
+        "n": "0.23 s",
+        "l": "for a whole audit of 94 models on the made-up database; each model is read up to 20,000 rows and the rest is skipped without a message"
+      },
+      {
+        "n": "Fixed",
+        "l": "in this version: every audit counted the earlier audits' findings as records without a company, and many findings were links that Odoo itself accepts"
+      },
+      {
+        "n": "Not",
+        "l": "a repair tool: it never changes a record, does not run by itself, and its list of records without a company includes what Odoo's own apps ship without one"
+      }
+    ],
     "faq": [],
-    "copyWords": 289,
+    "copyWords": 1323,
     "hasVideo": true,
     "youtubeId": "4B3sdWoHqoM",
     "externalPage": null
@@ -19919,62 +22854,119 @@ export const odooApps = [
     "tech": "mh_currency_rounding_tool",
     "slug": "multi-currency-rounding",
     "name": "Multi-Currency Rounding",
-    "summary": "Absorb sub cent differences when a foreign currency invoice is paid, and separate realized from unrealized exchange gain and loss during bank reconciliation.",
-    "tagline": "",
+    "summary": "A threshold and a rounding account for foreign-currency payments: a residual at or below the threshold goes to your rounding account, a larger one stays on Odoo's exchange gain or loss account",
+    "tagline": "Post the sub-cent differences of foreign-currency payments to a rounding account instead of your exchange gain and loss accounts",
     "intro": [
-      "Odoo posts every reconciliation residual - a genuine exchange-rate movement or a fraction-of-a-cent rounding artifact - through the same Gain/Loss accounts, with no way to tell them apart afterward. This app adds a configurable threshold so the tiny ones land somewhere else, and keeps your real exchange accounts clean."
+      "When a customer pays a EUR invoice and the rate has moved by a hair, Odoo posts the leftover cent or two to the same Foreign Exchange Gain or Loss account as a real rate movement, so those accounts fill up with noise. Multi-Currency Rounding adds a threshold and a rounding account: a residual at or below the threshold goes to your rounding account, a larger one still goes to Odoo's gain or loss account. This page walks through it with screenshots of an Odoo 19 database holding a made-up shop (Harbor & Pine Supply Co., USD books, European customers billed in EUR) and with tables rendered from real readings of the same run; each picture says which it is.",
+      "It does one thing: it chooses the account for small residuals of reconciliations. It does not revalue anything, it does not change an amount, and it does not tell realized from unrealized gain and loss. This page also says where it bites: which accounts can be chosen, what happens to entries already posted, and what was not tested.",
+      "Install it and two settings appear under Accounting Settings, directly below the Exchange difference entries of Odoo's own settings. It needs only the Accounting app (account)."
     ],
     "features": [
       {
-        "heading": "One threshold, company currency",
+        "heading": "What it keeps, what it changes, what it does not",
         "body": [
-          "Set a rounding threshold and a dedicated Rounding Difference account. Any reconciliation residual at or below the threshold is redirected there instead of your native exchange gain/loss accounts - anything larger still goes through Odoo's normal handling, untouched."
+          "Each line was tested or read in the code."
         ],
         "images": []
       },
       {
-        "heading": "Configured right next to Odoo's own settings",
+        "heading": "1 Choose the threshold and the account",
         "body": [
-          "No new menu to learn - the threshold and account fields sit directly below Odoo's own exchange-difference settings in Accounting, so anyone configuring one naturally sees the other."
+          "Every rounding cent of a foreign-currency payment lands on the same account as a real exchange gain or loss, so the real figure is buried in noise.",
+          "Open Accounting, Configuration, Settings. In the Exchange difference entries block, under Odoo's Journal, Gain and Loss, there are two more rows: the Rounding threshold (0.05 by default, in your company currency) and the Rounding account. Once an account is chosen a View entries button appears. The first picture is that block on the made-up shop (the account names are cut by the narrow crop). The table below it is a real reading of 14 payments: 1,000 EUR invoices paid in full at a rate that leaves a residual of the size shown, threshold 0.05. Residuals of 0.01 to 0.05 went to the rounding account on both the loss and the gain side; 0.06 and above stayed on Odoo's accounts. Every payment was a real reconcile and every invoice ended Paid.",
+          "With no rounding account chosen, or a threshold of 0 or less, nothing changes: every residual goes to Odoo's accounts.",
+          "The settings block. Real Odoo screen.",
+          "Where a residual is posted. Evidence table."
         ],
-        "images": []
+        "use": "you want small foreign-currency residuals out of your exchange gain and loss accounts.",
+        "mode": "Changes records",
+        "images": [
+          "images/cr-settings.webp",
+          "images/cr-ev_where.webp"
+        ]
       },
       {
-        "heading": "One-click visibility",
+        "heading": "2 What gets posted",
         "body": [
-          "A \"View entries\" button opens a filtered list/pivot of everything ever posted to the Rounding Difference account - see exactly what accumulated there, whenever you want."
+          "An accountant needs to see the real entry, not a description of it.",
+          "The entry is Odoo's ordinary Exchange Difference entry. The first picture is a 0.03 residual on the made-up shop: the receivable line is credited 0.03 and the Currency Rounding Differences account (699900) is debited 0.03. The second is a residual of 12.35, above the threshold, posted to Odoo's Foreign Exchange Loss account exactly as without the app. The third is View entries, Odoo's own journal items list filtered to the rounding account (six lines in this shop, 0.01 to 0.05). It lists every line on that account, whoever posted it. The table shows what the other settings do: the as-installed default does nothing until an account is chosen, vendor bills behave like invoices, an entry made while the app was off stays where it was, and unreconciling and reconciling again re-routes it.",
+          "It does not rewrite entries that are already posted, and it does not keep gains and losses apart on the rounding account.",
+          "A 0.03 residual on the rounding account. Real Odoo screen.",
+          "A 12.35 residual above the threshold stays on Odoo's loss account. Real Odoo screen.",
+          "View entries. Real Odoo screen, list cropped to the table.",
+          "Settings and what they change. Evidence table."
         ],
-        "images": []
+        "use": "you want to see exactly what a payment books before you trust it.",
+        "mode": "Read-only",
+        "images": [
+          "images/cr-entry-rounding.webp",
+          "images/cr-entry-native.webp",
+          "images/cr-view-entries.webp",
+          "images/cr-ev_settings.webp"
+        ]
       },
       {
-        "heading": "Minimal, surgical change",
+        "heading": "3 A residual of exactly the threshold",
         "body": [
-          "A single, targeted override of the one method Odoo already uses to decide which account absorbs a reconciliation residual - no other part of your reconciliation flow is touched."
+          "Odoo hands over the residual with float noise, so a residual of exactly 0.05 can arrive as 0.0500000000002, and a plain comparison put it on the wrong side.",
+          "The table is a real reading: nine EUR invoices at rate 0.92, each paid so that the residual is exactly 0.05 in both directions (18 payments), threshold 0.05. Before this version the first eight went to the rounding account and the other ten, from the 2,300 EUR invoice up, went to Odoo's loss or gain account; the comparison is now made at the currency's precision and all 18 go to the rounding account. Only residuals within noise of the threshold are affected; amounts and everything else are unchanged.",
+          "A residual of exactly 0.05, before and after. Evidence table."
         ],
-        "images": []
+        "use": "your threshold is a round number such as 0.05 and you expect 0.05 to be inside it.",
+        "mode": "Changes records",
+        "images": [
+          "images/cr-ev_boundary.webp"
+        ]
       },
       {
-        "heading": "Tested against a real multi-currency flow",
+        "heading": "4 Checked against the raw tables",
         "body": [
-          "Verified with an actual foreign-currency invoice, a real payment, and a real reconciliation - not just checked in isolation - confirming small rate movements route to the rounding account and larger ones still use Odoo's native exchange accounts, exactly as configured."
+          "A wrong account on a one-cent entry is invisible until the year-end.",
+          "A separate script worked out from the invoice amount and the two rates alone, with exact decimals and no module code, which residual and which account each of 76 made-up documents (customer invoices and vendor bills, 16 of them at exactly +/-0.05) had to get, and compared it with the exchange entries read from the database tables. 0 differences on this version, on Odoo 19 and Odoo 20; the previous code differed on 14. As a control the same recompute with the threshold at 0.06 differs in 5.",
+          "The independent check. Evidence table."
         ],
-        "images": []
+        "use": "you want to know the account is right before you rely on it.",
+        "mode": "Read-only",
+        "images": [
+          "images/cr-ev_check.webp"
+        ]
       },
       {
-        "heading": "Who this is for",
+        "heading": "5 Companies, accounts and rights",
         "body": [
-          "Built for Odoo 19 Community Accounting teams invoicing or paying in a foreign currency: bookkeepers who are tired of explaining a Gain/Loss balance that's really just rate-rounding noise, and anyone closing the books who wants that account to reflect real currency exposure - not sub-threshold reconciliation residue mixed in with it."
+          "A setting that quietly breaks payments, or that anybody can change, is worse than none.",
+          "The first table: before this version the rounding account of company A could be set to an account of company B, and every later payment of company A with a small residual then failed to reconcile; it is now refused when it is saved, on the Settings page and through the API (an existing wrong setting is not changed until it is saved again). The second table shows which accounts can be chosen: the field has no filter on the account type, so a receivable, a bank and a liability account were accepted and the residual was booked there; an archived account makes small payments fail; deleting an unused rounding account empties the setting without a message. The third: only a Settings administrator can change the threshold or the account; a Billing user, an Accountant and an Adviser were refused, and all can read it.",
+          "It does not filter the account type, and it does not warn when the setting is emptied or the account is archived.",
+          "An account of another company, before and after. Evidence table.",
+          "Which accounts can be chosen. Evidence table.",
+          "Who can change it. Evidence table."
+        ],
+        "use": "you run several companies or several accountants and need to know what can go wrong.",
+        "mode": "Read-only",
+        "images": [
+          "images/cr-ev_company.webp",
+          "images/cr-ev_accounts.webp",
+          "images/cr-ev_rights.webp"
+        ]
+      },
+      {
+        "heading": "What changed in this version",
+        "body": [
+          "Version 1.0.7 fixes two defects. First, a residual of exactly the threshold could go to Odoo's accounts because the residual carries float noise; it is now compared at the currency's precision. Second, an account of another company could be chosen as the rounding account, after which every small payment of the company failed to reconcile; the choice is now refused when it is saved. Nothing else about amounts, entries or reconciliation changed, and existing entries and settings are untouched. It also adds 13 automated tests for what this page states, rewrites the screenshots and the text, and removes the claim that it separates realized from unrealized exchange gain and loss, which the code never did."
         ],
         "images": []
       }
     ],
-    "scope": [],
+    "scope": [
+      "Each of these was reproduced in a run of the app on Odoo 19; the first two were changed in this version, the others are recorded and several are pinned by a test that passes.",
+      "Netting, amounts and timing. Evidence table."
+    ],
     "requires": [],
     "price": 28.2,
     "manifestPrice": 29.0,
     "currency": "USD",
     "category": "Accounting/Accounting",
-    "version": "19.0.1.0.6",
+    "version": "19.0.1.0.7",
     "license": "OPL-1",
     "depends": [
       "account"
@@ -19985,22 +22977,86 @@ export const odooApps = [
     "storeUrl19": "https://apps.odoo.com/apps/modules/19.0/mh_currency_rounding_tool",
     "storeUrl20": "https://apps.odoo.com/apps/modules/20.0/mh_currency_rounding_tool",
     "screenshots": [
-      "settings_screenshot.webp",
-      "view_entries_screenshot.webp"
+      "images/cr-ev_limits.webp"
     ],
     "shotDims": {
-      "settings_screenshot.webp": [
+      "images/cr-settings.webp": [
         1000,
-        625
+        750
       ],
-      "view_entries_screenshot.webp": [
+      "images/cr-ev_where.webp": [
         1000,
-        265
+        718
+      ],
+      "images/cr-entry-rounding.webp": [
+        1000,
+        1558
+      ],
+      "images/cr-entry-native.webp": [
+        1000,
+        1558
+      ],
+      "images/cr-view-entries.webp": [
+        1000,
+        1422
+      ],
+      "images/cr-ev_settings.webp": [
+        1000,
+        1113
+      ],
+      "images/cr-ev_boundary.webp": [
+        1000,
+        2141
+      ],
+      "images/cr-ev_check.webp": [
+        1000,
+        742
+      ],
+      "images/cr-ev_company.webp": [
+        1000,
+        733
+      ],
+      "images/cr-ev_accounts.webp": [
+        1000,
+        887
+      ],
+      "images/cr-ev_rights.webp": [
+        1000,
+        806
+      ],
+      "images/cr-ev_limits.webp": [
+        1000,
+        709
       ]
     },
-    "tiles": [],
+    "tiles": [
+      {
+        "n": "0 of 76",
+        "l": "made-up invoices and bills put the residual on a different account than a separate script computed from the raw database tables (the previous code differed on 14; control with the threshold at 0.06: 5)"
+      },
+      {
+        "n": "<= 0.05",
+        "l": "the default threshold, in company currency and inclusive: gains and losses at or below it go to the rounding account you choose, larger ones stay on Odoo's accounts"
+      },
+      {
+        "n": "Fixed",
+        "l": "in this version: a residual of exactly the threshold could still go to Odoo's accounts (10 of 18 exact-0.05 cases before, 0 now)"
+      },
+      {
+        "n": "Fixed",
+        "l": "in this version: an account of another company could be chosen, after which every small payment of the company failed to reconcile"
+      },
+      {
+        "n": "20",
+        "l": "automated tests counted on this version, none failing; 13 were added for what this page states (7 before)"
+      },
+      {
+        "n": "Not",
+        "l": "a revaluation or an unrealized gain and loss tool: it only decides which account takes a small residual when an invoice or bill is paid"
+      }
+    ],
     "faq": [],
-    "copyWords": 288,
+    "copyWords": 1266,
     "hasVideo": true,
     "youtubeId": "GCuPAEGlPf0",
     "externalPage": "/apps/multi-currency-rounding"
@@ -20009,54 +23065,130 @@ export const odooApps = [
     "tech": "mh_report_custom_fonts",
     "slug": "report-custom-fonts",
     "name": "Report Custom Fonts",
-    "summary": "Custom font for PDF reports: upload a TTF or OTF and pick it in the Document Layout, so invoices and quotations print in your own typeface",
-    "tagline": "Custom font for PDF reports: upload a TTF or OTF and pick it in the Document Layout, so invoices and quotations print in your own typeface.",
+    "summary": "Uploads a TTF or OTF font file and prints every PDF report of a company in it, chosen in the Document Layout window: custom font for invoices and quotations, brand typeface, Thai or Japanese script",
+    "tagline": "Print invoices, quotations and delivery slips in your own TTF or OTF font",
     "intro": [
-      "Odoo's Document Layout window offers eight fixed fonts. A company that prints invoices in Devanagari, Tamil, Thai or Arabic script, or in its brand typeface, has to edit QWeb by hand for every client. This app adds a Custom font field to the Document Layout window. Upload a TTF or OTF file once, pick it, and every PDF of that company is printed in it."
+      "Odoo's Document Layout window offers eight fixed fonts. A company that prints in a script those fonts lack, or in its brand typeface, is left with boxes or with the wrong look. Report Custom Fonts takes one font file, lets you pick it in the Document Layout window, and prints every PDF of that company in it. This page walks through two real quotations in an Odoo 19 database seeded with made-up data, shows the PDFs before and after, and lists the defects found and fixed while checking it."
     ],
     "features": [
       {
-        "heading": "Upload once, pick in Document Layout",
+        "heading": "Why a font file",
         "body": [
-          "Settings > Report Fonts holds your font files (TTF or OTF, up to 4 MB each). In the Document Layout window a new Custom font field lists the fonts of the company; you can also create one from there. The file type is checked from the file content, not its name."
+          "Printed documents are what customers see. The font Odoo prints them in is one of eight, and a font that lacks a script leaves empty boxes."
         ],
         "images": []
       },
       {
-        "heading": "Embedded in the report page",
+        "heading": "1 Upload the font",
         "body": [
-          "The font file is embedded in the report page as a base64 font face, so nothing is fetched from the internet while the PDF is made and it works offline. Tested on Odoo 19 and 20 by making a real PDF with Odoo's PDF engine and checking that the uploaded font is in it."
+          "Open Settings > Report Fonts and create a font: a name and the file. Each company sees its own fonts.",
+          "The file is read by its first bytes. These readings are from files uploaded through the same call the form makes.",
+          "Three fonts of two made-up companies.",
+          "The form of the Thai font.",
+          "Accepted and refused files, with a damaged one."
         ],
-        "images": []
+        "use": "a company wants its brand typeface or a script the standard fonts lack.",
+        "mode": "Settings group only",
+        "warn": "Only the first four bytes are read. A damaged file that starts like a font is accepted, and the PDF then quietly prints in the standard font with no message.",
+        "images": [
+          "images/rcf-fonts-list.webp",
+          "images/rcf-font-form.webp",
+          "images/rcf-ev-kinds.webp"
+        ]
       },
       {
-        "heading": "Per company",
+        "heading": "2 Choose it in the Document Layout window",
         "body": [
-          "Each company has its own fonts and its own choice. A user only sees and uses the fonts of the companies they have switched on, and a font cannot be assigned to another company. Header and footer pages get the font too."
+          "In Settings > Configure Document Layout a Custom font field sits next to Text . It lists the fonts of that company. Pick one and press Continue .",
+          "The font chosen under Text stays as the fallback for characters your font lacks. The preview inside the window keeps showing the standard font; the printed PDF shows yours.",
+          "Before: no custom font.",
+          "The company's fonts offered under the field.",
+          "After the pick, before Continue."
         ],
-        "images": []
+        "use": "you want every PDF of the company to use the font.",
+        "mode": "Writes the company",
+        "images": [
+          "images/rcf-layout-empty.webp",
+          "images/rcf-layout-dropdown.webp",
+          "images/rcf-layout-picked.webp"
+        ]
       },
       {
-        "heading": "Falls back to the standard font",
+        "heading": "3 The PDF before and after",
         "body": [
-          "The font chosen in the Text field stays as the fallback, for characters your font does not contain. Remove the Custom font and the PDFs go back to the standard font."
+          "These are crops of the real PDFs the Print button returned, rendered from the files. First a Latin quotation in the standard Lato, then in IBM Plex Serif after the choice above (address block above, order title below, the gap cut).",
+          "Then a quotation whose lines are written in Thai. The test server has no Thai font, so without the app the names print as black boxes. With a Thai font uploaded and chosen they print as Thai.",
+          "Whether a script shows as boxes depends on the fonts installed on your Odoo server; the app does not check coverage. A character your font lacks is drawn in the next font, as a Japanese line did in a test.",
+          "Before: Lato.",
+          "After: IBM Plex Serif.",
+          "Before: boxes.",
+          "After: Thai, in IBM Plex Sans Thai."
         ],
-        "images": []
+        "use": "you want to see what a customer receives.",
+        "mode": "Real PDFs",
+        "images": [
+          "images/rcf-pdf-c1-before.webp",
+          "images/rcf-pdf-c1-after.webp",
+          "images/rcf-pdf-c2-before.webp",
+          "images/rcf-pdf-c2-after.webp"
+        ]
+      },
+      {
+        "heading": "4 Which reports carry it",
+        "body": [
+          "Each row is a real print with the font set and the same print with it removed; the fonts are read from inside the PDFs.",
+          "Reports that carry the font and two that do not."
+        ],
+        "use": "you are deciding whether this covers the documents you send.",
+        "mode": "Tested per report",
+        "images": [
+          "images/rcf-ev-reports.webp"
+        ]
+      },
+      {
+        "heading": "5 Companies, size and time",
+        "body": [
+          "The file travels inside the report page every time. A small font costs nothing visible; a 4 MB font adds about a second to each PDF. The PDF stays small because only the glyphs used are kept.",
+          "Time and size."
+        ],
+        "use": "you print for several companies or use a large font.",
+        "mode": "Measured",
+        "warn": "A user who may use several companies gets every font of every one of them in each report page, even with one company switched on. A 2.4 MB font in company 2 made a company 1 page 3.3 MB.",
+        "images": [
+          "images/rcf-ev-time.webp"
+        ]
+      },
+      {
+        "heading": "6 Defects found, and where it stops",
+        "body": [
+          "Before and after, same calls."
+        ],
+        "use": "you are deciding whether this covers your printing.",
+        "mode": "Tested limits",
+        "images": [
+          "images/rcf-ev-fixes.webp"
+        ]
+      },
+      {
+        "heading": "Who can do what",
+        "body": [
+          "Only the Settings group creates fonts or chooses one. Internal users can read them and print in them.",
+          "Readings for an internal user, a salesperson and the administrator."
+        ],
+        "images": [
+          "images/rcf-ev-rights.webp"
+        ]
       }
     ],
     "scope": [
-      "It does not change the font of the Odoo backend or the Point of Sale screen. It only affects PDF reports. Free apps on the store change the backend font; they do not touch PDFs.",
-      "It does not load Google Fonts or any web font service. You upload the file; nothing is fetched while a report is made.",
-      "It takes one file per font. Bold text is the same file thickened by the PDF engine, not a separate bold face. Upload the regular file only.",
-      "It sets one font per company, not per report, per partner or per element.",
-      "It does not subset fonts. The font file is added to every PDF as it is, so a large CJK font makes every PDF large. Files over 4 MB are refused.",
-      "The preview pane in the Document Layout window keeps showing the standard font; the printed PDF shows yours.",
-      "It accepts TTF and OTF only. WOFF and WOFF2 files are refused.",
-      "It does not check that the font covers your script. Characters missing from the font are drawn in the fallback font."
+      "It adds one list of fonts under Settings, one field on the company and a few lines of style in the report page. It adds nothing to the backend.",
+      "Every other setting of the Document Layout window, and every report that does not use the company layout.",
+      "In a test the module went, its table and company field were dropped, and the next quotation printed in Lato again. Whether the font files leave the file store was not checked.",
+      "Sections 1 to 6 with real readings: file kinds, the 4 MB cap, a damaged file, reports that keep their font, a second company, size and time, rights.",
+      "Odoo.sh, Odoo Enterprise, right-to-left and Indic scripts through the app, PDFs attached to emails, Point of Sale and website reports, more than two companies, whether a font's licence allows embedding.",
+      "Tests, fix tests on the old code and mutation controls."
     ],
-    "requires": [
-      "Odoo 19 or 20, Community or Enterprise. Depends only on the web module. Third-party apps install on Odoo.sh or On-Premise only - they cannot be installed on Odoo Online."
-    ],
+    "requires": [],
     "price": 18.96,
     "manifestPrice": 19.0,
     "currency": "USD",
@@ -20072,22 +23204,115 @@ export const odooApps = [
     "storeUrl19": "https://apps.odoo.com/apps/modules/19.0/mh_report_custom_fonts",
     "storeUrl20": "https://apps.odoo.com/apps/modules/20.0/mh_report_custom_fonts",
     "screenshots": [
-      "screenshot_layout.webp",
-      "screenshot_pdf.webp"
+      "images/rcf-ev-tests.webp"
     ],
     "shotDims": {
-      "screenshot_layout.webp": [
+      "images/rcf-fonts-list.webp": [
         1000,
-        562
+        747
       ],
-      "screenshot_pdf.webp": [
-        935,
-        750
+      "images/rcf-font-form.webp": [
+        1000,
+        441
+      ],
+      "images/rcf-ev-kinds.webp": [
+        1000,
+        1405
+      ],
+      "images/rcf-layout-empty.webp": [
+        1000,
+        190
+      ],
+      "images/rcf-layout-dropdown.webp": [
+        1000,
+        894
+      ],
+      "images/rcf-layout-picked.webp": [
+        1000,
+        190
+      ],
+      "images/rcf-pdf-c1-before.webp": [
+        1000,
+        612
+      ],
+      "images/rcf-pdf-c1-after.webp": [
+        1000,
+        612
+      ],
+      "images/rcf-pdf-c2-before.webp": [
+        1000,
+        433
+      ],
+      "images/rcf-pdf-c2-after.webp": [
+        1000,
+        433
+      ],
+      "images/rcf-ev-reports.webp": [
+        1000,
+        1282
+      ],
+      "images/rcf-ev-time.webp": [
+        1000,
+        878
+      ],
+      "images/rcf-ev-fixes.webp": [
+        1000,
+        828
+      ],
+      "images/rcf-ev-rights.webp": [
+        1000,
+        1272
+      ],
+      "images/rcf-ev-tests.webp": [
+        1000,
+        878
       ]
     },
-    "tiles": [],
-    "faq": [],
-    "copyWords": 469,
+    "tiles": [
+      {
+        "n": "7 / 7",
+        "l": "layout styles tested: each printed a quotation in the uploaded font only, header and footer included"
+      },
+      {
+        "n": "1 file",
+        "l": "TTF or OTF, up to 4 MB, uploaded once and chosen in the Document Layout window"
+      },
+      {
+        "n": "27",
+        "l": "automated tests, none failing; 8 of them new in this version"
+      },
+      {
+        "n": "0",
+        "l": "requests to the internet while a PDF is made: the font travels inside the report page"
+      },
+      {
+        "n": "2",
+        "l": "kinds of report keep their own font, named below"
+      },
+      {
+        "n": "2",
+        "l": "defects found while building this page, fixed in this version and listed below"
+      }
+    ],
+    "faq": [
+      {
+        "q": "Can I use a font file of any kind?",
+        "a": "TrueType (.ttf) and OpenType (.otf) files up to 4 MB. WOFF, WOFF2 and collections are refused."
+      },
+      {
+        "q": "Does it change the font of the Odoo backend?",
+        "a": "No. It only changes PDF reports."
+      },
+      {
+        "q": "What does uninstalling do?",
+        "a": "The PDFs go back to the standard font."
+      },
+      {
+        "q": "Who can use it?",
+        "a": "The Settings group chooses fonts; every internal user prints in them."
+      }
+    ],
+    "copyWords": 693,
     "hasVideo": true,
     "youtubeId": "f3lID7Zc6QE",
     "externalPage": null
@@ -22868,7 +26093,7 @@ export const odooApps = [
     "manifestPrice": 0.0,
     "currency": "USD",
     "category": "Website/Website",
-    "version": "19.0.1.0.10",
+    "version": "19.0.1.0.11",
     "license": "OPL-1",
     "depends": [
       "base",
@@ -24571,7 +27796,7 @@ export const odooApps = [
       "purchase"
     ],
     "paidDepends": [],
-    "downloads": 10,
+    "downloads": 13,
     "storeUrl": "https://apps.odoo.com/apps/modules/20.0/mh_pos_purchase_order",
     "storeUrl19": "https://apps.odoo.com/apps/modules/19.0/mh_pos_purchase_order",
     "storeUrl20": "https://apps.odoo.com/apps/modules/20.0/mh_pos_purchase_order",
