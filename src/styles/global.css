@@ -3,7 +3,9 @@
 :root {
   --moss: #337958;
   --moss-dark: #295F45;
+  --moss-deep: #1B3F2E;
   --ink: #201D15;
+  --ink-hover: color-mix(in srgb, var(--ink) 85%, white);
   --sand: #F6F1E2;
   --sand-card: #F2ECD8;
   --border-sand: #E0D8B8;
@@ -19,6 +21,11 @@
   --space-lg: 5rem;
   --space-md: 2.5rem;
   --space-sm: 1.25rem;
+  --r-xs: 4px;
+  --r-sm: 8px;
+  --r-md: 16px;
+  --r-lg: 22px;
+  --r-pill: 32px;
 }
 
 * {
@@ -38,21 +45,15 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-body::after {
-  content: '';
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: 4px;
-  height: 100%;
-  background: var(--gold);
-  z-index: 999;
-  pointer-events: none;
+:focus-visible {
+  outline: 2px solid var(--moss);
+  outline-offset: 2px;
 }
 
 h1, h2, h3, .nav-title, .hero-title, .section-title, .menu-category-title {
   font-family: var(--font-serif);
   font-weight: 700;
+  letter-spacing: -0.03em;
   margin-bottom: 1.5rem;
 }
 
@@ -62,7 +63,7 @@ h1, h2, h3, .nav-title, .hero-title, .section-title, .menu-category-title {
   padding: 0 var(--space-sm);
 }
 
-/* --- Log tag: the recurring status/label motif --- */
+/* --- Log tag: the recurring status/label motif. Chips are fully round. --- */
 .log-tag {
   display: inline-flex;
   align-items: center;
@@ -70,10 +71,10 @@ h1, h2, h3, .nav-title, .hero-title, .section-title, .menu-category-title {
   font-size: 0.7rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  padding: 0.25rem 0.6rem;
+  padding: 0.3rem 0.75rem;
   background: var(--moss);
   color: var(--sand);
-  border-radius: 1px;
+  border-radius: var(--r-pill);
   width: fit-content;
 }
 
@@ -87,6 +88,7 @@ h1, h2, h3, .nav-title, .hero-title, .section-title, .menu-category-title {
   justify-content: center;
   gap: 0.75rem;
   margin-bottom: 0.5rem;
+  flex-wrap: wrap;
 }
 
 /* --- Layout Sections --- */
@@ -94,32 +96,37 @@ section {
   padding: var(--space-lg) 0;
 }
 
+/* --- Nav: a floating pill bar --- */
 .navbar {
   position: fixed;
-  top: 0;
-  width: 100%;
-  background: rgba(246, 241, 226, 0.95);
+  top: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100% - 2rem);
+  max-width: 1100px;
+  background: rgba(242, 236, 216, 0.92);
   backdrop-filter: blur(10px);
+  border: 1px solid var(--border-sand);
+  border-radius: var(--r-pill);
   z-index: 1000;
-  padding: 1.2rem 0;
-  border-bottom: 1px solid var(--border-sand);
+  padding: 0.6rem 0.75rem 0.6rem 1.5rem;
 }
 
 .nav-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 0 var(--space-sm);
+  max-width: none;
+  margin: 0;
+  padding: 0;
 }
 
 .nav-title {
   display: flex;
   align-items: center;
   gap: 0.6rem;
-  font-size: 1.6rem;
-  color: var(--moss);
+  font-size: 1.35rem;
+  color: var(--ink);
   text-decoration: none;
   margin: 0;
 }
@@ -130,28 +137,38 @@ section {
 
 .nav-links {
   display: flex;
-  gap: 2rem;
+  align-items: center;
+  gap: 0.25rem;
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
 .nav-links a {
+  display: block;
   font-family: var(--font-sans);
   font-size: 0.85rem;
   color: var(--ink);
   text-decoration: none;
-  transition: color 0.2s;
+  padding: 0.5rem 0.9rem;
+  border-radius: var(--r-pill);
+  transition: background 0.2s, color 0.2s;
 }
 
 .nav-links a:hover {
-  color: var(--gold-text);
+  background: var(--sand);
+  color: var(--moss);
+}
+
+.nav-links a.active {
+  background: var(--ink);
+  color: var(--sand);
 }
 
 .nav-toggle {
   display: none;
-  width: 32px;
-  height: 32px;
+  width: 36px;
+  height: 36px;
   padding: 0;
   border: none;
   background: none;
@@ -161,8 +178,8 @@ section {
 }
 
 .hamburger {
-  width: 22px;
-  height: 16px;
+  width: 20px;
+  height: 14px;
   position: relative;
   display: inline-block;
 }
@@ -177,12 +194,12 @@ section {
 }
 
 .hamburger span:nth-child(1) { top: 0; }
-.hamburger span:nth-child(2) { top: 7px; }
-.hamburger span:nth-child(3) { top: 14px; }
+.hamburger span:nth-child(2) { top: 6px; }
+.hamburger span:nth-child(3) { top: 12px; }
 
-.nav-toggle[aria-expanded="true"] .hamburger span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.nav-toggle[aria-expanded="true"] .hamburger span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
 .nav-toggle[aria-expanded="true"] .hamburger span:nth-child(2) { opacity: 0; }
-.nav-toggle[aria-expanded="true"] .hamburger span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+.nav-toggle[aria-expanded="true"] .hamburger span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
 
 @media (max-width: 768px) {
   .nav-toggle { display: flex; }
@@ -190,15 +207,17 @@ section {
   .nav-links {
     display: none;
     position: absolute;
-    top: 100%;
+    top: calc(100% + 0.6rem);
     left: 0;
     right: 0;
     flex-direction: column;
+    align-items: stretch;
     gap: 0;
     margin: 0;
     background: var(--sand-card);
-    border-bottom: 1px solid var(--border-sand);
-    box-shadow: 0 8px 16px rgba(32, 29, 21, 0.08);
+    border: 1px solid var(--border-sand);
+    border-radius: var(--r-md);
+    overflow: hidden;
   }
 
   .nav-links.open { display: flex; }
@@ -206,17 +225,19 @@ section {
   .nav-links li { width: 100%; }
 
   .nav-links a {
-    display: block;
+    border-radius: 0;
     padding: 0.9rem 1.25rem;
     font-size: 1rem;
     border-bottom: 1px solid var(--border-sand);
   }
 
   .nav-links li:last-child a { border-bottom: none; }
+
+  .nav-links a.active, .nav-links a:hover { background: var(--sand); }
 }
 
 .main-content {
-  margin-top: 80px;
+  margin-top: 6rem;
 }
 
 /* --- Hero Section --- */
@@ -268,7 +289,7 @@ section {
   .hero-actions { justify-content: center; }
 }
 
-/* --- Ventures grid (homepage) --- */
+/* --- Ventures grid (homepage / about) --- */
 .ventures-section {
   background: var(--sand-card);
 }
@@ -286,14 +307,16 @@ section {
   gap: 1rem;
   padding: 2rem 1.75rem;
   background: var(--sand);
-  border-left: 3px solid var(--moss);
+  border: 1px solid var(--border-sand);
+  border-radius: var(--r-md);
   text-align: left;
   text-decoration: none;
   color: var(--ink);
+  transition: border-color 0.2s;
 }
 
-.venture-card-lg.upcoming {
-  border-left-color: var(--gold);
+.venture-card-lg:hover {
+  border-color: var(--moss);
 }
 
 .venture-card-head {
@@ -326,17 +349,61 @@ section {
   .ventures-grid { grid-template-columns: 1fr; }
 }
 
-.cta-content {
+/* --- Dark band: the one moss-deep band per page, usually the closing CTA --- */
+.dark-band {
+  background: var(--moss-deep);
+  color: var(--sand);
+  border-radius: var(--r-lg);
+  padding: 3.5rem 2.5rem;
   text-align: center;
+}
+
+.dark-band .log-row {
+  margin-bottom: 1rem;
+}
+
+.dark-band .log-tag {
+  background: var(--sand);
+  color: var(--moss-deep);
+}
+
+.dark-band .cta-button.primary {
+  background: var(--sand);
+  border-color: var(--sand);
+  color: var(--ink);
+}
+
+.dark-band .cta-button.primary:hover {
+  background: color-mix(in srgb, var(--sand) 85%, var(--ink));
+}
+
+.dark-band .cta-button.secondary {
+  border-color: var(--sand);
+  color: var(--sand);
+}
+
+.dark-band .cta-button.secondary:hover {
+  background: rgba(246, 241, 226, 0.12);
+}
+
+.cta-content {
+  max-width: 640px;
+  margin: 0 auto;
 }
 
 .cta-title {
   font-size: 2.25rem;
+  color: inherit;
 }
 
 .cta-description {
-  color: var(--text-muted);
+  color: inherit;
+  opacity: 0.85;
   margin-bottom: 2rem;
+}
+
+@media (max-width: 768px) {
+  .dark-band { padding: 2.5rem 1.5rem; }
 }
 
 /* --- Section Title --- */
@@ -377,8 +444,35 @@ section {
   text-align: center;
 }
 
-.teaser-section {
+/* Plain three-up text grid, for a short list that doesn't need cards */
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.info-item h4 {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--moss);
+  margin: 0 0 0.5rem;
+}
+
+.info-item p {
+  color: var(--text-muted);
+  margin: 0;
+  font-size: 0.92rem;
+}
+
+/* Alternating tint band, used where a page's sections need separation */
+.sand-band {
   background: var(--sand-card);
+}
+
+.teaser-section {
   position: relative;
   overflow: hidden;
 }
@@ -397,22 +491,16 @@ section {
   pointer-events: none;
 }
 
-.affiliate-disclosure {
-  text-align: center;
-  font-size: 0.75rem;
-  color: var(--text-muted);
-  margin-top: 1rem;
-}
-
-/* --- Apps hub (grouped by platform) --- */
+/* --- At-a-glance stats: a ruled row, not a boxed card --- */
 .stats-row {
   display: flex;
   justify-content: center;
   gap: 3rem;
-  padding: 2.5rem 0;
+  padding: 2rem 0;
   border-top: 1px solid var(--border-sand);
   border-bottom: 1px solid var(--border-sand);
   margin-top: 2.5rem;
+  flex-wrap: wrap;
 }
 
 .stat {
@@ -465,18 +553,26 @@ section {
 
 .app-card-hub {
   background: var(--sand-card);
-  border-left: 3px solid var(--moss);
+  border: 1px solid var(--border-sand);
+  border-radius: var(--r-md);
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   text-decoration: none;
   color: var(--ink);
+  transition: border-color 0.2s;
+}
+
+.app-card-hub:hover {
+  border-color: var(--moss);
 }
 
 .app-shot {
   height: 140px;
-  margin: 1rem;
+  margin: 1rem 1rem 0;
   background: var(--sand);
   border: 1px solid var(--border-sand);
+  border-radius: var(--r-sm);
   overflow: hidden;
 }
 
@@ -488,7 +584,7 @@ section {
 }
 
 .app-card-body {
-  padding: 0 1.25rem 1.25rem;
+  padding: 1rem 1.25rem 1.25rem;
 }
 
 .app-card-head {
@@ -530,21 +626,6 @@ section {
   .stats-row { gap: 1.5rem; }
 }
 
-/* --- Ahar details: FAQ + Contact side by side --- */
-.ahar-details {
-  display: flex;
-  gap: 2.5rem;
-  margin-top: var(--space-md);
-}
-
-.ahar-details > div {
-  flex: 1;
-}
-
-@media (max-width: 768px) {
-  .ahar-details { flex-direction: column; }
-}
-
 /* --- Grid & List Styles --- */
 .menu-grid {
   display: grid;
@@ -553,19 +634,20 @@ section {
   margin-top: 2rem;
 }
 
+/* Contact card: doubles as the page's one dark band on Ahar and Contact */
 .contact-card {
-  background: var(--ink);
+  background: var(--moss-deep);
   color: var(--sand);
-  padding: 1.5rem 1.75rem;
-  border-radius: 3px;
-  font-size: 0.9rem;
+  padding: 2.25rem 2rem;
+  border-radius: var(--r-lg);
+  font-size: 0.95rem;
   line-height: 1.9;
 }
 
 .contact-card .contact-email {
   font-family: var(--font-mono);
-  font-size: 0.8rem;
-  color: var(--gold);
+  font-size: 0.85rem;
+  color: var(--sand);
   margin-bottom: 0.5rem;
   display: block;
 }
@@ -576,16 +658,24 @@ section {
 }
 
 .contact-card .contact-address {
-  color: var(--footer-muted);
+  color: #BFD9C9;
 }
 
 .contact-card .contact-whatsapp {
-  display: block;
-  margin-top: 0.5rem;
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
-  color: #8FC6AE;
+  display: inline-flex;
+  margin-top: 1rem;
+  padding: 0.7rem 1.4rem;
+  border-radius: var(--r-pill);
+  background: var(--sand);
+  color: var(--moss-deep);
+  font-family: var(--font-sans);
+  font-size: 0.85rem;
+  font-weight: 600;
   text-decoration: none;
+}
+
+.contact-card .contact-whatsapp:hover {
+  background: color-mix(in srgb, var(--sand) 85%, var(--ink));
 }
 
 .faq-list {
@@ -593,9 +683,11 @@ section {
 }
 
 .faq-item {
-  margin-bottom: 0.75rem;
-  background: var(--sand-card);
-  border-left: 3px solid var(--moss);
+  border-bottom: 1px solid var(--border-sand);
+}
+
+.faq-item:first-child {
+  border-top: 1px solid var(--border-sand);
 }
 
 .faq-question {
@@ -603,7 +695,7 @@ section {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  padding: 1rem 1.1rem;
+  padding: 1.1rem 0.25rem;
   background: none;
   border: none;
   cursor: pointer;
@@ -630,7 +722,7 @@ section {
 }
 
 .faq-answer {
-  padding: 0 1.1rem 1.1rem 2.6rem;
+  padding: 0 0.25rem 1.1rem 1.7rem;
   color: var(--text-muted);
   display: none;
 }
@@ -685,6 +777,7 @@ section {
   font-family: var(--font-sans);
   font-size: 1.1rem;
   font-weight: 600;
+  letter-spacing: 0;
 }
 
 .page-section a {
@@ -727,6 +820,7 @@ section {
   top: 1.1rem;
   width: 6px;
   height: 6px;
+  border-radius: 50%;
   background: var(--moss);
 }
 
@@ -745,12 +839,15 @@ section {
   margin: 0;
   background: var(--sand-card);
   border: 1px solid var(--border-sand);
+  border-radius: var(--r-md);
   padding: 0.5rem;
+  overflow: hidden;
 }
 
 .screenshot-card img {
   width: 100%;
   display: block;
+  border-radius: var(--r-sm);
 }
 
 .screenshot-card figcaption {
@@ -851,13 +948,13 @@ section {
   .footer-content { grid-template-columns: 1fr; }
 }
 
-/* --- Buttons --- */
+/* --- Buttons: ink pill primary, ink-outline pill secondary --- */
 .cta-button {
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
   padding: 0.9rem 1.75rem;
-  border-radius: 3px;
+  border-radius: var(--r-pill);
   text-transform: none;
   font-family: var(--font-sans);
   font-size: 0.85rem;
@@ -868,18 +965,18 @@ section {
 }
 
 .cta-button.primary {
-  background: var(--moss);
-  border: 1px solid var(--moss);
+  background: var(--ink);
+  border: 1px solid var(--ink);
   color: var(--sand);
 }
 
 .cta-button.primary:hover {
-  background: var(--moss-dark);
+  background: var(--ink-hover);
 }
 
 .cta-button.secondary {
   background: transparent;
-  border: 1px solid var(--border-sand);
+  border: 1px solid var(--ink);
   color: var(--ink);
 }
 

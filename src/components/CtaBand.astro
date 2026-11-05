@@ -1,0 +1,21 @@
+---
+// The one dark moss-deep band a page gets, usually its closing CTA.
+const { eyebrow, title, description, ctaLabel, ctaHref, ctaExternal = false } = Astro.props;
+---
+<section class="cta-section">
+  <div class="container">
+    <div class="dark-band cta-content">
+      {eyebrow && <div class="log-row"><span class="log-tag">{eyebrow}</span></div>}
+      <h2 class="cta-title">{title}</h2>
+      {description && <p class="cta-description">{description}</p>}
+      <a
+        class="cta-button large primary"
+        href={ctaHref}
+        target={ctaExternal ? '_blank' : undefined}
+        rel={ctaExternal ? 'noopener noreferrer' : undefined}
+      >
+        {ctaLabel}
+      </a>
+    </div>
+  </div>
+</section>

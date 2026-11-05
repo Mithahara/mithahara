@@ -1,10 +1,12 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import CtaBand from '../components/CtaBand.astro';
+import { contacts } from '../data/site.js';
 ---
 <Layout
   path="/mansahara"
   title="Man'sahara"
-  description="Man'sahara is Mithahara's upcoming non-vegetarian venture — same mission as Ahar, extended to non-vegetarian food. Coming soon."
+  description="Man'sahara is Mithahara's upcoming non-vegetarian venture — same mission as Ahar, extended to non-vegetarian food. Coming soon to Panchkula."
 >
   <section class="venture-section teaser-section" id="mansahara">
     <span class="teaser-watermark">log/002</span>
@@ -18,4 +20,33 @@ import Layout from '../layouts/Layout.astro';
       </p>
     </div>
   </section>
+
+  <section class="sand-band">
+    <div class="container">
+      <h3 class="subsection-title">What to Expect</h3>
+      <div class="info-grid">
+        <div class="info-item">
+          <h4>Hygienic by Design</h4>
+          <p>Same kitchen discipline as Ahar — clean prep, careful handling, nothing cut for speed.</p>
+        </div>
+        <div class="info-item">
+          <h4>Eco-Friendly Plating</h4>
+          <p>Served on the same eco-friendly ware as Ahar, not single-use plastic.</p>
+        </div>
+        <div class="info-item">
+          <h4>Panchkula First</h4>
+          <p>Launching in Panchkula alongside Ahar, before it goes anywhere else.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <CtaBand
+    eyebrow="Coming Soon"
+    title="Want to Be First to Know?"
+    description="Join our WhatsApp channel and we'll let you know the moment Man'sahara opens."
+    ctaLabel="Join WhatsApp Channel"
+    ctaHref={contacts.whatsapp}
+    ctaExternal
+  />
 </Layout>

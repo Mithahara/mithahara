@@ -29,18 +29,30 @@ const jsonLd = {
   },
   "sameAs": [contacts.whatsapp],
 };
+
+const itemCount = menu.reduce((n, category) => n + category.items.length, 0);
 ---
 <Layout
   path="/ahar"
-  title="Ahar"
-  description="Ahar is Mithahara's vegetarian food venture in Panchkula — fresh idlis, appams, uttapams, and paranthas, served daily 7:00–14:30."
+  title="Ahar — Fresh Vegetarian Food, Panchkula"
+  description="Ahar is Mithahara's vegetarian food venture in Panchkula — fresh idlis, appams, uttapams, and paranthas, served daily 7:00–14:30. Bulk orders welcome."
 >
   <section class="venture-section" id="ahar">
     <div class="container">
       <div class="log-row"><span class="log-tag">log/001 — Active</span></div>
       <h2 class="section-title">Ahar</h2>
       <p class="venture-tagline">Mithahara's Vegetarian Venture · Serving 7:00–14:30 Daily</p>
+      <div class="stats-row">
+        <div class="stat"><span class="stat-num">7–14:30</span><span class="stat-label">Open Daily</span></div>
+        <div class="stat"><span class="stat-num">{itemCount}</span><span class="stat-label">Menu Items</span></div>
+        <div class="stat"><span class="stat-num">2025</span><span class="stat-label">Serving Since</span></div>
+      </div>
+    </div>
+  </section>
 
+  <section class="sand-band">
+    <div class="container">
+      <h3 class="subsection-title">Menu</h3>
       <div class="menu-grid">
         {menu.map((category) => (
           <div class="menu-category">
@@ -56,20 +68,22 @@ const jsonLd = {
           </div>
         ))}
       </div>
+    </div>
+  </section>
 
-      <div class="ahar-details">
-        <div>
-          <h3 class="subsection-title">Frequently Asked</h3>
-          <FaqAccordion />
-        </div>
-        <div>
-          <h3 class="subsection-title" id="contact">Contact</h3>
-          <div class="contact-card">
-            <span class="contact-email">{contacts.email}</span>
-            <div class="contact-address">{contacts.address}</div>
-            <a class="contact-whatsapp" href={contacts.whatsapp} target="_blank" rel="noopener noreferrer">→ join our WhatsApp channel</a>
-          </div>
-        </div>
+  <section>
+    <div class="container">
+      <h3 class="subsection-title">Frequently Asked</h3>
+      <FaqAccordion />
+    </div>
+  </section>
+
+  <section>
+    <div class="container">
+      <div class="contact-card">
+        <span class="contact-email">{contacts.email}</span>
+        <div class="contact-address">{contacts.address}</div>
+        <a class="contact-whatsapp" href={contacts.whatsapp} target="_blank" rel="noopener noreferrer">Join our WhatsApp channel →</a>
       </div>
     </div>
   </section>
