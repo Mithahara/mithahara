@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import AppsGrid from '../../components/AppsGrid.astro';
+import CtaBand from '../../components/CtaBand.astro';
 ---
 <Layout
   path="/apps"
@@ -17,12 +18,14 @@ import AppsGrid from '../../components/AppsGrid.astro';
         Here's what's live so far.
       </p>
       <AppsGrid />
-      <div class="hero-actions" style="justify-content: center;">
-        <a class="cta-button primary" href="https://www.odoo.com/r/aff-mithahara" target="_blank" rel="noopener noreferrer">
-          › Explore Odoo Apps
-        </a>
-      </div>
-      <p class="affiliate-disclosure">The Odoo link above is an affiliate link.</p>
     </div>
   </section>
+
+  <CtaBand
+    title="Browse the Full Odoo Catalog"
+    description="Every module we ship lives on the Odoo Apps Store. (This link is an affiliate link.)"
+    ctaLabel="Explore Odoo Apps"
+    ctaHref="https://www.odoo.com/r/aff-mithahara"
+    ctaExternal
+  />
 </Layout>
