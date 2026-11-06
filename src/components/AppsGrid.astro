@@ -1,8 +1,10 @@
 ---
 import { apps } from '../data/site.js';
+import { odooApps } from '../data/odooApps.js';
 
-// This hub shows Chrome extensions only. Odoo apps live on their own
-// up-to-date catalog, generated straight from the store -- see /odoo-apps.
+// This hub's grid is Chrome extensions only. Odoo apps and Occasionly get a
+// pointer card each instead of a duplicated listing -- Odoo apps already
+// have their own up-to-date catalog, generated straight from the store.
 const chromeApps = apps.filter((app) => app.platform === 'Chrome');
 ---
 <div class="stats-row">
@@ -27,5 +29,29 @@ const chromeApps = apps.filter((app) => app.platform === 'Chrome');
         </div>
       </a>
     ))}
+  </div>
+</section>
+
+<section class="platform-section">
+  <div class="platform-head">
+    <h3>Also From Mithahara</h3>
+  </div>
+  <div class="app-grid">
+    <a class="venture-card-lg" href="/odoo-apps">
+      <div class="venture-card-head">
+        <h3>Odoo Apps</h3>
+        <span class="log-tag">{odooApps.length} Live</span>
+      </div>
+      <p>The full catalog of Odoo apps we build and ship — compliance, accounting, access control, advertising, and more.</p>
+      <span class="learn-more">Browse the catalog →</span>
+    </a>
+    <a class="venture-card-lg" href="https://occasionly.in" target="_blank" rel="noopener noreferrer">
+      <div class="venture-card-head">
+        <h3>Occasionly</h3>
+        <span class="log-tag gold">Prompt Guides</span>
+      </div>
+      <p>AI prompt guides that turn a shop's own product photos into festive posts and posters — for boutiques, jewellers, sweet shops, and more.</p>
+      <span class="learn-more">Visit Occasionly →</span>
+    </a>
   </div>
 </section>
