@@ -25,19 +25,13 @@ const sections = [...groups.entries()]
 const description =
   `All ${odooApps.length} Odoo apps built by Mithahara for Odoo 19 and 20 — ${paid.length} paid and ` +
   `${free.length} free modules covering compliance, accounting, access control, advertising and warehouse.`;
-const slugOf = (name) => name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
 ---
 
 <Layout path="/odoo-apps" title="Odoo Apps" description={description}>
   <div class="sap">
-    <nav class="sap-rail" aria-label="Categories">
+    <nav class="sap-rail" aria-label="Breadcrumb">
       <div class="sap-wrap sap-rail-row">
         <p class="sap-crumb">Odoo Apps</p>
-        <ul class="sap-tabs">
-          {sections.map((section) => (
-            <li><a href={`#${slugOf(section.name)}`}>{section.name} <span class="sap-count">{section.apps.length}</span></a></li>
-          ))}
-        </ul>
       </div>
     </nav>
 
@@ -69,24 +63,95 @@ const slugOf = (name) => name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
       </div>
     </section>
 
-    {sections.map((section, i) => (
-      <section class={`sap-band${i % 2 === 1 ? ' sap-tint' : ''}`} id={slugOf(section.name)}>
-        <div class="sap-wrap">
-          <h2>{section.name}<span class="sap-count">{section.apps.length} {section.apps.length === 1 ? 'app' : 'apps'}</span></h2>
-          <div class="sap-rows">
-            {section.apps.map((app) => (
-              <a class="sap-app" href={odooAppHref(app)}>
-                <span class="sap-app-head">
-                  <span class="sap-app-name">{app.name}</span>
-                  <span class={app.price ? 'sap-app-price' : 'sap-app-price free'}>{formatPrice(app)}</span>
-                </span>
-                <span class="sap-app-tag">{app.tagline || app.summary}</span>
-                {app.hasVideo && <span class="sap-app-video">▶ Demo video</span>}
-              </a>
-            ))}
-          </div>
+    <section class="sap-band" aria-label="Find an app">
+      <div class="sap-wrap sap-filterbar">
+        <input
+          type="search"
+          id="sapSearch"
+          class="sap-search"
+          placeholder="Search by name or keyword…"
+          aria-label="Search Odoo apps"
+        />
+        <div class="sap-pill-row" role="group" aria-label="Filter by category">
+          <button type="button" class="sap-pill active" data-cat="all">All <span class="sap-count">{odooApps.length}</span></button>
+          {sections.map((section) => (
+            <button type="button" class="sap-pill" data-cat={section.name}>{section.name} <span class="sap-count">{section.apps.length}</span></button>
+          ))}
         </div>
-      </section>
-    ))}
+        <div class="sap-pill-row" role="group" aria-label="Filter by price">
+          <button type="button" class="sap-pill active" data-price="all">All prices</button>
+          <button type="button" class="sap-pill" data-price="free">Free</button>
+          <button type="button" class="sap-pill" data-price="paid">Paid</button>
+        </div>
+        <p class="sap-filter-count"><span id="sapVisibleCount">{odooApps.length}</span> of {odooApps.length} apps</p>
+      </div>
+    </section>
+
+    <section class="sap-band sap-tint" aria-label="All apps">
+      <div class="sap-wrap">
+        <div class="sap-rows" id="sapRows">
+          {[...odooApps]
+            .sort((a, b) => a.name.localeCompare(b.name))
+            .map((app) => {
+              const category = (app.category || 'Other').split('/')[0].trim();
+              const search = [app.name, app.tech, app.tagline, app.summary].filter(Boolean).join(' ').toLowerCase();
+              return (
+                <a class="sap-app" href={odooAppHref(app)} data-category={category} data-free={app.price ? '0' : '1'} data-search={search}>
+                  <span class="sap-app-head">
+                    <span class="sap-app-name">{app.name}</span>
+                    <span class={app.price ? 'sap-app-price' : 'sap-app-price free'}>{formatPrice(app)}</span>
+                  </span>
+                  <span class="sap-app-cat">{category}</span>
+                  <span class="sap-app-tag">{app.tagline || app.summary}</span>
+                  {app.hasVideo && <span class="sap-app-video">▶ Demo video</span>}
+                </a>
+              );
+            })}
+        </div>
+        <p class="sap-filter-count" id="sapEmptyState" style="display:none; text-align:center; padding: 2rem 0;">
+          No apps match that search — try a different word or clear the filters.
+        </p>
+      </div>
+    </section>
   </div>
+
+  <script>
+    const rows = Array.from(document.querySelectorAll('.sap-app'));
+    const searchInput = document.getElementById('sapSearch');
+    const catPills = Array.from(document.querySelectorAll('[data-cat]'));
+    const pricePills = Array.from(document.querySelectorAll('[data-price]'));
+    const countEl = document.getElementById('sapVisibleCount');
+    const emptyState = document.getElementById('sapEmptyState');
+    let activeCat = 'all';
+    let activePrice = 'all';
+
+    function applyFilters() {
+      const q = searchInput.value.trim().toLowerCase();
+      let visible = 0;
+      for (const row of rows) {
+        const matchesCat = activeCat === 'all' || row.dataset.category === activeCat;
+        const matchesPrice = activePrice === 'all' || row.dataset.free === (activePrice === 'free' ? '1' : '0');
+        const matchesSearch = !q || (row.dataset.search || '').includes(q);
+        const show = matchesCat && matchesPrice && matchesSearch;
+        row.classList.toggle('sap-hidden', !show);
+        if (show) visible++;
+      }
+      if (countEl) countEl.textContent = String(visible);
+      if (emptyState) emptyState.style.display = visible === 0 ? 'block' : 'none';
+    }
+
+    if (searchInput) searchInput.addEventListener('input', applyFilters);
+    catPills.forEach((btn) => btn.addEventListener('click', () => {
+      catPills.forEach((b) => b.classList.remove('active'));
+      btn.classList.add('active');
+      activeCat = btn.dataset.cat || 'all';
+      applyFilters();
+    }));
+    pricePills.forEach((btn) => btn.addEventListener('click', () => {
+      pricePills.forEach((b) => b.classList.remove('active'));
+      btn.classList.add('active');
+      activePrice = btn.dataset.price || 'all';
+      applyFilters();
+    }));
+  </script>
 </Layout>

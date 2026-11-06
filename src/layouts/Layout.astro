@@ -7,9 +7,9 @@ const { title, description, path = '/' } = Astro.props;
 const canonicalURL = new URL(path, Astro.site);
 const pageTitle = title
   ? `${title} | Mithahara`
-  : "Mithahara — Ahar Food, Man'sahara & Odoo/Chrome Apps";
+  : "Mithahara — Ahar Food, Masa Ahar & Odoo/Chrome Apps";
 const pageDescription = description
-  ?? "Mithahara: Ahar's fresh vegetarian food in Panchkula, the upcoming Man'sahara venture, and the Odoo apps & Chrome extensions we build alongside them.";
+  ?? "Mithahara: Ahar's fresh vegetarian food in Panchkula, the upcoming Masa Ahar venture, and the Odoo apps & Chrome extensions we build alongside them.";
 const socialImageURL = new URL('/web-app-manifest-512x512.png', Astro.site);
 
 const organizationJsonLd = {

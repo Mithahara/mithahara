@@ -2,14 +2,15 @@
 import Layout from '../layouts/Layout.astro';
 import CtaBand from '../components/CtaBand.astro';
 import { apps } from '../data/site.js';
+import { odooApps } from '../data/odooApps.js';
 
 const chromeCount = apps.filter((app) => app.platform === 'Chrome').length;
-const odooCount = apps.length - chromeCount;
+const odooCount = odooApps.length;
 ---
 <Layout
   path="/about"
   title="About"
-  description="Mithahara is a parent brand behind Ahar's vegetarian food in Panchkula, the upcoming Man'sahara venture, and a set of Odoo apps and Chrome extensions."
+  description="Mithahara is a parent brand behind Ahar's vegetarian food in Panchkula, the upcoming Masa Ahar venture, and a set of Odoo apps and Chrome extensions."
 >
   <section>
     <div class="container">
@@ -40,7 +41,7 @@ const odooCount = apps.length - chromeCount;
         </a>
         <a class="venture-card-lg upcoming" href="/mansahara">
           <div class="venture-card-head">
-            <h3>Man'sahara</h3>
+            <h3>Masa Ahar</h3>
             <span class="log-tag gold">Coming Soon</span>
           </div>
           <p>
@@ -56,8 +57,8 @@ const odooCount = apps.length - chromeCount;
             <span class="log-tag">Shipping</span>
           </div>
           <p>
-            Alongside the food ventures, Mithahara ships {odooCount} Odoo apps and {chromeCount} Chrome
-            extensions — built and shipped at a fast pace.
+            Alongside the food ventures, Mithahara ships {odooCount} Odoo apps, {chromeCount} Chrome
+            extensions, and AI prompt guides for other businesses — built and shipped at a fast pace.
           </p>
           <span class="learn-more">Browse the apps →</span>
         </a>
@@ -67,7 +68,7 @@ const odooCount = apps.length - chromeCount;
 
   <CtaBand
     title="Questions About Any of It?"
-    description="Ahar orders, Man'sahara updates, or one of the apps — the same inbox reaches the team."
+    description="Ahar orders, Masa Ahar updates, or one of the apps — the same inbox reaches the team."
     ctaLabel="Contact Us"
     ctaHref="/contact"
   />

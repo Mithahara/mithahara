@@ -1,44 +1,57 @@
 ---
 import { apps } from '../data/site.js';
+import { odooApps } from '../data/odooApps.js';
 
+// This hub's grid is Chrome extensions only. Odoo apps and Occasionly get a
+// pointer card each instead of a duplicated listing -- Odoo apps already
+// have their own up-to-date catalog, generated straight from the store.
 const chromeApps = apps.filter((app) => app.platform === 'Chrome');
-const odooApps = apps.filter((app) => app.platform !== 'Chrome');
-
-const platforms = [
-  { name: 'Chrome Extensions', apps: chromeApps, storeLabel: 'View on Chrome Web Store', countLabel: `${chromeApps.length} live on the Chrome Web Store` },
-  { name: 'Odoo Apps', apps: odooApps, storeLabel: 'View on Odoo Apps Store', countLabel: `${odooApps.length} live on the Odoo Apps Store, targeting Odoo 19` },
-];
 ---
 <div class="stats-row">
-  <div class="stat"><span class="stat-num">{apps.length}</span><span class="stat-label">Apps Shipped</span></div>
-  <div class="stat"><span class="stat-num">{chromeApps.length}</span><span class="stat-label">Chrome Extensions</span></div>
-  <div class="stat"><span class="stat-num">{odooApps.length}</span><span class="stat-label">Odoo Apps</span></div>
+  <div class="stat"><span class="stat-num">{chromeApps.length}</span><span class="stat-label">Chrome Extensions Shipped</span></div>
 </div>
 
-{platforms.map((platform) => (
-  <section class="platform-section">
-    <div class="platform-head">
-      <h3>{platform.name}</h3>
-      <span class="platform-count">{platform.countLabel}</span>
-    </div>
-    <div class="app-grid">
-      {platform.apps.map((app) => (
-        <a class="app-card-hub" href={`/apps/${app.slug}`}>
-          {app.screenshots?.[0] && (
-            <div class="app-shot">
-              <img src={app.screenshots[0].src} alt={app.screenshots[0].alt} loading="lazy" />
-            </div>
-          )}
-          <div class="app-card-body">
-            <div class="app-card-head">
-              <span class="app-card-name">{app.name}</span>
-              {app.price && <span class="app-price">{app.price}</span>}
-            </div>
-            <p class="app-card-tagline">{app.tagline}</p>
-            <span class="app-store-link">{platform.storeLabel} →</span>
+<section class="platform-section">
+  <div class="app-grid">
+    {chromeApps.map((app) => (
+      <a class="app-card-hub" href={`/apps/${app.slug}`}>
+        {app.screenshots?.[0] && (
+          <div class="app-shot">
+            <img src={app.screenshots[0].src} alt={app.screenshots[0].alt} loading="lazy" />
           </div>
-        </a>
-      ))}
-    </div>
-  </section>
-))}
+        )}
+        <div class="app-card-body">
+          <div class="app-card-head">
+            <span class="app-card-name">{app.name}</span>
+          </div>
+          <p class="app-card-tagline">{app.tagline}</p>
+          <span class="app-store-link">View on Chrome Web Store →</span>
+        </div>
+      </a>
+    ))}
+  </div>
+</section>
+
+<section class="platform-section">
+  <div class="platform-head">
+    <h3>Also From Mithahara</h3>
+  </div>
+  <div class="app-grid">
+    <a class="venture-card-lg" href="/odoo-apps">
+      <div class="venture-card-head">
+        <h3>Odoo Apps</h3>
+        <span class="log-tag">{odooApps.length} Live</span>
+      </div>
+      <p>The full catalog of Odoo apps we build and ship — compliance, accounting, access control, advertising, and more.</p>
+      <span class="learn-more">Browse the catalog →</span>
+    </a>
+    <a class="venture-card-lg" href="https://occasionly.in" target="_blank" rel="noopener noreferrer">
+      <div class="venture-card-head">
+        <h3>Occasionly</h3>
+        <span class="log-tag gold">Prompt Guides</span>
+      </div>
+      <p>AI prompt guides that turn a shop's own product photos into festive posts and posters — for boutiques, jewellers, sweet shops, and more.</p>
+      <span class="learn-more">Visit Occasionly →</span>
+    </a>
+  </div>
+</section>

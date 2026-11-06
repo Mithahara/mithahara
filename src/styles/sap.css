@@ -19,7 +19,7 @@
 
   /* rail: breadcrumb over a row of section tabs */
   .sap-rail { background: var(--tint); border-bottom: 1px solid var(--border-sand); }
-  .sap-rail-row { padding-top: 0.75rem; }
+  .sap-rail-row { padding: 0.75rem 0; }
   .sap-crumb { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.04em; text-transform: uppercase; color: var(--text-muted); line-height: 1.5; }
   .sap-crumb a { color: var(--text-muted); text-decoration: none; }
   .sap-crumb a:hover { color: var(--moss); }
@@ -126,16 +126,48 @@
     .sap h2 { font-size: 1.6rem; }
   }
 
-/* index: category bands with hairline-ruled app rows */
+/* index: a searchable/filterable flat list instead of fixed category bands */
 .sap-rows { display: grid; grid-template-columns: 1fr; column-gap: 3rem; }
 .sap-app { display: grid; gap: 0.35rem; padding: 1.1rem 0; border-top: 1px solid var(--rule); color: var(--ink); text-decoration: none; }
 .sap-app:hover .sap-app-name { color: var(--moss); }
+.sap-app.sap-hidden { display: none; }
 .sap-app-head { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; }
 .sap-app-name { font-family: var(--font-serif); font-size: 1.2rem; line-height: 1.3; font-weight: 700; }
 .sap-app-price { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.04em; color: var(--gold-text); flex: none; }
 .sap-app-price.free { color: var(--text-muted); }
+.sap-app-cat { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.05em; text-transform: uppercase; color: var(--moss-dark); }
 .sap-app-tag { font-size: 0.95rem; line-height: 1.55; color: var(--text-muted); }
 .sap-app-video { font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--moss-dark); }
 .sap-count { font-family: var(--font-mono); font-size: 0.75rem; letter-spacing: 0.06em; color: var(--text-muted); margin-left: 0.75rem; vertical-align: middle; }
 .sap-band[id] { scroll-margin-top: 1rem; }
 @media (min-width: 768px) { .sap-rows { grid-template-columns: 1fr 1fr; } }
+
+/* filter bar: search input + pill toggles, above the flat app list */
+.sap-filterbar { display: grid; gap: 1.25rem; }
+.sap-search {
+  width: 100%;
+  padding: 0.85rem 1.25rem;
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  color: var(--ink);
+  background: var(--canvas);
+  border: 1px solid var(--border-sand);
+  border-radius: var(--r-pill);
+}
+.sap-search:focus-visible { outline: 2px solid var(--moss); outline-offset: 2px; }
+.sap-pill-row { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+.sap-pill {
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--ink);
+  background: var(--canvas);
+  border: 1px solid var(--border-sand);
+  border-radius: var(--r-pill);
+  padding: 0.45rem 0.95rem;
+  cursor: pointer;
+}
+.sap-pill:hover { border-color: var(--moss); }
+.sap-pill.active { background: var(--moss); border-color: var(--moss); color: #FFFFFF; }
+.sap-pill .sap-count { color: inherit; opacity: 0.75; margin-left: 0.4rem; }
+.sap-filter-count { font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted); margin-top: -0.25rem; }
